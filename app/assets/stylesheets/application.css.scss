@@ -1,0 +1,22 @@
+// $baseFontSize: 18px;
+// $baseLineHeight: 30px;
+
+// $sansFontFamily: "Open Sans", "Trebuchet MS", sans-serif;
+
+// $baseFontFamily: $sansFontFamily;
+// $headingFontFamily: $sansFontFamily;
+// $headingsFontFamily: $sansFontFamily;
+
+// $footerHeight: 60px;
+
+$font-size-base: 18px;
+$line-height-base: 1.667;
+
+$font-family-sans: "Open Sans", "Trebuchet MS", sans-serif;
+
+$font-family-base: $font-family-sans;
+
+@import "base";
+@import "bootstrap";
+@import "font-awesome"; //import order is important here
+@import "welcome";

@@ -44,7 +44,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use puma as the app server
 gem 'puma'
@@ -56,7 +56,6 @@ gem 'puma'
 # gem 'debugger', group: [:development, :test]
 
 gem 'parallel_tests', group: :development
-gem 'guard-rails', github: 'ranmocy/guard-rails', group: :development
 
 gem 'capybara-webkit', group: :test
 gem 'database_cleaner', group: :test

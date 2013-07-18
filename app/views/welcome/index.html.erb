@@ -1,0 +1,17 @@
+<h1 class="loud">Welcome</h1>
+
+<%= form_tag registration_path, method: :post do |f| %>
+  <%= text_field_tag :shop_name, 
+        params[:shop_name], 
+        placeholder: 'Your shop name' %><br/>
+
+  <%= text_field_tag :shop_email, 
+        params[:shop_email], 
+        placeholder: 'Email address' %><br/>
+
+  <%= text_field_tag :shop_password, 
+        params[:shop_password], 
+        placeholder: 'Password' %><br/>
+
+  <%= submit_tag 'Create your shop now', class: 'welcome-button' %>
+<% end %>
