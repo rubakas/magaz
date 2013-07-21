@@ -5,17 +5,12 @@ class RegistrationsControllerTest < ActionController::TestCase
     @registration = shops(:one)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create registration" do
+  test "should create shop" do
     assert_difference('Shop.count') do
-      post :create, registration: {  }
+      post :create, shop: { name:'uniq name',email:'uniq1@example.com',password:'1234q'}
     end
-
-    assert_redirected_to root_path(assigns(:registration))
+    assert session[:shop_id]
+    assert_redirected_to admin_dashboard_path
   end
   
 end

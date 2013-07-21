@@ -1,13 +1,19 @@
 class RegistrationsController < ApplicationController
   respond_to :html
 
-  inherit_resources
-  defaults singleton: true, resource_class: Shop
-  actions :create, :new
-
   def create
-    super do |format|
-      format.html { redirect_to root_url }
+    @shop = Shop.new allowed_params
+    if @shop.save
+      session[:shop_id]=@shop.id
+      redirect_to admin_dashboard_path
+    else
+      render template: 'welcome/index'
     end
+  end
+
+  private
+  
+  def allowed_params
+    params.require(:shop).permit(:name,:email,:password)
   end
 end

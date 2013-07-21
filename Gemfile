@@ -60,3 +60,4 @@ gem 'parallel_tests', group: :development
 gem 'capybara-webkit', group: :test
 gem 'database_cleaner', group: :test
 gem 'fabrication', group: :test
+gem 'turn', group: :test
