@@ -1,16 +1,24 @@
 == README
 
+* Branching policy just use git-flow
+  http://buildamodule.com/video/change-management-and-version-control-deploying-releases-features-and-fixes-with-git-how-to-use-a-scalable-git-branching-model-called-gitflow
+
+  install git-flow
+  https://github.com/nvie/gitflow
+
 * Ruby version: 2.0
+  just use rvm or rbenv
 
-* System dependencies: No
+* Postgresql database
 
-* Configuration
+* Database creation:
+  cp config/database.yml.example config/database.yml
+  bundle exec rake db:create
+  bundle exec rake db:migrate
 
-* Database creation
-
-* Database initialization
 
 * How to run the test suite
+  bundle exec rake test
 
 * Services (job queues, cache servers, search engines, etc.)
 
