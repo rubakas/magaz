@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: f27b4092e715711773edf660461cd4392cf3a43b
+  revision: 6058414a85c25a45fb6fc4864dbd3499d02f879f
   branch: 3
   specs:
-    bootstrap-sass (2.3.1.0)
+    bootstrap-sass (3.0.0.0)
       sass (~> 3.2)
 
 GEM
@@ -119,7 +119,7 @@ GEM
       json (~> 1.4)
     responders (1.0.0.rc)
       railties (>= 3.2, < 5)
-    sass (3.2.9)
+    sass (3.2.10)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
