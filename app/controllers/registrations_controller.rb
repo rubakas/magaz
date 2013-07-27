@@ -1,5 +1,5 @@
 class RegistrationsController < ApplicationController
-  respond_to :html
+  respond_to :html, :json
 
   def create
     @shop = Shop.new allowed_params
@@ -9,6 +9,12 @@ class RegistrationsController < ApplicationController
     else
       render template: 'welcome/index'
     end
+  end
+
+  def validate
+    @shop = Shop.new allowed_params
+    @shop.valid?
+    render json: @shop.errors.to_json
   end
 
   private

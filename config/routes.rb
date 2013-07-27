@@ -1,7 +1,11 @@
 Magaz::Application.routes.draw do
   
   root 'welcome#index'
-  resource :registration, only: [:create, :new]
+  resource :registration, only: [:create] do
+    collection do
+      post :validate
+    end
+  end
     
   namespace :admin do
     get 'dashboard' => 'dashboard#index'
