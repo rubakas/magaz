@@ -1,23 +1,27 @@
 <h1 class="loud">Welcome</h1>
 <%= form_for @shop,
       url: registration_path,
+      data:{validation_url:validate_registration_path},
       html:{class:'script-registration-form'}  do |f| %>
   <div class="script-field">
     <%= f.text_field :name,
           placeholder: 'Your shop name',
-          data:form_error_data(@shop, 'name') %>
+          data:form_error_data(@shop, 'name'),
+          class:'script-input-name' %>
     <div class="script-error-label alert alert-danger hidden"></div>
   </div>
   <div class="script-field">
     <%= f.text_field :email,
           placeholder: 'Email address',
-          data:form_error_data(@shop, 'email') %>
+          data:form_error_data(@shop, 'email'),
+          class:'script-input-email' %>
     <div class="script-error-label alert alert-danger hidden"></div>
   </div>
   <div class="script-field">
     <%= f.text_field :password,
           placeholder: 'Password',
-          data:form_error_data(@shop, 'password') %>
+          data:form_error_data(@shop, 'password'),
+          class:'script-input-password' %>
     <div class="script-error-label alert alert-danger hidden"></div>
   </div>
   <div>
