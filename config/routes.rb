@@ -1,7 +1,7 @@
 Magaz::Application.routes.draw do
   
   root 'welcome#index'
-  resource :registration, only: [:create] do
+  resource :registration, only: [:create, :show] do
     collection do
       post :validate
     end
