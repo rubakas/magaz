@@ -1,3 +1,3 @@
 class Shop < ActiveRecord::Base
-  include Authenticable
+  include PasswordAuthenticable
 end

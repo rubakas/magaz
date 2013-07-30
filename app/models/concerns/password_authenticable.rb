@@ -1,4 +1,4 @@
-module Authenticable extend ActiveSupport::Concern
+module PasswordAuthenticable extend ActiveSupport::Concern
   
   included do
     attr_accessor :password
@@ -26,5 +26,4 @@ module Authenticable extend ActiveSupport::Concern
   def encrypt_password_with_salt(password, salt)
     BCrypt::Engine.hash_secret(password, salt)
   end
-
 end

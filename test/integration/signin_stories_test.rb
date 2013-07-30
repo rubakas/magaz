@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class SigninStoriesTest < ActionDispatch::IntegrationTest  
+  test "signin redirect" do
+    visit '/session'
+    assert page.has_content?('Sign in')
+  end
+
   test "signin success" do
     visit '/'
     assert page.has_content?('Sign in')

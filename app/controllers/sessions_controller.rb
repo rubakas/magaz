@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def show
+    render :new
+  end
+
   #TODO test user not found case
   def create
     @shop = Shop.find_by_email(params[:session][:email])
