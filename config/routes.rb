@@ -6,6 +6,9 @@ Magaz::Application.routes.draw do
       post :validate
     end
   end
+
+  resource :session, only: [:create, :new, :show] do
+  end
     
   namespace :admin do
     get 'dashboard' => 'dashboard#index'
