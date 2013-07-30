@@ -23,4 +23,14 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     click_button 'Create your shop now'
     assert page.has_content?('Welcome')
   end
+
+  test "signup redirect and signup success" do
+    visit '/registration'
+    fill_in 'Your shop name', with: 'Example'
+    fill_in 'Email address', with: 'uniq2@example.com'
+    fill_in 'Password', with: 'password'
+    click_button 'Create your shop now'
+
+    assert page.has_content?('Welcome to dashboard')
+  end
 end

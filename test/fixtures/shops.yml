@@ -3,4 +3,5 @@
 one:
   email: admin@example.com
   name: Example
-  password_digest: <%= BCrypt::Password.create('password', cost: BCrypt::Engine::DEFAULT_COST) %>
+  password_salt: <%= salt = BCrypt::Engine.generate_salt %>
+  password_digest: <%= BCrypt::Engine.hash_secret('password', salt) %>

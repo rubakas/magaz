@@ -1,0 +1,25 @@
+<h1 class="loud">Sign in</h1>
+
+<%= form_for :session, 
+        url: session_path, 
+        method: :post,
+        html: { class:'script-session-form' }  do |f| %>
+  <div class="script-field">
+    <%= f.text_field :name,
+          placeholder: 'Your shop name',
+          class:'script-input-name' %>
+  </div>
+  <div class="script-field">
+    <%= f.text_field :email,
+          placeholder: 'Email address',
+          class:'script-input-email' %>
+  </div>
+  <div class="script-field">
+    <%= f.password_field :password,
+          placeholder: 'Password',
+          class:'script-input-password' %>
+  </div>
+  <div>
+    <%= f.submit 'Sign in', class: 'signin-button' %>
+  </div>
+<% end %>

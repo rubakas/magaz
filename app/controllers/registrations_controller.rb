@@ -1,6 +1,10 @@
 class RegistrationsController < ApplicationController
   respond_to :html, :json
 
+  def show
+    redirect_to root_path
+  end
+
   def create
     @shop = Shop.new allowed_params
     if @shop.save
