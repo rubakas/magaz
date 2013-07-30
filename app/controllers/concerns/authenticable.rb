@@ -1,6 +1,7 @@
 module Authenticable extend ActiveSupport::Concern
   included do
     before_action :authentication_required
+    layout 'admin'
   end
 
   protected
