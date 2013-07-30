@@ -7,7 +7,7 @@ Magaz::Application.routes.draw do
     end
   end
 
-  resource :session, only: [:create, :new, :show] do
+  resource :session, only: [:create, :destroy, :new, :show] do
   end
     
   namespace :admin do
