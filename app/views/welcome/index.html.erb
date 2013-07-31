@@ -1,31 +1,34 @@
 <%= link_to 'Sign in', new_session_path %>
 
 <h1 class="loud">Welcome</h1>
-
+<br/>
 <%= form_for @shop,
       url: registration_path,
       data:{validation_url:validate_registration_path},
       html:{class:'script-registration-form'}  do |f| %>
-  <div class="script-field">
+  <div class="script-field form-group">
     <%= f.text_field :name,
           placeholder: 'Your shop name',
           data:form_error_data(@shop, 'name'),
-          class:'script-input-name' %>
+          class:'script-input-name form-control' %>
     <div class="script-error-label alert alert-danger hidden"></div>
+    <br/>
   </div>
-  <div class="script-field">
+  <div class="script-field form-group">
     <%= f.text_field :email,
           placeholder: 'Email address',
           data:form_error_data(@shop, 'email'),
-          class:'script-input-email' %>
+          class:'script-input-email form-control' %>
     <div class="script-error-label alert alert-danger hidden"></div>
+    <br/>
   </div>
-  <div class="script-field">
+  <div class="script-field form-group">
     <%= f.password_field :password,
           placeholder: 'Password',
           data:form_error_data(@shop, 'password'),
-          class:'script-input-password' %>
+          class:'script-input-password form-control' %>
     <div class="script-error-label alert alert-danger hidden"></div>
+    <br/>
   </div>
   <div>
     <%= f.submit 'Create your shop now', class: 'welcome-button' %>

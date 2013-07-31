@@ -4,22 +4,26 @@
         url: session_path, 
         method: :post,
         html: { class:'script-session-form' }  do |f| %>
-  <div class="script-field">
+    <br/>
+  <div class="script-field form-group">
     <%= f.text_field :name,
           placeholder: 'Your shop name',
-          class:'script-input-name' %>
+          class:'script-input-name form-control' %>
+    <br/>
   </div>
-  <div class="script-field">
+  <div class="script-field form-group">
     <%= f.text_field :email,
           placeholder: 'Email address',
-          class:'script-input-email' %>
+          class:'script-input-email form-control' %>
+    <br/>
   </div>
-  <div class="script-field">
+  <div class="script-field form-group">
     <%= f.password_field :password,
           placeholder: 'Password',
-          class:'script-input-password' %>
+          class:'script-input-password form-control' %>
+    <br/>
   </div>
-  <div>
-    <%= f.submit 'Sign in', class: 'signin-button' %>
+  <div class='form-group'>
+    <%= f.submit 'Sign in', class: 'signin-button form-control welcome-button' %>
   </div>
 <% end %>
