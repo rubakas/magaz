@@ -55,6 +55,7 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'annotate', ">=2.5.0"
 gem 'parallel_tests', group: :development
 
 gem 'capybara-webkit', group: :test
