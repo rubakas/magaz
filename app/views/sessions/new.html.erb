@@ -5,25 +5,25 @@
         method: :post,
         html: { class:'script-session-form' }  do |f| %>
     <br/>
-  <div class="script-field form-group">
+  <div class="script-field form-group col-lg-3">
     <%= f.text_field :name,
           placeholder: 'Your shop name',
-          class:'script-input-name form-control' %>
+          class:'script-input-name welcome-input' %>
     <br/>
   </div>
-  <div class="script-field form-group">
+  <div class="script-field form-group col-lg-3">
     <%= f.text_field :email,
           placeholder: 'Email address',
-          class:'script-input-email form-control' %>
+          class:'script-input-email welcome-input' %>
     <br/>
   </div>
-  <div class="script-field form-group">
+  <div class="script-field form-group col-lg-2">
     <%= f.password_field :password,
           placeholder: 'Password',
-          class:'script-input-password form-control' %>
+          class:'script-input-password welcome-input' %>
     <br/>
   </div>
-  <div class='form-group'>
-    <%= f.submit 'Sign in', class: 'signin-button form-control welcome-button' %>
+  <div class="form-group col-lg-4">
+    <%= f.submit 'Sign in', class: 'welcome-button' %>
   </div>
 <% end %>

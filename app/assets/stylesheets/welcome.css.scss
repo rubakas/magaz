@@ -4,6 +4,11 @@
 .welcome-button {
   @extend .btn;
   @extend .btn-primary;
-  @extend .btn-large;
   @extend .btn-block;
+  @extend .form-control;
+}
+
+.welcome-input {
+  @extend .input;
+  @extend .form-control;
 }

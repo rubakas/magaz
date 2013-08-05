@@ -5,10 +5,11 @@ class RegistarationForm
     @form=$(element)
     @validation_url=@form.data('validationUrl')
     @show_data_error_message(field) for field in @form.find('.script-field')
+    $('.script-input-name').trigger('focus') # focus first field
     #bind events
-    $('.script-input-name').bind('blur',@e_validate_name)
-    $('.script-input-email').bind('blur',@e_validate_email)
-    $('.script-input-password').bind('blur',@e_validate_password)
+    $('.script-input-name').bind('blur', @e_validate_name)
+    $('.script-input-email').bind('blur', @e_validate_email)
+    $('.script-input-password').bind('blur', @e_validate_password)
   
   e_validate_name: (evt)=>
     @validate_field('name',evt); 
@@ -26,15 +27,22 @@ class RegistarationForm
       dataType:'json'
       success:(data)=>
         error_message = data[field_name]?.join(', ') || null;
-        $(evt.target).data('errormessage', error_message);
-        field=$(evt.target).closest('.script-field');
-        @show_data_error_message(field);      
+        $(evt.target).data('errormessage', error_message)
+        
+        field=$(evt.target).closest('.script-field')
+        @show_data_error_message(field)
     })
+  
   show_data_error_message: (field)=>
-    error_message=$(field).find('input').data('errormessage');
-    $error_label=$(field).find('.script-error-label');
-    if (error_message&&error_message!='')
-      $error_label.text(error_message).removeClass('hidden');
+    error_message=$(field).find('input').data('errormessage')
+    $error_label=$(field).find('.script-error-label')
+    if (error_message && error_message!='')
+      $(field).removeClass('has-success')
+      $(field).addClass('has-error')
+      $error_label.text(error_message).removeClass('hidden')
     else
-      $error_label.addClass('hidden');
+      if $(field).hasClass('has-error')
+        $(field).removeClass('has-error')
+        $(field).addClass('has-success')
+      $error_label.addClass('hidden')
     
