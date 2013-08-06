@@ -3,12 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .welcome-button {
   @extend .btn;
+  @extend .btn-lg;
   @extend .btn-primary;
   @extend .btn-block;
-  @extend .form-control;
 }
 
 .welcome-input {
   @extend .input;
+  @extend .input-lg;
   @extend .form-control;
 }

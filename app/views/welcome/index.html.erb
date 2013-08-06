@@ -1,6 +1,14 @@
-<%= link_to 'Sign in', new_session_path %>
+<div class="navbar navbar">
+  <%= link_to "Magaz", root_path, class: 'navbar-brand' %>
+  
+  <%= link_to 'Sign in', new_session_path, class: 'btn btn-default navbar-btn pull-right' %>
+</div>
+<br/>
 
-<h1 class="loud">Welcome</h1>
+<div class="jumbotron">
+  <h1 class="loud text-center">Welcome to magaz</h1>
+  <p class="lead text-center">Everything you need to start selling online &mdash; today</p>
+</div>
 <br/>
 
 <div class="row">
