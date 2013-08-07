@@ -1,5 +1,5 @@
 <div class='container-fluid'>
-<div class='navbar navbar-inverse navbar-fixed-top'>
+<div class='navbar navbar-inverse'>
   <%= link_to 'Magaz', admin_dashboard_path, class: 'navbar-brand' %>
   <div class='nav-collapse collapse'>
     <ul class='nav navbar-nav pull-right'>
@@ -13,23 +13,7 @@
 
 <div>
   <div class='container'>
-    <ul class='nav nav-tabs nav-justified'>
-      <li class='active'>
-        <%= link_to 'Dashboard', admin_dashboard_path, class: 'active' %>
-      </li>
-      <li>
-        <%= link_to 'Products' %>
-      </li>
-      <li>
-        <%= link_to 'Collections' %>
-      </li>
-      <li>
-        <%= link_to 'Orders' %>
-      </li>
-      <li>
-        <%= link_to 'Customers' %>
-      </li>
-    </ul>
+    <%= render partial: 'admin/shared/dashboard_nav' %>
 
     <h1>Welcome to dashboard</h1>
 
