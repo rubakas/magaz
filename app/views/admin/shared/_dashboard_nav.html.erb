@@ -1,17 +1,32 @@
 <ul class='nav nav-tabs nav-justified'>
   <li class='active'>
-    <%= link_to 'Dashboard', admin_dashboard_path %>
+    <%= link_to admin_dashboard_path do %>
+      <i class="icon-dashboard"></i>
+      Dashboard
+    <% end %>
   </li>
   <li>
-    <%= link_to 'Products' %>
+    <%= link_to admin_dashboard_path do %>
+      <i class="icon-certificate"></i>
+      Products
+    <% end %>
   </li>
   <li>
-    <%= link_to 'Collections' %>
+    <%= link_to admin_dashboard_path do %>
+      <i class="icon-tags"></i>
+      Collections
+    <% end %>
   </li>
   <li>
-    <%= link_to 'Orders' %>
+    <%= link_to admin_dashboard_path do %>
+      <i class="icon-barcode"></i>
+      Orders
+    <% end %>
   </li>
   <li>
-    <%= link_to 'Customers' %>
+    <%= link_to admin_dashboard_path do %>
+      <i class="icon-user"></i>
+      Customers
+    <% end %>
   </li>
 </ul>

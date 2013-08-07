@@ -19,7 +19,9 @@ $font-family-base: $font-family-sans;
 @import "base";
 @import "bootstrap";
 @import "font-awesome"; //import order is important here
-@import "footer";
 @import "welcome";
+
+@import "footer";
 @import "wrapper";
+
 @import "admin/dashboard";
