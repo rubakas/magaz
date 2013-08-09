@@ -10,7 +10,7 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
   	fill_in 'Password', with: 'password'
   	click_button 'Create your shop now'
 
-  	assert page.has_content?('Welcome to dashboard')
+  	assert page.has_content?('Dashboard')
   end
 
   test "signup failure" do
@@ -31,6 +31,6 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Password', with: 'password'
     click_button 'Create your shop now'
 
-    assert page.has_content?('Welcome to dashboard')
+    assert page.has_content?('Dashboard')
   end
 end

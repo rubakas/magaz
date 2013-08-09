@@ -17,7 +17,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Password', with: 'password'
     click_button 'Sign in'
 
-    assert page.has_content?('Welcome to dashboard')
+    assert page.has_content?('Dashboard')
   end
 
   test "signin failure" do
