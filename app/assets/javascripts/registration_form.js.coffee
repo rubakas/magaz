@@ -34,15 +34,20 @@ class RegistarationForm
     })
   
   show_data_error_message: (field)=>
-    error_message=$(field).find('input').data('errormessage')
-    $error_label=$(field).find('.script-error-label')
-    if (error_message && error_message!='')
-      $(field).removeClass('has-success')
-      $(field).addClass('has-error')
-      $error_label.text(error_message).removeClass('hidden')
-    else
-      if $(field).hasClass('has-error')
-        $(field).removeClass('has-error')
-        $(field).addClass('has-success')
-      $error_label.addClass('hidden')
+    popover_options = 
+      placement: 'top',
+      content: $(field).find('input').data('errormessage')
+    $(field).find('input').popover(popover_options)
+    $(field).find('input').popover('show')
+    # error_message=$(field).find('input').data('errormessage')
+    # $error_label=$(field).find('.script-error-label')
+    # if (error_message && error_message!='')
+    #   $(field).removeClass('has-success')
+    #   $(field).addClass('has-error')
+    #   $error_label.text(error_message).removeClass('hidden')
+    # else
+    #   if $(field).hasClass('has-error')
+    #     $(field).removeClass('has-error')
+    #     $(field).addClass('has-success')
+    #   $error_label.addClass('hidden')
     

@@ -9,19 +9,25 @@
 
 // $footerHeight: 60px;
 
-$font-size-base: 18px;
-$line-height-base: 1.667;
+
+$container-desktop: 1008px;
 
 $font-family-sans: "Open Sans", "Trebuchet MS", sans-serif;
-
 $font-family-base: $font-family-sans;
+$font-size-base: 18px;
+
+$line-height-base: 1.667;
+
+$global-color-dark: #34495e;
 
 @import "base";
+
 @import "bootstrap";
 @import "font-awesome"; //import order is important here
-@import "welcome";
 
-@import "footer";
-@import "wrapper";
-
-@import "admin/dashboard";
+@import "layout";
+@import "modules/signin";
+@import "modules/sell";
+@import "modules/button";
+@import "modules/form";
+@import "modules/navbar_public";
