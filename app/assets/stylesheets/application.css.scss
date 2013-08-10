@@ -26,6 +26,7 @@ $global-color-dark: #34495e;
 @import "font-awesome"; //import order is important here
 
 @import "layout";
+@import "modules/signin";
 @import "modules/sell";
 @import "modules/button";
 @import "modules/form";

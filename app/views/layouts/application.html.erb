@@ -17,7 +17,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class='layout-wrapper'>
+
   <div class="navbar-public">
     <div class='container'>
       <%= link_to "Magaz", root_path, class: 'navbar-brand' %>
@@ -30,12 +30,6 @@
     </div>
   </div>
   <%= yield %>
-</div>
-<div class='layout-footer'>
-  <div class='container'>
-    <p class='text-muted text-center'>&copy; 2013 &mdash; Magaz Ltd.</p>
-  </div>
-</div>
 
 </body>
 </html>

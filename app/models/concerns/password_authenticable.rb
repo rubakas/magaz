@@ -5,7 +5,7 @@ module PasswordAuthenticable extend ActiveSupport::Concern
 
     validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}
     validates :password, presence: { on: :create }
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
 
     before_save :update_encrypted_password
   end

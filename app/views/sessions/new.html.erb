@@ -1,29 +1,28 @@
 <div class='container'>
 
   <h1 class="loud text-center">Sign in</h1>
+  
+  <div class='signin-panel'>
+    <div class='row'>
 
   <%= form_for :session, 
           url: session_path, 
           method: :post,
           html: { class:'script-session-form' }  do |f| %>
-      <br/>
     <div class="script-field form-group col-lg-3">
       <%= f.text_field :name,
             placeholder: 'Your shop name',
             class:'script-input-name form-input' %>
-      <br/>
     </div>
     <div class="script-field form-group col-lg-3">
       <%= f.text_field :email,
             placeholder: 'Email address',
             class:'script-input-email form-input' %>
-      <br/>
     </div>
     <div class="script-field form-group col-lg-2">
       <%= f.password_field :password,
             placeholder: 'Password',
             class:'script-input-password form-input' %>
-      <br/>
     </div>
     <div class="form-group col-lg-4">
       <%= button_tag class: 'button' do %>
