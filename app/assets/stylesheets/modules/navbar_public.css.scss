@@ -1,0 +1,7 @@
+.navbar-public {
+  @extend .navbar;
+  @extend .navbar-static-top;
+  @extend .navbar-inverse;
+  background: $global-color-dark;
+  margin-bottom: 0;
+}

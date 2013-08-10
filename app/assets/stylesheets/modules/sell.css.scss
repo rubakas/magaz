@@ -1,0 +1,10 @@
+.sell-jumbotron {
+  @extend .jumbotron;
+  background-color: transparent;
+  width: 100%;
+}
+
+.sell-panel {
+  @extend .panel;
+  @extend .panel-info;
+}
