@@ -23,9 +23,12 @@ $global-color-light: #ecf0f1;
 $global-color-primary: #3498db;
 $global-color-highlight: #f1c40f;
 
+
+
 @import "base";
 
 @import "bootstrap";
+
 @import "font-awesome"; //import order is important here
 
 @import "layout";
