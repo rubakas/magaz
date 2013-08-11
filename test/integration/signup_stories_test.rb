@@ -5,8 +5,8 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
   	visit '/'
   	assert page.has_content?('Welcome')
 
-  	fill_in 'Your shop name', with: 'Example'
-  	fill_in 'Email address', with: 'uniq2@example.com'
+  	fill_in 'Your shop name', with: 'Example2'
+  	fill_in 'Email address', with: 'uniq@example2.com'
   	fill_in 'Password', with: 'password'
   	click_button 'Create your shop now'
 
@@ -26,8 +26,8 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
 
   test "signup redirect and signup success" do
     visit '/registration'
-    fill_in 'Your shop name', with: 'Example'
-    fill_in 'Email address', with: 'uniq2@example.com'
+    fill_in 'Your shop name', with: 'Example3'
+    fill_in 'Email address', with: 'uniq@example3.com'
     fill_in 'Password', with: 'password'
     click_button 'Create your shop now'
 
