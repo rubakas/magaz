@@ -2,17 +2,26 @@
   background-color: $global-color-dark;
   background: url(/assets/sell_bg_max.jpg) top center no-repeat;
   background-size: cover;
+  height: 660px;
 }
 
 .sell-jumbotron {
   @extend .jumbotron;
   background-color: transparent;
   color: $global-color-light;
+  height: 410px; //+130 of margins and paddings of jumbotron
   text-shadow: rgb(0, 0, 0) 1px 1px 1px;
   width: 100%;
 }
 
 .sell-panel {
+  // @extend .container;
   @extend .panel;
-  @extend .panel-primary;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 728px;
+  // min-width: 696px;
+  // width: 100%;
+  // margin: auto 15 !important;
 }
