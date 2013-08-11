@@ -1,32 +1,53 @@
-<ul class='nav nav-tabs nav-justified'>
+<h4>Shop</h4>
+
+<ul class='nav nav-pills nav-stacked'>
   <li class='active'>
     <%= link_to admin_dashboard_path do %>
-      <i class="icon-dashboard"></i>
+      <i class="icon-dashboard icon-large"></i>
       Dashboard
     <% end %>
   </li>
   <li>
     <%= link_to admin_dashboard_path do %>
-      <i class="icon-gift"></i>
+      <i class="icon-gift icon-large"></i>
       Products
     <% end %>
   </li>
   <li>
     <%= link_to admin_dashboard_path do %>
-      <i class="icon-tags"></i>
+      <i class="icon-tags icon-large"></i>
       Collections
     <% end %>
   </li>
   <li>
     <%= link_to admin_dashboard_path do %>
-      <i class="icon-barcode"></i>
+      <i class="icon-barcode icon-large"></i>
       Orders
     <% end %>
   </li>
   <li>
     <%= link_to admin_dashboard_path do %>
-      <i class="icon-user"></i>
+      <i class="icon-user icon-large"></i>
       Customers
+    <% end %>
+  </li>
+</ul>
+
+<hr/>
+
+<h4>Configuration</h4>
+
+<ul class='nav nav-pills nav-stacked'>
+  <li>
+    <%= link_to admin_dashboard_path do %>
+      <i class="icon-cogs icon-large"></i>
+      Settings
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_dashboard_path do %>
+      <i class="icon-picture icon-large"></i>
+      Themes
     <% end %>
   </li>
 </ul>
