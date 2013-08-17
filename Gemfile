@@ -7,7 +7,7 @@ gem 'rails', '4.0.0'
 gem 'pg'
 
 # Use inherited_resources for empty controllers
-gem 'inherited_resources', github: 'josevalim/inherited_resources'
+# gem 'inherited_resources', github: 'josevalim/inherited_resources'
 
 # Use slim-lang for templates
 gem 'slim'
