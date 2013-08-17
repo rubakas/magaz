@@ -13,4 +13,5 @@
 
 class Shop < ActiveRecord::Base
   include PasswordAuthenticable
+  has_many :products
 end

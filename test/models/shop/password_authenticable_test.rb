@@ -3,9 +3,9 @@ require 'test_helper'
 class Shop::PasswordAuthenticableTest < ActiveSupport::TestCase
   # public method tested first
   test 'authentic_password?' do
-    assert shops(:one).authentic_password?('password')
-    refute shops(:one).authentic_password?('wrong password')
-    refute shops(:one).authentic_password?('')
+    assert shops(:shop_1).authentic_password?('password')
+    refute shops(:shop_1).authentic_password?('wrong password')
+    refute shops(:shop_1).authentic_password?('')
   end
 
   test 'validation email presence' do

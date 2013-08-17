@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+product_1:
   name: Product 1
   description: Description 1
-
-two:
+  shop: shop_1
+product_2:
   name: Product 2
   description: Description 2
+  shop: shop_1

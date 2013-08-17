@@ -13,7 +13,7 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+shop_1:
   email: admin@example.com
   name: Example
   password_salt: <%= salt = BCrypt::Engine.generate_salt %>
