@@ -21,6 +21,14 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Product was successfully created.'
   end
 
+  test "create product failure" do
+    click_link 'New Product'
+    fill_in 'Name', with: ''
+    fill_in 'Description', with: ''
+    click_button 'Create Product'
+    assert page.has_content? '2 errors prohibited this product from being saved'
+  end
+
   test "edit product" do
     click_link('Edit',match: :first)
     fill_in 'Name', with: 'Some Product'
