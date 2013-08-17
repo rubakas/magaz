@@ -1,5 +1,9 @@
 Magaz::Application.routes.draw do
   
+  namespace :admin do
+    resources :products
+  end
+
   root 'welcome#index'
   resource :registration, only: [:create, :show] do
     collection do
@@ -12,7 +16,7 @@ Magaz::Application.routes.draw do
     
   namespace :admin do
     get 'dashboard' => 'dashboard#index', as: :dashboard
-    # resources :products
+    resources :products
     # resources :collections
     # resources :orders
     # resources :customers
