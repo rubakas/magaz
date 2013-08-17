@@ -10,7 +10,6 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
 
   test "products list" do
     assert page.has_content? 'Products'
-    #page.save_screenshot('screenshot.png')
     assert page.has_content? 'Product 1'
   end
 
@@ -32,7 +31,6 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
  
   test "delete product" do
     click_link('Destroy',match: :first)
-    page.evaluate_script('window.confirm = function() { return true; }')
     refute page.has_content? 'Product 1'
   end
 end
