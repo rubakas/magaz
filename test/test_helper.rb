@@ -16,6 +16,7 @@ class ActiveSupport::TestCase
 end
 
 Capybara.javascript_driver = :webkit
+Capybara.current_driver = :webkit
 
 class ActionDispatch::IntegrationTest
 	# Make the Capybara DSL available in all integration tests
