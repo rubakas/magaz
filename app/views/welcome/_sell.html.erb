@@ -6,11 +6,11 @@
 
 <div class='sell-panel panel'>
   <div class='panel-body'>
-    <div class='row'>
-      <%= form_for @shop,
-            url: registration_path,
-            data:{validation_url:validate_registration_path},
-            html:{class:'script-registration-form'}  do |f| %>
+    <%= form_for @shop,
+          url: registration_path,
+          data:{validation_url:validate_registration_path},
+          html:{class:'script-registration-form'}  do |f| %>
+      <div class='row'>
         <div class="script-field col-xs-5 form-group">
           <%= f.text_field :name,
                 placeholder: 'Your shop name',
@@ -34,14 +34,20 @@
                 class:'script-input-password form-input' %>
           <div class="script-error-label form-error hidden"></div>
         </div>
-    
-        <div class='col-xs-12 form-group'>
-          <%= button_tag class: 'button' do %>
-            <i class="icon-ok"></i>
-            Create your shop now
-          <% end %>
+      </div>
+
+      <div class='row'>
+        <div class='form-group'>
+          <div class='col-xs-12'>
+            <%= button_tag class: 'button' do %>
+              <i class="icon-ok"></i>
+              Create your shop now
+            <% end %>
+          </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+
+      
+    <% end %>
   </div>
 </div>
