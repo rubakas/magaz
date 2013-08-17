@@ -4,13 +4,14 @@
 </div>
 
 
-  <div class='sell-panel'>
+<div class='sell-panel panel'>
+  <div class='panel-body'>
     <div class='row'>
       <%= form_for @shop,
             url: registration_path,
             data:{validation_url:validate_registration_path},
             html:{class:'script-registration-form'}  do |f| %>
-        <div class="script-field col-5 form-group">
+        <div class="script-field col-xs-5 form-group">
           <%= f.text_field :name,
                 placeholder: 'Your shop name',
                 data: form_error_data(@shop, 'name'),
@@ -18,7 +19,7 @@
           <div class="script-error-label form-error hidden"></div>
         </div>
       
-        <div class="script-field col-4 form-group">
+        <div class="script-field col-xs-4 form-group">
           <%= f.text_field :email,
                 placeholder: 'Email address',
                 data: form_error_data(@shop, 'email'),
@@ -26,7 +27,7 @@
           <div class="script-error-label form-error hidden"></div>
         </div>
       
-        <div class="script-field col-3 form-group">
+        <div class="script-field col-xs-3 form-group">
           <%= f.password_field :password,
                 placeholder: 'Password',
                 data: form_error_data(@shop, 'password'),
@@ -34,7 +35,7 @@
           <div class="script-error-label form-error hidden"></div>
         </div>
     
-        <div class="form-group col-12">
+        <div class='col-xs-12 form-group'>
           <%= button_tag class: 'button' do %>
             <i class="icon-ok"></i>
             Create your shop now
@@ -43,3 +44,4 @@
       <% end %>
     </div>
   </div>
+</div>
