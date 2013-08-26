@@ -1,4 +1,5 @@
-<li class="<%= active_class %>">
+<% active_conditions ||= {} %>
+<li class="<%= 'active' if current_page?(active_conditions) %>">
   <%= link_to path do %>
       <i class="<%= icon_class %> icon-large"></i>
       <%= label %>
