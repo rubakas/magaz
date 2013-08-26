@@ -16,8 +16,8 @@ Magaz::Application.routes.draw do
     
   namespace :admin do
     get 'dashboard' => 'dashboard#index', as: :dashboard
-    resources :products
-    resources :collections
+    resources :products, except: [:edit]
+    resources :collections, except: [:edit]
     resources :orders
     resources :customers
   end

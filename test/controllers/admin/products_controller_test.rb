@@ -30,11 +30,6 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @product
-    assert_response :success
-  end
-
   test "should update product" do
     patch :update, id: @product, product: { description: @product.description, name: @product.name }
     assert_redirected_to admin_product_path(assigns(:product))

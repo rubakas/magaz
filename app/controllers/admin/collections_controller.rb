@@ -1,16 +1,10 @@
 class Admin::CollectionsController < ApplicationController
   include Authenticable
-  before_action :set_collection, only: [:show, :edit, :update, :destroy]
+  before_action :set_collection, only: [:show, :update, :destroy]
 
   # GET /admin/collections
-  # GET /admin/collections.json
   def index
     @collections = current_shop.collections
-  end
-
-  # GET /admin/collections/1
-  # GET /admin/collections/1.json
-  def show
   end
 
   # GET /admin/collections/new
@@ -18,48 +12,34 @@ class Admin::CollectionsController < ApplicationController
     @collection = current_shop.collections.build
   end
 
-  # GET /admin/collections/1/edit
-  def edit
+  # GET /admin/collections/1
+  def show
   end
 
   # POST /admin/collections
-  # POST /admin/collections.json
   def create
     @collection = current_shop.collections.build(collection_params)
 
-    respond_to do |format|
-      if @collection.save
-        format.html { redirect_to [:edit, :admin, @collection], notice: 'Collection was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @collection }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @collection.errors, status: :unprocessable_entity }
-      end
+    if @collection.save
+      redirect_to [:admin, @collection], notice: 'Collection was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   # PATCH/PUT /admin/collections/1
-  # PATCH/PUT /admin/collections/1.json
   def update
-    respond_to do |format|
-      if @collection.update(collection_params)
-        format.html { redirect_to [:edit, :admin, @collection], notice: 'Collection was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @collection.errors, status: :unprocessable_entity }
-      end
+    if @collection.update(collection_params)
+      redirect_to [:admin, @collection], notice: 'Collection was successfully updated.'
+    else
+      render action: 'show'
     end
   end
 
   # DELETE /admin/collections/1
-  # DELETE /admin/collections/1.json
   def destroy
     @collection.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_collections_url }
-      format.json { head :no_content }
-    end
+    redirect_to admin_collections_url
   end
 
   private
