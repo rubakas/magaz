@@ -18,8 +18,8 @@ Magaz::Application.routes.draw do
     get 'dashboard' => 'dashboard#index', as: :dashboard
     resources :products
     resources :collections
-    # resources :orders
-    # resources :customers
+    resources :orders
+    resources :customers
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

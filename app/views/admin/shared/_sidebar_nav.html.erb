@@ -17,13 +17,13 @@
         link_icon_class: 'icon-tags',
         link_label: 'Collections' %>
 
-  <%= li_link_to link_path: admin_collections_path, 
-        active_conditions: { controller: 'admin/collections' },
+  <%= li_link_to link_path: admin_orders_path, 
+        active_conditions: { controller: 'admin/orders' },
         link_icon_class: 'icon-barcode',
         link_label: 'Orders' %>
   
-  <%= li_link_to link_path: admin_collections_path, 
-        active_conditions: { controller: 'admin/collections' },
+  <%= li_link_to link_path: admin_customers_path, 
+        active_conditions: { controller: 'admin/customers' },
         link_icon_class: 'icon-user',
         link_label: 'Customer' %>
 </ul>
