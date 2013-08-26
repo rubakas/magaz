@@ -29,7 +29,7 @@ class Admin::CollectionsController < ApplicationController
 
     respond_to do |format|
       if @collection.save
-        format.html { redirect_to [:admin, @collection], notice: 'Collection was successfully created.' }
+        format.html { redirect_to [:edit, :admin, @collection], notice: 'Collection was successfully created.' }
         format.json { render action: 'show', status: :created, location: @collection }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class Admin::CollectionsController < ApplicationController
   def update
     respond_to do |format|
       if @collection.update(collection_params)
-        format.html { redirect_to [:admin, @collection], notice: 'Collection was successfully updated.' }
+        format.html { redirect_to [:edit, :admin, @collection], notice: 'Collection was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

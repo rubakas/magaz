@@ -14,7 +14,11 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'create collection' do
-    skip
+    click_link 'New Collection'
+    fill_in 'Name', with: 'Some Collection'
+    fill_in 'Description', with: 'Some Collection Description'
+    click_button 'Create Collection'
+    assert page.has_content? 'Collection was successfully created.'
   end
 
   test 'create collection failure' do
