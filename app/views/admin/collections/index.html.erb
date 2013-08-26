@@ -1,0 +1,28 @@
+<h3><i class="icon-gift"></i> Collections</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @collections.each do |collection| %>
+      <tr>
+        <td><%= collection.name %></td>
+        <td><%= collection.description %></td>
+        <td><%= link_to 'Show', [:admin, collection] %></td>
+        <td><%= link_to 'Edit', edit_admin_collection_path(collection) %></td>
+        <td><%= link_to 'Destroy', [:admin, collection], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_admin_collection_path %>
