@@ -1,21 +1,21 @@
 # == Schema Information
 #
-# Table name: products
+# Table name: collections
 #
 #  id          :integer          not null, primary key
 #  name        :string(255)
 #  description :text
+#  shop_id     :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  shop_id     :integer
 #
 
-class Product < ActiveRecord::Base
-  has_and_belongs_to_many :collections
-	belongs_to :shop
+class Collection < ActiveRecord::Base
+  has_and_belongs_to_many :products
+  belongs_to :shop
 
   validates :name, 
     presence: true, 
     uniqueness: { scope: :shop_id }
-  validates :description, presence: true  
+  validates :description, presence: true
 end

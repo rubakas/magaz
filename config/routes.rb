@@ -15,11 +15,11 @@ Magaz::Application.routes.draw do
   end
     
   namespace :admin do
-    get 'dashboard' => 'dashboard#index', as: :dashboard
-    resources :products
-    # resources :collections
-    # resources :orders
-    # resources :customers
+    root 'dashboard#index'
+    resources :products, except: [:edit]
+    resources :collections, except: [:edit]
+    resources :orders
+    resources :customers
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

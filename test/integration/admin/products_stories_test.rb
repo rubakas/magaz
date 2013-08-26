@@ -30,7 +30,7 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "edit product" do
-    click_link('Edit',match: :first)
+    click_link('Show', match: :first)
     fill_in 'Name', with: 'Some Product'
     fill_in 'Description', with: 'Some Description'
     click_button 'Update Product'

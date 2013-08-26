@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
     @shop = Shop.new permitted_params
     if @shop.save
       session[:shop_id]=@shop.id
-      redirect_to admin_dashboard_path
+      redirect_to admin_root_path
     else
       render template: 'welcome/index'
     end

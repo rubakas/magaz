@@ -1,22 +1,23 @@
 # == Schema Information
 #
-# Table name: products
+# Table name: collections
 #
 #  id          :integer          not null, primary key
 #  name        :string(255)
 #  description :text
+#  shop_id     :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  shop_id     :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-product_1:
-  name: Product 1
-  description: Description 1
+collection_1:
+  name: Collection 1
+  description: Collection description 1
   shop: shop_1
-product_2:
-  name: Product 2
-  description: Description 2
+
+collection_2:
+  name: Collection 2
+  description: Collection description 2
   shop: shop_1
