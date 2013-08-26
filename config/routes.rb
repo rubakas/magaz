@@ -17,7 +17,7 @@ Magaz::Application.routes.draw do
   namespace :admin do
     get 'dashboard' => 'dashboard#index', as: :dashboard
     resources :products
-    # resources :collections
+    resources :collections
     # resources :orders
     # resources :customers
   end

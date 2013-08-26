@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+collection_1:
+  name: Collection 1
+  description: Collection description 1
+  shop: shop_1
+
+collection_2:
+  name: Collection 2
+  description: Collection description 2
+  shop: shop_1

@@ -9,7 +9,8 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'collections list' do
-    skip
+    assert page.has_content? 'Collections'
+    assert page.has_content? 'Collection 1'
   end
 
   test 'create collection' do
