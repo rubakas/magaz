@@ -21,6 +21,15 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Collection was successfully created.'
   end
 
+  test 'create collection - with automatic product conditions' do
+    # collection rule consisting of
+    # rule-column
+    # rule-relation
+    # rule-value
+    skip
+  end
+
+
   test 'create collection failure' do
     click_link 'New Collection'
     fill_in 'Name', with: ''

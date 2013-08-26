@@ -29,6 +29,32 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? '2 errors prohibited this product from being saved'
   end
 
+  test 'create product - set product type' do
+    # fail creation without product type?
+    # manage product types?
+    skip
+  end
+
+  test 'create/update product - set product vendor' do
+    skip
+  end
+
+  test 'create/update product - set product images' do
+    skip
+  end
+
+  test 'create/update product - set collection membership' do
+    skip
+  end
+
+  test 'create/update product - set tags' do
+    skip
+  end
+
+  test 'create/update product - set invisible' do
+    skip
+  end
+
   test "edit product" do
     click_link('Show', match: :first)
     fill_in 'Name', with: 'Some Product'
