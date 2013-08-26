@@ -87,7 +87,7 @@ GEM
       parallel
     pg (0.15.1)
     polyglot (0.3.3)
-    puma (2.3.2)
+    puma (2.5.1)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
