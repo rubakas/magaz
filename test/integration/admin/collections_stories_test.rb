@@ -22,7 +22,11 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'create collection failure' do
-    skip
+    click_link 'New Collection'
+    fill_in 'Name', with: ''
+    fill_in 'Description', with: ''
+    click_button 'Create Collection'
+    assert page.has_content? '2 errors prohibited this collection from being saved'
   end
 
   test 'edit collection' do
