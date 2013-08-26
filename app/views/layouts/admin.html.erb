@@ -19,18 +19,17 @@
 <body>
     
   <div class='navbar-public'>
-    <div class='container-fluid'>
-    <%= link_to 'Magaz', admin_root_path, class: 'navbar-brand' %>
-      <div class='nav-collapse collapse'>
-        <ul class='nav navbar-nav pull-right'>
-          <li>
-            <%= link_to session_path, method: :delete do %>
-            Sign out
-            <i class="icon-signout"></i>
-            <% end %>
-          </li>
-        </ul>
-      </div>
+    <div class='container'>
+      <%= link_to 'Magaz', admin_root_path, class: 'navbar-brand' %>
+
+      <ul class='nav navbar-nav pull-right'>
+        <li>
+          <%= link_to session_path, method: :delete do %>
+          Sign out
+          <i class="icon-signout"></i>
+          <% end %>
+        </li>
+      </ul>
     </div>
   </div>
 
