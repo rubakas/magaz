@@ -14,7 +14,7 @@ class RegistrationsControllerTest < ActionController::TestCase
       }
     end
     assert session[:shop_id]
-    assert_redirected_to admin_dashboard_path
+    assert_redirected_to admin_root_path
   end
   
 end

@@ -5,7 +5,7 @@ class Admin::DashboardStoriesTest < ActionDispatch::IntegrationTest
     login_as shop_name: 'Example',
       email: 'admin@example.com',
       password: 'password'
-		visit '/admin/dashboard'
+		visit '/admin'
     assert page.has_content? 'Dashboard'
 	end
 end

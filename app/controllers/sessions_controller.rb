@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     if @shop && @shop.authentic_password?(params[:session][:password])
       session[:shop_id] = @shop.id
-      redirect_to admin_dashboard_path
+      redirect_to admin_root_path
     else
       if @shop
         flash[:alert] = I18n.t('sessions.create.wrong_password')
