@@ -30,10 +30,15 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'edit collection' do
-    skip
+    click_link('Show', match: :first)
+    fill_in 'Name', with: 'Some Collection'
+    fill_in 'Description', with: 'Some Collection Description'
+    click_button 'Update Collection'
+    assert page.has_content? 'Collection was successfully updated.'
   end
 
   test 'delete collection' do
-    skip
+    click_link('Destroy',match: :first)
+    refute page.has_content? 'Collection 1'
   end
 end
