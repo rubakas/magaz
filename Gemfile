@@ -16,7 +16,7 @@ gem 'slim'
 gem 'sass-rails', '~> 4.0.0'
 
 # Use twitter bootstrap and font icons
-gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3-wip'
 gem 'font-awesome-sass-rails'
 
 
