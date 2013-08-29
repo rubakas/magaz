@@ -11,14 +11,14 @@ div class='sell-panel panel'
         html: { class: 'script-registration-form' }  do |f|
       
       div class='row'
-        div class='script-field col-xs-5 form-group'
+        div class='script-field col-xs-4 form-group'
           = f.text_field :name,
               placeholder: 'Your shop name',
               data: form_error_data(@shop, 'name'),
               class: 'script-input-name form-input'
           div class='script-error-label form-error hidden'
       
-        div class='script-field col-xs-4 form-group'
+        div class='script-field col-xs-5 form-group'
           = f.text_field :email,
               placeholder: 'Email address',
               data: form_error_data(@shop, 'email'),

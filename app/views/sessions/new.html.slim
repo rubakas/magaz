@@ -10,22 +10,22 @@ div class='container'
             method: :post, 
             html: { class: 'script-session-form' } do |f|
           
-          div class='script-field form-group col-xs-3'
+          div class='script-field form-group col-xs-4'
             = f.text_field :name, 
                 placeholder: 'Your shop name', 
                 class: 'script-input-name form-input'
           
-          div class='script-field form-group col-xs-3'
+          div class='script-field form-group col-xs-5'
             = f.text_field :email, 
                 placeholder: 'Email address', 
                 class: 'script-input-email form-input'
 
-          div class='script-field form-group col-xs-2'
+          div class='script-field form-group col-xs-3'
             = f.password_field :password, 
                 placeholder: 'Password', 
                 class: 'script-input-password form-input'
           
-          div class='form-group col-xs-4'
+          div class='form-group col-xs-12'
             = button_tag class: 'button' do
               i class='icon-signin'
               |  Sign in
