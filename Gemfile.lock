@@ -1,9 +1,10 @@
 GIT
-  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 2f69aef9608a882d3d4fd2fdef7fc641df60d256
+  remote: git://github.com/anjlab/bootstrap-rails.git
+  revision: 570c0c630235a2e2bad16792351e11c4259ffce5
   specs:
-    bootstrap-sass (2.3.2.2)
-      sass (~> 3.2)
+    anjlab-bootstrap-rails (3.0.0.2)
+      railties (>= 3.0)
+      sass (>= 3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -150,9 +151,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  anjlab-bootstrap-rails!
   annotate (>= 2.5.0)
   bcrypt-ruby (~> 3.0.0)
-  bootstrap-sass!
   capybara-webkit
   coffee-rails (~> 4.0.0)
   database_cleaner
