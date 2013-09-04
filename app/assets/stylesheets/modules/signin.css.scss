@@ -1,4 +1,8 @@
 .signin-panel {
   @extend .panel;
-  @extend .panel-primary;
+  @extend .panel-default;
+  // text-align: center;
+  // margin-left: auto;
+  // margin-right: auto;
+  // width: 728px;
 }

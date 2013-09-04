@@ -15,12 +15,11 @@
 }
 
 .sell-panel {
+  @extend .panel;
+  @extend .panel-default;
   // @extend .container;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 728px;
-  // min-width: 696px;
-  // width: 100%;
-  // margin: auto 15 !important;
+  // text-align: center;
+  // margin-left: auto;
+  // margin-right: auto;
+  // width: 728px;
 }
