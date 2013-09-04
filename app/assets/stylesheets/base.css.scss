@@ -4,12 +4,6 @@ body {
   height: 100%;
 }
 
-body {
-  background-color: #ecf0f1;
-  // background-image: url(/assets/pinstripe/pinstripe.png);
-  color: $global-color-light;
-}
-
 /* Lastly, apply responsive CSS fixes as necessary */
 @media (max-width: 767px) {
   .base-footer {
