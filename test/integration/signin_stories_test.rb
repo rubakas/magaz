@@ -1,12 +1,12 @@
 require 'test_helper'
 
 class SigninStoriesTest < ActionDispatch::IntegrationTest  
-  test "signin redirect" do
+  test "sign in redirect" do
     visit '/session'
     assert page.has_content?('Sign in')
   end
 
-  test "signin success" do
+  test "sign in success" do
     visit '/'
     assert page.has_content?('Sign in')
 
@@ -20,7 +20,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Dashboard')
   end
 
-  test "signin failure" do
+  test "sign in failure" do
     visit '/'
     assert page.has_content?('Sign in')
 
@@ -35,5 +35,9 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "signin redirect and signup success" do
+    skip
+  end
+
+  test 'sign out page' do
   end
 end
