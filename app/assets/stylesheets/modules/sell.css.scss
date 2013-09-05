@@ -13,6 +13,9 @@
   background-color: $global-color-dark;
   background: url(/assets/sell_bg_max.jpg) top center no-repeat;
   background-size: cover;
+
+  color: $global-color-light;
+  text-shadow: rgb(0, 0, 0) 1px 1px 1px;
 }
 
 .section-sell-color {
@@ -23,15 +26,8 @@
 .jumbotron-sell {
   @extend .jumbotron;
   background-color: transparent;
-  color: $global-color-dark;
   height: 410px; //+130 of margins and paddings of jumbotron
   width: 100%;
-}
-
-.jumbotron-sell-photo {
-  @extend .jumbotron-sell;  
-  color: $global-color-light;
-  text-shadow: rgb(0, 0, 0) 1px 1px 1px;
 }
 
 .panel-sell {
