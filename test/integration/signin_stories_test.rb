@@ -39,5 +39,11 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'sign out page' do
+    login_as shop_name: 'Example',
+      email: 'admin@example.com',
+      password: 'password'
+    click_link 'Sign out'
+
+    assert page.has_content?('Thank you for using magaz')
   end
 end

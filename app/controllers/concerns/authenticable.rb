@@ -7,7 +7,7 @@ module Authenticable extend ActiveSupport::Concern
   protected
 
   def authentication_required
-    redirect_to new_session_path unless current_shop
+    redirect_to new_session_url unless current_shop
   end
 
   def current_shop
