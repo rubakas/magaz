@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     if @shop && @shop.authentic_password?(params[:session][:password])
       session[:shop_id] = @shop.id
-      redirect_to admin_root_path
+      redirect_to admin_root_url
     else
       if @shop
         flash[:alert] = I18n.t('sessions.create.wrong_password')
@@ -28,6 +28,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:shop_id] = nil
-    redirect_to root_url
+    redirect_to goodbye_url
   end
 end

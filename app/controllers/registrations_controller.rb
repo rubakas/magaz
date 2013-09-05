@@ -2,14 +2,14 @@ class RegistrationsController < ApplicationController
   respond_to :html, :json
 
   def show
-    redirect_to root_path
+    redirect_to root_url
   end
 
   def create
     @shop = Shop.new permitted_params
     if @shop.save
       session[:shop_id]=@shop.id
-      redirect_to admin_root_path
+      redirect_to admin_root_url
     else
       render template: 'welcome/index'
     end

@@ -5,6 +5,7 @@ Magaz::Application.routes.draw do
   end
 
   root 'welcome#index'
+  get 'goodbye' => 'welcome#goodbye', as: :goodbye
   resource :registration, only: [:create, :show] do
     collection do
       post :validate
