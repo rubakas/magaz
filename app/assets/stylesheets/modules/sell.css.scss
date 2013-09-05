@@ -1,20 +1,40 @@
-.sell-section {
-  background-color: $global-color-dark;
-  background: url(/assets/sell_bg_max.jpg) top center no-repeat;
-  background-size: cover;
+.section-sell {
   height: 750px;
 }
 
-.sell-jumbotron {
+.section-sell-pattern {
+  @extend .section-sell;
+  background: url(/assets/bright_squares/bright_squares.png) repeat;
+  background-color: #f1c40f;
+}
+
+.section-sell-photo {
+  @extend .section-sell;
+  background-color: $global-color-dark;
+  background: url(/assets/sell_bg_max.jpg) top center no-repeat;
+  background-size: cover;
+}
+
+.section-sell-color {
+  @extend .section-sell;
+  background-color: #f4f1ed;
+}
+
+.jumbotron-sell {
   @extend .jumbotron;
   background-color: transparent;
-  color: $global-color-light;
+  color: $global-color-dark;
   height: 410px; //+130 of margins and paddings of jumbotron
-  text-shadow: rgb(0, 0, 0) 1px 1px 1px;
   width: 100%;
 }
 
-.sell-panel {
+.jumbotron-sell-photo {
+  @extend .jumbotron-sell;  
+  color: $global-color-light;
+  text-shadow: rgb(0, 0, 0) 1px 1px 1px;
+}
+
+.panel-sell {
   @extend .panel;
   @extend .panel-default;
 }

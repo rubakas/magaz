@@ -1,43 +1,51 @@
-div class='sell-jumbotron'
-  h1 class='loud text-center' Welcome to Magaz
-  h3 class='loud text-center' Everything you need to start selling online &mdash; today
+/ set different style classes for section-sell variations
+- section_class = ['section-sell', 'section-sell-pattern', 'section-sell-photo'].sample
+- if 'section-sell-photo' == section_class
+    - (jumbotron_class = 'jumbotron-sell-photo')
+- else
+    - (jumbotron_class = 'jumbotron-sell')
 
-div class='container'
-  div class='row'
-    div class='col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2'
-      div class='sell-panel panel'
-        div class='panel-body'
-          = form_for @shop,
-              url: registration_path,
-              data: { validation_url: validate_registration_path },
-              html: { class: 'script-registration-form' }  do |f|
+section class='#{ section_class }'
+  div class='#{ jumbotron_class }'
+    h1 class='loud text-center' Welcome to Magaz
+    h3 class='loud text-center' Everything you need to start selling online &mdash; today
 
-              div class='row'
-            
-                div class='script-field col-sm-4 form-group'
-                  = f.text_field :name,
-                      placeholder: 'Name your shop',
-                      data: form_error_data(@shop, 'name'),
-                      class: 'script-input-name form-input'
-                  div class='script-error-label form-error hidden'
+  div class='container'
+    div class='row'
+      div class='col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2'
+        div class='panel-sell panel'
+          div class='panel-body'
+            = form_for @shop,
+                url: registration_path,
+                data: { validation_url: validate_registration_path },
+                html: { class: 'script-registration-form' }  do |f|
+
+                div class='row'
               
-                div class='script-field col-sm-5 form-group'
-                  = f.text_field :email,
-                      placeholder: 'Email address',
-                      data: form_error_data(@shop, 'email'),
-                      class: 'script-input-email form-input'
-                  div class='script-error-label form-error hidden'
-              
-                div class='script-field col-sm-3 form-group clearfix'
-                  = f.password_field :password,
-                      placeholder: 'Password',
-                      data: form_error_data(@shop, 'password'),
-                      class: 'script-input-password form-input'
-                  div class='script-error-label form-error hidden'
+                  div class='script-field col-sm-4 form-group'
+                    = f.text_field :name,
+                        placeholder: 'Name your shop',
+                        data: form_error_data(@shop, 'name'),
+                        class: 'script-input-name form-input'
+                    div class='script-error-label form-error hidden'
+                
+                  div class='script-field col-sm-5 form-group'
+                    = f.text_field :email,
+                        placeholder: 'Email address',
+                        data: form_error_data(@shop, 'email'),
+                        class: 'script-input-email form-input'
+                    div class='script-error-label form-error hidden'
+                
+                  div class='script-field col-sm-3 form-group clearfix'
+                    = f.password_field :password,
+                        placeholder: 'Password',
+                        data: form_error_data(@shop, 'password'),
+                        class: 'script-input-password form-input'
+                    div class='script-error-label form-error hidden'
 
-              div class='row'
+                div class='row'
 
-                div class='col-sm-12 form-group text-right'
-                  = button_tag class: 'button-block' do 
-                    i class='icon-ok'
-                    |  Create your shop now
+                  div class='col-sm-12 form-group text-right'
+                    = button_tag class: 'button-block' do 
+                      i class='icon-ok'
+                      |  Create your shop now
