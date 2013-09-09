@@ -4,7 +4,7 @@ class Admin::CollectionsController < ApplicationController
 
   # GET /admin/collections
   def index
-    @collections = current_shop.collections
+    @collections = current_shop.collections.page(params[:page])
   end
 
   # GET /admin/collections/new

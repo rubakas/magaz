@@ -1,4 +1,9 @@
 <h3><i class="icon-tags"></i> Collections</h3>
+
+<%= link_to 'New Collection', new_admin_collection_path %>
+
+<%= paginate @collections %>
+
 <table>
   <thead>
     <tr>
@@ -24,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Collection', new_admin_collection_path %>
+<%= paginate @collections %>

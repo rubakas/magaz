@@ -4,7 +4,7 @@ class Admin::ProductsController < ApplicationController
 
   # GET /admin/products
   def index
-    @products = current_shop.products
+    @products = current_shop.products.page(params[:page])
   end
 
   # GET /admin/products/new
