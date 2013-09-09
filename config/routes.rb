@@ -1,9 +1,4 @@
 Magaz::Application.routes.draw do
-  
-  namespace :admin do
-    resources :products
-  end
-
   root 'welcome#index'
   get 'goodbye' => 'welcome#goodbye', as: :goodbye
   resource :registration, only: [:create, :show] do
