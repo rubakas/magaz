@@ -24,6 +24,16 @@
 
 * Deployment instructions
 
+* TODO refactor as engines:
+** magaz-site
+** magaz-api
+** magaz-shop
+** magaz-admin
+** magaz-app-store
+** magaz-theme-store
+** magaz-models
+** magaz-marketplace
+
 * ...
 
 
