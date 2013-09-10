@@ -32,14 +32,14 @@
 * Deployment instructions
 
 * TODO refactor as engines:
-** magaz-site
-** magaz-api
-** magaz-shop
-** magaz-admin
-** magaz-app-store
-** magaz-theme-store
-** magaz-models
-** magaz-marketplace
+  * magaz-admin
+  * magaz-shop
+  * magaz-site
+    * magaz-models
+  * magaz-theme-store
+  * magaz-marketplace
+  * magaz-app-store
+  * magaz-api
 
 * ...
 
