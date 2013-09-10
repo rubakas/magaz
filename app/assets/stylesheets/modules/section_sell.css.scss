@@ -20,16 +20,17 @@
   background-color: #f4f1ed;
 }
 
+//dependency :(
+.section-sell-photo > .jumbotron-sell {
+  color: $global-color-light;
+  text-shadow: rgb(0, 0, 0) 1px 1px 1px;
+}
+
 .jumbotron-sell {
   @extend .jumbotron;
   background-color: transparent;
   height: 410px; //+130 of margins and paddings of jumbotron
   width: 100%;
-}
-//dependency :(
-.section-sell-photo > .jumbotron-sell {
-  color: $global-color-light;
-  text-shadow: rgb(0, 0, 0) 1px 1px 1px;
 }
 
 .panel-sell {
