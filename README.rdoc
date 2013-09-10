@@ -16,6 +16,13 @@
   bundle exec rake db:create
   bundle exec rake db:migrate
 
+* Domain names:
+  add into /etc/hosts
+  127.0.0.1 magaz.local
+  127.0.0.1 mymagaz.local
+  127.0.0.1 example.mymagaz.local
+  127.0.0.1 example2.mymagaz.local
+  127.0.0.1 example3.mymagaz.local
 
 * How to run the test suite
   bundle exec rake test

@@ -8,15 +8,15 @@ div class='container'
             h4 Sign in
         div class='panel-body'
           = form_for :session, 
-              url: session_path, 
+              url: admin_session_url(host: HOSTNAME_SHOP, subdomain: 'REPLACE_ME'), 
               method: :post, 
-              html: { class: 'script-session-form' } do |f|
+              html: { class: 'script-sign-in-form' } do |f|
             
             div class='script-field form-group'
               = f.label :name, 'Your shop name'
-              = f.text_field :name, 
+              = f.text_field :subdomain, 
                   placeholder: 'Your shop name', 
-                  class: 'script-input-name form-input'
+                  class: 'script-input-subdomain form-input'
             
             div class='script-field form-group'
               = f.label :email

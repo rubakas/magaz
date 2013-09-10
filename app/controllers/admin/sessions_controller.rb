@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Admin::SessionsController < ApplicationController
   respond_to :html
 
   def new

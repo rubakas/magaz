@@ -10,7 +10,8 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
 
   test "products list" do
     assert page.has_content? 'Products'
-    assert page.has_content? 'Product 1'
+    assert page.has_content? 'Product 3'
+    assert page.has_content? 'Product 4'
   end
 
   test "create product" do
@@ -57,8 +58,8 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
 
   test "edit product" do
     click_link('Show', match: :first)
-    fill_in 'Name', with: 'Some Product'
-    fill_in 'Description', with: 'Some Description'
+    fill_in 'Name', with: 'Updated Product'
+    fill_in 'Description', with: 'Updated Description'
     click_button 'Update Product'
     assert page.has_content? 'Product was successfully updated.'
   end

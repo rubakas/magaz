@@ -24,12 +24,26 @@ class ActionDispatch::IntegrationTest
 	
 	private
 	module CustomIntegrationDsl
+		def use_js
+			Capybara.current_driver = Capybara.javascript_driver
+		end
+
+		def set_host (host)
+  		host! host
+  		Capybara.app_host = "http://" + host + ":" + Capybara.current_session.server.port.to_s
+  		Capybara.default_host = Capybara.app_host
+		end
+
 		def login_as(shop_name: shop_name, email: email, password: password)
+			use_js
+			set_host HOSTNAME_SITE
 			visit '/'
 			click_link 'Sign in'
 			fill_in 'Your shop name', with: shop_name
 			fill_in 'Email address', with: email
 			fill_in 'Password', with: password
+			
+			set_host "#{shop_name}.#{HOSTNAME_SHOP}"
 			click_button 'Sign in'
 		end
 	end

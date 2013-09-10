@@ -8,8 +8,8 @@ class RegistrationsController < ApplicationController
   def create
     @shop = Shop.new permitted_params
     if @shop.save
-      session[:shop_id]=@shop.id
-      redirect_to admin_root_url
+      session[:shop_id] = @shop.id
+      redirect_to admin_root_url(host: HOSTNAME_SHOP, subdomain: @shop.subdomain)
     else
       render template: 'welcome/index'
     end

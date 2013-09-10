@@ -40,8 +40,8 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
 
   test 'edit collection' do
     click_link('Show', match: :first)
-    fill_in 'Name', with: 'Some Collection'
-    fill_in 'Description', with: 'Some Collection Description'
+    fill_in 'Name', with: 'Updated Collection'
+    fill_in 'Description', with: 'Updated Collection Description'
     click_button 'Update Collection'
     assert page.has_content? 'Collection was successfully updated.'
   end

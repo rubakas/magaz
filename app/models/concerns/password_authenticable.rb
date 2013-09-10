@@ -1,4 +1,5 @@
-module PasswordAuthenticable extend ActiveSupport::Concern
+module PasswordAuthenticable 
+  extend ActiveSupport::Concern
   
   included do
     attr_accessor :password
