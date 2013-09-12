@@ -55,7 +55,8 @@ class ActionController::TestCase
 	private
 	module CustomControllerDsl
 		def session_for_shop(shop)
-			session[:shop_id] = shop.id
+			session[:user_id] = shop.id
+			request.host = shop.subdomain + '.' + HOSTNAME_SHOP
 		end
 	end
 

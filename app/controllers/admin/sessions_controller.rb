@@ -13,7 +13,7 @@ class Admin::SessionsController < ApplicationController
     @shop = Shop.find_by_email(params[:session][:email])
 
     if @shop && @shop.authentic_password?(params[:session][:password])
-      session[:shop_id] = @shop.id
+      session[:user_id] = @shop.id
       redirect_to admin_root_url(host: HOSTNAME_SHOP, subdomain: @shop.subdomain)
     else
       if @shop
