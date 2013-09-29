@@ -44,8 +44,6 @@ ActiveRecord::Schema.define(version: 20130910113625) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_salt"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
     t.string   "subdomain"
   end
 
