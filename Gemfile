@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.0.beta'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -58,6 +58,7 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'minitest'
 gem 'annotate', ">=2.5.0"
 gem 'parallel_tests', group: :development
 
@@ -65,4 +66,3 @@ gem 'capybara-webkit', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test
 gem 'fabrication', group: :test
-gem 'turn', group: :test
