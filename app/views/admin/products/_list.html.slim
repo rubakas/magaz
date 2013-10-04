@@ -1,0 +1,23 @@
+= paginate @products
+
+table
+  thead
+    tr
+      th Name
+      th Description
+      th
+      th
+      th
+
+  tbody
+  - @products.each do |product|
+    tr
+      td = product.name
+      td = product.description
+      td = link_to 'Show', [:admin, product]
+      td = link_to 'Destroy', [:admin, product], method: :delete, data: { confirm: 'Are you sure?' }
+  tbody
+
+br
+
+= paginate @products

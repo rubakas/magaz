@@ -1,0 +1,8 @@
+h3 
+  i class="icon-tags"  Collections
+= link_to 'New Collection', new_admin_collection_path
+
+- if @collections.blank? && !params[:page].present?
+  = render partial: 'blank'
+- else
+  = render partial: 'list'

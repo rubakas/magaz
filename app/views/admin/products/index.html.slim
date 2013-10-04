@@ -1,0 +1,8 @@
+h3
+  i class="icon-gift"  Products
+= link_to 'New Product', new_admin_product_path
+
+- if @products.blank? && !params[:page].present?
+  = render partial: 'blank'
+- else
+  = render partial: 'list'

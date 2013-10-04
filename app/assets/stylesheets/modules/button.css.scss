@@ -2,9 +2,16 @@
   @extend .btn;
   @extend .btn-lg;
   @extend .btn-primary;
-  // border-radius: 0;
   font-weight: normal;
 }
+
+.button-secondary {
+  @extend .btn;
+  @extend .btn-lg;
+  @extend .btn-default;
+  font-weight: normal;
+}
+
 
 .button-block {
   @extend .button;
