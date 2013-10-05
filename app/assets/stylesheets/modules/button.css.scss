@@ -1,3 +1,9 @@
+.button-admin-menu {
+  @extend .btn;
+  @extend .btn-primary;
+  font-weight: normal;
+}
+
 .button {
   @extend .btn;
   @extend .btn-lg;
@@ -11,7 +17,6 @@
   @extend .btn-default;
   font-weight: normal;
 }
-
 
 .button-block {
   @extend .button;

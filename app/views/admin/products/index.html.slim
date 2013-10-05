@@ -1,6 +1,10 @@
-h3
-  i class="icon-gift"  Products
-= link_to 'New Product', new_admin_product_path
+div class="row"
+  div class="col-xs-4"
+    h3
+      i class="icon-gift"  Products
+  div class="col-xs-8 text-right"
+    br
+    = link_to 'New Product', new_admin_product_path, class: 'button-admin-menu'
 
 div class="text-center"
   - if @products.blank? && !params[:page].present?

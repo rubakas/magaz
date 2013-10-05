@@ -1,8 +1,13 @@
-h3 
-  i class="icon-tags"  Collections
-= link_to 'New Collection', new_admin_collection_path
+div class="row"
+  div class="col-xs-4"
+    h3
+      i class="icon-tags"  Collections
+  div class="col-xs-8 text-right"
+    br
+    = link_to 'New Collection', new_admin_collection_path, class: 'button-admin-menu'
 
-- if @collections.blank? && !params[:page].present?
-  = render partial: 'blank'
-- else
-  = render partial: 'list'
+div class="text-center"
+  - if @collections.blank? && !params[:page].present?
+    = render partial: 'blank'
+  - else
+    = render partial: 'list'
