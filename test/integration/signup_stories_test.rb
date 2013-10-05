@@ -6,7 +6,6 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "signup success" do
-    skip #TODO implement cross-domain sign in
   	visit '/'
   	assert page.has_content?('Welcome')
 
@@ -30,7 +29,6 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "signup redirect and signup success" do
-    skip #TODO implement cross-domain sign in
     visit '/registration'
     fill_in 'Your shop name', with: 'Example3'
     fill_in 'Email address', with: 'uniq@example3.com'
