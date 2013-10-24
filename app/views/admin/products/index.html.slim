@@ -1,10 +1,10 @@
-br
 div class="row"
   div class="col-xs-4"
     h4
-      i class="icon-gift"  Products
+      i class="icon-tags"  Products
   div class="col-xs-8 text-right"
-    = link_to 'New Product', new_admin_product_path, class: 'button-admin-menu'
+    h4
+      = link_to 'Add Product', new_admin_product_path, class: 'button-admin-menu'
 
 div class="text-center"
   - if @products.blank? && !params[:page].present?

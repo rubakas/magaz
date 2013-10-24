@@ -14,7 +14,7 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'create collection' do
-    click_link 'New Collection'
+    click_link 'Add Collection', match: :first
     fill_in 'Name', with: 'Some Collection'
     fill_in 'Description', with: 'Some Collection Description'
     click_button 'Create Collection'
@@ -31,7 +31,7 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
 
 
   test 'create collection failure' do
-    click_link 'New Collection'
+    click_link 'Add Collection', match: :first
     fill_in 'Name', with: ''
     fill_in 'Description', with: ''
     click_button 'Create Collection'
@@ -47,7 +47,7 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'delete collection' do
-    click_link('Destroy',match: :first)
+    click_link('Destroy', match: :first)
     refute page.has_content? 'Collection 1'
   end
 end

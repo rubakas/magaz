@@ -1,10 +1,10 @@
-br
 div class="row"
   div class="col-xs-4"
     h4
       i class="icon-tags"  Collections
   div class="col-xs-8 text-right"
-    = link_to 'New Collection', new_admin_collection_path, class: 'button-admin-menu'
+    h4
+      = link_to 'Add Collection', new_admin_collection_path, class: 'button-admin-menu'
 
 div class="text-center"
   - if @collections.blank? && !params[:page].present?

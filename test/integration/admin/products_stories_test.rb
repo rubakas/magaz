@@ -15,15 +15,16 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "create product" do
-    click_link 'New Product'
+    click_link 'Add Product'
     fill_in 'Name', with: 'Some Product'
     fill_in 'Description', with: 'Some Description'
+    fill_in 'Type', with: 'Super type'
     click_button 'Create Product'
     assert page.has_content? 'Product was successfully created.'
   end
 
   test "create product failure" do
-    click_link 'New Product'
+    click_link 'Add Product'
     fill_in 'Name', with: ''
     fill_in 'Description', with: ''
     click_button 'Create Product'
