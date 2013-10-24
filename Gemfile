@@ -62,8 +62,8 @@ gem 'minitest'
 gem 'annotate', ">=2.5.0"
 gem 'parallel_tests', group: :development
 
-gem 'poltergeist', group: :test
 gem 'capybara', group: :test
+gem 'poltergeist', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test
 gem 'fabrication', group: :test

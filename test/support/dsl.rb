@@ -7,7 +7,7 @@ class ActionDispatch::IntegrationTest
 
     def set_host (host)
       host! host
-      Capybara.app_host = "http://" + host + ":" + Capybara.current_session.server.port.to_s
+      Capybara.app_host = "http://" + host + ":" + parallel_capybara_server_port.to_s
       Capybara.default_host = Capybara.app_host
     end
 
