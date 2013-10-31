@@ -4,6 +4,13 @@ body {
   height: 100%;
 }
 
+.field_with_errors {
+  // padding: 2px;
+  // background-color: red;
+  // display: table;
+  display: inline !important;
+}
+
 /* Lastly, apply responsive CSS fixes as necessary */
 @media (max-width: 767px) {
   .base-footer {
