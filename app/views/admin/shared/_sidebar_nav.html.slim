@@ -12,18 +12,6 @@ section class='sidebar-section'
         active_conditions: { controller: 'admin/dashboard' }
 
     = render 'admin/shared/li_link_to',
-        path: admin_products_path, 
-        icon_class: 'icon-gift',
-        label: 'Products',
-        active_conditions: { controller: 'admin/products' }
-
-    = render 'admin/shared/li_link_to',
-      path: admin_collections_path, 
-      icon_class: 'icon-tags',
-      label: 'Collections',
-      active_conditions: { controller: 'admin/collections' }
-
-    = render 'admin/shared/li_link_to',
       path: admin_orders_path, 
       icon_class: 'icon-barcode',
       label: 'Orders',
@@ -34,6 +22,18 @@ section class='sidebar-section'
       icon_class: 'icon-user',
       label: 'Customer',
       active_conditions: { controller: 'admin/customers' }
+    
+    = render 'admin/shared/li_link_to',
+        path: admin_products_path, 
+        icon_class: 'icon-gift',
+        label: 'Products',
+        active_conditions: { controller: 'admin/products' }
+
+    = render 'admin/shared/li_link_to',
+      path: admin_collections_path, 
+      icon_class: 'icon-tags',
+      label: 'Collections',
+      active_conditions: { controller: 'admin/collections' }
 
   hr
 

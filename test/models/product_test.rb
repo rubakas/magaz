@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
-  test 'validation scenarios' do
-    skip # include uniquness scope tests
+  test 'associations' do
+    skip
+  end
+
+  test 'validation' do
+    skip
   end
 end

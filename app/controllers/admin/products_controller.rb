@@ -19,12 +19,11 @@ class Admin::ProductsController < ApplicationController
   # POST /admin/products
   def create
     @product = current_shop.products.build(product_params)
-
-      if @product.save
-        redirect_to [:admin, @product], notice: 'Product was successfully created.'
-      else
-        render action: 'new'
-      end
+    if @product.save
+      redirect_to [:admin, @product], notice: 'Product was successfully created.'
+    else
+      render action: 'new'
+    end
   end
 
   # PATCH/PUT /admin/products/1
@@ -52,6 +51,6 @@ class Admin::ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description)
+      params.require(:product).permit(:name, :description, :product_type)
     end
 end
