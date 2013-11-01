@@ -1,0 +1,39 @@
+.section-sell {
+  height: 750px;
+}
+
+.section-sell-pattern {
+  @extend .section-sell;
+  background: url(/assets/bright_squares/bright_squares.png) repeat;
+  background-color: #f1c40f;
+}
+
+.section-sell-photo {
+  @extend .section-sell;
+  background-color: $global-color-dark;
+  background: url(/assets/sell_bg_max.jpg) top center no-repeat;
+  background-size: cover;
+}
+
+.section-sell-color {
+  @extend .section-sell;
+  background-color: #f4f1ed;
+}
+
+//dependency :(
+.section-sell-photo > .jumbotron-sell {
+  color: $global-color-light;
+  text-shadow: rgb(0, 0, 0) 1px 1px 1px;
+}
+
+.jumbotron-sell {
+  @extend .jumbotron;
+  background-color: transparent;
+  height: 410px; //+130 of margins and paddings of jumbotron
+  width: 100%;
+}
+
+.panel-sell {
+  @extend .panel;
+  @extend .panel-default;
+}

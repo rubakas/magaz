@@ -4,35 +4,12 @@ body {
   height: 100%;
 }
 
-body {
-  // background-color: #343434;
-  // background-image: url('/assets/debut_dark/debut_dark.png');
-  // color: #eee;
-  background-color: #eee;
-  // background-image: url('/assets/debut_light/debut_light.png');
-  // background-image: url('/assets/fabric_plaid/fabric_plaid.png');
-  // background-image: url('/assets/furley_bg/furley_bg.png');
-  // background-image: url('/assets/pinstripe/pinstripe.png');
-  color: #343434;
+.field_with_errors {
+  // padding: 2px;
+  // background-color: red;
+  // display: table;
+  display: inline !important;
 }
-
-// .base-wrapper {
-//   min-height: 100%;
-//   height: auto !important;
-//   height: 100%;
-//   /* Negative indent footer by it's height */
-//   margin: 0 auto -60px;
-// }
-
-// .base-push,
-// .base-footer {
-//   height: 60px;
-// }
-
-// .base-footer {
-//   // background-image: url('/assets/stressed_linen/stressed_linen.png');
-//   color: #eee;
-// }
 
 /* Lastly, apply responsive CSS fixes as necessary */
 @media (max-width: 767px) {

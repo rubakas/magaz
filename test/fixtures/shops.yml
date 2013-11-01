@@ -1,6 +1,22 @@
+# == Schema Information
+#
+# Table name: shops
+#
+#  id              :integer          not null, primary key
+#  email           :string(255)
+#  name            :string(255)
+#  password_digest :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  password_salt   :string(255)
+#  subdomain       :string(255)
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+shop_1:
   email: admin@example.com
   name: Example
-  password_digest: <%= BCrypt::Password.create('password', cost: BCrypt::Engine::DEFAULT_COST) %>
+  password_salt: <%= salt = BCrypt::Engine.generate_salt %>
+  password_digest: <%= BCrypt::Engine.hash_secret('password', salt) %>
+  subdomain: example

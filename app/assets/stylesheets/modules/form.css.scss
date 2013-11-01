@@ -1,0 +1,14 @@
+.form-group {
+  @extend .form-group;
+}
+
+.form-input {
+  @extend .input;
+  // @extend .input-lg;
+  @extend .form-control;
+}
+
+.form-error {
+  @extend .alert;
+  @extend .alert-danger;
+}

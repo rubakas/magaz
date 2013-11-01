@@ -1,10 +1,26 @@
 Magaz::Application.routes.draw do
-  
-  root 'welcome#index'
-  resource :registration, only: [:create, :new]
-    
-  namespace :admin do
-    get 'dashboard' => 'dashboard#index'
+  constraints host: HOSTNAME_SITE do
+    root 'welcome#index'
+    get 'goodbye' => 'welcome#goodbye', as: :goodbye
+    resource :registration, only: [:create, :show] do
+      collection do
+        post :validate
+      end
+    end
+    resource :session, only: [:create, :destroy, :new, :show]
+  end
+
+  constraints(ShopSubdomainConstraint) do  
+    namespace :admin do
+      root 'dashboard#index'
+
+      resource :session, only: [:create, :destroy, :new, :show]
+      
+      resources :products, except: [:edit]
+      resources :collections, except: [:edit]
+      resources :orders
+      resources :customers
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

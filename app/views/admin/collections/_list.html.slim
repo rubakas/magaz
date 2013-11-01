@@ -1,0 +1,22 @@
+= paginate @collections
+
+table
+  thead
+    tr
+      th Name
+      th Description
+      th
+      th
+      th
+
+  tbody
+    - @collections.each do |collection|
+      tr
+        td = collection.name
+        td = collection.description
+        td = link_to 'Show', [:admin, collection]
+        td = link_to 'Destroy', [:admin, collection], method: :delete, data: { confirm: 'Are you sure?' }
+
+br
+
+= paginate @collections

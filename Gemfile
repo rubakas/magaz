@@ -7,16 +7,18 @@ gem 'rails', '4.0.0'
 gem 'pg'
 
 # Use inherited_resources for empty controllers
-gem 'inherited_resources', github: 'josevalim/inherited_resources'
+# gem 'inherited_resources', github: 'josevalim/inherited_resources'
 
 # Use slim-lang for templates
 gem 'slim'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 
 # Use twitter bootstrap and font icons
-gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+gem 'anjlab-bootstrap-rails', 
+  require: 'bootstrap-rails',
+  github: 'anjlab/bootstrap-rails'
 gem 'font-awesome-sass-rails'
 
 
@@ -24,10 +26,11 @@ gem 'font-awesome-sass-rails'
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+gem 'kaminari'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -44,7 +47,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
 
 # Use puma as the app server
 gem 'puma'
@@ -55,9 +58,12 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'minitest'
+gem 'annotate', ">=2.5.0"
 gem 'parallel_tests', group: :development
 
-gem 'capybara-webkit', group: :test
+gem 'capybara', group: :test
+gem 'poltergeist', group: :test
+gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test
 gem 'fabrication', group: :test
-gem 'turn', group: :test
