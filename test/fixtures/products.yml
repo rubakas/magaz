@@ -17,7 +17,6 @@
 
 product_1:
   name: Product 1
-  description: Description 1
   shop: shop_1
 product_2:
   name: Product 2

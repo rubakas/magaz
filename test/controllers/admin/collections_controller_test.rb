@@ -19,7 +19,7 @@ class Admin::CollectionsControllerTest < ActionController::TestCase
 
   test "should create product" do
     assert_difference('Collection.count') do
-      post :create, collection: { description: 'Some desc', name: 'Unique Name' }
+      post :create, collection: { name: 'Unique Name' }
     end
 
     assert_redirected_to admin_collection_path(assigns(:collection))

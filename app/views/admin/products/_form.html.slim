@@ -25,9 +25,15 @@
           span class="input-group-addon" &euro;
           = f.text_field :price, class: 'form-input form-control'      
   hr
-  h4 Images
-  hr
   h4 Collections
+  div class="form-group"
+    = hidden_field_tag "product[collection_ids][]", nil
+    - current_shop.collections.to_a.each do |collection|
+      div class="checkbox"
+        = label_tag dom_id(collection) do 
+          = check_box_tag 'product[collection_ids][]', collection.id, @product.collection_ids.include?(collection.id), id: dom_id( collection)
+          |  
+          = collection.name
   hr
   div class="form-group"
     = link_to 'Back', admin_products_path, class: 'button-secondary'

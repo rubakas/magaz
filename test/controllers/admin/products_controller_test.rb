@@ -19,7 +19,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
 
   test "should create product" do
     assert_difference('Product.count') do
-      post :create, product: { description: 'Some desc', name: 'Very Unique Name'}
+      post :create, product: { name: 'Very Unique Name'}
     end
 
     assert_redirected_to admin_product_path(assigns(:product))

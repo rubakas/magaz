@@ -14,7 +14,6 @@
 
 collection_1:
   name: Collection 1
-  description: Collection description 1
   shop: shop_1
 
 collection_2:

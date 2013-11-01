@@ -16,7 +16,7 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   test 'create collection' do
     click_link 'Add Collection', match: :first
     fill_in 'Name', with: 'Some Collection'
-    fill_in 'Description', with: 'Some Collection Description'
+    fill_in 'Description', with: ''
     click_button 'Create Collection'
     assert page.has_content? 'Collection was successfully created.'
   end
@@ -35,7 +35,7 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Name', with: ''
     fill_in 'Description', with: ''
     click_button 'Create Collection'
-    assert page.has_content? '2 errors prohibited this collection from being saved'
+    assert page.has_content? '1 error prohibited this collection from being saved'
   end
 
   test 'edit collection' do
