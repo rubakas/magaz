@@ -19,5 +19,4 @@ class Product < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { scope: :shop_id }
   validates :description, presence: true
-  validates :product_type, presence: true
 end

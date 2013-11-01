@@ -19,19 +19,15 @@ product_1:
   name: Product 1
   description: Description 1
   shop: shop_1
-  product_type: Sample
 product_2:
   name: Product 2
   description: Description 2
   shop: shop_1
-  product_type: Sample
 product_3:
   name: Product 3
   description: Description 3
   shop: shop_1
-  product_type: Sample
 product_4:
   name: Product 4
   description: Description 4
   shop: shop_1
-  product_type: Sample

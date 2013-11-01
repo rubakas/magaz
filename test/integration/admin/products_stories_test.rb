@@ -18,7 +18,6 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
     click_link 'Add Product'
     fill_in 'Name', with: 'Some Uniq Product'
     fill_in 'Description', with: 'Some Description'
-    fill_in 'Type', with: 'Super type'
     click_button 'Create Product'
     assert page.has_content? 'Product was successfully created.'
   end
@@ -27,19 +26,8 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
     click_link 'Add Product'
     fill_in 'Name', with: ''
     fill_in 'Description', with: ''
-    fill_in 'Type', with: ''
     click_button 'Create Product'
-    assert page.has_content? '3 errors prohibited this product from being saved'
-  end
-
-  test 'create product - set product type' do
-    # fail creation without product type?
-    # manage product types?
-    skip
-  end
-
-  test 'create/update product - set product vendor' do
-    skip
+    assert page.has_content? '2 errors prohibited this product from being saved'
   end
 
   test 'create/update product - set product images' do
@@ -47,14 +35,6 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'create/update product - set collection membership' do
-    skip
-  end
-
-  test 'create/update product - set tags' do
-    skip
-  end
-
-  test 'create/update product - set invisible' do
     skip
   end
 
