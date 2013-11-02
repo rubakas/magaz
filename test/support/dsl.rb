@@ -1,5 +1,5 @@
 class ActionDispatch::IntegrationTest 
-  private
+  # private
   module CustomIntegrationDsl
     def use_js
       Capybara.current_driver = Capybara.javascript_driver
@@ -11,7 +11,7 @@ class ActionDispatch::IntegrationTest
       Capybara.default_host = Capybara.app_host
     end
 
-    def login_as(shop_name: shop_name, email: email, password: password)
+    def login_as(shop_name:, email:, password:)
       use_js
       set_host HOSTNAME_SITE
       visit '/'

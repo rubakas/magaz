@@ -11,7 +11,6 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   test "products list" do
     assert page.has_content? 'Products'
     assert page.has_content? 'Product 3'
-    assert page.has_content? 'Product 4'
   end
 
   test "create product" do
@@ -39,7 +38,7 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "edit product" do
-    click_link('Show', match: :first)
+    click_link(Product.first.name, match: :first)
     fill_in 'Name', with: 'Updated Product'
     fill_in 'Description', with: 'Updated Description'
     click_button 'Update Product'
@@ -47,7 +46,7 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   end
  
   test "delete product" do
-    click_link('Destroy',match: :first)
+    click_link('Destroy', match: :first)
     refute page.has_content? 'Product 1'
   end
 end

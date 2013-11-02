@@ -1,20 +1,15 @@
 = paginate @collections
 
-table
+table class="table table-striped"
   thead
     tr
-      th Name
-      th Description
-      th
-      th
+      th Collection
       th
 
   tbody
     - @collections.each do |collection|
       tr
-        td = collection.name
-        td = collection.description
-        td = link_to 'Show', [:admin, collection]
+        td = link_to collection.name, [:admin, collection]
         td = link_to 'Destroy', [:admin, collection], method: :delete, data: { confirm: 'Are you sure?' }
 
 br

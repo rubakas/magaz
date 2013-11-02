@@ -39,7 +39,7 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'edit collection' do
-    click_link('Show', match: :first)
+    click_link(Collection.first.name, match: :first)
     fill_in 'Name', with: 'Updated Collection'
     fill_in 'Description', with: 'Updated Collection Description'
     click_button 'Update Collection'

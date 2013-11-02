@@ -6,7 +6,7 @@ div class="row"
     h4
       = link_to 'Add Product', new_admin_product_path, class: 'button-admin-menu'
 
-div class="text-center"
+div class="row"
   - if @products.blank? && !params[:page].present?
     = render partial: 'blank'
   - else

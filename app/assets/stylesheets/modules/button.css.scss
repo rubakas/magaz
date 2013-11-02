@@ -1,5 +1,6 @@
 .button-admin-menu {
   @extend .btn;
+  @extend .btn-sm;
   @extend .btn-primary;
   font-weight: normal;
 }

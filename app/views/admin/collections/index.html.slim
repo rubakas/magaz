@@ -6,7 +6,7 @@ div class="row"
     h4
       = link_to 'Add Collection', new_admin_collection_path, class: 'button-admin-menu'
 
-div class="text-center"
+div class="row"
   - if @collections.blank? && !params[:page].present?
     = render partial: 'blank'
   - else
