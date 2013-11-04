@@ -13,6 +13,7 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
   	fill_in 'Email address', with: 'uniq@example2.com'
   	fill_in 'Password', with: 'password'
   	click_button 'Create your shop now'
+    save_and_open_page
 
   	assert page.has_content?('Dashboard')
   end

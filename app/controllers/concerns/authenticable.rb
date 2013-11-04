@@ -7,7 +7,7 @@ module Authenticable extend ActiveSupport::Concern
   protected
 
   def authentication_required
-    redirect_to new_session_url unless current_user
+    redirect_to new_admin_session_url unless current_user
   end
 
   def current_user

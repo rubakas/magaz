@@ -4,7 +4,7 @@ class SignInForm
   constructor: (element)->
     @form=$(element)
     @form.bind('submit', @e_ensure_subdomain_presence)
-    # $('.script-input-subdomain').trigger('focus') # focus first field
+    $('.script-input-subdomain').trigger('focus') # focus first field
   
   e_ensure_subdomain_presence: (evt)=>
     evt.preventDefault();
@@ -12,7 +12,6 @@ class SignInForm
     action_url = @form.attr('action')
     new_action_url = action_url.replace('REPLACE_ME', $('.script-input-subdomain').val())
     @form.attr('action', new_action_url);
-    # console.log(new_action_url)
     @form.unbind('submit').submit()
 
 

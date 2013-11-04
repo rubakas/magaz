@@ -10,9 +10,12 @@ class Admin::SessionsController < ApplicationController
 
   #TODO test user not found case
   def create
-    @shop = Shop.find_by_email(params[:session][:email])
+    @shop = current_shop
 
-    if @shop && @shop.authentic_password?(params[:session][:password])
+    if @shop && 
+      (@shop.email == params[:session][:email].downcase) && 
+      @shop.authentic_password?(params[:session][:password])
+      # valid login
       session[:user_id] = @shop.id
       redirect_to admin_root_url(host: HOSTNAME_SHOP, subdomain: @shop.subdomain)
     else

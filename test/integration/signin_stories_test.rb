@@ -44,8 +44,19 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Sign in')
   end
 
-  test "signin redirect and signup success" do
-    skip
+  test "shop sign in success" do
+    set_host "example.#{HOSTNAME_SHOP}"
+    visit '/admin'
+    click_link 'Sign out' if page.has_content?('Sign out')
+
+    visit '/admin'
+    assert page.has_content?('Sign in')
+
+    fill_in 'Email address', with: 'admin@example.com'
+    fill_in 'Password', with: 'password'
+
+    click_button 'Sign in'
+    assert page.has_content?('Dashboard')
   end
 
   test 'sign out page' do
