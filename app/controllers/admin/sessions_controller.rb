@@ -27,7 +27,7 @@ class Admin::SessionsController < ApplicationController
   end
 
   def destroy
-    session[:shop_id] = nil
+    session[:user_id] = nil
     redirect_to goodbye_url
   end
 end
