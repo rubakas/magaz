@@ -1,0 +1,6 @@
+<h1>Shop::Welcome#index</h1>
+<p>Find me in app/views/shop/welcome/index.html.erb</p>
+<% frontpage = @collections.where(name: 'Frontpage').first %>
+<% frontpage.products.each do |p| %>
+  <em><%= p.name %></em><br/>
+<% end %>

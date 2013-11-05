@@ -1,4 +1,5 @@
 Magaz::Application.routes.draw do
+  get "welcome/index"
   constraints host: HOSTNAME do
     root 'welcome#index'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
@@ -10,7 +11,11 @@ Magaz::Application.routes.draw do
     resource :session, only: [:create, :destroy, :new, :show]
   end
 
-  constraints(ShopSubdomainConstraint) do  
+  constraints(ShopSubdomainConstraint) do
+    namespace :shop, path: nil, shallow_path: nil do
+      root 'welcome#index'
+    end
+
     namespace :admin do
       root 'dashboard#index'
 

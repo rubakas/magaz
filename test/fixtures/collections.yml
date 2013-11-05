@@ -12,6 +12,10 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+frontpage:
+  name: Frontpage
+  shop: shop_1
+
 collection_1:
   name: Collection 1
   shop: shop_1

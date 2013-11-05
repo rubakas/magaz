@@ -14,19 +14,29 @@
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+product_not_in_collections:
+  name: Product not in collections
+  shop: shop_1
 
 product_1:
   name: Product 1
   shop: shop_1
+  collections: frontpage, collection_1
+
 product_2:
   name: Product 2
   description: Description 2
   shop: shop_1
+  collections: frontpage, collection_2
+
 product_3:
   name: Product 3
   description: Description 3
   shop: shop_1
+  collections: frontpage, collection_3
+
 product_4:
   name: Product 4
   description: Description 4
   shop: shop_1
+  collections: frontpage, collection_4

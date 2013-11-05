@@ -46,7 +46,8 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   end
  
   test "delete product" do
+    assert page.has_content? 'Product not in collections'
     click_link('Destroy', match: :first)
-    refute page.has_content? 'Product 1'
+    refute page.has_content? 'Product not in collections'
   end
 end
