@@ -2,5 +2,5 @@
 <p>Find me in app/views/shop/welcome/index.html.erb</p>
 <% frontpage = @collections.where(name: 'Frontpage').first %>
 <% frontpage.products.each do |p| %>
-  <em><%= p.name %></em><br/>
+  <em><%= link_to p.name, shop_product_path(p) %></em><br/>
 <% end %>

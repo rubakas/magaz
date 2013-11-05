@@ -10,4 +10,20 @@ class Shop::BrowsingStoriesTest < ActionDispatch::IntegrationTest
     visit '/'
     assert page.has_content? products(:product_1).name
   end
+
+  test "product page" do
+    visit '/'
+    click_link products(:product_1).name
+    
+    assert page.has_content? products(:product_1).name
+    assert page.has_content? products(:product_1).description
+  end
+
+  test "collection page" do
+    skip
+  end
+
+  test "navigation" do
+    skip
+  end
 end

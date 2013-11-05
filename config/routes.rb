@@ -1,4 +1,5 @@
 Magaz::Application.routes.draw do
+  get "products/show"
   get "welcome/index"
   constraints host: HOSTNAME do
     root 'welcome#index'
@@ -14,6 +15,7 @@ Magaz::Application.routes.draw do
   constraints(ShopSubdomainConstraint) do
     namespace :shop, path: nil, shallow_path: nil do
       root 'welcome#index'
+      resources :products, only: [:show]
     end
 
     namespace :admin do
