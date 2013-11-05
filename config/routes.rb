@@ -1,5 +1,5 @@
 Magaz::Application.routes.draw do
-  constraints host: HOSTNAME_SITE do
+  constraints host: HOSTNAME do
     root 'welcome#index'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
     resource :registration, only: [:create, :show] do

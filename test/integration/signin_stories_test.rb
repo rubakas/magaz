@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SigninStoriesTest < ActionDispatch::IntegrationTest  
   setup do
-    set_host HOSTNAME_SITE
+    set_host HOSTNAME
   end
 
   test "sign in redirect" do
@@ -20,7 +20,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Email address', with: 'admin@example.com'
     fill_in 'Password', with: 'password'
 
-    set_host "example.#{HOSTNAME_SHOP}"
+    set_host "example.#{HOSTNAME}"
 
     click_button 'Sign in'
 
@@ -29,7 +29,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
 
   test "sign in failure" do
     use_js
-    set_host HOSTNAME_SITE
+    set_host HOSTNAME
 
     visit '/'
     assert page.has_content?('Sign in')
@@ -45,7 +45,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "shop sign in success" do
-    set_host "example.#{HOSTNAME_SHOP}"
+    set_host "example.#{HOSTNAME}"
     visit '/admin'
     click_link 'Sign out' if page.has_content?('Sign out')
 
@@ -66,7 +66,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
 
     click_link 'Sign out'
 
-    set_host HOSTNAME_SITE
+    set_host HOSTNAME
     
     assert page.has_content?('Thank you for using magaz')
   end

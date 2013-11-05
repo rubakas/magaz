@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     if @shop && @shop.authentic_password?(params[:session][:password])
       session[:user_id] = @shop.id
-      redirect_to admin_root_url(host: HOSTNAME_SHOP, subdomain: @shop.subdomain)
+      redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
       if @shop
         flash[:alert] = I18n.t('sessions.create.wrong_password')

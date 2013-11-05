@@ -19,10 +19,9 @@
 * Domain names:
   add into /etc/hosts
   127.0.0.1 magaz.local
-  127.0.0.1 mymagaz.local
-  127.0.0.1 example.mymagaz.local
-  127.0.0.1 example2.mymagaz.local
-  127.0.0.1 example3.mymagaz.local
+  127.0.0.1 example.magaz.local
+  127.0.0.1 example2.magaz.local
+  127.0.0.1 example3.magaz.local
 
 * How to run the test suite
   bundle exec rake test

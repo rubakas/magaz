@@ -13,14 +13,14 @@ class ActionDispatch::IntegrationTest
 
     def login_as(shop_name:, email:, password:)
       use_js
-      set_host HOSTNAME_SITE
+      set_host HOSTNAME
       visit '/'
       click_link 'Sign in'
       fill_in 'Your shop name', with: shop_name
       fill_in 'Email address', with: email
       fill_in 'Password', with: password
       
-      set_host "#{shop_name}.#{HOSTNAME_SHOP}"
+      set_host "#{shop_name}.#{HOSTNAME}"
       click_button 'Sign in'
     end
   end
@@ -33,7 +33,7 @@ class ActionController::TestCase
   module CustomControllerDsl
     def session_for_shop(shop)
       session[:user_id] = shop.id
-      request.host = shop.subdomain + '.' + HOSTNAME_SHOP
+      request.host = shop.subdomain + '.' + HOSTNAME
     end
   end
 
