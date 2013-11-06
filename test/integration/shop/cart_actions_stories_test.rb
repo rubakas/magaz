@@ -6,6 +6,10 @@ class Shop::CartActionsStoriesTest < ActionDispatch::IntegrationTest
     set_subdomain(shop.subdomain)
   end
 
+  test "empty cart" do
+    skip
+  end
+
   test "add product to cart" do
     skip
   end
