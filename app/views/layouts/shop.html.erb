@@ -7,7 +7,7 @@
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
-  <%= stylesheet_link_tag    "application", 
+  <%= stylesheet_link_tag    "shop/application", 
         media: "all", 
         "data-turbolinks-track" => true %>
   
@@ -18,8 +18,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <%= yield %>
-
+  <div class="container">
+    <br/>
+    <div class="row text-right">
+      <%= link_to shop_cart_path, class: 'btn btn-lg btn-primary' do %>
+        <i class="icon-shopping-cart icon-large"></i> 
+          Cart
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
 </body>
 </html>

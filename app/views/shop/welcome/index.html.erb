@@ -1,6 +1,19 @@
 <h1>Shop::Welcome#index</h1>
 <p>Find me in app/views/shop/welcome/index.html.erb</p>
-<% frontpage = @collections.where(name: 'Frontpage').first %>
-<% frontpage.products.each do |p| %>
-  <em><%= link_to p.name, shop_product_path(p) %></em><br/>
-<% end %>
+
+<div class="jumbotron text-center">
+  <h1><%= current_shop.name.capitalize %></h1>
+</div>
+
+<div class="row">
+  <% frontpage = @collections.where(name: 'Frontpage').first %>
+  <% frontpage.products.each do |p| %>
+  <div class="col-xs-3 text-center">
+    <%= link_to shop_product_path(p) do %>
+      <img src="//placehold.it/150x150" class="img-thumbnail"/>
+    <% end %>
+    <br/>
+    <%= link_to p.name, shop_product_path(p) %>
+  </div>
+  <% end %>
+</div>
