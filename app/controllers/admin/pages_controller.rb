@@ -1,10 +1,11 @@
 class Admin::PagesController < ApplicationController
-  before_action :set_admin_page, only: [:show, :edit, :update, :destroy]
+  include Authenticable
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/pages
   # GET /admin/pages.json
   def index
-    @admin_pages = Admin::Page.all
+    @pages = current_shop.pages.page(params[:page])
   end
 
   # GET /admin/pages/1
@@ -14,7 +15,7 @@ class Admin::PagesController < ApplicationController
 
   # GET /admin/pages/new
   def new
-    @admin_page = Admin::Page.new
+    @page = current_shop.pages.build
   end
 
   # GET /admin/pages/1/edit
@@ -24,51 +25,40 @@ class Admin::PagesController < ApplicationController
   # POST /admin/pages
   # POST /admin/pages.json
   def create
-    @admin_page = Admin::Page.new(admin_page_params)
+    @page = current_shop.pages.build(page_params)
 
-    respond_to do |format|
-      if @admin_page.save
-        format.html { redirect_to @admin_page, notice: 'Page was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @admin_page }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @admin_page.errors, status: :unprocessable_entity }
-      end
+    if @page.save
+      redirect_to [:admin, @page], notice: "Page was successfully created"
+    else
+      render action: "new"
     end
   end
 
   # PATCH/PUT /admin/pages/1
   # PATCH/PUT /admin/pages/1.json
   def update
-    respond_to do |format|
-      if @admin_page.update(admin_page_params)
-        format.html { redirect_to @admin_page, notice: 'Page was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @admin_page.errors, status: :unprocessable_entity }
-      end
+    if @page.update(page_params)
+      redirect_to [:admin, @page], notice: "Page was successfully updated"
+    else
+      render action: "show"
     end
   end
 
   # DELETE /admin/pages/1
   # DELETE /admin/pages/1.json
   def destroy
-    @admin_page.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_pages_url }
-      format.json { head :no_content }
-    end
+    @page.destroy
+    redirect_to admin_page_url
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin_page
-      @admin_page = Admin::Page.find(params[:id])
+    def set_page
+      @page = current_shop.pages.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_page_params
-      params.require(:admin_page).permit(:name, :description)
+    def page_params
+      params.require(:page).permit(:name, :description)
     end
 end
