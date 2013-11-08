@@ -1,6 +1,4 @@
 Magaz::Application.routes.draw do
-  get "products/show"
-  get "welcome/index"
   constraints host: HOSTNAME do
     root 'welcome#index'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye

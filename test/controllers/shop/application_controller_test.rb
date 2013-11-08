@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class Shop::ApplicationControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'helper methods defined' do
+    assert @controller._helper_methods.include?(:shopping_cart)
+  end
 end
