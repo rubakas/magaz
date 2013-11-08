@@ -3,7 +3,8 @@ class Shop::ApplicationController < ApplicationController
   helper_method :shopping_cart
 
   def shopping_cart
-    []
+    @shopping_cart ||= []
+    @shopping_cart
   end
   
 end

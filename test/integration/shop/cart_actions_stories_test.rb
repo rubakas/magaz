@@ -8,11 +8,17 @@ class Shop::CartActionsStoriesTest < ActionDispatch::IntegrationTest
 
   test "empty cart" do
     visit shop_cart_path
+    assert page.has_content? 'Shopping cart'
     assert page.has_content? 'Your shopping cart is empty.'
   end
 
   test "add product to cart" do
-    skip
+    visit '/'
+    click_link products(:product_1).name
+    
+    click_button "Purchase"
+    assert page.has_content? 'Shopping cart'
+    assert page.has_content? products(:product_1).name
   end
 
   test "remove product from cart" do

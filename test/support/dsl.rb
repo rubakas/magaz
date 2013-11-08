@@ -15,7 +15,7 @@ class ActionDispatch::IntegrationTest
       set_host("#{subdomain}.#{HOSTNAME}")
     end
 
-    def login_as(shop_name:, email:, password:)
+    def login_as(shop_name: nil, email: nil, password: nil)
       use_js
       set_host HOSTNAME
       visit '/'

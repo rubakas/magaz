@@ -5,7 +5,12 @@
 <% if shopping_cart.empty? %>
   Your shopping cart is empty.
 <% else %>
-  <table>
-    
+  <table class="table">
+  <% shopping_cart.each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td></td>
+    </tr>
+  <% end %>
   </table>
 <% end %>
