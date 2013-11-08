@@ -1,4 +1,5 @@
 Magaz::Application.routes.draw do
+
   constraints host: HOSTNAME do
     root 'welcome#index'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
@@ -25,11 +26,12 @@ Magaz::Application.routes.draw do
       root 'dashboard#index'
 
       resource :session, only: [:create, :destroy, :new, :show]
-      
+
       resources :products, except: [:edit]
       resources :collections, except: [:edit]
       resources :orders
       resources :customers
+      resources :pages
     end
   end
 

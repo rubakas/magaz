@@ -17,4 +17,5 @@ class Shop < ActiveRecord::Base
   include SubdomainOwner
   has_many :collections
   has_many :products
+  has_many :pages
 end
