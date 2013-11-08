@@ -18,10 +18,6 @@ class Admin::PagesController < ApplicationController
     @page = current_shop.pages.build
   end
 
-  # GET /admin/pages/1/edit
-  def edit
-  end
-
   # POST /admin/pages
   # POST /admin/pages.json
   def create
@@ -48,7 +44,7 @@ class Admin::PagesController < ApplicationController
   # DELETE /admin/pages/1.json
   def destroy
     @page.destroy
-    redirect_to admin_page_url
+    redirect_to admin_pages_url
   end
 
   private

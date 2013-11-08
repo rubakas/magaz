@@ -2,13 +2,14 @@ require 'test_helper'
 
 class Admin::PagesControllerTest < ActionController::TestCase
   setup do
-    @admin_page = admin_pages(:one)
+    session_for_shop shops(:shop_1)
+    @page = pages(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:admin_pages)
+    assert_not_nil assigns(:pages)
   end
 
   test "should get new" do
@@ -16,32 +17,27 @@ class Admin::PagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create admin_page" do
-    assert_difference('Admin::Page.count') do
-      post :create, admin_page: { description: @admin_page.description, name: @admin_page.name }
+  test "should create page" do
+    assert_difference('Page.count') do
+      post :create, page: { description: @page.description, name: 'New uniq name' }
     end
 
-    assert_redirected_to admin_page_path(assigns(:admin_page))
+    assert_redirected_to admin_page_path(assigns(:page))
   end
 
-  test "should show admin_page" do
-    get :show, id: @admin_page
+  test "should show page" do
+    get :show, id: @page
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @admin_page
+  test "should update page" do
+    patch :update, id: @page, page: { description: @page.description, name: @page.name }
     assert_response :success
   end
 
-  test "should update admin_page" do
-    patch :update, id: @admin_page, admin_page: { description: @admin_page.description, name: @admin_page.name }
-    assert_redirected_to admin_page_path(assigns(:admin_page))
-  end
-
-  test "should destroy admin_page" do
-    assert_difference('Admin::Page.count', -1) do
-      delete :destroy, id: @admin_page
+  test "should destroy page" do
+    assert_difference('Page.count', -1) do
+      delete :destroy, id: @page
     end
 
     assert_redirected_to admin_pages_path

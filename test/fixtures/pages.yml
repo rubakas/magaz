@@ -3,7 +3,9 @@
 one:
   name: MyString
   description: MyString
+  shop: shop_1
 
 two:
   name: MyString
   description: MyString
+  shop: shop_1

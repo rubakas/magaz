@@ -31,7 +31,7 @@ Magaz::Application.routes.draw do
       resources :collections, except: [:edit]
       resources :orders
       resources :customers
-      resources :pages
+      resources :pages, except: [:edit]
     end
   end
 
