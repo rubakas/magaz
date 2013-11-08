@@ -3,37 +3,55 @@ section class='sidebar-section'
   h4 Shop
 
   ul class='nav nav-pills nav-stacked'
-    / this is a short notation for 
-    / render partial: partial_name, locals: {...} 
-    = render 'admin/shared/li_link_to', 
-        path: admin_root_path, 
+    / this is a short notation for
+    / render partial: partial_name, locals: {...}
+    = render 'admin/shared/li_link_to',
+        path: admin_root_path,
         icon_class: 'icon-dashboard',
         label: 'Dashboard',
         active_conditions: { controller: 'admin/dashboard' }
 
     = render 'admin/shared/li_link_to',
-      path: admin_orders_path, 
+      path: admin_orders_path,
       icon_class: 'icon-barcode',
       label: 'Orders',
       active_conditions: { controller: 'admin/orders' }
 
     = render 'admin/shared/li_link_to',
-      path: admin_customers_path, 
+      path: admin_customers_path,
       icon_class: 'icon-user',
       label: 'Customer',
       active_conditions: { controller: 'admin/customers' }
-    
-    = render 'admin/shared/li_link_to',
-        path: admin_products_path, 
-        icon_class: 'icon-gift',
-        label: 'Products',
-        active_conditions: { controller: 'admin/products' }
 
     = render 'admin/shared/li_link_to',
-      path: admin_collections_path, 
+      path: admin_products_path,
+      icon_class: 'icon-gift',
+      label: 'Products',
+      active_conditions: { controller: 'admin/products' }
+
+    = render 'admin/shared/li_link_to',
+      path: admin_collections_path,
       icon_class: 'icon-tags',
       label: 'Collections',
       active_conditions: { controller: 'admin/collections' }
+
+  hr
+
+  h4 Your Website
+
+  ul class='nav nav-pills nav-stacked'
+
+    = render 'admin/shared/li_link_to',
+      path: admin_pages_path,
+      icon_class: 'icon-th',
+      label: 'Pages',
+      active_conditions: { controller: 'admin/customers' }
+
+    = render 'admin/shared/li_link_to',
+      path: admin_root_path,
+      icon_class: 'icon-list-alt',
+      label: 'Blog Posts',
+      active_conditions: { controller: 'admin/products' }
 
   hr
 
@@ -41,7 +59,7 @@ section class='sidebar-section'
 
   ul class='nav nav-pills nav-stacked'
     li
-      = link_to admin_root_path do 
+      = link_to admin_root_path do
         i class="icon-cogs icon-large"
         |  Settings
     li
@@ -55,7 +73,7 @@ section class='sidebar-section'
 
   ul class='nav nav-pills nav-stacked'
     li
-      = link_to admin_root_path do 
+      = link_to admin_root_path do
         i class="icon-comments-alt icon-large"
         |  Community answers
     li
