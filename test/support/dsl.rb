@@ -11,7 +11,11 @@ class ActionDispatch::IntegrationTest
       Capybara.default_host = Capybara.app_host
     end
 
-    def login_as(shop_name:, email:, password:)
+    def set_subdomain(subdomain)
+      set_host("#{subdomain}.#{HOSTNAME}")
+    end
+
+    def login_as(shop_name: nil, email: nil, password: nil)
       use_js
       set_host HOSTNAME
       visit '/'
@@ -20,7 +24,7 @@ class ActionDispatch::IntegrationTest
       fill_in 'Email address', with: email
       fill_in 'Password', with: password
       
-      set_host "#{shop_name}.#{HOSTNAME}"
+      set_subdomain shop_name
       click_button 'Sign in'
     end
   end
@@ -33,7 +37,11 @@ class ActionController::TestCase
   module CustomControllerDsl
     def session_for_shop(shop)
       session[:user_id] = shop.id
-      request.host = shop.subdomain + '.' + HOSTNAME
+      controller_with_subdomain(shop.subdomain)
+    end
+
+    def controller_with_subdomain(subdomain)
+      request.host = subdomain + '.' + HOSTNAME
     end
   end
 

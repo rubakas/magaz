@@ -1,0 +1,16 @@
+<h1>Shop::Carts#show</h1>
+<p>Find me in app/views/shop/carts/show.html.erb</p>
+
+<h2>Shopping cart</h2>
+<% if shopping_cart.empty? %>
+  Your shopping cart is empty.
+<% else %>
+  <table class="table">
+  <% shopping_cart.each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>

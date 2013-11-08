@@ -10,7 +10,17 @@ Magaz::Application.routes.draw do
     resource :session, only: [:create, :destroy, :new, :show]
   end
 
-  constraints(ShopSubdomainConstraint) do  
+  constraints(ShopSubdomainConstraint) do
+    namespace :shop, path: nil, shallow_path: nil do
+      root 'welcome#index'
+      resource :cart do
+        collection do
+          post :add
+        end
+      end
+      resources :products, only: [:show]
+    end
+
     namespace :admin do
       root 'dashboard#index'
 

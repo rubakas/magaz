@@ -48,6 +48,6 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
 
   test 'delete collection' do
     click_link('Destroy', match: :first)
-    refute page.has_content? 'Collection 1'
+    refute page.has_content? 'Frontpage'
   end
 end

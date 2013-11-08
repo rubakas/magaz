@@ -20,7 +20,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Email address', with: 'admin@example.com'
     fill_in 'Password', with: 'password'
 
-    set_host "example.#{HOSTNAME}"
+    set_subdomain "example"
 
     click_button 'Sign in'
 
@@ -45,7 +45,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "shop sign in success" do
-    set_host "example.#{HOSTNAME}"
+    set_subdomain "example"
     visit '/admin'
     click_link 'Sign out' if page.has_content?('Sign out')
 
