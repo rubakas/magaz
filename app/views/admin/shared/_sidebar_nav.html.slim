@@ -45,13 +45,13 @@ section class='sidebar-section'
       path: admin_pages_path,
       icon_class: 'icon-th',
       label: 'Pages',
-      active_conditions: { controller: 'admin/customers' }
+      active_conditions: { controller: 'admin/pages' }
 
     = render 'admin/shared/li_link_to',
       path: admin_root_path,
       icon_class: 'icon-list-alt',
       label: 'Blog Posts',
-      active_conditions: { controller: 'admin/products' }
+      active_conditions: { controller: 'admin/articles' }
 
   hr
 
