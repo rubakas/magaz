@@ -1,0 +1,18 @@
+= form_for([:admin, @blog]) do |f|
+  - if @blog.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@blog.errors.count, "error")
+      | prohibited this blog from being saved:
+
+      ul
+      - @blog.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="form-group"
+    = f.label :title
+    br
+    = f.text_field :title, class: 'form-input'
+  div class="form-group"
+    = link_to 'Back', admin_blogs_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')

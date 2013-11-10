@@ -32,6 +32,7 @@ Magaz::Application.routes.draw do
       resources :orders
       resources :customers
       resources :pages, except: [:edit]
+      resources :blogs, except: [:edit]
     end
   end
 

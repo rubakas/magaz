@@ -18,4 +18,5 @@ class Shop < ActiveRecord::Base
   has_many :collections
   has_many :products
   has_many :pages
+  has_many :blogs
 end
