@@ -12,6 +12,7 @@
 class Blog < ActiveRecord::Base
   belongs_to :shop
   has_many :articles
+  has_many :comments
 
   validates :title,
     presence: true,

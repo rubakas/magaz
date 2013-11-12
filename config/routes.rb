@@ -34,6 +34,7 @@ Magaz::Application.routes.draw do
       resources :pages, except: [:edit]
       resources :blogs, except: [:edit]
       resources :articles, except: [:edit]
+      resources :comments, except: [:edit]
     end
   end
 
