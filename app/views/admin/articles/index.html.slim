@@ -1,0 +1,13 @@
+div class="row"
+  div class="col-xs-4"
+    h4
+      i class="icon-tags"  Blog Posts
+  div class="col-xs-8 text-right"
+    h4
+      = link_to 'Add Blog Post', new_admin_article_path, class: 'button-admin-menu'
+
+div class="row"
+  - if @articles.blank? && !params[:page].present?
+    = render partial: 'blank'
+  - else
+    = render partial: 'list'

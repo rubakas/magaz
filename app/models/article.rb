@@ -1,19 +1,19 @@
 # == Schema Information
 #
-# Table name: blogs
+# Table name: articles
 #
 #  id         :integer          not null, primary key
 #  title      :string(255)
-#  shop_id    :integer
+#  content    :text
+#  blog_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Blog < ActiveRecord::Base
-  belongs_to :shop
-  has_many :articles
+class Article < ActiveRecord::Base
+  belongs_to :blog
 
   validates :title,
     presence: true,
-    uniqueness: { scope: :shop_id }
+    uniqueness: { scope: :blog_id }
 end
