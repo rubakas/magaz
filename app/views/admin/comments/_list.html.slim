@@ -1,0 +1,17 @@
+= paginate @comments
+
+table class="table table-striped"
+  thead
+    tr
+      th Comments
+      th
+
+  tbody
+    - @comments.each do |comment|
+      tr
+        td = link_to comment.title, [:admin, comment]
+        td = link_to 'Destroy', [:admin, comment], method: :delete, data: { confirm: 'Are you sure?' }
+
+br
+
+= paginate @comments
