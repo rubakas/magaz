@@ -13,12 +13,12 @@ class Admin::ArticlesController < ApplicationController
 
   # GET /admin/articles/new
   def new
-    @article = Article.build
+    @article = Article.new
   end
 
   # POST /articles/articles
   def create
-    @article = Article.build(article_params)
+    @article = Article.new(article_params)
 
     if @article.save
       redirect_to [:admin, @article], notice: "Blog Post was successfully created"
@@ -45,7 +45,7 @@ class Admin::ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = current_shop.articles.find(params[:id])
+      @article = Article.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
