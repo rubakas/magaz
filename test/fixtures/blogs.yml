@@ -13,6 +13,8 @@
 
 one:
   title: MyString
+  shop: shop_1
 
 two:
   title: MyString
+  shop: shop_1

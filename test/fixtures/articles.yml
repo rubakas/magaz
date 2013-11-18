@@ -15,7 +15,9 @@
 one:
   title: MyString
   content: MyText
+  blog: blog_1
 
 two:
   title: MyString
   content: MyText
+  blog: blog_1
