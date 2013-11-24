@@ -1,8 +1,22 @@
 require 'capybara/rails'
 # require 'capybara/poltergeist'
-# require 'capybara/poltergeist'
 
-Capybara.javascript_driver = :webkit
+# silence 'QNetworkReplyImplPrivate::error'
+filtered_io = StringIO.new
+filtered_io.instance_eval do
+  def write(string)
+    if string.include? 'QNetworkReplyImplPrivate::error'
+      STDERR.write('')
+    else
+      STDERR.write(string)
+    end
+  end
+end
+Capybara.register_driver :webkit_silent do |app|
+  Capybara::Webkit::Driver.new(app, :stderr => filtered_io)
+end
+Capybara.javascript_driver = :webkit_silent
+
 Capybara.run_server = true
 
 def parallel_capybara_server_port
