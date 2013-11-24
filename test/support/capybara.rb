@@ -1,7 +1,8 @@
 require 'capybara/rails'
-require 'capybara/poltergeist'
+# require 'capybara/poltergeist'
+# require 'capybara/poltergeist'
 
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :webkit
 Capybara.run_server = true
 
 def parallel_capybara_server_port
