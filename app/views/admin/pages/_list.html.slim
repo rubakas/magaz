@@ -9,7 +9,7 @@ table class="table table-striped"
   tbody
     - @pages.each do |page|
       tr
-        td = link_to page.name, [:admin, page]
+        td = link_to page.title, [:admin, page]
         td = link_to 'Destroy', [:admin, page], method: :delete, data: { confirm: 'Are you sure?' }
 
 br

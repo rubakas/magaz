@@ -9,13 +9,13 @@
         li = msg
 
   div class="form-group"
-    = f.label :name
+    = f.label :title
     br
-    = f.text_field :name, class: 'form-input'
+    = f.text_field :title, class: 'form-input'
   div class="form-group"
-    = f.label :description
+    = f.label :content
     br
-    = f.text_area :description, class: 'form-input'
+    = f.text_area :content, class: 'form-input'
   div class="form-group"
     = link_to 'Back', admin_pages_path, class: 'button-secondary'
     |

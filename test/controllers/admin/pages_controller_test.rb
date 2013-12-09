@@ -19,7 +19,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
 
   test "should create page" do
     assert_difference('Page.count') do
-      post :create, page: { description: @page.description, name: 'New uniq name' }
+      post :create, page: { content: @page.content, title: 'New uniq name' }
     end
 
     assert_redirected_to admin_page_path(assigns(:page))
@@ -31,7 +31,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
   end
 
   test "should update page" do
-    patch :update, id: @page, page: { description: @page.description, name: @page.name }
+    patch :update, id: @page, page: { content: @page.content, title: @page.title }
     assert_response :success
   end
 

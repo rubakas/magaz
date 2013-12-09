@@ -2,22 +2,22 @@
 #
 # Table name: pages
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  shop_id     :integer
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  content    :string(255)
+#  shop_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyString
+  title: MyString
+  content: MyString
   shop: shop_1
 
 two:
-  name: MyString
-  description: MyString
+  title: MyString
+  content: MyString
   shop: shop_1
