@@ -39,7 +39,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 1.5'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -47,7 +47,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
+gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 # Use puma as the app server
 gem 'puma'
@@ -59,7 +59,7 @@ gem 'puma'
 # gem 'debugger', group: [:development, :test]
 
 gem 'minitest'
-gem 'annotate', ">=2.5.0"
+gem 'annotate', '~> 2.6.0'
 gem 'parallel_tests', group: :development
 
 gem 'capybara', group: :test

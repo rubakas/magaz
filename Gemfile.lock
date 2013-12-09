@@ -39,7 +39,7 @@ GEM
       rake (>= 0.8.7)
     arel (4.0.1)
     atomic (1.1.14)
-    bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.1.2)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -47,7 +47,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.0.0)
+    capybara-webkit (1.1.0)
       capybara (~> 2.0, >= 2.0.2)
       json
     cliver (0.2.2)
@@ -162,15 +162,15 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails!
-  annotate (>= 2.5.0)
-  bcrypt-ruby (~> 3.0.0)
+  annotate (~> 2.6.0)
+  bcrypt-ruby (~> 3.1.2)
   capybara
   capybara-webkit
   coffee-rails
   database_cleaner
   fabrication
   font-awesome-sass-rails
-  jbuilder (~> 1.2)
+  jbuilder (~> 1.5)
   jquery-rails
   kaminari
   launchy
