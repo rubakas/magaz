@@ -13,14 +13,14 @@ class Admin::CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-  # def create
-  #   @comment = Comment.new(comment_params)
-  #     if @blog.save
-  #       redirect_to [:admin, @comment], notice: "Comment was successfully created"
-  #     else
-  #       render action: "new"
-  #     end
-  # end
+  def create
+    @comment = Comment.new(comment_params)
+      if @comment.save
+        redirect_to [:admin, @comment], notice: "Comment was successfully created"
+      else
+        render action: "new"
+      end
+  end
 
   def update
     if @comment.update(comment_params)
