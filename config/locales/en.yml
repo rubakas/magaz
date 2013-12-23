@@ -54,6 +54,11 @@ en:
       show:
        edit_post: "Editing Blog Post"
 
+  helpers:
+    label:
+      article:
+        title: "Title"
+        content: "Content"
 
   success_create: "Product was successfully created."
   success_update: "Product was successfully updated."
