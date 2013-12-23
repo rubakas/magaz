@@ -59,6 +59,10 @@ en:
       article:
         title: "Title"
         content: "Content"
+    submit:
+      article:
+        create: "Create %{model}"
+        update: "Update %{model}"
 
   success_create: "Product was successfully created."
   success_update: "Product was successfully updated."
