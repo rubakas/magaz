@@ -4,9 +4,9 @@ div class="row"
       i class="icon-tags"  Blog Posts
   div class="col-xs-8 text-right"
     h4
-      = link_to 'Manage Blogs', admin_blogs_path, class: 'btn'
-      = link_to 'Manage Comments', admin_comments_path, class: 'btn'
-      = link_to 'Add Blog Post', new_admin_article_path, class: 'button-admin-menu'
+      = link_to t('.edit_blogs'), admin_blogs_path, class: 'btn'
+      = link_to t('.edit_comments'), admin_comments_path, class: 'btn'
+      = link_to t('.add_post'), new_admin_article_path, class: 'button-admin-menu'
 
 div class="row"
   - if @articles.blank? && !params[:page].present?

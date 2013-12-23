@@ -1,5 +1,5 @@
 div class="text-center"
   br
-  h4 You have no blog posts yet, let's create one!
+  h4 = t('.no_posts')
   br
-  = link_to 'Add Blog Post', new_admin_article_path, class: 'button'
+  = link_to t('.add'), new_admin_article_path, class: 'button'

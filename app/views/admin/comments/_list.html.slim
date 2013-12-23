@@ -9,7 +9,7 @@ table class="table table-striped"
   tbody
     - @comments.each do |comment|
       tr
-        td = link_to comment.title, [:admin, comment]
+        td = link_to comment.author, [:admin, comment]
         td = link_to 'Destroy', [:admin, comment], method: :delete, data: { confirm: 'Are you sure?' }
 
 br
