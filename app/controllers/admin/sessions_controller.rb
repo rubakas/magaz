@@ -24,7 +24,7 @@ class Admin::SessionsController < ApplicationController
       else
         flash[:alert] = I18n.t('sessions.create.user_not_found')
       end
-      flash.discard(:alert)
+      flash.discard(:alert) #FIXME WTF is this?
       render :new
     end
   end
