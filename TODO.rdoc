@@ -14,4 +14,8 @@ visibility - Product, Collection, Page, Article visibility: Visible, Hidden, Pub
   published_at not null - visible
   publish_on not null - create background job
 
+rails 4.1 or edge rails
 
+inherited_resources
+
+basic shop implementation - andriytyurnikov
