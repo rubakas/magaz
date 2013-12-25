@@ -3,6 +3,7 @@ require 'test_helper'
 class Shop::CartActionsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     shop = shops(:shop_1)
+    Capybara.reset!
     set_subdomain(shop.subdomain)
   end
 
