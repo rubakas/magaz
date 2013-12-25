@@ -3,14 +3,14 @@
 table class="table table-striped"
   thead
     tr
-      th Collection
+      th = t('.title')
       th
 
   tbody
     - @collections.each do |collection|
       tr
         td = link_to collection.name, [:admin, collection]
-        td = link_to 'Destroy', [:admin, collection], method: :delete, data: { confirm: 'Are you sure?' }
+        td = link_to t('.delete'), [:admin, collection], method: :delete, data: { confirm: t('.confirmation') }
 
 br
 

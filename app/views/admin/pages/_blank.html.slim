@@ -1,5 +1,5 @@
 div class="text-center"
   br
-  h4 You have no pages yet, let's create one!
+  h4 = t('.no_pages')
   br
-  = link_to 'Add Page', new_admin_page_path, class: 'button'
+  = link_to t('.add'), new_admin_page_path, class: 'button'

@@ -1,7 +1,7 @@
 = form_for([:admin,@product]) do |f|
   - if @product.errors.any?
     div id="error_explanation"
-      h2 = pluralize(@product.errors.count, "error")
+      h2 = pluralize(@product.errors.count, t('.error'))
       | prohibited this product from being saved:
 
       ul
@@ -23,19 +23,19 @@
         br
         div class="input-group"
           span class="input-group-addon" &euro;
-          = f.text_field :price, class: 'form-input form-control'      
+          = f.text_field :price, class: 'form-input form-control'
   hr
-  h4 Collections
+  h4 = t('.collections')
   div class="form-group"
     = hidden_field_tag "product[collection_ids][]", nil
     - current_shop.collections.to_a.each do |collection|
       div class="checkbox"
-        = label_tag dom_id(collection) do 
+        = label_tag dom_id(collection) do
           = check_box_tag 'product[collection_ids][]', collection.id, @product.collection_ids.include?(collection.id), id: dom_id( collection)
-          |  
+          |
           = collection.name
   hr
   div class="form-group"
-    = link_to 'Back', admin_products_path, class: 'button-secondary'
-    |  
+    = link_to t('.back'), admin_products_path, class: 'button-secondary'
+    |
     = f.submit(class: 'button')
