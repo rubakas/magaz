@@ -6,6 +6,9 @@ gem 'rails', '4.0.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+gem 'memcachier'
+gem 'dalli'
+
 # Use inherited_resources for empty controllers
 # gem 'inherited_resources', github: 'josevalim/inherited_resources'
 
