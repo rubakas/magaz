@@ -31,6 +31,7 @@ class Cart
 
   attr_accessor :attributes, :note
   attr_reader :items
+  delegate :each, :empty?, to: :items
 
   def initialize()
     @attributes = []
@@ -40,6 +41,7 @@ class Cart
   def add_product(product:, quantity:)
     @line_items << LineItem.new(product: product, quantity: quantity)
   end
+
 
   def items
     @line_items
@@ -56,4 +58,5 @@ class Cart
   def total_weight
     @line_items.sum(&:line_weight)
   end
+
 end
