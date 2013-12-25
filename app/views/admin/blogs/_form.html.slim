@@ -1,7 +1,7 @@
 = form_for([:admin, @blog]) do |f|
   - if @blog.errors.any?
     div id="error_explanation"
-      h2 = pluralize(@blog.errors.count, "error")
+      h2 = pluralize(@blog.errors.count, t('.error'))
       | prohibited this blog from being saved:
 
       ul
@@ -13,6 +13,6 @@
     br
     = f.text_field :title, class: 'form-input'
   div class="form-group"
-    = link_to 'Back', admin_blogs_path, class: 'button-secondary'
+    = link_to t('.back'), admin_blogs_path, class: 'button-secondary'
     |
     = f.submit(class: 'button')
