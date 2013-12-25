@@ -17,6 +17,7 @@ Magaz::Application.routes.draw do
       resource :cart do
         collection do
           post :add
+          get :checkout
         end
       end
       resources :products, only: [:show]

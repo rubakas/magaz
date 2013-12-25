@@ -15,7 +15,8 @@
       </tr>
     <% end %>
     </table>
-    <%= f.submit "Update cart" %>
+    <%= f.button "Update cart", name: 'update', value: 'update' %>
+    <%= f.button "Checkout", name: 'checkout', value: 'checkout' %>
   <% end %>
   <br/>
 <% end %>

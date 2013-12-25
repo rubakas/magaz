@@ -1,8 +1,19 @@
 class Shop::CartsController < Shop::ApplicationController
+  def checkout
+    render action: "checkout"
+  end
+
   def update
-    if @shopping_cart.update(params[:cart][:updates])
-      redirect_to shop_cart_path, notice: "Blog was successfully updated"
+    if params[:update] == 'update'
+      if @shopping_cart.update(params[:cart][:updates])
+        redirect_to shop_cart_path, notice: "Cart was successfully updated"
+      else
+        render action: "show"
+      end
+    elsif params[:checkout] == 'checkout'
+      redirect_to checkout_shop_cart_path
     else
+      #TODO notify
       render action: "show"
     end
   end
