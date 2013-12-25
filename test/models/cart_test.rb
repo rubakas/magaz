@@ -15,7 +15,9 @@ class CartTest < ActiveSupport::TestCase
     assert_equal 0, @cart.item_count
     @cart.add_product(product: @product_1, quantity: 1)
     assert_equal 1, @cart.item_count
-    @cart.add_product(product: @product_2, quantity: 2)
+    @cart.add_product(product: @product_1, quantity: 1)
+    assert_equal 2, @cart.item_count
+    @cart.add_product(product: @product_2, quantity: 1)
     assert_equal 3, @cart.item_count
   end
 

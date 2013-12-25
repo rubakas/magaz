@@ -1,8 +1,8 @@
 class Cart
   class LineItem
+    attr_accessor :quantity
     attr_reader :product, 
       :product_id,
-      :quantity,
       :line_price
     
     delegate :id, 
@@ -39,9 +39,14 @@ class Cart
   end
 
   def add_product(product:, quantity:)
-    @line_items << LineItem.new(product: product, quantity: quantity)
+    existing_line_item = 
+      @line_items.find { |li| li.product_id == product.id }
+    if existing_line_item
+      existing_line_item.quantity += quantity
+    else
+      @line_items << LineItem.new(product: product, quantity: quantity)
+    end
   end
-
 
   def items
     @line_items
