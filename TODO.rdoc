@@ -14,6 +14,10 @@ visibility - Product, Collection, Page, Article visibility: Visible, Hidden, Pub
   published_at not null - visible
   publish_on not null - create background job
 
+Article belongs to existing or new Blog!
+
+search engine optimization - Page, Blog, Article, Product, Collection have modificable page title, meta description and 'url-handle'
+
 rails 4.1 or edge rails
 
 inherited_resources
