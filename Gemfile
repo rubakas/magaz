@@ -61,6 +61,8 @@ gem 'puma'
 gem 'minitest'
 gem 'annotate', ">=2.5.0"
 gem 'parallel_tests', group: :development
+gem 'flog', group: :development
+gem 'flay', group: :development
 
 gem 'capybara', group: :test
 gem 'capybara-webkit', group: :test
