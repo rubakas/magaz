@@ -1,6 +1,6 @@
 section class='sidebar-section'
 
-  h4 Shop
+  h4 = t('.title')
 
   ul class='nav nav-pills nav-stacked'
     / this is a short notation for
@@ -8,81 +8,81 @@ section class='sidebar-section'
     = render 'admin/shared/li_link_to',
         path: admin_root_path,
         icon_class: 'icon-dashboard',
-        label: 'Dashboard',
+        label: t('.dashboard'),
         active_conditions: { controller: 'admin/dashboard' }
 
     = render 'admin/shared/li_link_to',
       path: admin_orders_path,
       icon_class: 'icon-barcode',
-      label: 'Orders',
+      label: t('.orders'),
       active_conditions: { controller: 'admin/orders' }
 
     = render 'admin/shared/li_link_to',
       path: admin_customers_path,
       icon_class: 'icon-user',
-      label: 'Customer',
+      label: t('.customer'),
       active_conditions: { controller: 'admin/customers' }
 
     = render 'admin/shared/li_link_to',
       path: admin_products_path,
       icon_class: 'icon-gift',
-      label: 'Products',
+      label: t('.products'),
       active_conditions: { controller: 'admin/products' }
 
     = render 'admin/shared/li_link_to',
       path: admin_collections_path,
       icon_class: 'icon-tags',
-      label: 'Collections',
+      label: t('.collections'),
       active_conditions: { controller: 'admin/collections' }
 
   hr
 
-  h4 Your Website
+  h4 = t('.your_site')
 
   ul class='nav nav-pills nav-stacked'
 
     = render 'admin/shared/li_link_to',
       path: admin_pages_path,
       icon_class: 'icon-th',
-      label: 'Pages',
+      label: t('.pages'),
       active_conditions: { controller: 'admin/pages' }
 
     = render 'admin/shared/li_link_to',
       path: admin_articles_path,
       icon_class: 'icon-list-alt',
-      label: 'Blog Posts',
+      label: t('.blogs'),
       active_conditions: { controller: 'admin/articles' }
 
   hr
 
-  h4 Configuration
+  h4 = t('.config')
 
   ul class='nav nav-pills nav-stacked'
     li
       = link_to admin_root_path do
         i class="icon-cogs icon-large"
-        |  Settings
+        = t('.settings')
     li
       = link_to admin_root_path do
         i class="icon-picture icon-large"
-        |  Themes
+        = t('.themes')
 
   hr
 
-  h4 Support
+  h4  = t('.support')
 
   ul class='nav nav-pills nav-stacked'
     li
       = link_to admin_root_path do
         i class="icon-comments-alt icon-large"
-        |  Community answers
+        = t('.community')
     li
       = link_to admin_root_path do
         i class="icon-question-sign icon-large"
-        |  Knowlege base
+        = t('.knowledge')
     li
       = link_to admin_root_path do
         i class="icon-bell icon-large"
-        |  Submit a ticket
+        = t('.submit')
 
   hr

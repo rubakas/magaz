@@ -36,31 +36,176 @@ en:
   admin:
     articles:
       index:
+       title: "Blog Posts"
        edit_blogs: "Manage Blogs"
        edit_comments: "Manage Comments"
        add_post: "Add Blog Post"
-      list:
-        title: "Blog Posts"
-        delete: "Destroy"
-        confirmation: "Are you sure?"
-      form:
-        back: "Back"
-        error: "error"
-      blank:
-        no_posts: "You have no blog posts yet, let's create one!"
-        add: "Add Blog Post"
       new:
         add: "Add Blog Post"
       show:
        edit_post: "Editing Blog Post"
+      blank:
+        no_posts: "You have no blog posts yet, let's create one!"
+        add: "Add Blog Post"
+      form:
+        back: "Back"
+        error: "error"
+      list:
+        title: "Blog Posts"
+        delete: "Destroy"
+        confirmation: "Are you sure?"
+
+    blogs:
+      index:
+        title: "Blogs"
+        add: "Add Blog"
+      new:
+        add: "Add Blog"
+      show:
+       edit: "Editing Blog"
+      blank:
+        no_blogs: "You have no blogs yet, let's create one!"
+        add: "Add Blog"
+      form:
+        error: "error"
+        back: "Back"
+      list:
+        title: "Blog"
+        delete: "Destroy"
+        confirmation: "Are you sure?"
+
+    collections:
+      index:
+        title: "Collections"
+        add: "Add Collection"
+      new:
+        add: "Add Collection"
+      show:
+       title: "Editing collection"
+      blank:
+        no_collections: "You have no collections yet, let's create one!"
+        add: "Add Collection"
+      form:
+        error: "error"
+        back: "Back"
+      list:
+        title: "Collections"
+        delete: "Destroy"
+        confirmation: "Are you sure?"
+
+    comments:
+      index:
+        title: "Comments"
+        add: "Add Comment"
+      new:
+        add: "Add Comment"
+      show:
+       title: "Editing comments"
+      blank:
+        no_comments: "You have no comments yet, let's create one!"
+        add: "Add Comment"
+      form:
+        error: "error"
+        back: "Back"
+      list:
+        title: "Comments"
+        delete: "Destroy"
+        confirmation: "Are you sure?"
+
+    dashboard:
+      index:
+        title: "Dashboard"
+        welcome: "Welcome to dashboardz"
+
+    pages:
+      index:
+        title: "Pages"
+        add: "Add Page"
+      new:
+        new: "New Page"
+      show:
+       title: "Editing page"
+      blank:
+        no_pages: "You have no pages yet, let's create one!"
+        add: "Add Page"
+      form:
+        error: "error"
+        back: "Back"
+      list:
+        title: "Pages"
+        delete: "Destroy"
+        confirmation: "Are you sure?"
+
+    products:
+      index:
+        title: "Products"
+        add: "Add Product"
+      new:
+        add: "Add Product"
+      show:
+       title: "Editing product"
+      blank:
+        no_products: "You have no products yet, let's create one!"
+        add: "Add Product"
+      form:
+        error: "error"
+        back: "Back"
+        collections: "Collections"
+      list:
+        title: "Products"
+        delete: "Destroy"
+        confirmation: "Are you sure?"
+
+    sessions:
+      new:
+        sign_in: "Sign in"
+        email: "Email address"
+        password: "Password"
+
+    shared:
+      sidebar_nav:
+        title: "Shop"
+        dashboard: "Dashboard"
+        orders: "Orders"
+        customer: "Customer"
+        products: "Products"
+        collections: "Collections"
+        your_site: "Your Website"
+        pages: "Pages"
+        blogs: "Blog Posts"
+        config: "Configuration"
+        settings: "Settings"
+        themes: "Themes"
+        support: "Support"
+        community: "Community answers"
+        knowledge: "Knowlege base"
+        submit: "Submit a ticket"
 
   helpers:
     label:
       article:
         title: "Title"
         content: "Content"
+      blog:
+        title: "Title"
+      collection:
+        name: "Name"
+        description: "Description"
+      products:
+        name: "Name"
+        description: "Description"
+        price: "Price"
     submit:
       article:
+        create: "Create %{model}"
+        update: "Update %{model}"
+      blog:
+        create: "Create %{model}"
+        update: "Update %{model}"
+      collection:
+        create: "Create %{model}"
+        update: "Update %{model}"
+      products:
         create: "Create %{model}"
         update: "Update %{model}"
 

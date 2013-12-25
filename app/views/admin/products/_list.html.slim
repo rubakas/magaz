@@ -3,14 +3,14 @@
 table class="table table-striped"
   thead
     tr
-      th Product
+      th = t('.title')
       th
 
   tbody
   - @products.each do |product|
     tr
       td = link_to product.name, [:admin, product]
-      td = link_to 'Destroy', [:admin, product], method: :delete, data: { confirm: 'Are you sure?' }
+      td = link_to t('.delete'), [:admin, product], method: :delete, data: { confirm: t('.confirmation') }
   tbody
 
 br
