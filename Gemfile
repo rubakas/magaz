@@ -53,7 +53,7 @@ gem 'sdoc',             group: :doc, require: false
 gem 'spring',           group: :development
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 # Use puma as the app server
 gem 'puma'
