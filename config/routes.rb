@@ -1,4 +1,4 @@
-Magaz::Application.routes.draw do
+Rails.application.routes.draw do
 
   constraints host: HOSTNAME do
     root 'welcome#index'
