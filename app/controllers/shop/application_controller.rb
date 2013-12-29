@@ -9,10 +9,15 @@ class Shop::ApplicationController < ApplicationController
   end
 
   def set_shopping_cart
-    session[:cart] = Cart.new if session[:cart].blank?
-    @shopping_cart = session[:cart]
+    @shopping_cart = if session[:cart_id].blank?
+      current_shop.orders.create
+    else
+      Order.find(session[:cart_id]) || current_shop.orders.create
+    end
+     
     yield
-    session[:cart] = @shopping_cart
+    session[:cart_id] = @shopping_cart.id
+    @shopping_cart.save
   end
   
 end

@@ -5,7 +5,7 @@ class Shop::CartsController < Shop::ApplicationController
 
   def update
     if params[:update] == 'update'
-      if @shopping_cart.update(params[:cart][:updates])
+      if @shopping_cart.update_with_hash(params.permit![:cart][:updates])
         redirect_to shop_cart_path, notice: "Cart was successfully updated"
       else
         render action: "show"
@@ -22,9 +22,17 @@ class Shop::CartsController < Shop::ApplicationController
   end
 
   def add
-    product_to_add = current_shop.products.find(params[:product_id])
-    params[:quantity] = 1 if params[:quantity].blank?
-    @shopping_cart.add_product(product: product_to_add, quantity: params[:quantity])
-    render action: 'show'
+    product_to_add = current_shop.products.find(permitted_params_for_add[:product_id])
+    quantity = if permitted_params_for_add[:quantity].blank?
+      1
+    else
+      permitted_params_for_add[:quantity].to_i
+    end
+    @shopping_cart.add_product(product: product_to_add, quantity: quantity)
+    redirect_to shop_cart_path
+  end
+
+  def permitted_params_for_add
+    params.permit(:product_id, :quantity)
   end
 end
