@@ -17,9 +17,11 @@ Rails.application.routes.draw do
       resource :cart do
         collection do
           post :add
+          get :checkout
         end
       end
       resources :products, only: [:show]
+      resources :orders
     end
 
     namespace :admin do

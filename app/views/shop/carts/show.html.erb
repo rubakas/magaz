@@ -5,12 +5,25 @@
 <% if shopping_cart.empty? %>
   Your shopping cart is empty.
 <% else %>
-  <table class="table">
-  <% shopping_cart.each do |item| %>
-    <tr>
-      <td><%= item.name %></td>
-      <td></td>
-    </tr>
+  Your shopping cart is NOT empty.
+  <%= form_for shopping_cart, 
+        as: :cart, 
+        url: shop_cart_path, 
+        method: :patch,
+        html: {class: 'cart-form'} do |f| %>
+    <table class="table">
+    <% shopping_cart.items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td>
+          <%= text_field_tag "cart[updates][#{item.product_id}]", 
+                item.quantity, class: 'cart-quantity' %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+    <%= f.button "Update cart", name: 'update', value: 'update' %>
+    <%= f.button "Checkout", name: 'checkout', value: 'checkout' %>
   <% end %>
-  </table>
+  <br/>
 <% end %>

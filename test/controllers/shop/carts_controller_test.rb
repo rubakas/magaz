@@ -13,7 +13,7 @@ class Shop::CartsControllerTest < ActionController::TestCase
 
   test "should post add" do
     post :add, {product_id: @product.id}
-    assert_response :success
+    assert_response :redirect
   end
 
 end

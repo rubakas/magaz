@@ -7,13 +7,15 @@
 
 <div class="row">
   <% frontpage = @collections.where(name: 'Frontpage').first %>
-  <% frontpage.products.each do |p| %>
-  <div class="col-xs-3 text-center">
-    <%= link_to shop_product_path(p) do %>
-      <img src="//placehold.it/150x150" class="img-thumbnail"/>
+  <% unless frontpage.blank? %>
+    <% frontpage.products.each do |p| %>
+    <div class="col-xs-3 text-center">
+      <%= link_to shop_product_path(p) do %>
+        <img src="//placehold.it/150x150" class="img-thumbnail"/>
+      <% end %>
+      <br/>
+      <%= link_to p.name, shop_product_path(p) %>
+    </div>
     <% end %>
-    <br/>
-    <%= link_to p.name, shop_product_path(p) %>
-  </div>
   <% end %>
 </div>
