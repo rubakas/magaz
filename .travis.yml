@@ -2,3 +2,9 @@ language: ruby
 rvm:
   - 2.1.0
   - 2.0.0
+services:
+  - memcached
+  - redis
+before_script:
+  - psql -c 'create database magaz_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
