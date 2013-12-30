@@ -7,3 +7,4 @@ services:
 before_script:
   - psql -c 'create database magaz_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
+  - gem update bundler
