@@ -52,7 +52,7 @@ en:
         error: "error"
       list:
         title: "Blog Posts"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     blogs:
@@ -71,7 +71,7 @@ en:
         back: "Back"
       list:
         title: "Blog"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     collections:
@@ -90,7 +90,7 @@ en:
         back: "Back"
       list:
         title: "Collections"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     comments:
@@ -109,7 +109,7 @@ en:
         back: "Back"
       list:
         title: "Comments"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     dashboard:
@@ -133,7 +133,7 @@ en:
         back: "Back"
       list:
         title: "Pages"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     products:
@@ -153,7 +153,7 @@ en:
         collections: "Collections"
       list:
         title: "Products"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     sessions:
