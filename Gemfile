@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'bundler', '~> 1.5.1'
+
 gem 'rails',            github: "rails/rails"
 gem 'arel',             github: "rails/arel"
 

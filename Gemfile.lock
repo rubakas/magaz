@@ -206,6 +206,7 @@ DEPENDENCIES
   annotate (~> 2.6.0)
   arel!
   bcrypt-ruby (~> 3.1.2)
+  bundler (~> 1.5.1)
   capybara
   capybara-webkit
   coffee-rails!
