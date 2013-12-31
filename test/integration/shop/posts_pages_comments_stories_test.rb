@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Shop::PostsPagesCommentsStoriesTest < ActionDispatch::IntegrationTest
   setup do
-    shop = shops(:shop_1)
+    shop = create(:shop, subdomain: 'example')
     set_subdomain(shop.subdomain)
   end
 

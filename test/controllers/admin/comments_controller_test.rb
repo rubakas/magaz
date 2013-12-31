@@ -2,8 +2,11 @@ require 'test_helper'
 
 class Admin::CommentsControllerTest < ActionController::TestCase
   setup do
-    session_for_shop shops(:shop_1)
-    @comment = comments(:one)
+    @shop = create(:shop, subdomain: 'example')
+    @blog = create(:blog, shop: @shop)
+    @article = create(:article, blog: @blog)
+    session_for_shop @shop
+    @comment = create(:comment, article: @article)
   end
 
   test "should get index" do
@@ -32,6 +35,11 @@ class Admin::CommentsControllerTest < ActionController::TestCase
 
   test "should update comment" do
     patch :update, id: @comment, comment: { author: @comment.author, email: @comment.email, body: @comment.body }
+    assert_response :redirect
+  end
+
+  test "should not update comment" do
+    patch :update, id: @comment, comment: { author: @comment.author, email: @comment.email, body: '' }
     assert_response :success
   end
 

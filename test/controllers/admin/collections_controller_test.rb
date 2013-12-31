@@ -2,8 +2,9 @@ require 'test_helper'
 
 class Admin::CollectionsControllerTest < ActionController::TestCase
   setup do
-    session_for_shop shops(:shop_1)
-    @collection = collections(:collection_1)
+    @shop = create(:shop, subdomain: 'example')
+    session_for_shop @shop
+    @collection = create(:collection, shop: @shop)
   end
 
   test "should get index" do

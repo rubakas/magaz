@@ -16,11 +16,11 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
 
     click_link 'Sign in'
 
-    fill_in 'Your shop name', with: 'example'
-    fill_in 'Email address', with: 'admin@example.com'
+    fill_in 'Your shop name', with: @shop.name
+    fill_in 'Email address', with: @shop.email
     fill_in 'Password', with: 'password'
 
-    set_subdomain "example"
+    set_subdomain @shop.subdomain
 
     click_button 'Sign in'
 
@@ -45,14 +45,14 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "shop sign in success" do
-    set_subdomain "example"
+    set_subdomain @shop.subdomain
     visit '/admin'
     click_link 'Sign out' if page.has_content?('Sign out')
 
     visit '/admin'
     assert page.has_content?('Sign in')
 
-    fill_in 'Email address', with: 'admin@example.com'
+    fill_in 'Email address', with: @shop.email
     fill_in 'Password', with: 'password'
 
     click_button 'Sign in'
@@ -60,9 +60,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'sign out page' do
-    login_as shop_name: 'example',
-      email: 'admin@example.com',
-      password: 'password'
+    login
 
     click_link 'Sign out'
 

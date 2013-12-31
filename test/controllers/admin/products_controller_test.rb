@@ -2,8 +2,9 @@ require 'test_helper'
 
 class Admin::ProductsControllerTest < ActionController::TestCase
   setup do
-    session_for_shop shops(:shop_1)
-    @product = products(:product_1)
+    @shop = create(:shop, subdomain: 'example')
+    session_for_shop @shop
+    @product = create(:product, shop: @shop)
   end
 
   test "should get index" do

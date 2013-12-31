@@ -2,9 +2,7 @@ require 'test_helper'
 
 class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   setup do 
-    login_as shop_name: 'Example',
-      email: 'admin@example.com',
-      password: 'password'
+    login
     click_link 'Products'
   end
 
