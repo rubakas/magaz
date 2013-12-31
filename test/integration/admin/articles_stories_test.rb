@@ -37,8 +37,8 @@ class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "delete blog post" do
-    assert page.has_content? 'Destroy'
-    click_link('Destroy', match: :first)
+    assert page.has_content? 'Delete'
+    click_link('Delete', match: :first)
     refute page.has_content? "You have no blog posts yet, let's create one!"
   end
 end

@@ -47,7 +47,7 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'delete collection' do
-    click_link('Destroy', match: :first)
+    click_link('Delete', match: :first)
     refute page.has_content? 'Frontpage'
   end
 end
