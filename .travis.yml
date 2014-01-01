@@ -3,6 +3,8 @@ before_script:
   - psql -c 'create database magaz_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - gem update bundler
+script:
+  - xvfb-run bundle exec rake test
 language: ruby
 rvm:
   - 2.1.0
