@@ -2,8 +2,9 @@ require 'test_helper'
 
 class Shop::CartsControllerTest < ActionController::TestCase
   setup do
-    session_for_shop shops(:shop_1)
-    @product = products(:product_1)
+    @shop = create(:shop, subdomain: 'example')
+    session_for_shop @shop
+    @product = create(:product, shop: @shop)
   end
 
   test "should get show" do

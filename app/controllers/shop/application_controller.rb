@@ -12,7 +12,7 @@ class Shop::ApplicationController < ApplicationController
     @shopping_cart = if session[:cart_id].blank?
       current_shop.orders.create
     else
-      Order.find(session[:cart_id]) || current_shop.orders.create
+      Order.find_by_id(session[:cart_id]) || current_shop.orders.create
     end
      
     yield

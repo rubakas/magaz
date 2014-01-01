@@ -2,9 +2,8 @@ require 'test_helper'
 
 class Admin::PagesStoriesTest < ActionDispatch::IntegrationTest
   setup do
-    login_as shop_name: 'Example',
-      email: 'admin@example.com',
-      password: 'password'
+    login
+    @page = create(:page, shop: @shop)
     click_link 'Pages'
   end
 
@@ -29,7 +28,7 @@ class Admin::PagesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "edit page" do
-    click_link(Page.first.title, match: :first)
+    click_link(@page.title, match: :first)
     fill_in 'Title', with: 'Updated Page'
     fill_in 'Content', with: 'Updated Content'
     click_button 'Update Page'
@@ -39,6 +38,6 @@ class Admin::PagesStoriesTest < ActionDispatch::IntegrationTest
   test "delete page" do
     assert page.has_content? 'Delete'
     click_link('Delete', match: :first)
-    refute page.has_content? "You have no pages yet, let's create one!"
+    assert page.has_content? "You have no pages yet, let's create one!"
   end
 end
