@@ -39,6 +39,14 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     assert_redirected_to admin_product_path(assigns(:product))
   end
 
+  test "should not update product" do
+    patch :update,
+      { id: @product.id, 
+        product: { description: '', name: '' } }
+    assert_template :show
+    assert_response :success
+  end
+
   test "should destroy product" do
     assert_difference('Product.count', -1) do
       delete :destroy, id: @product.id

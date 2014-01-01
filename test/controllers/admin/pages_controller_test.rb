@@ -38,6 +38,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
 
   test "should not update page" do
     patch :update, id: @page, page: { content: @page.content, title: '' }
+    assert_template :show
     assert_response :success
   end
 

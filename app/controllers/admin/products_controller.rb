@@ -3,6 +3,13 @@ class Admin::ProductsController < ApplicationController
   inherit_resources
   actions :all, :except => [:edit]
 
+  def update
+    update! do |success, failure|
+      failure.html { render :show }
+    end
+  end
+
+
   protected
 
   def begin_of_association_chain
