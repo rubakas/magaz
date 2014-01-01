@@ -10,7 +10,7 @@ gem 'memcachier'
 gem 'dalli'
 
 # Use inherited_resources for clear controllers
-gem 'inherited_resources', github: 'josevalim/inherited_resources'
+gem 'inherited_resources' #, github: 'josevalim/inherited_resources'
 
 # Use slim-lang for templates
 gem 'slim'
