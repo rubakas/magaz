@@ -15,6 +15,10 @@
 #
 
 class Order < ActiveRecord::Base
+  STATUSES = %q[open cancelled]
+  FINANCIAL_STATUSES = %q[authorized paid pending refunded partially_paid partially_refunded unpaid voided]
+  FULFILLMENT_STATUSES = %q[fulfilled not_fulfilled partially_fulfilled unfulfilled]
+  
   has_many :line_items
   belongs_to :shop
 

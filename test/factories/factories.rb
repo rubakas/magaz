@@ -19,6 +19,9 @@ FactoryGirl.define do
     sequence(:email) { |n| "commenter#{n}@gmail.com" }
   end
 
+  factory :order do
+  end
+
   factory :page do
     sequence(:title) { |n| "Title #{n}" }
     sequence(:content) { |n| "Content #{n}" }
