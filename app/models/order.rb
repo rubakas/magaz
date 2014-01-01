@@ -49,6 +49,7 @@ class Order < ActiveRecord::Base
     line_items.map.sum(&:line_weight)
   end
 
+  #TODO extract service?
   def update_with_hash(id_qty_hash)
     line_items.clear
     id_qty_hash.each do |k,v|
