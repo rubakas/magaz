@@ -11,3 +11,7 @@ class ActiveSupport::TestCase
     DatabaseCleaner.clean
   end
 end
+
+class ActionDispatch::IntegrationTest
+  self.use_transactional_fixtures = false
+end

@@ -3,12 +3,13 @@ require 'test_helper'
 class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   setup do 
     login
+    @collection = create(:collection, shop: @shop)
     click_link 'Collections'
   end
 
   test 'collections list' do
     assert page.has_content? 'Collections'
-    assert page.has_content? 'Collection 1'
+    assert page.has_content? @collection.name
   end
 
   test 'create collection' do
@@ -37,7 +38,7 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'edit collection' do
-    click_link(Collection.first.name, match: :first)
+    click_link(@collection.name, match: :first)
     fill_in 'Name', with: 'Updated Collection'
     fill_in 'Description', with: 'Updated Collection Description'
     click_button 'Update Collection'
@@ -46,6 +47,6 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
 
   test 'delete collection' do
     click_link('Delete', match: :first)
-    refute page.has_content? 'Frontpage'
+    assert page.has_content? "You have no collections yet, let's create one!"
   end
 end

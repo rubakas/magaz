@@ -2,9 +2,9 @@ require 'test_helper'
 
 class Shop::BrowsingStoriesTest < ActionDispatch::IntegrationTest
   setup do
-    shop = create(:shop, subdomain: 'example')
-    set_subdomain(shop.subdomain)
-    @product = create(:product, shop: shop)
+    set_subdomain(@shop.subdomain)
+    @collection = create(:collection, shop: @shop, name: 'Frontpage')
+    @product = create(:product, shop: @shop, collections: [@collection])
   end
 
   test "index page" do

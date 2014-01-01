@@ -3,7 +3,7 @@ require 'test_helper'
 class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
-    save_and_open_page
+    @article = create(:article, blog: create(:blog, shop: @shop))
     click_link 'Blog Posts'
   end
 
@@ -12,7 +12,7 @@ class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "create blog post" do
-    click_link 'Add Blog Post'
+    click_link 'Add Blog Post', match: :first
     fill_in 'Title', with: 'Some Uniq Blog Post'
     fill_in 'Content', with: ''
     click_button 'Create Article'
@@ -20,7 +20,7 @@ class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "create blog post failure" do
-    click_link 'Add Blog Post'
+    click_link 'Add Blog Post', match: :first
     fill_in 'Title', with: ''
     fill_in 'Content', with: ''
     click_button 'Create Article'
@@ -28,7 +28,7 @@ class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "edit blog post" do
-    click_link(Article.first.title, match: :first)
+    click_link(@article.title, match: :first)
     fill_in 'Title', with: 'Updated Blog Post'
     fill_in 'Content', with: 'Updated Content'
     click_button 'Update Article'
@@ -38,6 +38,6 @@ class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
   test "delete blog post" do
     assert page.has_content? 'Delete'
     click_link('Delete', match: :first)
-    refute page.has_content? "You have no blog posts yet, let's create one!"
+    assert page.has_content? "You have no blog posts yet, let's create one!"
   end
 end

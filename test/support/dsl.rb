@@ -1,5 +1,4 @@
 class ActionDispatch::IntegrationTest
-  include FactoryGirl::Syntax::Methods
 
   setup do
     @shop = create(:shop, name:'example', subdomain: 'example', password: 'password', email: 'admin@example.com')

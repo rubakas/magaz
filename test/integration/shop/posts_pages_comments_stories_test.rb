@@ -2,8 +2,7 @@ require 'test_helper'
 
 class Shop::PostsPagesCommentsStoriesTest < ActionDispatch::IntegrationTest
   setup do
-    shop = create(:shop, subdomain: 'example')
-    set_subdomain(shop.subdomain)
+    set_subdomain(@shop.subdomain)
   end
 
   test "page read" do

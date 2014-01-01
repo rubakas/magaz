@@ -2,10 +2,9 @@ require 'test_helper'
 
 class Shop::CartActionsStoriesTest < ActionDispatch::IntegrationTest
   setup do
-    shop = create(:shop, subdomain: 'example')
-    @product = create(:product, shop: shop)
-    Capybara.reset!
-    set_subdomain(shop.subdomain)
+    set_subdomain(@shop.subdomain)
+    @collection = create(:collection, shop: @shop, name: 'Frontpage')
+    @product = create(:product, shop: @shop, collections: [@collection])
   end
 
   test "empty cart" do
@@ -30,7 +29,6 @@ class Shop::CartActionsStoriesTest < ActionDispatch::IntegrationTest
     click_button "Purchase"
     assert page.has_content? 'Shopping cart'
     assert page.has_content? @product.name
-    assert page.has_content? '1'
     
     within('#edit_cart') do
       fill_in "cart[updates][#{@product.id}]", :with => '42'
@@ -45,7 +43,6 @@ class Shop::CartActionsStoriesTest < ActionDispatch::IntegrationTest
     click_button "Purchase"
     assert page.has_content? 'Shopping cart'
     assert page.has_content? @product.name
-    assert page.has_content? '1'
     
     within('#edit_cart') do
       fill_in "cart[updates][#{@product.id}]", :with => '42'
