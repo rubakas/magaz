@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       resources :collections, except: [:edit]
       resources :comments, except: [:edit]
       resources :customers # editable
-      resources :orders, except: [:edit]
+      resources :orders, except: [:create, :edit, :new]
       resources :pages, except: [:edit]
       resources :products, except: [:edit]
       resource  :session, only: [:create, :destroy, :new, :show]

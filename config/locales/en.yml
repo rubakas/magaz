@@ -117,6 +117,19 @@ en:
         title: "Dashboard"
         welcome: "Welcome to dashboardz"
 
+    orders:
+      index:
+        title: "Orders"
+      show:
+       title: "Editing page"
+      blank:
+        no_orders: "You have no orders yet"
+      form:
+        error: "error"
+        back: "Back"
+      list:
+        title: "Orders"
+
     pages:
       index:
         title: "Pages"

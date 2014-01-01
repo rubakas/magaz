@@ -7,6 +7,14 @@ GIT
       sass (>= 3.2)
 
 GIT
+  remote: git://github.com/josevalim/inherited_resources.git
+  revision: e4fb9fc804488532014307190812946d63a480a3
+  specs:
+    inherited_resources (1.4.1)
+      has_scope (~> 0.6.0.rc)
+      responders (~> 1.0.0.rc)
+
+GIT
   remote: git://github.com/rails/arel.git
   revision: 5a8b4b462f2e1c55ba492afe1e14e4ed7fcfd40d
   specs:
@@ -122,6 +130,9 @@ GEM
     font-awesome-sass-rails (3.0.2.2)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
+    has_scope (0.6.0.rc)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (2.0.1)
@@ -159,6 +170,8 @@ GEM
     rake (10.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
+    responders (1.0.0)
+      railties (>= 3.2, < 5)
     ruby_parser (3.2.2)
       sexp_processor (~> 4.1)
     sass (3.2.13)
@@ -209,6 +222,7 @@ DEPENDENCIES
   flay
   flog
   font-awesome-sass-rails
+  inherited_resources!
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
