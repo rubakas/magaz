@@ -1,4 +1,7 @@
-before_install: gem install bundler --pre
+before_install: 
+  - gem install bundler --pre
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 before_script:
   - psql -c 'create database magaz_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
