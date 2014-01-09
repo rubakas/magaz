@@ -2,7 +2,7 @@
   - if @collection.errors.any?
     div id="error_explanation"
       h2 = pluralize(@collection.errors.count, t('.error'))
-      | prohibited this collection from being saved:
+      br = t('.prohibit')
 
       ul
       - @collection.errors.full_messages.each do |msg|

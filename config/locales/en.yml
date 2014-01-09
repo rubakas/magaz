@@ -50,6 +50,7 @@ en:
       form:
         back: "Back"
         error: "error"
+        prohibit: "prohibited this article from being saved:"
       list:
         title: "Blog Posts"
         delete: "Delete"
@@ -69,6 +70,7 @@ en:
       form:
         error: "error"
         back: "Back"
+        prohibit: "prohibited this blog from being saved:"
       list:
         title: "Blog"
         delete: "Delete"
@@ -88,6 +90,7 @@ en:
       form:
         error: "error"
         back: "Back"
+        prohibit: "prohibited this collection from being saved:"
       list:
         title: "Collections"
         delete: "Delete"
@@ -107,6 +110,7 @@ en:
       form:
         error: "error"
         back: "Back"
+        prohibit: "prohibited this comment from being saved:"
       list:
         title: "Comments"
         delete: "Delete"
@@ -144,6 +148,7 @@ en:
       form:
         error: "error"
         back: "Back"
+        prohibit: "prohibited this page from being saved:"
       list:
         title: "Pages"
         delete: "Delete"
@@ -164,6 +169,7 @@ en:
         error: "error"
         back: "Back"
         collections: "Collections"
+        prohibit: "prohibited this product from being saved:"
       list:
         title: "Products"
         delete: "Delete"
