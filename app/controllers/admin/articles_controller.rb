@@ -1,55 +1,24 @@
 class Admin::ArticlesController < ApplicationController
   include Authenticable
-  before_action :set_article, only: [:show, :update, :destroy]
+  inherit_resources
+  actions :all, :except => [:edit]
 
-  # GET /admin/articles
-  def index
-    @articles = Article.page(params[:page])
-  end
-
-  # GET /admin/articles/1
-  def show
-  end
-
-  # GET /admin/articles/new
-  def new
-    @article = Article.new
-  end
-
-  # POST /articles/articles
-  def create
-    @article = Article.new(article_params)
-
-    if @article.save
-      redirect_to [:admin, @article], notice: "Blog Post was successfully created"
-    else
-      render action: "new"
-    end
-  end
-
-  # PATCH/PUT /articles/articles/1
   def update
-    if @article.update(article_params)
-      redirect_to [:admin, @article], notice: "Blog Post was successfully updated"
-    else
-      render action: "show"
+    update! do |success, failure|
+      failure.html { render :show }
     end
   end
 
-  # DELETE /articles/article/1
-  def destroy
-    @article.destroy
-    redirect_to admin_articles_url
+  protected
+
+  def collection
+    @articles ||= end_of_association_chain.page(params[:page])
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:title, :content, :blog_id)
-    end
+  #TODO collection_ids are not guaranteed to belong to this shop!!!
+  # https://github.com/josevalim/inherited_resources#strong-parameters
+  def permitted_params
+    { article:
+        params.fetch(:article, {}).permit(:title, :content, :blog_id) }
+  end
 end

@@ -16,7 +16,7 @@ class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Title', with: 'Some Uniq Blog Post'
     fill_in 'Content', with: ''
     click_button 'Create Article'
-    assert page.has_content? 'Blog Post was successfully created'
+    assert page.has_content? 'Article was successfully created'
   end
 
   test "create blog post failure" do
@@ -32,7 +32,7 @@ class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Title', with: 'Updated Blog Post'
     fill_in 'Content', with: 'Updated Content'
     click_button 'Update Article'
-    assert page.has_content? 'Blog Post was successfully updated'
+    assert page.has_content? 'Article was successfully updated'
   end
 
   test "delete blog post" do
