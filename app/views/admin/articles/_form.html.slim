@@ -12,10 +12,17 @@
     = f.label :title
     br
     = f.text_field :title, class: 'form-input'
+
   div class="form-group"
     = f.label :content
     br
     = f.text_area :content, class: 'form-input'
+
+  div class="form-group"
+    = f.label :blog_id
+    br
+    = f.select :blog_id, Blog.all.collect {|b| [b.title, b.id] }
+
   div class="form-group"
     = link_to t('.back'), admin_articles_path, class: 'button-secondary'
     |
