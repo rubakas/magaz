@@ -1,4 +1,9 @@
-class ActionDispatch::IntegrationTest 
+class ActionDispatch::IntegrationTest
+
+  setup do
+    @shop = create(:shop, name:'example', subdomain: 'example', password: 'password', email: 'admin@example.com')
+  end
+
   # private
   module CustomIntegrationDsl
     def use_js
@@ -15,16 +20,16 @@ class ActionDispatch::IntegrationTest
       set_host("#{subdomain}.#{HOSTNAME}")
     end
 
-    def login_as(shop_name: nil, email: nil, password: nil)
+    def login
       use_js
       set_host HOSTNAME
       visit '/'
       click_link 'Sign in'
-      fill_in 'Your shop name', with: shop_name
-      fill_in 'Email address', with: email
-      fill_in 'Password', with: password
+      fill_in 'Your shop name', with: @shop.subdomain
+      fill_in 'Email address', with: @shop.email
+      fill_in 'Password', with: 'password'
       
-      set_subdomain shop_name
+      set_subdomain @shop.subdomain
       click_button 'Sign in'
     end
   end

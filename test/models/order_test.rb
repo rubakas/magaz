@@ -2,10 +2,10 @@ require 'test_helper'
 
 class OrderTest < ActiveSupport::TestCase
   setup do
-    @shop = shops(:shop_1)
+    @shop = create(:shop, subdomain: 'example')
     @order = @shop.orders.create
-    @product_1 = products(:product_1)
-    @product_2 = products(:product_2)
+    @product_1 = create(:product, shop: @shop)
+    @product_2 = create(:product, shop: @shop)
   end
 
   test 'attributes' do

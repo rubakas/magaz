@@ -28,7 +28,12 @@ $global-color-highlight: #f1c40f;
 
 @import "twitter/bootstrap";
 
+
 @import "font-awesome"; //import order is important here
+// [class^="icon-"],[class*=" icon-"] {
+//   &:after {
+//   }
+// }
 
 @import "layout";
 @import "modules/signin";

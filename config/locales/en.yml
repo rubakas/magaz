@@ -50,9 +50,10 @@ en:
       form:
         back: "Back"
         error: "error"
+        prohibit: "prohibited this article from being saved:"
       list:
         title: "Blog Posts"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     blogs:
@@ -69,9 +70,10 @@ en:
       form:
         error: "error"
         back: "Back"
+        prohibit: "prohibited this blog from being saved:"
       list:
         title: "Blog"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     collections:
@@ -88,9 +90,10 @@ en:
       form:
         error: "error"
         back: "Back"
+        prohibit: "prohibited this collection from being saved:"
       list:
         title: "Collections"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     comments:
@@ -107,15 +110,29 @@ en:
       form:
         error: "error"
         back: "Back"
+        prohibit: "prohibited this comment from being saved:"
       list:
         title: "Comments"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     dashboard:
       index:
         title: "Dashboard"
         welcome: "Welcome to dashboardz"
+
+    orders:
+      index:
+        title: "Orders"
+      show:
+       title: "Editing page"
+      blank:
+        no_orders: "You have no orders yet"
+      form:
+        error: "error"
+        back: "Back"
+      list:
+        title: "Orders"
 
     pages:
       index:
@@ -131,9 +148,10 @@ en:
       form:
         error: "error"
         back: "Back"
+        prohibit: "prohibited this page from being saved:"
       list:
         title: "Pages"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     products:
@@ -151,9 +169,10 @@ en:
         error: "error"
         back: "Back"
         collections: "Collections"
+        prohibit: "prohibited this product from being saved:"
       list:
         title: "Products"
-        delete: "Destroy"
+        delete: "Delete"
         confirmation: "Are you sure?"
 
     sessions:

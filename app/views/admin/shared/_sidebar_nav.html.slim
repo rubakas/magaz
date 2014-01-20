@@ -58,31 +58,41 @@ section class='sidebar-section'
   h4 = t('.config')
 
   ul class='nav nav-pills nav-stacked'
-    li
-      = link_to admin_root_path do
-        i class="icon-cogs icon-large"
-        = t('.settings')
-    li
-      = link_to admin_root_path do
-        i class="icon-picture icon-large"
-        = t('.themes')
+
+    = render 'admin/shared/li_link_to',
+        path: admin_root_path,
+        icon_class: 'icon-cogs',
+        label: t('.settings'),
+        active_conditions: { controller: 'admin/dashboard' }
+
+    = render 'admin/shared/li_link_to',
+        path: admin_root_path,
+        icon_class: 'icon-picture',
+        label: t('.themes'),
+        active_conditions: { controller: 'admin/dashboard' }
 
   hr
 
   h4  = t('.support')
 
   ul class='nav nav-pills nav-stacked'
-    li
-      = link_to admin_root_path do
-        i class="icon-comments-alt icon-large"
-        = t('.community')
-    li
-      = link_to admin_root_path do
-        i class="icon-question-sign icon-large"
-        = t('.knowledge')
-    li
-      = link_to admin_root_path do
-        i class="icon-bell icon-large"
-        = t('.submit')
+
+    = render 'admin/shared/li_link_to',
+        path: admin_root_path,
+        icon_class: 'icon-comments-alt',
+        label: t('.community'),
+        active_conditions: { controller: 'admin/dashboard' }
+    
+    = render 'admin/shared/li_link_to',
+        path: admin_root_path,
+        icon_class: 'icon-question-sign',
+        label: t('.knowledge'),
+        active_conditions: { controller: 'admin/dashboard' }
+
+    = render 'admin/shared/li_link_to',
+        path: admin_root_path,
+        icon_class: 'icon-bell',
+        label: t('.submit'),
+        active_conditions: { controller: 'admin/dashboard' }
 
   hr

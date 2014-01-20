@@ -2,9 +2,9 @@ require 'test_helper'
 
 class Admin::BlogsStoriesTest < ActionDispatch::IntegrationTest
   setup do
-    login_as shop_name: 'Example',
-      email: 'admin@example.com',
-      password: 'password'
+    login
+    @blog = create(:blog, shop: @shop)
+    @article = create(:article, blog: @blog)
     visit '/admin/blogs'
   end
 
@@ -14,7 +14,7 @@ class Admin::BlogsStoriesTest < ActionDispatch::IntegrationTest
 
   test "create blog" do
     click_link 'Add Blog'
-    fill_in 'Title', with: 'Some Uniq Blog Post'
+    fill_in 'Title', with: 'Some Uniq Blog'
     click_button 'Create Blog'
     assert page.has_content? 'Blog was successfully created'
   end
@@ -27,15 +27,15 @@ class Admin::BlogsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "edit blog" do
-    click_link(Blog.first.title, match: :first)
+    click_link(@blog.title, match: :first)
     fill_in 'Title', with: 'Updated Blog Post'
     click_button 'Update Blog'
     assert page.has_content? 'Blog was successfully updated'
   end
 
   test "delete blog" do
-    assert page.has_content? 'Destroy'
-    click_link('Destroy', match: :first)
-    refute page.has_content? "You have no blogs yet, let's create one!"
+    assert page.has_content? 'Delete'
+    click_link('Delete', match: :first)
+    assert page.has_content? "You have no blogs yet, let's create one!"
   end
 end

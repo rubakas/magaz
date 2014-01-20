@@ -15,6 +15,10 @@
 #
 
 class Order < ActiveRecord::Base
+  STATUSES = %q[open cancelled]
+  FINANCIAL_STATUSES = %q[authorized paid pending refunded partially_paid partially_refunded unpaid voided]
+  FULFILLMENT_STATUSES = %q[fulfilled not_fulfilled partially_fulfilled unfulfilled]
+  
   has_many :line_items
   belongs_to :shop
 
@@ -49,6 +53,7 @@ class Order < ActiveRecord::Base
     line_items.map.sum(&:line_weight)
   end
 
+  #TODO extract service?
   def update_with_hash(id_qty_hash)
     line_items.clear
     id_qty_hash.each do |k,v|

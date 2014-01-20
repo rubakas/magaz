@@ -2,15 +2,14 @@ require 'test_helper'
 
 class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   setup do 
-    login_as shop_name: 'Example',
-      email: 'admin@example.com',
-      password: 'password'
+    login
+    @product = create(:product, shop: @shop)
     click_link 'Products'
   end
 
   test "products list" do
     assert page.has_content? 'Products'
-    assert page.has_content? 'Product 3'
+    assert page.has_content? @product.name
   end
 
   test "create product" do
@@ -38,7 +37,7 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "edit product" do
-    click_link(Product.first.name, match: :first)
+    click_link(@product.name, match: :first)
     fill_in 'Name', with: 'Updated Product'
     fill_in 'Description', with: 'Updated Description'
     click_button 'Update Product'
@@ -46,8 +45,8 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   end
  
   test "delete product" do
-    assert page.has_content? 'Product not in collections'
-    click_link('Destroy', match: :first)
-    refute page.has_content? 'Product not in collections'
+    assert page.has_content? @product.name
+    click_link('Delete', match: :first)
+    assert page.has_content? "You have no products yet, let's create one!"
   end
 end

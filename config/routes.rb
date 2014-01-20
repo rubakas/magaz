@@ -20,23 +20,21 @@ Rails.application.routes.draw do
           get :checkout
         end
       end
-      resources :products, only: [:show]
       resources :orders
+      resources :products, only: [:show]
     end
 
     namespace :admin do
       root 'dashboard#index'
-
-      resource :session, only: [:create, :destroy, :new, :show]
-
-      resources :products, except: [:edit]
-      resources :collections, except: [:edit]
-      resources :orders
-      resources :customers
-      resources :pages, except: [:edit]
-      resources :blogs, except: [:edit]
       resources :articles, except: [:edit]
+      resources :blogs, except: [:edit]
+      resources :collections, except: [:edit]
       resources :comments, except: [:edit]
+      resources :customers # editable
+      resources :orders, except: [:create, :edit, :new]
+      resources :pages, except: [:edit]
+      resources :products, except: [:edit]
+      resource  :session, only: [:create, :destroy, :new, :show]
     end
   end
 

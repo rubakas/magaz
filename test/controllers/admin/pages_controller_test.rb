@@ -2,8 +2,9 @@ require 'test_helper'
 
 class Admin::PagesControllerTest < ActionController::TestCase
   setup do
-    session_for_shop shops(:shop_1)
-    @page = pages(:one)
+    @shop = create(:shop, subdomain: 'example')
+    session_for_shop @shop
+    @page = create(:page, shop: @shop)
   end
 
   test "should get index" do
@@ -32,6 +33,12 @@ class Admin::PagesControllerTest < ActionController::TestCase
 
   test "should update page" do
     patch :update, id: @page, page: { content: @page.content, title: @page.title }
+    assert_response :redirect
+  end
+
+  test "should not update page" do
+    patch :update, id: @page, page: { content: @page.content, title: '' }
+    assert_template :show
     assert_response :success
   end
 

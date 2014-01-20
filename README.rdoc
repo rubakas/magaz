@@ -25,6 +25,8 @@
 
 * How to run the test suite
   bundle exec rake test
+  bundle exec rake test TEST=test/single_test.rb
+  bundle exec rake test TEST=test/directory/*
 
 * Services 
   * postgresql as database

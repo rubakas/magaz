@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RegistrationsControllerTest < ActionController::TestCase
   setup do
-    @registration = shops(:shop_1)
+    @registration = create(:shop)
   end
 
   test "should create shop" do
