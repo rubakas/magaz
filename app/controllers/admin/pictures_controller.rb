@@ -5,6 +5,10 @@ class Admin::PicturesController < ApplicationController
 
   protected
 
+  def begin_of_association_chain
+    current_shop
+  end
+
   def permitted_params
     { picture:
         params.fetch(:picture, {}).permit(:image) }

@@ -13,7 +13,8 @@
 
 class Product < ActiveRecord::Base
   has_and_belongs_to_many :collections
-	belongs_to :shop
+  has_many :pictures
+  belongs_to :shop
 
   validates :name, presence: true, uniqueness: { scope: :shop_id }
 end

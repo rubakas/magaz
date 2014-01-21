@@ -23,7 +23,7 @@ class Admin::ProductsController < ApplicationController
   #TODO collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
-    { product: 
-        params.fetch(:product, {}).permit(:name, :description, :price, collection_ids: []) }
+    { product:
+        params.fetch(:product, {}).permit(:name, :description, :price, picture_ids: [], collection_ids: []) }
   end
 end
