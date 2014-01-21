@@ -15,6 +15,10 @@ gem 'inherited_resources' #, github: 'josevalim/inherited_resources'
 # Use slim-lang for templates
 gem 'slim'
 
+# Use for upload files in app
+gem "carrierwave"
+gem "rmagick"
+
 # Use edge version of sprockets-rails
 gem 'sprockets-rails',  github: "rails/sprockets-rails"
 
