@@ -13,8 +13,10 @@
 
 class Product < ActiveRecord::Base
   has_and_belongs_to_many :collections
-  has_many :pictures
+  has_many :product_images
   belongs_to :shop
+
+  accepts_nested_attributes_for :product_images
 
   validates :name, presence: true, uniqueness: { scope: :shop_id }
 end

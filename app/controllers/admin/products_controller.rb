@@ -24,6 +24,6 @@ class Admin::ProductsController < ApplicationController
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
     { product:
-        params.fetch(:product, {}).permit(:name, :description, :price, picture_ids: [], collection_ids: []) }
+        params.fetch(:product, {}).permit(:name, :description, :price, product_images_attributes: [:image], collection_ids: []) }
   end
 end

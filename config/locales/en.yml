@@ -170,6 +170,7 @@ en:
         back: "Back"
         collections: "Collections"
         prohibit: "prohibited this product from being saved:"
+        product_images: "Images"
       list:
         title: "Products"
         delete: "Delete"

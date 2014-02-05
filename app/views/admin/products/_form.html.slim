@@ -34,6 +34,16 @@
           = check_box_tag 'product[collection_ids][]', collection.id, @product.collection_ids.include?(collection.id), id: dom_id( collection)
           |
           = collection.name
+
+  hr
+  h4 = t('.product_images')
+  div class="form-group"
+   - @product.product_images.each do |product_image|
+      = image_tag product_image.image_url(:thumb)
+   div
+     - new_product_image = @product.product_images.build
+     = f.fields_for :product_images, new_product_image do |new_product_image|
+       = new_product_image.file_field :image
   hr
   div class="form-group"
     = link_to t('.back'), admin_products_path, class: 'button-secondary'
