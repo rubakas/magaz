@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/arel.git
-  revision: f0ba9e4e56cf4dfa266147fad7e8f58ca577d614
+  revision: 048d6c0aefec9f233a77e9160f426cf2fed1b7f6
   specs:
     arel (5.0.0.20131204235845)
 
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 702e0e1a6b6d776b0527f68d78a50714312fe149
+  revision: a5034444299412c96cc286cf84a15077c8be425e
   specs:
     actionmailer (4.1.0.beta1)
       actionpack (= 4.1.0.beta1)
@@ -77,7 +77,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: f7576e0e56906edff15d812a6d41429487be80d5
+  revision: 8bf70f674ec714dc1082d279fd021075fa036a74
   specs:
     sprockets-rails (2.0.1)
       actionpack (>= 3.0)
@@ -172,7 +172,7 @@ GEM
     responders (1.0.0)
       railties (>= 3.2, < 5)
     rmagick (2.13.2)
-    ruby_parser (3.3.0)
+    ruby_parser (3.4.0)
       sexp_processor (~> 4.1)
     sass (3.2.14)
     sdoc (0.4.0)
