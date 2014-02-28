@@ -32,7 +32,11 @@ class Order < ActiveRecord::Base
       Rails.logger.fatal existing_line_item.inspect
       existing_line_item.quantity += quantity
     else
-      copied_attrs = product.attributes.merge({product: product, product_id: product.id, quantity: quantity}).reject{|k, v| [:shop_id, :id].include?(k.to_sym) }
+      new_li_attrs = LineItem.attribute_names.map(&:to_sym) - [:id, :shop_id]
+      copied_attrs = product.
+        attributes.
+        merge({product: product, product_id: product.id, quantity: quantity}).
+        select{|k, v| new_li_attrs.include?(k.to_sym) }
       line_items.create(copied_attrs)
     end
   end

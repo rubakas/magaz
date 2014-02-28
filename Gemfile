@@ -17,7 +17,7 @@ gem 'slim'
 
 # Use for upload files in app
 gem "carrierwave"
-gem "rmagick"
+gem "rmagick", 					require: false
 
 # Use edge version of sprockets-rails
 gem 'sprockets-rails',  github: "rails/sprockets-rails"
@@ -67,11 +67,11 @@ gem 'puma'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
 gem 'annotate', '~> 2.6.0'
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
 gem 'flay', group: :development
+gem 'web-console', group: :development
 
 gem "capybara-webkit", "~> 1.1.1", group: :test
 gem 'factory_girl', group: :test
