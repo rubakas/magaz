@@ -2,13 +2,16 @@
 #
 # Table name: products
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
-#  shop_id     :integer
-#  price       :decimal(38, 2)
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  description      :text
+#  created_at       :datetime
+#  updated_at       :datetime
+#  shop_id          :integer
+#  price            :decimal(38, 2)
+#  handle           :string(255)
+#  page_title       :string(255)
+#  meta_description :string(255)
 #
 
 class Product < ActiveRecord::Base

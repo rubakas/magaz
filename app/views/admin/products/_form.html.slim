@@ -44,6 +44,22 @@
      - new_product_image = @product.product_images.build
      = f.fields_for :product_images, new_product_image do |new_product_image|
        = new_product_image.file_field :image
+
+  hr
+  h4 = t('.seo')
+  div class="form-group"
+    = f.label :page_title
+    br
+    = f.text_field :page_title, class: 'form-input'
+  div class="form-group"
+    = f.label :meta_description
+    br
+    = f.text_field :meta_description, class: 'form-input'
+  div class="form-group"
+    = f.label :handle
+    br
+    = f.text_field :handle, class: 'form-input'
+
   hr
   div class="form-group"
     = link_to t('.back'), admin_products_path, class: 'button-secondary'

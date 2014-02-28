@@ -171,6 +171,7 @@ en:
         collections: "Collections"
         prohibit: "prohibited this product from being saved:"
         product_images: "Images"
+        seo: "Search Engines"
       list:
         title: "Products"
         delete: "Delete"
