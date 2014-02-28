@@ -28,7 +28,7 @@ en:
     application:
       shop: "Magaz"
       sign_in: "Sign in"
-    shop:
+    store:
       shop: "Magaz"
       shop_cart: "Cart"
 

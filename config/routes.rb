@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   constraints(ShopSubdomainConstraint) do
-    namespace :shop, path: nil, shallow_path: nil do
+    namespace :store, path: nil, shallow_path: nil do
       root 'welcome#index'
       resource :cart do
         collection do

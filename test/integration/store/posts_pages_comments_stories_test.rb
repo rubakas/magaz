@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Shop::PostsPagesCommentsStoriesTest < ActionDispatch::IntegrationTest
+class Store::PostsPagesCommentsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     set_subdomain(@shop.subdomain)
   end

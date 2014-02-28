@@ -1,4 +1,4 @@
-<h1>Shop::Products#show</h1>
+<h1>Store::Products#show</h1>
 <p>Find me in app/views/shop/products/show.html.erb</p>
 
 <h2><%= @product.name %></h2>
@@ -10,7 +10,7 @@
     <%= @product.description %>
     <br/>
     <br/>
-    <%= form_tag add_shop_cart_path do %>
+    <%= form_tag add_store_cart_path do %>
       <%= hidden_field_tag :product_id, @product.id %>
       <%= submit_tag 'Purchase', class: 'btn btn-lg btn-primary' %>
     <% end %>

@@ -1,4 +1,4 @@
-class Shop::WelcomeController < Shop::ApplicationController
+class Store::WelcomeController < Store::ApplicationController
   def index
     @collections = current_shop.collections
   end

@@ -1,4 +1,4 @@
-class Shop::ApplicationController < ApplicationController
+class Store::ApplicationController < ApplicationController
   layout 'shop'
   helper_method :shopping_cart
 

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Shop::SubdomainOwnerTest < ActiveSupport::TestCase
+class Store::SubdomainOwnerTest < ActiveSupport::TestCase
   test 'assigns subdomain' do
     shop = Shop.new(name: 'uniq name', email: 'email@uniq-name.com', password: 'password')
     assert shop.valid?

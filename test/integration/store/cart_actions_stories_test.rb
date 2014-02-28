@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Shop::CartActionsStoriesTest < ActionDispatch::IntegrationTest
+class Store::CartActionsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     set_subdomain(@shop.subdomain)
     @collection = create(:collection, shop: @shop, name: 'Frontpage')
@@ -8,7 +8,7 @@ class Shop::CartActionsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "empty cart" do
-    visit shop_cart_path
+    visit store_cart_path
     assert page.has_content? 'Shopping cart'
     assert page.has_content? 'Your shopping cart is empty.'
   end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Shop::CartsControllerTest < ActionController::TestCase
+class Store::CartsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     session_for_shop @shop

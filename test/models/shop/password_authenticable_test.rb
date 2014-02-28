@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Shop::PasswordAuthenticableTest < ActiveSupport::TestCase
+class Store::PasswordAuthenticableTest < ActiveSupport::TestCase
   # public method tested first
   test 'authentic_password?' do
     @shop = create(:shop, subdomain: 'example')

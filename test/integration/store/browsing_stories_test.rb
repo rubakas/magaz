@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Shop::BrowsingStoriesTest < ActionDispatch::IntegrationTest
+class Store::BrowsingStoriesTest < ActionDispatch::IntegrationTest
   setup do
     set_subdomain(@shop.subdomain)
     @collection = create(:collection, shop: @shop, name: 'Frontpage')
