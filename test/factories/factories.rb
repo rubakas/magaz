@@ -32,15 +32,17 @@ FactoryGirl.define do
     sequence(:description) { |n| "Example #{n} description" }
   end
 
+  factory :product_image do
+  end
+
   factory :shop do
-    sequence(:name) {|n| "Example#{n}"} 
+    sequence(:name) {|n| "Example#{n}"}
     sequence(:subdomain) {|n| "example#{n}"}
     sequence(:email) {|n| "admin@#{subdomain}.com"}
-    
+
     password 'password'
     password_salt BCrypt::Engine.generate_salt
     password_digest { BCrypt::Engine.hash_secret('password', password_salt) }
-    
   end
 
 end
