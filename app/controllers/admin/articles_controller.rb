@@ -19,6 +19,6 @@ class Admin::ArticlesController < ApplicationController
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
     { article:
-        params.fetch(:article, {}).permit(:title, :content, :blog_id) }
+        params.fetch(:article, {}).permit(:title, :content, :blog_id, :page_title, :meta_description, :handle) }
   end
 end

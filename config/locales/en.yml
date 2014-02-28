@@ -51,6 +51,7 @@ en:
         back: "Back"
         error: "error"
         prohibit: "prohibited this article from being saved:"
+        seo: "Search Engines"
       list:
         title: "Blog Posts"
         delete: "Delete"
@@ -71,6 +72,7 @@ en:
         error: "error"
         back: "Back"
         prohibit: "prohibited this blog from being saved:"
+        seo: "Search Engines"
       list:
         title: "Blog"
         delete: "Delete"
@@ -150,6 +152,7 @@ en:
         error: "error"
         back: "Back"
         prohibit: "prohibited this page from being saved:"
+        seo: "Search Engines"
       list:
         title: "Pages"
         delete: "Delete"

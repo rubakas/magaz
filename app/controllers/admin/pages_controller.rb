@@ -22,6 +22,6 @@ class Admin::PagesController < ApplicationController
   #TODO collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
-    { page: params.fetch(:page, {}).permit(:title, :content) }
+    { page: params.fetch(:page, {}).permit(:title, :content, :page_title, :meta_description, :handle) }
   end
 end
