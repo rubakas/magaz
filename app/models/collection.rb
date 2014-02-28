@@ -2,12 +2,15 @@
 #
 # Table name: collections
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  description :text
-#  shop_id     :integer
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  description      :text
+#  shop_id          :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  handle           :string(255)
+#  page_title       :string(255)
+#  meta_description :string(255)
 #
 
 class Collection < ActiveRecord::Base

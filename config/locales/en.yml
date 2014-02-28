@@ -91,6 +91,7 @@ en:
         error: "error"
         back: "Back"
         prohibit: "prohibited this collection from being saved:"
+        seo: "Search Engines"
       list:
         title: "Collections"
         delete: "Delete"
