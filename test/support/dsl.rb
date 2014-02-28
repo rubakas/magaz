@@ -4,6 +4,10 @@ class ActionDispatch::IntegrationTest
     @shop = create(:shop, name:'example', subdomain: 'example', password: 'password', email: 'admin@example.com')
   end
 
+  teardown do
+    FileUtils.rm_rf(Dir["#{Rails.root}/test/support/uploads"])
+  end
+
   # private
   module CustomIntegrationDsl
     def use_js
@@ -28,7 +32,7 @@ class ActionDispatch::IntegrationTest
       fill_in 'Your shop name', with: @shop.subdomain
       fill_in 'Email address', with: @shop.email
       fill_in 'Password', with: 'password'
-      
+
       set_subdomain @shop.subdomain
       click_button 'Sign in'
     end
