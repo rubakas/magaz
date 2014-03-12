@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       resources :orders, except: [:create, :edit, :new]
       resources :pages, except: [:edit]
       resources :products, except: [:edit]
+      resources :product_images, except: [:edit]
       resource  :session, only: [:create, :destroy, :new, :show]
     end
   end
@@ -77,7 +78,7 @@ Rails.application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
