@@ -32,6 +32,10 @@ en:
       shop: "Magaz"
       shop_cart: "Cart"
 
+  welcome:
+    index:
+      heading: Welcome to Magaz
+      message: "Everything you need to start selling online &mdash; today"
 
   admin:
     articles:
