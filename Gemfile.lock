@@ -79,11 +79,12 @@ GIT
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: bf4a122324a60964c9567fd4a018d8a3bd4ae07c
+  revision: 650bec5e681858eb7f50c9288d8ea65fec057a0d
   specs:
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
-      sass (>= 3.2.0)
+      sass (~> 3.2.0)
+      sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0.0)
 
 GIT
@@ -157,7 +158,7 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jbuilder (2.0.3)
+    jbuilder (2.0.4)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.1.0)
@@ -185,7 +186,7 @@ GEM
       parallel
     pg (0.17.1)
     polyglot (0.3.4)
-    puma (2.7.1)
+    puma (2.8.1)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -198,7 +199,7 @@ GEM
     rmagick (2.13.2)
     ruby_parser (3.4.1)
       sexp_processor (~> 4.1)
-    sass (3.2.14)
+    sass (3.2.15)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
@@ -207,7 +208,7 @@ GEM
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
     spring (1.1.2)
-    sprockets (2.12.0)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
