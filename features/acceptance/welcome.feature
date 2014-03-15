@@ -5,7 +5,7 @@ Feature: welcome
 
 Scenario: welcome page
   Given hostname is "magaz.local"
-  When I visit page "/"
+  When I visit "/"
   Then I must see translation "welcome.index.heading"
   Then I must see translation "welcome.index.message"
 

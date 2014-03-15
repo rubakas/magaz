@@ -13,7 +13,7 @@ Given(/^product exists "(.*?)" in store "(.*?)"$/) do |product_name, store_name|
   @product = FactoryGirl.create(:product, name: product_name, shop: @store, collections: [@collection])
 end
 
-When /^I visit page "(.*?)"$/ do |location|
+When /^I visit "(.*?)"$/ do |location|
   visit(location)
 end
 
