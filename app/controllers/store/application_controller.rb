@@ -4,10 +4,6 @@ class Store::ApplicationController < ApplicationController
 
   around_action :set_shopping_cart
 
-  def current_shop
-    Shop.find_by_subdomain(request.subdomain)
-  end
-
   def shopping_cart
     @shopping_cart
   end
