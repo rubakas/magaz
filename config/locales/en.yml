@@ -32,6 +32,19 @@ en:
       shop: "Magaz"
       shop_cart: "Cart"
 
+  store:
+    carts:
+      show:
+        heading: Shopping cart
+        message_empty: Your shopping cart is empty.
+        message_not_empty: Your shopping cart is NOT empty.
+        button_update_text: Update cart
+        button_checkout_text: Checkout
+
+  welcome:
+    index:
+      heading: Welcome to Magaz
+      message: "Everything you need to start selling online &mdash; today"
 
   admin:
     articles:

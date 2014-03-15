@@ -73,6 +73,8 @@ gem 'flog', group: :development
 gem 'flay', group: :development
 gem 'web-console', group: :development
 
+gem 'minitest'
+gem 'cucumber-rails', github: 'cucumber/cucumber-rails', require: false
 gem "capybara-webkit", "~> 1.1.1", group: :test
 gem 'factory_girl', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
