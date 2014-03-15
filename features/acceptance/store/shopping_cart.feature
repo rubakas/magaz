@@ -4,21 +4,21 @@ Feature: shopping cart
   I want shopping cart
 
 Background:
-	Given store exists "example"
-	Given product exists "product_example" in store "example"
-	Given hostname is "example.magaz.local"
+	* store exists "example"
+	* product exists "product_example" in store "example"
+	* hostname is "example.magaz.local"
 
 Scenario: empty cart
-  When I visit "/cart"
-  Then I must see text "Shopping cart"
-  Then I must see text "Your shopping cart is empty."
+  * I visit "/cart"
+  * I must see text "Shopping cart"
+  * I must see text "Your shopping cart is empty."
 
 Scenario: add product to cart
-  When I visit "/"
-  When I click "product_example"
-  When I click "Purchase"
-  Then I must see text "Shopping cart"
-  Then I must see text "product_example"
+  * I visit "/"
+  * I click "product_example"
+  * I click "Purchase"
+  * I must see text "Shopping cart"
+  * I must see text "product_example"
 
 Scenario: change number of products in cart
   Pending
