@@ -19,3 +19,6 @@ Scenario: add product to cart
   When I click "Purchase"
   Then I must see text "Shopping cart"
   Then I must see text "product_example"
+
+Scenario: change number of products in cart
+  Pending
