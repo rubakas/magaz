@@ -1,4 +1,4 @@
-Feature: browsing stories
+Feature: products
   In order to navigate shop
   As a shop visitor
   I want browse shop items
