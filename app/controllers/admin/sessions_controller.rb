@@ -12,10 +12,6 @@ class Admin::SessionsController < ApplicationController
   def create
     @shop = current_shop
 
-    logger.fatal Shop.all.map.inspect
-    logger.fatal '!'*100
-    logger.fatal @shop.inspect
-
     if @shop && 
       (@shop.email == params[:session][:email].downcase) && 
       @shop.authentic_password?(params[:session][:password])

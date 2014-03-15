@@ -29,7 +29,6 @@ class Order < ActiveRecord::Base
     existing_line_item = 
       line_items.find { |li| li.product_id == product.id }
     if existing_line_item
-      Rails.logger.fatal existing_line_item.inspect
       existing_line_item.quantity += quantity
     else
       new_li_attrs = LineItem.attribute_names.map(&:to_sym) - [:id, :shop_id]
