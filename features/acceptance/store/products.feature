@@ -18,9 +18,3 @@ Scenario: product page
 	* I click "product_example"
 	# * I must be at "/products/product_example"
 	* I must see text "product_example"
-
-Scenario: collection page
-	Pending
-
-Scenario: navigation
-	Pending

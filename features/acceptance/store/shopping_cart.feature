@@ -22,3 +22,6 @@ Scenario: add product to cart
 
 Scenario: change number of products in cart
   Pending
+
+Scenario: checkout
+  Pending
