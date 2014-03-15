@@ -3,9 +3,19 @@ Feature: shopping cart
   As a shop visitor
   I want shopping cart
 
-Scenario: empty cart
+Background:
 	Given store exists "example"
+	Given product exists "product_example" in store "example"
 	Given hostname is "example.magaz.local"
+
+Scenario: empty cart
   When I visit page "/cart"
-  Then I must see translation "store.carts.show.heading"
-  Then I must see translation "store.carts.show.message_empty"
+  Then I must see text "Shopping cart"
+  Then I must see text "Your shopping cart is empty."
+
+Scenario: add product to cart
+  When I visit page "/"
+  When I click "product_example"
+  When I click "Purchase"
+  Then I must see text "Shopping cart"
+  Then I must see text "product_example"
