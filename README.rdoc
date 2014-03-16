@@ -6,19 +6,20 @@
   install git-flow
   https://github.com/nvie/gitflow
 
-* Ruby version: 2.1
+* Ruby version: 2.1.1
   just use rvm or rbenv
 
 * Postgresql database
 
 * Database creation:
   cp config/database.yml.example config/database.yml
-  bundle exec rake db:create
-  bundle exec rake db:migrate
+  
+    bundle exec rake db:create
+    bundle exec rake db:migrate
 
 * Domain names:
+  add into /etc/hosts
 
-    add into /etc/hosts
     127.0.0.1 magaz.local
     127.0.0.1 example.magaz.local
     127.0.0.1 example2.magaz.local
@@ -41,7 +42,7 @@
   so far
 
     bundle exec rails server
-    
+
   is enough
 
 Please feel free to use a different markup language if you do not plan to run
