@@ -1,8 +1,11 @@
-<h2><%= t('.heading') %></h2>
+<h1>Store::Carts#show</h1>
+<p>Find me in app/views/shop/carts/show.html.erb</p>
+
+<h2>Shopping cart</h2>
 <% if shopping_cart.empty? %>
-  <%= t('.message_empty') %>
+  Your shopping cart is empty.
 <% else %>
-  <%= t('.message_not_empty') %>
+  Your shopping cart is NOT empty.
   <%= form_for shopping_cart, 
         as: :cart, 
         url: store_cart_path, 
@@ -19,8 +22,8 @@
       </tr>
     <% end %>
     </table>
-    <%= f.button t('.button_update_text'), name: 'update', value: 'update' %>
-    <%= f.button t('.button_checkout_text'), name: 'checkout', value: 'checkout' %>
+    <%= f.button "Update cart", name: 'update', value: 'update' %>
+    <%= f.button "Checkout", name: 'checkout', value: 'checkout' %>
   <% end %>
   <br/>
 <% end %>
