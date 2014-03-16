@@ -17,16 +17,20 @@
   bundle exec rake db:migrate
 
 * Domain names:
-  add into /etc/hosts
-  127.0.0.1 magaz.local
-  127.0.0.1 example.magaz.local
-  127.0.0.1 example2.magaz.local
-  127.0.0.1 example3.magaz.local
+
+    add into /etc/hosts
+    127.0.0.1 magaz.local
+    127.0.0.1 example.magaz.local
+    127.0.0.1 example2.magaz.local
+    127.0.0.1 example3.magaz.local
+
 
 * How to run the test suite
-  bundle exec rake test
-  bundle exec rake test TEST=test/single_test.rb
-  bundle exec rake test TEST=test/directory/*
+
+    bundle exec rake test
+    bundle exec rake test TEST=test/single_test.rb
+    bundle exec rake test TEST=test/directory/*
+
 
 * Services 
   * postgresql as database
@@ -34,7 +38,11 @@
   * redis for background jobs queue
 
 * Deployment instructions
-  so far 'bundle exec rails server' is enough
+  so far
+
+    bundle exec rails server
+    
+  is enough
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
