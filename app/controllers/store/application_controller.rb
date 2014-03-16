@@ -1,5 +1,5 @@
 class Store::ApplicationController < ApplicationController
-  layout 'shop'
+  layout 'store'
   helper_method :shopping_cart
 
   around_action :set_shopping_cart
