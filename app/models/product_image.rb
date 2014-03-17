@@ -13,7 +13,5 @@ class ProductImage < ActiveRecord::Base
   belongs_to :shop
   belongs_to :product
 
-  before_destroy :remove_attachment!
-
   mount_uploader :image, ImageUploader
 end
