@@ -4,6 +4,8 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @product = create(:product, shop: @shop)
+    @collection1 = create(:collection, name: "test collection 1", shop: @shop )
+    @collection2 = create(:collection, name: "test collection 2", shop: @shop )
     click_link 'Products'
   end
 
@@ -32,9 +34,9 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
     click_link 'Add Product'
     fill_in 'Name', with: 'Some Uniq Product'
     fill_in 'Description', with: ''
-    click_button 'Create Product'
     attach_file('product_product_images_attributes_0_image', File.join(Rails.root,'/test/fixtures/files/image.jpg'))
-    page.has_css?('img', text: "thumb_image.jpg")
+    click_button 'Create Product'
+    assert page.has_css?('.product_image')
     assert page.has_content? 'Product was successfully created.'
   end
 
@@ -47,11 +49,21 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
     attach_file('product_product_images_attributes_0_image', File.join(Rails.root,'/test/fixtures/files/image.jpg'))
     click_button 'Update Product'
     assert page.has_content? 'Product was successfully updated.'
-    page.has_css?('img', text: "thumb_image.jpg")
+    assert page.has_css?('.product_image')
   end
 
-  test 'create/update product - set collection membership' do
-    skip
+  test 'remove image' do
+    click_link 'Add Product'
+    fill_in 'Name', with: 'Some Uniq Product'
+    fill_in 'Description', with: ''
+    attach_file('product_product_images_attributes_0_image', File.join(Rails.root,'/test/fixtures/files/image.jpg'))
+    click_button 'Create Product'
+    page.has_css?('img', text: "thumb_image.jpg")
+    assert page.has_content? 'Product was successfully created.'
+    check "product_product_images_attributes_0__destroy"
+    click_button 'Update Product'
+    assert page.has_content? 'Product was successfully updated.'
+    assert page.has_no_css?('.product_image')
   end
 
   test "edit product" do
