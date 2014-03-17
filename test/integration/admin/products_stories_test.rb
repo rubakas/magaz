@@ -66,6 +66,32 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_no_css?('.product_image')
   end
 
+  test 'create product with collection membership' do
+    click_link 'Add Product'
+    fill_in 'Name', with: 'Some Uniq Product'
+    fill_in 'Description', with: ''
+    check 'test collection 1'
+    click_button 'Create Product'
+    assert page.has_content? 'Product was successfully created.'
+    assert has_checked_field?('test collection 1')
+  end
+
+  test "update product with collection membership" do
+    click_link 'Add Product'
+    fill_in 'Name', with: 'Some Uniq Product'
+    fill_in 'Description', with: ''
+    check 'test collection 1'
+    click_button 'Create Product'
+    assert page.has_content? 'Product was successfully created.'
+    assert has_checked_field?('test collection 1')
+    uncheck 'test collection 1'
+    check 'test collection 2'
+    click_button 'Update Product'
+    assert page.has_content? 'Product was successfully updated.'
+    assert has_checked_field?('test collection 2')
+    assert has_no_checked_field?('test collection 1')
+  end
+
   test "edit product" do
     click_link(@product.name, match: :first)
     fill_in 'Name', with: 'Updated Product'
