@@ -7,6 +7,6 @@ class Admin::ProductImagesController < ApplicationController
 
   def permitted_params
     { product_image:
-        params.fetch(:product_image, {}).permit(:iamge)}
+        params.fetch(:product_image, {}).permit(:image)}
   end
 end

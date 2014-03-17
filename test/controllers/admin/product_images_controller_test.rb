@@ -10,7 +10,7 @@ class Admin::ProductImagesControllerTest < ActionController::TestCase
 
  test "should create product image" do
     assert_difference('ProductImage.count') do
-      post :create, iamge: fixture_file_upload('/files/image.jpg')
+      post :create, image: fixture_file_upload('/files/image.jpg')
     end
 
     assert_redirected_to admin_product_image_path(assigns(:product_image))
