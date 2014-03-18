@@ -1,4 +1,4 @@
-class Admin::PagesController < ApplicationController
+class Admin::PagesController < Admin::ApplicationController
   include Authenticable
   inherit_resources
   actions :all, :except => [:edit]

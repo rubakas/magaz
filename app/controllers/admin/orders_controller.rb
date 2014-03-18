@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrdersController < Admin::ApplicationController
   include Authenticable
   before_action :set_order, only: [:show, :update, :destroy]
 

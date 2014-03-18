@@ -1,5 +1,8 @@
-class Store::ApplicationController < ApplicationController
+class Store::ApplicationController < ActionController::Base
+  include CurrentShopAccess
+
   layout 'store'
+  
   helper_method :shopping_cart
 
   around_action :set_shopping_cart

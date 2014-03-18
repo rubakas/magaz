@@ -1,4 +1,4 @@
-class Admin::CollectionsController < ApplicationController
+class Admin::CollectionsController < Admin::ApplicationController
   include Authenticable
   inherit_resources
   actions :all, :except => [:edit]
