@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324105433) do
+ActiveRecord::Schema.define(version: 20140324233430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,10 @@ ActiveRecord::Schema.define(version: 20140324105433) do
     t.string   "handle"
     t.string   "page_title"
     t.string   "meta_description"
+    t.string   "slug"
   end
+
+  add_index "articles", ["slug"], name: "index_articles_on_slug", unique: true, using: :btree
 
   create_table "blogs", force: true do |t|
     t.string   "title"
@@ -35,7 +38,10 @@ ActiveRecord::Schema.define(version: 20140324105433) do
     t.string   "handle"
     t.string   "page_title"
     t.string   "meta_description"
+    t.string   "slug"
   end
+
+  add_index "blogs", ["slug"], name: "index_blogs_on_slug", unique: true, using: :btree
 
   create_table "collections", force: true do |t|
     t.string   "name"
@@ -46,7 +52,10 @@ ActiveRecord::Schema.define(version: 20140324105433) do
     t.string   "handle"
     t.string   "page_title"
     t.string   "meta_description"
+    t.string   "slug"
   end
+
+  add_index "collections", ["slug"], name: "index_collections_on_slug", unique: true, using: :btree
 
   create_table "collections_products", force: true do |t|
     t.integer "collection_id"
@@ -108,7 +117,10 @@ ActiveRecord::Schema.define(version: 20140324105433) do
     t.string   "handle"
     t.string   "page_title"
     t.string   "meta_description"
+    t.string   "slug"
   end
+
+  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
 
   create_table "product_images", force: true do |t|
     t.datetime "created_at"
