@@ -14,7 +14,10 @@
 #
 
 class Page < ActiveRecord::Base
+  extend FriendlyId
   belongs_to :shop
+
+  friendly_id :handle, use: :slugged
 
   validates :title,
     presence: true,

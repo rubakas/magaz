@@ -27,6 +27,16 @@ class Admin::PagesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? '1 error prohibited this page from being saved'
   end
 
+  test "handle url" do
+    click_link 'Add Page'
+    fill_in 'Title', with: 'Some Uniq Page'
+    fill_in 'Content', with: 'Some Uniq Content'
+    fill_in 'Handle', with: 'test-url'
+    click_button 'Create Page'
+    assert page.has_content? 'Page was successfully created.'
+    assert current_path == "/admin/pages/test-url"
+  end
+
   test "edit page" do
     click_link(@page.title, match: :first)
     fill_in 'Title', with: 'Updated Page'

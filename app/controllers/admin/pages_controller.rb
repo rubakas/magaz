@@ -9,6 +9,10 @@ class Admin::PagesController < Admin::ApplicationController
     end
   end
 
+  def show
+    @page = Page.friendly.find(params[:id])
+  end
+
   protected
 
   def begin_of_association_chain
