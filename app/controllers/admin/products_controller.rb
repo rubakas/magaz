@@ -9,6 +9,10 @@ class Admin::ProductsController < Admin::ApplicationController
     end
   end
 
+  def show
+    @product = Product.friendly.find(params[:id])
+  end
+
 
   protected
 

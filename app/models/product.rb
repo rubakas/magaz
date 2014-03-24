@@ -15,9 +15,13 @@
 #
 
 class Product < ActiveRecord::Base
+  extend FriendlyId
+
   has_and_belongs_to_many :collections
   has_many :product_images, :dependent => :destroy
   belongs_to :shop
+
+  friendly_id :handle, use: :slugged
 
   accepts_nested_attributes_for :product_images, :allow_destroy => true
 
