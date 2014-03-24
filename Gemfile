@@ -19,6 +19,9 @@ gem 'slim'
 gem "carrierwave"
 gem "rmagick", 					require: false
 
+# Use slugging and permalink for ActiveRecord
+gem 'friendly_id', '~> 5.0.0'
+
 # Use edge version of sprockets-rails
 gem 'sprockets-rails',  github: "rails/sprockets-rails"
 
@@ -26,7 +29,7 @@ gem 'sprockets-rails',  github: "rails/sprockets-rails"
 gem 'sass-rails',       github: "rails/sass-rails"
 
 # Use twitter bootstrap and font icons
-gem 'anjlab-bootstrap-rails', 
+gem 'anjlab-bootstrap-rails',
   require: 'bootstrap-rails',
   github: 'anjlab/bootstrap-rails'
 gem 'font-awesome-sass-rails'
