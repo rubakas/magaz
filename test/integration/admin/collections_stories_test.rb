@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
-  setup do 
+  setup do
     login
     @collection = create(:collection, shop: @shop)
     click_link 'Collections'
@@ -26,6 +26,16 @@ class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
     # rule-relation
     # rule-value
     skip
+  end
+
+  test "handle url" do
+    click_link 'Add Collection', match: :first
+    fill_in 'Name', with: 'Some Collection'
+    fill_in 'Description', with: ''
+    fill_in 'Handle', with: 'test-url'
+    click_button 'Create Collection'
+    assert page.has_content? 'Collection was successfully created.'
+    assert current_path == "/admin/collections/test-url"
   end
 
 

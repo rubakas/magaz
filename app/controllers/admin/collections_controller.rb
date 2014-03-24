@@ -9,6 +9,10 @@ class Admin::CollectionsController < Admin::ApplicationController
     end
   end
 
+  def show
+    @collection = Collection.friendly.find(params[:id])
+  end
+
 
   protected
 

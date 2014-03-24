@@ -14,10 +14,14 @@
 #
 
 class Collection < ActiveRecord::Base
+  extend FriendlyId
+
   has_and_belongs_to_many :products
   belongs_to :shop
 
-  validates :name, 
-    presence: true, 
+  friendly_id :handle, use: :slugged
+
+  validates :name,
+    presence: true,
     uniqueness: { scope: :shop_id }
 end
