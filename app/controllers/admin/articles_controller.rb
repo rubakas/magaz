@@ -9,6 +9,10 @@ class Admin::ArticlesController < Admin::ApplicationController
     end
   end
 
+  def show
+    @article = Article.friendly.find(params[:id])
+  end
+
   protected
 
   def collection

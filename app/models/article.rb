@@ -14,8 +14,12 @@
 #
 
 class Article < ActiveRecord::Base
+  extend FriendlyId
+
   belongs_to :blog
   has_many :comments
+
+  friendly_id :handle, use: :slugged
 
   validates :title,
     presence: true,
