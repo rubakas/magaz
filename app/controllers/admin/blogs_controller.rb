@@ -9,6 +9,9 @@ class Admin::BlogsController < Admin::ApplicationController
     end
   end
 
+  def show
+    @blog = Blog.friendly.find(params[:id])
+  end
 
   protected
 

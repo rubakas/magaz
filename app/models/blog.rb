@@ -13,9 +13,13 @@
 #
 
 class Blog < ActiveRecord::Base
+  extend FriendlyId
+
   belongs_to :shop
   has_many :articles
   has_many :comments
+
+  friendly_id :handle, use: :slugged
 
   validates :title,
     presence: true,
