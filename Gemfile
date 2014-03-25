@@ -15,6 +15,13 @@ gem 'inherited_resources' #, github: 'josevalim/inherited_resources'
 # Use slim-lang for templates
 gem 'slim'
 
+# Use for upload files in app
+gem "carrierwave"
+gem "rmagick", 					require: false
+
+# Use slugging and permalink for ActiveRecord
+gem 'friendly_id', '~> 5.0.0'
+
 # Use edge version of sprockets-rails
 gem 'sprockets-rails',  github: "rails/sprockets-rails"
 
@@ -22,7 +29,7 @@ gem 'sprockets-rails',  github: "rails/sprockets-rails"
 gem 'sass-rails',       github: "rails/sass-rails"
 
 # Use twitter bootstrap and font icons
-gem 'anjlab-bootstrap-rails', 
+gem 'anjlab-bootstrap-rails',
   require: 'bootstrap-rails',
   github: 'anjlab/bootstrap-rails'
 gem 'font-awesome-sass-rails'
@@ -63,11 +70,11 @@ gem 'puma'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
 gem 'annotate', '~> 2.6.0'
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
 gem 'flay', group: :development
+gem 'web-console', group: :development
 
 gem "capybara-webkit", "~> 1.1.1", group: :test
 gem 'factory_girl', group: :test

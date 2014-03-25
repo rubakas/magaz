@@ -1,4 +1,4 @@
-class Admin::SessionsController < ApplicationController
+class Admin::SessionsController < Admin::ApplicationController
   respond_to :html
 
   def new
@@ -11,10 +11,6 @@ class Admin::SessionsController < ApplicationController
   #TODO test user not found case
   def create
     @shop = current_shop
-
-    logger.fatal Shop.all.map.inspect
-    logger.fatal '!'*100
-    logger.fatal @shop.inspect
 
     if @shop && 
       (@shop.email == params[:session][:email].downcase) && 

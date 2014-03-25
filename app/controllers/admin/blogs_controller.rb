@@ -1,4 +1,4 @@
-class Admin::BlogsController < ApplicationController
+class Admin::BlogsController < Admin::ApplicationController
   include Authenticable
   inherit_resources
   actions :all, :except => [:edit]
@@ -9,6 +9,9 @@ class Admin::BlogsController < ApplicationController
     end
   end
 
+  def show
+    @blog = Blog.friendly.find(params[:id])
+  end
 
   protected
 
@@ -23,8 +26,8 @@ class Admin::BlogsController < ApplicationController
   #TODO collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
-    { blog: 
-        params.fetch(:blog, {}).permit(:title) }
+    { blog:
+        params.fetch(:blog, {}).permit(:title, :page_title, :meta_description, :handle) }
   end
 
 end

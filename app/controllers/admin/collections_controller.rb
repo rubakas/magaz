@@ -1,4 +1,4 @@
-class Admin::CollectionsController < ApplicationController
+class Admin::CollectionsController < Admin::ApplicationController
   include Authenticable
   inherit_resources
   actions :all, :except => [:edit]
@@ -7,6 +7,10 @@ class Admin::CollectionsController < ApplicationController
     update! do |success, failure|
       failure.html { render :show }
     end
+  end
+
+  def show
+    @collection = Collection.friendly.find(params[:id])
   end
 
 
@@ -23,7 +27,7 @@ class Admin::CollectionsController < ApplicationController
   #TODO collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
-    { collection: 
-        params.fetch(:collection, {}).permit(:name, :description) }
+    { collection:
+        params.fetch(:collection, {}).permit(:name, :description, :page_title, :meta_description, :handle) }
   end
 end

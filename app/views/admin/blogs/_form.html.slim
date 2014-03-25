@@ -12,6 +12,23 @@
     = f.label :title
     br
     = f.text_field :title, class: 'form-input'
+
+  hr
+  h4 = t('.seo')
+  div class="form-group"
+    = f.label :page_title
+    br
+    = f.text_field :page_title, class: 'form-input'
+  div class="form-group"
+    = f.label :meta_description
+    br
+    = f.text_field :meta_description, class: 'form-input'
+  div class="form-group"
+    = f.label :handle
+    br
+    = f.text_field :handle, class: 'form-input'
+
+  hr
   div class="form-group"
     = link_to t('.back'), admin_blogs_path, class: 'button-secondary'
     |

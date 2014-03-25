@@ -1,4 +1,4 @@
-class Admin::ArticlesController < ApplicationController
+class Admin::ArticlesController < Admin::ApplicationController
   include Authenticable
   inherit_resources
   actions :all, :except => [:edit]
@@ -7,6 +7,10 @@ class Admin::ArticlesController < ApplicationController
     update! do |success, failure|
       failure.html { render :show }
     end
+  end
+
+  def show
+    @article = Article.friendly.find(params[:id])
   end
 
   protected
@@ -19,6 +23,6 @@ class Admin::ArticlesController < ApplicationController
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
     { article:
-        params.fetch(:article, {}).permit(:title, :content, :blog_id) }
+        params.fetch(:article, {}).permit(:title, :content, :blog_id, :page_title, :meta_description, :handle) }
   end
 end

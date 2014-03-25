@@ -27,6 +27,16 @@ class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? '1 error prohibited this article from being saved'
   end
 
+  test "handle url" do
+    click_link 'Add Blog Post'
+    fill_in 'Title', with: 'Some Uniq Article'
+    fill_in 'Content', with: 'Some Uniq Content'
+    fill_in 'Handle', with: 'test-url'
+    click_button 'Create Article'
+    assert page.has_content? 'Article was successfully created.'
+    assert current_path == "/admin/articles/test-url"
+  end
+
   test "edit blog post" do
     click_link(@article.title, match: :first)
     fill_in 'Title', with: 'Updated Blog Post'

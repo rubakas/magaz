@@ -1,4 +1,4 @@
-class Admin::PagesController < ApplicationController
+class Admin::PagesController < Admin::ApplicationController
   include Authenticable
   inherit_resources
   actions :all, :except => [:edit]
@@ -7,6 +7,10 @@ class Admin::PagesController < ApplicationController
     update! do |success, failure|
       failure.html { render :show }
     end
+  end
+
+  def show
+    @page = Page.friendly.find(params[:id])
   end
 
   protected
@@ -22,6 +26,6 @@ class Admin::PagesController < ApplicationController
   #TODO collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
-    { page: params.fetch(:page, {}).permit(:title, :content) }
+    { page: params.fetch(:page, {}).permit(:title, :content, :page_title, :meta_description, :handle) }
   end
 end

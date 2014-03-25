@@ -1,4 +1,4 @@
-class Admin::CommentsController < ApplicationController
+class Admin::CommentsController < Admin::ApplicationController
   include Authenticable
   inherit_resources
   actions :all, :except => [:edit]

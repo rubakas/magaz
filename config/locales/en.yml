@@ -28,7 +28,7 @@ en:
     application:
       shop: "Magaz"
       sign_in: "Sign in"
-    shop:
+    store:
       shop: "Magaz"
       shop_cart: "Cart"
 
@@ -51,6 +51,7 @@ en:
         back: "Back"
         error: "error"
         prohibit: "prohibited this article from being saved:"
+        seo: "Search Engines"
       list:
         title: "Blog Posts"
         delete: "Delete"
@@ -71,6 +72,7 @@ en:
         error: "error"
         back: "Back"
         prohibit: "prohibited this blog from being saved:"
+        seo: "Search Engines"
       list:
         title: "Blog"
         delete: "Delete"
@@ -91,6 +93,7 @@ en:
         error: "error"
         back: "Back"
         prohibit: "prohibited this collection from being saved:"
+        seo: "Search Engines"
       list:
         title: "Collections"
         delete: "Delete"
@@ -149,6 +152,7 @@ en:
         error: "error"
         back: "Back"
         prohibit: "prohibited this page from being saved:"
+        seo: "Search Engines"
       list:
         title: "Pages"
         delete: "Delete"
@@ -170,6 +174,9 @@ en:
         back: "Back"
         collections: "Collections"
         prohibit: "prohibited this product from being saved:"
+        product_images: "Images"
+        seo: "Search Engines"
+        delete: "remove"
       list:
         title: "Products"
         delete: "Delete"
