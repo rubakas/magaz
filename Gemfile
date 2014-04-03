@@ -71,13 +71,13 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'annotate', '~> 2.6.0'
-gem 'cucumber-rails', group: :development
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
 gem 'flay', group: :development
 gem 'web-console', group: :development
 
 gem "capybara-webkit", "~> 1.1.1", group: :test
+gem 'cucumber-rails', group: :test
 gem 'factory_girl', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test
