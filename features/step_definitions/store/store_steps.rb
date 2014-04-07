@@ -21,14 +21,13 @@ Given(/^visit index page$/) do
   visit "/"
 end
 
-Given(/^visit product page$/) do
-  visit "/products/#{@product.to_param}"
-end
-
 Given(/^visit cart page$/) do
   visit "/cart"
 end
 
+Given(/^visit product page$/) do
+  visit "/products/#{@product.to_param}"
+end
 
 Given(/^must see products of default collection$/) do
 	assert page.has_content? @product.name
