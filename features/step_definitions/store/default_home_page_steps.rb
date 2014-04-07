@@ -20,3 +20,13 @@ end
 Given(/^must see products of default collection$/) do
 	assert page.has_content? @product.name
 end
+
+Given(/^customer clicks product name$/) do
+	click_link @product.name
+end
+
+Given(/^must be on product page$/) do
+  assert page.has_content? @product.name
+  assert page.has_content? @product.description
+  assert page.has_selector? "input[type=submit][value='Purchase']"
+end
