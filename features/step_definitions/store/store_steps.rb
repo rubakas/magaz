@@ -71,10 +71,6 @@ Given(/^must be on cart page$/) do
 	assert page.has_content? 'Shopping cart'
 end
 
-Given(/^customer visits cart page$/) do
-  visit "/cart"
-end
-
 Given(/^must see empty cart$/) do
   assert page.has_content? 'Your shopping cart is empty.'
 end
