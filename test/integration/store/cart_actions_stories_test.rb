@@ -7,21 +7,6 @@ class Store::CartActionsStoriesTest < ActionDispatch::IntegrationTest
     @product = create(:product, shop: @shop, collections: [@collection])
   end
 
-  test "empty cart" do
-    visit store_cart_path
-    assert page.has_content? 'Shopping cart'
-    assert page.has_content? 'Your shopping cart is empty.'
-  end
-
-  test "add product to cart" do
-    visit '/'
-    click_link @product.name
-    
-    click_button "Purchase"
-    assert page.has_content? 'Shopping cart'
-    assert page.has_content? @product.name
-  end
-
   test "change number of products in cart" do
     visit '/'
     click_link @product.name

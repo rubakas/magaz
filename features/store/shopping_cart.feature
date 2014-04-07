@@ -1,7 +1,7 @@
-Feature: default home page
-  In order to navigate store
+Feature: shopping cart
+  In order to select products for purchase
   As a store visitor
-  I want default home page
+  I want shopping cart
 
 Background:
   * store exists
@@ -9,12 +9,15 @@ Background:
   * default collection exists
   * default collection has products in it
 
-Scenario: products from default collection
-  * customer visits index page
-  * must see products of default collection
+Scenario: empty cart
+	* customer visits cart page
+	* must see empty cart
 
 Scenario: clickable products from default collection
   * customer visits index page
   * must see products of default collection
   * customer clicks product name
   * must be on product page
+  * customer adds product to cart
+  * must be on cart page
+  * must see product in the cart
