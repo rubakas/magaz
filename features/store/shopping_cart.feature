@@ -20,16 +20,7 @@ Scenario: remove product from cart
   * product successfully added to cart
   * product successfully removed from cart
 
-
 Scenario: change quantity of products in cart
   * product successfully added to cart
   * customer changes quanity of product to 42
   * must see product in the cart with quantity 42
-
-Scenario: place order
-	* product successfully added to cart
-  * customer changes quanity of product to 42
-  * must see product in the cart with quantity 42
-  * customer chooses to checkout
-  * must see checkout page
-
