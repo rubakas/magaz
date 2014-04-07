@@ -12,7 +12,7 @@ Scenario: products from default collection
   * customer visits index page
   * must see products of default collection
 
-Scenario: products from default collection
+Scenario: clickable products from default collection
   * customer visits index page
   * must see products of default collection
   * customer clicks product name
