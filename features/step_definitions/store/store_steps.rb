@@ -54,3 +54,16 @@ end
 Given(/^must see product in the cart$/) do
   assert page.has_content? @product.name
 end
+
+Given(/^customer changes quanity of product to (\d+)$/) do |quantity|
+  within('#edit_cart') do
+	  fill_in "cart[updates][#{@product.id}]", :with => quantity
+	  click_on 'update'
+  end
+end
+
+Given(/^must see product in the cart with quantity (\d+)$/) do |quantity|
+	assert page.has_content? @product.name
+	assert page.has_css?(".cart-quantity")
+	assert quantity == page.find(".cart-quantity").value
+end
