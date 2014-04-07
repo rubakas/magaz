@@ -10,7 +10,7 @@ Given(/^default collection has products in it$/) do
 	@product = create(:product, shop: @shop, collections: [@collection])
 end
 
-Given(/^customer browsing store domain$/) do
+Given(/^browsing store domain$/) do
 	host = "#{@shop.subdomain}.#{HOSTNAME}"
 	Capybara.app_host = "http://" + host
   Capybara.default_host = Capybara.app_host
@@ -20,6 +20,15 @@ end
 Given(/^visit index page$/) do
   visit "/"
 end
+
+Given(/^visit product page$/) do
+  visit "/products/#{@product.to_param}"
+end
+
+Given(/^visit cart page$/) do
+  visit "/cart"
+end
+
 
 Given(/^must see products of default collection$/) do
 	assert page.has_content? @product.name
@@ -37,6 +46,25 @@ end
 
 Given(/^customer adds product to cart$/) do
   click_button "Purchase"
+end
+
+Given(/^product successfully added to cart$/) do
+  steps %{
+  	* visit product page
+  	* customer adds product to cart
+  	* must be on cart page
+  	* must see product in the cart
+  }
+end
+
+
+Given(/^with product in the cart$/) do
+  steps %{
+  	* visit product page
+  	* customer adds product to cart
+  	* must be on cart page
+  	* must see product in the cart
+  }
 end
 
 Given(/^must be on cart page$/) do

@@ -5,34 +5,25 @@ Feature: shopping cart
 
 Background:
   * store exists
-  * customer browsing store domain
   * default collection exists
   * default collection has products in it
+  * browsing store domain
 
 Scenario: empty cart
 	* customer visits cart page
 	* must see empty cart
 
+Scenario: add product to cart
+  * product successfully added to cart
+
 Scenario: change quantity of products in cart
-  * visit index page
-  * must see products of default collection
-  * customer clicks product name
-  * must be on product page
-  * customer adds product to cart
-  * must be on cart page
-  * must see product in the cart
+  * product successfully added to cart
   * customer changes quanity of product to 42
   * must be on cart page
   * must see product in the cart with quantity 42
 
 Scenario: place order
-	* visit index page
-  * must see products of default collection
-  * customer clicks product name
-  * must be on product page
-  * customer adds product to cart
-  * must be on cart page
-  * must see product in the cart
+	* product successfully added to cart
   * customer changes quanity of product to 42
   * must be on cart page
   * must see product in the cart with quantity 42
