@@ -10,7 +10,7 @@ Background:
   * browsing store domain
 
 Scenario: clickable products from default collection
-  * visit index page
+  * visit shop index page
   * must see products of default collection
   * customer clicks product name
   * must be on product page
