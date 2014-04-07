@@ -56,6 +56,9 @@ Given(/^product successfully added to cart$/) do
   }
 end
 
+Given(/^product successfully removed from cart$/) do
+  pending
+end
 
 Given(/^with product in the cart$/) do
   steps %{
@@ -78,7 +81,7 @@ Given(/^must see product in the cart$/) do
   assert page.has_content? @product.name
 end
 
-Given(/^customer changes quanity of product to (\d+)$/) do |quantity|
+Given("customer changes quanity of product to $quantity") do |quantity|
   within('#edit_cart') do
 	  fill_in "cart[updates][#{@product.id}]", :with => quantity
 	  click_on 'update'

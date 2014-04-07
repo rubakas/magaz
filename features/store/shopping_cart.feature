@@ -16,6 +16,11 @@ Scenario: empty cart
 Scenario: add product to cart
   * product successfully added to cart
 
+Scenario: remove product from cart
+  * product successfully added to cart
+  * product successfully removed from cart
+
+
 Scenario: change quantity of products in cart
   * product successfully added to cart
   * customer changes quanity of product to 42
