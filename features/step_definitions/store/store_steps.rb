@@ -67,3 +67,11 @@ Given(/^must see product in the cart with quantity (\d+)$/) do |quantity|
 	assert page.has_css?(".cart-quantity")
 	assert quantity == page.find(".cart-quantity").value
 end
+
+Given(/^customer chooses to checkout$/) do
+	click_on 'checkout'
+end
+
+Given(/^must see checkout page$/) do
+	assert page.has_content? 'Checkout'
+end
