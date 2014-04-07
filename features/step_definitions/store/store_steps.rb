@@ -17,7 +17,7 @@ Given(/^customer browsing store domain$/) do
 end
 
 
-Given(/^customer visits index page$/) do
+Given(/^visit index page$/) do
   visit "/"
 end
 

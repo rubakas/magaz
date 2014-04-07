@@ -10,11 +10,11 @@ Background:
   * default collection has products in it
 
 Scenario: products from default collection
-  * customer visits index page
+  * visit index page
   * must see products of default collection
 
 Scenario: clickable products from default collection
-  * customer visits index page
+  * visit index page
   * must see products of default collection
   * customer clicks product name
   * must be on product page

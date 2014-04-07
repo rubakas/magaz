@@ -14,7 +14,7 @@ Scenario: empty cart
 	* must see empty cart
 
 Scenario: change quantity of products in cart
-  * customer visits index page
+  * visit index page
   * must see products of default collection
   * customer clicks product name
   * must be on product page
@@ -26,7 +26,7 @@ Scenario: change quantity of products in cart
   * must see product in the cart with quantity 42
 
 Scenario: place order
-	* customer visits index page
+	* visit index page
   * must see products of default collection
   * customer clicks product name
   * must be on product page
