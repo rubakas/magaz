@@ -13,9 +13,9 @@ class Store::ApplicationController < ActionController::Base
 
   def set_shopping_cart
     @shopping_cart = if session[:cart_id].blank?
-      current_shop.orders.create
+      current_shop.checkouts.create
     else
-      Order.find_by_id(session[:cart_id]) || current_shop.orders.create
+      Checkout.find_by_id(session[:cart_id]) || current_shop.checkouts.create
     end
      
     yield
