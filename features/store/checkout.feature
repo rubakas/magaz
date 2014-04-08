@@ -22,6 +22,4 @@ Scenario: checkout step two (success, failure, cancellation)
   * go to checkout
   * checkout step one finished successfully
   * input payment information
-  * continue to complete purchase
-
-  
+  * continue to complete purchase  
