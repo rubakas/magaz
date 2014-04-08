@@ -12,9 +12,9 @@ Background:
 Scenario: checkout step one (success, failure, cancellation)
   * product successfully added to cart
   * go to checkout
-  * input some email
-  * input some billing address
-  * input or choose some shipping address
+  * input customer email
+  * input customer billing address
+  * input customer shipping address
   * continue to next step
 
 Scenario: checkout step two (success, failure, cancellation)
