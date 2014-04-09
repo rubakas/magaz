@@ -3,12 +3,13 @@ require 'test_helper'
 class Admin::OrdersStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
-    @order = create(:order, shop: @shop)
+    @checkout = create(:checkout, shop: @shop)
+    @order = create(:checkout, shop: @shop, status: Checkout::STATUSES.first)
     click_link 'Orders'
   end
 
   test "orders list none" do
-    Order.delete_all
+    Checkout.delete_all
     login
     click_link 'Orders'
     assert page.has_content? 'You have no orders yet'

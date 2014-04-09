@@ -4,7 +4,8 @@ class Admin::OrdersControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     session_for_shop @shop
-    @order = create(:order, shop: @shop)
+    @checkout = create(:checkout, shop: @shop)
+    @order = create(:checkout, shop: @shop, status: Checkout::STATUSES.first)
   end
 
   test "should get index" do

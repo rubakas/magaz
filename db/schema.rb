@@ -11,48 +11,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324233430) do
+ActiveRecord::Schema.define(version: 20140407142157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "articles", force: true do |t|
-    t.string   "title"
+    t.string   "title",            limit: 255
     t.text     "content"
     t.integer  "blog_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "handle"
-    t.string   "page_title"
-    t.string   "meta_description"
-    t.string   "slug"
+    t.string   "handle",           limit: 255
+    t.string   "page_title",       limit: 255
+    t.string   "meta_description", limit: 255
+    t.string   "slug",             limit: 255
   end
 
   add_index "articles", ["slug"], name: "index_articles_on_slug", unique: true, using: :btree
 
   create_table "blogs", force: true do |t|
-    t.string   "title"
+    t.string   "title",            limit: 255
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "handle"
-    t.string   "page_title"
-    t.string   "meta_description"
-    t.string   "slug"
+    t.string   "handle",           limit: 255
+    t.string   "page_title",       limit: 255
+    t.string   "meta_description", limit: 255
+    t.string   "slug",             limit: 255
   end
 
   add_index "blogs", ["slug"], name: "index_blogs_on_slug", unique: true, using: :btree
 
+  create_table "checkouts", force: true do |t|
+    t.integer  "shop_id"
+    t.text     "note"
+    t.string   "status",             limit: 255
+    t.string   "financial_status",   limit: 255
+    t.string   "fulfillment_status", limit: 255
+    t.string   "currency",           limit: 255
+    t.string   "email",              limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "collections", force: true do |t|
-    t.string   "name"
+    t.string   "name",             limit: 255
     t.text     "description"
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "handle"
-    t.string   "page_title"
-    t.string   "meta_description"
-    t.string   "slug"
+    t.string   "handle",           limit: 255
+    t.string   "page_title",       limit: 255
+    t.string   "meta_description", limit: 255
+    t.string   "slug",             limit: 255
   end
 
   add_index "collections", ["slug"], name: "index_collections_on_slug", unique: true, using: :btree
@@ -63,9 +75,9 @@ ActiveRecord::Schema.define(version: 20140324233430) do
   end
 
   create_table "comments", force: true do |t|
-    t.string   "author"
+    t.string   "author",     limit: 255
     t.text     "body"
-    t.string   "email"
+    t.string   "email",      limit: 255
     t.integer  "blog_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -73,10 +85,10 @@ ActiveRecord::Schema.define(version: 20140324233430) do
   end
 
   create_table "friendly_id_slugs", force: true do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",               null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+    t.string   "scope",          limit: 255
     t.datetime "created_at"
   end
 
@@ -86,38 +98,26 @@ ActiveRecord::Schema.define(version: 20140324233430) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "line_items", force: true do |t|
-    t.integer  "order_id"
+    t.integer  "checkout_id"
     t.integer  "product_id"
-    t.string   "name"
+    t.string   "name",        limit: 255
     t.text     "description"
-    t.decimal  "price",       precision: 38, scale: 2
+    t.decimal  "price",                   precision: 38, scale: 2
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "orders", force: true do |t|
-    t.integer  "shop_id"
-    t.text     "note"
-    t.string   "status"
-    t.string   "financial_status"
-    t.string   "fulfillment_status"
-    t.string   "currency"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "pages", force: true do |t|
-    t.string   "title"
-    t.string   "content"
+    t.string   "title",            limit: 255
+    t.string   "content",          limit: 255
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "handle"
-    t.string   "page_title"
-    t.string   "meta_description"
-    t.string   "slug"
+    t.string   "handle",           limit: 255
+    t.string   "page_title",       limit: 255
+    t.string   "meta_description", limit: 255
+    t.string   "slug",             limit: 255
   end
 
   add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
@@ -125,33 +125,33 @@ ActiveRecord::Schema.define(version: 20140324233430) do
   create_table "product_images", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
+    t.string   "image",      limit: 255
     t.integer  "product_id"
   end
 
   create_table "products", force: true do |t|
-    t.string   "name"
+    t.string   "name",             limit: 255
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "shop_id"
-    t.decimal  "price",            precision: 38, scale: 2
-    t.string   "handle"
-    t.string   "page_title"
-    t.string   "meta_description"
-    t.string   "slug"
+    t.decimal  "price",                        precision: 38, scale: 2
+    t.string   "handle",           limit: 255
+    t.string   "page_title",       limit: 255
+    t.string   "meta_description", limit: 255
+    t.string   "slug",             limit: 255
   end
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
 
   create_table "shops", force: true do |t|
-    t.string   "email"
-    t.string   "name"
-    t.string   "password_digest"
+    t.string   "email",           limit: 255
+    t.string   "name",            limit: 255
+    t.string   "password_digest", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_salt"
-    t.string   "subdomain"
+    t.string   "password_salt",   limit: 255
+    t.string   "subdomain",       limit: 255
   end
 
 end

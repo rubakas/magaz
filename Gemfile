@@ -77,6 +77,7 @@ gem 'flay', group: :development
 gem 'web-console', group: :development
 
 gem "capybara-webkit", "~> 1.1.1", group: :test
+gem 'cucumber-rails', :require => false, group: :test
 gem 'factory_girl', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test

@@ -14,7 +14,7 @@
 #
 
 class LineItem < ActiveRecord::Base
-  belongs_to :order
+  belongs_to :checkout
   belongs_to :product
 
   def line_price

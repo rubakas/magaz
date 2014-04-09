@@ -5,7 +5,7 @@ class Admin::OrdersController < Admin::ApplicationController
   # GET /admin/pages
   # GET /admin/pages.json
   def index
-    @orders = current_shop.orders.page(params[:page])
+    @orders = current_shop.checkouts.orders.page(params[:page])
   end
 
   # GET /admin/pages/1
@@ -13,18 +13,13 @@ class Admin::OrdersController < Admin::ApplicationController
   def show
   end
 
-  # GET /admin/pages/new
-  def new
-    @order = current_shop.orders.build
-  end
-
   # POST /admin/pages
   # POST /admin/pages.json
   def create
-    @order = current_shop.orders.build(order_params)
+    @order = current_shop.checkouts.orders.build(order_params)
 
     if @order.save
-      redirect_to [:admin, @order], notice: "Page was successfully created"
+      redirect_to admin_order_path(@order), notice: "Page was successfully created"
     else
       render action: "new"
     end
@@ -34,7 +29,7 @@ class Admin::OrdersController < Admin::ApplicationController
   # PATCH/PUT /admin/pages/1.json
   def update
     if @order.update(order_params)
-      redirect_to [:admin, @order], notice: "Page was successfully updated"
+      redirect_to admin_order_path(@order), notice: "Page was successfully updated"
     else
       render action: "show"
     end
@@ -50,7 +45,7 @@ class Admin::OrdersController < Admin::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = current_shop.orders.find(params[:id])
+      @order = current_shop.checkouts.orders.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

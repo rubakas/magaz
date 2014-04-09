@@ -32,6 +32,9 @@
     bundle exec rake test TEST=test/single_test.rb
     bundle exec rake test TEST=test/directory/*
 
+    # for store acceptance tests only
+    bundle exec rake cucumber
+
 
 * Services 
   * postgresql as database

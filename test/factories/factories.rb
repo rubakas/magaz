@@ -19,7 +19,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "commenter#{n}@gmail.com" }
   end
 
-  factory :order do
+  factory :checkout do
   end
 
   factory :page do
