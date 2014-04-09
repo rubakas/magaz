@@ -101,3 +101,21 @@ end
 Given(/^go to checkout$/) do
   click_on 'checkout'
 end
+
+Given(/^input customer email$/) do
+  within('#edit_checkout') do
+    fill_in "checkout[email]", :with => 'email@customer.com'
+  end
+end
+
+Given(/^continue to next step$/) do
+  click_on 'next step'
+end
+
+Given(/^choose payment$/) do
+  #TODO
+end
+
+Given(/^finish checkout$/) do
+  click_on 'complete your purchase'
+end

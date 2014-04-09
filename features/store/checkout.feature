@@ -9,17 +9,16 @@ Background:
   * default collection has products in it
   * browsing store domain
 
-Scenario: checkout step one (success, failure, cancellation)
+Scenario: checkout step one success
   * product successfully added to cart
   * go to checkout
   * input customer email
-  * input customer billing address
-  * input customer shipping address
   * continue to next step
 
 Scenario: checkout step two (success, failure, cancellation)
   * product successfully added to cart
   * go to checkout
-  * checkout step one finished successfully
-  * input payment information
-  * continue to complete purchase  
+  * input customer email
+  * continue to next step
+  * choose payment
+  * finish checkout

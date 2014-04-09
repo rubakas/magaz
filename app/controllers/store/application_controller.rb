@@ -15,11 +15,17 @@ class Store::ApplicationController < ActionController::Base
     @shopping_cart = if session[:cart_id].blank?
       current_shop.checkouts.create
     else
-      Checkout.find_by_id(session[:cart_id]) || current_shop.checkouts.create
+      existing_cart = current_shop.checkouts.not_orders.find_by_id(session[:cart_id])
+      if existing_cart.blank?
+        current_shop.checkouts.create
+      else
+        existing_cart
+      end
     end
-     
-    yield
     session[:cart_id] = @shopping_cart.id
+
+    yield
+    
     @shopping_cart.save
   end
   
