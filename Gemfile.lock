@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/arel.git
-  revision: 8c6b6542f18914544ef95570ac822bf851ac209b
+  revision: 0d3e9161794e95995ee1f2dcfc063782758e64c0
   specs:
     arel (5.0.0.20140210193626)
 
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 77692ff9c32c1b4999bd4ff51af6b84186729478
+  revision: 040a1dbb11495490ca3f7c882cda1815316e7256
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -78,7 +78,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 3fd8ee3fc2c94934588274a7c8519b0bf0e0cc8c
+  revision: bb43c49abe22ff441250fcc88e36dac243ad6396
   specs:
     sprockets-rails (2.1.0)
       actionpack (>= 4.0)
@@ -153,9 +153,9 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jbuilder (2.0.5)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.2.0)
+    jbuilder (2.0.6)
+      activesupport (>= 3.0.0, < 5)
+      multi_json (~> 1.2)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)

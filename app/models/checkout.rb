@@ -14,7 +14,7 @@
 #  updated_at         :datetime
 #
 
-class Order < ActiveRecord::Base
+class Checkout < ActiveRecord::Base
   STATUSES = %w[open cancelled]
   FINANCIAL_STATUSES = %w[authorized 
     paid pending partially_paid 
@@ -26,6 +26,18 @@ class Order < ActiveRecord::Base
   
   has_many :line_items
   belongs_to :shop
+
+  scope :orders, -> { where(status: STATUSES) }
+  scope :not_orders, -> { where(status: nil) }
+
+  def update_address(address_attrs)
+    update(address_attrs)
+  end
+
+  def pay(pay_attrs)
+    attrs = {:status => 'open'}.merge pay_attrs
+    update(attrs)
+  end
 
   include ShoppingCart
 end

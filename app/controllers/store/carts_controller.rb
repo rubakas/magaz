@@ -11,7 +11,8 @@ class Store::CartsController < Store::ApplicationController
         render action: "show"
       end
     elsif params[:checkout] == 'checkout'
-      redirect_to checkout_store_cart_path
+      # redirect_to checkout_store_cart_path
+      redirect_to store_checkout_path(@shopping_cart)
     else
       #TODO notify
       render action: "show"

@@ -10,15 +10,23 @@ Given(/^default collection has products in it$/) do
 	@product = create(:product, shop: @shop, collections: [@collection])
 end
 
-Given(/^customer browsing store domain$/) do
+Given(/^browsing store domain$/) do
 	host = "#{@shop.subdomain}.#{HOSTNAME}"
 	Capybara.app_host = "http://" + host
   Capybara.default_host = Capybara.app_host
 end
 
 
-Given(/^customer visits index page$/) do
+Given(/^visit shop index page$/) do
   visit "/"
+end
+
+Given(/^visit cart page$/) do
+  visit "/cart"
+end
+
+Given(/^visit product page$/) do
+  visit "/products/#{@product.to_param}"
 end
 
 Given(/^must see products of default collection$/) do
@@ -39,12 +47,30 @@ Given(/^customer adds product to cart$/) do
   click_button "Purchase"
 end
 
-Given(/^must be on cart page$/) do
-	assert page.has_content? 'Shopping cart'
+Given(/^product successfully added to cart$/) do
+  steps %{
+  	* visit product page
+  	* customer adds product to cart
+  	* must be on cart page
+  	* must see product in the cart
+  }
 end
 
-Given(/^customer visits cart page$/) do
-  visit "/cart"
+Given(/^product successfully removed from cart$/) do
+  pending
+end
+
+Given(/^with product in the cart$/) do
+  steps %{
+  	* visit product page
+  	* customer adds product to cart
+  	* must be on cart page
+  	* must see product in the cart
+  }
+end
+
+Given(/^must be on cart page$/) do
+	assert page.has_content? 'Shopping cart'
 end
 
 Given(/^must see empty cart$/) do
@@ -55,7 +81,7 @@ Given(/^must see product in the cart$/) do
   assert page.has_content? @product.name
 end
 
-Given(/^customer changes quanity of product to (\d+)$/) do |quantity|
+Given("customer changes quanity of product to $quantity") do |quantity|
   within('#edit_cart') do
 	  fill_in "cart[updates][#{@product.id}]", :with => quantity
 	  click_on 'update'
@@ -68,10 +94,28 @@ Given(/^must see product in the cart with quantity (\d+)$/) do |quantity|
 	assert quantity == page.find(".cart-quantity").value
 end
 
-Given(/^customer chooses to checkout$/) do
-	click_on 'checkout'
-end
-
 Given(/^must see checkout page$/) do
 	assert page.has_content? 'Checkout'
+end
+
+Given(/^go to checkout$/) do
+  click_on 'checkout'
+end
+
+Given(/^input customer email$/) do
+  within('#edit_checkout') do
+    fill_in "checkout[email]", :with => 'email@customer.com'
+  end
+end
+
+Given(/^continue to next step$/) do
+  click_on 'next step'
+end
+
+Given(/^choose payment$/) do
+  #TODO
+end
+
+Given(/^finish checkout$/) do
+  click_on 'complete your purchase'
 end

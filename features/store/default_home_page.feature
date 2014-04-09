@@ -5,16 +5,12 @@ Feature: default home page
 
 Background:
   * store exists
-  * customer browsing store domain
   * default collection exists
   * default collection has products in it
-
-Scenario: products from default collection
-  * customer visits index page
-  * must see products of default collection
+  * browsing store domain
 
 Scenario: clickable products from default collection
-  * customer visits index page
+  * visit shop index page
   * must see products of default collection
   * customer clicks product name
   * must be on product page
