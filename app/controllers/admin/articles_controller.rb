@@ -4,9 +4,10 @@ class Admin::ArticlesController < Admin::ApplicationController
   actions :all, :except => [:edit]
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
-    end
+    @article = Article.friendly.find(params[:id])
+      update! do |success, failure|
+        failure.html { render :show }
+      end
   end
 
   def show

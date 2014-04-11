@@ -4,9 +4,10 @@ class Admin::ProductsController < Admin::ApplicationController
   actions :all, :except => [:edit]
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
-    end
+    @product = Product.friendly.find(params[:id])
+      update! do |success, failure|
+        failure.html { render :show }
+      end
   end
 
   def show

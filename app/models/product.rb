@@ -27,4 +27,11 @@ class Product < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { scope: :shop_id }
   validates :handle, uniqueness: { scope: :shop_id }
+
+  def should_generate_new_friendly_id?
+    handle_changed?
+  end
+
 end
+
+

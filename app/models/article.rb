@@ -24,5 +24,9 @@ class Article < ActiveRecord::Base
   validates :title,
     presence: true,
     uniqueness: { scope: :blog_id }
-  validates :handle, uniqueness: { scope: :shop_id }
+  validates :handle, uniqueness: { scope: :blog_id }
+
+  def should_generate_new_friendly_id?
+    handle_changed?
+  end
 end
