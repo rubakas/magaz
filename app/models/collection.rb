@@ -24,4 +24,5 @@ class Collection < ActiveRecord::Base
   validates :name,
     presence: true,
     uniqueness: { scope: :shop_id }
+  validates :handle, uniqueness: { scope: :shop_id }
 end

@@ -24,4 +24,5 @@ class Article < ActiveRecord::Base
   validates :title,
     presence: true,
     uniqueness: { scope: :blog_id }
+  validates :handle, uniqueness: { scope: :shop_id }
 end

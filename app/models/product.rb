@@ -26,4 +26,5 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_images, :allow_destroy => true
 
   validates :name, presence: true, uniqueness: { scope: :shop_id }
+  validates :handle, uniqueness: { scope: :shop_id }
 end

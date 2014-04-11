@@ -22,4 +22,5 @@ class Page < ActiveRecord::Base
   validates :title,
     presence: true,
     uniqueness: { scope: :shop_id }
+  validates :handle, uniqueness: { scope: :shop_id }
 end
