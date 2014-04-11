@@ -14,6 +14,11 @@ class Admin::CollectionsController < Admin::ApplicationController
     @collection = Collection.friendly.find(params[:id])
   end
 
+  def destroy
+    @collection = Collection.friendly.find(params[:id]).destroy
+    redirect_to admin_collections_path
+  end
+
 
   protected
 

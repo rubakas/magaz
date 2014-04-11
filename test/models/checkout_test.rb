@@ -4,8 +4,8 @@ class CheckoutTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @checkout = @shop.checkouts.create
-    @product_1 = create(:product, shop: @shop)
-    @product_2 = create(:product, shop: @shop)
+    @product_1 = create(:product, shop: @shop, handle: "handle1")
+    @product_2 = create(:product, shop: @shop, handle: "handle2")
   end
 
   test 'attributes' do

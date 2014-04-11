@@ -4,7 +4,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     session_for_shop @shop
-    @product = create(:product, shop: @shop)
+    @product = create(:product, shop: @shop, handle: "handle1")
   end
 
   test "should get index" do
@@ -34,14 +34,14 @@ class Admin::ProductsControllerTest < ActionController::TestCase
 
   test "should update product" do
     patch :update,
-      { id: @product.id, 
+      { id: @product.id,
         product: { description: @product.description, name: @product.name } }
     assert_redirected_to admin_product_path(assigns(:product))
   end
 
   test "should not update product" do
     patch :update,
-      { id: @product.id, 
+      { id: @product.id,
         product: { description: '', name: '' } }
     assert_template :show
     assert_response :success

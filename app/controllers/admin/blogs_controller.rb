@@ -14,6 +14,11 @@ class Admin::BlogsController < Admin::ApplicationController
     @blog = Blog.friendly.find(params[:id])
   end
 
+  def destroy
+    @blog = Blog.friendly.find(params[:id]).destroy
+    redirect_to admin_blogs_path
+  end
+
   protected
 
   def begin_of_association_chain

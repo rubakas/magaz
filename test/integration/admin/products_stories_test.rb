@@ -4,8 +4,8 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @product = create(:product, shop: @shop)
-    @collection1 = create(:collection, name: "test collection 1", shop: @shop )
-    @collection2 = create(:collection, name: "test collection 2", shop: @shop )
+    @collection1 = create(:collection, name: "test collection 1", shop: @shop, handle: "handle1" )
+    @collection2 = create(:collection, name: "test collection 2", shop: @shop, handle: "handle2" )
     click_link 'Products'
   end
 

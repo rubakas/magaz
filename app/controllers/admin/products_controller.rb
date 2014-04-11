@@ -14,6 +14,11 @@ class Admin::ProductsController < Admin::ApplicationController
     @product = Product.friendly.find(params[:id])
   end
 
+  def destroy
+    Product.friendly.find(params[:id]).destroy
+    redirect_to admin_products_path
+  end
+
 
   protected
 
