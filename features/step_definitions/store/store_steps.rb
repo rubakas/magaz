@@ -119,3 +119,15 @@ end
 Given(/^finish checkout$/) do
   click_on 'complete your purchase'
 end
+
+Given(/^order record exists$/) do
+  assert @shop.checkouts.orders.length > 0
+end
+
+Given(/^customer record exists$/) do
+  assert @shop.customers.length > 0
+end
+
+Given(/^order notification sent$/) do
+  pending # express the regexp above with the code you wish you had
+end

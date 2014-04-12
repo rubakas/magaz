@@ -5,28 +5,32 @@ class Store::ApplicationController < ActionController::Base
   
   helper_method :shopping_cart
 
-  around_action :set_shopping_cart
+  around_action :run_shopping_cart_service
 
-  def shopping_cart
-    @shopping_cart
+  def shopping_cart_service
+    @shopping_cart_service ||= ShoppingCartService.new shop_id: current_shop.id, 
+      checkout_id: session[:checkout_id], 
+      customer_id: session[:customer_id]
   end
 
-  def set_shopping_cart
-    @shopping_cart = if session[:cart_id].blank?
-      current_shop.checkouts.create
-    else
-      existing_cart = current_shop.checkouts.not_orders.find_by_id(session[:cart_id])
-      if existing_cart.blank?
-        current_shop.checkouts.create
-      else
-        existing_cart
-      end
-    end
-    session[:cart_id] = @shopping_cart.id
+  def shopping_cart
+    shopping_cart_service.checkout
+  end
+
+  def run_shopping_cart_service
+    @shopping_cart_service = ShoppingCartService.new shop_id: current_shop.id, 
+      checkout_id: session[:checkout_id], 
+      customer_id: session[:customer_id]
+
+    @shopping_cart        = shopping_cart_service.checkout
+    @customer             = shopping_cart_service.customer
+    
+    session[:customer_id] = @customer.id
+    session[:checkout_id] = @shopping_cart.id
 
     yield
-    
-    @shopping_cart.save
+
+    shopping_cart_service.save_cart
   end
   
 end

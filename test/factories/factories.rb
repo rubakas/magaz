@@ -22,6 +22,9 @@ FactoryGirl.define do
   factory :checkout do
   end
 
+  factory :customer do
+  end
+
   factory :page do
     sequence(:title) { |n| "Title #{n}" }
     sequence(:content) { |n| "Content #{n}" }

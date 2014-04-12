@@ -25,7 +25,7 @@ class Checkout < ActiveRecord::Base
     unfulfilled]
   
   has_many :line_items
-  belongs_to :shop
+  belongs_to :customer
 
   scope :orders, -> { where(status: STATUSES) }
   scope :not_orders, -> { where(status: nil) }
