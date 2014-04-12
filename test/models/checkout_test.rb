@@ -13,16 +13,6 @@ class CheckoutTest < ActiveSupport::TestCase
     skip
   end
 
-  test 'add_product and item_count' do
-    assert_equal 0, @checkout.item_count
-    @checkout.add_product(product: @product_1, quantity: 1)
-    assert_equal 1, @checkout.item_count
-    @checkout.add_product(product: @product_1, quantity: 1)
-    assert_equal 2, @checkout.item_count
-    @checkout.add_product(product: @product_2, quantity: 1)
-    assert_equal 3, @checkout.item_count
-  end
-
   test 'items' do
     assert_equal [], @checkout.items
   end

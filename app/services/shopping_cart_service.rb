@@ -11,12 +11,32 @@ class ShoppingCartService
 		@checkout.save
 	end
 
-	def update_with_hash(hash)
-		@checkout.update_with_hash(hash)
-	end
+  def update_with_hash(id_qty_hash)
+    @checkout.line_items.clear
+    id_qty_hash.each do |k,v|
+    	#TODO product not found
+      add_product(product: @shop.products.find(k), quantity: v.to_i)
+    end
+    @checkout.line_items
+  end
 
 	def add_product(product:, quantity:)
-		@checkout.add_product(product: product, quantity: quantity)
+		raise "Bad quantity" if quantity < 1
+		@checkout.line_items
+    existing_line_item = 
+      @checkout.line_items.find { |li| li.product_id == product.id }
+
+    if existing_line_item
+      existing_line_item.inspect
+      existing_line_item.quantity += quantity
+    else
+      new_li_attrs = LineItem.attribute_names.map(&:to_sym) - [:id, :shop_id]
+      copied_attrs = product.
+        attributes.
+        merge({product: product, product_id: product.id, quantity: quantity}).
+        select{|k, v| new_li_attrs.include?(k.to_sym) }
+      @checkout.line_items.create(copied_attrs)
+    end
 	end
 
 	def update_address(address_attrs)
