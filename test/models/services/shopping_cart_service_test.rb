@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ShoppingCartServiceTest < ActiveSupport::TestCase
+class Services::ShoppingCartTest < ActiveSupport::TestCase
 	setup do
 		@existing_shop 			= create(:shop)
 		@existing_customer 	= create(:customer, shop: @existing_shop)
@@ -8,7 +8,7 @@ class ShoppingCartServiceTest < ActiveSupport::TestCase
 	end
 
 	test "initialization with existing stuff" do
-    @service = ShoppingCartService.new shop_id: @existing_shop.id, 
+    @service = Services::ShoppingCart.new shop_id: @existing_shop.id, 
     	checkout_id: @existing_checkout.id, 
     	customer_id: @existing_customer.id
 
@@ -18,7 +18,7 @@ class ShoppingCartServiceTest < ActiveSupport::TestCase
   end
 
   test "initialization with missing stuff" do
-    @missing_checkout_service = ShoppingCartService.new shop_id: @existing_shop.id, 
+    @missing_checkout_service = Services::ShoppingCart.new shop_id: @existing_shop.id, 
     	checkout_id: 'dont exist', 
     	customer_id: @existing_customer.id
 
@@ -27,7 +27,7 @@ class ShoppingCartServiceTest < ActiveSupport::TestCase
     assert_equal @missing_checkout_service.customer, @existing_customer
 
 
-    @missing_checkout_and_customer_service = ShoppingCartService.new shop_id: @existing_shop.id, 
+    @missing_checkout_and_customer_service = Services::ShoppingCart.new shop_id: @existing_shop.id, 
     	checkout_id: 'do not exist',
     	customer_id: 'do not exist'
 
@@ -39,7 +39,7 @@ class ShoppingCartServiceTest < ActiveSupport::TestCase
   end
 
   test 'add_product and item_count' do
-    @service = ShoppingCartService.new shop_id: @existing_shop.id, 
+    @service = Services::ShoppingCart.new shop_id: @existing_shop.id, 
         checkout_id: nil, 
         customer_id: nil
 
