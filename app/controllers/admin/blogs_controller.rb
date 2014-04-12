@@ -4,13 +4,19 @@ class Admin::BlogsController < Admin::ApplicationController
   actions :all, :except => [:edit]
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
-    end
+    @blog = Blog.friendly.find(params[:id])
+      update! do |success, failure|
+        failure.html { render :show }
+      end
   end
 
   def show
     @blog = Blog.friendly.find(params[:id])
+  end
+
+  def destroy
+    @blog = Blog.friendly.find(params[:id]).destroy
+    redirect_to admin_blogs_path
   end
 
   protected

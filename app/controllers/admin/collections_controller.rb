@@ -4,13 +4,19 @@ class Admin::CollectionsController < Admin::ApplicationController
   actions :all, :except => [:edit]
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
-    end
+    @collection = Collection.friendly.find(params[:id])
+      update! do |success, failure|
+        failure.html { render :show }
+      end
   end
 
   def show
     @collection = Collection.friendly.find(params[:id])
+  end
+
+  def destroy
+    @collection = Collection.friendly.find(params[:id]).destroy
+    redirect_to admin_collections_path
   end
 
 

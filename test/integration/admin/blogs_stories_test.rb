@@ -35,6 +35,19 @@ class Admin::BlogsStoriesTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin/blogs/test-url"
   end
 
+  test "edit handle url" do
+    click_link 'Add Blog'
+    fill_in 'Title', with: 'Some Uniq Blog'
+    fill_in 'Handle', with: 'test-url'
+    click_button 'Create Blog'
+    assert page.has_content? 'Blog was successfully created.'
+    assert current_path == "/admin/blogs/test-url"
+    fill_in 'Handle', with: 'edit-test-url'
+    click_button 'Update Blog'
+    assert page.has_content? 'Blog was successfully updated.'
+    assert current_path == "/admin/blogs/edit-test-url"
+  end
+
   test "edit blog" do
     click_link(@blog.title, match: :first)
     fill_in 'Title', with: 'Updated Blog Post'

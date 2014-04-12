@@ -4,13 +4,19 @@ class Admin::PagesController < Admin::ApplicationController
   actions :all, :except => [:edit]
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
-    end
+    @page = Page.friendly.find(params[:id])
+      update! do |success, failure|
+        failure.html { render :show }
+      end
   end
 
   def show
     @page = Page.friendly.find(params[:id])
+  end
+
+  def destroy
+    @page = Page.friendly.find(params[:id]).destroy
+    redirect_to admin_pages_path
   end
 
   protected

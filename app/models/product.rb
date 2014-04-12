@@ -21,9 +21,16 @@ class Product < ActiveRecord::Base
   has_many :product_images, :dependent => :destroy
   belongs_to :shop
 
-  friendly_id :handle, use: :slugged
+  friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 
   accepts_nested_attributes_for :product_images, :allow_destroy => true
 
   validates :name, presence: true, uniqueness: { scope: :shop_id }
+
+  def should_generate_new_friendly_id?
+    handle_changed?
+  end
+
 end
+
+

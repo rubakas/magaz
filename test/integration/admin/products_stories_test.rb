@@ -4,8 +4,8 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @product = create(:product, shop: @shop)
-    @collection1 = create(:collection, name: "test collection 1", shop: @shop )
-    @collection2 = create(:collection, name: "test collection 2", shop: @shop )
+    @collection1 = create(:collection, name: "test collection 1", shop: @shop, handle: "handle1" )
+    @collection2 = create(:collection, name: "test collection 2", shop: @shop, handle: "handle2" )
     click_link 'Products'
   end
 
@@ -100,6 +100,20 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
     click_button 'Create Product'
     assert page.has_content? 'Product was successfully created.'
     assert current_path == "/admin/products/test-url"
+  end
+
+  test "edit handle url" do
+    click_link 'Add Product'
+    fill_in 'Name', with: 'Some Uniq Product'
+    fill_in 'Description', with: 'Some Uniq Description'
+    fill_in 'Handle', with: 'test-url'
+    click_button 'Create Product'
+    assert page.has_content? 'Product was successfully created.'
+    assert current_path == "/admin/products/test-url"
+    fill_in 'Handle', with: 'edited-test-url'
+    click_button 'Update Product'
+    assert page.has_content? 'Product was successfully updated.'
+    assert current_path == "/admin/products/edited-test-url"
   end
 
   test "edit product" do
