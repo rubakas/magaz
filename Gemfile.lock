@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 040a1dbb11495490ca3f7c882cda1815316e7256
+  revision: fd56a78c0e804ced70b67f8ebf90efdef98575af
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -68,7 +68,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: a5c466c809cde1797f5cc4b447f3a73f1fcb911f
+  revision: 7138bbb401159b116dda4ec9dd4b375dc1d2e59a
   specs:
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -78,9 +78,9 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: bb43c49abe22ff441250fcc88e36dac243ad6396
+  revision: 72034a6fd3dcf868eb7e7798539b1372ebffe58e
   specs:
-    sprockets-rails (2.1.0)
+    sprockets-rails (2.1.2)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (~> 2.8)
