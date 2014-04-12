@@ -19,7 +19,7 @@ class Collection < ActiveRecord::Base
   has_and_belongs_to_many :products
   belongs_to :shop
 
-  friendly_id :handle, use: :slugged
+  friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 
   validates :name,
     presence: true,
