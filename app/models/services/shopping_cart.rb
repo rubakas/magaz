@@ -1,4 +1,4 @@
-class ShoppingCartService
+class Services::ShoppingCart
 	attr_reader :checkout, :customer, :shop
 
 	def initialize(shop_id:, checkout_id:, customer_id:)
