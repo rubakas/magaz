@@ -17,12 +17,11 @@ class Store::ApplicationController < ActionController::Base
     shopping_cart_service.checkout
   end
 
-  def run_shopping_cart_service
-    @shopping_cart        = shopping_cart_service.checkout
-    @customer             = shopping_cart_service.customer
+  def run_shopping_cart_service    
+    shopping_cart_service
     
-    session[:customer_id] = @customer.id
-    session[:checkout_id] = @shopping_cart.id
+    session[:customer_id] = shopping_cart_service.customer.id
+    session[:checkout_id] = shopping_cart_service.checkout.id
 
     yield
 
