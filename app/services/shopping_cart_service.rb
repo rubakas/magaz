@@ -19,11 +19,13 @@ class ShoppingCartService
 		@checkout.add_product(product: product, quantity: quantity)
 	end
 
-	def update_address
-		@checkout.update_address
+	def update_address(address_attrs)
+		@checkout.update_address(address_attrs)
 	end
 
-	def pay
-		@checkout.pay	
+	def pay(payment_attrs)
+		#TODO connect with payment processor
+		#TODO send notifications
+		@checkout.pay(payment_attrs)
 	end
 end
