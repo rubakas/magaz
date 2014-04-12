@@ -17,7 +17,7 @@ class Page < ActiveRecord::Base
   extend FriendlyId
   belongs_to :shop
 
-  friendly_id :handle, use: :slugged
+  friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 
   validates :title,
     presence: true,
