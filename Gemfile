@@ -71,6 +71,7 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'annotate', '~> 2.6.0'
+gem 'rubocop', :require => :false, group: :development
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
 gem 'flay', group: :development
