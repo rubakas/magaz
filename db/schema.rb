@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407142157) do
+ActiveRecord::Schema.define(version: 20140411152202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,18 @@ ActiveRecord::Schema.define(version: 20140407142157) do
     t.datetime "updated_at"
   end
 
+  create_table "orders", force: true do |t|
+    t.integer  "shop_id"
+    t.text     "note"
+    t.string   "status",             limit: 255
+    t.string   "financial_status",   limit: 255
+    t.string   "fulfillment_status", limit: 255
+    t.string   "currency",           limit: 255
+    t.string   "email",              limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pages", force: true do |t|
     t.string   "title",            limit: 255
     t.string   "content",          limit: 255
@@ -141,8 +153,6 @@ ActiveRecord::Schema.define(version: 20140407142157) do
     t.string   "meta_description", limit: 255
     t.string   "slug",             limit: 255
   end
-
-  add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
 
   create_table "shops", force: true do |t|
     t.string   "email",           limit: 255

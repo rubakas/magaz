@@ -102,6 +102,20 @@ class Admin::ProductsStoriesTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin/products/test-url"
   end
 
+  test "edit handle url" do
+    click_link 'Add Product'
+    fill_in 'Name', with: 'Some Uniq Product'
+    fill_in 'Description', with: 'Some Uniq Description'
+    fill_in 'Handle', with: 'test-url'
+    click_button 'Create Product'
+    assert page.has_content? 'Product was successfully created.'
+    assert current_path == "/admin/products/test-url"
+    fill_in 'Handle', with: 'edited-test-url'
+    click_button 'Update Product'
+    assert page.has_content? 'Product was successfully updated.'
+    assert current_path == "/admin/products/edited-test-url"
+  end
+
   test "edit product" do
     click_link(@product.name, match: :first)
     fill_in 'Name', with: 'Updated Product'
