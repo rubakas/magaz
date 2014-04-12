@@ -18,10 +18,6 @@ class Store::ApplicationController < ActionController::Base
   end
 
   def run_shopping_cart_service
-    @shopping_cart_service = ShoppingCartService.new shop_id: current_shop.id, 
-      checkout_id: session[:checkout_id], 
-      customer_id: session[:customer_id]
-
     @shopping_cart        = shopping_cart_service.checkout
     @customer             = shopping_cart_service.customer
     
