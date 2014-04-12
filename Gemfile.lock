@@ -1,16 +1,16 @@
 GIT
+  remote: git://github.com/andriytyurnikov/arel.git
+  revision: e3bf2153b7802e2874c225c982b028080098fe8a
+  specs:
+    arel (5.0.0.20140210193626)
+
+GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
   revision: 54b165183fdccc4feb451416d1a46ecae496d6be
   specs:
     anjlab-bootstrap-rails (3.0.3.0)
       railties (>= 3.0)
       sass (>= 3.2)
-
-GIT
-  remote: git://github.com/rails/arel.git
-  revision: 0d3e9161794e95995ee1f2dcfc063782758e64c0
-  specs:
-    arel (5.0.0.20140210193626)
 
 GIT
   remote: git://github.com/rails/coffee-rails.git
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 040a1dbb11495490ca3f7c882cda1815316e7256
+  revision: fd56a78c0e804ced70b67f8ebf90efdef98575af
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -68,7 +68,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: a5c466c809cde1797f5cc4b447f3a73f1fcb911f
+  revision: 7138bbb401159b116dda4ec9dd4b375dc1d2e59a
   specs:
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -78,9 +78,9 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: bb43c49abe22ff441250fcc88e36dac243ad6396
+  revision: 72034a6fd3dcf868eb7e7798539b1372ebffe58e
   specs:
-    sprockets-rails (2.1.0)
+    sprockets-rails (2.1.2)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (~> 2.8)
@@ -92,6 +92,7 @@ GEM
     annotate (2.6.3)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
+    ast (1.1.0)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
@@ -179,19 +180,31 @@ GEM
     parallel (1.0.0)
     parallel_tests (0.16.10)
       parallel
+    parser (2.1.7)
+      ast (~> 1.1)
+      slop (~> 3.4, >= 3.4.5)
     pg (0.17.1)
     polyglot (0.3.4)
+    powerpack (0.0.9)
     puma (2.8.1)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
+    rainbow (2.0.0)
     rake (10.2.2)
     rdoc (4.1.1)
       json (~> 1.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
     rmagick (2.13.2)
+    rubocop (0.20.1)
+      json (>= 1.7.7, < 2)
+      parser (~> 2.1.7)
+      powerpack (~> 0.0.6)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.4)
+    ruby-progressbar (1.4.2)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
     sass (3.2.19)
@@ -202,6 +215,7 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
+    slop (3.5.0)
     spring (1.1.2)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -259,6 +273,7 @@ DEPENDENCIES
   puma
   rails!
   rmagick
+  rubocop
   sass-rails!
   sdoc
   slim

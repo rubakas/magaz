@@ -5,14 +5,14 @@ class Store::CartsController < Store::ApplicationController
 
   def update
     if params[:update] == 'update'
-      if @shopping_cart.update_with_hash(params.permit![:cart][:updates])
+      if shopping_cart_service.update_with_hash(params.permit![:cart][:updates])
         redirect_to store_cart_path, notice: "Cart was successfully updated"
       else
         render action: "show"
       end
     elsif params[:checkout] == 'checkout'
       # redirect_to checkout_store_cart_path
-      redirect_to store_checkout_path(@shopping_cart)
+      redirect_to store_checkout_path(shopping_cart_service.checkout)
     else
       #TODO notify
       render action: "show"
@@ -29,7 +29,7 @@ class Store::CartsController < Store::ApplicationController
     else
       permitted_params_for_add[:quantity].to_i
     end
-    @shopping_cart.add_product(product: product_to_add, quantity: quantity)
+    shopping_cart_service.add_product(product: product_to_add, quantity: quantity)
     redirect_to store_cart_path
   end
 

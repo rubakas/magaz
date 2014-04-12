@@ -22,3 +22,6 @@ Scenario: checkout step two (success, failure, cancellation)
   * continue to next step
   * choose payment
   * finish checkout
+  * order record exists
+  * customer record exists
+  * order notification sent
