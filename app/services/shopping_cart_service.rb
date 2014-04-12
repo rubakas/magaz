@@ -18,4 +18,12 @@ class ShoppingCartService
 	def add_product(product:, quantity:)
 		@checkout.add_product(product: product, quantity: quantity)
 	end
+
+	def update_address
+		@checkout.update_address
+	end
+
+	def pay
+		@checkout.pay	
+	end
 end
