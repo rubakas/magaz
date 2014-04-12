@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',            github: "rails/rails"
-gem 'arel',             github: "rails/arel"
+gem 'arel',             github: "andriytyurnikov/arel"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -71,6 +71,7 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'annotate', '~> 2.6.0'
+gem 'rubocop', :require => false
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
 gem 'flay', group: :development
