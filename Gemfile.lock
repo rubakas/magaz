@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/andriytyurnikov/arel.git
-  revision: e3bf2153b7802e2874c225c982b028080098fe8a
-  specs:
-    arel (5.0.0.20140210193626)
-
-GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
   revision: 54b165183fdccc4feb451416d1a46ecae496d6be
   specs:
@@ -22,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: fd56a78c0e804ced70b67f8ebf90efdef98575af
+  revision: 47d9321a1ee88368cc24de7cad5f42a28066d1a0
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -92,6 +86,7 @@ GEM
     annotate (2.6.3)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
+    arel (5.0.0)
     ast (1.1.0)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
@@ -186,7 +181,7 @@ GEM
     pg (0.17.1)
     polyglot (0.3.4)
     powerpack (0.0.9)
-    puma (2.8.1)
+    puma (2.8.2)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -249,7 +244,7 @@ PLATFORMS
 DEPENDENCIES
   anjlab-bootstrap-rails!
   annotate (~> 2.6.0)
-  arel!
+  arel (= 5.0.0)
   bcrypt-ruby (~> 3.1.2)
   capybara-webkit (~> 1.1.1)
   carrierwave
