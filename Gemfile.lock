@@ -7,6 +7,12 @@ GIT
       sass (>= 3.2)
 
 GIT
+  remote: git://github.com/rails/arel.git
+  revision: d534c345dd992e79af783e0864c43b5c58aae345
+  specs:
+    arel (5.0.0.20140412150050)
+
+GIT
   remote: git://github.com/rails/coffee-rails.git
   revision: 044d0d683b436128dedf45f780b8fca138d005e2
   specs:
@@ -86,7 +92,6 @@ GEM
     annotate (2.6.3)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
-    arel (5.0.0)
     ast (1.1.0)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
@@ -244,7 +249,7 @@ PLATFORMS
 DEPENDENCIES
   anjlab-bootstrap-rails!
   annotate (~> 2.6.0)
-  arel (= 5.0.0)
+  arel!
   bcrypt-ruby (~> 3.1.2)
   capybara-webkit (~> 1.1.1)
   carrierwave
