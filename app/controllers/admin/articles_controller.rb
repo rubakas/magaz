@@ -5,9 +5,9 @@ class Admin::ArticlesController < Admin::ApplicationController
 
   def update
     @article = Article.friendly.find(params[:id])
-      update! do |success, failure|
-        failure.html { render :show }
-      end
+    update! do |success, failure|
+      failure.html { render :show }
+    end
   end
 
   def show
@@ -20,7 +20,7 @@ class Admin::ArticlesController < Admin::ApplicationController
     @articles ||= end_of_association_chain.page(params[:page])
   end
 
-  #TODO collection_ids are not guaranteed to belong to this shop!!!
+  #TODO:  collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
     { article:

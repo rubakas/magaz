@@ -1,0 +1,32 @@
+AlignParameters:
+  Enabled: false
+BracesAroundHashParameters:
+  Enabled: false
+Documentation:
+  Enabled: false
+ClassLength:
+  Enabled: false
+ClassAndModuleChildren:
+  Enabled: false
+EmptyLines:
+  Enabled: false
+EmptyLinesAroundBody:
+  Enabled: false
+FinalNewline:
+  Enabled: false
+HashSyntax:
+  Enabled: false
+LeadingCommentSpace:
+  Enabled: false  
+LineLength:
+  Enabled: false
+SingleSpaceBeforeFirstArg:
+  Enabled: false
+StringLiterals:
+  Enabled: false
+Tab:
+  Enabled: false
+TrailingBlankLines:
+  Enabled: false
+TrailingWhitespace:
+  Enabled: false

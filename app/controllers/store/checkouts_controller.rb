@@ -1,5 +1,5 @@
 class Store::CheckoutsController < Store::ApplicationController
-	inherit_resources
+  inherit_resources
   actions :show, :update
 
   def update_address

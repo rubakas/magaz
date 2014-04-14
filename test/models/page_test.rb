@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class PageTest < ActiveSupport::TestCase
-
   test 'two pages with same handle and different shops' do
     @shop1 = create(:shop, name: "shop1")
     @shop2 = create(:shop, name: "shop2")

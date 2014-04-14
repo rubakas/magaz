@@ -14,7 +14,7 @@ class Store::CartsController < Store::ApplicationController
       # redirect_to checkout_store_cart_path
       redirect_to store_checkout_path(shopping_cart_service.checkout)
     else
-      #TODO notify
+      #TODO:  notify
       render action: "show"
     end
   end

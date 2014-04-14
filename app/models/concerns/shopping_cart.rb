@@ -1,4 +1,4 @@
-#TODO looks like decorator to me
+#TODO:  looks like decorator to me
 module ShoppingCart
   extend ActiveSupport::Concern
   

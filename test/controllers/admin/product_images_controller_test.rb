@@ -8,7 +8,7 @@ class Admin::ProductImagesControllerTest < ActionController::TestCase
     @product_image = create(:product_image, product: @product)
   end
 
- test "should create product image" do
+  test "should create product image" do
     assert_difference('ProductImage.count') do
       post :create, image: fixture_file_upload('/files/image.jpg')
     end

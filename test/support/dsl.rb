@@ -1,7 +1,7 @@
 class ActionDispatch::IntegrationTest
 
   setup do
-    @shop = create(:shop, name:'example', subdomain: 'example', password: 'password', email: 'admin@example.com')
+    @shop = create(:shop, name: 'example', subdomain: 'example', password: 'password', email: 'admin@example.com')
   end
 
   teardown do
@@ -14,7 +14,7 @@ class ActionDispatch::IntegrationTest
       Capybara.current_driver = Capybara.javascript_driver
     end
 
-    def set_host (host)
+    def set_host(host)
       host! host
       Capybara.app_host = "http://" + host + ":" + parallel_capybara_server_port.to_s
       Capybara.default_host = Capybara.app_host
@@ -42,7 +42,9 @@ class ActionDispatch::IntegrationTest
 end
 
 class ActionController::TestCase
+
   private
+
   module CustomControllerDsl
     def session_for_shop(shop)
       session[:user_id] = shop.id
