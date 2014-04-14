@@ -24,11 +24,11 @@ class Store::CartsController < Store::ApplicationController
 
   def add
     product_to_add = current_shop.products.find(permitted_params_for_add[:product_id])
-    quantity = if permitted_params_for_add[:quantity].blank?
-      1
-    else
-      permitted_params_for_add[:quantity].to_i
-    end
+    quantity =  if permitted_params_for_add[:quantity].blank?
+                  1
+                else
+                  permitted_params_for_add[:quantity].to_i
+                end
     shopping_cart_service.add_product(product: product_to_add, quantity: quantity)
     redirect_to store_cart_path
   end

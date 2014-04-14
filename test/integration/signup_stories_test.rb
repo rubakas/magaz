@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SignupStoriesTest < ActionDispatch::IntegrationTest  
   setup do
-    set_host HOSTNAME
+    use_host HOSTNAME
   end
 
   test "signup success" do

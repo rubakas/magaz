@@ -13,7 +13,7 @@ class Services::ShoppingCart
 
   def update_with_hash(id_qty_hash)
     @checkout.line_items.clear
-    id_qty_hash.each do |k,v|
+    id_qty_hash.each do |k, v|
     	#TODO:  product not found
       add_product(product: @shop.products.find(k), quantity: v.to_i)
     end

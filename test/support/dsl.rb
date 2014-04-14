@@ -14,26 +14,26 @@ class ActionDispatch::IntegrationTest
       Capybara.current_driver = Capybara.javascript_driver
     end
 
-    def set_host(host)
+    def use_host(host)
       host! host
       Capybara.app_host = "http://" + host + ":" + parallel_capybara_server_port.to_s
       Capybara.default_host = Capybara.app_host
     end
 
-    def set_subdomain(subdomain)
-      set_host("#{subdomain}.#{HOSTNAME}")
+    def use_subdomain(subdomain)
+      use_host("#{subdomain}.#{HOSTNAME}")
     end
 
     def login
       use_js
-      set_host HOSTNAME
+      use_host HOSTNAME
       visit '/'
       click_link 'Sign in'
       fill_in 'Your shop name', with: @shop.subdomain
       fill_in 'Email address', with: @shop.email
       fill_in 'Password', with: 'password'
 
-      set_subdomain @shop.subdomain
+      use_subdomain @shop.subdomain
       click_button 'Sign in'
     end
   end

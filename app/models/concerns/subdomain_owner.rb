@@ -9,12 +9,12 @@ module SubdomainOwner
                           uniqueness: true, 
                           format: { with: /[-a-z0-9]/ }
 
-    before_validation :set_subdomain, on: :create
+    before_validation :force_subdomain_format, on: :create
   end
 
   private
 
-  def set_subdomain
+  def force_subdomain_format
     if name.present?
       #TODO:  extract any special symbols
       self.subdomain = name.downcase.parameterize
