@@ -19,7 +19,7 @@ class Article < ActiveRecord::Base
   belongs_to :blog
   has_many :comments
 
-  friendly_id :handle, use: :slugged
+  friendly_id :handle, use: [:slugged, :scoped], scope: :blog
 
   validates :title,
     presence: true,
