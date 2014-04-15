@@ -37,7 +37,7 @@ class Admin::PagesStoriesTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin/pages/test-url"
   end
 
-  test "edit handle url" do
+  test "handle url update" do
     click_link 'Add Page'
     fill_in 'Title', with: 'Some Uniq Page'
     fill_in 'Content', with: 'Some Uniq Content'

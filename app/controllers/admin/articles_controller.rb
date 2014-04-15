@@ -4,20 +4,19 @@ class Admin::ArticlesController < Admin::ApplicationController
   actions :all, :except => [:edit]
 
   def update
-    @article = Article.friendly.find(params[:id])
     update! do |success, failure|
       failure.html { render :show }
     end
-  end
-
-  def show
-    @article = Article.friendly.find(params[:id])
   end
 
   protected
 
   def collection
     @articles ||= end_of_association_chain.page(params[:page])
+  end
+
+  def resource
+    @article ||= end_of_association_chain.friendly.find(params[:id])
   end
 
   #TODO:  collection_ids are not guaranteed to belong to this shop!!!

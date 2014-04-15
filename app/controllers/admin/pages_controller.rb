@@ -4,19 +4,9 @@ class Admin::PagesController < Admin::ApplicationController
   actions :all, :except => [:edit]
 
   def update
-    @page = Page.friendly.find(params[:id])
     update! do |success, failure|
       failure.html { render :show }
     end
-  end
-
-  def show
-    @page = Page.friendly.find(params[:id])
-  end
-
-  def destroy
-    @page = Page.friendly.find(params[:id]).destroy
-    redirect_to admin_pages_path
   end
 
   protected
@@ -27,6 +17,10 @@ class Admin::PagesController < Admin::ApplicationController
 
   def collection
     @pages ||= end_of_association_chain.page(params[:page])
+  end
+
+  def resource
+    @page ||= end_of_association_chain.friendly.find(params[:id])
   end
 
   #TODO:  collection_ids are not guaranteed to belong to this shop!!!

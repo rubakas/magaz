@@ -4,21 +4,10 @@ class Admin::ProductsController < Admin::ApplicationController
   actions :all, :except => [:edit]
 
   def update
-    @product = Product.friendly.find(params[:id])
     update! do |success, failure|
       failure.html { render :show }
     end
   end
-
-  def show
-    @product = Product.friendly.find(params[:id])
-  end
-
-  def destroy
-    Product.friendly.find(params[:id]).destroy
-    redirect_to admin_products_path
-  end
-
 
   protected
 
@@ -28,6 +17,10 @@ class Admin::ProductsController < Admin::ApplicationController
 
   def collection
     @products ||= end_of_association_chain.page(params[:page])
+  end
+
+  def resource
+    @product ||= end_of_association_chain.friendly.find(params[:id])
   end
 
   #TODO:  collection_ids are not guaranteed to belong to this shop!!!

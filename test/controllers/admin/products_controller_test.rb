@@ -54,4 +54,36 @@ class Admin::ProductsControllerTest < ActionController::TestCase
 
     assert_redirected_to admin_products_path
   end
+  #TODO: exctract shared example
+  test "ownership separated" do
+    @shop2 = create(:shop, subdomain: 'example2')
+    @shop3 = create(:shop, subdomain: 'example3')
+    @product2 = create(:product, shop: @shop2, handle: "handle")
+
+    session_for_shop @shop3
+    @product3 = create(:product, shop: @shop3, handle: "handle")
+
+    patch :update,
+      { id: @product3.id,
+        product: {name: "changed"}}
+    assert_redirected_to admin_product_path(assigns(:product))
+    assert_equal "changed", @product3.reload.name
+    refute_equal "changed", @product2.reload.name
+  end
+
+  #TODO: exctract shared example
+  test "ownership ensured" do
+    @shop2 = create(:shop, subdomain: 'example2')
+    @shop3 = create(:shop, subdomain: 'example3')
+    @product2 = create(:product, shop: @shop2, handle: "handle")
+
+    session_for_shop @shop3
+    @product3 = create(:product, shop: @shop3, handle: "handle")
+
+    assert_raise ActiveRecord::RecordNotFound do
+      patch :update,
+      { id: @product2.id,
+        product: {name: "changed"}}
+    end
+  end
 end

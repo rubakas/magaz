@@ -4,19 +4,9 @@ class Admin::BlogsController < Admin::ApplicationController
   actions :all, :except => [:edit]
 
   def update
-    @blog = Blog.friendly.find(params[:id])
     update! do |success, failure|
       failure.html { render :show }
     end
-  end
-
-  def show
-    @blog = Blog.friendly.find(params[:id])
-  end
-
-  def destroy
-    @blog = Blog.friendly.find(params[:id]).destroy
-    redirect_to admin_blogs_path
   end
 
   protected
@@ -27,6 +17,10 @@ class Admin::BlogsController < Admin::ApplicationController
 
   def collection
     @blogs ||= end_of_association_chain.page(params[:page])
+  end
+
+  def resource
+    @blog ||= end_of_association_chain.friendly.find(params[:id])
   end
 
   #TODO:  collection_ids are not guaranteed to belong to this shop!!!
