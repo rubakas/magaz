@@ -30,14 +30,5 @@ class Checkout < ActiveRecord::Base
   scope :orders, -> { where(status: STATUSES) }
   scope :not_orders, -> { where(status: nil) }
 
-  def update_address(address_attrs)
-    update(address_attrs)
-  end
-
-  def pay(pay_attrs)
-    attrs = { :status => 'open' }.merge pay_attrs
-    update(attrs)
-  end
-
   include ShoppingCart
 end
