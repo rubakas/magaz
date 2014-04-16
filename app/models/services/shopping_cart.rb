@@ -40,12 +40,13 @@ class Services::ShoppingCart
   end
 
   def update_address(address_attrs)
-    @checkout.update_address(address_attrs)
+    @checkout.update(address_attrs)
   end
 
   def pay(payment_attrs)
     #TODO:  connect with payment processor
     #TODO:  send notifications
-    @checkout.pay(payment_attrs)
+    attrs = { :status => 'open' }.merge payment_attrs
+    @checkout.update(attrs)
   end
 end

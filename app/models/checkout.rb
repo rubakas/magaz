@@ -16,28 +16,19 @@
 
 class Checkout < ActiveRecord::Base
   STATUSES = %w[open cancelled]
-  FINANCIAL_STATUSES = %w[authorized 
-                          paid pending partially_paid 
-                          partially_refunded refunded unpaid voided]
-  FULFILLMENT_STATUSES = %w[fulfilled 
-                            not_fulfilled 
-                            partially_fulfilled 
-                            unfulfilled ]
+  # FINANCIAL_STATUSES = %w[authorized 
+  #                         paid pending partially_paid 
+  #                         partially_refunded refunded unpaid voided]
+  # FULFILLMENT_STATUSES = %w[fulfilled 
+  #                           not_fulfilled 
+  #                           partially_fulfilled 
+  #                           unfulfilled ]
   
   has_many :line_items
   belongs_to :customer
 
   scope :orders, -> { where(status: STATUSES) }
   scope :not_orders, -> { where(status: nil) }
-
-  def update_address(address_attrs)
-    update(address_attrs)
-  end
-
-  def pay(pay_attrs)
-    attrs = { :status => 'open' }.merge pay_attrs
-    update(attrs)
-  end
 
   include ShoppingCart
 end
