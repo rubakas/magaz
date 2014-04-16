@@ -48,4 +48,7 @@ FactoryGirl.define do
     password_digest { BCrypt::Engine.hash_secret('password', password_salt) }
   end
 
+  factory :theme do
+    sequence(:name)      { |n| "Theme#{n}" }
+  end
 end

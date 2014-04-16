@@ -15,11 +15,12 @@
 class Shop < ActiveRecord::Base
   include PasswordAuthenticable
   include SubdomainOwner
-  has_many :collections
-  has_many :customers
-  has_many :products
-  has_many :pages
   has_many :blogs
+  has_many :collections
   has_many :checkouts, through: :customers
+  has_many :customers
+  has_many :pages
   has_many :product_images
+  has_many :products
+  has_many :themes
 end
