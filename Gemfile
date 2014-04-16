@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+def local_gem(gem_name)
+  gem gem_name,         path: "gems/#{gem_name}"
+end
+
+local_gem 'magaz_database_common'
+
 gem 'rails',            github: "rails/rails"
 gem 'arel',             '5.0.0'#github: "rails/arel"
 
