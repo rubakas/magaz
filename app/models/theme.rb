@@ -8,4 +8,6 @@ class Theme < ActiveRecord::Base
 
   scope :sources, -> { where(source_theme: nil) }
   scope :with_role, ->(role) { where(role: role) }
+
+  scope :current, -> { where(role: 'main').first }
 end

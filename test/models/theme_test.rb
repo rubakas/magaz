@@ -4,22 +4,22 @@ class ThemeTest < ActiveSupport::TestCase
 
   test 'self referencing association' do
     @source_theme = create(:theme)
-    @derived_theme = Theme.new(name: @source_theme.name)
+    @installed_theme = Theme.new(name: @source_theme.name)
     
-    @derived_theme.source_theme = @source_theme
+    @installed_theme.source_theme = @source_theme
     
-    assert @derived_theme.save
+    assert @installed_theme.save
     
-    assert_equal @source_theme, @derived_theme.source_theme
-    assert_includes @source_theme.derived_themes, @derived_theme
+    assert_equal @source_theme, @installed_theme.source_theme
+    assert_includes @source_theme.installed_themes, @installed_theme
   end
 
   test 'finder of source associations' do
     @source_theme   = create(:theme)
-    @derived_theme  = create(:theme, source_theme: @source_theme)
+    @installed_theme  = create(:theme, source_theme: @source_theme)
 
     assert_includes Theme.sources, @source_theme
-    refute_includes Theme.sources, @derived_theme
+    refute_includes Theme.sources, @installed_theme
   end
 
   test 'finder of roles' do
