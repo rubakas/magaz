@@ -1,6 +1,7 @@
 class Theme < ActiveRecord::Base
   ROLES = %w[main unpublished]
 
+  has_many :assets
   belongs_to :shop
   
   has_many   :installed_themes, class_name: 'Theme', foreign_key: :source_theme_id

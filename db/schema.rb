@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416115243) do
+ActiveRecord::Schema.define(version: 20140416153636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 20140416115243) do
     t.string   "page_title",       limit: 255
     t.string   "meta_description", limit: 255
     t.string   "slug",             limit: 255
+  end
+
+  create_table "assets", force: true do |t|
+    t.integer  "theme_id"
+    t.string   "content_type"
+    t.string   "key"
+    t.string   "public_url"
+    t.integer  "size"
+    t.string   "src"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "blogs", force: true do |t|
