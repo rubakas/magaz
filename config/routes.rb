@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   constraints(ThemeStoreSubdomainConstraint) do
     namespace :theme_store, path: nil, shallow_path: nil do
       root 'themes#index'
-      resources :themes
+      resources :themes do
+        member do
+          patch :install
+        end
+      end
     end
   end
 

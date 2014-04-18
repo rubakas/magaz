@@ -1,4 +1,5 @@
 class Admin::SessionsController < Admin::ApplicationController
+  #TODO: layout
   respond_to :html
 
   def new

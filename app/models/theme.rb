@@ -7,8 +7,9 @@ class Theme < ActiveRecord::Base
   has_many   :installed_themes, class_name: 'Theme', foreign_key: :source_theme_id
   belongs_to :source_theme, class_name: 'Theme', foreign_key: :source_theme_id
 
-  scope :sources, -> { where(source_theme: nil) }
+  scope :sources,   -> { where(source_theme: nil) }
+  scope :installed, -> { where('source_theme_id IS NOT NULL') }
   scope :with_role, ->(role) { where(role: role) }
 
-  scope :current, -> { where(role: 'main').first }
+  scope :current,   -> { where(role: 'main').first }
 end

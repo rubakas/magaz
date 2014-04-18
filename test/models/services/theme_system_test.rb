@@ -11,7 +11,7 @@ class Services::ThemeSystemTest < ActiveSupport::TestCase
   test 'install_theme' do
     @service.install_theme
     assert @service.installed_theme.kind_of?(Theme)
-    assert @shop.themes.include?(@service.installed_theme)
+    assert @shop.themes.installed.include?(@service.installed_theme)
   end
 
   test 'activate_theme' do

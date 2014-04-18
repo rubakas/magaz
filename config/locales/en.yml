@@ -31,6 +31,8 @@ en:
     store:
       shop: "Magaz"
       shop_cart: "Cart"
+    theme_store:
+      theme_store_title: "Theme Store"
 
 
   admin:
@@ -206,6 +208,11 @@ en:
         community: "Community answers"
         knowledge: "Knowlege base"
         submit: "Submit a ticket"
+
+  theme_store:
+    themes:
+      show:
+        install: "Install theme"
 
   helpers:
     label:

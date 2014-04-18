@@ -5,6 +5,7 @@ Feature: themes
 
 Background:
   * store exists
+  * shop admin logged in
   * themes exist
   * browsing theme store domain
 
@@ -12,4 +13,5 @@ Scenario: list of themes at home page
   * visit themestore index page
   * must see themes
   * clicks theme name
-  * must be on theme page
+  * choose to install theme
+  * theme must be installed

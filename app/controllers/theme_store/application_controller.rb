@@ -1,3 +1,3 @@
 class ThemeStore::ApplicationController < ActionController::Base
-  include CurrentShopAccess
+  layout 'theme_store'
 end

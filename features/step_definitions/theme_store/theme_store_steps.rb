@@ -1,5 +1,5 @@
 Given(/^themes exist$/) do
-  @existing_themes = create_list(:theme, 20)
+  @existing_source_themes = create_list(:theme, 20)
 end
 
 Given(/^browsing theme store domain$/) do
@@ -13,13 +13,19 @@ Given(/^visit themestore index page$/) do
 end
 
 Given(/^must see themes$/) do
-  pending # express the regexp above with the code you wish you had
+  Theme.sources.limit(9).each do |theme_on_page|
+    assert page.has_content? theme_on_page.name
+  end
 end
 
 Given(/^clicks theme name$/) do
-  pending # express the regexp above with the code you wish you had
+  click_on Theme.sources.first.name
 end
 
-Given(/^must be on theme page$/) do
-  pending # express the regexp above with the code you wish you had
+Given(/^choose to install theme$/) do
+  click_on "Install theme"
+end
+
+Given(/^theme must be installed$/) do
+  assert_equal Theme.sources.first, @shop.themes.installed.last.source_theme
 end
