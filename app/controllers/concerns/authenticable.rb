@@ -3,7 +3,6 @@ module Authenticable
   
   included do
     before_action :authentication_required
-    layout 'admin'
   end
 
   protected
