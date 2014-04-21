@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 2e000ab23d187e425a1be1ce8ce43a0d4c6f5be7
+  revision: 5adf6ca9719f3aa520b684c352da5f91ab17ec49
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -72,7 +72,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 72034a6fd3dcf868eb7e7798539b1372ebffe58e
+  revision: 3970696821e2c0edf6b73b93aba0c041e04b1abe
   specs:
     sprockets-rails (2.1.2)
       actionpack (>= 4.0)
@@ -172,7 +172,7 @@ GEM
     memcachier (0.0.2)
     mime-types (1.25.1)
     mini_portile (0.5.3)
-    minitest (5.3.2)
+    minitest (5.3.3)
     multi_json (1.9.2)
     multi_test (0.1.1)
     nokogiri (1.6.1)
@@ -180,7 +180,7 @@ GEM
     parallel (1.0.0)
     parallel_tests (0.16.10)
       parallel
-    parser (2.1.7)
+    parser (2.1.8)
       ast (~> 1.1)
       slop (~> 3.4, >= 3.4.5)
     pg (0.17.1)
@@ -192,7 +192,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rainbow (2.0.0)
-    rake (10.2.2)
+    rake (10.3.1)
     rdoc (4.1.1)
       json (~> 1.4)
     responders (1.0.0)
