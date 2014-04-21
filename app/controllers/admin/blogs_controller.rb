@@ -9,10 +9,6 @@ class Admin::BlogsController < Admin::ApplicationController
     end
   end
 
-  def show
-    @blog = Blog.friendly.find(params[:id])
-  end
-
   protected
 
   def begin_of_association_chain
@@ -23,7 +19,11 @@ class Admin::BlogsController < Admin::ApplicationController
     @blogs ||= end_of_association_chain.page(params[:page])
   end
 
-  #TODO collection_ids are not guaranteed to belong to this shop!!!
+  def resource
+    @blog ||= end_of_association_chain.friendly.find(params[:id])
+  end
+
+  #TODO:  collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
     { blog:

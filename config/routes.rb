@@ -11,6 +11,17 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy, :new, :show]
   end
 
+  constraints(ThemeStoreSubdomainConstraint) do
+    namespace :theme_store, path: nil, shallow_path: nil do
+      root 'themes#index'
+      resources :themes do
+        member do
+          patch :install
+        end
+      end
+    end
+  end
+
   constraints(ShopSubdomainConstraint) do
     namespace :store, path: nil, shallow_path: nil do
       root 'welcome#index'

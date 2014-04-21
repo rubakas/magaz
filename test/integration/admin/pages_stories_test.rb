@@ -37,6 +37,20 @@ class Admin::PagesStoriesTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin/pages/test-url"
   end
 
+  test "handle url update" do
+    click_link 'Add Page'
+    fill_in 'Title', with: 'Some Uniq Page'
+    fill_in 'Content', with: 'Some Uniq Content'
+    fill_in 'Handle', with: 'test-url'
+    click_button 'Create Page'
+    assert page.has_content? 'Page was successfully created.'
+    assert current_path == "/admin/pages/test-url"
+    fill_in 'Handle', with: 'edit-test-url'
+    click_button 'Update Page'
+    assert page.has_content? 'Page was successfully updated.'
+    assert current_path == "/admin/pages/edit-test-url"
+  end
+
   test "edit page" do
     click_link(@page.title, match: :first)
     fill_in 'Title', with: 'Updated Page'

@@ -1,7 +1,13 @@
 source 'https://rubygems.org'
 
+def local_gem(gem_name)
+  gem gem_name,         path: "gems/#{gem_name}"
+end
+
+local_gem 'magaz_database_common'
+
 gem 'rails',            github: "rails/rails"
-gem 'arel',             github: "rails/arel"
+gem 'arel',             '5.0.0'#github: "rails/arel"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -71,6 +77,7 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'annotate', '~> 2.6.0'
+gem 'rubocop', :require => false
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
 gem 'flay', group: :development

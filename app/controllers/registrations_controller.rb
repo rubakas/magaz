@@ -24,6 +24,6 @@ class RegistrationsController < ApplicationController
   private
   
   def permitted_params
-    params.require(:shop).permit(:name,:email,:password)
+    params.require(:shop).permit(:name, :email, :password)
   end
 end

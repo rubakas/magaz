@@ -1,4 +1,6 @@
-module CurrentShopAccess extend ActiveSupport::Concern
+module CurrentShopAccess 
+  extend ActiveSupport::Concern
+
   included do
     helper_method :current_shop
   end
@@ -8,5 +10,4 @@ module CurrentShopAccess extend ActiveSupport::Concern
   def current_shop
     Shop.find_by_subdomain(request.subdomain)
   end
-
 end

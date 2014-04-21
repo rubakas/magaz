@@ -1,5 +1,5 @@
 class Store::OrdersController < Store::ApplicationController
-	inherit_resources
+  inherit_resources
   actions :show
 
   protected

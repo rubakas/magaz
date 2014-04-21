@@ -4,7 +4,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     session_for_shop @shop
-    @page = create(:page, shop: @shop)
+    @page = create(:page, shop: @shop, handle: "handle1")
   end
 
   test "should get index" do
