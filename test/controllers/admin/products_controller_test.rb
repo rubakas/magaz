@@ -65,7 +65,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
 
     patch :update,
       { id: @product3.id,
-        product: {name: "changed"}}
+        product: { name: "changed" } }
     assert_redirected_to admin_product_path(assigns(:product))
     assert_equal "changed", @product3.reload.name
     refute_equal "changed", @product2.reload.name
@@ -83,7 +83,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     assert_raise ActiveRecord::RecordNotFound do
       patch :update,
       { id: @product2.id,
-        product: {name: "changed"}}
+        product: { name: "changed" } }
     end
   end
 end

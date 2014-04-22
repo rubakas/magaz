@@ -5,7 +5,8 @@ class ThemeStore::ThemesController < ThemeStore::ApplicationController
 
   def install
     service = Services::ThemeSystem.new(shop_id: current_user.id, 
-                                        source_theme_id: resource.id).install_theme
-    redirect_to theme_store_theme_path(@theme)
+                                        source_theme_id: resource.id)
+    service.install_theme
+    redirect_to theme_store_theme_path(resource)
   end
 end

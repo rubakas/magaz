@@ -8,10 +8,10 @@ class Services::ThemeSystem
   end
 
   def install_theme
-    #TODO process payment
+    #TODO: process payment
     # copy theme data and associate with shop
     @installed_theme = 
-      @shop.themes.create!(name: @source_theme.name ,source_theme: @source_theme)
+      @shop.themes.create!(name: @source_theme.name, source_theme: @source_theme)
     # start copying process and move assets to CDN?
   end
 
