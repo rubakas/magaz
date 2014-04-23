@@ -121,6 +121,26 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+    customers:
+      index:
+        title: "Customers"
+        add: "Add Customer"
+      new:
+        add: "Add Customer"
+      show:
+       title: "Editing customers"
+      blank:
+        no_comments: "You have no customers yet, let's create one!"
+        add: "Add Customer"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this customer from being saved:"
+      list:
+        title: "Customers"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
     dashboard:
       index:
         title: "Dashboard"
