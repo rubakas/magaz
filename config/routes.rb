@@ -30,7 +30,7 @@ Rails.application.routes.draw do
           post :add
         end
       end
-      
+
       resources :checkouts, only: [:show] do
         member do
           put :update_address
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
           put :pay
         end
       end
-      
+
       resources :orders, only: [:show]
 
       resources :products, only: [:show]
@@ -50,7 +50,7 @@ Rails.application.routes.draw do
       resources :blogs, except: [:edit]
       resources :collections, except: [:edit]
       resources :comments, except: [:edit]
-      resources :customers # editable
+      resources :customers, except: [:edit]
       resources :orders, except: [:create, :edit, :new]
       resources :pages, except: [:edit]
       resources :products, except: [:edit]
