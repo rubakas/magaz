@@ -1,11 +1,20 @@
 class Store::ApplicationController < ActionController::Base
   include CurrentShopAccess
+  
+  # oh fuck
+  class ActionView::LookupContext
+    register_detail(:theme) {}
+  end
+  def _process_options(options)
+    options[:theme] = current_shop.themes.installed.current
+    super
+  end
+  append_view_path Services::ThemeSystem::Resolver.instance
 
   layout 'store'
   
-  helper_method :shopping_cart
-
   around_action :run_shopping_cart_service
+  helper_method :shopping_cart
 
   def shopping_cart_service
     @shopping_cart_service ||= 
