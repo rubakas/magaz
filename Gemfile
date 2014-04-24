@@ -21,6 +21,9 @@ gem 'inherited_resources' #, github: 'josevalim/inherited_resources'
 # Use slim-lang for templates
 gem 'slim'
 
+# Use liquid templates for themes
+gem 'liquid'
+
 # Use for upload files in app
 gem "carrierwave"
 gem "rmagick", 					require: false
