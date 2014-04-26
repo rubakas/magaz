@@ -4,22 +4,16 @@ class Services::ThemeSystem::Resolver < ActionView::Resolver
   include Singleton
   
   def find_all(name, prefix=nil, partial=false, details={}, key=nil, locals=[])
-    @theme = details[:theme].first # it is an array
-    find_templates(name, prefix, partial, details)
+    puts "(#{name}, #{prefix}, #{partial}, #{details}, #{key}, #{locals})"
+    puts details[:themes].inspect
+    theme = details[:themes].first
+    asset_key = normalize_path(name, prefix)
+    found_liquid_assets = theme.assets.all.where(key: "#{asset_key}.liquid")
+    templates = found_liquid_assets.map { |a| initialize_template(a, partial) }
+    templates
   end
 
   private
-
-  def theme
-    @theme
-  end
-
-  def find_templates(name, prefix, partial, details)
-    asset_key = normalize_path(name, prefix)
-    found_assets = theme.assets.all.where(key: asset_key)
-    templates = found_assets.map { |a| initialize_template(a, partial) }
-    templates
-  end
 
   # Normalize name and prefix, so the tuple ["index", "users"] becomes 
   # "users/index" and the tuple ["template", nil] becomes "template".
@@ -40,7 +34,7 @@ class Services::ThemeSystem::Resolver < ActionView::Resolver
   def initialize_template(asset, partial)
     source = asset.value
     identifier = "Asset - #{asset.id} - #{asset.key.inspect}"
-    handler = ActionView::Template.registered_template_handler(:erb)
+    handler = ActionView::Template.registered_template_handler(:liquid)
     details = {
       format: Mime[:html],
       updated_at: asset.updated_at,
