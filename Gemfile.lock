@@ -7,6 +7,12 @@ GIT
       sass (>= 3.2)
 
 GIT
+  remote: git://github.com/rails/arel.git
+  revision: de916331c3536db839f844034176bf321d94efa7
+  specs:
+    arel (5.0.0.20140412150050)
+
+GIT
   remote: git://github.com/rails/coffee-rails.git
   revision: 044d0d683b436128dedf45f780b8fca138d005e2
   specs:
@@ -16,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 5adf6ca9719f3aa520b684c352da5f91ab17ec49
+  revision: 82307454769a93f7db1f9e7f90ee8778f29e2639
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -62,7 +68,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: 7138bbb401159b116dda4ec9dd4b375dc1d2e59a
+  revision: 07011eb7fa656b4b16de33fa8e6b161406f99d82
   specs:
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -72,7 +78,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 3970696821e2c0edf6b73b93aba0c041e04b1abe
+  revision: 10b73e9552ffa5d768b67b14e327d271036cd6b2
   specs:
     sprockets-rails (2.1.2)
       actionpack (>= 4.0)
@@ -91,8 +97,7 @@ GEM
     annotate (2.6.3)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
-    arel (5.0.0)
-    ast (1.1.0)
+    ast (2.0.0)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
@@ -180,8 +185,8 @@ GEM
     parallel (1.0.0)
     parallel_tests (0.16.10)
       parallel
-    parser (2.1.8)
-      ast (~> 1.1)
+    parser (2.1.9)
+      ast (>= 1.1, < 3.0)
       slop (~> 3.4, >= 3.4.5)
     pg (0.17.1)
     polyglot (0.3.4)
@@ -198,14 +203,14 @@ GEM
     responders (1.0.0)
       railties (>= 3.2, < 5)
     rmagick (2.13.2)
-    rubocop (0.20.1)
+    rubocop (0.21.0)
       json (>= 1.7.7, < 2)
-      parser (~> 2.1.7)
+      parser (~> 2.1.9)
       powerpack (~> 0.0.6)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
     ruby-progressbar (1.4.2)
-    ruby_parser (3.5.0)
+    ruby_parser (3.6.0)
       sexp_processor (~> 4.1)
     sass (3.2.19)
     sdoc (0.4.0)
@@ -249,7 +254,7 @@ PLATFORMS
 DEPENDENCIES
   anjlab-bootstrap-rails!
   annotate (~> 2.6.0)
-  arel (= 5.0.0)
+  arel!
   bcrypt-ruby (~> 3.1.2)
   capybara-webkit (~> 1.1.1)
   carrierwave
