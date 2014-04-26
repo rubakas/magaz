@@ -7,7 +7,7 @@ end
 local_gem 'magaz_database_common'
 
 gem 'rails',            github: "rails/rails"
-gem 'arel',             '5.0.0'#github: "rails/arel"
+gem 'arel',             github: "rails/arel"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
