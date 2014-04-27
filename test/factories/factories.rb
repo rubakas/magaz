@@ -23,6 +23,7 @@ FactoryGirl.define do
   end
 
   factory :customer do
+    sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
 
   factory :page do
