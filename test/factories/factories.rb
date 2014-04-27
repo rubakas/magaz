@@ -26,6 +26,7 @@ FactoryGirl.define do
   end
 
   factory :customer do
+    sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
 
   factory :page do
@@ -44,7 +45,7 @@ FactoryGirl.define do
   factory :shop do
     sequence(:name)      { |n| "Example#{n}" }
     sequence(:subdomain) { |n| "example#{n}" }
-    sequence(:email)     { |n| "admin@#{subdomain}.com" }
+    sequence(:email)     { |n| "admin@example#{n}.com" }
 
     password 'password'
     password_salt BCrypt::Engine.generate_salt

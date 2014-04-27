@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
-    @article = create(:article, blog: create(:blog, shop: @shop))
+    @blog = create(:blog, shop: @shop)
+    @article = create(:article, blog: @blog)
     click_link 'Blog Posts'
   end
 

@@ -133,6 +133,7 @@ en:
         no_comments: "You have no customers yet, let's create one!"
         add: "Add Customer"
       form:
+        add: "Add Customer"
         error: "error"
         back: "Back"
         prohibit: "prohibited this customer from being saved:"

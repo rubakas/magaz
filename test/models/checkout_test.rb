@@ -3,8 +3,8 @@ require 'test_helper'
 class CheckoutTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop)
-    @customer = @shop.customers.create
-    @checkout = @customer.checkouts.create
+    @customer = create(:customer, shop: @shop)
+    @checkout = create(:checkout, customer: @customer)
     @product_1 = create(:product, shop: @shop)
     @product_2 = create(:product, shop: @shop)
   end
