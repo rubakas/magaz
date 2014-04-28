@@ -4,10 +4,10 @@ class Services::ThemeSystem::ResolverTest < ActiveSupport::TestCase
   setup do
     @theme = create(:theme)
     @erb_body = "<%= 'Hi from theme template asset!' %>"
-    @template_asset = create(:asset, key: 'prefix/template', theme: @theme, value: @erb_body)
+    @template_asset = create(:asset, key: 'prefix/template.liquid', theme: @theme, value: @erb_body)
 
-    @resolver = Services::ThemeSystem::Resolver.new { @theme }
-    @details  = { formats: [:html], locale: [:en], handlers: [:erb] }
+    @resolver = Services::ThemeSystem::Resolver.instance
+    @details  = { formats: [:html], locale: [:en], handlers: [:liquid], themes: [@theme] }
   end
 
   test 'initialize' do
@@ -26,10 +26,10 @@ class Services::ThemeSystem::ResolverTest < ActiveSupport::TestCase
     assert_kind_of ActionView::Template, template
 
     # Assert specific information about the found template
-    assert_equal @erb_body, template.source 
-    assert_kind_of ActionView::Template::Handlers::ERB, template.handler 
+    assert_equal @erb_body, template.source
+    assert_equal ActionView::Template::Handlers::Liquid, template.handler
     assert_equal [:html], template.formats
-    assert_equal "prefix/template", template.virtual_path
-    assert_match %r[Asset - \d+ - "prefix/template"], template.identifier
+    assert_equal "prefix/template.liquid", template.virtual_path
+    assert_match %r[Asset - \d+ - "prefix/template.liquid"], template.identifier
   end
 end
