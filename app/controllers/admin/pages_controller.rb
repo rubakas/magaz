@@ -9,10 +9,6 @@ class Admin::PagesController < Admin::ApplicationController
     end
   end
 
-  def show
-    @page = Page.friendly.find(params[:id])
-  end
-
   protected
 
   def begin_of_association_chain
@@ -23,7 +19,11 @@ class Admin::PagesController < Admin::ApplicationController
     @pages ||= end_of_association_chain.page(params[:page])
   end
 
-  #TODO collection_ids are not guaranteed to belong to this shop!!!
+  def resource
+    @page ||= end_of_association_chain.friendly.find(params[:id])
+  end
+
+  #TODO:  collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
     { page: params.fetch(:page, {}).permit(:title, :content, :page_title, :meta_description, :handle) }

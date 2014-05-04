@@ -9,17 +9,17 @@ class Admin::ArticlesController < Admin::ApplicationController
     end
   end
 
-  def show
-    @article = Article.friendly.find(params[:id])
-  end
-
   protected
 
   def collection
     @articles ||= end_of_association_chain.page(params[:page])
   end
 
-  #TODO collection_ids are not guaranteed to belong to this shop!!!
+  def resource
+    @article ||= end_of_association_chain.friendly.find(params[:id])
+  end
+
+  #TODO:  collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
     { article:

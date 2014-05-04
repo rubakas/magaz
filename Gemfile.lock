@@ -7,10 +7,18 @@ GIT
       sass (>= 3.2)
 
 GIT
-  remote: git://github.com/rails/arel.git
-  revision: 0d3e9161794e95995ee1f2dcfc063782758e64c0
+  remote: git://github.com/ctran/annotate_models.git
+  revision: c60fa282d74051e2fb5d41b600f919a39d9edcb4
   specs:
-    arel (5.0.0.20140210193626)
+    annotate (2.6.3)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
+
+GIT
+  remote: git://github.com/rails/arel.git
+  revision: 538ac7c2aadbe6142901f70b921f61f4398bd58c
+  specs:
+    arel (5.0.0.20140412150050)
 
 GIT
   remote: git://github.com/rails/coffee-rails.git
@@ -22,7 +30,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 040a1dbb11495490ca3f7c882cda1815316e7256
+  revision: 3d87c26845095438b6c946dc4e1029280593fb91
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -68,30 +76,33 @@ GIT
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: a5c466c809cde1797f5cc4b447f3a73f1fcb911f
+  revision: 3a9e47db7d769221157c82229fc1bade55b580f0
   specs:
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.0)
-      sprockets (~> 2.8, <= 2.11.0)
+      sass (~> 3.2)
+      sprockets (~> 2.12)
       sprockets-rails (~> 2.0)
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: bb43c49abe22ff441250fcc88e36dac243ad6396
+  revision: 94a033289ba895c036b73527ca5e567d88a35e58
   specs:
-    sprockets-rails (2.1.0)
+    sprockets-rails (2.1.2)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (~> 2.8)
+
+PATH
+  remote: gems/magaz_database_common
+  specs:
+    magaz_database_common (0.0.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.6)
-    annotate (2.6.3)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
+    ast (2.0.0)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
@@ -165,36 +176,49 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.2)
       addressable (~> 2.3)
+    liquid (2.6.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     memcachier (0.0.2)
     mime-types (1.25.1)
     mini_portile (0.5.3)
-    minitest (5.3.2)
-    multi_json (1.9.2)
+    minitest (5.3.3)
+    multi_json (1.9.3)
     multi_test (0.1.1)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     parallel (1.0.0)
     parallel_tests (0.16.10)
       parallel
+    parser (2.1.9)
+      ast (>= 1.1, < 3.0)
+      slop (~> 3.4, >= 3.4.5)
     pg (0.17.1)
     polyglot (0.3.4)
-    puma (2.8.1)
+    powerpack (0.0.9)
+    puma (2.8.2)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rake (10.2.2)
+    rainbow (2.0.0)
+    rake (10.3.1)
     rdoc (4.1.1)
       json (~> 1.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
     rmagick (2.13.2)
-    ruby_parser (3.5.0)
+    rubocop (0.21.0)
+      json (>= 1.7.7, < 2)
+      parser (~> 2.1.9)
+      powerpack (~> 0.0.6)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.4)
+    ruby-progressbar (1.4.2)
+    ruby_parser (3.6.0)
       sexp_processor (~> 4.1)
-    sass (3.2.19)
+    sass (3.3.6)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
@@ -202,8 +226,9 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
+    slop (3.5.0)
     spring (1.1.2)
-    sprockets (2.11.0)
+    sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -234,7 +259,7 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails!
-  annotate (~> 2.6.0)
+  annotate!
   arel!
   bcrypt-ruby (~> 3.1.2)
   capybara-webkit (~> 1.1.1)
@@ -253,12 +278,15 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  liquid
+  magaz_database_common!
   memcachier
   parallel_tests
   pg
   puma
   rails!
   rmagick
+  rubocop
   sass-rails!
   sdoc
   slim

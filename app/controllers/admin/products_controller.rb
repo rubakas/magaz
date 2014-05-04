@@ -9,11 +9,6 @@ class Admin::ProductsController < Admin::ApplicationController
     end
   end
 
-  def show
-    @product = Product.friendly.find(params[:id])
-  end
-
-
   protected
 
   def begin_of_association_chain
@@ -24,7 +19,11 @@ class Admin::ProductsController < Admin::ApplicationController
     @products ||= end_of_association_chain.page(params[:page])
   end
 
-  #TODO collection_ids are not guaranteed to belong to this shop!!!
+  def resource
+    @product ||= end_of_association_chain.friendly.find(params[:id])
+  end
+
+  #TODO:  collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
   def permitted_params
     { product:

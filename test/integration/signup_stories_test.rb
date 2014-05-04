@@ -2,19 +2,19 @@ require 'test_helper'
 
 class SignupStoriesTest < ActionDispatch::IntegrationTest  
   setup do
-    set_host HOSTNAME
+    use_host HOSTNAME
   end
 
   test "signup success" do
-  	visit '/'
-  	assert page.has_content?('Welcome')
+    visit '/'
+    assert page.has_content?('Welcome')
 
-  	fill_in 'Your shop name', with: 'Example2'
-  	fill_in 'Email address', with: 'uniq@example2.com'
-  	fill_in 'Password', with: 'password'
-  	click_button 'Create your shop now'
+    fill_in 'Your shop name', with: 'Example2'
+    fill_in 'Email address', with: 'uniq@example2.com'
+    fill_in 'Password', with: 'password'
+    click_button 'Create your shop now'
 
-  	assert page.has_content?('Dashboard')
+    assert page.has_content?('Dashboard')
   end
 
   test "signup failure" do

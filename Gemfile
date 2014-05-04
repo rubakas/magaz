@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+def local_gem(gem_name)
+  gem gem_name,         path: "gems/#{gem_name}"
+end
+
+local_gem 'magaz_database_common'
+
 gem 'rails',            github: "rails/rails"
 gem 'arel',             github: "rails/arel"
 
@@ -14,6 +20,9 @@ gem 'inherited_resources' #, github: 'josevalim/inherited_resources'
 
 # Use slim-lang for templates
 gem 'slim'
+
+# Use liquid templates for themes
+gem 'liquid'
 
 # Use for upload files in app
 gem "carrierwave"
@@ -70,7 +79,8 @@ gem 'puma'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'annotate', '~> 2.6.0'
+gem 'annotate', github: 'ctran/annotate_models'
+gem 'rubocop', :require => false
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
 gem 'flay', group: :development

@@ -2,24 +2,15 @@ require 'test_helper'
 
 class CheckoutTest < ActiveSupport::TestCase
   setup do
-    @shop = create(:shop, subdomain: 'example')
-    @checkout = @shop.checkouts.create
+    @shop = create(:shop)
+    @customer = create(:customer, shop: @shop)
+    @checkout = create(:checkout, customer: @customer)
     @product_1 = create(:product, shop: @shop)
     @product_2 = create(:product, shop: @shop)
   end
 
   test 'attributes' do
     skip
-  end
-
-  test 'add_product and item_count' do
-    assert_equal 0, @checkout.item_count
-    @checkout.add_product(product: @product_1, quantity: 1)
-    assert_equal 1, @checkout.item_count
-    @checkout.add_product(product: @product_1, quantity: 1)
-    assert_equal 2, @checkout.item_count
-    @checkout.add_product(product: @product_2, quantity: 1)
-    assert_equal 3, @checkout.item_count
   end
 
   test 'items' do

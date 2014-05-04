@@ -1,4 +1,5 @@
 class Admin::SessionsController < Admin::ApplicationController
+  #TODO: layout
   respond_to :html
 
   def new
@@ -8,7 +9,7 @@ class Admin::SessionsController < Admin::ApplicationController
     render :new
   end
 
-  #TODO test user not found case
+  #TODO:  test user not found case
   def create
     @shop = current_shop
 
@@ -24,7 +25,7 @@ class Admin::SessionsController < Admin::ApplicationController
       else
         flash[:alert] = I18n.t('sessions.create.user_not_found')
       end
-      flash.discard(:alert) #FIXME WTF is this?
+      flash.discard(:alert) #FIXME: WTF is this?
       render :new
     end
   end

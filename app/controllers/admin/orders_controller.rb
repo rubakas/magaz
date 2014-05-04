@@ -43,13 +43,14 @@ class Admin::OrdersController < Admin::ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = current_shop.checkouts.orders.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = current_shop.checkouts.orders.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:title, :content)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:title, :content)
+  end
 end

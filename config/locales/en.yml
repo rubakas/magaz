@@ -31,6 +31,8 @@ en:
     store:
       shop: "Magaz"
       shop_cart: "Cart"
+    theme_store:
+      theme_store_title: "Theme Store"
 
 
   admin:
@@ -116,6 +118,27 @@ en:
         prohibit: "prohibited this comment from being saved:"
       list:
         title: "Comments"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
+    customers:
+      index:
+        title: "Customers"
+        add: "Add Customer"
+      new:
+        add: "Add Customer"
+      show:
+       title: "Editing customers"
+      blank:
+        no_comments: "You have no customers yet, let's create one!"
+        add: "Add Customer"
+      form:
+        add: "Add Customer"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this customer from being saved:"
+      list:
+        title: "Customers"
         delete: "Delete"
         confirmation: "Are you sure?"
 
@@ -206,6 +229,11 @@ en:
         community: "Community answers"
         knowledge: "Knowlege base"
         submit: "Submit a ticket"
+
+  theme_store:
+    themes:
+      show:
+        install: "Install theme"
 
   helpers:
     label:

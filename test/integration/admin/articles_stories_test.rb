@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
-    @article = create(:article, blog: create(:blog, shop: @shop))
+    @blog = create(:blog, shop: @shop)
+    @article = create(:article, blog: @blog)
     click_link 'Blog Posts'
   end
 
@@ -35,6 +36,20 @@ class Admin::ArticlesStoriesTest < ActionDispatch::IntegrationTest
     click_button 'Create Article'
     assert page.has_content? 'Article was successfully created.'
     assert current_path == "/admin/articles/test-url"
+  end
+
+  test "handle url update" do
+    click_link 'Add Blog Post'
+    fill_in 'Title', with: 'Some Uniq Article'
+    fill_in 'Content', with: 'Some Uniq Content'
+    fill_in 'Handle', with: 'test-url'
+    click_button 'Create Article'
+    assert page.has_content? 'Article was successfully created.'
+    assert current_path == "/admin/articles/test-url"
+    fill_in 'Handle', with: 'edit-test-url'
+    click_button 'Update Article'
+    assert page.has_content? 'Article was successfully updated.'
+    assert current_path == "/admin/articles/edit-test-url"
   end
 
   test "edit blog post" do
