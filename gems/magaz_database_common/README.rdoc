@@ -1,3 +1,7 @@
 = MagazDatabaseCommon
 
-This project rocks and uses MIT-LICENSE.
+== README
+
+* This engine contains all the common database migrations
+* App using the engine will recieve all he migrations
+* Implemented in initializer block in lib/magaz_database_common_engine.rb
