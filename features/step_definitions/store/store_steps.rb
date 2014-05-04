@@ -1,5 +1,9 @@
 Given(/^store exists$/) do
-  @shop = create(:shop, name: 'example', subdomain: 'example', password: 'password', email: 'admin@example.com')
+  steps %[
+    * themes exist
+  ]
+  service = Services::ShopCreationSystem.new().create name: 'example', subdomain: 'example', password: 'password', email: 'admin@example.com'
+  @shop = service.shop
 end
 
 Given(/^default collection exists$/) do

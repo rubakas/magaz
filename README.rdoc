@@ -24,6 +24,7 @@
     127.0.0.1 example.magaz.local
     127.0.0.1 example2.magaz.local
     127.0.0.1 example3.magaz.local
+    127.0.0.1 themes.magaz.local
 
 
 * How to run the test suite

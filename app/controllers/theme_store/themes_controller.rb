@@ -9,4 +9,11 @@ class ThemeStore::ThemesController < ThemeStore::ApplicationController
     service.install_theme
     redirect_to theme_store_theme_path(resource)
   end
+
+  protected
+
+  def collection
+    @themes ||= Theme.sources
+  end
+
 end

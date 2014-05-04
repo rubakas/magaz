@@ -1,16 +1,6 @@
 class Store::ApplicationController < ActionController::Base
   include CurrentShopAccess
-  
-  class ActionView::LookupContext
-    register_detail(:themes) {}
-  end
-
-  def _process_options(options)
-    options[:themes] = current_shop.themes.installed.map
-    super(options)
-  end
-
-  append_view_path Services::ThemeSystem::Resolver.instance
+  #include Themed
 
   layout 'store'
   

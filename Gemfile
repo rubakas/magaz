@@ -79,7 +79,7 @@ gem 'puma'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'annotate', '~> 2.6.0'
+gem 'annotate', github: 'ctran/annotate_models'
 gem 'rubocop', :require => false
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
