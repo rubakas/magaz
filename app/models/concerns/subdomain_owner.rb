@@ -19,6 +19,7 @@ module SubdomainOwner
       #TODO:  extract any special symbols
       self.subdomain = name.downcase.parameterize
       #TODO:  add uniqueness generator
+      #TODO:  ensure latin characters only?
     end
   end
 

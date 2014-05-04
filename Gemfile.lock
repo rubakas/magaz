@@ -7,6 +7,14 @@ GIT
       sass (>= 3.2)
 
 GIT
+  remote: git://github.com/ctran/annotate_models.git
+  revision: c60fa282d74051e2fb5d41b600f919a39d9edcb4
+  specs:
+    annotate (2.6.3)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
+
+GIT
   remote: git://github.com/rails/arel.git
   revision: 538ac7c2aadbe6142901f70b921f61f4398bd58c
   specs:
@@ -94,9 +102,6 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.6)
-    annotate (2.6.3)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
     ast (2.0.0)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
@@ -171,6 +176,7 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.2)
       addressable (~> 2.3)
+    liquid (2.6.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -253,7 +259,7 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails!
-  annotate (~> 2.6.0)
+  annotate!
   arel!
   bcrypt-ruby (~> 3.1.2)
   capybara-webkit (~> 1.1.1)
@@ -272,6 +278,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  liquid
   magaz_database_common!
   memcachier
   parallel_tests

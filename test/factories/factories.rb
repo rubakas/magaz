@@ -4,6 +4,9 @@ FactoryGirl.define do
     sequence(:content) { |n| "Article #{n} content" }
   end
 
+  factory :asset do
+  end
+
   factory :blog do
     sequence(:title) { |n| "Blog #{n}" }
   end

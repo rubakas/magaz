@@ -9,7 +9,7 @@ class Theme < ActiveRecord::Base
 
   scope :sources,   -> { where(source_theme: nil) }
   scope :installed, -> { where('source_theme_id IS NOT NULL') }
-  scope :with_role, ->(role) { where(role: role) }
+  scope :with_role, -> (role) { where(role: role) }
 
   scope :current,   -> { where(role: 'main').first }
 end

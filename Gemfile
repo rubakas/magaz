@@ -21,6 +21,9 @@ gem 'inherited_resources' #, github: 'josevalim/inherited_resources'
 # Use slim-lang for templates
 gem 'slim'
 
+# Use liquid templates for themes
+gem 'liquid'
+
 # Use for upload files in app
 gem "carrierwave"
 gem "rmagick", 					require: false
@@ -76,7 +79,7 @@ gem 'puma'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'annotate', '~> 2.6.0'
+gem 'annotate', github: 'ctran/annotate_models'
 gem 'rubocop', :require => false
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development

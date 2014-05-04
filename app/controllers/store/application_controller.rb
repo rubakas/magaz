@@ -1,11 +1,11 @@
 class Store::ApplicationController < ActionController::Base
   include CurrentShopAccess
+  include Themed
 
   layout 'store'
   
-  helper_method :shopping_cart
-
   around_action :run_shopping_cart_service
+  helper_method :shopping_cart
 
   def shopping_cart_service
     @shopping_cart_service ||= 
