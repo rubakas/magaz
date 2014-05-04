@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 3d87c26845095438b6c946dc4e1029280593fb91
+  revision: b231825f3e0b569e5ca1426833749b5c6325ba14
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -136,7 +136,7 @@ GEM
       cucumber (>= 1.2.0)
       nokogiri (>= 1.5.0)
       rails (>= 3.0.0)
-    dalli (2.7.0)
+    dalli (2.7.1)
     database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -164,7 +164,7 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jbuilder (2.0.6)
+    jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.0)
@@ -218,7 +218,7 @@ GEM
     ruby-progressbar (1.4.2)
     ruby_parser (3.6.0)
       sexp_processor (~> 4.1)
-    sass (3.3.6)
+    sass (3.3.7)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
