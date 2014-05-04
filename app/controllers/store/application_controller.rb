@@ -1,6 +1,6 @@
 class Store::ApplicationController < ActionController::Base
   include CurrentShopAccess
-  #include Themed
+  include Themed
 
   layout 'store'
   
