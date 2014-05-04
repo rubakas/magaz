@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount MagazStyle::Engine => "/style"
+
   constraints host: HOSTNAME do
     root 'welcome#index'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye

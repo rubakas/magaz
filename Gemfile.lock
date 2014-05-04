@@ -98,6 +98,11 @@ PATH
   specs:
     magaz_database_common (0.0.1)
 
+PATH
+  remote: gems/magaz_style
+  specs:
+    magaz_style (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -280,6 +285,7 @@ DEPENDENCIES
   launchy
   liquid
   magaz_database_common!
+  magaz_style!
   memcachier
   parallel_tests
   pg

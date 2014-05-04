@@ -24,6 +24,8 @@ $global-color-primary: #3498db;
 $global-color-highlight: #f1c40f;
 
 
+@import "../base";
+
 @import "twitter/bootstrap";
 
 @import "font-awesome"; //import order is important here
