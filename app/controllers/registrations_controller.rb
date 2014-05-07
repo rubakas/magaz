@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    @shop = Shop.new permitted_params
+    @shop = MagazCore::Shop.new permitted_params
     if @shop.save
       session[:user_id] = @shop.id
       redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
@@ -16,7 +16,7 @@ class RegistrationsController < ApplicationController
   end
 
   def validate
-    @shop = Shop.new permitted_params
+    @shop = MagazCore::Shop.new permitted_params
     @shop.valid?
     render json: @shop.errors.to_json
   end

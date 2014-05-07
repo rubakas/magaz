@@ -19,7 +19,7 @@ class Admin::BlogsControllerTest < ActionController::TestCase
   end
 
   test "should create blog" do
-    assert_difference('Blog.count') do
+    assert_difference('MagazCore::Blog.count') do
       post :create, blog: { title: 'New uniq name' }
     end
 
@@ -42,7 +42,7 @@ class Admin::BlogsControllerTest < ActionController::TestCase
   end
 
   test "should destroy blog" do
-    assert_difference('Blog.count', -1) do
+    assert_difference('MagazCore::Blog.count', -1) do
       delete :destroy, id: @blog
     end
 

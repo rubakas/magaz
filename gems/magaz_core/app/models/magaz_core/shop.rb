@@ -18,7 +18,9 @@ module MagazCore
     include Concerns::PasswordAuthenticable
     include Concerns::SubdomainOwner
     has_many :blogs
+    has_many :articles, through: :blogs
     has_many :collections
+    has_many :comments, through: :articles
     has_many :checkouts, through: :customers
     has_many :customers
     has_many :pages

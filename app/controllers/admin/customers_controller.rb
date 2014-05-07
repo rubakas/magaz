@@ -11,6 +11,10 @@ class Admin::CustomersController < Admin::ApplicationController
 
   protected
 
+  def begin_of_association_chain
+    current_shop
+  end
+
   def collection
     @customers ||= end_of_association_chain.page(params[:page])
   end

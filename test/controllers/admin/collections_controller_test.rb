@@ -19,7 +19,7 @@ class Admin::CollectionsControllerTest < ActionController::TestCase
   end
 
   test "should create product" do
-    assert_difference('Collection.count') do
+    assert_difference('MagazCore::Collection.count') do
       post :create, collection: { name: 'Unique Name' }
     end
 
@@ -37,7 +37,7 @@ class Admin::CollectionsControllerTest < ActionController::TestCase
   end
 
   test "should destroy collection" do
-    assert_difference('Collection.count', -1) do
+    assert_difference('MagazCore::Collection.count', -1) do
       delete :destroy, id: @collection
     end
 

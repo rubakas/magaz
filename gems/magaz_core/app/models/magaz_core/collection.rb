@@ -18,7 +18,7 @@ module MagazCore
     self.table_name = 'collections'
     extend FriendlyId
 
-    has_and_belongs_to_many :products
+    has_and_belongs_to_many :products, class_name: 'MagazCore::Product'
     belongs_to :shop
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop

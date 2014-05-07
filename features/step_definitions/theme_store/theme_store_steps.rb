@@ -13,13 +13,13 @@ Given(/^visit themestore index page$/) do
 end
 
 Given(/^must see themes$/) do
-  Theme.sources.limit(9).each do |theme_on_page|
+  MagazCore::Theme.sources.limit(9).each do |theme_on_page|
     assert page.has_content? theme_on_page.name
   end
 end
 
 Given(/^clicks theme name$/) do
-  click_on Theme.sources.first.name
+  click_on MagazCore::Theme.sources.first.name
 end
 
 Given(/^choose to install theme$/) do
@@ -27,5 +27,5 @@ Given(/^choose to install theme$/) do
 end
 
 Given(/^theme must be installed$/) do
-  assert_equal Theme.sources.first, @shop.themes.installed.last.source_theme
+  assert_equal MagazCore::Theme.sources.first, @shop.themes.installed.last.source_theme
 end

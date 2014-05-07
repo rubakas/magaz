@@ -19,7 +19,7 @@ class Admin::CustomersControllerTest < ActionController::TestCase
   end
 
   test "should create product" do
-    assert_difference('Customer.count') do
+    assert_difference('MagazCore::Customer.count') do
       post :create, { customer: { first_name: 'Very Unique Name' } }
     end
 
@@ -40,7 +40,7 @@ class Admin::CustomersControllerTest < ActionController::TestCase
   end
 
   test "should destroy customer" do
-    assert_difference('Customer.count', -1) do
+    assert_difference('MagazCore::Customer.count', -1) do
       delete :destroy, id: @customer.id
     end
     assert_redirected_to admin_customers_path

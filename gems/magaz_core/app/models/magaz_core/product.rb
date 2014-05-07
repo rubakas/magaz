@@ -19,7 +19,7 @@ module MagazCore
     self.table_name = 'products'
     extend FriendlyId
 
-    has_and_belongs_to_many :collections
+    has_and_belongs_to_many :collections, class_name: 'MagazCore::Collection'
     has_many :product_images, :dependent => :destroy
     belongs_to :shop
 

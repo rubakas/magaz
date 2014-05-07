@@ -19,7 +19,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
   end
 
   test "should create page" do
-    assert_difference('Page.count') do
+    assert_difference('MagazCore::Page.count') do
       post :create, page: { content: @page.content, title: 'New uniq name' }
     end
 
@@ -43,7 +43,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
   end
 
   test "should destroy page" do
-    assert_difference('Page.count', -1) do
+    assert_difference('MagazCore::Page.count', -1) do
       delete :destroy, id: @page
     end
 
