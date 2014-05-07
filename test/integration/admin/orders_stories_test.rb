@@ -5,12 +5,12 @@ class Admin::OrdersStoriesTest < ActionDispatch::IntegrationTest
     login
     @customer = create(:customer, shop: @shop)
     @checkout = create(:checkout, customer: @customer)
-    @order = create(:checkout, customer: @customer, status: Checkout::STATUSES.first)
+    @order = create(:checkout, customer: @customer, status: MagazCore::Checkout::STATUSES.first)
     click_link 'Orders'
   end
 
   test "orders list none" do
-    Checkout.delete_all
+    MagazCore::Checkout.delete_all
     login
     click_link 'Orders'
     assert page.has_content? 'You have no orders yet'

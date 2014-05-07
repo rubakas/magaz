@@ -1,5 +1,3 @@
-require 'magaz_core'
-
 FactoryGirl.define do
   factory :article, class: MagazCore::Article do
     sequence(:title)   { |n| "Article #{n}" }
