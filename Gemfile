@@ -5,10 +5,7 @@ def local_gem(gem_name)
 end
 
 local_gem 'magaz_style'
-# local_gem 'magaz_core'
-
-gem 'magaz_core',         path: "gems/magaz_core",  require: 'magaz_core'
-#local_gem 'magaz_database_common'
+local_gem 'magaz_core'
 
 gem 'rails',            github: "rails/rails"
 gem 'arel',             github: "rails/arel"
