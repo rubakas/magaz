@@ -9,7 +9,7 @@ class Store::ApplicationController < ActionController::Base
 
   def shopping_cart_service
     @shopping_cart_service ||= 
-      Services::ShoppingCart.new shop_id: current_shop.id, 
+      MagazCore::Services::ShoppingCart.new shop_id: current_shop.id, 
                                  checkout_id: session[:checkout_id], 
                                  customer_id: session[:customer_id]
   end

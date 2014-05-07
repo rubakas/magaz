@@ -4,7 +4,7 @@ class ThemeStore::ThemesController < ThemeStore::ApplicationController
   inherit_resources
 
   def install
-    service = Services::ThemeSystem.new(shop_id: current_user.id, 
+    service = MagazCore::Services::ThemeSystem.new(shop_id: current_user.id, 
                                         source_theme_id: resource.id)
     service.install_theme
     redirect_to theme_store_theme_path(resource)
@@ -13,7 +13,7 @@ class ThemeStore::ThemesController < ThemeStore::ApplicationController
   protected
 
   def collection
-    @themes ||= Theme.sources
+    @themes ||= MagazCore::Theme.sources
   end
 
 end

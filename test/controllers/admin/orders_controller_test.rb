@@ -6,7 +6,7 @@ class Admin::OrdersControllerTest < ActionController::TestCase
     session_for_shop @shop
     @customer = create(:customer, shop: @shop)
     @checkout = create(:checkout, customer: @customer)
-    @order = create(:checkout, customer: @customer, status: Checkout::STATUSES.first)
+    @order = create(:checkout, customer: @customer, status: MagazCore::Checkout::STATUSES.first)
   end
 
   test "should get index" do

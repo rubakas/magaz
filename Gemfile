@@ -5,7 +5,10 @@ def local_gem(gem_name)
 end
 
 local_gem 'magaz_style'
-local_gem 'magaz_database_common'
+# local_gem 'magaz_core'
+
+gem 'magaz_core',         path: "gems/magaz_core",  require: 'magaz_core'
+#local_gem 'magaz_database_common'
 
 gem 'rails',            github: "rails/rails"
 gem 'arel',             github: "rails/arel"
@@ -21,16 +24,6 @@ gem 'inherited_resources'
 
 # Use slim-lang for templates
 gem 'slim'
-
-# Use liquid templates for themes
-gem 'liquid'
-
-# Use for upload files in app
-gem "carrierwave"
-gem "rmagick", 					require: false
-
-# Use slugging and permalink for ActiveRecord
-gem 'friendly_id', '~> 5.0.0'
 
 # Use edge version of sprockets-rails
 gem 'sprockets-rails',  github: "rails/sprockets-rails"
@@ -68,9 +61,6 @@ gem 'sdoc',             group: :doc, require: false
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
 gem 'spring',           group: :development
-
-# Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 # Use puma as the app server
 gem 'puma'

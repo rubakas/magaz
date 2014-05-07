@@ -21,7 +21,7 @@ class Admin::CommentsControllerTest < ActionController::TestCase
   end
 
   test "should create comment" do
-    assert_difference('Comment.count') do
+    assert_difference('MagazCore::Comment.count') do
       post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body }
     end
 
@@ -44,7 +44,7 @@ class Admin::CommentsControllerTest < ActionController::TestCase
   end
 
   test "should destroy comment" do
-    assert_difference('Comment.count', -1) do
+    assert_difference('MagazCore::Comment.count', -1) do
       delete :destroy, id: @comment
     end
 

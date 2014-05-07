@@ -12,6 +12,6 @@ module Authenticable
   end
 
   def current_user
-    @current_user ||= Shop.find_by_id(session[:user_id])
+    @current_user ||= MagazCore::Shop.find_by_id(session[:user_id])
   end
 end
