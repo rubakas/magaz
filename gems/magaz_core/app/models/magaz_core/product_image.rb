@@ -15,6 +15,6 @@ module MagazCore
     belongs_to :shop
     belongs_to :product
 
-    mount_uploader :image, ImageUploader
+    mount_uploader :image, MagazCore::ImageUploader
   end
 end

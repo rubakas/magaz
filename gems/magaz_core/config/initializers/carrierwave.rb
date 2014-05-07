@@ -15,11 +15,11 @@ if Rails.env.test? || Rails.env.cucumber?
     next if klass.anonymous?
     klass.class_eval do
       def cache_dir
-        "#{Rails.root}/test/support/uploads/tmp"
+        "#{Rails.root}/tmp/uploads"
       end
 
       def store_dir
-        "#{Rails.root}/test/support/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+        "#{Rails.root}/tmp/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
       end
     end
   end

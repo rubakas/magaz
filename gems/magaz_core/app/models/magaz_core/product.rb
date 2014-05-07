@@ -20,7 +20,7 @@ module MagazCore
     extend FriendlyId
 
     has_and_belongs_to_many :collections, class_name: 'MagazCore::Collection'
-    has_many :product_images, :dependent => :destroy
+    has_many :product_images, class_name: 'MagazCore::ProductImage', :dependent => :destroy
     belongs_to :shop
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop
