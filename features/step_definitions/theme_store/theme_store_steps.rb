@@ -19,7 +19,7 @@ Given(/^must see themes$/) do
 end
 
 Given(/^clicks theme name$/) do
-  click_on MagazCore::Theme.sources.first.name
+  click_on MagazCore::Theme.sources.second.name
 end
 
 Given(/^choose to install theme$/) do

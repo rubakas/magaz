@@ -9,6 +9,16 @@ module MagazCore
         end
       end
     end
+
+    initializer :append_uploaders do |app|
+      unless app.root.to_s.match root.to_s
+        config.to_prepare do
+          Dir.glob(app.root + "app/uploaders/**/*_uploader*.rb").each do |c|
+            require_dependency(c)
+          end
+        end
+      end
+    end
     
   end
 end

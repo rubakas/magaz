@@ -1,6 +1,7 @@
 class Admin::CommentsController < Admin::ApplicationController
   include Authenticable
   inherit_resources
+  defaults :resource_class => MagazCore::Comment
   actions :all, :except => [:edit]
 
   def update
