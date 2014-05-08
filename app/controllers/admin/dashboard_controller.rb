@@ -1,5 +1,5 @@
 class Admin::DashboardController < Admin::ApplicationController
-  include Authenticable
+  include MagazCore::Concerns::Authenticable
   
   def index
   end

@@ -94,14 +94,24 @@ GIT
       sprockets (~> 2.8)
 
 PATH
-  remote: gems/magaz_database_common
+  remote: gems/magaz_core
   specs:
-    magaz_database_common (0.0.1)
+    magaz_core (0.0.1)
+      bcrypt-ruby
+      carrierwave
+      friendly_id
+      liquid
+      rmagick
 
 PATH
   remote: gems/magaz_style
   specs:
     magaz_style (0.0.1)
+
+PATH
+  remote: gems/magaz_theme_store
+  specs:
+    magaz_theme_store (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -266,9 +276,7 @@ DEPENDENCIES
   anjlab-bootstrap-rails!
   annotate!
   arel!
-  bcrypt-ruby (~> 3.1.2)
   capybara-webkit (~> 1.1.1)
-  carrierwave
   coffee-rails!
   cucumber-rails
   dalli
@@ -277,21 +285,19 @@ DEPENDENCIES
   flay
   flog
   font-awesome-sass-rails
-  friendly_id (~> 5.0.0)
   inherited_resources
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
   launchy
-  liquid
-  magaz_database_common!
+  magaz_core!
   magaz_style!
+  magaz_theme_store!
   memcachier
   parallel_tests
   pg
   puma
   rails!
-  rmagick
   rubocop
   sass-rails!
   sdoc

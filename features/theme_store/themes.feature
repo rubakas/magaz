@@ -4,9 +4,9 @@ Feature: themes
   I want themes
 
 Background:
+  * themes exist
   * store exists
   * shop admin logged in
-  * themes exist
   * browsing theme store domain
 
 Scenario: list of themes at home page

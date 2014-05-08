@@ -7,7 +7,7 @@ class RegistrationsControllerTest < ActionController::TestCase
 
   test "should create shop" do
     @request.host = HOSTNAME
-    assert_difference('Shop.count') do
+    assert_difference('MagazCore::Shop.count') do
       post :create, shop: { 
         name: 'uniq name', 
         email: 'uniq1@example.com', 

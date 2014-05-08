@@ -20,7 +20,7 @@ class Admin::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should create article" do
-    assert_difference('Article.count') do
+    assert_difference('MagazCore::Article.count') do
       post :create, { article: { content: @article.content, title: 'New uniq name' } }
     end
 
@@ -46,7 +46,7 @@ class Admin::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should destroy article" do
-    assert_difference('Article.count', -1) do
+    assert_difference('MagazCore::Article.count', -1) do
       delete :destroy, id: @article.id
     end
 

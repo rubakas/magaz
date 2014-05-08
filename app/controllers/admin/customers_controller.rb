@@ -1,5 +1,5 @@
 class Admin::CustomersController < Admin::ApplicationController
-  include Authenticable
+  include MagazCore::Concerns::Authenticable
   inherit_resources
   actions :all, :except => [:edit]
 
@@ -10,6 +10,10 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   protected
+
+  def begin_of_association_chain
+    current_shop
+  end
 
   def collection
     @customers ||= end_of_association_chain.page(params[:page])
