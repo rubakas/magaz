@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       root 'dashboard#index'
       resources :articles, except: [:edit]
       resources :blogs, except: [:edit]
+      resources :checkouts, except: [:create, :edit, :new]
       resources :collections, except: [:edit]
       resources :comments, except: [:edit]
       resources :customers, except: [:edit]
