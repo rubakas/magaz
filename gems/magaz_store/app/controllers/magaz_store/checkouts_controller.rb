@@ -5,7 +5,7 @@ module MagazStore
 
     def update_address
       if shopping_cart_service.update_address(permitted_params_update_address[:checkout])
-        redirect_to enter_payment_store_checkout_path(resource)
+        redirect_to enter_payment_checkout_path(resource)
       else
         render :show
       end
@@ -17,7 +17,7 @@ module MagazStore
 
     def pay
       if shopping_cart_service.pay(permitted_params_pay[:checkout])
-        redirect_to store_order_path(resource)
+        redirect_to order_path(resource)
       else
         render :enter_payment
       end

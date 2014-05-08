@@ -1,14 +1,14 @@
-<h1>Store::Checkouts#enter_payment</h1>
-<p>Find me in app/views/shop/checkouts/enter_payment.html.erb</p>
+<h1>Store::Checkouts#show</h1>
+<p>Find me in app/views/shop/checkouts/show.html.erb</p>
 
-<h2>Enter payment</h2>
+<h2>Shopping cart</h2>
 <% if shopping_cart.empty? %>
   Your shopping cart is empty.
 <% else %>
   Your shopping cart is NOT empty.
   <%= form_for shopping_cart, 
         as: :checkout, 
-        url: pay_store_checkout_path(shopping_cart), 
+        url: update_address_checkout_path(shopping_cart), 
         method: :put,
         html: {class: 'cart-form'} do |f| %>
     <table class="table">
@@ -21,9 +21,15 @@
       	</tr>
     	<% end %>
 
+	    <tr>
+	    	<td><%= f.label :email %></td>
+	    	<td>
+	    		<%= f.text_field :email %>
+	    	</td>
+	    </tr>
+
     </table>
-    <%= f.button "complete your purchase" %>
+    <%= f.button "next step" %>
   <% end %>
   <br/>
 <% end %>
-

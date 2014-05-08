@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
 
-  mount MagazStore::Engine => "/magaz_store"
+  mount MagazStore::Engine, at: '/', as: :magaz_store
+  
 end
