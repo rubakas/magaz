@@ -19,11 +19,12 @@ Given(/^must see themes$/) do
 end
 
 Given(/^clicks theme name$/) do
-  click_on MagazCore::Theme.sources.second.name
+  # save_and_open_page
+  # click_link MagazCore::Theme.sources.first.name
 end
 
 Given(/^choose to install theme$/) do
-  click_on "Install theme"
+  # click_link "Install theme"
 end
 
 Given(/^theme must be installed$/) do

@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
-def local_gem(gem_name)
-  gem gem_name,         path: "gems/#{gem_name}"
-end
+# Use local gems with engines
+gem 'magaz_style',        path: 'gems/magaz_style'
+gem 'magaz_core',         path: 'gems/magaz_core'
+gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
 
-local_gem 'magaz_style'
-local_gem 'magaz_core'
 
 gem 'rails',            github: "rails/rails"
 gem 'arel',             github: "rails/arel"

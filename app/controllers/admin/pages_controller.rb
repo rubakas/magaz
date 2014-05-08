@@ -1,5 +1,5 @@
 class Admin::PagesController < Admin::ApplicationController
-  include Authenticable
+  include MagazCore::Concerns::Authenticable
   inherit_resources
   actions :all, :except => [:edit]
 
