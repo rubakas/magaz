@@ -2,7 +2,7 @@ module Themed
   extend ActiveSupport::Concern
 
   included do
-    append_view_path Services::ThemeSystem::Resolver.instance
+    append_view_path MagazCore::Services::ThemeSystem::Resolver.instance
   end
 
   class ::ActionView::LookupContext

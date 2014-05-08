@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @shop = Shop.new
+    @shop = MagazCore::Shop.new
   end
 
   def goodbye

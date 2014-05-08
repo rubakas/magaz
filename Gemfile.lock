@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 3d87c26845095438b6c946dc4e1029280593fb91
+  revision: b231825f3e0b569e5ca1426833749b5c6325ba14
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -94,9 +94,24 @@ GIT
       sprockets (~> 2.8)
 
 PATH
-  remote: gems/magaz_database_common
+  remote: gems/magaz_core
   specs:
-    magaz_database_common (0.0.1)
+    magaz_core (0.0.1)
+      bcrypt-ruby
+      carrierwave
+      friendly_id
+      liquid
+      rmagick
+
+PATH
+  remote: gems/magaz_style
+  specs:
+    magaz_style (0.0.1)
+
+PATH
+  remote: gems/magaz_theme_store
+  specs:
+    magaz_theme_store (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -136,7 +151,7 @@ GEM
       cucumber (>= 1.2.0)
       nokogiri (>= 1.5.0)
       rails (>= 3.0.0)
-    dalli (2.7.0)
+    dalli (2.7.1)
     database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -164,7 +179,7 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jbuilder (2.0.6)
+    jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.0)
@@ -218,7 +233,7 @@ GEM
     ruby-progressbar (1.4.2)
     ruby_parser (3.6.0)
       sexp_processor (~> 4.1)
-    sass (3.3.6)
+    sass (3.3.7)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
@@ -261,9 +276,7 @@ DEPENDENCIES
   anjlab-bootstrap-rails!
   annotate!
   arel!
-  bcrypt-ruby (~> 3.1.2)
   capybara-webkit (~> 1.1.1)
-  carrierwave
   coffee-rails!
   cucumber-rails
   dalli
@@ -272,20 +285,19 @@ DEPENDENCIES
   flay
   flog
   font-awesome-sass-rails
-  friendly_id (~> 5.0.0)
   inherited_resources
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
   launchy
-  liquid
-  magaz_database_common!
+  magaz_core!
+  magaz_style!
+  magaz_theme_store!
   memcachier
   parallel_tests
   pg
   puma
   rails!
-  rmagick
   rubocop
   sass-rails!
   sdoc

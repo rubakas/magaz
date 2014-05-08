@@ -1,6 +1,7 @@
 class Admin::ArticlesController < Admin::ApplicationController
-  include Authenticable
+  include MagazCore::Concerns::Authenticable
   inherit_resources
+  defaults :resource_class => MagazCore::Article
   actions :all, :except => [:edit]
 
   def update

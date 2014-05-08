@@ -2,7 +2,8 @@ Given(/^store exists$/) do
   steps %[
     * themes exist
   ]
-  service = Services::ShopCreationSystem.new().create name: 'example', subdomain: 'example', password: 'password', email: 'admin@example.com'
+  service = MagazCore::Services::ShopCreationSystem.new()
+  service.create name: 'example', subdomain: 'example', password: 'password', email: 'admin@example.com'
   @shop = service.shop
 end
 

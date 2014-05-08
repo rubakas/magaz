@@ -8,6 +8,6 @@ module CurrentShopAccess
   protected
   
   def current_shop
-    Shop.find_by_subdomain(request.subdomain)
+    MagazCore::Shop.find_by_subdomain(request.subdomain)
   end
 end

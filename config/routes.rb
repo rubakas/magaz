@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount MagazStyle::Engine => "/style"
+
   constraints host: HOSTNAME do
     root 'welcome#index'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
@@ -12,14 +14,7 @@ Rails.application.routes.draw do
   end
 
   constraints(ThemeStoreSubdomainConstraint) do
-    namespace :theme_store, path: nil, shallow_path: nil do
-      root 'themes#index'
-      resources :themes do
-        member do
-          patch :install
-        end
-      end
-    end
+    mount MagazThemeStore::Engine => "/"
   end
 
   constraints(ShopSubdomainConstraint) do
