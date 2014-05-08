@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 # Use local gems with engines
 gem 'magaz_style',        path: 'gems/magaz_style'
 gem 'magaz_core',         path: 'gems/magaz_core'
+gem 'magaz_store',        path: 'gems/magaz_store'
 gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
-
 
 gem 'rails',            github: "rails/rails"
 gem 'arel',             github: "rails/arel"

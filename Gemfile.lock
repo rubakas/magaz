@@ -104,6 +104,11 @@ PATH
       rmagick
 
 PATH
+  remote: gems/magaz_store
+  specs:
+    magaz_store (0.0.1)
+
+PATH
   remote: gems/magaz_style
   specs:
     magaz_style (0.0.1)
@@ -291,6 +296,7 @@ DEPENDENCIES
   kaminari
   launchy
   magaz_core!
+  magaz_store!
   magaz_style!
   magaz_theme_store!
   memcachier
