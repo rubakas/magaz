@@ -9,7 +9,7 @@ module MagazStore
     end
 
     test "should get show" do
-      get :show, id: @product
+      get :show, id: @product, use_route: :magaz_store
       assert_response :success
     end
 
