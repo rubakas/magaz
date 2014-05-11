@@ -80,6 +80,19 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+    checkouts:
+      index:
+        title: "Abandoned Checkouts"
+      show:
+       title: "Checkout page"
+      blank:
+        no_checkouts: "You have no checkouts yet"
+      form:
+        error: "error"
+        back: "Back"
+      list:
+        title: "Checkouts"
+
     collections:
       index:
         title: "Collections"
@@ -150,6 +163,7 @@ en:
     orders:
       index:
         title: "Orders"
+        checkouts: "Abandoned Checkouts"
       show:
        title: "Editing page"
       blank:
