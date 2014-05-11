@@ -1,0 +1,29 @@
+<h1>Store::Checkouts#enter_payment</h1>
+<p>Find me in app/views/shop/checkouts/enter_payment.html.erb</p>
+
+<h2>Enter payment</h2>
+<% if shopping_cart.empty? %>
+  Your shopping cart is empty.
+<% else %>
+  Your shopping cart is NOT empty.
+  <%= form_for shopping_cart, 
+        as: :checkout, 
+        url: pay_checkout_path(shopping_cart), 
+        method: :put,
+        html: {class: 'cart-form'} do |f| %>
+    <table class="table">
+    	<% shopping_cart.items.each do |item| %>
+      	<tr>
+        	<td><%= item.name %></td>
+        	<td>
+          	<%= item.quantity %>
+        	</td>
+      	</tr>
+    	<% end %>
+
+    </table>
+    <%= f.button "complete your purchase" %>
+  <% end %>
+  <br/>
+<% end %>
+

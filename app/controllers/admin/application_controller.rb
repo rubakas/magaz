@@ -1,4 +1,4 @@
 class Admin::ApplicationController < ApplicationController
-  include CurrentShopAccess
+  include MagazCore::Concerns::CurrentShopAccess
   layout 'admin'
 end
