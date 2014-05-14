@@ -3,10 +3,11 @@ div class="row"
     h4
       i class="icon-tags" = t('.title')
   div class="col-xs-8 text-right"
-    h4
+      h4
+      = link_to t('.orders'), admin_orders_path, class: 'button-admin-menu'
 
 div class="row"
-  - if @checkouts.blank? && !params[:page].present?
+  - if @abandoned_checkouts.blank? && !params[:page].present?
     = render partial: 'blank'
   - else
     = render partial: 'list'

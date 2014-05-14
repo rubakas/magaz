@@ -83,15 +83,17 @@ en:
     checkouts:
       index:
         title: "Abandoned Checkouts"
+        orders: "Orders"
       show:
        title: "Checkout page"
+       back: "Back"
       blank:
         no_checkouts: "You have no checkouts yet"
       form:
         error: "error"
         back: "Back"
       list:
-        title: "Checkouts"
+        title: "Abandoned Checkouts"
 
     collections:
       index:
@@ -166,6 +168,7 @@ en:
         checkouts: "Abandoned Checkouts"
       show:
        title: "Editing page"
+       back: "Back"
       blank:
         no_orders: "You have no orders yet"
       form:

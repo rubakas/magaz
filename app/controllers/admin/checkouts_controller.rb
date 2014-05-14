@@ -1,29 +1,28 @@
 class Admin::CheckoutsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
-  actions :all, :except => [:create, :edit, :new]
+  before_action :set_abandoned_checkout, only: [:show, :destroy]
 
-  def update
-    update! do |success, failure|
-      failure.html { render :show }
-    end
+  def index
+    @abandoned_checkouts = current_shop.checkouts.abandoned_checkouts.page(params[:page])
   end
 
-  protected
-
-  def begin_of_association_chain
-    current_shop
+  def show
   end
 
-  def collection
-    @checkouts ||= end_of_association_chain.page(params[:page])
+  def destroy
+    @abandoned_checkout.destroy
+    redirect_to admin_checkouts_url
   end
 
+  private
 
-  #TODO:  collection_ids are not guaranteed to belong to this shop!!!
-  # https://github.com/josevalim/inherited_resources#strong-parameters
-  def permitted_params
-    { checkout:
-        params.fetch(:checkout, {}).permit()}
+  # Use callbacks to share common setup or constraints between actions.
+  def set_abandoned_checkout
+    @abandoned_checkout = current_shop.checkouts.abandoned_checkouts.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def abandoned_checkout_params
+    params.require(:abandoned_checkout).permit(:email)
   end
 end

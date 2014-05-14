@@ -1,24 +1,21 @@
-= paginate @checkouts
+= paginate @abandoned_checkouts
 
 table class="table table-striped"
   thead
     tr
       th = t('.number')
       th = t('.email')
-      th = t('.status')
       th = t('.date')
       th
 
   tbody
-  - @checkouts.each do |checkout|
-    - if checkout.email != nil
+  - @abandoned_checkouts.each do |checkout|
       tr
-        td = link_to "№#{checkout.id}", admin_checkout_path(checkout)
+        td = link_to "##{checkout.id}", admin_checkout_path(checkout)
         td = checkout.email
-        td = checkout.status
         td = checkout.created_at
   tbody
 
 br
 
-= paginate @checkouts
+= paginate @abandoned_checkouts
