@@ -12,7 +12,14 @@ module MagazCore
       #TODO: process payment
       # copy theme data and associate with shop
       @installed_theme = 
-        @shop.themes.create!(name: @source_theme.name, source_theme: @source_theme)
+        @shop.themes.build(name: @source_theme.name, source_theme: @source_theme)
+      
+      @source_theme.assets.each do |source_asset|
+        @installed_theme
+          .assets
+          .build(source_asset.attributes.reject {|k| 'id' == k.to_s})
+      end
+      @installed_theme.save!
       # start copying process and move assets to CDN?
     end
 

@@ -30,8 +30,13 @@ module MagazCore
     private
 
     def _build_associated_assets_from_path(theme:, path:)
-      asset_attributes = {}
-      theme.assets.build(asset_attributes)
+      Dir.chdir(path)
+      Dir.glob("**/*") do |current_path|
+        unless File.directory?(current_path)
+          asset_attributes = { key: current_path }
+          theme.assets.build asset_attributes
+        end
+      end
     end
 
     def _create_tmp_path
@@ -44,18 +49,27 @@ module MagazCore
     end
 
     def _resolve_root_path(path)
-      fail path
+      file_names = Dir.glob(File.expand_path('*', path))
+      dir_names = file_names.select do |file_name|
+        File.directory?(File.expand_path(file_name, path))
+      end
+
+      if 1 == dir_names.length
+        dir_names[0]
+      else
+        path
+      end
     end
 
     def _unpack_archive(archive_path:, unpack_path:)
       Zip::File.open(archive_path) do |zip_file|
-        zip_file.each do |f|
+        zip_file.each do |current_file|
           # do not extract OS X trash files
-          next if zip_file.name =~ /__MACOSX/ or zip_file.name =~ /\.DS_Store/
+          next if current_file.name =~ /__MACOSX/ or current_file.name =~ /\.DS_Store/
 
-          f_path=File.join(unpack_path, f.name)
+          f_path=File.join(unpack_path, current_file.name)
           FileUtils.mkdir_p(File.dirname(f_path))
-          zip_file.extract(f, f_path)
+          zip_file.extract(current_file, f_path)
         end
       end
     end

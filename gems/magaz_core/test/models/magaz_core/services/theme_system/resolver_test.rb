@@ -3,7 +3,14 @@ require 'test_helper'
 module MagazCore
   class Services::ThemeSystem::ResolverTest < ActiveSupport::TestCase
     setup do
-      @theme = create(:theme)
+      @theme = build(:theme)
+      archive_path = File.expand_path('./../../../../../fixtures/files/valid_theme.zip', __FILE__)
+      Services::ThemeSystem::ArchiveImporter
+        .new(archive_path: archive_path, 
+             theme: @theme,
+             theme_attributes: @theme.attributes)
+        .import
+
       @erb_body = "<%= 'Hi from theme template asset!' %>"
       @template_asset = create(:asset, key: 'prefix/template.liquid', theme: @theme, value: @erb_body)
 
