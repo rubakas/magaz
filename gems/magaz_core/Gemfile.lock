@@ -59,6 +59,7 @@ PATH
       friendly_id
       liquid
       rmagick
+      rubyzip
 
 GEM
   remote: https://rubygems.org/
@@ -100,6 +101,7 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     rmagick (2.13.2)
+    rubyzip (1.1.2)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)

@@ -3,7 +3,13 @@ require 'test_helper'
 module MagazCore
   class Services::ShopCreationSystemTest < ActiveSupport::TestCase
     setup do
-      @default_theme = create(:theme, name: 'Default')
+      @default_theme = build(:theme)
+      archive_path = File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
+      Services::ThemeSystem::ArchiveImporter
+        .new(archive_path: archive_path, 
+             theme: @default_theme,
+             theme_attributes: { name: 'Default' })
+        .import
       @service = Services::ShopCreationSystem.new()
       @shop_params = { name: 'example42', email: 'admin@example42.com', password: 'secret' }
     end

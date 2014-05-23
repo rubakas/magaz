@@ -102,6 +102,7 @@ PATH
       friendly_id
       liquid
       rmagick
+      rubyzip
 
 PATH
   remote: gems/magaz_store
@@ -239,6 +240,7 @@ GEM
     ruby-progressbar (1.5.1)
     ruby_parser (3.6.1)
       sexp_processor (~> 4.1)
+    rubyzip (1.1.2)
     sass (3.3.7)
     sdoc (0.4.0)
       json (~> 1.8)
