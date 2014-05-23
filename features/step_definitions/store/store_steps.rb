@@ -3,6 +3,7 @@ Given(/^store exists$/) do
     * themes exist
   ]
   service = MagazCore::Services::ShopCreationSystem.new()
+  puts service.inspect
   service.create name: 'example', subdomain: 'example', password: 'password', email: 'admin@example.com'
   @shop = service.shop
 end
