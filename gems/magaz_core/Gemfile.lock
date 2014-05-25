@@ -1,12 +1,12 @@
 GIT
   remote: git://github.com/rails/arel.git
-  revision: be9963ac233430b70b94277d8f1d472251b88217
+  revision: e295d61d6d4f13aee08c895751277531edb39993
   specs:
     arel (6.0.0.20140505020427)
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: c6ee495e2ed2bffde4bee1fa658c8834dd0bcd35
+  revision: f632f79b8dcd144408c66a544984b2ba9cf52f87
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -73,7 +73,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    database_cleaner (1.2.0)
+    database_cleaner (1.3.0)
     erubis (2.7.0)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
@@ -91,7 +91,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (5.3.4)
-    multi_json (1.10.0)
+    multi_json (1.10.1)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -101,7 +101,7 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     rmagick (2.13.2)
-    rubyzip (1.1.2)
+    rubyzip (1.1.3)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)

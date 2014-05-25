@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/arel.git
-  revision: be9963ac233430b70b94277d8f1d472251b88217
+  revision: e295d61d6d4f13aee08c895751277531edb39993
   specs:
     arel (6.0.0.20140505020427)
 
@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: c6ee495e2ed2bffde4bee1fa658c8834dd0bcd35
+  revision: f632f79b8dcd144408c66a544984b2ba9cf52f87
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -86,7 +86,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: d3592803d086c4428a34ae65a7d14cd826d14412
+  revision: 60d9e2e3b4482f05ca0e45399134dae0d73b34df
   specs:
     sprockets-rails (2.1.2)
       actionpack (>= 4.0)
@@ -159,7 +159,7 @@ GEM
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
     dalli (2.7.2)
-    database_cleaner (1.2.0)
+    database_cleaner (1.3.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -206,12 +206,12 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.6.0)
     minitest (5.3.4)
-    multi_json (1.10.0)
+    multi_json (1.10.1)
     multi_test (0.1.1)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     parallel (1.0.0)
-    parallel_tests (0.16.10)
+    parallel_tests (0.16.11)
       parallel
     parser (2.1.9)
       ast (>= 1.1, < 3.0)
@@ -231,7 +231,7 @@ GEM
     responders (1.0.0)
       railties (>= 3.2, < 5)
     rmagick (2.13.2)
-    rubocop (0.21.0)
+    rubocop (0.22.0)
       json (>= 1.7.7, < 2)
       parser (~> 2.1.9)
       powerpack (~> 0.0.6)
@@ -240,7 +240,7 @@ GEM
     ruby-progressbar (1.5.1)
     ruby_parser (3.6.1)
       sexp_processor (~> 4.1)
-    rubyzip (1.1.2)
+    rubyzip (1.1.3)
     sass (3.3.7)
     sdoc (0.4.0)
       json (~> 1.8)
