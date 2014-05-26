@@ -17,6 +17,7 @@ module MagazCore
   class Article < ActiveRecord::Base
     self.table_name = 'articles'
     extend FriendlyId
+    extend Concerns::Visibility
 
     belongs_to :blog
     has_many :comments

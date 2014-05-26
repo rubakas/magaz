@@ -99,7 +99,7 @@ PATH
     magaz_core (0.0.1)
       bcrypt-ruby
       carrierwave
-      friendly_id
+      friendly_id (= 5.0.3)
       liquid
       rmagick
       rubyzip

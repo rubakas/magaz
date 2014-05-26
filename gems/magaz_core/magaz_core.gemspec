@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "carrierwave"
   s.add_dependency "rmagick"
   s.add_dependency "rubyzip"
-  s.add_dependency "friendly_id"
+  s.add_dependency "friendly_id", "5.0.3"
   s.add_dependency "liquid"
   s.add_dependency "bcrypt-ruby"
 

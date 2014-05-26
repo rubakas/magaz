@@ -1,4 +1,14 @@
 require 'friendly_id'
+
+module FriendlyId
+  module Base
+    def primary_key_type
+      # @primary_key_type ||= columns.find(&:primary).type
+      @primary_key_type ||= columns.find { |c| c.name == primary_key}.type
+      # columns.find{ |c| c.name == primary_key}.type
+    end
+  end
+end
 # FriendlyId Global Configuration
 #
 # Use this to set up shared configuration options for your entire application.
