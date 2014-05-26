@@ -8,13 +8,13 @@ GIT
 
 GIT
   remote: git://github.com/rails/arel.git
-  revision: 538ac7c2aadbe6142901f70b921f61f4398bd58c
+  revision: e295d61d6d4f13aee08c895751277531edb39993
   specs:
-    arel (5.0.0.20140412150050)
+    arel (6.0.0.20140505020427)
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 681fbecebd3912db9fac97900956bfc15d7a9207
+  revision: 7a2b37fbbbe5ef7dd9693bc7d4b404ec7e461fff
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -35,7 +35,7 @@ GIT
     activerecord (4.2.0.alpha)
       activemodel (= 4.2.0.alpha)
       activesupport (= 4.2.0.alpha)
-      arel (~> 5.0.0)
+      arel (~> 6.0.0)
     activesupport (4.2.0.alpha)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
@@ -70,7 +70,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 94a033289ba895c036b73527ca5e567d88a35e58
+  revision: 60d9e2e3b4482f05ca0e45399134dae0d73b34df
   specs:
     sprockets-rails (2.1.2)
       actionpack (>= 4.0)
@@ -101,20 +101,20 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    minitest (5.3.3)
-    multi_json (1.9.3)
+    minitest (5.3.4)
+    multi_json (1.10.1)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rake (10.3.1)
+    rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
     sass (3.3.7)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    spring (1.1.2)
+    spring (1.1.3)
     sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
