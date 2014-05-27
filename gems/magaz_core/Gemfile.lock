@@ -1,6 +1,14 @@
 GIT
+  remote: git://github.com/ctran/annotate_models.git
+  revision: c60fa282d74051e2fb5d41b600f919a39d9edcb4
+  specs:
+    annotate (2.6.3)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
+
+GIT
   remote: git://github.com/rails/arel.git
-  revision: e295d61d6d4f13aee08c895751277531edb39993
+  revision: 517b0e53db663e73dfd5ff9d29ee54c6c3ca1de1
   specs:
     arel (6.0.0.20140505020427)
 
@@ -122,13 +130,14 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (1.1.0)
+    tzinfo (1.2.0)
       thread_safe (~> 0.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate!
   arel!
   bcrypt-ruby (~> 3.1.2)
   carrierwave

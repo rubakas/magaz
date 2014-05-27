@@ -2,6 +2,11 @@ require 'test_helper'
 
 module MagazCore
   class ArticleTest < ActiveSupport::TestCase
+    include MagazCore::Shared::VisibilityExamples
+    
+    setup do
+      setup_visibility_examples(model_class: MagazCore::Article, factory_name: :article)
+    end
 
     test 'two articles with same handle and different shops' do
       @shop1 = create(:shop, name: "shop1")

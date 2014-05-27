@@ -17,7 +17,7 @@ module MagazCore
   class Collection < ActiveRecord::Base
     self.table_name = 'collections'
     extend FriendlyId
-    extend Concerns::Visibility
+    include Concerns::Visibility
 
     has_and_belongs_to_many :products, class_name: 'MagazCore::Product'
     belongs_to :shop

@@ -38,3 +38,4 @@ gem 'spring',    group: :development
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+gem 'annotate', github: 'ctran/annotate_models'

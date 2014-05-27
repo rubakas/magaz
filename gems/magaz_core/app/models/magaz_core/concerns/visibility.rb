@@ -4,12 +4,14 @@ module MagazCore
       extend ActiveSupport::Concern
 
       included do
-        scope :visible, -> { where(publish_on: nil, published_at: (Time.at(0)..Time.now)) }
-        scope :hidden, -> { where("publish_on >= ?", Time.now).where(published_at: nil) }
+        scope :published, -> { where(publish_on: nil, published_at: (Time.at(0)..Time.now)) }
+
+        #TODO perhaps it should cover nil, nil case?
+        scope :not_published, -> { where("publish_on >= ?", Time.now).where(published_at: nil) }
         before_validation :force_visibility_status
       end
 
-      def visible?
+      def published?
         !published_at.nil? && published_at < Time.now
       end
 
