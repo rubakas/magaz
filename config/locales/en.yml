@@ -160,7 +160,7 @@ en:
     dashboard:
       index:
         title: "Dashboard"
-        welcome: "Welcome to dashboardz"
+        welcome: "Welcome to dashboard"
 
     orders:
       index:
