@@ -18,6 +18,7 @@ module MagazCore
   class Product < ActiveRecord::Base
     self.table_name = 'products'
     extend FriendlyId
+    include Concerns::Visibility
 
     has_and_belongs_to_many :collections, class_name: 'MagazCore::Collection'
     has_many :product_images, class_name: 'MagazCore::ProductImage', :dependent => :destroy

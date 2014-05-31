@@ -2,6 +2,12 @@ require 'test_helper'
 
 module MagazCore
   class ProductTest < ActiveSupport::TestCase
+    include MagazCore::Shared::VisibilityExamples
+    
+    setup do
+      setup_visibility_examples(model_class: MagazCore::Product, factory_name: :product)
+    end
+
     test 'associations' do
       skip
     end

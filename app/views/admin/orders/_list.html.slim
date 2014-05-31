@@ -15,7 +15,7 @@ table class="table table-striped"
       tr
         td = link_to "##{order.id}", admin_order_path(order)
         td = order.created_at
-        td
+        td = order.customer.id
         td = order.financial_status
         td = order.fulfillment_status
         td = order.total_price

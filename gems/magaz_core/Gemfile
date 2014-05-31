@@ -15,9 +15,6 @@ gem "rmagick",          require: false
 # Use liquid templates for themes
 gem 'liquid'
 
-# Use slugging and permalink for ActiveRecord
-gem 'friendly_id', '~> 5.0.0'
-
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
@@ -41,3 +38,4 @@ gem 'spring',    group: :development
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+gem 'annotate', github: 'ctran/annotate_models'

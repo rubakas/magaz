@@ -18,31 +18,13 @@ Rails.application.routes.draw do
   end
 
   constraints(ShopSubdomainConstraint) do
-    namespace :store, path: nil, shallow_path: nil do
-      root 'welcome#index'
-      resource :cart do
-        collection do
-          post :add
-        end
-      end
-
-      resources :checkouts, only: [:show] do
-        member do
-          put :update_address
-          get :enter_payment
-          put :pay
-        end
-      end
-
-      resources :orders, only: [:show]
-
-      resources :products, only: [:show]
-    end
+    mount MagazStore::Engine => "/"
 
     namespace :admin do
       root 'dashboard#index'
       resources :articles, except: [:edit]
       resources :blogs, except: [:edit]
+      resources :checkouts, except: [:create, :edit, :new]
       resources :collections, except: [:edit]
       resources :comments, except: [:edit]
       resources :customers, except: [:edit]

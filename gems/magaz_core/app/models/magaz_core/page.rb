@@ -17,6 +17,8 @@ module MagazCore
   class Page < ActiveRecord::Base
     self.table_name = 'pages'
     extend FriendlyId
+    include Concerns::Visibility
+    
     belongs_to :shop
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop

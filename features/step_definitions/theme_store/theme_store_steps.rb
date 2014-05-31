@@ -1,5 +1,13 @@
 Given(/^themes exist$/) do
-  @existing_source_themes = create_list(:theme, 20)
+  @existing_source_themes = build_list(:theme, 20)
+  archive_path = File.expand_path('gems/magaz_core/test/fixtures/files/valid_theme.zip', Rails.root)
+
+  @existing_source_themes.each do |theme|
+    MagazCore::ThemeServices::ImportFromArchive
+      .call(archive_path: archive_path,
+            theme: theme,
+            theme_attributes: theme.attributes)
+  end
 end
 
 Given(/^browsing theme store domain$/) do

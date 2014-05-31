@@ -20,7 +20,11 @@ module MagazCore
     belongs_to :product
 
     def line_price
-      price * quantity
+      if price.nil?
+        0
+      else
+        price * quantity
+      end
     end
 
     def line_weight

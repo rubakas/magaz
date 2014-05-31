@@ -7,18 +7,10 @@ GIT
       sass (>= 3.2)
 
 GIT
-  remote: git://github.com/ctran/annotate_models.git
-  revision: c60fa282d74051e2fb5d41b600f919a39d9edcb4
-  specs:
-    annotate (2.6.3)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
-
-GIT
   remote: git://github.com/rails/arel.git
-  revision: 538ac7c2aadbe6142901f70b921f61f4398bd58c
+  revision: e295d61d6d4f13aee08c895751277531edb39993
   specs:
-    arel (5.0.0.20140412150050)
+    arel (6.0.0.20140505020427)
 
 GIT
   remote: git://github.com/rails/coffee-rails.git
@@ -30,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: b231825f3e0b569e5ca1426833749b5c6325ba14
+  revision: 7a2b37fbbbe5ef7dd9693bc7d4b404ec7e461fff
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -51,7 +43,7 @@ GIT
     activerecord (4.2.0.alpha)
       activemodel (= 4.2.0.alpha)
       activesupport (= 4.2.0.alpha)
-      arel (~> 5.0.0)
+      arel (~> 6.0.0)
     activesupport (4.2.0.alpha)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
@@ -86,7 +78,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 94a033289ba895c036b73527ca5e567d88a35e58
+  revision: 60d9e2e3b4482f05ca0e45399134dae0d73b34df
   specs:
     sprockets-rails (2.1.2)
       actionpack (>= 4.0)
@@ -99,9 +91,15 @@ PATH
     magaz_core (0.0.1)
       bcrypt-ruby
       carrierwave
-      friendly_id
+      friendly_id (= 5.0.3)
       liquid
       rmagick
+      rubyzip
+
+PATH
+  remote: gems/magaz_store
+  specs:
+    magaz_store (0.0.1)
 
 PATH
   remote: gems/magaz_style
@@ -140,19 +138,20 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
-    cucumber (1.3.14)
+    cucumber (1.3.15)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.3)
       gherkin (~> 2.12)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.1)
-    cucumber-rails (1.4.0)
-      capybara (>= 1.1.2)
-      cucumber (>= 1.2.0)
-      nokogiri (>= 1.5.0)
-      rails (>= 3.0.0)
-    dalli (2.7.1)
-    database_cleaner (1.2.0)
+    cucumber-rails (1.4.1)
+      capybara (>= 1.1.2, < 3)
+      cucumber (>= 1.3.8, < 2)
+      mime-types (~> 1.16)
+      nokogiri (~> 1.5)
+      rails (>= 3, < 5)
+    dalli (2.7.2)
+    database_cleaner (1.3.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -197,14 +196,14 @@ GEM
       treetop (~> 1.4.8)
     memcachier (0.0.2)
     mime-types (1.25.1)
-    mini_portile (0.5.3)
-    minitest (5.3.3)
-    multi_json (1.9.3)
+    mini_portile (0.6.0)
+    minitest (5.3.4)
+    multi_json (1.10.1)
     multi_test (0.1.1)
-    nokogiri (1.6.1)
-      mini_portile (~> 0.5.0)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     parallel (1.0.0)
-    parallel_tests (0.16.10)
+    parallel_tests (0.16.15)
       parallel
     parser (2.1.9)
       ast (>= 1.1, < 3.0)
@@ -218,21 +217,22 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rainbow (2.0.0)
-    rake (10.3.1)
+    rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
     rmagick (2.13.2)
-    rubocop (0.21.0)
+    rubocop (0.22.0)
       json (>= 1.7.7, < 2)
       parser (~> 2.1.9)
       powerpack (~> 0.0.6)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
-    ruby-progressbar (1.4.2)
-    ruby_parser (3.6.0)
+    ruby-progressbar (1.5.1)
+    ruby_parser (3.6.1)
       sexp_processor (~> 4.1)
+    rubyzip (1.1.3)
     sass (3.3.7)
     sdoc (0.4.0)
       json (~> 1.8)
@@ -242,7 +242,7 @@ GEM
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
     slop (3.5.0)
-    spring (1.1.2)
+    spring (1.1.3)
     sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -274,7 +274,6 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails!
-  annotate!
   arel!
   capybara-webkit (~> 1.1.1)
   coffee-rails!
@@ -291,6 +290,7 @@ DEPENDENCIES
   kaminari
   launchy
   magaz_core!
+  magaz_store!
   magaz_style!
   magaz_theme_store!
   memcachier

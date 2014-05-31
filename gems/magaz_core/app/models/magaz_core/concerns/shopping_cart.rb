@@ -1,7 +1,5 @@
 #TODO:  looks like decorator to me
-module MagazCore
-  module Concerns
-    module ShoppingCart
+module MagazCore::Concerns::ShoppingCart
       extend ActiveSupport::Concern
       
       included do
@@ -24,6 +22,4 @@ module MagazCore
         line_items.map.sum(&:line_weight)
       end
 
-    end
-  end
 end

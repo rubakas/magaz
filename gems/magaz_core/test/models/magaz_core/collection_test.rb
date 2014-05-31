@@ -2,6 +2,12 @@ require 'test_helper'
 
 module MagazCore
   class CollectionTest < ActiveSupport::TestCase
+    include MagazCore::Shared::VisibilityExamples
+    
+    setup do
+      setup_visibility_examples(model_class: MagazCore::Collection, factory_name: :collection)
+    end
+
     test 'validation scenarios' do
       skip # include uniquness scope tests
     end

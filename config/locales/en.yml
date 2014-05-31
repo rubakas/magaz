@@ -80,6 +80,21 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+    checkouts:
+      index:
+        title: "Abandoned Checkouts"
+        orders: "Orders"
+      show:
+       title: "Checkout page"
+       back: "Back"
+      blank:
+        no_checkouts: "You have no checkouts yet"
+      form:
+        error: "error"
+        back: "Back"
+      list:
+        title: "Abandoned Checkouts"
+
     collections:
       index:
         title: "Collections"
@@ -145,13 +160,15 @@ en:
     dashboard:
       index:
         title: "Dashboard"
-        welcome: "Welcome to dashboardz"
+        welcome: "Welcome to dashboard"
 
     orders:
       index:
         title: "Orders"
+        checkouts: "Abandoned Checkouts"
       show:
        title: "Editing page"
+       back: "Back"
       blank:
         no_orders: "You have no orders yet"
       form:
