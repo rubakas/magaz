@@ -8,15 +8,14 @@ module MagazCore
       @source_theme = build(:theme)
       archive_path = File.expand_path('./../../../fixtures/files/valid_theme.zip', __FILE__)
       
-      Services::ThemeSystem::ArchiveImporter
-        .new(archive_path: archive_path, 
-             theme: @source_theme,
-             theme_attributes: { name: 'Default' })
-        .import
+      MagazCore::ThemeServices::ImportFromArchive
+        .call(archive_path: archive_path, 
+              theme: @source_theme,
+              theme_attributes: { name: 'Default' })
 
-      service = Services::ThemeSystem.new(shop_id: @shop.id, source_theme_id: @source_theme.id)
-
-      service.install_theme
+      service = MagazCore::ThemeServices::Install
+                  .call(shop_id: @shop.id, 
+                        source_theme_id: @source_theme.id)
 
       @installed_theme = service.installed_theme
     end

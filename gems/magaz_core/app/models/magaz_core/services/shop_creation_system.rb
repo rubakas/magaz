@@ -14,9 +14,8 @@ module MagazCore
           begin
             @shop.attributes = shop_params
             @shop.save!
-            MagazCore::Services::ThemeSystem
-              .new(shop_id: @shop.id, source_theme_id: @default_theme.id)
-              .install_theme
+            MagazCore::ThemeServices::Install
+              .call(shop_id: @shop.id, source_theme_id: @default_theme.id)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
             raise ActiveRecord::Rollback
           end

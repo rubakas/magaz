@@ -5,11 +5,10 @@ module MagazCore
     setup do
       @default_theme = build(:theme)
       archive_path = File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
-      Services::ThemeSystem::ArchiveImporter
-        .new(archive_path: archive_path, 
-             theme: @default_theme,
-             theme_attributes: { name: 'Default' })
-        .import
+      MagazCore::ThemeServices::ImportFromArchive
+        .call(archive_path: archive_path, 
+              theme: @default_theme,
+              theme_attributes: { name: 'Default' })
       @service = Services::ShopCreationSystem.new()
       @shop_params = { name: 'example42', email: 'admin@example42.com', password: 'secret' }
     end

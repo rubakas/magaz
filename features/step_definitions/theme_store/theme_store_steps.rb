@@ -3,11 +3,10 @@ Given(/^themes exist$/) do
   archive_path = File.expand_path('gems/magaz_core/test/fixtures/files/valid_theme.zip', Rails.root)
 
   @existing_source_themes.each do |theme|
-    MagazCore::Services::ThemeSystem::ArchiveImporter
-      .new(archive_path: archive_path,
-           theme: theme,
-           theme_attributes: theme.attributes)
-      .import
+    MagazCore::ThemeServices::ImportFromArchive
+      .call(archive_path: archive_path,
+            theme: theme,
+            theme_attributes: theme.attributes)
   end
 end
 

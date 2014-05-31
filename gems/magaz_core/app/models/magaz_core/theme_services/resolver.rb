@@ -1,7 +1,7 @@
 require "singleton"
 
 module MagazCore
-  class Services::ThemeSystem::Resolver < ActionView::Resolver
+  class ThemeServices::Resolver < ActionView::Resolver
     include Singleton
     
     def find_all(name, prefix=nil, partial=false, details={}, key=nil, locals=[])
