@@ -16,8 +16,7 @@ module MagazCore
     test 'install_theme' do
       service = MagazCore::ThemeServices::Install
                   .call(shop_id: @shop.id, 
-                        source_theme_id: @theme.id, 
-                        installed_theme_id: nil)
+                        source_theme_id: @theme.id)
       assert service.installed_theme.kind_of?(Theme)
       assert @shop.themes.installed.include?(service.installed_theme)
     end
