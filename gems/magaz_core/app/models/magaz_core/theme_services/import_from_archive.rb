@@ -29,8 +29,9 @@ module MagazCore
       def _build_associated_assets_from_path(theme:, path:)
         Dir.glob("#{path}/**/*") do |current_path|
           unless File.directory?(current_path)
-            current_key = current_path.sub("#{path}/", "") # we don't need full path as a key
-            asset_attributes = { key: current_key }
+            # we don't need full path as a key
+            current_relative_path = current_path.sub("#{path}/", "")
+            asset_attributes = { key: current_relative_path }
             theme.assets.build asset_attributes
           end
         end
