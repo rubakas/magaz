@@ -1,0 +1,15 @@
+# This migration comes from magaz_core (originally 20131229193117)
+class CreateLineItems < ActiveRecord::Migration
+  def change
+    create_table :line_items do |t|
+      t.references :order
+      t.references :product
+      t.string :name
+      t.text :description
+      t.decimal :price, precision: 38, scale: 2
+      t.integer :quantity
+
+      t.timestamps
+    end
+  end
+end

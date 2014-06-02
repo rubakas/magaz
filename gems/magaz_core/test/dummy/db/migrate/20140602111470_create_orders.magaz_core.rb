@@ -1,0 +1,16 @@
+# This migration comes from magaz_core (originally 20131229191029)
+class CreateOrders < ActiveRecord::Migration
+  def change
+    create_table :orders do |t|
+      t.references :shop
+      t.text :note
+      t.string :status
+      t.string :financial_status
+      t.string :fulfillment_status
+      t.string :currency
+      t.string :email
+
+      t.timestamps
+    end
+  end
+end
