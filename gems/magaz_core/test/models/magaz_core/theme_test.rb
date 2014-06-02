@@ -31,7 +31,7 @@ module MagazCore
     end
 
     test 'finder of roles' do
-      #TODO
+      #TODO: test role finder
     end
 
   end

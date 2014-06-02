@@ -27,7 +27,7 @@ module MagazCore
       private
 
       def _build_associated_assets_from_path(theme:, path:)
-        #TODO
+        #TODO: fix
         #FIXME: remove chdir - don't fuck with pwd of current process
         olddir = Dir.getwd
         Dir.chdir(path)
