@@ -12,7 +12,7 @@ module MagazCore
                                               theme: theme,
                                               theme_attributes: theme_attributes)
       assert_kind_of Theme, archive_importer.theme
-      assert archive_importer.theme.valid?
+      assert archive_importer.theme.valid?, archive_importer.theme.errors.inspect
       assert archive_importer.theme.persisted?
     end
   end
