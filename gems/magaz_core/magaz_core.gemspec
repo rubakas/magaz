@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = MagazCore::VERSION
   s.authors     = ["Andriy Tyurnikov"]
   s.email       = ["Andriy.Tyurnikov@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of MagazCore."
-  s.description = "TODO: Description of MagazCore."
+  s.homepage    = "http://github.com/andriytyurnikov/magaz"
+  s.summary     = "Core classes of Magaz ecommerce engine"
+  s.description = "Core classes of Magaz ecommerce engine"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "carrierwave"
   s.add_dependency "rmagick"
   s.add_dependency "rubyzip"
-  s.add_dependency "friendly_id", "5.0.3"
+  s.add_dependency "friendly_id", "5.0.4"
   s.add_dependency "liquid"
   s.add_dependency "bcrypt-ruby"
 
