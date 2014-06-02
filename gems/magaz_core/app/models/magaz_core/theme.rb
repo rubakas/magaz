@@ -30,7 +30,7 @@ module MagazCore
         end
       end.compact.uniq
       result = (directory_names == directory_names & REQUIRED_DIRECTORIES)
-      #TODO
+      #TODO: customize error messages
       errors.add :base, :invalid unless result
       result
     end
@@ -38,7 +38,7 @@ module MagazCore
     # theme.liquid
     def default_layout_present
       result = assets.select {|a| a.key == 'layout/theme.liquid'}.any?
-      #TODO
+      #TODO: customize error messages
       errors.add :base, :invalid unless result
       result
     end
@@ -54,7 +54,7 @@ module MagazCore
       ]
     end
 
-    #TODO
+    #TODO: implement nested assets verification
     def nested_assets_absent
       fail
     end
@@ -62,7 +62,7 @@ module MagazCore
     # config/settings.html
     def default_config_present
       result = assets.select {|a| a.key == 'config/settings.html'}.any?
-      #TODO
+      #TODO: customize error messages
       errors.add :base, :invalid unless result
       result
     end

@@ -27,17 +27,14 @@ module MagazCore
       private
 
       def _build_associated_assets_from_path(theme:, path:)
-        #TODO
-        #FIXME: remove chdir - don't fuck with pwd of current process
-        olddir = Dir.getwd
-        Dir.chdir(path)
-        Dir.glob("**/*") do |current_path|
+        Dir.glob("#{path}/**/*") do |current_path|
           unless File.directory?(current_path)
-            asset_attributes = { key: current_path }
+            # we don't need full path as a key
+            current_relative_path = current_path.sub("#{path}/", "")
+            asset_attributes = { key: current_relative_path }
             theme.assets.build asset_attributes
           end
         end
-        Dir.chdir(olddir)
       end
 
       def _create_tmp_path

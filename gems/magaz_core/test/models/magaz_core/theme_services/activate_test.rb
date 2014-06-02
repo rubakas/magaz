@@ -16,8 +16,7 @@ module MagazCore
     test 'activate_theme' do
       install_service = MagazCore::ThemeServices::Install
                           .call(shop_id: @shop.id, 
-                                source_theme_id: @theme.id, 
-                                installed_theme_id: nil)
+                                source_theme_id: @theme.id)
       
       activate_service = MagazCore::ThemeServices::Activate
                           .call(shop_id: @shop.id, 
