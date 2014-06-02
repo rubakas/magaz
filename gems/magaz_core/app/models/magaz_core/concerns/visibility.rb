@@ -13,7 +13,7 @@ module MagazCore
 
       def publish_if_pending!
         if pending_publishing?
-          published_at = Time.now #TODO
+          published_at = Time.now
           publish_on = nil
           save!
         else
