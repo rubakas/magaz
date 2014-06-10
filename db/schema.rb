@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527160314) do
+ActiveRecord::Schema.define(version: 20140602110427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,19 @@ ActiveRecord::Schema.define(version: 20140527160314) do
     t.datetime "updated_at"
     t.string   "password_salt"
     t.string   "subdomain"
+    t.string   "address"
+    t.string   "business_name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "currency"
+    t.string   "customer_email"
+    t.integer  "phone"
+    t.string   "province"
+    t.string   "timezone"
+    t.integer  "zip"
+    t.string   "handle"
+    t.string   "page_title"
+    t.string   "meta_description"
   end
 
   create_table "themes", force: true do |t|
