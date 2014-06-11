@@ -2,16 +2,23 @@ class Admin::SettingsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
   inherit_resources
   defaults :resource_class => MagazCore::Shop, :collection_name => 'shops', :instance_name => 'shop'
-  actions :all, :except => [:edit]
+  actions :all, :only => [:edit, :update]
 
   def update
     update! do |success, failure|
       failure.html { render :form }
+      success.html { redirect_to :action => :edit }
     end
   end
 
-
   protected
+
+  def resource
+    @shop = current_shop.tap do |o|
+      logger.info o.inspect
+    end
+
+  end
 
   def permitted_params
     { shop:

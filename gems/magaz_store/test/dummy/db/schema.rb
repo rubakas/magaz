@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416153636) do
+ActiveRecord::Schema.define(version: 20140610115405) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20140416153636) do
     t.string   "page_title"
     t.string   "meta_description"
     t.string   "slug"
+    t.datetime "publish_on"
+    t.datetime "published_at"
   end
 
   create_table "assets", force: true do |t|
@@ -70,6 +72,8 @@ ActiveRecord::Schema.define(version: 20140416153636) do
     t.string   "page_title"
     t.string   "meta_description"
     t.string   "slug"
+    t.datetime "publish_on"
+    t.datetime "published_at"
   end
 
   create_table "collections_products", force: true do |t|
@@ -129,6 +133,8 @@ ActiveRecord::Schema.define(version: 20140416153636) do
     t.string   "page_title"
     t.string   "meta_description"
     t.string   "slug"
+    t.datetime "publish_on"
+    t.datetime "published_at"
   end
 
   create_table "product_images", force: true do |t|
@@ -149,6 +155,8 @@ ActiveRecord::Schema.define(version: 20140416153636) do
     t.string   "page_title"
     t.string   "meta_description"
     t.string   "slug"
+    t.datetime "publish_on"
+    t.datetime "published_at"
   end
 
   create_table "shops", force: true do |t|
@@ -159,6 +167,20 @@ ActiveRecord::Schema.define(version: 20140416153636) do
     t.datetime "updated_at"
     t.string   "password_salt"
     t.string   "subdomain"
+    t.string   "address"
+    t.string   "business_name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "currency"
+    t.string   "customer_email"
+    t.string   "phone"
+    t.string   "province"
+    t.string   "timezone"
+    t.string   "unit_system"
+    t.integer  "zip"
+    t.string   "handle"
+    t.string   "page_title"
+    t.string   "meta_description"
   end
 
   create_table "themes", force: true do |t|
