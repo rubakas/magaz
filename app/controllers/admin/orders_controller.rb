@@ -1,56 +1,40 @@
 class Admin::OrdersController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
+  inherit_resources
+  defaults :resource_class => MagazCore::Checkout, :collection_name => 'orders', :instance_name => 'order'
   before_action :set_order, only: [:show, :update, :destroy]
 
-  # GET /admin/pages
-  # GET /admin/pages.json
-  def index
-    @orders = current_shop.checkouts.orders.page(params[:page])
-  end
-
-  # GET /admin/pages/1
-  # GET /admin/pages/1.json
-  def show
-  end
-
-  # POST /admin/pages
-  # POST /admin/pages.json
-  def create
-    @order = current_shop.checkouts.orders.build(order_params)
-
-    if @order.save
-      redirect_to admin_order_path(@order), notice: "Page was successfully created"
-    else
-      render action: "new"
-    end
-  end
-
-  # PATCH/PUT /admin/pages/1
-  # PATCH/PUT /admin/pages/1.json
   def update
-    if @order.update(order_params)
-      redirect_to admin_order_path(@order), notice: "Page was successfully updated"
-    else
-      render action: "show"
+    update! do |success, failure|
+      failure.html { render :show }
     end
-  end
-
-  # DELETE /admin/pages/1
-  # DELETE /admin/pages/1.json
-  def destroy
-    @order.destroy
-    redirect_to admin_pages_url
   end
 
   private
-  
+
   # Use callbacks to share common setup or constraints between actions.
   def set_order
     @order = current_shop.checkouts.orders.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def order_params
-    params.require(:order).permit(:title, :content)
+  protected
+
+   def begin_of_association_chain
+     current_shop.checkouts.orders
+   end
+
+   def collection
+     @orders ||= end_of_association_chain.page(params[:page])
+   end
+
+  def resource
+    @order ||= end_of_association_chain.orders.find(params[:id])
+  end
+
+  #TODO:  collection_ids are not guaranteed to belong to this shop!!!
+  # https://github.com/josevalim/inherited_resources#strong-parameters
+  def permitted_params
+    { order:
+        params.fetch(:product, {}).permit(:title, :content) }
   end
 end
