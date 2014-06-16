@@ -10,6 +10,11 @@ class Admin::CustomersController < Admin::ApplicationController
     end
   end
 
+  def import
+    MagazCore::Customer.import(params[:file])
+    redirect_to admin_customers_path, notice: "Customers imported"
+  end
+
   protected
 
   def begin_of_association_chain

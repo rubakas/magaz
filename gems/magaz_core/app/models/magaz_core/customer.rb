@@ -5,5 +5,13 @@ module MagazCore
     belongs_to :shop
 
     # validates :email, presence: true
+
+    def self.import(file)
+      CSV.foreach(file.path, headers: true) do |row|
+        customer = find_by_id(row["id"]) || new
+        customer.attributes = row.to_hash
+        customer.save
+      end
+    end
   end
 end
