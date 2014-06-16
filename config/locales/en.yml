@@ -140,6 +140,7 @@ en:
       index:
         title: "Customers"
         add: "Add Customer"
+        csv: "Export Customers"
       new:
         add: "Add Customer"
       show:

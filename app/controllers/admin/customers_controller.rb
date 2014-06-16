@@ -2,6 +2,7 @@ class Admin::CustomersController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
   inherit_resources
   actions :all, :except => [:edit]
+  respond_to :csv
 
   def update
     update! do |success, failure|
