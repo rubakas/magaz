@@ -4,7 +4,7 @@ div class="row"
       i class="icon-tags" = t('.title')
   div class="col-xs-8 text-right"
     h4
-     = link_to t('.csv'), admin_customers_path(format: "csv"), class: 'btn'
+     = link_to t('.export_csv'), admin_customers_path(format: "csv"), class: 'btn'
      = link_to t('.add'), new_admin_customer_path, class: 'button-admin-menu'
 
 div class="row"
@@ -18,4 +18,4 @@ div class="form-group"
   = form_tag import_admin_customers_path, multipart: true do
     = file_field_tag :file
     p
-    = submit_tag "Import", class: 'button-admin-menu'
+    = submit_tag t('.import_csv'), class: 'button-admin-menu'
