@@ -1,0 +1,75 @@
+= form_for :shop,
+  url: { action: "update" },
+  method: "put",
+  html: { class: 'script-admin-sign-in-form' } do |f|
+
+
+  h4 Store Details
+  div class="form-group"
+    = f.label :name
+    br
+    = f.text_field :name, class: 'form-input'
+  div class="form-group"
+    = f.label :page_title
+    br
+    = f.text_field :page_title, class: 'form-input'
+  div class="form-group"
+    = f.label :meta_description
+    br
+    = f.text_field :meta_description, class: 'form-input'
+  div class="form-group"
+    = f.label :email
+    br
+    = f.text_field :email, class: 'form-input'
+  div class="form-group"
+    = f.label :customer_email
+    br
+    = f.text_field :customer_email, class: 'form-input'
+  br
+
+  h4 Store address
+  div class="form-group"
+    = f.label :business_name
+    br
+    = f.text_field :business_name, class: 'form-input'
+  div class="form-group"
+    = f.label :phone
+    br
+    = f.text_field :phone, class: 'form-input'
+  div class="form-group"
+    = f.label :address
+    br
+    = f.text_field :address, class: 'form-input'
+  div class="form-group"
+    = f.label :city
+    br
+    = f.text_field :city, class: 'form-input'
+  div class="form-group"
+    = f.label :zip
+    br
+    = f.text_field :zip, class: 'form-input'
+  div class="form-group"
+    = f.label :country
+    br
+    = f.text_field :country, class: 'form-input'
+  br
+
+  h4 Standart & Formats
+  div class="form-group"
+    = f.label :timezone
+    br
+    = f.text_field :timezone, class: 'form-control'
+  div class="form-group"
+    = f.label :unit_system
+    br
+    = f.select :unit_system, [['Kilogram/Centimeter', 'metric'], ['Pound/Inch', 'imperial']]
+  div class="form-group"
+    = f.label :currency
+    br
+    = f.select :currency, ['USD', 'EURO', 'HRN']
+
+    hr
+  div class="form-group"
+    = link_to t('.back'), admin_root_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')

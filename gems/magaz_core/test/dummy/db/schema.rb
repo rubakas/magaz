@@ -167,6 +167,20 @@ ActiveRecord::Schema.define(version: 20140602111496) do
     t.datetime "updated_at"
     t.string   "password_salt"
     t.string   "subdomain"
+    t.string   "address"
+    t.string   "business_name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "currency"
+    t.string   "customer_email"
+    t.string   "phone"
+    t.string   "province"
+    t.string   "timezone"
+    t.string   "unit_system"
+    t.integer  "zip"
+    t.string   "handle"
+    t.string   "page_title"
+    t.string   "meta_description"
   end
 
   create_table "themes", force: true do |t|
