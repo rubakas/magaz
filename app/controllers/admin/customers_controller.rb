@@ -11,12 +11,12 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   def import
-    MagazCore::Customer.import(params[:file])
+    end_of_association_chain.import(params[:file])
     redirect_to admin_customers_path, notice: "Customers imported"
   end
 
   def export
-    @customers = MagazCore::Customer.all
+    @customers = end_of_association_chain.all
     respond_to do |format|
       format.html
       format.csv { send_data @customers.to_csv, :disposition => "attachment; filename=сustomers.csv"  }
