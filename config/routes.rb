@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :comments, except: [:edit]
       resources :customers, except: [:edit] do
         collection { post :import }
+        collection { get  :export }
       end
       resources :orders, except: [:create, :edit, :new]
       resources :pages, except: [:edit]

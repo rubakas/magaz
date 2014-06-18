@@ -15,6 +15,14 @@ class Admin::CustomersController < Admin::ApplicationController
     redirect_to admin_customers_path, notice: "Customers imported"
   end
 
+  def export
+    @customers = MagazCore::Customer.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @customers.to_csv }
+    end
+  end
+
   protected
 
   def begin_of_association_chain
