@@ -19,7 +19,7 @@ class Admin::CustomersController < Admin::ApplicationController
     @customers = MagazCore::Customer.all
     respond_to do |format|
       format.html
-      format.csv { send_data @customers.to_csv }
+      format.csv { send_data @customers.to_csv, :disposition => "attachment; filename=сustomers.csv"  }
     end
   end
 
