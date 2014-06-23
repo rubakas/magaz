@@ -18,9 +18,9 @@ module MagazCore
     self.table_name = 'blogs'
     extend FriendlyId
 
-    belongs_to :shop
     has_many :articles
     has_many :comments
+    belongs_to :shop
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 

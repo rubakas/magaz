@@ -26,8 +26,8 @@ module MagazCore
     #                           partially_fulfilled
     #                           unfulfilled ]
 
-    has_many :line_items
     belongs_to :customer
+    has_many :line_items
 
     scope :orders, -> { where(status: STATUSES) }
     scope :not_orders, -> { where(status: nil) }

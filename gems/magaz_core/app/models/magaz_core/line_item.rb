@@ -16,6 +16,7 @@
 module MagazCore
   class LineItem < ActiveRecord::Base
     self.table_name = 'line_items'
+    
     belongs_to :checkout
     belongs_to :product
 
