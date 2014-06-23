@@ -3,14 +3,17 @@
 # Table name: collections
 #
 #  id               :integer          not null, primary key
-#  name             :string(255)
+#  name             :string
 #  description      :text
 #  shop_id          :integer
 #  created_at       :datetime
 #  updated_at       :datetime
-#  handle           :string(255)
-#  page_title       :string(255)
-#  meta_description :string(255)
+#  handle           :string
+#  page_title       :string
+#  meta_description :string
+#  slug             :string
+#  publish_on       :datetime
+#  published_at     :datetime
 #
 
 module MagazCore

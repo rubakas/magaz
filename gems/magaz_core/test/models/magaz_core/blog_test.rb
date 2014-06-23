@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: blogs
+#
+#  id               :integer          not null, primary key
+#  title            :string
+#  shop_id          :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  handle           :string
+#  page_title       :string
+#  meta_description :string
+#  slug             :string
+#
+
 require 'test_helper'
 
 module MagazCore

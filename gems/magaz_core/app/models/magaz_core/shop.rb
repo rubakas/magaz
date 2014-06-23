@@ -2,14 +2,28 @@
 #
 # Table name: shops
 #
-#  id              :integer          not null, primary key
-#  email           :string(255)
-#  name            :string(255)
-#  password_digest :string(255)
-#  created_at      :datetime
-#  updated_at      :datetime
-#  password_salt   :string(255)
-#  subdomain       :string(255)
+#  id               :integer          not null, primary key
+#  email            :string
+#  name             :string
+#  password_digest  :string
+#  created_at       :datetime
+#  updated_at       :datetime
+#  password_salt    :string
+#  subdomain        :string
+#  address          :string
+#  business_name    :string
+#  city             :string
+#  country          :string
+#  currency         :string
+#  customer_email   :string
+#  phone            :string
+#  province         :string
+#  timezone         :string
+#  unit_system      :string
+#  zip              :integer
+#  handle           :string
+#  page_title       :string
+#  meta_description :string
 #
 
 module MagazCore

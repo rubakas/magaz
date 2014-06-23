@@ -3,15 +3,18 @@
 # Table name: products
 #
 #  id               :integer          not null, primary key
-#  name             :string(255)
+#  name             :string
 #  description      :text
 #  created_at       :datetime
 #  updated_at       :datetime
 #  shop_id          :integer
 #  price            :decimal(38, 2)
-#  handle           :string(255)
-#  page_title       :string(255)
-#  meta_description :string(255)
+#  handle           :string
+#  page_title       :string
+#  meta_description :string
+#  slug             :string
+#  publish_on       :datetime
+#  published_at     :datetime
 #
 
 module MagazCore

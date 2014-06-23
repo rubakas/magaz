@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: customers
+#
+#  id                :integer          not null, primary key
+#  accepts_marketing :boolean
+#  email             :string
+#  first_name        :string
+#  last_name         :string
+#  shop_id           :integer
+#
+
 module MagazCore
   class Customer < ActiveRecord::Base
     self.table_name = 'customers'

@@ -3,9 +3,9 @@
 # Table name: comments
 #
 #  id         :integer          not null, primary key
-#  author     :string(255)
+#  author     :string
 #  body       :text
-#  email      :string(255)
+#  email      :string
 #  blog_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
