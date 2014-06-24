@@ -38,13 +38,11 @@ module MagazCore
       end
 
       def _create_default_blogs_and_posts!(shop:)
-        # News blog
         default_blog = shop
           .blogs
           .create title: MagazCore::Blog::DEFAULT_BLOG_TITLE #Comments are disabled
 
-        # First Post blog post
-        default_blog
+        default_post = default_blog
           .articles
           .create title:    MagazCore::Article::DEFAULT_ARTICLE_TITLE,
                   content:  MagazCore::Article::DEFAULT_ARTICLE_CONTENT
@@ -63,7 +61,6 @@ module MagazCore
       end
 
       def _create_default_pages!(shop:)
-        # About Us page
         shop
           .pages
           .create title:        MagazCore::Page::DEFAULT_ABOUT_US_TITLE,
@@ -71,7 +68,6 @@ module MagazCore
                   publish_on:   nil,
                   published_at: nil
 
-        # Welcome page
         shop
           .pages
           .create title:        MagazCore::Page::DEFAULT_WELCOME_TITLE,
