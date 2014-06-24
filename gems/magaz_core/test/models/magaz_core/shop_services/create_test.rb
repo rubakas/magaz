@@ -32,5 +32,17 @@ module MagazCore
                   .call(shop_params: {})
       refute service.shop.persisted?
     end
+
+    test 'default content created' do
+      service = MagazCore::ShopServices::Create.call(shop_params: @shop_params)
+      assert service.shop.persisted?
+
+      assert_equal service.shop.collections.length, 1
+      assert_equal service.shop.blogs.length, 1
+      assert_equal service.shop.articles.length, 1
+      assert_equal service.shop.pages.length, 2
+      #TODO assert_equal service.shop.link_lists.length, 2
+    end
+
   end
 end

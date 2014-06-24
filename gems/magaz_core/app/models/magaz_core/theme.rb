@@ -15,10 +15,10 @@ module MagazCore
   class Theme < ActiveRecord::Base
     self.table_name = 'themes'
     REQUIRED_DIRECTORIES = %w[assets config layout snippets templates].freeze
-    has_many :assets
-    belongs_to :shop
     
+    has_many :assets
     has_many   :installed_themes, class_name: 'MagazCore::Theme', foreign_key: :source_theme_id
+    belongs_to :shop
     belongs_to :source_theme, class_name: 'MagazCore::Theme', foreign_key: :source_theme_id
 
     scope :sources,   -> { where(source_theme: nil) }

@@ -15,8 +15,9 @@
 module MagazCore
   class Comment < ActiveRecord::Base
     self.table_name = 'comments'
-    belongs_to :blog
+    
     belongs_to :article
+    belongs_to :blog
 
     validates :author, presence: true, uniqueness: { scope: :article_id }
     validates :email, presence: true

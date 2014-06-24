@@ -22,6 +22,10 @@ module MagazCore
     extend FriendlyId
     include Concerns::Visibility
 
+    DEFAULT_COLLECTION_NAME = 'Frontpage'
+    DEFAULT_COLLECTION_DESCRIPTION = ''
+
+
     has_and_belongs_to_many :products, class_name: 'MagazCore::Product'
     belongs_to :shop
 
