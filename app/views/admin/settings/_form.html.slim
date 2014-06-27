@@ -51,11 +51,13 @@
   div class="form-group"
     = f.label :country
     br
-    = f.text_field :country, class: 'form-input'
+    = f.country_select :country
   br
 
   h4 Standart & Formats
   div class="form-group"
+    = f.label :timezone
+    br
     = f.time_zone_select :timezone
   div class="form-group"
     = f.label :unit_system

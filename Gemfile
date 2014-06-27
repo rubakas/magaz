@@ -43,6 +43,9 @@ gem 'coffee-rails',     github: "rails/coffee-rails"
 # gem 'therubyracer',     platforms: :ruby
 gem 'kaminari'
 
+# Use for country select forms
+gem 'country_select', github: 'stefanpenner/country_select'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
