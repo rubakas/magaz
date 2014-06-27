@@ -56,9 +56,7 @@
 
   h4 Standart & Formats
   div class="form-group"
-    = f.label :timezone
-    br
-    = f.text_field :timezone, class: 'form-control'
+    = f.time_zone_select :timezone
   div class="form-group"
     = f.label :unit_system
     br
