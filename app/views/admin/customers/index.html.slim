@@ -13,7 +13,7 @@ div class="row"
   - else
     = render partial: 'list'
 hr
-h4 Import Customers
+h4 = t('.import_title')
 div class="form-group"
   = form_tag import_admin_customers_path, multipart: true do
     = file_field_tag :file

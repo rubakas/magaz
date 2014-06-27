@@ -142,6 +142,7 @@ en:
         add: "Add Customer"
         export_csv: "Export Customers"
         import_csv: "Import"
+        import_title: "Import Customers"
       new:
         add: "Add Customer"
       show:
