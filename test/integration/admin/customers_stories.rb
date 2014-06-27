@@ -32,6 +32,13 @@ class Admin::CustomersStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Customer was successfully updated'
   end
 
+  test "import customers from csv" do
+    attach_file('file', File.join(Rails.root, '/test/fixtures/files/customers.csv'))
+    click_button 'Import'
+    assert page.has_content? 'test1customer@mail.com'
+    assert page.has_content? 'test2customer@mail.com'
+  end
+
   test "delete customer" do
     assert page.has_content? @customer.first_name
     click_link('Delete', match: :first)
