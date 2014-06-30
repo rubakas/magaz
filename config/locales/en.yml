@@ -231,6 +231,13 @@ en:
         email: "Email address"
         password: "Password"
 
+    settings:
+      edit:
+        general_settings: "Shop Settings"
+      form:
+        error: "error"
+        prohibit: "prohibited this shop from being saved:"
+
     shared:
       sidebar_nav:
         title: "Shop"

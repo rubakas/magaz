@@ -3,6 +3,15 @@
   method: "put",
   html: { class: 'script-admin-sign-in-form' } do |f|
 
+  - if @shop.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@shop.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @shop.errors.full_messages.each do |msg|
+        li = msg
+
 
   h4 Store Details
   div class="form-group"
