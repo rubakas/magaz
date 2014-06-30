@@ -19,7 +19,7 @@ class Admin::CustomersController < Admin::ApplicationController
     @customers = end_of_association_chain.all
     respond_to do |format|
       format.html
-      format.csv { send_data @customers.to_csv, :disposition => "attachment; filename=сustomers.csv"  }
+      format.csv { send_data @customers.to_csv, :type => "text/csv", :disposition => "attachment; filename=сustomers.csv" }
     end
   end
 
