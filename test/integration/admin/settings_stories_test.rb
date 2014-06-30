@@ -22,7 +22,6 @@ class Admin::SettingsStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Name', with: 'Updated Name'
     fill_in 'Email', with: 'update@mail.com'
     click_button 'Save Shop'
-    save_and_open_page
     assert page.has_no_content? 'prohibited this shop from being saved:'
   end
 
