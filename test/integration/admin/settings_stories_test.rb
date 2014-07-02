@@ -17,12 +17,10 @@ class Admin::SettingsStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? '3 errors prohibited this shop from being saved:'
   end
 
-  #need to rewrite this soon
   test "update shop success" do
     fill_in 'Name', with: 'Updated Name'
     fill_in 'Email', with: 'update@mail.com'
     click_button 'Save Shop'
-    assert page.has_no_content? 'prohibited this shop from being saved:'
+    assert page.has_content? 'Shop was successfully updated.'
   end
-
 end
