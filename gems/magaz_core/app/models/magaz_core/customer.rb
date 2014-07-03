@@ -13,7 +13,7 @@
 module MagazCore
   class Customer < ActiveRecord::Base
     self.table_name = 'customers'
-    
+
     has_many :checkouts
     belongs_to :shop
 
@@ -28,10 +28,11 @@ module MagazCore
       end
     end
 
-    def self.import(file)
+    def self.import(file, shop_id)
       CSV.foreach(file.path, headers: true) do |row|
         customer = find_by_id(row["id"]) || new
         customer.attributes = row.to_hash
+        customer.shop_id = shop_id
         customer.save
       end
     end
