@@ -11,7 +11,7 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   def import
-    end_of_association_chain.import(params[:csv_file].tempfile, current_shop.id)
+    MagazCore::ShopServices::ImportCustomersFromCsv.call(shop_id: current_shop.id, csv_file: params[:csv_file])
     redirect_to admin_customers_path, notice: "Customers imported"
   end
 

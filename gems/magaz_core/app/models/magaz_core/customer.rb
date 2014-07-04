@@ -27,14 +27,5 @@ module MagazCore
         end
       end
     end
-
-    def self.import(file, shop_id)
-      CSV.foreach(file.path, headers: true) do |row|
-        customer = find_by_id(row["id"]) || new
-        customer.attributes = row.to_hash
-        customer.shop_id = shop_id
-        customer.save
-      end
-    end
   end
 end
