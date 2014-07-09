@@ -11,8 +11,8 @@ module MagazCore
 
     test "initialization with existing stuff" do
       @service = MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id, 
-                                            checkout_id: @existing_checkout.id, 
-                                            customer_id: @existing_customer.id
+                                                       checkout_id: @existing_checkout.id, 
+                                                       customer_id: @existing_customer.id
 
       assert_equal @service.shop, @existing_shop
       assert_equal @service.checkout, @existing_checkout
@@ -20,9 +20,10 @@ module MagazCore
     end
 
     test "initialization with missing stuff" do
-      @missing_checkout_service = MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id, 
-                                                             checkout_id: 'dont exist', 
-                                                             customer_id: @existing_customer.id
+      @missing_checkout_service = 
+        MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id, 
+                                              checkout_id: 'dont exist', 
+                                              customer_id: @existing_customer.id
 
       assert_equal @missing_checkout_service.shop, @existing_shop
       assert_not_nil @missing_checkout_service.checkout
@@ -30,8 +31,8 @@ module MagazCore
 
       @missing_checkout_and_customer_service = 
         MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id, 
-                                   checkout_id: 'do not exist',
-                                   customer_id: 'do not exist'
+                                              checkout_id: 'do not exist',
+                                              customer_id: 'do not exist'
 
       assert_equal @missing_checkout_and_customer_service.shop, @existing_shop
       assert_not_nil @missing_checkout_and_customer_service.checkout
@@ -41,9 +42,10 @@ module MagazCore
     end
 
     test 'add_product and item_count' do
-      @service = MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id, 
-                                            checkout_id: nil, 
-                                            customer_id: nil
+      @service = 
+        MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id, 
+                                              checkout_id: nil, 
+                                              customer_id: nil
 
       @checkout = @service.checkout
 

@@ -31,7 +31,7 @@ module MagazCore
 
     scope :orders, -> { where(status: STATUSES) }
     scope :not_orders, -> { where(status: nil) }
-    scope :abandoned_checkouts, -> { where("checkouts.email IS NOT NULL")}
+    scope :abandoned_checkouts, -> { where("checkouts.email IS NOT NULL") }
 
     include Concerns::ShoppingCart
   end

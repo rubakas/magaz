@@ -14,8 +14,6 @@ EmptyLinesAroundBody:
   Enabled: false
 FileName:
   Enabled: false
-FinalNewline:
-  Enabled: false
 HashSyntax:
   Enabled: false
 HasAndBelongsToMany:

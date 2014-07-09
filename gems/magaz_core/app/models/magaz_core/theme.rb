@@ -38,10 +38,10 @@ module MagazCore
     def default_directories_present
       directory_names = assets.map do |a| 
         match_data = a.key.match('([^\/]+)\/')
-        if match_data
-          match_data[1]
-        end
-      end.compact.uniq
+        match_data[1] if match_data
+      end.compact
+      .uniq
+
       result = (directory_names == directory_names & REQUIRED_DIRECTORIES)
       #TODO: customize error messages
       errors.add :base, :invalid unless result
@@ -50,7 +50,7 @@ module MagazCore
 
     # theme.liquid
     def default_layout_present
-      result = assets.select {|a| a.key == 'layout/theme.liquid'}.any?
+      result = assets.select { |a| a.key == 'layout/theme.liquid' }.any?
       #TODO: customize error messages
       errors.add :base, :invalid unless result
       result
@@ -58,7 +58,8 @@ module MagazCore
     
     # templates/[blog, cart, collection, index, page, product].liquid
     def default_templates_present
-      default_templates = %w[templates/blog.liquid 
+      default_templates = %w[
+        templates/blog.liquid 
         templates/cart.liquid
         templates/collection.liquid
         templates/index.liquid
@@ -74,7 +75,7 @@ module MagazCore
     
     # config/settings.html
     def default_config_present
-      result = assets.select {|a| a.key == 'config/settings.html'}.any?
+      result = assets.select { |a| a.key == 'config/settings.html' }.any?
       #TODO: customize error messages
       errors.add :base, :invalid unless result
       result

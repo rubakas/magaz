@@ -23,10 +23,10 @@ module MagazCore
       private
 
       def update_encrypted_password
-        if password.present?
-          self.password_salt = BCrypt::Engine.generate_salt
-          self.password_digest = encrypt_password_with_salt(password, password_salt)
-        end
+        return if password.nil?
+
+        self.password_salt = BCrypt::Engine.generate_salt
+        self.password_digest = encrypt_password_with_salt(password, password_salt)
       end
 
       def encrypt_password_with_salt(password, salt)

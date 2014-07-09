@@ -4,7 +4,7 @@ module MagazCore
   class ThemeServices::Resolver < ActionView::Resolver
     include Singleton
     
-    def find_all(name, prefix=nil, partial=false, details={}, key=nil, locals=[])
+    def find_all(name, prefix = nil, partial = false, details = {}, key = nil, locals = [])
       theme = details[:themes].first
       asset_key = normalize_path(name, prefix)
       found_liquid_assets = theme.assets.all.where(key: "#{asset_key}.liquid")

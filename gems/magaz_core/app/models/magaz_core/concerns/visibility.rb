@@ -13,8 +13,8 @@ module MagazCore
 
       def publish_if_pending!
         if pending_publishing?
-          published_at = Time.now
-          publish_on = nil
+          self.published_at = Time.now
+          self.publish_on = nil
           save!
         else
           fail "Publishing is not pending"
@@ -34,12 +34,15 @@ module MagazCore
       def _force_visibility_status
         if !publish_on.blank? && published_at.blank? # publish in future
           # create bg job or something
+          return # refactor to return for each case, instead of cascade
         elsif publish_on.blank? && !published_at.blank? # already published?
           # do nothing
+          return # refactor to return for each case, instead of cascade
         elsif !publish_on.blank? && !published_at.blank?
           fail 'Impossible visibility state'
         else # publish_on.blank? && published_at.blank?
           # hidden
+          return # refactor to return for each case, instead of cascade
         end
       end
 

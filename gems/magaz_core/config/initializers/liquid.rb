@@ -29,7 +29,7 @@ class ActionView::Template::Handlers::Liquid
               end
 
     liquid = Liquid::Template.parse(template)
-    liquid.render(assigns, :filters => filters, :registers => {:action_view => @view, :controller => @view.controller})
+    liquid.render(assigns, :filters => filters, :registers => { :action_view => @view, :controller => @view.controller })
   end
 
   def compilable?

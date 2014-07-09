@@ -14,7 +14,7 @@ class MagazCore::ThemeServices::Install
     @source_theme.assets.each do |source_asset|
       @installed_theme
         .assets
-        .build(source_asset.attributes.reject {|k| 'id' == k.to_s})
+        .build(source_asset.attributes.reject { |k| 'id' == k.to_s })
     end
     @installed_theme.save!
   end

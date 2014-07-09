@@ -19,13 +19,13 @@ class Admin::OrdersController < Admin::ApplicationController
 
   protected
 
-   def begin_of_association_chain
-     current_shop.checkouts.orders
-   end
+  def begin_of_association_chain
+    current_shop.checkouts.orders
+  end
 
-   def collection
-     @orders ||= end_of_association_chain.page(params[:page])
-   end
+  def collection
+    @orders ||= end_of_association_chain.page(params[:page])
+  end
 
   def resource
     @order ||= end_of_association_chain.orders.find(params[:id])
