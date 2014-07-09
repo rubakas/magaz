@@ -12,7 +12,8 @@ Given(/^store exists$/) do
 end
 
 Given(/^default collection exists$/) do
-  @collection = create(:collection, shop: @shop, name: 'Frontpage')
+  assert_not_nil @shop.collections.where(name: 'Frontpage')
+  @collection = @shop.collections.where(name: 'Frontpage').first
 end
 
 Given(/^default collection has products in it$/) do

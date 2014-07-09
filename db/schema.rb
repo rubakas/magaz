@@ -140,14 +140,6 @@ ActiveRecord::Schema.define(version: 20140610115405) do
     t.datetime "published_at"
   end
 
-  create_table "plans", force: true do |t|
-    t.string   "braintree_id"
-    t.string   "name"
-    t.decimal  "price",        precision: 38, scale: 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "product_images", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"

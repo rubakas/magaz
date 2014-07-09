@@ -7,6 +7,7 @@ gem 'magaz_store',        path: 'gems/magaz_store'
 gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
 
 gem 'rails',            github: "rails/rails"
+gem 'rack',             github: "rack/rack"
 gem 'arel',             github: "rails/arel"
 
 # Use postgresql as the database for Active Record
@@ -63,6 +64,9 @@ gem 'spring',           group: :development
 
 # Use puma as the app server
 gem 'puma'
+
+# Use skylight.io for profiling and error detection
+gem 'skylight'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
