@@ -1,6 +1,12 @@
 GIT
+  remote: git://github.com/rack/rack.git
+  revision: ccc542f19fb8a9b1946471ffef6f0f38e74f4fc5
+  specs:
+    rack (1.6.0.alpha)
+
+GIT
   remote: git://github.com/rails/arel.git
-  revision: e295d61d6d4f13aee08c895751277531edb39993
+  revision: 66cee768bc163537087037a583f60639eae49fc3
   specs:
     arel (6.0.0.20140505020427)
 
@@ -14,16 +20,16 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 7a2b37fbbbe5ef7dd9693bc7d4b404ec7e461fff
+  revision: c3f4d6c8feafab9ded8b549d745c4731ee17b5c4
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
       actionview (= 4.2.0.alpha)
-      mail (~> 2.5.4)
+      mail (~> 2.5, >= 2.5.4)
     actionpack (4.2.0.alpha)
       actionview (= 4.2.0.alpha)
       activesupport (= 4.2.0.alpha)
-      rack (~> 1.5.2)
+      rack (~> 1.6.0.alpha)
       rack-test (~> 0.6.2)
     actionview (4.2.0.alpha)
       activesupport (= 4.2.0.alpha)
@@ -70,7 +76,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 60d9e2e3b4482f05ca0e45399134dae0d73b34df
+  revision: 58ed3c3a73d082c2ff79898affe5bdab378eeba2
   specs:
     sprockets-rails (2.1.2)
       actionpack (>= 4.0)
@@ -85,13 +91,14 @@ PATH
 PATH
   remote: ../magaz_core
   specs:
-    magaz_core (0.0.1)
+    magaz_core (0.0.2)
       bcrypt-ruby
       carrierwave
-      friendly_id (= 5.0.3)
+      friendly_id (= 5.0.4)
       liquid
       rmagick
       rubyzip
+      sidekiq
 
 PATH
   remote: ../magaz_style
@@ -110,19 +117,22 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    connection_pool (2.0.0)
     database_cleaner (1.3.0)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
-    friendly_id (5.0.3)
+    friendly_id (5.0.4)
       activerecord (>= 4.0.0)
     hike (1.2.3)
-    i18n (0.6.9)
+    i18n (0.6.11)
     jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -131,26 +141,32 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     liquid (2.6.1)
-    mail (2.5.4)
-      mime-types (~> 1.16)
-      treetop (~> 1.4.8)
-    mime-types (1.25.1)
-    minitest (5.3.4)
+    mail (2.6.1)
+      mime-types (>= 1.16, < 3)
+    mime-types (2.3)
+    minitest (5.4.0)
     multi_json (1.10.1)
     pg (0.17.1)
-    polyglot (0.3.4)
-    rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    redis (3.1.0)
+    redis-namespace (1.5.0)
+      redis (~> 3.0, >= 3.0.4)
     rmagick (2.13.2)
-    rubyzip (1.1.4)
+    rubyzip (1.1.6)
     sass (3.3.7)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    sidekiq (3.2.1)
+      celluloid (>= 0.15.2)
+      connection_pool (>= 2.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     spring (1.1.3)
     sprockets (2.12.1)
       hike (~> 1.2)
@@ -159,14 +175,12 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.9)
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
-    treetop (1.4.15)
-      polyglot
-      polyglot (>= 0.3.1)
+    timers (1.1.0)
     turbolinks (2.2.2)
       coffee-rails
-    tzinfo (1.1.0)
+    tzinfo (1.2.1)
       thread_safe (~> 0.1)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
@@ -186,6 +200,7 @@ DEPENDENCIES
   magaz_store!
   magaz_style!
   pg
+  rack!
   rails!
   sass-rails!
   sdoc (~> 0.4.0)
