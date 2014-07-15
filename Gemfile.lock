@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/rack/rack.git
-  revision: 64a286226941a14f68fb900e96841ccdd0abe0f7
+  revision: ccc542f19fb8a9b1946471ffef6f0f38e74f4fc5
   specs:
     rack (1.6.0.alpha)
 
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 84b4260e6c6238a8bd8ec5880daa8f7b10cfcb14
+  revision: c3f4d6c8feafab9ded8b549d745c4731ee17b5c4
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -221,14 +221,14 @@ GEM
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     parallel (1.0.0)
-    parallel_tests (1.0.0)
+    parallel_tests (1.0.1)
       parallel
     parser (2.2.0.pre.3)
       ast (>= 1.1, < 3.0)
       slop (~> 3.4, >= 3.4.5)
     pg (0.17.1)
     powerpack (0.0.9)
-    puma (2.8.2)
+    puma (2.9.0)
       rack (>= 1.1, < 2.0)
     rack-test (0.6.2)
       rack (>= 1.0)
