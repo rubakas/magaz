@@ -23,7 +23,6 @@ gem 'inherited_resources'
 gem 'slim'
 
 
-gem 'sprockets', github: "sstephenson/sprockets"
 # Use edge version of sprockets-rails
 gem 'sprockets-rails',  github: "rails/sprockets-rails"
 
