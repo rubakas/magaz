@@ -22,6 +22,8 @@ gem 'inherited_resources'
 # Use slim-lang for templates
 gem 'slim'
 
+
+gem 'sprockets', github: "sstephenson/sprockets"
 # Use edge version of sprockets-rails
 gem 'sprockets-rails',  github: "rails/sprockets-rails"
 
