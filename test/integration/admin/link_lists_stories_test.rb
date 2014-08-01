@@ -36,6 +36,15 @@ class Admin::LinkListsStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Link list was successfully updated.'
   end
 
+  test "handle url" do
+    click_link 'Add Link List'
+    fill_in 'Name', with: 'Some Uniq List'
+    fill_in 'Handle', with: 'test-url'
+    click_button 'Create Link list'
+    assert page.has_content? 'Link list was successfully created.'
+    assert current_path == "/admin/link_lists/test-url"
+  end
+
   test "link_list has link" do
     click_link(@link_list.name, match: :first)
     assert page.has_content? @link.name
@@ -59,8 +68,8 @@ class Admin::LinkListsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "delete link_list" do
-      assert page.has_content? @link_list.name
-      click_link('Delete', match: :first)
-      assert page.has_content? "No Link Lists"
+    assert page.has_content? @link_list.name
+    click_link('Delete', match: :first)
+    assert page.has_content? "No Link Lists"
   end
 end

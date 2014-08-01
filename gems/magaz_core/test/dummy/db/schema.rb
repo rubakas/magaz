@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715153558) do
+ActiveRecord::Schema.define(version: 20140801222550) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -127,7 +127,10 @@ ActiveRecord::Schema.define(version: 20140715153558) do
     t.string  "name"
     t.integer "shop_id"
     t.string  "handle"
+    t.string  "slug"
   end
+
+  add_index "link_lists", ["slug"], name: "index_link_lists_on_slug", unique: true
 
   create_table "links", force: true do |t|
     t.string  "name"

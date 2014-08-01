@@ -20,7 +20,7 @@ class Admin::LinkListsController < Admin::ApplicationController
   end
 
   def resource
-    @link_list  ||= end_of_association_chain.find(params[:id])
+    @link_list  ||= end_of_association_chain.friendly.find(params[:id])
   end
 
   def permitted_params
