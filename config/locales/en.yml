@@ -171,6 +171,9 @@ en:
         add: "Add Link List"
       new:
         add: "Add Link List"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this link list from being saved:"
       show:
         title: "Editing Link List"
       blank:
