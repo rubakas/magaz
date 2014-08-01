@@ -4,7 +4,7 @@ class Admin::LinkListsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @link_list = create(:link_list, shop: @shop)
-    @link = create(:link, link_list_id: @link_list)
+    @link = create(:link, link_list: @link_list)
     click_link 'Navigation'
   end
 
@@ -29,11 +29,33 @@ class Admin::LinkListsStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? '1 error prohibited this link list from being saved'
   end
 
-   test "edit link_list" do
-      click_link(@link_list.name, match: :first)
-      fill_in 'Name', with: 'Updated Link List'
-      click_button 'Update Link list'
-      assert page.has_content? 'Link list was successfully updated.'
+  test "edit link_list" do
+    click_link(@link_list.name, match: :first)
+    fill_in 'Name', with: 'Updated Link List'
+    click_button 'Update Link list'
+    assert page.has_content? 'Link list was successfully updated.'
+  end
+
+  test "link_list has link" do
+    click_link(@link_list.name, match: :first)
+    assert page.has_content? @link.name
+  end
+
+  test 'add links to link_list' do
+    click_link(@link_list.name, match: :first)
+    click_link 'Add Links'
+    fill_in 'Name', with: 'Uniq Link Name'
+    fill_in 'Position', with: '1'
+    fill_in 'Link type', with: 'search'
+    click_button 'Create Link'
+    assert page.has_content? 'Link was successfully created.'
+    assert page.has_content? 'Editing Link'
+  end
+
+  test 'delete link from link_list' do
+    click_link(@link_list.name, match: :first)
+    click_link "Delete"
+    assert page.has_no_content? @link.name
   end
 
   test "delete link_list" do
