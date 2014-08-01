@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610115405) do
+ActiveRecord::Schema.define(version: 20140715153558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,22 @@ ActiveRecord::Schema.define(version: 20140610115405) do
     t.datetime "updated_at"
   end
 
+  create_table "link_lists", force: true do |t|
+    t.string  "name"
+    t.integer "shop_id"
+    t.string  "handle"
+  end
+
+  create_table "links", force: true do |t|
+    t.string  "name"
+    t.string  "link_type"
+    t.integer "position"
+    t.string  "subject"
+    t.string  "subject_params"
+    t.integer "subject_id"
+    t.integer "link_list_id"
+  end
+
   create_table "pages", force: true do |t|
     t.string   "title"
     t.string   "content"
@@ -138,14 +154,6 @@ ActiveRecord::Schema.define(version: 20140610115405) do
     t.string   "slug"
     t.datetime "publish_on"
     t.datetime "published_at"
-  end
-
-  create_table "plans", force: true do |t|
-    t.string   "braintree_id"
-    t.string   "name"
-    t.decimal  "price",        precision: 38, scale: 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "product_images", force: true do |t|

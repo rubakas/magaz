@@ -165,13 +165,61 @@ en:
         title: "Dashboard"
         welcome: "Welcome to dashboard"
 
+    link_lists:
+      index:
+        title: "Link Lists"
+        add: "Add Link List"
+      new:
+        add: "Add Link List"
+      show:
+        title: "Editing Link List"
+      blank:
+        no_link_lists: "No Link Lists"
+        add: "Add Link List"
+      form:
+        add: "Add Link List"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this link list from being saved:"
+        links: "Links"
+        number: "#"
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+      list:
+        title: "Link Lists"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
+    links:
+      index:
+        title: "Links"
+        add: "Add Link"
+      new:
+        add: "Add Link"
+      show:
+        title: "Editing Link"
+      blank:
+        no_links: "There are no links"
+        add: "Add Link"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this link from being saved:"
+      list:
+        name: "Name"
+        position: "Position"
+        id: "Link List ID"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
     orders:
       index:
         title: "Orders"
         checkouts: "Abandoned Checkouts"
       show:
-       title: "Editing page"
-       back: "Back"
+         title: "Editing page"
+         back: "Back"
       blank:
         no_orders: "You have no orders yet"
       form:
