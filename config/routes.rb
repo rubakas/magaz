@@ -31,6 +31,9 @@ Rails.application.routes.draw do
         collection { post :import }
         collection { get  :export }
       end
+      resources :link_lists, except: [:edit] do
+        resources :links
+      end
       resources :orders, except: [:create, :edit, :new]
       resources :pages, except: [:edit]
       resources :products, except: [:edit]

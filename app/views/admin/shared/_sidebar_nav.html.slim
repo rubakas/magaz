@@ -71,6 +71,12 @@ section class='sidebar-section'
         label: t('.themes'),
         active_conditions: { controller: 'admin/dashboard' }
 
+    = render 'admin/shared/li_link_to',
+        path: admin_link_lists_path,
+        icon_class: 'icon-link',
+        label: t('.navigation'),
+        active_conditions: { controller: 'admin/link_lists' }
+
   hr
 
   h4  = t('.support')
