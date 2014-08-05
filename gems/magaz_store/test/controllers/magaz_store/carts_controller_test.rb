@@ -9,12 +9,12 @@ module MagazStore
     end
 
     test "should get show" do
-      get :show, use_route: :magaz_store
+      get :show
       assert_response :success
     end
 
     test "should post add" do
-      post :add, { product_id: @product.id, use_route: :magaz_store }
+      post :add, { product_id: @product.id }
       assert_response :redirect
     end
 

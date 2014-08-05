@@ -83,6 +83,12 @@ GIT
       activesupport (>= 4.0)
       sprockets (~> 2.8)
 
+GIT
+  remote: git://github.com/svenfuchs/i18n.git
+  revision: cb679b8cdbab675703a3f88de4d48a48f7b50e06
+  specs:
+    i18n (0.7.0.dev)
+
 PATH
   remote: .
   specs:
@@ -129,7 +135,6 @@ GEM
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
     hike (1.2.3)
-    i18n (0.6.11)
     jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -188,6 +193,7 @@ PLATFORMS
 DEPENDENCIES
   arel!
   coffee-rails!
+  i18n!
   jbuilder (~> 2.0)
   jquery-rails
   magaz_core!

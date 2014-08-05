@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/rack/rack.git
-  revision: ccc542f19fb8a9b1946471ffef6f0f38e74f4fc5
+  revision: 92811eec6e86cb4dba52b3969c4dd66e639df158
   specs:
     rack (1.6.0.alpha)
 
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: c3f4d6c8feafab9ded8b549d745c4731ee17b5c4
+  revision: 3300fdedc748993b378288c6cbc3113885c955ed
   specs:
     actionmailer (4.2.0.alpha)
       actionpack (= 4.2.0.alpha)
@@ -51,7 +51,7 @@ GIT
       activesupport (= 4.2.0.alpha)
       arel (~> 6.0.0)
     activesupport (4.2.0.alpha)
-      i18n (~> 0.6, >= 0.6.9)
+      i18n (>= 0.7.0.dev, < 0.8)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
       thread_safe (~> 0.1)
@@ -74,9 +74,9 @@ GIT
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: 3a9e47db7d769221157c82229fc1bade55b580f0
+  revision: 57ec3397ff99655890895df29a7bf3f683410256
   specs:
-    sass-rails (4.0.1)
+    sass-rails (5.0.0.dev)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2)
       sprockets (~> 2.12)
@@ -97,6 +97,12 @@ GIT
   specs:
     country_select (2.0.0.beta2)
       countries (~> 0.9.3)
+
+GIT
+  remote: git://github.com/svenfuchs/i18n.git
+  revision: cb679b8cdbab675703a3f88de4d48a48f7b50e06
+  specs:
+    i18n (0.7.0.dev)
 
 PATH
   remote: gems/magaz_core
@@ -157,7 +163,7 @@ GEM
     connection_pool (2.0.0)
     countries (0.9.3)
       currencies (~> 0.4.2)
-    cucumber (1.3.15)
+    cucumber (1.3.16)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.3)
       gherkin (~> 2.12)
@@ -179,7 +185,7 @@ GEM
     flay (2.5.0)
       ruby_parser (~> 3.0)
       sexp_processor (~> 4.0)
-    flog (4.2.1)
+    flog (4.3.0)
       ruby_parser (~> 3.1, > 3.1.0)
       sexp_processor (~> 4.4)
     font-awesome-sass-rails (3.0.2.2)
@@ -193,11 +199,10 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
-    i18n (0.6.11)
     inherited_resources (1.5.0)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0)
-    jbuilder (2.1.2)
+    jbuilder (2.1.3)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.1)
@@ -218,10 +223,10 @@ GEM
     minitest (5.4.0)
     multi_json (1.10.1)
     multi_test (0.1.1)
-    nokogiri (1.6.2.1)
+    nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
-    parallel (1.0.0)
-    parallel_tests (1.0.1)
+    parallel (1.1.2)
+    parallel_tests (1.0.3)
       parallel
     parser (2.2.0.pre.3)
       ast (>= 1.1, < 3.0)
@@ -237,11 +242,11 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     redis (3.1.0)
-    redis-namespace (1.5.0)
+    redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
     responders (1.1.0)
       railties (>= 3.2, < 5)
-    rmagick (2.13.2)
+    rmagick (2.13.3)
     rubocop (0.24.1)
       json (>= 1.7.7, < 2)
       parser (>= 2.2.0.pre.3, < 3.0)
@@ -249,10 +254,10 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
     ruby-progressbar (1.5.1)
-    ruby_parser (3.6.1)
+    ruby_parser (3.6.2)
       sexp_processor (~> 4.1)
     rubyzip (1.1.6)
-    sass (3.3.10)
+    sass (3.3.14)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
@@ -263,12 +268,12 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
-    skylight (0.3.17)
+    skylight (0.3.19)
       activesupport (>= 3.0.0)
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    slop (3.5.0)
+    slop (3.6.0)
     spring (1.1.3)
     sprockets (2.12.1)
       hike (~> 1.2)
@@ -284,7 +289,7 @@ GEM
       coffee-rails
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
-    uglifier (2.5.1)
+    uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     web-console (1.0.4)
@@ -310,6 +315,7 @@ DEPENDENCIES
   flay
   flog
   font-awesome-sass-rails
+  i18n!
   inherited_resources
   jbuilder (~> 2.0)
   jquery-rails

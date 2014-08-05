@@ -6,9 +6,10 @@ gem 'magaz_core',         path: 'gems/magaz_core'
 gem 'magaz_store',        path: 'gems/magaz_store'
 gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
 
-gem 'rails',            github: "rails/rails"
-gem 'rack',             github: "rack/rack"
-gem 'arel',             github: "rails/arel"
+gem 'rails',            github: 'rails/rails'
+gem 'rack',             github: 'rack/rack'
+gem 'arel',             github: 'rails/arel'
+gem 'i18n',             github: 'svenfuchs/i18n'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
