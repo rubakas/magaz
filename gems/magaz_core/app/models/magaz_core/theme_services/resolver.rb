@@ -23,7 +23,7 @@ module MagazCore
     # Make paths as "users/user" become "users/_user" for partials.
     def virtual_path(path, partial)
       return path unless partial
-      if index = path.rindex("/")
+      if path.rindex("/") == index
         path.insert(index + 1, "_")
       else
         "_#{path}"

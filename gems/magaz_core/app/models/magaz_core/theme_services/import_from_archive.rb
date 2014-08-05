@@ -63,9 +63,9 @@ module MagazCore
         Zip::File.open(archive_path) do |zip_file|
           zip_file.each do |current_file|
             # do not extract OS X trash files
-            next if current_file.name =~ /__MACOSX/ or current_file.name =~ /\.DS_Store/
+            next if current_file.name =~ /__MACOSX/ || current_file.name =~ /\.DS_Store/
 
-            f_path=File.join(unpack_path, current_file.name)
+            f_path = File.join(unpack_path, current_file.name)
             FileUtils.mkdir_p(File.dirname(f_path))
             zip_file.extract(current_file, f_path)
           end

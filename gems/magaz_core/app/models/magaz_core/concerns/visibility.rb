@@ -8,6 +8,8 @@ module MagazCore
         scope :not_published, -> { where("publish_on >= ?", Time.now).where(published_at: nil) }
         scope :pending_publishing, -> { where("publish_on <= ?", Time.now).where(published_at: nil) }
         before_validation :_force_visibility_status
+
+        #TODO: find alternative approach to avoid multiple workers
         after_save :_schedule_publishing_job
       end
 
@@ -47,9 +49,8 @@ module MagazCore
       end
 
       def _schedule_publishing_job
-        unless publish_on.blank?
-          VisibilityWorker.perform_at(publish_on, self.class)
-        end
+        return if publish_on.blank?
+        VisibilityWorker.perform_at(publish_on, self.class)
       end
 
     end
