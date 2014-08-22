@@ -4,6 +4,7 @@ module MagazCore
       extend ActiveSupport::Concern
 
       included do
+        #TODO: rewrite visibility implementation
         scope :published, -> { where(publish_on: nil, published_at: (Time.at(0)..Time.now)) }
         scope :not_published, -> { where("publish_on >= ?", Time.now).where(published_at: nil) }
         scope :pending_publishing, -> { where("publish_on <= ?", Time.now).where(published_at: nil) }
