@@ -7,9 +7,9 @@ gem 'magaz_store',        path: 'gems/magaz_store'
 gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
 
 gem 'rails',            github: 'rails/rails'
-gem 'rack',             github: 'rack/rack'
-gem 'arel',             github: 'rails/arel'
-gem 'i18n',             github: 'svenfuchs/i18n'
+# gem 'rack',             github: 'rack/rack'
+# gem 'arel',             github: 'rails/arel'
+# gem 'i18n',             github: 'svenfuchs/i18n'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -18,7 +18,7 @@ gem 'memcachier'
 gem 'dalli'
 
 # Use inherited_resources for clear controllers
-gem 'inherited_resources'
+gem 'inherited_resources',  github: 'andriytyurnikov/inherited_resources', branch: 'rails_4_2'
 
 # Use slim-lang for templates
 gem 'slim'
@@ -79,7 +79,7 @@ gem 'rubocop', :require => false
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
 gem 'flay', group: :development
-gem 'web-console', group: :development
+# gem 'web-console', group: :development
 
 gem "capybara-webkit", "~> 1.1.1", group: :test
 gem 'cucumber-rails', :require => false, group: :test
