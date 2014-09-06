@@ -79,27 +79,3 @@ section class='sidebar-section'
         active_conditions: { controller: 'admin/dashboard' }
 
   hr
-
-  h4  = t('.support')
-
-  ul class='nav nav-pills nav-stacked'
-
-    = render 'admin/shared/li_link_to',
-        path: admin_root_path,
-        icon_class: 'icon-comments-alt',
-        label: t('.community'),
-        active_conditions: { controller: 'admin/dashboard' }
-
-    = render 'admin/shared/li_link_to',
-        path: admin_root_path,
-        icon_class: 'icon-question-sign',
-        label: t('.knowledge'),
-        active_conditions: { controller: 'admin/dashboard' }
-
-    = render 'admin/shared/li_link_to',
-        path: admin_root_path,
-        icon_class: 'icon-bell',
-        label: t('.submit'),
-        active_conditions: { controller: 'admin/dashboard' }
-
-  hr

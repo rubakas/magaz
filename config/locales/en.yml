@@ -303,10 +303,6 @@ en:
         config: "Configuration"
         settings: "Settings"
         themes: "Themes"
-        support: "Support"
-        community: "Community answers"
-        knowledge: "Knowlege base"
-        submit: "Submit a ticket"
 
   theme_store:
     themes:
