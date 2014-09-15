@@ -29,6 +29,10 @@ FactoryGirl.define do
     sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
 
+  factory :file, class: MagazCore::File do
+    sequence(:name) {|n| "File #{n}"}
+  end
+
   factory :link_list, class: MagazCore::LinkList do
     sequence(:name)  { |n| "List #{n}" }
   end
