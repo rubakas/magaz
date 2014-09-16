@@ -16,6 +16,12 @@ section class='sidebar-section'
         label: t('.files'),
         active_conditions: { controller: 'admin/files' }
 
+    = render 'admin/shared/li_link_to',
+        path: admin_users_path,
+        icon_class: 'icon-asterisk',
+        label: t('.users'),
+        active_conditions: { controller: 'admin/users' }
+
     hr
 
     = render 'admin/shared/li_link_to',

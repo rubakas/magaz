@@ -341,6 +341,7 @@ en:
         back: "Back"
         settings: "Settings"
         files: "Files"
+        users: "Users"
 
     users:
       index:

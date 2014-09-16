@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   include MagazCore::Concerns::Authenticable
   inherit_resources
+  layout 'admin_settings'
   actions :all, :except => [:edit]
 
   def update
