@@ -43,5 +43,6 @@ module MagazCore
     has_many :product_images
     has_many :products
     has_many :themes
+    has_many :users
   end
 end
