@@ -1,0 +1,29 @@
+= form_for([:admin, @user]) do |f|
+  - if @user.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@user.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @user.errors.full_messages.each do |msg|
+        li = msg
+
+  hr
+  div class="form-group"
+    = f.label :first_name
+    br
+    = f.text_field :first_name, class: 'form-input'
+  div class="form-group"
+    = f.label :last_name
+    br
+    = f.text_field :last_name, class: 'form-input'
+  div class="form-group"
+    = f.label :email
+    br
+    = f.text_field :email, class: 'form-input'
+
+  hr
+  div class="form-group"
+    = link_to t('.back'), admin_users_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')

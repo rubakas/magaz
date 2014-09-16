@@ -342,6 +342,27 @@ en:
         settings: "Settings"
         files: "Files"
 
+    users:
+      index:
+        title: "Users"
+        add: "Add User"
+      new:
+        add: "Add User"
+      show:
+       title: "Editing user"
+      blank:
+        no_users: "No Users"
+        add: "Add User"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this product from being saved:"
+      list:
+        title: "Users"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
+
   theme_store:
     themes:
       show:
