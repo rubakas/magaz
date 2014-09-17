@@ -67,4 +67,10 @@ FactoryGirl.define do
   factory :theme, class: MagazCore::Theme do
     sequence(:name)      { |n| "Theme#{n}" }
   end
+
+  factory :user, class: MagazCore::User do
+    sequence(:email)      {|n| "staff_user@example#{n}.com"}
+    sequence(:first_name) {|n| "First Name #{n} "}
+    sequence(:last_name)  {|n| "Last Name #{n}"}
+  end
 end
