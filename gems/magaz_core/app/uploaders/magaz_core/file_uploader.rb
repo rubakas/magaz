@@ -12,6 +12,10 @@ module MagazCore
       process :resize_to_fill => [200, 200]
     end
 
+    version :extra_small, :if => :image? do
+      process :resize_to_fill => [50, 50]
+    end
+
     protected
     def image?(new_file)
       new_file.content_type.start_with? 'image'
