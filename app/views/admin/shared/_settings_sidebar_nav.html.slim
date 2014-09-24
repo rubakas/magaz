@@ -1,0 +1,33 @@
+section class='sidebar-section'
+
+  h4 = t('.settings')
+
+  ul class='nav nav-pills nav-stacked'
+
+    = render 'admin/shared/li_link_to',
+        path: edit_admin_settings_path,
+        icon_class: 'icon-cogs',
+        label: t('.settings'),
+        active_conditions: { controller: 'admin/settings',  action: 'edit' }
+
+    = render 'admin/shared/li_link_to',
+        path: admin_files_path,
+        icon_class: 'icon-hdd',
+        label: t('.files'),
+        active_conditions: { controller: 'admin/files' }
+
+    = render 'admin/shared/li_link_to',
+        path: admin_users_path,
+        icon_class: 'icon-asterisk',
+        label: t('.users'),
+        active_conditions: { controller: 'admin/users' }
+
+    hr
+
+    = render 'admin/shared/li_link_to',
+        path: admin_root_path,
+        icon_class: 'icon-arrow-left',
+        label: t('.back'),
+        active_conditions: { controller: 'admin/dashboard' }
+
+  hr

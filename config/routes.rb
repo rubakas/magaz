@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         collection { post :import }
         collection { get  :export }
       end
+      resources :files, except: [:edit]
       resources :link_lists, except: [:edit] do
         resources :links
       end
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
       resources :product_images, except: [:edit]
       resource  :session, only: [:create, :destroy, :new, :show]
       resource  :settings, only: [:edit, :update]
+      resources :users, except: [:edit]
     end
   end
 

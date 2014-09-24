@@ -37,11 +37,13 @@ module MagazCore
     has_many :comments, through: :articles
     has_many :checkouts, through: :customers
     has_many :customers
+    has_many :files
     has_many :links, through: :link_lists
     has_many :link_lists
     has_many :pages
     has_many :product_images
     has_many :products
     has_many :themes
+    has_many :users
   end
 end
