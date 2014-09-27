@@ -5,7 +5,7 @@ module MagazCore
 
       included do
         def self.call(*args)
-          instance = new()
+          instance = new
           instance.call(*args)
           instance
         end

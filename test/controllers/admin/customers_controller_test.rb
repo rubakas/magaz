@@ -13,6 +13,12 @@ class Admin::CustomersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:customers)
   end
 
+  test "returns a CSV file" do
+    get :export, format: :csv
+    assert_response :success
+    assert_equal "text/csv", response.content_type
+  end
+
   test "should get new" do
     get :new
     assert_response :success

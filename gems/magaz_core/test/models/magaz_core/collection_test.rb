@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: collections
+#
+#  id               :integer          not null, primary key
+#  name             :string
+#  description      :text
+#  shop_id          :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  handle           :string
+#  page_title       :string
+#  meta_description :string
+#  slug             :string
+#  publish_on       :datetime
+#  published_at     :datetime
+#
+
 require 'test_helper'
 
 module MagazCore

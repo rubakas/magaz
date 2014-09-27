@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: themes
+#
+#  id              :integer          not null, primary key
+#  name            :string
+#  created_at      :datetime
+#  updated_at      :datetime
+#  shop_id         :integer
+#  source_theme_id :integer
+#  role            :string
+#
+
 require 'test_helper'
 
 module MagazCore
@@ -6,10 +19,10 @@ module MagazCore
     setup do
       @shop = create(:shop)
       @source_theme = build(:theme)
-      archive_path = File.expand_path('./../../../fixtures/files/valid_theme.zip', __FILE__)
+      @archive_path = ::File.expand_path('./../../../fixtures/files/valid_theme.zip', __FILE__)
       
       MagazCore::ThemeServices::ImportFromArchive
-        .call(archive_path: archive_path, 
+        .call(archive_path: @archive_path, 
               theme: @source_theme,
               theme_attributes: { name: 'Default' })
 
@@ -30,8 +43,14 @@ module MagazCore
       refute_includes Theme.sources, @installed_theme
     end
 
-    test 'finder of roles' do
-      #TODO
+    test 'with_role finder' do
+      foo_theme = build(:theme, role: 'foo')
+      MagazCore::ThemeServices::ImportFromArchive
+        .call(archive_path: @archive_path, 
+              theme: foo_theme,
+              theme_attributes: { name: 'Foo' })
+
+      assert 1 == Theme.with_role('foo').length
     end
 
   end

@@ -5,7 +5,7 @@ module MagazCore
     setup do
       @shop            = create(:shop)
       @source_theme    = build(:theme)
-      archive_path = File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
+      archive_path = ::File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
       import_service = MagazCore::ThemeServices::ImportFromArchive
                         .call(archive_path: archive_path, 
                               theme: @source_theme,
@@ -16,8 +16,7 @@ module MagazCore
     test 'activate_theme' do
       install_service = MagazCore::ThemeServices::Install
                           .call(shop_id: @shop.id, 
-                                source_theme_id: @theme.id, 
-                                installed_theme_id: nil)
+                                source_theme_id: @theme.id)
       
       activate_service = MagazCore::ThemeServices::Activate
                           .call(shop_id: @shop.id, 

@@ -27,7 +27,6 @@ Given(/^must see themes$/) do
 end
 
 Given(/^clicks theme name$/) do
-  # save_and_open_page
   # click_link MagazCore::Theme.sources.first.name
 end
 

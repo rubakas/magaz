@@ -3,9 +3,9 @@
 # Table name: comments
 #
 #  id         :integer          not null, primary key
-#  author     :string(255)
+#  author     :string
 #  body       :text
-#  email      :string(255)
+#  email      :string
 #  blog_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
@@ -15,8 +15,9 @@
 module MagazCore
   class Comment < ActiveRecord::Base
     self.table_name = 'comments'
-    belongs_to :blog
+    
     belongs_to :article
+    belongs_to :blog
 
     validates :author, presence: true, uniqueness: { scope: :article_id }
     validates :email, presence: true

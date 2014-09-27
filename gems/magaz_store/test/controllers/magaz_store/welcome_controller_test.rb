@@ -8,7 +8,7 @@ module MagazStore
     end
 
     test "should get index" do
-      get :index, use_route: :magaz_store
+      get :index
       assert_response :success
     end
 

@@ -4,7 +4,7 @@ module MagazCore
   class ThemeServices::Resolver < ActionView::Resolver
     include Singleton
     
-    def find_all(name, prefix=nil, partial=false, details={}, key=nil, locals=[])
+    def find_all(name, prefix = nil, partial = false, details = {}, key = nil, locals = [])
       theme = details[:themes].first
       asset_key = normalize_path(name, prefix)
       found_liquid_assets = theme.assets.all.where(key: "#{asset_key}.liquid")
@@ -23,7 +23,7 @@ module MagazCore
     # Make paths as "users/user" become "users/_user" for partials.
     def virtual_path(path, partial)
       return path unless partial
-      if index = path.rindex("/")
+      if path.rindex("/") == index
         path.insert(index + 1, "_")
       else
         "_#{path}"

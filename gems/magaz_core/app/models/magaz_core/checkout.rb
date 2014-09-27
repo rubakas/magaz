@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: orders
+# Table name: checkouts
 #
 #  id                 :integer          not null, primary key
-#  shop_id            :integer
 #  note               :text
-#  status             :string(255)
-#  financial_status   :string(255)
-#  fulfillment_status :string(255)
-#  currency           :string(255)
-#  email              :string(255)
+#  status             :string
+#  financial_status   :string
+#  fulfillment_status :string
+#  currency           :string
+#  email              :string
 #  created_at         :datetime
 #  updated_at         :datetime
+#  customer_id        :integer
 #
 
 module MagazCore
@@ -26,12 +26,12 @@ module MagazCore
     #                           partially_fulfilled
     #                           unfulfilled ]
 
-    has_many :line_items
     belongs_to :customer
+    has_many :line_items
 
     scope :orders, -> { where(status: STATUSES) }
     scope :not_orders, -> { where(status: nil) }
-    scope :abandoned_checkouts, -> { where("checkouts.email IS NOT NULL")}
+    scope :abandoned_checkouts, -> { where("checkouts.email IS NOT NULL") }
 
     include Concerns::ShoppingCart
   end

@@ -33,6 +33,10 @@ en:
       shop_cart: "Cart"
     theme_store:
       theme_store_title: "Theme Store"
+    admin_settings:
+      admin_title: "Magaz Administration"
+      shop: "Magaz"
+      sign_out: "Sign out"
 
 
   admin:
@@ -140,6 +144,9 @@ en:
       index:
         title: "Customers"
         add: "Add Customer"
+        export_csv: "Export Customers"
+        import_csv: "Import"
+        import_title: "Import Customers"
       new:
         add: "Add Customer"
       show:
@@ -162,13 +169,89 @@ en:
         title: "Dashboard"
         welcome: "Welcome to dashboard"
 
+    files:
+      index:
+        files: "Files"
+        add: "Add File"
+      new:
+        add: "Add File"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this link list from being saved:"
+      show:
+        title: "Editing File"
+      blank:
+        no_files: "No Files"
+        add: "Add File"
+      form:
+        add: "Add File"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this link list from being saved:"
+        name: "Name"
+      list:
+        title: "File"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
+    link_lists:
+      index:
+        title: "Link Lists"
+        add: "Add Link List"
+      new:
+        add: "Add Link List"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this link list from being saved:"
+      show:
+        title: "Editing Link List"
+      blank:
+        no_link_lists: "No Link Lists"
+        add: "Add Link List"
+      form:
+        add: "Add Link List"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this link list from being saved:"
+        links: "Links"
+        number: "#"
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+      list:
+        title: "Link Lists"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
+    links:
+      index:
+        title: "Links"
+        add: "Add Link"
+      new:
+        add: "Add Link"
+      show:
+        title: "Editing Link"
+      blank:
+        no_links: "There are no links"
+        add: "Add Link"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this link from being saved:"
+      list:
+        name: "Name"
+        position: "Position"
+        id: "Link List ID"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
     orders:
       index:
         title: "Orders"
         checkouts: "Abandoned Checkouts"
       show:
-       title: "Editing page"
-       back: "Back"
+         title: "Editing page"
+         back: "Back"
       blank:
         no_orders: "You have no orders yet"
       form:
@@ -228,12 +311,19 @@ en:
         email: "Email address"
         password: "Password"
 
+    settings:
+      edit:
+        general_settings: "Shop Settings"
+      form:
+        error: "error"
+        prohibit: "prohibited this shop from being saved:"
+
     shared:
       sidebar_nav:
         title: "Shop"
         dashboard: "Dashboard"
         orders: "Orders"
-        customer: "Customer"
+        customers: "Customers"
         products: "Products"
         collections: "Collections"
         your_site: "Your Website"
@@ -242,10 +332,33 @@ en:
         config: "Configuration"
         settings: "Settings"
         themes: "Themes"
-        support: "Support"
-        community: "Community answers"
-        knowledge: "Knowlege base"
-        submit: "Submit a ticket"
+
+      settings_sidebar_nav:
+        back: "Back"
+        settings: "Settings"
+        files: "Files"
+        users: "Users"
+
+    users:
+      index:
+        title: "Users"
+        add: "Add User"
+      new:
+        add: "Add User"
+      show:
+       title: "Editing user"
+      blank:
+        no_users: "No Users"
+        add: "Add User"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this product from being saved:"
+      list:
+        title: "Users"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
 
   theme_store:
     themes:

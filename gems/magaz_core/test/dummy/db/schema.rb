@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527160314) do
+ActiveRecord::Schema.define(version: 20140915223009) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -99,6 +99,14 @@ ActiveRecord::Schema.define(version: 20140527160314) do
     t.integer "shop_id"
   end
 
+  create_table "files", force: true do |t|
+    t.string   "file"
+    t.string   "name"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -121,6 +129,25 @@ ActiveRecord::Schema.define(version: 20140527160314) do
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "link_lists", force: true do |t|
+    t.string  "name"
+    t.integer "shop_id"
+    t.string  "handle"
+    t.string  "slug"
+  end
+
+  add_index "link_lists", ["slug"], name: "index_link_lists_on_slug", unique: true
+
+  create_table "links", force: true do |t|
+    t.string  "name"
+    t.string  "link_type"
+    t.integer "position"
+    t.string  "subject"
+    t.string  "subject_params"
+    t.integer "subject_id"
+    t.integer "link_list_id"
   end
 
   create_table "pages", force: true do |t|
@@ -167,6 +194,20 @@ ActiveRecord::Schema.define(version: 20140527160314) do
     t.datetime "updated_at"
     t.string   "password_salt"
     t.string   "subdomain"
+    t.string   "address"
+    t.string   "business_name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "currency"
+    t.string   "customer_email"
+    t.string   "phone"
+    t.string   "province"
+    t.string   "timezone"
+    t.string   "unit_system"
+    t.integer  "zip"
+    t.string   "handle"
+    t.string   "page_title"
+    t.string   "meta_description"
   end
 
   create_table "themes", force: true do |t|
@@ -176,6 +217,19 @@ ActiveRecord::Schema.define(version: 20140527160314) do
     t.integer  "shop_id"
     t.integer  "source_theme_id"
     t.string   "role"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "phone"
+    t.string   "homepage"
+    t.string   "bio"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

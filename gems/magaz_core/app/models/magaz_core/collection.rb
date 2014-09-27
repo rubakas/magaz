@@ -3,14 +3,17 @@
 # Table name: collections
 #
 #  id               :integer          not null, primary key
-#  name             :string(255)
+#  name             :string
 #  description      :text
 #  shop_id          :integer
 #  created_at       :datetime
 #  updated_at       :datetime
-#  handle           :string(255)
-#  page_title       :string(255)
-#  meta_description :string(255)
+#  handle           :string
+#  page_title       :string
+#  meta_description :string
+#  slug             :string
+#  publish_on       :datetime
+#  published_at     :datetime
 #
 
 module MagazCore
@@ -18,6 +21,10 @@ module MagazCore
     self.table_name = 'collections'
     extend FriendlyId
     include Concerns::Visibility
+
+    DEFAULT_COLLECTION_NAME = 'Frontpage'
+    DEFAULT_COLLECTION_DESCRIPTION = ''
+
 
     has_and_belongs_to_many :products, class_name: 'MagazCore::Product'
     belongs_to :shop

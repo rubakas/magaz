@@ -3,13 +3,14 @@
 # Table name: blogs
 #
 #  id               :integer          not null, primary key
-#  title            :string(255)
+#  title            :string
 #  shop_id          :integer
 #  created_at       :datetime
 #  updated_at       :datetime
-#  handle           :string(255)
-#  page_title       :string(255)
-#  meta_description :string(255)
+#  handle           :string
+#  page_title       :string
+#  meta_description :string
+#  slug             :string
 #
 
 module MagazCore
@@ -17,9 +18,11 @@ module MagazCore
     self.table_name = 'blogs'
     extend FriendlyId
 
-    belongs_to :shop
+    DEFAULT_BLOG_TITLE = 'News'
+
     has_many :articles
     has_many :comments
+    belongs_to :shop
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 

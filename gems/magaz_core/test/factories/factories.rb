@@ -29,6 +29,18 @@ FactoryGirl.define do
     sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
 
+  factory :file, class: MagazCore::File do
+    sequence(:name) {|n| "File #{n}"}
+  end
+
+  factory :link_list, class: MagazCore::LinkList do
+    sequence(:name)  { |n| "List #{n}" }
+  end
+
+  factory :link, class: MagazCore::Link do
+    sequence(:name)   { |n| "Link #{n}" }
+  end
+
   factory :page, class: MagazCore::Page do
     sequence(:title)   { |n| "Title #{n}" }
     sequence(:content) { |n| "Content #{n}" }
@@ -54,5 +66,11 @@ FactoryGirl.define do
 
   factory :theme, class: MagazCore::Theme do
     sequence(:name)      { |n| "Theme#{n}" }
+  end
+
+  factory :user, class: MagazCore::User do
+    sequence(:email)      {|n| "staff_user@example#{n}.com"}
+    sequence(:first_name) {|n| "First Name #{n} "}
+    sequence(:last_name)  {|n| "Last Name #{n}"}
   end
 end

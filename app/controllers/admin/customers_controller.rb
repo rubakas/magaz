@@ -2,10 +2,24 @@ class Admin::CustomersController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
   inherit_resources
   actions :all, :except => [:edit]
+  respond_to :csv
 
   def update
     update! do |success, failure|
       failure.html { render :show }
+    end
+  end
+
+  def import
+    MagazCore::ShopServices::ImportCustomersFromCsv.call(shop_id: current_shop.id, csv_file: params[:csv_file])
+    redirect_to admin_customers_path, notice: "Customers imported"
+  end
+
+  def export
+    @customers = end_of_association_chain.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @customers.to_csv, :type => "text/csv", :disposition => "attachment; filename=сustomers.csv" }
     end
   end
 

@@ -3,16 +3,17 @@ Given(/^store exists$/) do
     * themes exist
   ]
 
-  service = MagazCore::ShopServices::Create
-              .call(shop_params: {name: 'example', 
-                                  subdomain: 'example', 
-                                  password: 'password', 
-                                  email: 'admin@example.com'})
+  service = 
+    MagazCore::ShopServices::Create.call(shop_params: { name: 'example', 
+                                                        subdomain: 'example', 
+                                                        password: 'password', 
+                                                        email: 'admin@example.com' })
   @shop = service.shop
 end
 
 Given(/^default collection exists$/) do
-  @collection = create(:collection, shop: @shop, name: 'Frontpage')
+  assert_not_nil @shop.collections.where(name: 'Frontpage')
+  @collection = @shop.collections.where(name: 'Frontpage').first
 end
 
 Given(/^default collection has products in it$/) do

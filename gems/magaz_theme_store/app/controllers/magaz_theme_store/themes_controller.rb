@@ -7,8 +7,8 @@ module MagazThemeStore
     inherit_resources
 
     def install
-      service = MagazCore::Services::ThemeSystem.new(shop_id: current_user.id, 
-                                          source_theme_id: resource.id)
+      service = MagazCore::Services::ThemeSystem.new  shop_id: current_user.id, 
+                                                      source_theme_id: resource.id
       service.install_theme
       redirect_to theme_store_theme_path(resource)
     end
