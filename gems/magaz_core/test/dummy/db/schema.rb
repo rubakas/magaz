@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140801222550) do
+ActiveRecord::Schema.define(version: 20140915223009) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -97,6 +97,14 @@ ActiveRecord::Schema.define(version: 20140801222550) do
     t.string  "first_name"
     t.string  "last_name"
     t.integer "shop_id"
+  end
+
+  create_table "files", force: true do |t|
+    t.string   "file"
+    t.string   "name"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
@@ -209,6 +217,19 @@ ActiveRecord::Schema.define(version: 20140801222550) do
     t.integer  "shop_id"
     t.integer  "source_theme_id"
     t.string   "role"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "phone"
+    t.string   "homepage"
+    t.string   "bio"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

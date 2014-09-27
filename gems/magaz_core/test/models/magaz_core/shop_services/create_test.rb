@@ -4,9 +4,9 @@ module MagazCore
   class ShopServices::CreateTest < ActiveSupport::TestCase
     setup do
       @default_theme = build(:theme)
-      archive_path = File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
+      archive_path = ::File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
       MagazCore::ThemeServices::ImportFromArchive
-        .call(archive_path: archive_path, 
+        .call(archive_path: archive_path,
               theme: @default_theme,
               theme_attributes: { name: 'Default' })
       @shop_params = { name: 'example42', email: 'admin@example42.com', password: 'secret' }
@@ -41,7 +41,8 @@ module MagazCore
       assert_equal service.shop.blogs.length, 1
       assert_equal service.shop.articles.length, 1
       assert_equal service.shop.pages.length, 2
-      #TODO: assert_equal service.shop.link_lists.length, 2
+      assert_equal service.shop.link_lists.length, 2
+      assert_equal service.shop.links.length, 4
     end
 
   end

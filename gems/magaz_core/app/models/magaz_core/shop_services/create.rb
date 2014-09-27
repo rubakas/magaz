@@ -51,13 +51,38 @@ module MagazCore
       def _create_default_collection!(shop:)
         shop
           .collections
-          .create name:         MagazCore::Collection::DEFAULT_COLLECTION_NAME, 
+          .create name:         MagazCore::Collection::DEFAULT_COLLECTION_NAME,
                   description:  MagazCore::Collection::DEFAULT_COLLECTION_DESCRIPTION
       end
 
       def _create_default_link_lists!(shop:)
-        #TODO: Main Menu link list
-        #TODO: Footer link list
+        #Main Menu link list
+        default_menu_link_list = shop
+          .link_lists
+          .create name:         MagazCore::LinkList::DEFAULT_MENU_LINK_LIST_NAME
+
+        #Links for Main Menu
+        default_home_link = default_menu_link_list
+          .links
+          .create name:         MagazCore::Link::DEFAULT_HOME_LINK_NAME
+
+        default_blog_link = default_menu_link_list
+          .links
+          .create name:         MagazCore::Link::DEFAULT_BLOG_LINK_NAME
+
+        #Footer link list
+        default_footer_link_list = shop
+          .link_lists
+          .create name:         MagazCore::LinkList::DEFAULT_FOOTER_LINK_LIST_NAME
+
+        #Links for Footer
+        default_search_link = default_footer_link_list
+          .links
+          .create name:         MagazCore::Link::DEFAULT_SEARCH_LINK_NAME
+
+        default_about_link = default_footer_link_list
+          .links
+          .create name:         MagazCore::Link::DEFAULT_ABOUT_LINK_NAME
       end
 
       def _create_default_pages!(shop:)

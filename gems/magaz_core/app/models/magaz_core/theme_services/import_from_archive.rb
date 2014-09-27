@@ -28,7 +28,7 @@ module MagazCore
 
       def _build_associated_assets_from_path(theme:, path:)
         Dir.glob("#{path}/**/*") do |current_path|
-          unless File.directory?(current_path)
+          unless ::File.directory?(current_path)
             # we don't need full path as a key
             current_relative_path = current_path.sub("#{path}/", "")
             asset_attributes = { key: current_relative_path }
@@ -47,9 +47,9 @@ module MagazCore
       end
 
       def _resolve_root_path(path)
-        file_names = Dir.glob(File.expand_path('*', path))
+        file_names = Dir.glob(::File.expand_path('*', path))
         dir_names = file_names.select do |file_name|
-          File.directory?(File.expand_path(file_name, path))
+          ::File.directory?(::File.expand_path(file_name, path))
         end
 
         if 1 == dir_names.length
@@ -65,8 +65,8 @@ module MagazCore
             # do not extract OS X trash files
             next if current_file.name =~ /__MACOSX/ || current_file.name =~ /\.DS_Store/
 
-            f_path = File.join(unpack_path, current_file.name)
-            FileUtils.mkdir_p(File.dirname(f_path))
+            f_path = ::File.join(unpack_path, current_file.name)
+            FileUtils.mkdir_p(::File.dirname(f_path))
             zip_file.extract(current_file, f_path)
           end
         end

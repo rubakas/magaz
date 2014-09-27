@@ -4,7 +4,7 @@ module MagazCore
   class ThemeServices::ImportFromArchiveTest < ActiveSupport::TestCase
 
     test 'imports from valid archive' do
-      archive_path = File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
+      archive_path = ::File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
       theme = Theme.new
       theme_attributes = {}
       archive_importer = 
