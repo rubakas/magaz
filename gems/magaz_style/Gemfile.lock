@@ -7,87 +7,79 @@ GIT
       sass (>= 3.2)
 
 GIT
-  remote: git://github.com/rack/rack.git
-  revision: 92811eec6e86cb4dba52b3969c4dd66e639df158
-  specs:
-    rack (1.6.0.alpha)
-
-GIT
-  remote: git://github.com/rails/arel.git
-  revision: 66cee768bc163537087037a583f60639eae49fc3
-  specs:
-    arel (6.0.0.20140505020427)
-
-GIT
   remote: git://github.com/rails/rails.git
-  revision: 3300fdedc748993b378288c6cbc3113885c955ed
+  revision: d63005447b143e3308c9e8e430216cd7bb144c6c
   specs:
-    actionmailer (4.2.0.alpha)
-      actionpack (= 4.2.0.alpha)
-      actionview (= 4.2.0.alpha)
+    actionmailer (4.2.0.beta2)
+      actionpack (= 4.2.0.beta2)
+      actionview (= 4.2.0.beta2)
+      activejob (= 4.2.0.beta2)
       mail (~> 2.5, >= 2.5.4)
-    actionpack (4.2.0.alpha)
-      actionview (= 4.2.0.alpha)
-      activesupport (= 4.2.0.alpha)
-      rack (~> 1.6.0.alpha)
+      rails-dom-testing (~> 1.0, >= 1.0.3)
+    actionpack (4.2.0.beta2)
+      actionview (= 4.2.0.beta2)
+      activesupport (= 4.2.0.beta2)
+      rack (~> 1.6.0.beta)
       rack-test (~> 0.6.2)
-    actionview (4.2.0.alpha)
-      activesupport (= 4.2.0.alpha)
+      rails-dom-testing (~> 1.0, >= 1.0.3)
+      rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    actionview (4.2.0.beta2)
+      activesupport (= 4.2.0.beta2)
       builder (~> 3.1)
       erubis (~> 2.7.0)
-    activemodel (4.2.0.alpha)
-      activesupport (= 4.2.0.alpha)
+      rails-dom-testing (~> 1.0, >= 1.0.3)
+      rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    activejob (4.2.0.beta2)
+      activesupport (= 4.2.0.beta2)
+      globalid (>= 0.3.0)
+    activemodel (4.2.0.beta2)
+      activesupport (= 4.2.0.beta2)
       builder (~> 3.1)
-    activerecord (4.2.0.alpha)
-      activemodel (= 4.2.0.alpha)
-      activesupport (= 4.2.0.alpha)
-      arel (~> 6.0.0)
-    activesupport (4.2.0.alpha)
-      i18n (>= 0.7.0.dev, < 0.8)
+    activerecord (4.2.0.beta2)
+      activemodel (= 4.2.0.beta2)
+      activesupport (= 4.2.0.beta2)
+      arel (>= 6.0.0.beta1, < 6.1)
+    activesupport (4.2.0.beta2)
+      i18n (>= 0.7.0.beta1, < 0.8)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    rails (4.2.0.alpha)
-      actionmailer (= 4.2.0.alpha)
-      actionpack (= 4.2.0.alpha)
-      actionview (= 4.2.0.alpha)
-      activemodel (= 4.2.0.alpha)
-      activerecord (= 4.2.0.alpha)
-      activesupport (= 4.2.0.alpha)
+    rails (4.2.0.beta2)
+      actionmailer (= 4.2.0.beta2)
+      actionpack (= 4.2.0.beta2)
+      actionview (= 4.2.0.beta2)
+      activejob (= 4.2.0.beta2)
+      activemodel (= 4.2.0.beta2)
+      activerecord (= 4.2.0.beta2)
+      activesupport (= 4.2.0.beta2)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.0.alpha)
-      sprockets-rails (~> 2.1)
-    railties (4.2.0.alpha)
-      actionpack (= 4.2.0.alpha)
-      activesupport (= 4.2.0.alpha)
+      railties (= 4.2.0.beta2)
+      sprockets-rails (~> 3.0.0.beta1)
+    railties (4.2.0.beta2)
+      actionpack (= 4.2.0.beta2)
+      activesupport (= 4.2.0.beta2)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: 57ec3397ff99655890895df29a7bf3f683410256
+  revision: 423178729e7b84addcee78b33891644b1fc1705b
   specs:
-    sass-rails (5.0.0.dev)
+    sass-rails (5.0.0.beta1)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2)
       sprockets (~> 2.12)
-      sprockets-rails (~> 2.0)
+      sprockets-rails (>= 2.0, < 4.0)
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 58ed3c3a73d082c2ff79898affe5bdab378eeba2
+  revision: 53f640ed38a509253e869305eb4de7ce3d5cb776
   specs:
-    sprockets-rails (2.1.2)
+    sprockets-rails (3.0.0.beta1)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (~> 2.8)
-
-GIT
-  remote: git://github.com/svenfuchs/i18n.git
-  revision: cb679b8cdbab675703a3f88de4d48a48f7b50e06
-  specs:
-    i18n (0.7.0.dev)
 
 PATH
   remote: .
@@ -97,33 +89,51 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    arel (6.0.0.beta1)
     builder (3.2.2)
     erubis (2.7.0)
     execjs (2.2.1)
     font-awesome-sass-rails (3.0.2.2)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
+    globalid (0.3.0)
+      activesupport (>= 4.1.0)
     hike (1.2.3)
+    i18n (0.7.0.beta1)
     jbuilder (2.1.3)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     json (1.8.1)
+    loofah (2.0.1)
+      nokogiri (>= 1.5.9)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     mime-types (2.3)
-    minitest (5.4.0)
+    mini_portile (0.6.0)
+    minitest (5.4.2)
     multi_json (1.10.1)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
+    rack (1.6.0.beta)
     rack-test (0.6.2)
       rack (>= 1.0)
+    rails-deprecated_sanitizer (1.0.3)
+      activesupport (>= 4.2.0.alpha)
+    rails-dom-testing (1.0.3)
+      activesupport
+      nokogiri (~> 1.6.0)
+      rails-deprecated_sanitizer (>= 1.0.1)
+    rails-html-sanitizer (1.0.1)
+      loofah (~> 2.0)
     rake (10.3.2)
-    rdoc (4.1.1)
+    rdoc (4.1.2)
       json (~> 1.4)
-    sass (3.3.14)
-    sdoc (0.4.0)
-      json (~> 1.8)
-      rdoc (~> 4.0, < 5.0)
+    sass (3.4.5)
+    sdoc (0.4.1)
+      json (~> 1.7, >= 1.7.7)
+      rdoc (~> 4.0)
     spring (1.1.3)
-    sprockets (2.12.1)
+    sprockets (2.12.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -131,7 +141,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    tzinfo (1.2.1)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
@@ -142,12 +152,9 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails!
-  arel!
   font-awesome-sass-rails
-  i18n!
   jbuilder (~> 2.0)
   magaz_style!
-  rack!
   rails!
   sass-rails!
   sdoc (~> 0.4.0)
