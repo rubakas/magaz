@@ -7,7 +7,7 @@ gem 'magaz_store',        path: 'gems/magaz_store'
 gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
 
 gem 'rails',            github: 'rails/rails'
-# gem 'rack',             github: 'rack/rack'
+gem 'rack',             github: 'rack/rack'
 # gem 'arel',             github: 'rails/arel'
 # gem 'i18n',             github: 'svenfuchs/i18n'
 
@@ -81,8 +81,8 @@ gem 'flog', group: :development
 gem 'flay', group: :development
 # gem 'web-console', group: :development
 
-gem "capybara-webkit", "~> 1.1.1", group: :test
 gem 'cucumber-rails', :require => false, group: :test
+gem "capybara-webkit", "~> 1.3.0", group: :test
 gem 'factory_girl', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test

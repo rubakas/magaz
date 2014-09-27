@@ -1,5 +1,5 @@
 require 'capybara/rails'
-# require 'capybara/poltergeist'
+require 'capybara/webkit'
 
 # silence 'QNetworkReplyImplPrivate::error'
 filtered_io = StringIO.new
@@ -17,6 +17,8 @@ Capybara.register_driver :webkit_silent do |app|
   Capybara::Webkit::Driver.new(app, :stderr => filtered_io)
 end
 Capybara.javascript_driver = :webkit_silent
+
+# Capybara.javascript_driver = :poltergeist
 
 Capybara.run_server = true
 

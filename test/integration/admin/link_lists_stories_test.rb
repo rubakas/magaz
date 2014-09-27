@@ -9,8 +9,8 @@ class Admin::LinkListsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "link_list list" do
-      assert page.has_content? 'Link Lists'
-      assert page.has_content? @link_list.name
+    assert page.has_content? 'Link Lists'
+    assert page.has_content? @link_list.name
   end
 
   test "create link_list" do
