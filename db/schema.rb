@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915223009) do
+ActiveRecord::Schema.define(version: 20141002230806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,10 +104,10 @@ ActiveRecord::Schema.define(version: 20140915223009) do
 
   create_table "files", force: true do |t|
     t.string   "file"
-    t.string   "name"
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
@@ -233,6 +233,8 @@ ActiveRecord::Schema.define(version: 20140915223009) do
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "permissions",     default: [], array: true
+    t.string   "user_type"
   end
 
 end
