@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915223009) do
+ActiveRecord::Schema.define(version: 20141002230806) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -230,6 +230,8 @@ ActiveRecord::Schema.define(version: 20140915223009) do
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "permissions",     default: "--- []\n"
+    t.string   "user_type"
   end
 
 end
