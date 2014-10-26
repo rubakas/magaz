@@ -104,10 +104,10 @@ ActiveRecord::Schema.define(version: 20141002230806) do
 
   create_table "files", force: true do |t|
     t.string   "file"
+    t.string   "name"
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
