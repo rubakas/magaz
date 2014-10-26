@@ -16,7 +16,7 @@
     = f.label :file
     = f.file_field :file
     br
-    = image_tag @file.file_url(:thumb) if @file.file?
+    = image_tag @file.file_url(:thumb) if @file.file.thumb.present?
     br
     = link_to 'Download file', @file.file.url, class: 'btn btn-success' if @file.file?
   hr

@@ -26,6 +26,6 @@ class Admin::UsersController < ApplicationController
 
   def permitted_params
     { user:
-        params.fetch(:user, {}).permit(:first_name, :last_name, :email) }
+        params.fetch(:user, {}).permit(:first_name, :last_name, :email, permissions:[]) }
   end
 end

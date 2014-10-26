@@ -10,7 +10,7 @@ table class="table table-striped"
   tbody
     - @files.each do |file|
       tr
-        td = image_tag file.file_url(:extra_small) if file.file?
+        td = image_tag file.file_url(:extra_small) if file.file.extra_small.present?
         td = link_to file.name, [:admin, file]
         td = link_to t('.delete'), [:admin, file], method: :delete, data: { confirm: t('.confirmation') }
 

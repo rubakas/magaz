@@ -5,7 +5,7 @@ class ActionDispatch::IntegrationTest
   end
 
   teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/tmp/uploads/magaz_core/product_image/image"])
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp//magaz_core/product_image/image"])
   end
 
   # private

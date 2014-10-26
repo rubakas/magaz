@@ -2,6 +2,14 @@ module MagazCore
   class Engine < ::Rails::Engine
     isolate_namespace MagazCore
 
+    def for_wrapper_app_config_include_dir(app:, dir:)
+      unless app.root.to_s.match root.to_s
+        config.to_prepare do
+          Dir.glob(app.root + "#{dir}/**/*.rb").each {|c| require_dependency(c)}
+        end
+      end
+    end
+
     initializer :append_migrations do |app|
       unless app.root.to_s.match root.to_s
         config.paths["db/migrate"].expanded.each do |expanded_path|
@@ -11,23 +19,11 @@ module MagazCore
     end
 
     initializer :append_uploaders do |app|
-      unless app.root.to_s.match root.to_s
-        config.to_prepare do
-          Dir.glob(app.root + "app/uploaders/**/*_uploader*.rb").each do |c|
-            require_dependency(c)
-          end
-        end
-      end
+      for_wrapper_app_config_include_dir app: app, dir: "app/uploaders"
     end
 
     initializer :append_constraints do |app|
-      unless app.root.to_s.match root.to_s
-        config.to_prepare do
-          Dir.glob(app.root + "app/constraints/**/*.rb").each do |c|
-            require_dependency(c)
-          end
-        end
-      end
+      for_wrapper_app_config_include_dir app: app, dir: "app/uploaders"
     end
     
   end
