@@ -50,10 +50,14 @@ module MagazCore
 
     # theme.liquid
     def default_layout_present
-      result = assets.select { |a| a.key == 'layout/theme.liquid' }.any?
+      result = _required_asset_present?('layout/theme.liquid')
       #TODO: customize error messages
       errors.add :base, :invalid unless result
       result
+    end
+
+    def _required_asset_present?(filename)
+      result = assets.select { |a| a.key == filename }.any?
     end
     
     # templates/[blog, cart, collection, index, page, product].liquid
@@ -75,7 +79,7 @@ module MagazCore
     
     # config/settings.html
     def default_config_present
-      result = assets.select { |a| a.key == 'config/settings.html' }.any?
+      result = _required_asset_present?('config/settings.html')
       #TODO: customize error messages
       errors.add :base, :invalid unless result
       result
