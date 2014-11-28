@@ -11,6 +11,12 @@
 
 * Postgresql database
 
+* Memcached for sessions
+
+* Rmagick
+
+* QT4 for caoybara-webkit
+
 * Database creation:
   
     cp config/database.yml.example config/database.yml
