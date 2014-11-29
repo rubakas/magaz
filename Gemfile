@@ -6,8 +6,8 @@ gem 'magaz_core',         path: 'gems/magaz_core'
 gem 'magaz_store',        path: 'gems/magaz_store'
 gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
 
-gem 'rails',            github: 'rails/rails'
-gem 'rack',             github: 'rack/rack'
+gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
+
 # gem 'arel',             github: 'rails/arel'
 # gem 'i18n',             github: 'svenfuchs/i18n'
 
@@ -25,7 +25,7 @@ gem 'slim'
 
 
 # Use edge version of sprockets-rails
-gem 'sprockets-rails',  github: "rails/sprockets-rails"
+gem 'sprockets-rails'#,  github: "rails/sprockets-rails"
 
 # Use SCSS for stylesheets
 gem 'sass-rails',       github: "rails/sass-rails"
