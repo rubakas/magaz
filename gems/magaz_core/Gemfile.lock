@@ -67,7 +67,7 @@ PATH
   remote: .
   specs:
     magaz_core (0.0.3)
-      bcrypt-ruby
+      bcrypt
       carrierwave
       friendly_id (= 5.0.4)
       interactor-rails
@@ -81,8 +81,6 @@ GEM
   specs:
     arel (6.0.0)
     bcrypt (3.1.9)
-    bcrypt-ruby (3.1.5)
-      bcrypt (>= 3.1.3)
     builder (3.2.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)

@@ -1,3 +1,4 @@
+
 require 'test_helper'
 
 class Admin::BlogsStoriesTest < ActionDispatch::IntegrationTest
@@ -16,7 +17,7 @@ class Admin::BlogsStoriesTest < ActionDispatch::IntegrationTest
     click_link 'Add Blog'
     fill_in 'Title', with: 'Some Uniq Blog'
     click_button 'Create Blog'
-    assert page.has_content? 'Blog was successfully created.'
+    assert page.has_content? 'Blog was successfully created'
   end
 
   test "create blog failure" do
