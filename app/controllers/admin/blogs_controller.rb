@@ -1,12 +1,46 @@
 class Admin::BlogsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
-  actions :all, :except => [:edit]
+  #inherit_resources
+  #actions :all, :except => [:edit]
+  
+  def index
+    @blogs = current_shop.blogs.page(params[:page])
+  end
+
+  def show
+    @blog = current_shop.blogs.friendly.find(params[:id])
+  end
+
+  def new
+    @blog = current_shop.blogs.new
+  end
+
+  def create
+    @blog = current_shop.blogs.new(permitted_params[:blog])
+    if @blog.save
+      flash[:notice] = 'Blog was successfully created.'
+      redirect_to admin_blog_path(@blog)
+    else
+      flash[:error] = "Can't create such blog,try again please."
+      render 'new'
+    end
+  end
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
+    @blog = current_shop.blogs.friendly.find(params[:id])
+    if @blog.update_attributes(permitted_params[:blog])
+      flash[:notice] = 'Blog was successfully updated.'
+      redirect_to admin_blog_path(@blog)
+    else
+      render 'show'
     end
+  end
+
+  def destroy
+    @blog = current_shop.blogs.friendly.find(params[:id])
+    @blog.destroy
+    flash[:notice] = "Blog was destroyed."
+    redirect_to admin_blogs_path
   end
 
   protected

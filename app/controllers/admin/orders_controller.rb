@@ -1,13 +1,21 @@
 class Admin::OrdersController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
-  defaults :resource_class => MagazCore::Checkout, :collection_name => 'orders', :instance_name => 'order'
+  #inherit_resources
+  #defaults :resource_class => MagazCore::Checkout, :collection_name => 'orders', :instance_name => 'order'
   before_action :set_order, only: [:show, :update, :destroy]
+
+
+  def index
+   @orders = current_shop.checkouts.orders.page(params[:page])
+  end
 
   def update
     update! do |success, failure|
       failure.html { render :show }
     end
+  end
+
+  def destroy
   end
 
   private

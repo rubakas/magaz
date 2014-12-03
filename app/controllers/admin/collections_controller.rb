@@ -1,12 +1,46 @@
 class Admin::CollectionsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
-  actions :all, :except => [:edit]
+  #inherit_resources
+  #actions :all, :except => [:edit]
+
+  def index
+    @collections = current_shop.collections.page(params[:page])
+  end
+
+  def show
+    @collection = current_shop.collections.friendly.find(params[:id])
+  end
+
+  def new
+    @collection = current_shop.collections.new
+  end
+
+  def create
+    @collection = current_shop.collections.new(permitted_params[:collection])
+    if @collection.save
+      flash[:notice] = 'Collection was successfully created.'
+      redirect_to admin_collection_url(@collection)
+    else
+      flash[:error] = "Can't create such collection,try again please."
+      render 'new'
+    end
+  end
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
+    @collection = current_shop.collections.friendly.find(params[:id])
+    if @collection.update_attributes(permitted_params[:collection])
+      flash[:notice] = 'Collection was successfully updated.'
+      redirect_to admin_collection_url(@collection)
+    else
+      render 'show'
     end
+  end
+
+  def destroy
+    @collection = current_shop.collections.friendly.find(params[:id])
+    @collection.destroy
+    flash[:notice] = "Collection was destroyed."
+    redirect_to admin_collections_url
   end
 
   protected
