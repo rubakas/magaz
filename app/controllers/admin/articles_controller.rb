@@ -40,7 +40,7 @@ class Admin::ArticlesController < Admin::ApplicationController
   def destroy
     @article = current_shop.articles.friendly.find(params[:id])
     @article.destroy
-    flash[:notice] = "Article was destroyed"
+    flash[:notice] = "Article was successfully deleted."
     redirect_to admin_articles_url
   end
 

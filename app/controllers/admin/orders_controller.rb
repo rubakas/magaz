@@ -9,13 +9,25 @@ class Admin::OrdersController < Admin::ApplicationController
    @orders = current_shop.checkouts.orders.page(params[:page])
   end
 
+  def show
+    @order = current_shop.checkouts.orders.find(params[:id])
+  end
+
   def update
-    update! do |success, failure|
-      failure.html { render :show }
+    @order = current_shop.checkouts.orders.find(params[:id])
+    if @order.update_attributes(permitted_params[:order])
+      flash[:notice] = 'Order was successfully updated.'
+      redirect_to admin_order_path(@order)
+    else
+      render 'show'
     end
   end
 
   def destroy
+    @order = current_shop.checkouts.orders.find(params[:id])
+    @order.destroy
+    flash[:notice] = 'Order was successfully deleted.'
+    render 'index'
   end
 
   private

@@ -1,13 +1,46 @@
 class Admin::UsersController < ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
+  #inherit_resources
   layout 'admin_settings'
-  actions :all, :except => [:edit]
+  #actions :all, :except => [:edit]
+
+  def index
+    @users = current_shop.users.page(params[:page])
+  end
+
+  def show
+    @user = current_shop.users.find(params[:id])
+  end
+
+  def new
+    @user = current_shop.users.new
+  end
+
+  def create
+    @user = current_shop.users.new(permitted_params[:user])
+    if @user.save
+      flash[:notice] = 'User was successfully created.'
+      redirect_to admin_user_path(@user)
+    else
+      render 'show'
+    end
+  end
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
+    @user = current_shop.users.find(params[:id])
+    if @user.update_attributes(permitted_params[:user])
+      flsh[:notice] = 'User was successfully updated.'
+      redirect_to admin_user_path(@user)
+    else
+      render 'show'
     end
+  end
+
+  def destroy
+    @user = current_shop.users.find(params[:id])
+    @user.destroy
+    flash[:notice] = 'User was successfully deleted.'
+    render 'index'
   end
 
   protected

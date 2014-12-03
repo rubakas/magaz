@@ -1,12 +1,45 @@
 class Admin::ProductsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
-  actions :all, :except => [:edit]
+  #inherit_resources
+  #actions :all, :except => [:edit]
+
+  def index
+    @products = current_shop.products.page(params[:page])
+  end
+
+  def show
+    @product = current_shop.products.friendly.find(params[:id])
+  end
+
+  def new
+    @product = current_shop.products.new
+  end
+
+  def create
+    @product = current_shop.products.new(permitted_params[:product])
+    if @product.save
+      flash[:notice] = 'Product was successfully created.'
+      redirect_to admin_product_path(@product)
+    else
+      render 'show'
+    end
+  end
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
+    @product = current_shop.products.friendly.find(params[:id])
+    if @product.update_attributes(permitted_params[:product])
+      flash[:notice] = 'Product was successfully updated.'
+      redirect_to admin_product_path(@product)
+    else
+      render 'show'
     end
+  end
+
+  def destroy
+    @product = current_shop.products.friendly.find(params[:id])
+    @product.destroy
+    flash[:notice] = 'Product was successfully destroyed.'
+    redirect_to admin_products_path
   end
 
   protected
