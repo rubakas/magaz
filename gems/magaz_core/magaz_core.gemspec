@@ -23,8 +23,9 @@ Gem::Specification.new do |s|
   s.add_dependency "rubyzip"
   s.add_dependency "friendly_id", "5.0.4"
   s.add_dependency "liquid"
-  s.add_dependency "bcrypt-ruby"
+  s.add_dependency "bcrypt"
   s.add_dependency "sidekiq"
+  s.add_dependency "interactor-rails"
 
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "factory_girl"
