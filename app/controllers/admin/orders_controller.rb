@@ -1,13 +1,33 @@
 class Admin::OrdersController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
-  defaults :resource_class => MagazCore::Checkout, :collection_name => 'orders', :instance_name => 'order'
+  #inherit_resources
+  #defaults :resource_class => MagazCore::Checkout, :collection_name => 'orders', :instance_name => 'order'
   before_action :set_order, only: [:show, :update, :destroy]
 
+
+  def index
+   @orders = current_shop.checkouts.orders.page(params[:page])
+  end
+
+  def show
+    @order = current_shop.checkouts.orders.find(params[:id])
+  end
+
   def update
-    update! do |success, failure|
-      failure.html { render :show }
+    @order = current_shop.checkouts.orders.find(params[:id])
+    if @order.update_attributes(permitted_params[:order])
+      flash[:notice] = 'Order was successfully updated.'
+      redirect_to admin_order_path(@order)
+    else
+      render 'show'
     end
+  end
+
+  def destroy
+    @order = current_shop.checkouts.orders.find(params[:id])
+    @order.destroy
+    flash[:notice] = 'Order was successfully deleted.'
+    render 'index'
   end
 
   private

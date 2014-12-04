@@ -1,12 +1,38 @@
 class Admin::CustomersController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
-  actions :all, :except => [:edit]
+  #inherit_resources
+  #actions :all, :except => [:edit]
   respond_to :csv
 
+  def index
+    @customers = current_shop.customers.page(params[:page])
+  end
+
+  def show
+    @customer = current_shop.customers.find(params[:id])
+  end
+
+  def new
+    @customer = current_shop.customers.new
+  end
+
+  def create
+    @customer = current_shop.customers.new(permitted_params[:customer])
+    if @customer.save
+      flash[:notice] = 'Customer was successfully created.'
+      redirect_to admin_customer_path(@customer)
+    else
+      render 'new'
+    end
+  end
+
   def update
-    update! do |success, failure|
-      failure.html { render :show }
+    @customer = current_shop.customers.find(params[:id])
+    if @customer.update_attributes(permitted_params[:customer])
+      flash[:notice] = 'Customer was successfully updated.'
+      redirect_to admin_customer_path(@customer)
+    else
+      render 'show'
     end
   end
 
@@ -16,11 +42,18 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   def export
-    @customers = end_of_association_chain.all
+    @customers = current_shop.customers.all
     respond_to do |format|
       format.html
       format.csv { send_data @customers.to_csv, :type => "text/csv", :disposition => "attachment; filename=сustomers.csv" }
     end
+  end
+
+  def destroy
+    @customer = current_shop.customers.find(params[:id])
+    @customer.destroy
+    flash[:notice] = 'Customer was successfully deleted.'
+    redirect_to admin_customers_path
   end
 
   protected

@@ -1,13 +1,47 @@
 class Admin::ArticlesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
-  defaults :resource_class => MagazCore::Article
-  actions :all, :except => [:edit]
+  #inherit_resources
+  #defaults :resource_class => MagazCore::Article
+  #actions :all, :except => [:edit]
+
+  def index
+    @articles = current_shop.articles.page(params[:page])
+  end
+
+  def show
+    @article = current_shop.articles.friendly.find(params[:id])
+  end
+
+  def new
+    @article = current_shop.articles.new
+  end
+
+  def create
+    @article = current_shop.articles.new(permitted_params[:article])
+    if @article.save
+      flash[:notice] = 'Article was successfully created.'
+      redirect_to admin_article_url(@article)
+    else
+      flash[:error] = "Can't create such article,try again please."
+      render 'new'
+    end
+  end
 
   def update
-    update! do |success, failure|
-      failure.html { render :show }
+    @article = current_shop.articles.friendly.find(params[:id])
+    if @article.update_attributes(permitted_params[:article])
+      flash[:notice] = 'Article was successfully updated.'
+      redirect_to admin_article_url(@article)
+    else 
+      render 'show'
     end
+  end
+
+  def destroy
+    @article = current_shop.articles.friendly.find(params[:id])
+    @article.destroy
+    flash[:notice] = "Article was successfully deleted."
+    redirect_to admin_articles_url
   end
 
   protected
