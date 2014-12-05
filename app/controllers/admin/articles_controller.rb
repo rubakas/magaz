@@ -1,8 +1,5 @@
 class Admin::ArticlesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  #inherit_resources
-  #defaults :resource_class => MagazCore::Article
-  #actions :all, :except => [:edit]
 
   def index
     @articles = current_shop.articles.page(params[:page])
@@ -45,14 +42,6 @@ class Admin::ArticlesController < Admin::ApplicationController
   end
 
   protected
-
-  def collection
-    @articles ||= end_of_association_chain.page(params[:page])
-  end
-
-  def resource
-    @article ||= end_of_association_chain.friendly.find(params[:id])
-  end
 
   #TODO:  collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters

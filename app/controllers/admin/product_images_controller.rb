@@ -1,7 +1,5 @@
 class Admin::ProductImagesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  #inherit_resources
-  #actions :all, :except => [:edit]
 
   def index
     @product_images = current_shop.products.product_images.page(params[:page])

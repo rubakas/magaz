@@ -1,11 +1,6 @@
 class Admin::SettingsController < ApplicationController
   include MagazCore::Concerns::Authenticable
-  inherit_resources
   layout 'admin_settings'
-  defaults :resource_class => MagazCore::Shop,
-           :collection_name => 'shops',
-           :instance_name => 'shop'
-  actions :all, :only => [:edit, :update]
 
   def edit
     @shop = current_shop

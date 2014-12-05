@@ -1,7 +1,5 @@
 class Admin::LinkListsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  #inherit_resources
-  #actions :all, :except => [:edit]
 
   def index
     @link_lists = current_shop.link_lists.page(params[:page])
@@ -43,18 +41,6 @@ class Admin::LinkListsController < Admin::ApplicationController
   end
 
   protected
-
-  def begin_of_association_chain
-    current_shop
-  end
-
-  def collection
-    @link_lists ||= end_of_association_chain.page(params[:page])
-  end
-
-  def resource
-    @link_list  ||= end_of_association_chain.friendly.find(params[:id])
-  end
 
   def permitted_params
     { link_list:

@@ -1,7 +1,5 @@
 class Admin::OrdersController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  #inherit_resources
-  #defaults :resource_class => MagazCore::Checkout, :collection_name => 'orders', :instance_name => 'order'
   before_action :set_order, only: [:show, :update, :destroy]
 
 
@@ -38,18 +36,6 @@ class Admin::OrdersController < Admin::ApplicationController
   end
 
   protected
-
-  def begin_of_association_chain
-    current_shop.checkouts.orders
-  end
-
-  def collection
-    @orders ||= end_of_association_chain.page(params[:page])
-  end
-
-  def resource
-    @order ||= end_of_association_chain.orders.find(params[:id])
-  end
 
   #TODO:  collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters

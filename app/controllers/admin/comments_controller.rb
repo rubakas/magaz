@@ -1,8 +1,5 @@
 class Admin::CommentsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  #inherit_resources
-  #defaults :resource_class => MagazCore::Comment
-  #actions :all, :except => [:edit]
 
   def index
     @comments = current_shop.comments.page(params[:page])
@@ -47,10 +44,6 @@ class Admin::CommentsController < Admin::ApplicationController
   end
 
   protected
-
-  def collection
-    @comments ||= end_of_association_chain.page(params[:page])
-  end
 
   #TODO:  collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
