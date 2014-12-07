@@ -1,7 +1,5 @@
 class Admin::CustomersController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  #inherit_resources
-  #actions :all, :except => [:edit]
   respond_to :csv
 
   def index
@@ -57,14 +55,6 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   protected
-
-  def begin_of_association_chain
-    current_shop
-  end
-
-  def collection
-    @customers ||= end_of_association_chain.page(params[:page])
-  end
 
   #TODO:  collection_ids are not guaranteed to belong to this shop!!!
   # https://github.com/josevalim/inherited_resources#strong-parameters
