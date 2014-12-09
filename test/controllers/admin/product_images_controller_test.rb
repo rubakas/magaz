@@ -10,27 +10,47 @@ class Admin::ProductImagesControllerTest < ActionController::TestCase
   end
 
   test 'should get index' do
-    get :index
+    get :index, product_id: @product ,id: @product_image
     assert_response :success
     assert_not_nil assigns(:product_images)
   end
 
   test 'should show image' do
-    get :show, id: @product_image
+    get :show, product_id: @product ,id: @product_image
     assert_response :success
   end
 
   test 'should get new' do
-    get :new
+    get :new, product_id: @product ,id: @product_image
     assert_response :success
+  end
+
+  test 'should update image' do
+    patch :update, product_id: @product ,id: @product_image
+     { product_image: {image: 'sell_bg_berlin.jpg' }}
+      assert_template :show
+      assert_response :success
+  end
+
+  test 'should not update image' do
+    patch :update, product_id: @product ,id: @product_image
+     { product_image: {image: ''}}
+      assert_template :show
+      assert_response :success
+  end
+
+  test 'should create image' do
+    assert_difference('MagazCore::ProductImage.count') do
+      post :create, product_id: @product , id: @product_image 
+      {product_image: {image: 'sell_bg_berlin.jpg'}}
+    end
   end
 
 
   test 'should destroy image' do
     assert_difference('MagazCore::ProductImage.count', -1) do
-      delete :destroy, id: @product_image.id
+      delete :destroy, product_id: @product , id: @product_image
     end
-    assert_redirected_to admin_product_images_path
+    assert_redirected_to admin_product_product_images_path
   end
-
 end

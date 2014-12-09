@@ -12,12 +12,23 @@ class Admin::ProductImagesController < Admin::ApplicationController
   end
 
   def new
-    @product = current_shop.products.find(params[:product_id])
+    @product = current_shop.products.friendly.find(params[:product_id])
     @product_image = @product.product_images.new
   end
 
+  def update
+    @product = current_shop.products.friendly.find(params[:product_id])
+    @product_image = @product.product_images.find(params[:id])
+    if @product_image.update_attributes(permitted_params[:product_image])
+      flash[:notice] = 'Image was successfully updated.'
+      render 'show'
+    else
+      render 'show'
+    end
+  end
+
   def create
-    @product = current_shop.products.find(params[:product_id])
+    @product = current_shop.products.friendly.find(params[:product_id])
     @product_image = @product.product_images.new(permitted_params[:product_image])
     if @product_image.save
       flash[:notice] = 'Image was successfully created.'
@@ -29,7 +40,7 @@ class Admin::ProductImagesController < Admin::ApplicationController
 
 
   def destroy
-    @product = current_shop.products.find(params[:product_id])
+    @product = current_shop.products.friendly.find(params[:product_id])
     @product_image = @product.product_images.find(params[:id])
     @product_image.destroy
     flash[:notice] = 'Image was successfully deleted.'

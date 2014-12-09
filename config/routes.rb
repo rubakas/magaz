@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       resources :orders, except: [:create, :edit, :new]
       resources :pages, except: [:edit]
       resources :products, except: [:edit] do 
-        resources :product_images, except: [:edit, :update]
+        resources :product_images, except: [:edit]
       end
       resource  :session, only: [:create, :destroy, :new, :show]
       resource  :settings, only: [:edit, :update]

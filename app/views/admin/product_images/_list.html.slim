@@ -9,7 +9,7 @@ table class="table table-striped"
       tr
         td = image_tag product_image.image_url(:thumb)
         td = link_to product_image.image , product_image.image.url
-        td = link_to t('.show'), product_image.image.url
+        td = link_to t('.show'), [:admin, @product, product_image]
         td = link_to t('.delete'), [:admin, @product, product_image] ,method: :delete, data: { confirm: t('.confirmation') }
         
 br
