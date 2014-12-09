@@ -305,6 +305,23 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+    product_images:
+      new:
+        new: 'New Image'
+      blank:
+        no_product_images: 'No images'
+        add: 'Add Image' 
+      form:
+        error: "error"
+        prohibit: "prohibited this image from being saved:"
+        select: 'Select your image'
+      show:
+        title: "Images"
+      list:
+        delete: "Delete"
+        show: "Show Image"
+        confirmation: "Are you sure?"
+
     sessions:
       new:
         sign_in: "Sign in"
