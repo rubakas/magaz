@@ -11,14 +11,14 @@
   div class="form-group"
     = f.label :name
     br
-    = f.text_field :name, class: 'form-input'
+      = f.text_field :name, class: 'form-input'
     br
-    = f.label :file
-    = f.file_field :file
+      = f.label :file
+      = f.file_field :file
     br
-    = image_tag @file.file_url(:thumb) if @file.file.thumb.present?
+      = image_tag @file.file_url(:thumb) if @file.file.thumb.present?
     br
-    = link_to 'Download file', @file.file.url, class: 'btn btn-success' if @file.file?
+      = link_to 'Download file', @file.file.url, class: 'btn btn-success' if @file.file?
   hr
   div class="form-group"
     = link_to t('.back'), admin_files_path, class: 'button-secondary'
