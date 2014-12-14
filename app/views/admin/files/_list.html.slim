@@ -3,17 +3,53 @@
 table class="table table-striped"
   thead
     tr
-      th
-      th = t('.title')
-      th
+      td 
+      td = 'File'
+      td = 'URL'
+      td = 'Size'
 
   tbody
     - @files.each do |file|
-      tr
+      tr 
         td = image_tag file.file_url(:extra_small) if file.file.extra_small.present?
         td = link_to file.name, [:admin, file]
+        td = file.file_url
+        td = number_to_human_size(file.file_size)
         td = link_to t('.delete'), [:admin, file], method: :delete, data: { confirm: t('.confirmation') }
 
 br
 
 = paginate @files
+
+
+
+
+/*_list
+$(document).ready(function(){
+  
+  alert( );
+
+  var selected = $(document).find('.dropdown');
+  $(this).find('.dropdown').css({'display':'none'});
+  var check = $(this).find('.table #add');
+  var check_all = $(this).find('#check_all')
+
+  $(':checkbox').click(function(){
+    if($(this).is(check_all)){
+      var c = this.checked;
+      $(':checkbox').prop('checked',c);
+      $(check).toggleClass('is_checked');
+    }
+    else if($(this).is(check)){
+      $(check_all).prop('checked',false);
+      $(this).closest(':checkbox').toggleClass('is_checked');
+    }
+    if($(':checkbox').is(':checked')){
+      $(selected).slideDown();
+    }
+    if(!(check_all.checked) && !(check.hasClass('is_checked')) ){
+      $(selected).slideUp();
+    }
+  });
+});
+*/
