@@ -20,36 +20,3 @@ table class="table table-striped"
 br
 
 = paginate @files
-
-
-
-
-/*_list
-$(document).ready(function(){
-  
-  alert( );
-
-  var selected = $(document).find('.dropdown');
-  $(this).find('.dropdown').css({'display':'none'});
-  var check = $(this).find('.table #add');
-  var check_all = $(this).find('#check_all')
-
-  $(':checkbox').click(function(){
-    if($(this).is(check_all)){
-      var c = this.checked;
-      $(':checkbox').prop('checked',c);
-      $(check).toggleClass('is_checked');
-    }
-    else if($(this).is(check)){
-      $(check_all).prop('checked',false);
-      $(this).closest(':checkbox').toggleClass('is_checked');
-    }
-    if($(':checkbox').is(':checked')){
-      $(selected).slideDown();
-    }
-    if(!(check_all.checked) && !(check.hasClass('is_checked')) ){
-      $(selected).slideUp();
-    }
-  });
-});
-*/
