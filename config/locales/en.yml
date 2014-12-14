@@ -190,6 +190,7 @@ en:
         prohibit: "prohibited this link list from being saved:"
         name: "Name"
       list:
+        size: 'Size'
         title: "File"
         delete: "Delete"
         confirmation: "Are you sure?"
