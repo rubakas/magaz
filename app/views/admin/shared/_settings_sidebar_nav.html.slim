@@ -22,6 +22,12 @@ section class='sidebar-section'
         label: t('.users'),
         active_conditions: { controller: 'admin/users' }
 
+    = render 'admin/shared/li_link_to',
+        path: edit_admin_settings_path,
+        icon_class: 'icon-shopping-cart',
+        label: t('.checkouts'),
+        active_conditions: { controller: 'admin/settings',  action: 'edit' }
+
     hr
 
     = render 'admin/shared/li_link_to',

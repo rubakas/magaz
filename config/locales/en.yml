@@ -356,6 +356,8 @@ en:
         settings: "Settings"
         files: "Files"
         users: "Users"
+        notifications: "Notifications"
+        checkouts: "Checkouts"
 
     users:
       index:

@@ -45,5 +45,14 @@ module MagazCore
     has_many :products
     has_many :themes
     has_many :users
+    ACCOUNT_TYPE_CHOICE = ["Account are disabled","Account are required","Account are optional"]
+    ABANDONED_CHECKOUT_TIME_DELAY = ["Never","Six hours later","24 hours later"]
+    EMAIL_MARKETING_CHOICE = ["Customer agrees to receive promotional emails by default","Customer does not agree to receive promotional emails by default","Disable and hide this field"]
+    AFTER_ORDER_PAID = ["Automatically fulfill the order's line items.","Automatically fulfill only the gift cards of the order.","Do not automatically fulfill any of the order's line items."]
+    #CHECHOUT_LANGUAGE = ["English"]
+    validates :account_type_choice, inclusion: ACCOUNT_TYPE_CHOICE
+    validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY
+    validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE
+    validates :after_order_paid, inclusion: AFTER_ORDER_PAID 
   end
 end
