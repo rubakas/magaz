@@ -15,3 +15,37 @@
 // require turbolinks
 //= require_tree .
 //= require twitter/bootstrap
+
+$(document).ready(function(){
+  var hidden_multipass = $('.col-xs-9').find('.hidden_field_multipass');
+  var hidden_auto_fulfill = $('.col-xs-9').find('.hidden_field_auto_fulfill');
+  
+  hidden_multipass.css({'display':'none'});
+  
+  var auto_fulfill_order_line = $('#shop_after_order_paid [value="Automatically fulfill the orders line items."]');
+  var auto_fulfill_gift_cards = $('#shop_after_order_paid [value="Automatically fulfill only the gift cards of the order."]');
+  var do_not_auto_fulfill = $('#shop_after_order_paid [value="Do not automatically fulfill any of the orders line items."]');
+  
+  var disabled = $('#shop_account_type_choice [value="Account are disabled"]');
+  var required = $('#shop_account_type_choice [value="Account are required"]');
+  var optional = $('#shop_account_type_choice [value="Account are optional"]');
+  
+  $('#shop_account_type_choice').click(function() {
+    if(optional.is(':selected') || required.is(':selected')){
+      hidden_multipass.slideDown();
+    }
+    if(hidden_multipass.is(':visible') && disabled.is(':selected')){
+      hidden_multipass.slideUp();
+      $(hidden_multipass).find(':checkbox').prop('checked',false);
+    }
+  });
+  $('#shop_after_order_paid').click(function() {
+    if(auto_fulfill_order_line.is(':selected') && !(hidden_auto_fulfill.is(':visible'))){
+      hidden_auto_fulfill.slideDown();
+    }
+    if(hidden_auto_fulfill.is(':visible') && (auto_fulfill_gift_cards.is(':selected')) || do_not_auto_fulfill.is(':selected')){
+      hidden_auto_fulfill.slideUp();
+      $(hidden_auto_fulfill).find(':checkbox').prop('checked',false);
+    }
+  });
+});

@@ -1,0 +1,76 @@
+= form_for [:admin, @shop], url: [:checkouts_settings_update,:admin,:settings],method: :put do |f|
+
+  h4 Checkout
+  
+  form class="form-horizontal" role="form"
+    div class="form-group"
+      label class="col-sm-2 control-label" Customer accounts
+      inf = 'You can choose if you want to prompt the customer to make an account when they checkout.'
+    
+      div class="field"
+        = f.label :account_type_choice
+        = f.select :account_type_choice, MagazCore::Shop::ACCOUNT_TYPE_CHOICE
+
+      div class='hidden_field_multipass' 
+        = f.label 'Enable Multipass login'
+        = f.check_box :enable_multipass_login
+        br
+        = 'Enable Multipass if you want to integrate with an external customer account system.'
+
+    br
+
+    div class="form-group"
+      label class="col-sm-2 control-label" Orders Proccessing
+      inf= 'Change how your store responds to checkout and order events.'
+
+      div class="field"
+        = f.label :bulling_adress_is_shipping_too
+        = f.check_box :bulling_adress_is_shipping_too
+   
+      div class="field"
+        = f.label :abandoned_checkout_time_delay
+        = f.select :abandoned_checkout_time_delay, MagazCore::Shop::ABANDONED_CHECKOUT_TIME_DELAY
+
+      div class="field"
+        = f.label :email_marketing_choice
+        = f.select :email_marketing_choice, MagazCore::Shop::EMAIL_MARKETING_CHOICE
+     
+      div class="field"
+        = f.label :after_order_paid
+        = f.select :after_order_paid, MagazCore::Shop::AFTER_ORDER_PAID
+
+      div class="hidden_field_auto_fulfill"
+        = f.label 'Notify customers of their shipment via email'
+        = f.check_box :notify_customers_of_their_shipment
+        = f.label 'Automatically fulfill all orders, even those with a high risk of fraud.'
+        = f.check_box :automatically_fulfill_all_orders
+
+      div class="field"
+        = f.label :after_order_fulfilled_and_paid
+        br
+        = 'Automatically archive the order'
+        = f.check_box :after_order_fulfilled_and_paid
+    br
+    
+    div class="form-group"
+      label class="col-sm-2 control-label" Refund, privacy and TOS statements
+      inf = 'These statements appear in the footer of your checkout page.'
+
+      div class="field"
+        = f.label :checkout_refound_policy
+        = f.text_area :checkout_refound_policy
+        = f.button 'Generate sample', class: 'generate_refund'
+
+      div class="field"
+        = f.label :checkout_privacy_policy
+        = f.text_area :checkout_privacy_policy
+        = f.button 'Generate sample', class: 'generate_privacy'
+
+      div class="field"
+        = f.label :checkout_term_of_service
+        = f.text_area :checkout_term_of_service
+        = f.button 'Generate sample', class: 'generate_tos'
+       
+    br
+    div class="actions"
+      = f.submit 'Save'

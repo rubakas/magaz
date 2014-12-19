@@ -1,1 +1,23 @@
 @import "magaz_style/application.css.scss";
+
+
+/*Checkouts*/
+
+.btn-default, .button-secondary {
+  margin-left: 35em;
+}
+.col-sm-2 {
+  background-color: #99CCFF;
+  border-collapse: collapse;
+  border-top: 1px dotted black;
+  border-bottom: 1px dotted black;
+  text-align: left;
+}
+.field, .hidden_field_multipass,.hidden_field_auto_fulfill {
+  text-align: right;
+  background-color: #F8F8F8;
+  border-bottom: 1px dotted black;
+}
+inf{
+  color: gray;
+}

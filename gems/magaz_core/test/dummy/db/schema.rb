@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215224058) do
+ActiveRecord::Schema.define(version: 20141219123957) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -219,6 +219,9 @@ ActiveRecord::Schema.define(version: 20141215224058) do
     t.text     "checkout_refound_policy"
     t.text     "checkout_privacy_policy"
     t.text     "checkout_term_of_service"
+    t.boolean  "enable_multipass_login"
+    t.boolean  "notify_customers_of_their_shipment"
+    t.boolean  "automatically_fulfill_all_orders"
   end
 
   create_table "themes", force: true do |t|

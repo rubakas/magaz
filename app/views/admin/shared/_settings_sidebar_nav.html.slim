@@ -23,10 +23,10 @@ section class='sidebar-section'
         active_conditions: { controller: 'admin/users' }
 
     = render 'admin/shared/li_link_to',
-        path: edit_admin_settings_path,
+        path: checkouts_settings_admin_settings_path,
         icon_class: 'icon-shopping-cart',
         label: t('.checkouts'),
-        active_conditions: { controller: 'admin/settings',  action: 'edit' }
+        active_conditions: { controller: 'admin/settings',  action: 'checkouts_settings' }
 
     hr
 

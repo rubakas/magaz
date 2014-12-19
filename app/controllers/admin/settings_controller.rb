@@ -16,6 +16,22 @@ class Admin::SettingsController < ApplicationController
     end
   end
 
+  def checkouts_settings
+    @shop = current_shop
+    render 'checkouts_settings'
+  end
+
+  def checkouts_settings_update
+    @shop = current_shop
+    if @shop.update_attributes(permitted_params_for_checkouts[:shop])
+      flash[:notice] = 'Shop was successfully updated.'
+      render "checkouts_settings"
+    else 
+      flash[:notice] = 'Try again.'
+      render "checkouts_settings"
+    end
+  end
+
   protected
 
   def resource
@@ -28,5 +44,14 @@ class Admin::SettingsController < ApplicationController
                                        :city, :country, :currency, :customer_email,
                                        :phone, :province, :timezone, :unit_system,
                                        :zip, :handle, :page_title, :meta_description) }
+  end
+
+  def permitted_params_for_checkouts
+    { shop:
+        params.fetch(:shop, {}).permit(:account_type_choice,:bulling_adress_is_shipping_too,
+                                      :abandoned_checkout_time_delay,:email_marketing_choice,
+                                      :after_order_paid,:after_order_fulfilled_and_paid,
+                                      :checkout_language,:checkout_refound_policy,
+                                      :checkout_privacy_policy, :checkout_term_of_service) }
   end
 end
