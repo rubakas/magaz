@@ -45,14 +45,26 @@ module MagazCore
     has_many :products
     has_many :themes
     has_many :users
+
     ACCOUNT_TYPE_CHOICE = ["Account are disabled","Account are required","Account are optional"]
     ABANDONED_CHECKOUT_TIME_DELAY = ["Never","Six hours later","24 hours later"]
-    EMAIL_MARKETING_CHOICE = ["Customer agrees to receive promotional emails by default","Customer does not agree to receive promotional emails by default","Disable and hide this field"]
+    EMAIL_MARKETING_CHOICE = ["Customer agrees to receive promotional emails by default.","Customer does not agree to receive promotional emails by default.","Disable and hide this field."]
     AFTER_ORDER_PAID = ["Automatically fulfill the orders line items.","Automatically fulfill only the gift cards of the order.","Do not automatically fulfill any of the orders line items."]
     #CHECHOUT_LANGUAGE = ["English"]
-    validates :account_type_choice, inclusion: ACCOUNT_TYPE_CHOICE
-    validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY
-    validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE
-    validates :after_order_paid, inclusion: AFTER_ORDER_PAID 
+
+    PAYPAL_METHODS = ['PayPal Express Checkout', 'PayPalflow Link', 'PayPal Payments Pro(US)','PayPal Website Payments Pro(CA)','PayPal Website Payments Pro(UK)']
+    ADDITIONAL_METHODS = ['Dwolla','BitPay','Coinbase','GoCoin'] 
+    CUSTOM_METHODS = ['Cash on Delivery(COD)','Money Order', 'Bank Deposit', 'Custom payment method']
+    AUTHOREZE_SETTINGS = ['Authorize and charge the customers credit card.', 'Authorize the customers credit card.']
+
+    validates :paypal_methods, inclusion: PAYPAL_METHODS, :allow_blank => true
+    validates :additional_methods,inclusion: ADDITIONAL_METHODS, :allow_blank => true 
+    validates :custom_methods, inclusion: CUSTOM_METHODS, :allow_blank => true
+    validates :authoreze_settings, inclusion: AUTHOREZE_SETTINGS, :allow_blank => true
+
+    validates :account_type_choice, inclusion: ACCOUNT_TYPE_CHOICE, :allow_blank => true
+    validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY,:allow_blank => true
+    validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE,:allow_blank => true
+    validates :after_order_paid, inclusion: AFTER_ORDER_PAID,:allow_blank => true
   end
 end

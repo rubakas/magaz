@@ -1,6 +1,8 @@
 = form_for [:admin, @shop], url: [:checkouts_settings_update,:admin,:settings],method: :put do |f|
 
-  h4 Checkout
+  h4
+      i class="icon-shopping-cart"
+      = 'Checkouts'
   
   form class="form-horizontal" role="form"
     div class="form-group"

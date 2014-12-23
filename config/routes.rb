@@ -44,7 +44,10 @@ Rails.application.routes.draw do
       resource  :settings, only: [:edit, :update] do
         put :checkouts_settings_update, :collection do
         end
+        put :payments_settings_update, :collection do
+        end
         member do
+          get 'payments_settings'
           get 'checkouts_settings'
         end
       end

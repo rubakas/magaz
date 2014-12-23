@@ -16,6 +16,11 @@ class Admin::SettingsController < ApplicationController
     end
   end
 
+  def payments_settings
+    @shop = current_shop
+    render 'payments_settings'
+  end
+
   def checkouts_settings
     @shop = current_shop
     render 'checkouts_settings'

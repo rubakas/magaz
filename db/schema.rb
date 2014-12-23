@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219123957) do
+ActiveRecord::Schema.define(version: 20141222154255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -225,6 +225,10 @@ ActiveRecord::Schema.define(version: 20141219123957) do
     t.boolean  "enable_multipass_login"
     t.boolean  "notify_customers_of_their_shipment"
     t.boolean  "automatically_fulfill_all_orders"
+    t.string   "paypal_methods"
+    t.string   "additional_methods"
+    t.string   "custom_methods"
+    t.string   "authoreze_settings"
   end
 
   create_table "themes", force: true do |t|
