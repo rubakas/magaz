@@ -2,28 +2,29 @@
 
   h4
       i class="icon-shopping-cart"
-      = 'Checkouts'
+      = t('.logo')
   
   form class="form-horizontal" role="form"
     div class="form-group"
-      label class="col-sm-2 control-label" Customer accounts
-      inf = 'You can choose if you want to prompt the customer to make an account when they checkout.'
+      label class="col-sm-2 control-label" = t('.customers_logo')
+      inf = t('.customers_inf')
     
-      div class="field"
+    div class="field"
+      div class="field_account_choice"
         = f.label :account_type_choice
         = f.select :account_type_choice, MagazCore::Shop::ACCOUNT_TYPE_CHOICE
 
-      div class='hidden_field_multipass' 
-        = f.label 'Enable Multipass login'
+      div class='js_checkouts_hidden_field_multipass' 
+        = f.label :enable_multipass_login
         = f.check_box :enable_multipass_login
         br
-        = 'Enable Multipass if you want to integrate with an external customer account system.'
+        = t('.hidden_multipass_inf')
 
     br
 
     div class="form-group"
-      label class="col-sm-2 control-label" Orders Proccessing
-      inf= 'Change how your store responds to checkout and order events.'
+      label class="col-sm-2 control-label" = t('.orders_proc_logo')
+      inf = t('.orders_proc_inf')
 
       div class="field"
         = f.label :bulling_adress_is_shipping_too
@@ -38,10 +39,11 @@
         = f.select :email_marketing_choice, MagazCore::Shop::EMAIL_MARKETING_CHOICE
      
       div class="field"
-        = f.label :after_order_paid
-        = f.select :after_order_paid, MagazCore::Shop::AFTER_ORDER_PAID
+        div class="field_after_order_paid"
+          = f.label :after_order_paid
+          = f.select :after_order_paid, MagazCore::Shop::AFTER_ORDER_PAID
 
-      div class="hidden_field_auto_fulfill"
+      div class="js_checkouts_hidden_field_auto_fulfill"
         = f.label 'Notify customers of their shipment via email'
         = f.check_box :notify_customers_of_their_shipment
         = f.label 'Automatically fulfill all orders, even those with a high risk of fraud.'
@@ -55,8 +57,8 @@
     br
     
     div class="form-group"
-      label class="col-sm-2 control-label" Refund, privacy and TOS statements
-      inf = 'These statements appear in the footer of your checkout page.'
+      label class="col-sm-2 control-label" = t('.ref_tos_logo')
+      inf = t('.ref_tos_inf')
 
       div class="field"
         = f.label :checkout_refound_policy

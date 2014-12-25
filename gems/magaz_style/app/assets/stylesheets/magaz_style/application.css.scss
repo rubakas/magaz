@@ -41,3 +41,26 @@ $global-color-highlight: #f1c40f;
 // @import "modules/button";
 // @import "modules/form";
 // @import "modules/navbar_public";
+
+/*Checkouts*/
+
+.col-sm-2 {
+  background-color: #99CCFF;
+  border-collapse: collapse;
+  border-top: 1px dotted black;
+  border-bottom: 1px dotted black;
+  text-align: left;
+}
+.field, .hidden_field_multipass,.hidden_field_auto_fulfill {
+  text-align: right;
+  background-color: #F8F8F8;
+  border-bottom: 1px dotted black;
+}
+inf{
+  color: gray;
+  font-size: small;
+}
+link_to{
+  background-color: #99CCFF;
+  font-size: 15px;
+}

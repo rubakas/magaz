@@ -2,21 +2,24 @@
 
   h4
       i class="icon-credit-card"
-      = 'Checkouts'
+      = t('.logo')
 
   form class="form-horizontal" role="form"
-  div class="form-group"
-    label class="col-sm-2 control-label" Payment authorization settings
-    inf = 'Set up whether payments should be manually or automatically captured. Learn more about.'
+    div class="form-group"
+      label class="col-sm-2 control-label" = t('.pay_auth_set')
+      inf = t('.pay_auth_set_inf')
 
-    div class="field"
-      = f.select :authoriz_settings, MagazCore::Shop::AUTHORIZ_SETTINGS, prompt:'Select authorization method'
-    
-    div class='hidden_field_authorize_and_charge'
-      inf = 'Automatically capture payment at the time of sale.'
-    
-    div class='hidden_field_authorize'
-      inf = 'Manually capture an amount before the authorization expires.'
-
-    div class="actions"
-    = f.submit 'Save'
+      div class="field"
+        div class="field_with_authorization_methods"
+          = f.select :authoriz_settings, MagazCore::Shop::AUTHORIZ_SETTINGS, prompt:'Select authorization method'
+        
+      div class="field"
+        div class='js_payments_hidden_field_authorize_and_charge'
+          inf = t('.hidden_auth_and_charge_inf')
+        
+        div class='js_payments_hidden_field_authorize'
+          inf = t('.hidden_auth_inf')
+        
+    br
+      div class="actions"
+        = f.submit 'Save'

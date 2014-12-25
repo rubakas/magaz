@@ -335,7 +335,22 @@ en:
       form:
         error: "error"
         prohibit: "prohibited this shop from being saved:"
-
+      checkouts_settings:
+        logo: "Checkouts"
+        customers_logo: "Customer accounts"
+        customers_inf: "You can choose if you want to prompt the customer to make an account when they checkout."
+        hidden_multipass_inf: "Enable Multipass if you want to integrate with an external customer account system."
+        orders_proc_inf: "Change how your store responds to checkout and order events."
+        orders_proc_logo: "Orders Proccessing"
+        customer_ac_logo: "Customer accounts"
+        ref_tos_logo: "Refund, privacy and TOS statements"
+        ref_tos_inf: "These statements appear in the footer of your checkout page."
+      payments_settings:
+        logo: "Payments"
+        pay_auth_set: "Payment authorization settings"
+        pay_auth_set_inf: "Set up whether payments should be manually or automatically captured. Learn more about."
+        hidden_auth_inf: "Manually capture an amount before the authorization expires."
+        hidden_auth_and_charge_inf: "Automatically capture payment at the time of sale."
     shared:
       sidebar_nav:
         title: "Shop"

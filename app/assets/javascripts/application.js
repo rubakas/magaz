@@ -17,20 +17,20 @@
 //= require twitter/bootstrap
 $(document).ready(function(){
   /*Checkout*/
-  var hidden_multipass = $('.col-xs-9').find('.hidden_field_multipass');
-  var hidden_auto_fulfill = $('.col-xs-9').find('.hidden_field_auto_fulfill');
-  
+  var hidden_multipass = $('.col-xs-9').find('.js_checkouts_hidden_field_multipass');
+  var hidden_auto_fulfill = $('.col-xs-9').find('.js_checkouts_hidden_field_auto_fulfill');
+
   hidden_multipass.css({'display':'none'});
   
-  var auto_fulfill_order_line = $('#shop_after_order_paid [value="Automatically fulfill the orders line items."]');
-  var auto_fulfill_gift_cards = $('#shop_after_order_paid [value="Automatically fulfill only the gift cards of the order."]');
-  var do_not_auto_fulfill = $('#shop_after_order_paid [value="Do not automatically fulfill any of the orders line items."]');
+  var auto_fulfill_order_line = $('.col-xs-9').find('[value="Automatically fulfill the orders line items."]');
+  var auto_fulfill_gift_cards = $('.col-xs-9').find('[value="Automatically fulfill only the gift cards of the order."]');
+  var do_not_auto_fulfill = $('.col-xs-9').find('[value="Do not automatically fulfill any of the orders line items."]');
   
-  var disabled = $('#shop_account_type_choice [value="Account are disabled"]');
-  var required = $('#shop_account_type_choice [value="Account are required"]');
-  var optional = $('#shop_account_type_choice [value="Account are optional"]');
+  var disabled = $('.col-xs-9').find('[value="Account are disabled"]');
+  var required = $('.col-xs-9').find('[value="Account are required"]');
+  var optional = $('.col-xs-9').find('[value="Account are optional"]');
   
-  $('#shop_account_type_choice').click(function() {
+  $('.field_account_choice').click(function() {
     if(optional.is(':selected') || required.is(':selected')){
       hidden_multipass.slideDown();
     }
@@ -39,7 +39,7 @@ $(document).ready(function(){
       $(hidden_multipass).find(':checkbox').prop('checked',false);
     }
   });
-  $('#shop_after_order_paid').click(function() {
+  $('.field_after_order_paid').click(function() {
     if(auto_fulfill_order_line.is(':selected') && !(hidden_auto_fulfill.is(':visible'))){
       hidden_auto_fulfill.slideDown();
     }
@@ -49,15 +49,16 @@ $(document).ready(function(){
     }
   });
   /*Payment*/
-  $('.col-xs-9 .hidden_field_authorize_and_charge, .hidden_field_authorize').css({'display':'none'});
+  $('.col-xs-9 .js_payments_hidden_field_authorize_and_charge, .js_payments_hidden_field_authorize').css({'display':'none'});
 
-  var authorize_and_charge = $('#shop_authoriz_settings [value="Authorize and charge the customers credit card."]');
-  var authorize = $('#shop_authoriz_settings [value="Authorize the customers credit card."]');
-  var select_authorization_method = $('#shop_authoriz_settings option:first');
-
-  var hidden_field_authorize = $('.col-xs-9').find('.hidden_field_authorize');
-  var hidden_field_authorize_and_charge = $('.col-xs-9').find('.hidden_field_authorize_and_charge');
-  $('#shop_authoriz_settings').click(function(){
+  var authorize_and_charge = $('.col-xs-9').find('[value="Authorize and charge the customers credit card."]');
+  var authorize = $('.col-xs-9').find('[value="Authorize the customers credit card."]');
+  var select_authorization_method = $('.col-xs-9').find('.field_with_authorization_methods option:first');
+  
+  var hidden_field_authorize = $('.col-xs-9').find('.js_payments_hidden_field_authorize');
+  var hidden_field_authorize_and_charge = $('.col-xs-9').find('.js_payments_hidden_field_authorize_and_charge');
+  
+  $('.field_with_authorization_methods').click(function(){
     if(select_authorization_method.is(':selected')){
       hidden_field_authorize_and_charge.slideUp();
       hidden_field_authorize.slideUp();      
