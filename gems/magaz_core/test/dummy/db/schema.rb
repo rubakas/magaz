@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222154255) do
+ActiveRecord::Schema.define(version: 20141225152826) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -222,10 +222,7 @@ ActiveRecord::Schema.define(version: 20141222154255) do
     t.boolean  "enable_multipass_login"
     t.boolean  "notify_customers_of_their_shipment"
     t.boolean  "automatically_fulfill_all_orders"
-    t.string   "paypal_methods"
-    t.string   "additional_methods"
-    t.string   "custom_methods"
-    t.string   "authoreze_settings"
+    t.string   "authoriz_settings"
   end
 
   create_table "themes", force: true do |t|

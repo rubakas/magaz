@@ -52,15 +52,8 @@ module MagazCore
     AFTER_ORDER_PAID = ["Automatically fulfill the orders line items.","Automatically fulfill only the gift cards of the order.","Do not automatically fulfill any of the orders line items."]
     #CHECHOUT_LANGUAGE = ["English"]
 
-    PAYPAL_METHODS = ['PayPal Express Checkout', 'PayPalflow Link', 'PayPal Payments Pro(US)','PayPal Website Payments Pro(CA)','PayPal Website Payments Pro(UK)']
-    ADDITIONAL_METHODS = ['Dwolla','BitPay','Coinbase','GoCoin'] 
-    CUSTOM_METHODS = ['Cash on Delivery(COD)','Money Order', 'Bank Deposit', 'Custom payment method']
-    AUTHOREZE_SETTINGS = ['Authorize and charge the customers credit card.', 'Authorize the customers credit card.']
-
-    validates :paypal_methods, inclusion: PAYPAL_METHODS, :allow_blank => true
-    validates :additional_methods,inclusion: ADDITIONAL_METHODS, :allow_blank => true 
-    validates :custom_methods, inclusion: CUSTOM_METHODS, :allow_blank => true
-    validates :authoreze_settings, inclusion: AUTHOREZE_SETTINGS, :allow_blank => true
+    AUTHORIZ_SETTINGS = ['Authorize and charge the customers credit card.', 'Authorize the customers credit card.']
+    validates :authoriz_settings, inclusion: AUTHORIZ_SETTINGS, :allow_blank => true
 
     validates :account_type_choice, inclusion: ACCOUNT_TYPE_CHOICE, :allow_blank => true
     validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY,:allow_blank => true

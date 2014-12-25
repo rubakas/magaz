@@ -49,110 +49,19 @@ $(document).ready(function(){
     }
   });
   /*Payment*/
-  $('.col-xs-9 .hidden_field_link, .hidden_field_paypal, .hidden_field_pro_UK,.hidden_field_dwolla, .hidden_field_bitpay, .hidden_field_coinbase, .hidden_field_gocoin, .hidden_field_manual, .hidden_field_authorize_and_charge, .hidden_field_authorize').css({'display':'none'});
+  $('.col-xs-9 .hidden_field_authorize_and_charge, .hidden_field_authorize').css({'display':'none'});
 
-  var hidden_field_paypal = $('.col-xs-9').find('.hidden_field_paypal');
-  var hidden_field_link = $('.col-xs-9').find('.hidden_field_link');
-  var hidden_field_pro_UK = $('.col-xs-9').find('.hidden_field_pro_UK');
+  var authorize_and_charge = $('#shop_authoriz_settings [value="Authorize and charge the customers credit card."]');
+  var authorize = $('#shop_authoriz_settings [value="Authorize the customers credit card."]');
+  var select_authorization_method = $('#shop_authoriz_settings option:first');
 
-  var select_paypal= $('#shop_paypal_methods option:first');
-  var paypal = $('#shop_paypal_methods [value="PayPal Express Checkout"]');
-  var flow_link = $('#shop_paypal_methods [value="PayPalflow Link"]');
-  var pro_US = $('#shop_paypal_methods [value="PayPal Payments Pro(US)"]');
-  var website_pro_CA = $('#shop_paypal_methods [value="PayPal Website Payments Pro(CA)"]');
-  var website_pro_UK = $('#shop_paypal_methods [value="PayPal Website Payments Pro(UK)"]'); 
-  
-  $('#shop_paypal_methods').click(function(){
-    if(paypal.is(':selected') || pro_US.is(':selected') || website_pro_CA.is(':selected')){
-      hidden_field_paypal.slideDown();
-    } 
-    if(hidden_field_paypal.is(':visible') && (flow_link.is(':selected') || website_pro_UK.is(':selected'))){
-      hidden_field_paypal.slideUp(); 
-    }
-    if(flow_link.is(':selected')){
-      hidden_field_link.slideDown();
-    }
-    if(hidden_field_link.is(':visible')  && (paypal.is(':selected') || pro_US.is(':selected') || website_pro_CA.is(':selected')  || website_pro_UK.is(':selected'))){
-      hidden_field_link.slideUp();
-    }
-    if(website_pro_UK.is(':selected') && !(hidden_field_pro_UK.is(':visible'))){
-      hidden_field_pro_UK.slideDown();
-    }
-    if(hidden_field_pro_UK.is(':visible') && (paypal.is(':selected') || flow_link.is(':selected') || pro_US.is(':selected') || website_pro_CA.is(':selected'))){
-      hidden_field_pro_UK.slideUp();  
-    }
-    if(select_paypal.is(':selected')){
-      hidden_field_pro_UK.slideUp(); 
-      hidden_field_paypal.slideUp();
-      hidden_field_link.slideUp();
-    }
-  });
-  var select_additional_methods= $('#shop_additional_methods option:first');
-  var dwolla = $('#shop_additional_methods [value="Dwolla"]');
-  var bitpay = $('#shop_additional_methods [value="BitPay"]');
-  var coinbase = $('#shop_additional_methods [value="Coinbase"]');
-  var gocoin = $('#shop_additional_methods [value="GoCoin"]');
-
-  var hidden_field_dwolla = $('.col-xs-9').find('.hidden_field_dwolla');
-  var hidden_field_bitpay = $('.col-xs-9').find('.hidden_field_bitpay');
-  var hidden_field_coinbase = $('.col-xs-9').find('.hidden_field_coinbase');
-  var hidden_field_gocoin = $('.col-xs-9').find('.hidden_field_gocoin');
-    
-  $('#shop_additional_methods').click(function(){
-    if(select_additional_methods.is(':selected')){
-      hidden_field_dwolla.slideUp();
-      hidden_field_bitpay.slideUp();
-      hidden_field_coinbase.slideUp();
-      hidden_field_gocoin.slideUp();
-    }
-    if(dwolla.is(':selected')){
-      hidden_field_dwolla.slideDown();
-      hidden_field_bitpay.slideUp();
-      hidden_field_coinbase.slideUp();
-      hidden_field_gocoin.slideUp();
-    }
-    if(bitpay.is(':selected')){
-      hidden_field_bitpay.slideDown();
-      hidden_field_dwolla.slideUp();
-      hidden_field_coinbase.slideUp();
-      hidden_field_gocoin.slideUp();
-    }
-    if(coinbase.is(':selected')){
-      hidden_field_coinbase.slideDown();
-      hidden_field_bitpay.slideUp();
-      hidden_field_dwolla.slideUp();
-      hidden_field_gocoin.slideUp();
-    }
-    if(gocoin.is(':selected')){
-      hidden_field_gocoin.slideDown();
-      hidden_field_bitpay.slideUp();
-      hidden_field_dwolla.slideUp();
-      hidden_field_coinbase.slideUp();
-    }
-  });
-  var select_custom_methods = $('#shop_custom_methods option:first');
-  var cash_on_delivery = $('#shop_custom_methods [value="Cash on Delivery(COD)"]');
-  var money_order = $('#shop_custom_methods [value="Money Order"]');
-  var bank_deposit = $('#shop_custom_methods [value="Bank Deposit"]')
-  var custom_payment_method = $('#shop_custom_methods [value="Custom payment method"]')
-
-  var hidden_field_manual = $('.col-xs-9').find('.hidden_field_manual');
-  $('#shop_custom_methods').click(function(){
-    if(cash_on_delivery.is(':selected') || money_order.is(':selected') || bank_deposit.is(':selected') || custom_payment_method.is(':selected')){
-      hidden_field_manual.slideDown();   
-      if(cash_on_delivery){
-      }
-    }
-    if(select_custom_methods.is(':selected')){
-      hidden_field_manual.slideUp();
-    }
-  });
-  var authorize_and_charge = $('#shop_authoreze_settings [value="Authorize and charge the customers credit card."]');
-  var authorize = $('#shop_authoreze_settings [value="Authorize the customers credit card."]');
-  
   var hidden_field_authorize = $('.col-xs-9').find('.hidden_field_authorize');
   var hidden_field_authorize_and_charge = $('.col-xs-9').find('.hidden_field_authorize_and_charge');
-  $('#shop_authoreze_settings').click(function(){
+  $('#shop_authoriz_settings').click(function(){
+    if(select_authorization_method.is(':selected')){
+      hidden_field_authorize_and_charge.slideUp();
+      hidden_field_authorize.slideUp();      
+    }
     if(authorize_and_charge.is(':selected')){
       hidden_field_authorize_and_charge.slideDown();
       hidden_field_authorize.slideUp();
