@@ -23,7 +23,7 @@ gem 'liquid'
 
 # Your gem is dependent on dev or edge Rails. Once you can lock this
 # dependency down to a specific version, move it to your gemspec.
-gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
+# gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
 # gem 'rack',             github: 'rack/rack'
 # gem 'arel',             github: 'rails/arel'
 # gem 'i18n',             github: 'svenfuchs/i18n'

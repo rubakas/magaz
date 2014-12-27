@@ -1,3 +1,4 @@
+ruby "2.2.0"
 source 'https://rubygems.org'
 
 # Use local gems with engines
