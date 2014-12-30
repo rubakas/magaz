@@ -140,6 +140,41 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+    countries:
+      create:
+        notice: "Country was successfully created."
+      update:
+        notice: "Country was successfully updated."
+      destroy:
+        notice: "Ciutnry was successfully deleted."
+      index:
+        title: "Countries"
+        add: "Add Country"
+      new:
+        add: "Add Country"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this country from being saved:"
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+      show:
+        title: "Editing Country"
+      blank:
+        no_links: "There are no countries"
+        add: "Add Country"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this country from being saved:"
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+      list:
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
     customers:
       index:
         title: "Customers"
@@ -310,7 +345,7 @@ en:
         new: 'New Image'
       blank:
         no_product_images: 'No images'
-        add: 'Add Image' 
+        add: 'Add Image'
       form:
         error: "error"
         prohibit: "prohibited this image from being saved:"
@@ -355,6 +390,33 @@ en:
         settings: "Settings"
         files: "Files"
         users: "Users"
+        shipping: "Shipping"
+
+    shipping_rates:
+      create:
+        notice: "Shipping rate was successfully created."
+      update:
+        notice: "Shipping rate was successfully updated."
+      destroy:
+        notice: "Shipping rate was successfully deleted."
+      index:
+        title: "Shipping Rates"
+        add: "Add Shipping Rate"
+      new:
+        add: "Add Shipping Rate"
+      show:
+        title: "Editing Shipping Rate"
+      blank:
+        no_links: "There are no shipping rates"
+        add: "Add Shipping Rate"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this shipping rate from being saved:"
+      list:
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
 
     users:
       index:

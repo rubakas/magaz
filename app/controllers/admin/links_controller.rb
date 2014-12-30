@@ -47,7 +47,7 @@ class Admin::LinksController < Admin::ApplicationController
   end
 
   protected
-  
+
   def permitted_params
     { link:
         params.fetch(:link, {}).permit(:name, :link_type, :position, :link_list_id) }

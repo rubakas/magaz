@@ -1,0 +1,19 @@
+= paginate @countries
+
+table class="table table-striped"
+  thead
+    tr
+      th = t('.title')
+      th
+
+  tbody
+  - @countries.each do |country|
+    tr
+      td = link_to country.code, [:admin, country]
+      td = link_to t('.add_shipping_rates'), new_admin_country_shipping_rate_path(country)
+      td = link_to t('.delete'), [:admin, country], method: :delete, data: { confirm: t('.confirmation') }
+  tbody
+
+br
+
+= paginate @countries

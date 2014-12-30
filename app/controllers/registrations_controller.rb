@@ -22,7 +22,7 @@ class RegistrationsController < ApplicationController
   end
 
   private
-  
+
   def permitted_params
     params.require(:shop).permit(:name, :email, :password)
   end
