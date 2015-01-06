@@ -62,6 +62,7 @@ FactoryGirl.define do
 
   factory :shipping_rate, class: MagazCore::ShippingRate do
     sequence(:name)   { |n| "Shipping Rate #{n}" }
+    sequence(:shipping_price) {123}
   end
 
   factory :shop, class: MagazCore::Shop do

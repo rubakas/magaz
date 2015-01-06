@@ -46,10 +46,12 @@ class Admin::CountriesStoriesTest < ActionDispatch::IntegrationTest
     click_link(@country.code, match: :first)
     click_link 'Add Shipping Rates'
     fill_in 'Name', with: 'Uniq Rate Name'
-    select('Based on order weight', :from => 'shipping_rate_criteria')
+    select('Based on order price', :from => 'shipping_rate_criteria')
     fill_in 'shipping_rate_price_from', with: '1'
     fill_in 'shipping_rate_price_to', with: '3'
+    fill_in 'Shipping price', with: '5'
     click_button 'Create Shipping rate'
+    save_and_open_page
     assert page.has_content? 'Shipping rate was successfully created.'
     assert page.has_content? 'Editing Shipping Rate'
   end
@@ -63,6 +65,7 @@ class Admin::CountriesStoriesTest < ActionDispatch::IntegrationTest
   test 'update shipping rate' do
     click_link(@country.code, match: :first)
     click_link(@shipping_rate.name, match: :first)
+    select('Based on order price', :from => 'shipping_rate_criteria')
     fill_in 'shipping_rate_price_from', with: '2'
     fill_in 'shipping_rate_price_to', with: '3'
     click_button 'Update Shipping rate'
