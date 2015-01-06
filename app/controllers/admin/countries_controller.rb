@@ -38,7 +38,7 @@ class Admin::CountriesController < ApplicationController
     @country = current_shop.countries.find(params[:id])
     @country.destroy
     flash[:notice] = t('.notice')
-    redirect_to admin_shipping_path
+    redirect_to admin_countries_path
   end
 
   protected
