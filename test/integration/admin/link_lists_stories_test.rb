@@ -3,7 +3,7 @@ require 'test_helper'
 class Admin::LinkListsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
-    @link_list = create(:link_list, shop: @shop)
+    @link_list = create(:link_list, shop: @shop, handle: "link-list-handle")
     @link = create(:link, link_list: @link_list)
     click_link 'Navigation'
   end

@@ -24,7 +24,7 @@ class Admin::LinkListsController < Admin::ApplicationController
   end
 
   def update
-    @link_list = current_shop.link_lists.find(params[:id])
+    @link_list = current_shop.link_lists.friendly.find(params[:id])
     if @link_list.update_attributes(permitted_params[:link_list])
       flash[:notice] = 'Link list was successfully updated.'
       redirect_to admin_link_list_path(@link_list)
@@ -34,10 +34,10 @@ class Admin::LinkListsController < Admin::ApplicationController
   end
 
   def destroy
-    @link_list = current_shop.link_lists.find(params[:id])
+    @link_list = current_shop.link_lists.friendly.find(params[:id])
     @link_list.destroy
     flash[:notice] = 'Link list was successfully deleted.'
-    render 'index'
+    redirect_to admin_link_lists_path
   end
 
   protected
