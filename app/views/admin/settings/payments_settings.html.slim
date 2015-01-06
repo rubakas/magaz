@@ -10,14 +10,14 @@
       inf = t('.pay_auth_set_inf')
 
       div class="field"
-        div class="field_with_authorization_methods"
+        div class="js-field_with_authorization_methods"
           = f.select :authoriz_settings, MagazCore::Shop::AUTHORIZ_SETTINGS, prompt:'Select authorization method'
         
       div class="field"
-        div class='js_payments_hidden_field_authorize_and_charge'
+        div class='js-payments_hidden_field_authorize_and_charge'
           inf = t('.hidden_auth_and_charge_inf')
         
-        div class='js_payments_hidden_field_authorize'
+        div class='js-payments_hidden_field_authorize'
           inf = t('.hidden_auth_inf')
         
     br

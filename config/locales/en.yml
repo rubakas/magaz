@@ -345,12 +345,24 @@ en:
         customer_ac_logo: "Customer accounts"
         ref_tos_logo: "Refund, privacy and TOS statements"
         ref_tos_inf: "These statements appear in the footer of your checkout page."
+        not_cos_of_ship: "Notify customers of their shipment via email"
+        auto_fulfill_orders: "Automatically fulfill all orders, even those with a high risk of fraud."
+        auto_archive: "Automatically archive the order"
       payments_settings:
         logo: "Payments"
         pay_auth_set: "Payment authorization settings"
         pay_auth_set_inf: "Set up whether payments should be manually or automatically captured. Learn more about."
         hidden_auth_inf: "Manually capture an amount before the authorization expires."
         hidden_auth_and_charge_inf: "Automatically capture payment at the time of sale."
+      notifications_settings:
+        logo: "Notifications"
+        email_templates: "Email templates"
+        email_templates_inf: "These emails are automatically sent out to either you or the customer. Click on the templates below to edit the template."
+        order_notifications: "Order notifications"
+        order_notifications_inf: "Get notified by email or text message whenever a new order comes in. You can also subscribe to the RSS feed for this store's orders."
+        webhooks: "Webhooks"
+        webhooks_inf: "You can subscribe to events for your products and orders by creating web hooks that will push XML or JSON notifications to a given URL."
+
     shared:
       sidebar_nav:
         title: "Shop"
@@ -373,6 +385,7 @@ en:
         users: "Users"
         notifications: "Notifications"
         checkouts: "Checkouts"
+        payments: "Payments"
 
     users:
       index:

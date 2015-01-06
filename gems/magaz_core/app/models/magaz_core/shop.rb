@@ -51,10 +51,9 @@ module MagazCore
     EMAIL_MARKETING_CHOICE = ["Customer agrees to receive promotional emails by default.", "Customer does not agree to receive promotional emails by default.", "Disable and hide this field."]
     AFTER_ORDER_PAID = ["Automatically fulfill the orders line items.", "Automatically fulfill only the gift cards of the order.", "Do not automatically fulfill any of the orders line items."]
     #CHECHOUT_LANGUAGE = ["English"]
-
     AUTHORIZ_SETTINGS = ['Authorize and charge the customers credit card.', 'Authorize the customers credit card.']
-    validates :authoriz_settings, inclusion: AUTHORIZ_SETTINGS, :allow_blank => true
 
+    validates :authoriz_settings, inclusion: AUTHORIZ_SETTINGS, :allow_blank => true
     validates :account_type_choice, inclusion: ACCOUNT_TYPE_CHOICE, :allow_blank => true
     validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY,:allow_blank => true
     validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE,:allow_blank => true

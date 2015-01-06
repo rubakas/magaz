@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141225152826) do
+ActiveRecord::Schema.define(version: 20141228210310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -226,6 +226,8 @@ ActiveRecord::Schema.define(version: 20141225152826) do
     t.boolean  "notify_customers_of_their_shipment"
     t.boolean  "automatically_fulfill_all_orders"
     t.string   "authoriz_settings"
+    t.string   "notificatification_user_email_selection"
+    t.string   "notificatification_selected_user_email"
   end
 
   create_table "themes", force: true do |t|

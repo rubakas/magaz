@@ -2,6 +2,8 @@ class Admin::SettingsController < ApplicationController
   include MagazCore::Concerns::Authenticable
   layout 'admin_settings'
 
+  #Settings
+
   def edit
     @shop = current_shop
   end
@@ -15,6 +17,8 @@ class Admin::SettingsController < ApplicationController
       render 'edit'
     end
   end
+
+  #Payments
 
   def payments_settings
     @shop = current_shop
@@ -30,6 +34,8 @@ class Admin::SettingsController < ApplicationController
       render "payments_settings"
     end
   end
+
+  #Checkouts
 
   def checkouts_settings
     @shop = current_shop
@@ -73,5 +79,11 @@ class Admin::SettingsController < ApplicationController
     {
       shop:
       params.fetch(:shop, {}).permit(:authoriz_settings)}
+  end
+
+  def permitted_params_for_payments
+    {
+      shop:
+      params.fetch(:shop, {}).permit()}
   end
 end
