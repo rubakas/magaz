@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230095834) do
+ActiveRecord::Schema.define(version: 20150107203945) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -198,11 +198,11 @@ ActiveRecord::Schema.define(version: 20141230095834) do
   create_table "shipping_rates", force: true do |t|
     t.string   "name"
     t.string   "criteria"
-    t.string   "price_from"
-    t.string   "price_to"
-    t.string   "weight_from"
-    t.string   "weight_to"
-    t.string   "shipping_price"
+    t.float    "price_from"
+    t.float    "price_to"
+    t.float    "weight_from"
+    t.float    "weight_to"
+    t.float    "shipping_price"
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
