@@ -22,13 +22,13 @@ $(document).ready(function(){
 
   hidden_multipass.css({'display':'none'});
   
-  var auto_fulfill_order_line = $('.js-field_after_order_paid .auto_fulfill_orders');
-  var auto_fulfill_gift_cards = $('.js-field_after_order_paid .auto_fulfill_gift_cards');
-  var do_not_auto_fulfill = $('.js-field_after_order_paid .do_not_fulfill');
+  var auto_fulfill_order_line = $('.js-field_after_order_paid .js-auto_fulfill_orders');
+  var auto_fulfill_gift_cards = $('.js-field_after_order_paid .js-auto_fulfill_gift_cards');
+  var do_not_auto_fulfill = $('.js-field_after_order_paid .js-do_not_fulfill');
   
-  var disabled = $('.js-field_account_choice .disabled');
-  var required = $('.js-field_account_choice .required');
-  var optional = $('.js-field_account_choice .optional');
+  var disabled = $('.js-field_account_choice .js-disabled');
+  var required = $('.js-field_account_choice .js-required');
+  var optional = $('.js-field_account_choice .js-optional');
   
   $('.js-field_account_choice').click(function() {
     if(optional.is(':selected') || required.is(':selected')){
@@ -36,7 +36,7 @@ $(document).ready(function(){
     }
     if(hidden_multipass.is(':visible') && disabled.is(':selected')){
       hidden_multipass.slideUp();
-      $(hidden_multipass).find(':checkbox').prop('checked',false);
+      $(hidden_multipass).find('.js-checkout_enable_multipass_checkbox :checkbox').prop('checked',false);
     }
   });
   $('.js-field_after_order_paid').click(function() {
@@ -45,14 +45,14 @@ $(document).ready(function(){
     }
     if(hidden_auto_fulfill.is(':visible') && (auto_fulfill_gift_cards.is(':selected')) || do_not_auto_fulfill.is(':selected')){
       hidden_auto_fulfill.slideUp();
-      $(hidden_auto_fulfill).find(':checkbox').prop('checked',false);
+      $(hidden_auto_fulfill).find('.js-checkout_auto_fulfill_orders_checkbox :checkbox').prop('checked',false);
     }
   });
   /*Payment*/
   $('.js-payments_hidden_field_authorize_and_charge, .js-payments_hidden_field_authorize').css({'display':'none'});
 
-  var authorize_and_charge = $('.js-field_with_authorization_methods .authoriz_and_charge');
-  var authorize = $('.js-field_with_authorization_methods .authorize');
+  var authorize_and_charge = $('.js-field_with_authorization_methods .js-authoriz_and_charge');
+  var authorize = $('.js-field_with_authorization_methods .js-authorize');
   var select_authorization_method = $('.js-field_with_authorization_methods option:eq(0)');
   
   var hidden_field_authorize = $(this).find('.js-payments_hidden_field_authorize');

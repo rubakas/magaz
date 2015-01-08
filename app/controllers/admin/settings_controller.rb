@@ -30,7 +30,6 @@ class Admin::SettingsController < ApplicationController
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to payments_settings_admin_settings_path 
     else 
-      flash[:notice] = 'Try again.'
       render "payments_settings"
     end
   end
@@ -47,7 +46,6 @@ class Admin::SettingsController < ApplicationController
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to checkouts_settings_admin_settings_path 
     else 
-      flash[:notice] = 'Try again.'
       render "checkouts_settings"
     end
   end
@@ -78,7 +76,7 @@ class Admin::SettingsController < ApplicationController
   def permitted_params_for_payments
     {
       shop:
-      params.fetch(:shop, {}).permit(:authoriz_settings)}
+      params.fetch(:shop, {}).permit(:authorization_settings)}
   end
 
   def permitted_params_for_payments
