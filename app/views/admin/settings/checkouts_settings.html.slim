@@ -12,7 +12,7 @@
     div class="field"
       div class="js-field_account_choice"
         = f.label :account_type_choice
-        = f.select :account_type_choice, MagazCore::Shop::ACCOUNT_TYPE_CHOICE
+        = f.select(:account_type_choice, options_for_select( [[t('.atc_disabled'), { 'class' => 'disabled' }], [t('.atc_required'), { 'class' => 'required' }], [t('.atc_optional'), { 'class' => 'optional' }]] ))
 
       div class="js-checkouts_hidden_field_multipass"
         = f.label :enable_multipass_login
@@ -41,7 +41,7 @@
       div class="field"
         div class="js-field_after_order_paid"
           = f.label :after_order_paid
-          = f.select :after_order_paid, MagazCore::Shop::AFTER_ORDER_PAID
+          = f.select(:after_order_paid, options_for_select([[t('.aop_auto_ff_orders'),{'class'=> 'auto_fulfill_orders'}],[t('.aop_auto_ff_gift_cards'),{'class'=>'auto_fulfill_gift_cards'}],[t('.aop_do_not_ff'),{'class'=>'do_not_fulfill'}]]))
 
       div class="js-checkouts_hidden_field_auto_fulfill"
         = f.label t('.not_cos_of_ship')
@@ -74,7 +74,10 @@
         = f.label :checkout_term_of_service
         = f.text_area :checkout_term_of_service
         = f.button 'Generate sample', class: 'generate_tos'
-       
+
+      div class="field"
+        = select_tag(:city_id, options_for_select([[t('.logo'), 1, { 'class' => 'first' }], ['Madrid', 2]]))
+
     br
     div class="actions"
       = f.submit 'Save'

@@ -190,7 +190,7 @@ en:
         prohibit: "prohibited this link list from being saved:"
         name: "Name"
       list:
-        size: 'Size'
+        size: "Size"
         title: "File"
         delete: "Delete"
         confirmation: "Are you sure?"
@@ -348,12 +348,21 @@ en:
         not_cos_of_ship: "Notify customers of their shipment via email"
         auto_fulfill_orders: "Automatically fulfill all orders, even those with a high risk of fraud."
         auto_archive: "Automatically archive the order"
+        atc_disabled: "Account are disabled"
+        atc_required: "Account are required"
+        atc_optional: "Account are optional"
+        aop_auto_ff_orders: "Automatically fulfill the orders line items."
+        aop_auto_ff_gift_cards: "Automatically fulfill only the gift cards of the order." 
+        aop_do_not_ff: "Do not automatically fulfill any of the orders line items."
       payments_settings:
         logo: "Payments"
         pay_auth_set: "Payment authorization settings"
         pay_auth_set_inf: "Set up whether payments should be manually or automatically captured. Learn more about."
         hidden_auth_inf: "Manually capture an amount before the authorization expires."
         hidden_auth_and_charge_inf: "Automatically capture payment at the time of sale."
+        as_authorize_and_charge: "Authorize and charge the customers credit card." 
+        as_authorize: "Authorize the customers credit card."
+        select_method: "Select authorization method"
       notifications_settings:
         logo: "Notifications"
         email_templates: "Email templates"

@@ -4,9 +4,9 @@ table class="table table-striped"
   thead
     tr
       td 
-      td = 'File'
+      td = t('.title')
       td = 'URL'
-      td = 'Size'
+      td = t('.size')
 
   tbody
     - @files.each do |file|

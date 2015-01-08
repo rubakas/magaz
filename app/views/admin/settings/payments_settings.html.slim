@@ -11,8 +11,8 @@
 
       div class="field"
         div class="js-field_with_authorization_methods"
-          = f.select :authoriz_settings, MagazCore::Shop::AUTHORIZ_SETTINGS, prompt:'Select authorization method'
-        
+          = f.select(:authoriz_settings, options_for_select([[t('.as_authorize_and_charge'),{'class'=>'authoriz_and_charge'}],[t('.as_authorize'),{'class'=>'authorize'}]]), prompt: t('.select_method'))
+
       div class="field"
         div class='js-payments_hidden_field_authorize_and_charge'
           inf = t('.hidden_auth_and_charge_inf')
