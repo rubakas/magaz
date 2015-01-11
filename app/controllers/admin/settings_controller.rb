@@ -66,10 +66,10 @@ class Admin::SettingsController < ApplicationController
 
   def permitted_params_for_checkouts
     { shop:
-        params.fetch(:shop, {}).permit(:account_type_choice,:bulling_adress_is_shipping_too,
-                                      :abandoned_checkout_time_delay,:email_marketing_choice,
-                                      :after_order_paid,:after_order_fulfilled_and_paid,
-                                      :checkout_language,:checkout_refound_policy,
+        params.fetch(:shop, {}).permit(:account_type_choice, :bulling_adress_is_shipping_too,
+                                      :abandoned_checkout_time_delay, :email_marketing_choice,
+                                      :after_order_paid, :after_order_fulfilled_and_paid,
+                                      :checkout_language, :checkout_refound_policy,
                                       :checkout_privacy_policy, :checkout_term_of_service) }
   end
   

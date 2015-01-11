@@ -6,7 +6,9 @@
   
   form class="form-horizontal" role="form"
     div class="form-group"
-      label class="col-sm-2 control-label" = t('.customers_logo')
+      label class="col-sm-2 control-label" 
+          div class="label_of_column"  
+            = t('.customers_logo')
       div class='inf' 
         = t('.customers_inf')
     
@@ -14,18 +16,22 @@
       div class="field_with_select"
         div class="js-field_account_choice"
           = f.label :account_type_choice
-          = f.select(:account_type_choice, options_for_select( [[t('.account_disabled'), { 'class' => 'js-disabled' }], [t('.account_required'), { 'class' => 'js-required' }], [t('.account_optional'), { 'class' => 'js-optional' }]] ))
+          = f.select(:account_type_choice, 
+            options_for_select( [[t('.account_disabled'), {'class' => 'js-disabled' }], 
+                                [t('.account_required'), {'class' => 'js-required' }], 
+                                [t('.account_optional'), {'class' => 'js-optional' }]]))
 
         div class="js-checkouts_hidden_field_multipass"
-          div class="js-checkout_enable_multipass_checkbox"
-            = f.label :enable_multipass_login
-            = f.check_box :enable_multipass_login
+          = f.label :enable_multipass_login
+          = f.check_box :enable_multipass_login, :class => "js-checkout_enable_multipass_checkbox"
           br
           = t('.hidden_multipass_inf')
     br
 
     div class="form-group"
-      label class="col-sm-2 control-label" = t('.orders_proccessing_logo')
+      label class="col-sm-2 control-label" 
+        div class="label_of_column"
+          = t('.orders_proccessing_logo')
       div class='inf' 
         = t('.orders_proccessing_inf')
 
@@ -48,15 +54,17 @@
         div class="field_with_select"
           div class="js-field_after_order_paid"
             = f.label :after_order_paid
-            = f.select(:after_order_paid, options_for_select([[t('.auto_fulfill_orders'),{'class'=> 'js-auto_fulfill_orders'}],[t('.auto_fulfill_gift_cards'),{'class'=>'js-auto_fulfill_gift_cards'}],[t('.do_not_fulfill'),{'class'=>'js-do_not_fulfill'}]]))
+            = f.select(:after_order_paid, 
+              options_for_select([[t('.auto_fulfill_orders'),{'class'=> 'js-auto_fulfill_orders'}],
+                                  [t('.auto_fulfill_gift_cards'),{'class'=>'js-auto_fulfill_gift_cards'}],
+                                  [t('.do_not_fulfill'),{'class'=>'js-do_not_fulfill'}]]))
 
       div class="js-checkouts_hidden_field_auto_fulfill"
         div class="field_with_select"
-          div class="js-checkout_auto_fulfill_orders_checkbox"
-            = f.label t('.notify_costumers_of_shipipment')
-            = f.check_box :notify_customers_of_their_shipment
-            = f.label t('.auto_fulfill_orders')
-            = f.check_box :automatically_fulfill_all_orders
+          = f.label t('.notify_costumers_of_shipipment')
+          = f.check_box :notify_customers_of_their_shipment,:class =>"js-checkout_auto_fulfill_orders_checkbox"
+          = f.label t('.auto_fulfill_orders')
+          = f.check_box :automatically_fulfill_all_orders,:class =>"js-checkout_auto_fulfill_orders_checkbox"
 
       div class="field"
         div class="field_with_select"
@@ -67,7 +75,9 @@
     br
     
     div class="form-group"
-      label class="col-sm-2 control-label" = t('.refound_and_tos_logo')
+      label class="col-sm-2 control-label" 
+        div class="label_of_column"
+          = t('.refound_and_tos_logo')
       div class='inf' 
         = t('.refound_and_tos_inf')
 

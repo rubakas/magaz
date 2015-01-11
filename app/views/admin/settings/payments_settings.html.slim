@@ -6,14 +6,16 @@
 
   form class="form-horizontal" role="form"
     div class="form-group"
-      label class="col-sm-2 control-label" = t('.payment_authoriz_settings')
+      label class="col-sm-2 control-label" 
+        div class="label_of_column"
+          = t('.payment_authoriz_settings')
       div class='inf' 
         = t('.payment_authoriz_settings_inf')
 
       div class="field"
         div class="field_with_select"
           div class="js-field_with_authorization_methods"
-            = f.select(:authorization_settings, options_for_select([[t('.as_authorize_and_charge'),{'class'=>'js-authoriz_and_charge'}],[t('.as_authorize'),{'class'=>'js-authorize'}]]), prompt: t('.select_method'))
+            = f.select(:authorization_settings, options_for_select([[t('.select_method'),{'class' => 'js-select_method'}], [t('.as_authorize_and_charge'),{'class'=>'js-authoriz_and_charge'}], [t('.as_authorize'),{'class'=>'js-authorize'}]]))
 
       div class="field"
         div class="field_with_select"

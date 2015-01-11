@@ -36,7 +36,7 @@ $(document).ready(function(){
     }
     if(hidden_multipass.is(':visible') && disabled.is(':selected')){
       hidden_multipass.slideUp();
-      $(hidden_multipass).find('.js-checkout_enable_multipass_checkbox :checkbox').prop('checked',false);
+      $(hidden_multipass).find('.js-checkout_enable_multipass_checkbox').prop('checked',false);
     }
   });
   $('.js-field_after_order_paid').click(function() {
@@ -45,7 +45,7 @@ $(document).ready(function(){
     }
     if(hidden_auto_fulfill.is(':visible') && (auto_fulfill_gift_cards.is(':selected')) || do_not_auto_fulfill.is(':selected')){
       hidden_auto_fulfill.slideUp();
-      $(hidden_auto_fulfill).find('.js-checkout_auto_fulfill_orders_checkbox :checkbox').prop('checked',false);
+      $(hidden_auto_fulfill).find('.js-checkout_auto_fulfill_orders_checkbox').prop('checked',false);
     }
   });
   /*Payment*/
@@ -53,7 +53,7 @@ $(document).ready(function(){
 
   var authorize_and_charge = $('.js-field_with_authorization_methods .js-authoriz_and_charge');
   var authorize = $('.js-field_with_authorization_methods .js-authorize');
-  var select_authorization_method = $('.js-field_with_authorization_methods option:eq(0)');
+  var select_authorization_method = $('.js-field_with_authorization_methods .js-select_method');
   
   var hidden_field_authorize = $(this).find('.js-payments_hidden_field_authorize');
   var hidden_field_authorize_and_charge = $(this).find('.js-payments_hidden_field_authorize_and_charge');
