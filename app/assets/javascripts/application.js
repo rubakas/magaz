@@ -17,8 +17,8 @@
 //= require twitter/bootstrap
 $(document).ready(function(){
   /*Checkout*/
-  var hidden_multipass = $(this).find('.js-checkouts_hidden_field_multipass');
-  var hidden_auto_fulfill = $(this).find('.js-checkouts_hidden_field_auto_fulfill');
+  var hidden_multipass = $('.js-checkouts_hidden_field_multipass');
+  var hidden_auto_fulfill = $('.js-checkouts_hidden_field_auto_fulfill');
 
   hidden_multipass.css({'display':'none'});
   
@@ -55,8 +55,8 @@ $(document).ready(function(){
   var authorize = $('.js-field_with_authorization_methods .js-authorize');
   var select_authorization_method = $('.js-field_with_authorization_methods .js-select_method');
   
-  var hidden_field_authorize = $(this).find('.js-payments_hidden_field_authorize');
-  var hidden_field_authorize_and_charge = $(this).find('.js-payments_hidden_field_authorize_and_charge');
+  var hidden_field_authorize = $('.js-payments_hidden_field_authorize');
+  var hidden_field_authorize_and_charge = $('.js-payments_hidden_field_authorize_and_charge');
   
   $('.js-field_with_authorization_methods').click(function(){
     if(select_authorization_method.is(':selected')){
