@@ -1,32 +1,35 @@
+p id="notice"
+  = notice
+
 = form_for [:admin, @shop], url: [:payments_settings_update,:admin,:settings],method: :put do |f|
 
   h4
-      i class="icon-credit-card"
-      = t('.logo')
+    i class="icon-credit-card"
+    = t('.logo')
 
-  form class="form-horizontal" role="form"
-    div class="form-group"
-      label class="col-sm-2 control-label" 
+  div class="container-fluid"
+    div class="row"
+      div class="col-xs-3" 
         div class="label_of_column"
           = t('.payment_authoriz_settings')
-      div class='inf' 
-        = t('.payment_authoriz_settings_inf')
+        div class='inf' 
+          = t('.payment_authoriz_settings_inf')
+      div class="col-xs-9"
+        div class="field"
+          div class="field_with_select"
+            div class="js-field_with_authorization_methods"
+              = f.select(:authorization_settings, options_for_select([[t('.select_method'),{'class' => 'js-select_method'}], [t('.as_authorize_and_charge'),{'class'=>'js-authoriz_and_charge'}], [t('.as_authorize'),{'class'=>'js-authorize'}]]))
 
-      div class="field"
-        div class="field_with_select"
-          div class="js-field_with_authorization_methods"
-            = f.select(:authorization_settings, options_for_select([[t('.select_method'),{'class' => 'js-select_method'}], [t('.as_authorize_and_charge'),{'class'=>'js-authoriz_and_charge'}], [t('.as_authorize'),{'class'=>'js-authorize'}]]))
-
-      div class="field"
-        div class="field_with_select"
-          div class='js-payments_hidden_field_authorize_and_charge'
-            div class='inf' 
-              = t('.hidden_authoriz_and_charge_inf')
-          
-          div class='js-payments_hidden_field_authorize'
-            div class='inf' 
-              = t('.hidden_authorization_inf')
-          
-    br
-      div class="actions"
-        = f.submit 'Save'
+        div class="field"
+          div class="field_with_select"
+            div class='js-payments_hidden_field_authorize_and_charge'
+              div class='inf' 
+                = t('.hidden_authoriz_and_charge_inf')
+            
+            div class='js-payments_hidden_field_authorize'
+              div class='inf' 
+                = t('.hidden_authorization_inf')
+            
+  br
+  div class="actions"
+    = f.submit 'Save'

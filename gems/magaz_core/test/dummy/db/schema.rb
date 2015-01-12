@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108215147) do
+ActiveRecord::Schema.define(version: 20150112100948) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(version: 20150108215147) do
     t.string   "page_title"
     t.string   "meta_description"
     t.string   "account_type_choice"
-    t.boolean  "bulling_adress_is_shipping_too"
+    t.boolean  "billing_address_is_shipping_too"
     t.string   "abandoned_checkout_time_delay"
     t.string   "email_marketing_choice"
     t.string   "after_order_paid"
