@@ -140,33 +140,33 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
-    countries:
+    shipping_countries:
       create:
-        notice: "Country was successfully created."
+        notice: "Shipping Country was successfully created."
       update:
-        notice: "Country was successfully updated."
+        notice: "Shipping Country was successfully updated."
       destroy:
-        notice: "Ciutnry was successfully deleted."
+        notice: "Shipping Country was successfully deleted."
       index:
-        title: "Countries"
-        add: "Add Country"
+        title: "Shipping Countries"
+        add: "Add Shipping Country"
       new:
-        add: "Add Country"
+        add: "Add Shipping Country"
         error: "error"
         back: "Back"
-        prohibit: "prohibited this country from being saved:"
+        prohibit: "prohibited this shipping country from being saved:"
         name: "Name"
         delete: "Delete"
         confirmation: "Are you sure?"
       show:
-        title: "Editing Country"
+        title: "Editing Shipping Country"
       blank:
-        no_links: "There are no countries"
-        add: "Add Country"
+        no_links: "There are no shipping countries"
+        add: "Add Shipping Country"
       form:
         error: "error"
         back: "Back"
-        prohibit: "prohibited this country from being saved:"
+        prohibit: "prohibited this shipping country from being saved:"
         name: "Name"
         delete: "Delete"
         confirmation: "Are you sure?"

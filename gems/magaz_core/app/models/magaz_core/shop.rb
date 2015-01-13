@@ -44,7 +44,8 @@ module MagazCore
     has_many :pages
     has_many :product_images
     has_many :products
-    has_many :shipping_rates, through: :countries
+    has_many :shipping_countries
+    has_many :shipping_rates, through: :shipping_countries
     has_many :themes
     has_many :users
   end
