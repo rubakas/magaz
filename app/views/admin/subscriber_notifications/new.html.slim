@@ -1,0 +1,23 @@
+= form_for([:admin, :settings ,@subscriber_notification]) do |f|
+  - if @subscriber_notification.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@user.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @user.errors.full_messages.each do |msg|
+        li = msg
+  h4 
+    = t('.logo')
+
+    div class='field_with_notif_email'
+      = f.select(:notification_method, 
+        options_for_select([[t('.enter_email')], 
+                            [t('.enter_mobile')]]))
+      br
+      = f.text_field :subscription_address, 
+        class:'form-control js-hidden_field_enter_email'
+
+    div class='action'
+      = f.submit 'Add notification', class:'btn btn-default'
+      = link_to 'Cancel', notifications_settings_admin_settings_path, class:'btn btn-default'

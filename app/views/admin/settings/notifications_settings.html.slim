@@ -1,0 +1,137 @@
+p id="notice"
+  = notice
+
+= form_for [:admin, @shop], url: [:notifications_settings_update,:admin,:settings], 
+  method: :put do |f|
+
+  h4
+    i class="icon-bell"
+    = t('.logo')
+
+  div class="container-fluid"
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"  
+          = t('.email_templates')
+        div class='inf' 
+          = t('.email_templates_inf')                       
+
+      div class="col-xs-9"
+        table class="table table-bordered"
+          thead
+            tr
+              th = t('.template')
+              th = t('.description')
+
+          tbody
+            tr
+              td 
+                = link_to t('.abandoned_notifications')
+              td
+                div class="inf" 
+                  = t('.send_who_has_abandoned') 
+            tr
+              td 
+                = link_to t('.contact_buyer')
+              td 
+                div class="inf"
+                  = t('.used_as_default')
+            tr
+              td 
+                = link_to t('.fulfillment')
+              td
+                div class="inf" 
+                  = t('.sent_to_fulfillment') 
+            tr
+              td 
+                = link_to t('.gift_card_notification')
+              td 
+                div class="inf"
+                  = t('.sent_to_customer')
+            tr
+              td 
+                = link_to t('.new_order_notification')
+              td
+                div class="inf" 
+                  = t('.sent_to_subscrimer') 
+            tr
+              td 
+                = link_to t('.new_order_notification_mobile')
+              td 
+                div class="inf"
+                  = t('.sent_to_subscrimer_mobile')
+            tr
+              td 
+                = link_to t('.order_cancelled')
+              td
+                div class="inf" 
+                  = t('.sent_to_customer_cancelled') 
+            tr
+              td 
+                = link_to t('.order_confirmation')
+              td 
+                div class="inf"
+                  = t('.sent_to_customer_when_created') 
+            tr
+              td 
+                = link_to t('.refund_notification')
+              td 
+                div class="inf"
+                  = t('.sent_to_customer_refunded') 
+            tr
+              td 
+                = link_to t('.shipping_confirmation')
+              td 
+                div class="inf"
+                  = t('.sent_to_customer_shipped')
+            tr
+              td 
+                = link_to t('.shipping_update')
+              td 
+                div class="inf"
+                  = t('.sent_to_customer_updated')                           
+
+    div class="row"
+      div class="col-xs-4"
+        div class="label_of_column"
+          = t('.order_notifications')
+        div class="inf" 
+          = t('.order_notifications_inf')
+          = link_to 'Add an order notification', new_admin_settings_subscriber_notification_path, class:'btn btn-default'
+
+      div class="col-xs-8"
+        table class="table"
+          thead
+          tr
+            td = 'Notification'
+            td
+            td
+
+          tbody
+            - @shop.subscriber_notifications.each do |subscriber|
+              tr
+                td  
+                  div class="inf"
+                    = 'Send to '
+                    = subscriber.notification_method 
+                    br
+                    = subscriber.subscription_address
+                td = link_to t('.send_test_notification')
+                td = link_to t('.delete'), [:admin, :settings, subscriber], method: :delete, data: { confirm: t('.confirmation') }
+
+
+    div class="row"
+      div class="col-xs-4"
+        div class="label_of_column"
+          = t('.webhooks')
+        div class="inf" 
+          = t('.webhooks_inf')
+        = button_to 'Create a webhook','#', class:'btn btn-default'
+
+      div class="col-xs-8"
+        table class="table"
+          thead
+          tr
+            td = t('.event')
+            td = t('.callback_URL')
+            td = t('.format')

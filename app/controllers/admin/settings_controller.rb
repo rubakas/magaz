@@ -50,6 +50,22 @@ class Admin::SettingsController < ApplicationController
     end
   end
 
+  #Notifications
+
+  def notifications_settings
+    @shop = current_shop
+  end
+
+  def notifications_settings_update
+    @shop = current_shop
+    if @shop.update_attributes(permitted_params_for_notifications[:shop])
+      flash[:notice] = 'Shop was successfully updated.'
+      redirect_to notifications_settings_admin_settings_path 
+    else 
+      render "notifications_settings"
+    end
+  end
+
   protected
 
   def resource
@@ -79,7 +95,7 @@ class Admin::SettingsController < ApplicationController
       params.fetch(:shop, {}).permit(:authorization_settings)}
   end
 
-  def permitted_params_for_payments
+  def permitted_params_for_notifications
     {
       shop:
       params.fetch(:shop, {}).permit()}
