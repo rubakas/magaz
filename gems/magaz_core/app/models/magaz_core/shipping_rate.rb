@@ -2,7 +2,7 @@ module MagazCore
   class ShippingRate < ActiveRecord::Base
     self.table_name = 'shipping_rates'
 
-    belongs_to :country
+    belongs_to :shipping_country
 
     validates_presence_of :name, :shipping_price
     validates_numericality_of :price_from,     allow_blank: true

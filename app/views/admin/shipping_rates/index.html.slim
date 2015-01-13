@@ -4,7 +4,7 @@ div class="row"
       i class="icon-tags"
       = t('.title')
   div class="col-xs-8 text-right"
-    h4 = link_to t('.add'), new_admin_country_shipping_rate_path, class: 'button-admin-menu'
+    h4 = link_to t('.add'), new_admin_shipping_country_shipping_rate_path, class: 'button-admin-menu'
 
 div class="row"
   - if @shippin_rates.blank? && !params[:page].present?

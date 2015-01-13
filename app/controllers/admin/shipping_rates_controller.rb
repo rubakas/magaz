@@ -3,23 +3,23 @@ class Admin::ShippingRatesController < ApplicationController
   layout 'admin_settings'
 
   def index
-    @country = current_shop.countries.find(params[:country_id])
-    @shipping_rates = @countries.shipping_rates.page(params[:page])
+    @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
+    @shipping_rates = @shipping_countries.shipping_rates.page(params[:page])
   end
 
   def show
-    @country = current_shop.countries.find(params[:country_id])
-    @shipping_rate = @country.shipping_rates.find(params[:id])
+    @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
+    @shipping_rate = @shipping_country.shipping_rates.find(params[:id])
   end
 
   def new
-    @country = current_shop.countries.find(params[:country_id])
-    @shipping_rate = @country.shipping_rates.new
+    @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
+    @shipping_rate = @shipping_country.shipping_rates.new
   end
 
   def create
-    @country = current_shop.countries.find(params[:country_id])
-    @shipping_rate = @country.shipping_rates.new(permitted_params[:shipping_rate])
+    @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
+    @shipping_rate = @shipping_country.shipping_rates.new(permitted_params[:shipping_rate])
     if @shipping_rate.save
       flash[:notice] = t('.notice')
       render 'show'
@@ -29,22 +29,22 @@ class Admin::ShippingRatesController < ApplicationController
   end
 
   def update
-    @country = current_shop.countries.find(params[:country_id])
-    @shipping_rate = @country.shipping_rates.find(params[:id])
+    @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
+    @shipping_rate = @shipping_country.shipping_rates.find(params[:id])
     if @shipping_rate.update_attributes(permitted_params[:shipping_rate])
       flash[:notice] = t('.notice')
-      redirect_to admin_country_shipping_rate_path
+      redirect_to admin_shipping_country_shipping_rate_path
     else
       render 'show'
     end
   end
 
   def destroy
-    @country = current_shop.countries.find(params[:country_id])
-    @shipping_rate = @country.shipping_rates.find(params[:id])
+    @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
+    @shipping_rate = @shipping_country.shipping_rates.find(params[:id])
     @shipping_rate.destroy
     flash[:notice] = t('.notice')
-    redirect_to admin_country_path(@country)
+    redirect_to admin_shipping_country_path(@country)
   end
 
   protected
