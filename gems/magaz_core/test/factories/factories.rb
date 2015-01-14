@@ -22,13 +22,17 @@ FactoryGirl.define do
     sequence(:email)  { |n| "commenter#{n}@gmail.com" }
   end
 
-  factory :country, class: MagazCore::Country do
-    sequence(:code) {|n| "UA"}
-    sequence(:name) {|n| "Ukraine"}
-    sequence(:tax)  {|n| "1"}
+  factory :checkout, class: MagazCore::Checkout do
   end
 
-  factory :checkout, class: MagazCore::Checkout do
+  factory :country, class: MagazCore::Country do
+    sequence(:name) { |n| "FINLAND" }
+    sequence(:code) { |n| "FI" }
+  end
+
+  factory :another_country, class: MagazCore::Country do
+    sequence(:name) { |n| "POLAND" }
+    sequence(:code) { |n| "PL" }
   end
 
   factory :customer, class: MagazCore::Customer do
@@ -58,6 +62,11 @@ FactoryGirl.define do
   end
 
   factory :product_image, class: MagazCore::ProductImage do
+  end
+
+  factory :shipping_country, class: MagazCore::ShippingCountry do
+    sequence(:name) {|n| "UA"}
+    sequence(:tax)  {|n| "1"}
   end
 
   factory :shipping_rate, class: MagazCore::ShippingRate do

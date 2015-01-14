@@ -44,7 +44,7 @@ class Admin::ShippingRatesController < ApplicationController
     @shipping_rate = @shipping_country.shipping_rates.find(params[:id])
     @shipping_rate.destroy
     flash[:notice] = t('.notice')
-    redirect_to admin_shipping_country_path(@country)
+    redirect_to admin_shipping_country_path(@shipping_country)
   end
 
   protected
