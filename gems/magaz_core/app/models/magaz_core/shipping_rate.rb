@@ -20,7 +20,7 @@ module MagazCore
 
     def price_criteria_check
       if price_from.present? && price_to.present? && criteria == "weight" && !weight_from.present? && !weight_to.present?
-        errors.add(:base, "Criteria is not correct")
+        errors.add(:criteria, "Criteria is not correct")
       else
         return
       end
@@ -28,7 +28,7 @@ module MagazCore
 
     def weight_criteria_check
       if weight_from.present? && weight_to.present? && criteria == "price" && !price_from.present? && !price_to.present?
-        errors.add(:base, "Criteria is not correct")
+        errors.add(:criteria, "Criteria is not correct")
       else
         return
       end
@@ -36,7 +36,7 @@ module MagazCore
 
     def price_comparison_check
       if price_to.present? && price_from.present? && price_to < price_from
-        errors.add(:base, "price_to must be greater than price_from")
+        errors.add(:price_to, "price_to must be greater than price_from")
       else
         return
       end
@@ -44,7 +44,7 @@ module MagazCore
 
     def weight_comparison_check
       if weight_from.present? && weight_to.present? && weight_to < weight_from
-        errors.add(:base, "weight_to must be greater than weight_from")
+        errors.add(:weight_to, "weight_to must be greater than weight_from")
       else
         return
       end

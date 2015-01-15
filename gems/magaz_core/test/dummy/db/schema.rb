@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107203945) do
+ActiveRecord::Schema.define(version: 20150113161645) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -92,12 +92,8 @@ ActiveRecord::Schema.define(version: 20150107203945) do
   end
 
   create_table "countries", force: true do |t|
-    t.string   "code"
-    t.string   "name"
-    t.float    "tax"
-    t.integer  "shop_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name", limit: 50
+    t.string "code", limit: 2
   end
 
   create_table "customers", force: true do |t|
@@ -195,6 +191,13 @@ ActiveRecord::Schema.define(version: 20150107203945) do
     t.datetime "published_at"
   end
 
+  create_table "shipping_countries", force: true do |t|
+    t.string  "name"
+    t.string  "tax"
+    t.integer "shop_id"
+    t.integer "country_id"
+  end
+
   create_table "shipping_rates", force: true do |t|
     t.string   "name"
     t.string   "criteria"
@@ -203,7 +206,7 @@ ActiveRecord::Schema.define(version: 20150107203945) do
     t.float    "weight_from"
     t.float    "weight_to"
     t.float    "shipping_price"
-    t.integer  "country_id"
+    t.integer  "shipping_country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
