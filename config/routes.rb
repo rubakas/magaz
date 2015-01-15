@@ -44,7 +44,16 @@ Rails.application.routes.draw do
         resources :product_images, except: [:edit]
       end
       resource  :session, only: [:create, :destroy, :new, :show]
-      resource  :settings, only: [:edit, :update]
+      resource  :settings, only: [:edit, :update] do
+        put :checkouts_settings_update, :collection do
+        end
+        put :payments_settings_update, :collection do
+        end
+        member do
+          get 'payments_settings'
+          get 'checkouts_settings'
+        end
+      end
       resources :users, except: [:edit]
     end
   end

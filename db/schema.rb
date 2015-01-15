@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "file_size"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
@@ -236,6 +237,22 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.string   "handle"
     t.string   "page_title"
     t.string   "meta_description"
+    t.string   "account_type_choice"
+    t.boolean  "billing_address_is_shipping_too"
+    t.string   "abandoned_checkout_time_delay"
+    t.string   "email_marketing_choice"
+    t.string   "after_order_paid"
+    t.boolean  "after_order_fulfilled_and_paid"
+    t.string   "checkout_language"
+    t.text     "checkout_refound_policy"
+    t.text     "checkout_privacy_policy"
+    t.text     "checkout_term_of_service"
+    t.boolean  "enable_multipass_login"
+    t.boolean  "notify_customers_of_their_shipment"
+    t.boolean  "automatically_fulfill_all_orders"
+    t.string   "authorization_settings"
+    t.string   "notificatification_user_email_selection"
+    t.string   "notificatification_selected_user_email"
   end
 
   create_table "themes", force: true do |t|

@@ -4,6 +4,8 @@ module MagazCore
     include CarrierWave::RMagick
     include CarrierWave::MimeTypes
 
+    process :save_size_in_model
+
     def root
       "#{Rails.root}/public"
     end
@@ -17,6 +19,11 @@ module MagazCore
     end
 
     protected
+    
+    def save_size_in_model
+      model.file_size = file.size
+    end
+
     def image?(new_file)
       new_file.content_type.start_with? 'image'
     end
