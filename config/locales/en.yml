@@ -414,6 +414,8 @@ en:
         logo: "Add a subscriber to new order notifications"
         enter_email: "Email address"
         enter_mobile: "Mobile phone"
+        prohibit: "prohibited this email from being saved:"
+        error: "error" 
     shared:
       sidebar_nav:
         title: "Shop"

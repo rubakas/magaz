@@ -25,6 +25,14 @@ class Admin::SubscriberNotificationsController < ApplicationController
     redirect_to notifications_settings_admin_settings_path 
   end
 
+  def send_test_notification
+    @shop = current_shop
+    @subscriber_notification = @shop.subscriber_notifications.find(params[:id])
+    MagazCore::UserMailer.test_notification(@subscriber_notification).deliver_now
+    flash[:notice] = 'An example order notification has been sent.'
+    redirect_to notifications_settings_admin_settings_path  
+  end
+
   protected
 
   def permitted_params

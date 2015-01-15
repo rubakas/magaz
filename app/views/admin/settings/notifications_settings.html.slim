@@ -116,7 +116,7 @@ p id="notice"
                     = subscriber.notification_method 
                     br
                     = subscriber.subscription_address
-                td = link_to t('.send_test_notification')
+                td = link_to(t('.send_test_notification'), :controller => "subscriber_notifications", :action => "send_test_notification", :id => subscriber.id)
                 td = link_to t('.delete'), [:admin, :settings, subscriber], method: :delete, data: { confirm: t('.confirmation') }
 
 
