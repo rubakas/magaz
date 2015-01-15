@@ -28,7 +28,7 @@ section class='sidebar-section'
         label: t('.shipping'),
         active_conditions: { controller: 'admin/shipping_countries' }
 
-    = render 'admin/shared/li_link_to'
+    = render 'admin/shared/li_link_to',
         path: checkouts_settings_admin_settings_path,
         icon_class: 'icon-shopping-cart',
         label: t('.checkouts'),
