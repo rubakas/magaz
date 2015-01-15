@@ -58,7 +58,7 @@ class Admin::ShippingRatesControllerTest < ActionController::TestCase
 
   test "criteria validation failure" do
     patch :update,
-      { :shiping_country_id => @shipping_country.id, id: @shipping_rate.id,
+      { :shipping_country_id => @shipping_country.id, id: @shipping_rate.id,
         shipping_rate: { shipping_price: @shipping_rate.shipping_price, name: @shipping_rate.name,
                           criteria: "weight", price_from: 10, price_to: 20} }
     assert_template :show
