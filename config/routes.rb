@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       resources :checkouts, except: [:create, :edit, :new]
       resources :collections, except: [:edit]
       resources :comments, except: [:edit]
+      resources :shipping_countries, except: [:edit] do
+        resources :shipping_rates
+      end
       resources :customers, except: [:edit] do
         collection { post :import }
         collection { get  :export }
@@ -37,7 +40,7 @@ Rails.application.routes.draw do
       end
       resources :orders, except: [:create, :edit, :new]
       resources :pages, except: [:edit]
-      resources :products, except: [:edit] do 
+      resources :products, except: [:edit] do
         resources :product_images, except: [:edit]
       end
       resource  :session, only: [:create, :destroy, :new, :show]

@@ -23,6 +23,12 @@ section class='sidebar-section'
         active_conditions: { controller: 'admin/users' }
 
     = render 'admin/shared/li_link_to',
+        path: admin_shipping_countries_path,
+        icon_class: 'icon-road',
+        label: t('.shipping'),
+        active_conditions: { controller: 'admin/shipping_countries' }
+
+    = render 'admin/shared/li_link_to',
         path: checkouts_settings_admin_settings_path,
         icon_class: 'icon-shopping-cart',
         label: t('.checkouts'),
@@ -32,7 +38,7 @@ section class='sidebar-section'
         path: payments_settings_admin_settings_path,
         icon_class: 'icon-credit-card',
         label: t('.payments'),
-        active_conditions: { controller: 'admin/settings',  action: 'payments_settings' }      
+        active_conditions: { controller: 'admin/settings',  action: 'payments_settings' }
 
     hr
 
