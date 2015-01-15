@@ -24,6 +24,7 @@ class Admin::ShippingCountriesControllerTest < ActionController::TestCase
       post :create, { shipping_country: { name: 'FI', tax: 10 } }
     end
     assert_equal "#{@country.id}", MagazCore::ShippingCountry.last.country_id.inspect
+    assert_equal "#{@shop.id}", MagazCore::ShippingCountry.last.shop_id.inspect
     assert_redirected_to admin_shipping_country_path(assigns(:shipping_country))
   end
 
@@ -37,6 +38,7 @@ class Admin::ShippingCountriesControllerTest < ActionController::TestCase
       { id: @shipping_country.id,
         shipping_country: { name: @another_country.code, tax: @shipping_country.tax } }
     assert_equal "#{@another_country.id}", MagazCore::ShippingCountry.last.country_id.inspect
+    assert_equal "#{@shop.id}", MagazCore::ShippingCountry.last.shop_id.inspect
     assert_redirected_to admin_shipping_country_path(assigns(:shipping_country))
   end
 
