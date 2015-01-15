@@ -140,41 +140,6 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
-    shipping_countries:
-      create:
-        notice: "Shipping Country was successfully created."
-      update:
-        notice: "Shipping Country was successfully updated."
-      destroy:
-        notice: "Shipping Country was successfully deleted."
-      index:
-        title: "Shipping Countries"
-        add: "Add Shipping Country"
-      new:
-        add: "Add Shipping Country"
-        error: "error"
-        back: "Back"
-        prohibit: "prohibited this shipping country from being saved:"
-        name: "Name"
-        delete: "Delete"
-        confirmation: "Are you sure?"
-      show:
-        title: "Editing Shipping Country"
-      blank:
-        no_links: "There are no shipping countries"
-        add: "Add Shipping Country"
-      form:
-        error: "error"
-        back: "Back"
-        prohibit: "prohibited this shipping country from being saved:"
-        name: "Name"
-        delete: "Delete"
-        confirmation: "Are you sure?"
-      list:
-        name: "Name"
-        delete: "Delete"
-        confirmation: "Are you sure?"
-
     customers:
       index:
         title: "Customers"
@@ -230,6 +195,12 @@ en:
         confirmation: "Are you sure?"
 
     link_lists:
+      update:
+        notice: "Link list was successfully updated."
+      create:
+        notice: "Link list was successfully created."
+      destroy:
+        notice: "Link list was successfully deleted."
       index:
         title: "Link Lists"
         add: "Add Link List"
@@ -391,6 +362,41 @@ en:
         files: "Files"
         users: "Users"
         shipping: "Shipping"
+
+    shipping_countries:
+      create:
+        notice: "Shipping Country was successfully created."
+      update:
+        notice: "Shipping Country was successfully updated."
+      destroy:
+        notice: "Shipping Country was successfully deleted."
+      index:
+        title: "Shipping Countries"
+        add: "Add Shipping Country"
+      new:
+        add: "Add Shipping Country"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this shipping country from being saved:"
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+      show:
+        title: "Editing Shipping Country"
+      blank:
+        no_links: "There are no shipping countries"
+        add: "Add Shipping Country"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this shipping country from being saved:"
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+      list:
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
 
     shipping_rates:
       create:

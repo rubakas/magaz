@@ -16,7 +16,7 @@ class Admin::LinkListsController < Admin::ApplicationController
   def create
     @link_list = current_shop.link_lists.new(permitted_params[:link_list])
     if @link_list.save
-      flash[:notice] = 'Link list was successfully created.'
+      flash[:notice] = t('.notice')
       redirect_to admin_link_list_path(@link_list)
     else
       render 'new'
@@ -26,7 +26,7 @@ class Admin::LinkListsController < Admin::ApplicationController
   def update
     @link_list = current_shop.link_lists.friendly.find(params[:id])
     if @link_list.update_attributes(permitted_params[:link_list])
-      flash[:notice] = 'Link list was successfully updated.'
+      flash[:notice] = t('.notice')
       redirect_to admin_link_list_path(@link_list)
     else
       render 'show'
