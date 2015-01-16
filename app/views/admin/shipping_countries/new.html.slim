@@ -18,20 +18,6 @@
     = f.text_field :tax, class: 'form-input'
 
   hr
-  h4 = t('.shipping_rate')
-  table class="table table-striped"
-    thead
-      tr
-        th = t('.name')
-        th
-    tbody
-      - @shipping_country.shipping_rates.each do |sh_r|
-        tr
-          td = sh.name
-          td = link_to t('.delete'), [:admin, @shipping_country, sh_r], method: :delete, data: { confirm: t('.confirmation') }
-        br
-
-  hr
   div class="form-group"
     = link_to t('.back'), admin_shipping_countries_path, class: 'button-secondary'
     |
