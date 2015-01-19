@@ -10,7 +10,7 @@ module MagazCore
         MagazCore::Shop.connection.transaction do
           begin
             _save_shop_record!(shop: @shop, params: shop_params)
-            _install_default_theme(shop: @shop)
+            # _install_default_theme(shop: @shop)
             _create_default_blogs_and_posts!(shop: @shop)
             _create_default_collection!(shop: @shop)
             _create_default_pages!(shop: @shop)
@@ -30,12 +30,12 @@ module MagazCore
         shop.save!
       end
 
-      def _install_default_theme(shop:)
-        # Default theme, fail unless found
-        default_theme = MagazCore::Theme.sources.first || fail(ActiveRecord::RecordNotFound)
-        MagazCore::ThemeServices::Install
-          .call(shop_id: shop.id, source_theme_id: default_theme.id)
-      end
+      # def _install_default_theme(shop:)
+      #   # Default theme, fail unless found
+      #   default_theme = MagazCore::Theme.sources.first || fail(ActiveRecord::RecordNotFound)
+      #   MagazCore::ThemeServices::Install
+      #     .call(shop_id: shop.id, source_theme_id: default_theme.id)
+      # end
 
       def _create_default_blogs_and_posts!(shop:)
         default_blog = shop
