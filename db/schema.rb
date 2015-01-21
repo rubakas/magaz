@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113092847) do
+ActiveRecord::Schema.define(version: 20150121104051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,28 @@ ActiveRecord::Schema.define(version: 20150113092847) do
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "abandoned_checkout_notification_html"
+    t.text     "abandoned_checkout_notification_txt"
+    t.text     "contact_buyer_html"
+    t.text     "contact_buyer_txt"
+    t.text     "fulfillment_request_html"
+    t.text     "fulfillment_request_txt"
+    t.text     "gift_card_notification_html"
+    t.text     "gift_card_notification_txt"
+    t.text     "new_order_notification_html"
+    t.text     "new_order_notification_txt"
+    t.text     "new_order_notification_mobile_html"
+    t.text     "new_order_notification_mobile_txt"
+    t.text     "order_cancelled_html"
+    t.text     "order_cancelled_txt"
+    t.text     "order_confirmation_html"
+    t.text     "order_confirmation_txt"
+    t.text     "refund_notification_html"
+    t.text     "refund_notification_txt"
+    t.text     "shipping_confirmation_html"
+    t.text     "shipping_confirmation_txt"
+    t.text     "shipping_update_html"
+    t.text     "shipping_update_txt"
   end
 
   create_table "pages", force: :cascade do |t|

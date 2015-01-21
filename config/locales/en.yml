@@ -410,6 +410,17 @@ en:
         format: "Format"
         send_test_notification: "send test notification"
     subscriber_notifications:
+      show_notification:
+        logo1: "Edit"
+        logo2: " Email Template"
+        error: "error"
+        prohibit: "prohibited this notification from being saved:"
+      create: 
+        notice: "Order notification was added successfully."
+      destroy: 
+        notice: "Order notification was successfully deleted."
+      send_test_notification: 
+        notice: "An example order notification has been sent."
       new:
         logo: "Add a subscriber to new order notifications"
         enter_email: "Email address"

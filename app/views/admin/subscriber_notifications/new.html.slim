@@ -16,8 +16,9 @@
                             [t('.enter_mobile'),'phone']]))
       br
       = f.text_field :subscription_address, 
-        class:'form-control js-hidden_field_enter_email'
+        class:'form-control'
 
     div class='action'
       = f.submit 'Add notification', class:'btn btn-default'
       = link_to 'Cancel', notifications_settings_admin_settings_path, class:'btn btn-default'
+      br

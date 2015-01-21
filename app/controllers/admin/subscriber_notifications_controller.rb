@@ -10,7 +10,7 @@ class Admin::SubscriberNotificationsController < ApplicationController
     @shop = current_shop
     @subscriber_notification = @shop.subscriber_notifications.new(permitted_params[:subscriber_notification])
     if @subscriber_notification.save
-      flash[:notice] = 'Order notification was added successfully.'
+      flash[:notice] = t('.notice')
       redirect_to notifications_settings_admin_settings_path 
     else
       render 'new'
@@ -21,16 +21,21 @@ class Admin::SubscriberNotificationsController < ApplicationController
     @shop = current_shop
     @subscriber_notification = @shop.subscriber_notifications.find(params[:id])
     @subscriber_notification.destroy
-    flash[:notice] = 'Order notification was successfully deleted.'
+    flash[:notice] = t('.notice')
     redirect_to notifications_settings_admin_settings_path 
   end
 
   def send_test_notification
     @shop = current_shop
     @subscriber_notification = @shop.subscriber_notifications.find(params[:id])
-    MagazCore::UserMailer.test_notification(@subscriber_notification).deliver_now
-    flash[:notice] = 'An example order notification has been sent.'
-    redirect_to notifications_settings_admin_settings_path  
+    if(@subscriber_notification.notification_method == "email")
+      MagazCore::UserMailer.test_notification(@subscriber_notification).deliver_now
+      flash[:notice] = t('.notice')
+      redirect_to notifications_settings_admin_settings_path
+    else
+      flash[:notice] = t('.notice')
+      redirect_to notifications_settings_admin_settings_path
+    end  
   end
 
   protected
