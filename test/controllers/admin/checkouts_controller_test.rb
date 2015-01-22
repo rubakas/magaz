@@ -6,6 +6,7 @@ class Admin::CheckoutsControllerTest < ActionController::TestCase
     session_for_shop @shop
     @customer = create(:customer, shop: @shop)
     @abandoned_checkout = create(:checkout, customer: @customer, email: "Some Uniq Email")
+    @subscriber_notification = create(:subscriber_notification, shop: @shop, notification_method: 'email', subscription_address: 'email@some.com')
   end
 
   test "should get index" do
@@ -17,5 +18,10 @@ class Admin::CheckoutsControllerTest < ActionController::TestCase
   test "should show checkout" do
     get :show, id: @abandoned_checkout
     assert_response :success
+  end
+
+  test "should send order notification" do
+    @abandoned_checkout.send_notification
+    assert_difference 'MagazCore::ActionMailer.Base.deliveries.size', +1
   end
 end

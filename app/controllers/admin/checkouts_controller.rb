@@ -14,6 +14,12 @@ class Admin::CheckoutsController < Admin::ApplicationController
     redirect_to admin_checkouts_url
   end
 
+  def send_notification
+    @shop = current_shop
+    @subscriber_notifications = @shop.subscriber_notifications.all
+    MagazCore::UserMailer.notification(@subscriber_notifications).deliver_now
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

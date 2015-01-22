@@ -68,10 +68,6 @@ class Admin::SettingsController < ApplicationController
 
   protected
 
-  def resource
-    @shop = current_shop
-  end
-
   def permitted_params
     { shop:
         params.fetch(:shop, {}).permit(:name, :email, :address, :business_name,
