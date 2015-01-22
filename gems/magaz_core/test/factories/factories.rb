@@ -11,6 +11,11 @@ FactoryGirl.define do
     sequence(:title) { |n| "Blog #{n}" }
   end
 
+  factory :subscriber_notification, class: MagazCore::SubscriberNotification do
+    sequence(:notification_method) { |n| "email #{n}" }
+    sequence(:subscription_address) { |n| "some1#{n}@here.run" }
+  end
+
   factory :collection, class: MagazCore::Collection do
     sequence(:name)        { |n| "Collection #{n}" }
     sequence(:description) { |n| "Collection #{n} description" }
