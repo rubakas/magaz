@@ -1,11 +1,15 @@
 module MagazCore
   class UserMailer < ApplicationMailer
-    default from: 'notifications@example.com'
+    default :from => ADRESS_SETTINGS[:from]
+     default :to => ADRESS_SETTINGS[:to]
 
-    def notification(subscriber_notifications)
+    def notification(subscriber_notifications, email_template)
       @subscriber_notifications = subscriber_notifications
       @subscriber_notifications.each do |subscriber|
-        mail(to: subscriber.subscription_address, subject: 'New Order')
+        mail(to: subscriber.subscription_address, 
+             body: email_template.body,
+             content_type: "text/html",
+             subject: email_template.title)
       end
     end
 
