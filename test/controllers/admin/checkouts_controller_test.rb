@@ -19,9 +19,4 @@ class Admin::CheckoutsControllerTest < ActionController::TestCase
     get :show, id: @abandoned_checkout
     assert_response :success
   end
-
-  test "should send order notification" do
-    @abandoned_checkout.send_notification
-    assert_difference 'MagazCore::ActionMailer.Base.deliveries.size', +1
-  end
 end

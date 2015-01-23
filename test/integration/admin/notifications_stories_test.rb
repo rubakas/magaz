@@ -4,5 +4,10 @@ class Admin::SubscriberNotificationsStoriesTest < ActionDispatch::IntegrationTes
   setup do
     login
     click_link "Settings"
+    click_link "Notifications"
+  end
+
+  test "settings form" do
+    assert page.has_content? 'Notifications Settings'
   end
 end
