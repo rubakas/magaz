@@ -1,4 +1,4 @@
-class EmailTemplatesController < ApplicationController
+class Admin::EmailTemplatesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
   def create
@@ -15,6 +15,7 @@ class EmailTemplatesController < ApplicationController
     @shop = current_shop
     @email_template = @shop.email_templates.find(params[:id])
     if @email_template.update_attributes(permitted_params[:email_template])
+      flash[:notice] = t('.notice')
       redirect_to notifications_settings_admin_settings_path
     else
       render 'edit' 

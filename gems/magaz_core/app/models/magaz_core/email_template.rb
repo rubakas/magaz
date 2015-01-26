@@ -5,10 +5,12 @@ module MagazCore
 
     self.table_name = 'email_templates'
 
+    VARIABLES = YAML.load_file("#{Rails.root}/config/email_templates/email_templates.yml")
+
     def default_values
-      self.name ||= 'Order Notification'
-      self.title ||= 'New order'
-      self.body ||= 'You have a new order'
+      self.name ||= VARIABLES['new_order_notification']['name']
+      self.title ||= VARIABLES['new_order_notification']['title']
+      self.body ||= VARIABLES['new_order_notification']['body']
     end
   end
 end

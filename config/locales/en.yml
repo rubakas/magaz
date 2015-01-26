@@ -409,12 +409,14 @@ en:
         callback_URL: "Callback URL"
         format: "Format"
         send_test_notification: "send test notification"
-    subscriber_notifications:
-      show_notification:
+    email_templates:
+      update:
+        notice: "Email template saved successfully" 
         logo1: "Edit"
         logo2: " Email Template"
         error: "error"
         prohibit: "prohibited this notification from being saved:"
+    subscriber_notifications:
       create: 
         notice: "Order notification was added successfully."
       destroy: 

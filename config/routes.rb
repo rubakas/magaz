@@ -42,8 +42,8 @@ Rails.application.routes.draw do
       end
       resource  :session, only: [:create, :destroy, :new, :show]
       resource  :settings, only: [:edit, :update] do
+        resources :email_templates, only: [:edit, :update, :create]
         resources :subscriber_notifications, except: [:index, :show, :update] do
-          resources :email_templates, only: [:edit, :update, :create]
           member do
             get :send_test_notification
           end

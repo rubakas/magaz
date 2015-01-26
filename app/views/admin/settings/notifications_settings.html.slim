@@ -9,6 +9,30 @@ p id="notice"
     = t('.logo')
 
   div class="container-fluid"
+    
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"  
+          = t('.email_templates')
+        div class='inf' 
+          = t('.email_templates_inf')                       
+
+      div class="col-xs-9"
+        table class="table table-bordered"
+          thead
+            tr
+              th = t('.template')
+              th = t('.description')
+
+          tbody
+            tr
+              td 
+                = link_to t('.new_order_notification'), 
+                  edit_admin_settings_email_template_path(@shop.email_templates.first)
+              td
+                div class="inf" 
+                  = t('.sent_to_subscrimer') 
+
     div class="row"
       div class="col-xs-4"
         div class="label_of_column"
