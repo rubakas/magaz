@@ -412,6 +412,7 @@ en:
     email_templates:
       update:
         notice: "Email template saved successfully" 
+      edit:
         logo1: "Edit"
         logo2: " Email Template"
         error: "error"

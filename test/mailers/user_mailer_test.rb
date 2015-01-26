@@ -11,7 +11,7 @@ class UserMailerTest < ActionMailer::TestCase
       mail = MagazCore::UserMailer.test_notification(@notification)
       assert_equal 'Test Notification', mail.subject
       assert_equal [@notification.subscription_address], mail.to
-      assert_equal ["notifications@example.com"], mail.from
+      assert_equal ["magazmailer@gmail.com"], mail.from
     end
   end
 end
