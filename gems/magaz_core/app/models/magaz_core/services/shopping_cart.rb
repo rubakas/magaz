@@ -45,11 +45,11 @@ module MagazCore
         @checkout.update(address_attrs)
       end
 
-      def pay(payment_attrs)
-        #TODO:  connect with payment processor
-        #TODO:  send notifications
-        attrs = { :status => 'open' }.merge payment_attrs
+      #TODO:  connect with payment processor, pay method
+      def checkout_to_order(order_attrs)
+        attrs = { :status => 'open' }.merge order_attrs
         @checkout.update(attrs)
+        MagazCore::UserMailer.notification(@shop.subscriber_notifications, @shop.email_templates.last).deliver_now
       end
     end
   end
