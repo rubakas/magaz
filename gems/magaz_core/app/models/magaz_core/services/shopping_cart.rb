@@ -49,7 +49,7 @@ module MagazCore
       def checkout_to_order(order_attrs)
         attrs = { :status => 'open' }.merge order_attrs
         @checkout.update(attrs)
-        MagazCore::UserMailer.notification(@shop.subscriber_notifications, @shop.email_templates.last).deliver_now
+        MagazCore::UserMailer.notification(@shop.subscriber_notifications, @shop.email_templates.find_by(template_type: 'new_order_notification')).deliver_now
       end
     end
   end

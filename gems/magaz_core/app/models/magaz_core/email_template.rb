@@ -11,6 +11,7 @@ module MagazCore
       self.name ||= VARIABLES['new_order_notification']['name']
       self.title ||= VARIABLES['new_order_notification']['title']
       self.body ||= VARIABLES['new_order_notification']['body']
+      self.template_type ||= VARIABLES['new_order_notification']['type']
     end
   end
 end

@@ -2,3 +2,4 @@ new_order_notification:
   name: 'Order Notification'
   title: 'New order'
   body: 'You have a new order'
+  template_type: 'new_order_notification'

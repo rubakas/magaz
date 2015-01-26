@@ -7,6 +7,7 @@ module MagazCore
       @existing_shop      = create(:shop)
       @existing_customer  = create(:customer, shop: @existing_shop)
       @existing_checkout 	= create(:checkout, customer: @existing_customer)
+      @existing_product   = create(:product, shop: @existing_shop)
     end
 
     test "initialization with existing stuff" do
@@ -64,5 +65,18 @@ module MagazCore
       assert_equal 3, @checkout.item_count
     end
     
+
+    #need to refactor
+    test "should send email" do
+      @service = 
+        MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id, 
+                                              checkout_id: @existing_checkout.id, 
+                                              customer_id: @existing_customer.id
+      @service.add_product(product: @existing_product, quantity: 2)
+      @service.save_cart
+      assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+        @service.checkout_to_order(email: 'shop@email.com')
+      end
+    end
   end
 end
