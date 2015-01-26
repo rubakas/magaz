@@ -1,5 +1,65 @@
+abandoned_checkout_notification:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'abandoned_checkout_notification'
+
+contact_buyer:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'contact_buyer'
+
+fulfillment_request:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'fulfillment_request'
+
+gift_card_notification:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'gift_card_notification'
+
 new_order_notification:
   name: 'Order Notification'
   title: 'New order'
   body: 'You have a new order'
   template_type: 'new_order_notification'
+
+new_order_notification_mobile:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'new_order_notification_mobile'
+
+order_cancelled:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'order_cancelled'
+
+order_confirmation:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'order_confirmation'
+
+refund_notification:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'refund_notification'
+
+shipping_confirmation:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'shipping_confirmation'
+
+shipping_update:
+  name: 'Order Notification'
+  title: 'New order'
+  body: 'You have a new order'
+  template_type: 'shipping_update'
