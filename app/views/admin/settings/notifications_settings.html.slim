@@ -25,15 +25,15 @@ p id="notice"
               th = t('.description')
 
           tbody
-            tr
-              td 
-                / temperory fix
-                - if !@shop.email_templates.first.blank? 
-                  = link_to t('.new_order_notification'), 
-                    edit_admin_settings_email_template_path(@shop.email_templates.first)
-              td
-                div class="inf" 
-                  = t('.sent_to_subscrimer') 
+            / temperory fix
+            - if @shop.email_templates.first.blank?
+              tr
+                td  
+                    = link_to t('.new_order_notification'), 
+                      edit_admin_settings_email_template_path(@shop.email_templates.first)
+                td
+                  div class="inf" 
+                    = t('.sent_to_subscrimer') 
 
     div class="row"
       div class="col-xs-4"

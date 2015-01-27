@@ -26,6 +26,6 @@ class Admin::EmailTemplatesController < Admin::ApplicationController
 
   def permitted_params
     { email_template:
-        params.fetch(:email_template, {}).permit(:name, :title, :body) }
+        params.fetch(:email_template, {}).permit(:name, :title, :body, :template_type) }
   end
 end

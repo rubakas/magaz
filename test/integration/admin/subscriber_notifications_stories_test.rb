@@ -8,6 +8,6 @@ class Admin::SubscriberNotificationsStoriesTest < ActionDispatch::IntegrationTes
   end
 
   test "settings form" do
-    assert page.has_content? 'Notifications Settings'
+    assert page.has_content? 'Notifications'
   end
 end

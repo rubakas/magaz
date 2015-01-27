@@ -29,6 +29,13 @@ FactoryGirl.define do
     sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
 
+  factory :email_template, class: MagazCore::EmailTemplate do
+    sequence(:name)  { |n| "Order Notification"}
+    sequence(:title) { |n| "New order"}
+    sequence(:body)  { |n| "You have a new order"}
+    sequence(:template_type)  { |n| "new_order_notification"}
+  end
+
   factory :file, class: MagazCore::File do
     sequence(:name) {|n| "File #{n}"}
   end
