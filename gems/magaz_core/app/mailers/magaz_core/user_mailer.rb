@@ -6,7 +6,7 @@ module MagazCore
     def notification(subscriber_notifications, email_template)
       @subscriber_notifications = subscriber_notifications
       @subscriber_notifications.each do |subscriber|
-        mail(to: subscriber.subscription_address, 
+        mail(to: subscriber.subscription_address,
              body: email_template.body,
              content_type: "text/html",
              subject: email_template.title)
@@ -16,6 +16,6 @@ module MagazCore
     def test_notification(subscriber_notification)
       @subscriber_notification = subscriber_notification
       mail(to: subscriber_notification.subscription_address, subject: 'Test Notification')
-    end 
+    end
   end
 end
