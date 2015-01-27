@@ -19,6 +19,7 @@ class Admin::ProductsController < Admin::ApplicationController
     @email_template = @shop.email_templates.last 
     @product = current_shop.products.new(permitted_params[:product])
     if @product.save
+      flash[:notice] = 'Product was successfully created.'
       redirect_to admin_product_path(@product)
     else
       render 'show'

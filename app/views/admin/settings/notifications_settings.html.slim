@@ -27,8 +27,10 @@ p id="notice"
           tbody
             tr
               td 
-                = link_to t('.new_order_notification'), 
-                  edit_admin_settings_email_template_path(@shop.email_templates.first)
+                / temperory fix
+                - if !@shop.email_templates.first.blank? 
+                  = link_to t('.new_order_notification'), 
+                    edit_admin_settings_email_template_path(@shop.email_templates.first)
               td
                 div class="inf" 
                   = t('.sent_to_subscrimer') 
