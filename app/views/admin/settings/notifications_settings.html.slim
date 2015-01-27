@@ -1,7 +1,7 @@
 p id="notice"
   = notice
 
-= form_for [:admin, @shop], url: [:notifications_settings_update,:admin,:settings], 
+= form_for [:admin, @shop], url: [:notifications_settings_update,:admin,:settings],
   method: :put do |f|
 
   h4
@@ -9,13 +9,13 @@ p id="notice"
     = t('.logo')
 
   div class="container-fluid"
-    
+
     div class="row"
       div class="col-xs-3"
-        div class="label_of_column"  
+        div class="label_of_column"
           = t('.email_templates')
-        div class='inf' 
-          = t('.email_templates_inf')                       
+        div class='inf'
+          = t('.email_templates_inf')
 
       div class="col-xs-9"
         table class="table table-bordered"
@@ -26,22 +26,22 @@ p id="notice"
 
           tbody
             / temperory fix
-            - if @shop.email_templates.first.blank?
+            - if !@shop.email_templates.first.blank?
               tr
-                td  
-                    = link_to t('.new_order_notification'), 
-                      edit_admin_settings_email_template_path(@shop.email_templates.first)
                 td
-                  div class="inf" 
-                    = t('.sent_to_subscrimer') 
+                    = link_to t('.new_order_notification'),
+                      edit_admin_settings_email_template_path(@shop.email_templates)
+                td
+                  div class="inf"
+                    = t('.sent_to_subscrimer')
 
     div class="row"
       div class="col-xs-4"
         div class="label_of_column"
           = t('.order_notifications')
-        div class="inf" 
+        div class="inf"
           = t('.order_notifications_inf')
-          = link_to 'Add an order notification', new_admin_settings_subscriber_notification_path, 
+          = link_to 'Add an order notification', new_admin_settings_subscriber_notification_path,
             class:'btn btn-default'
 
       div class="col-xs-8"
@@ -55,10 +55,10 @@ p id="notice"
           tbody
             - @shop.subscriber_notifications.each do |subscriber|
               tr
-                td  
+                td
                   div class="inf"
                     = 'Send to '
-                    = subscriber.notification_method 
+                    = subscriber.notification_method
                     br
                     = subscriber.subscription_address
                 td = link_to(t('.send_test_notification'), :controller => "subscriber_notifications", :action => "send_test_notification", :id => subscriber.id)
@@ -68,7 +68,7 @@ p id="notice"
       div class="col-xs-4"
         div class="label_of_column"
           = t('.webhooks')
-        div class="inf" 
+        div class="inf"
           = t('.webhooks_inf')
         = button_to 'Create a webhook','#', class:'btn btn-default'
 
