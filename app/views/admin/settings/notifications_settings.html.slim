@@ -27,14 +27,15 @@ p id="notice"
           tbody
             / temperory fix
             - if !@shop.email_templates.blank?
-              tr
-                td
-                    = link_to t('.new_order_notification'),
-                      edit_admin_settings_email_template_path(@shop.email_templates)
-                td
-                  div class="inf"
-                    = t('.sent_to_subscrimer')
-
+              - @shop.email_templates.each do |t|
+                tr
+                  td
+                      = link_to t.name,
+                        edit_admin_settings_email_template_path(t.id)
+                  td
+                    div class="inf"
+                      = t('.sent_to_subscrimer')
+            br
     div class="row"
       div class="col-xs-4"
         div class="label_of_column"
