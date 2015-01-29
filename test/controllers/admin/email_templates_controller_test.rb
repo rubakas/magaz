@@ -7,6 +7,12 @@ class Admin::EmailTemplatesControllerTest < ActionController::TestCase
     @email_template = create(:email_template, shop: @shop)
   end
 
+  test "should preview text of email_template" do
+    get :show,
+      id: @email_template
+    assert_response :success
+  end
+
   test "should edit email_template" do
     get :edit,
         id: @email_template
