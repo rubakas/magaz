@@ -13,10 +13,8 @@ class Admin::ProductsController < Admin::ApplicationController
     @product = current_shop.products.new
   end
 
-  def create    
+  def create
     @shop = current_shop
-    @subscriber_notifications = @shop.subscriber_notifications.all
-    @email_template = @shop.email_templates.last 
     @product = current_shop.products.new(permitted_params[:product])
     if @product.save
       flash[:notice] = 'Product was successfully created.'
