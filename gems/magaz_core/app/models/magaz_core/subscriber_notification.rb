@@ -5,14 +5,13 @@ module MagazCore
     self.table_name = 'order_subscriptions'
     belongs_to :shop
 
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     validates :subscription_address, presence: true, length: {maximum: 30 },
-                    format: {with: VALID_EMAIL_REGEX },
+                    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i},
                     uniqueness: { case_sensitive: false },
     if: :select_email_address_method?
-    
-    validates :subscription_address, :numericality => {:only_integer => true}, 
-    if: :select_phone_number_method? 
+
+    validates :subscription_address, :numericality => {:only_integer => true},
+    if: :select_phone_number_method?
 
     def downcase_email
       self.subscription_address = subscription_address.downcase

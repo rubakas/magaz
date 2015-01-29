@@ -91,12 +91,12 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.integer  "article_id"
   end
 
-  create_table "countries", force: true do |t|
+  create_table "countries", force: :cascade do |t|
     t.string "name", limit: 50
     t.string "code", limit: 2
   end
 
-  create_table "customers", force: true do |t|
+  create_table "customers", force: :cascade do |t|
     t.boolean "accepts_marketing"
     t.string  "email"
     t.string  "first_name"
@@ -166,11 +166,6 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.integer "link_list_id"
   end
 
-  create_table "magaz_core_email_templates", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "order_subscriptions", force: :cascade do |t|
     t.string   "notification_method"
     t.string   "subscription_address"
@@ -215,14 +210,14 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.datetime "published_at"
   end
 
-  create_table "shipping_countries", force: true do |t|
+  create_table "shipping_countries", force: :cascade do |t|
     t.string  "name"
     t.string  "tax"
     t.integer "shop_id"
     t.integer "country_id"
   end
 
-  create_table "shipping_rates", force: true do |t|
+  create_table "shipping_rates", force: :cascade do |t|
     t.string   "name"
     t.string   "criteria"
     t.float    "price_from"
@@ -235,7 +230,7 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.datetime "updated_at"
   end
 
-  create_table "shops", force: true do |t|
+  create_table "shops", force: :cascade do |t|
     t.string   "email"
     t.string   "name"
     t.string   "password_digest"

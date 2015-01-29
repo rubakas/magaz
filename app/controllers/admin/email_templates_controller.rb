@@ -1,22 +1,16 @@
 class Admin::EmailTemplatesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  before_action :get_current_shop
 
   def show
-    @email_template = @shop.email_templates.find(params[:id])
-  end
-
-  def create
-    @email_template = @shop.email_templates.new(permitted_params[:email_template])
-    @email_template.save
+    @email_template = current_shop.email_templates.find(params[:id])
   end
 
   def edit
-    @email_template = @shop.email_templates.find(params[:id])
+    @email_template = current_shop.email_templates.find(params[:id])
   end
 
   def update
-    @email_template = @shop.email_templates.find(params[:id])
+    @email_template = current_shop.email_templates.find(params[:id])
     if @email_template.update_attributes(permitted_params[:email_template])
       flash[:notice] = t('.notice')
       redirect_to notifications_settings_admin_settings_path
@@ -26,10 +20,6 @@ class Admin::EmailTemplatesController < Admin::ApplicationController
   end
 
   protected
-
-  def get_current_shop
-    @shop = current_shop
-  end
 
   def permitted_params
     { email_template:
