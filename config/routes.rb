@@ -37,12 +37,12 @@ Rails.application.routes.draw do
       end
       resources :orders, except: [:create, :edit, :new]
       resources :pages, except: [:edit]
-      resources :products, except: [:edit] do 
+      resources :products, except: [:edit] do
         resources :product_images, except: [:edit]
       end
       resource  :session, only: [:create, :destroy, :new, :show]
       resource  :settings, only: [:edit, :update] do
-        resources :email_templates, only: [:edit, :update, :create]
+        resources :email_templates, only: [:show, :edit, :update, :create]
         resources :subscriber_notifications, except: [:index, :show, :update] do
           member do
             get :send_test_notification
