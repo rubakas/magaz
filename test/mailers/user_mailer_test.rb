@@ -15,26 +15,21 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test "test notification to email" do
-    if @subscriber.notification_method == 'email'
-      mail = MagazCore::UserMailer.test_notification(@subscriber)
-      assert_equal 'Test Notification', mail.subject
-      assert_equal [@subscriber.subscription_address], mail.to
-      assert_equal ["magazmailer@gmail.com"], mail.from
-    end
+    mail = MagazCore::UserMailer.test_notification(@subscriber)
+    assert_equal 'Test Notification', mail.subject
+    assert_equal [@subscriber.subscription_address], mail.to
+    assert_equal ["magazmailer@gmail.com"], mail.from
   end
 
-  #need to refactoring
   test "test new order notification" do
-    mail = MagazCore::UserMailer.notification(@subscribers, @email_template)
-    @subscribers.each do |s|
-      #puts "***********************************"
-      #puts s.subscription_address
-      #puts @subscribers
-      #puts "***********************************"
-      #assert_equal [s.subscription_address], mail.to
-      assert_equal ["magazmailer@gmail.com"], mail.from
-      assert_equal @email_template.title, mail.subject
-      assert_equal @email_template.body, mail.body.raw_source
-    end
+    mail = MagazCore::UserMailer.notification(@subscriber, @email_template)
+    assert_equal [@subscriber.subscription_address], mail.to
+    assert_equal ["magazmailer@gmail.com"], mail.from
+    assert_equal @email_template.title, mail.subject
+    assert_equal @email_template.body, mail.body.raw_source
+  end
+
+  test "quantity of subscribers" do
+    assert_equal 2, @subscribers.size
   end
 end
