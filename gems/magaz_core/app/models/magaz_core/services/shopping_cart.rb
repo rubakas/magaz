@@ -25,7 +25,7 @@ module MagazCore
       def add_product(product:, quantity:)
         raise "Bad quantity" if quantity < 1
         @checkout.line_items
-        existing_line_item = 
+        existing_line_item =
           @checkout.line_items.find { |li| li.product_id == product.id }
 
         if existing_line_item
@@ -49,7 +49,10 @@ module MagazCore
       def checkout_to_order(order_attrs)
         attrs = { :status => 'open' }.merge order_attrs
         @checkout.update(attrs)
-        MagazCore::UserMailer.notification(@shop.subscriber_notifications, @shop.email_templates.find_by(template_type: 'new_order_notification')).deliver_now
+        email_template = @shop.email_templates.find_by(template_type: 'new_order_notification')
+        @shop.subscriber_notifications.each do |s|
+          MagazCore::UserMailer.notification(s, email_template).deliver_now
+        end
       end
     end
   end
