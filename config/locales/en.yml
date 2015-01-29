@@ -374,8 +374,8 @@ en:
         payment_authoriz_settings_inf: "Set up whether payments should be manually or automatically captured. Learn more about."
         hidden_authorization_inf: "Manually capture an amount before the authorization expires."
         hidden_authoriz_and_charge_inf: "Automatically capture payment at the time of sale."
-        as_authorize_and_charge: "Authorize and charge the customers credit card."
-        as_authorize: "Authorize the customers credit card."
+        authorize_and_charge: "Authorize and charge the customers credit card."
+        authorize_customer: "Authorize the customers credit card."
         select_method: "Select authorization method"
       notifications_settings:
         logo: "Notifications"
@@ -553,6 +553,14 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+  magaz_core:
+    user_mailer:
+      notification:
+        notification_to: "Test notification to:"
+        notification_text: "Hello, you have a new order"
+      test_notification:
+        test_notification_text: "Some text"
+        test_notification_to: "Test notification to :"
 
   theme_store:
     themes:
