@@ -14,7 +14,7 @@ class Admin::EmailTemplatesStoriesTest < ActionDispatch::IntegrationTest
 
   test "edit template" do
     click_link(@email_template.name, match: :first)
-    fill_in 'email_template_name', with: @email_template.name
+    fill_in 'email_template_title', with: @email_template.name
     fill_in 'email_template_body', with: 'test test test'
     click_button 'Save'
     assert page.has_content? 'Email template saved successfully'
