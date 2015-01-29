@@ -36,6 +36,7 @@ module MagazCore
     has_many :collections
     has_many :comments, through: :articles
     has_many :checkouts, through: :customers
+    has_many :countries
     has_many :customers
     has_many :files
     has_many :links, through: :link_lists
@@ -43,6 +44,8 @@ module MagazCore
     has_many :pages
     has_many :product_images
     has_many :products
+    has_many :shipping_countries
+    has_many :shipping_rates, through: :shipping_countries
     has_many :themes
     has_many :users
     has_many :subscriber_notifications

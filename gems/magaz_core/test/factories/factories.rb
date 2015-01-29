@@ -25,6 +25,16 @@ FactoryGirl.define do
   factory :checkout, class: MagazCore::Checkout do
   end
 
+  factory :country, class: MagazCore::Country do
+    sequence(:name) { |n| "FINLAND" }
+    sequence(:code) { |n| "FI" }
+  end
+
+  factory :another_country, class: MagazCore::Country do
+    sequence(:name) { |n| "POLAND" }
+    sequence(:code) { |n| "PL" }
+  end
+
   factory :customer, class: MagazCore::Customer do
     sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
@@ -59,6 +69,16 @@ FactoryGirl.define do
   end
 
   factory :product_image, class: MagazCore::ProductImage do
+  end
+
+  factory :shipping_country, class: MagazCore::ShippingCountry do
+    sequence(:name) {|n| "UA"}
+    sequence(:tax)  {|n| "1"}
+  end
+
+  factory :shipping_rate, class: MagazCore::ShippingRate do
+    sequence(:name)   { |n| "Shipping Rate #{n}" }
+    sequence(:shipping_price) {123}
   end
 
   factory :shop, class: MagazCore::Shop do

@@ -2,22 +2,22 @@ class Admin::LinksController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
   def index
-    @link_list = current_shop.link_lists.find(params[:link_list_id])
+    @link_list = current_shop.link_lists.frieldly.find(params[:link_list_id])
     @links = @link_lists.links.page(params[:page])
   end
 
   def show
-    @link_list = current_shop.link_lists.find(params[:link_list_id])
+    @link_list = current_shop.link_lists.frinedly.find(params[:link_list_id])
     @link = @link_list.links.find(params[:id])
   end
 
   def new
-    @link_list = current_shop.link_lists.find(params[:link_list_id])
+    @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
     @link = @link_list.links.new
   end
 
   def create
-    @link_list = current_shop.link_lists.find(params[:link_list_id])
+    @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
     @link = @link_list.links.new(permitted_params[:link])
     if @link.save
       flash[:notice] = 'Link was successfully created.'
@@ -28,7 +28,7 @@ class Admin::LinksController < Admin::ApplicationController
   end
 
   def update
-    @link_list = current_shop.link_lists.find(params[:link_list_id])
+    @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
     @link = @link_list.links.find(params[:id])
     if @link.update_attributes(permitted_params[:link])
       flash[:notice] = 'Link was successfully updated.'
@@ -39,15 +39,15 @@ class Admin::LinksController < Admin::ApplicationController
   end
 
   def destroy
-    @link_list = current_shop.link_lists.find(params[:link_list_id])
+    @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
     @link = @link_list.links.find(params[:id])
     @link.destroy
     flash[:notice] = 'Link was successfully deleted.'
-    render 'index'
+    redirect_to admin_link_list_path(@link_list)
   end
 
   protected
-  
+
   def permitted_params
     { link:
         params.fetch(:link, {}).permit(:name, :link_type, :position, :link_list_id) }

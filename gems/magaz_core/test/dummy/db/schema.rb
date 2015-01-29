@@ -91,7 +91,12 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.integer  "article_id"
   end
 
-  create_table "customers", force: :cascade do |t|
+  create_table "countries", force: true do |t|
+    t.string "name", limit: 50
+    t.string "code", limit: 2
+  end
+
+  create_table "customers", force: true do |t|
     t.boolean "accepts_marketing"
     t.string  "email"
     t.string  "first_name"
@@ -210,7 +215,27 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.datetime "published_at"
   end
 
-  create_table "shops", force: :cascade do |t|
+  create_table "shipping_countries", force: true do |t|
+    t.string  "name"
+    t.string  "tax"
+    t.integer "shop_id"
+    t.integer "country_id"
+  end
+
+  create_table "shipping_rates", force: true do |t|
+    t.string   "name"
+    t.string   "criteria"
+    t.float    "price_from"
+    t.float    "price_to"
+    t.float    "weight_from"
+    t.float    "weight_to"
+    t.float    "shipping_price"
+    t.integer  "shipping_country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shops", force: true do |t|
     t.string   "email"
     t.string   "name"
     t.string   "password_digest"
