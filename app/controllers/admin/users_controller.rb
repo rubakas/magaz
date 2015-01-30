@@ -27,7 +27,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = current_shop.users.find(params[:id])
     if @user.update_attributes(permitted_params[:user])
-      flsh[:notice] = 'User was successfully updated.'
+      flash[:notice] = 'User was successfully updated.'
       redirect_to admin_user_path(@user)
     else
       render 'show'
@@ -45,6 +45,6 @@ class Admin::UsersController < ApplicationController
 
   def permitted_params
     { user:
-        params.fetch(:user, {}).permit(:first_name, :last_name, :email, permissions:[]) }
+        params.fetch(:user, {}).permit(:first_name, :last_name, :email, :password, permissions:[]) }
   end
 end

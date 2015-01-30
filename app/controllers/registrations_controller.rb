@@ -7,10 +7,10 @@ class RegistrationsController < ApplicationController
 
   def create
     @service = MagazCore::ShopServices::Create.call(shop_params: permitted_params)
-    puts @service.shop.persisted?
-    if @service.shop.persisted?
-      session[:user_id] = @service.shop.id
-      redirect_to admin_root_url(host: HOSTNAME, subdomain: @service.shop.subdomain)
+    @shop = @service.shop
+    if @shop.persisted?
+      session[:user_id] = @shop.id
+      redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
       render template: 'welcome/index'
     end
