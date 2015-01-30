@@ -92,5 +92,6 @@ FactoryGirl.define do
     sequence(:email)      {|n| "staff_user@example#{n}.com"}
     sequence(:first_name) {|n| "First Name #{n} "}
     sequence(:last_name)  {|n| "Last Name #{n}"}
+    sequence(:password)   {|n| "qwerty#{n}"}
   end
 end
