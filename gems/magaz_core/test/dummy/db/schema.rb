@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113161645) do
+ActiveRecord::Schema.define(version: 20150130120917) do
 
-  create_table "articles", force: true do |t|
+  create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "blog_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.datetime "published_at"
   end
 
-  create_table "assets", force: true do |t|
+  create_table "assets", force: :cascade do |t|
     t.integer  "theme_id"
     t.string   "content_type"
     t.string   "key"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.datetime "updated_at"
   end
 
-  create_table "blogs", force: true do |t|
+  create_table "blogs", force: :cascade do |t|
     t.string   "title"
     t.integer  "shop_id"
     t.datetime "created_at"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.string   "slug"
   end
 
-  create_table "checkouts", force: true do |t|
+  create_table "checkouts", force: :cascade do |t|
     t.text     "note"
     t.string   "status"
     t.string   "financial_status"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.integer  "customer_id"
   end
 
-  create_table "collections", force: true do |t|
+  create_table "collections", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "shop_id"
@@ -76,12 +76,12 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.datetime "published_at"
   end
 
-  create_table "collections_products", force: true do |t|
+  create_table "collections_products", force: :cascade do |t|
     t.integer "collection_id"
     t.integer "product_id"
   end
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.string   "author"
     t.text     "body"
     t.string   "email"
@@ -91,12 +91,12 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.integer  "article_id"
   end
 
-  create_table "countries", force: true do |t|
+  create_table "countries", force: :cascade do |t|
     t.string "name", limit: 50
     t.string "code", limit: 2
   end
 
-  create_table "customers", force: true do |t|
+  create_table "customers", force: :cascade do |t|
     t.boolean "accepts_marketing"
     t.string  "email"
     t.string  "first_name"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.integer "shop_id"
   end
 
-  create_table "files", force: true do |t|
+  create_table "files", force: :cascade do |t|
     t.string   "file"
     t.string   "name"
     t.integer  "shop_id"
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.integer  "file_size"
   end
 
-  create_table "friendly_id_slugs", force: true do |t|
+  create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
-  create_table "line_items", force: true do |t|
+  create_table "line_items", force: :cascade do |t|
     t.integer  "checkout_id"
     t.integer  "product_id"
     t.string   "name"
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.datetime "updated_at"
   end
 
-  create_table "link_lists", force: true do |t|
+  create_table "link_lists", force: :cascade do |t|
     t.string  "name"
     t.integer "shop_id"
     t.string  "handle"
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
 
   add_index "link_lists", ["slug"], name: "index_link_lists_on_slug", unique: true
 
-  create_table "links", force: true do |t|
+  create_table "links", force: :cascade do |t|
     t.string  "name"
     t.string  "link_type"
     t.integer "position"
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.integer "link_list_id"
   end
 
-  create_table "pages", force: true do |t|
+  create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.string   "content"
     t.integer  "shop_id"
@@ -170,14 +170,14 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.datetime "published_at"
   end
 
-  create_table "product_images", force: true do |t|
+  create_table "product_images", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
     t.integer  "product_id"
   end
 
-  create_table "products", force: true do |t|
+  create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
@@ -192,14 +192,14 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.datetime "published_at"
   end
 
-  create_table "shipping_countries", force: true do |t|
+  create_table "shipping_countries", force: :cascade do |t|
     t.string  "name"
     t.string  "tax"
     t.integer "shop_id"
     t.integer "country_id"
   end
 
-  create_table "shipping_rates", force: true do |t|
+  create_table "shipping_rates", force: :cascade do |t|
     t.string   "name"
     t.string   "criteria"
     t.float    "price_from"
@@ -212,7 +212,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.datetime "updated_at"
   end
 
-  create_table "shops", force: true do |t|
+  create_table "shops", force: :cascade do |t|
     t.string   "email"
     t.string   "name"
     t.string   "password_digest"
@@ -252,7 +252,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.string   "notificatification_selected_user_email"
   end
 
-  create_table "themes", force: true do |t|
+  create_table "themes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -261,7 +261,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.string   "role"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -274,6 +274,7 @@ ActiveRecord::Schema.define(version: 20150113161645) do
     t.datetime "updated_at"
     t.text     "permissions",     default: "--- []\n"
     t.string   "user_type"
+    t.string   "password_salt"
   end
 
 end

@@ -1,5 +1,7 @@
 module MagazCore
   class User < ActiveRecord::Base
+    include Concerns::PasswordAuthenticable
+
     self.table_name = 'users'
 
     belongs_to :shop
