@@ -11,9 +11,6 @@ module MagazCore
                           format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
         validates :password, presence: { on: :create }
 
-        validates :name, presence: true,
-                         uniqueness: true
-
         before_save :update_encrypted_password
       end
 
