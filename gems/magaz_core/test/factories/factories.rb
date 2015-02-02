@@ -39,6 +39,13 @@ FactoryGirl.define do
     sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
 
+  factory :email_template, class: MagazCore::EmailTemplate do
+    sequence(:name)  { |n| "Order Notification"}
+    sequence(:title) { |n| "New order"}
+    sequence(:body)  { |n| "You have a new order"}
+    sequence(:template_type)  { |n| "new_order_notification"}
+  end
+
   factory :file, class: MagazCore::File do
     sequence(:name) {|n| "File #{n}"}
   end
@@ -82,6 +89,11 @@ FactoryGirl.define do
     password 'password'
     password_salt BCrypt::Engine.generate_salt
     password_digest { BCrypt::Engine.hash_secret('password', password_salt) }
+  end
+
+  factory :subscriber_notification, class: MagazCore::SubscriberNotification do
+    sequence(:notification_method) { |n| "email #{n}" }
+    sequence(:subscription_address) { |n| "some1#{n}@here.run" }
   end
 
   factory :theme, class: MagazCore::Theme do

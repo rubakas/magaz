@@ -40,6 +40,12 @@ section class='sidebar-section'
         label: t('.payments'),
         active_conditions: { controller: 'admin/settings',  action: 'payments_settings' }
 
+    = render 'admin/shared/li_link_to',
+        path: notifications_settings_admin_settings_path,
+        icon_class: 'icon-bell',
+        label: t('.notifications'),
+        active_conditions: { controller: 'admin/settings',  action: 'notifications_settings' }
+
     hr
 
     = render 'admin/shared/li_link_to',

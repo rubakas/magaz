@@ -16,7 +16,7 @@ module MagazStore
     end
 
     def pay
-      if shopping_cart_service.pay(permitted_params_pay[:checkout])
+      if shopping_cart_service.checkout_to_order(permitted_params_order[:checkout])
         redirect_to order_path(resource)
       else
         render :enter_payment
@@ -37,7 +37,7 @@ module MagazStore
       { checkout: params.fetch(:checkout, {}).permit(:email) }
     end
 
-    def permitted_params_pay
+    def permitted_params_order
       { checkout: params.fetch(:checkout, {}).permit(:email) }
     end
   end
