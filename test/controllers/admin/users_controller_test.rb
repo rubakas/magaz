@@ -29,13 +29,13 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert_redirected_to admin_user_path(assigns(:user))
   end
 
-  test "should show product" do
+  test "should show user" do
     get :show,
       id: @user
     assert_response :success
   end
 
-  test "should update product" do
+  test "should update user" do
     patch :update,
       { id: @user.id,
         user: { first_name: @user.first_name, last_name: @user.last_name,
@@ -43,7 +43,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert_redirected_to admin_user_path(assigns(:user))
   end
 
-  test "should not update product" do
+  test "should not update user" do
     patch :update,
       { id: @user.id,
         user: { first_name: ' ' , last_name: ' ',
@@ -52,7 +52,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should destroy product" do
+  test "should destroy user" do
     assert_difference('MagazCore::User.count', -1) do
       delete :destroy, id: @user.id
     end
