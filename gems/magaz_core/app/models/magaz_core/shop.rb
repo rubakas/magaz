@@ -48,6 +48,8 @@ module MagazCore
     has_many :shipping_rates, through: :shipping_countries
     has_many :themes
     has_many :users
+    has_many :subscriber_notifications
+    has_many :email_templates
 
     ABANDONED_CHECKOUT_TIME_DELAY = ["Never", "Six hours later", "24 hours later"]
     EMAIL_MARKETING_CHOICE = ["Customer agrees to receive promotional emails by default.", "Customer does not agree to receive promotional emails by default.", "Disable and hide this field."]

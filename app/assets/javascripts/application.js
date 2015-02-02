@@ -21,15 +21,15 @@ $(document).ready(function(){
   var hidden_auto_fulfill = $('.js-checkouts_hidden_field_auto_fulfill');
 
   hidden_multipass.css({'display':'none'});
-  
+
   var auto_fulfill_order_line = $('.js-field_after_order_paid .js-auto_fulfill_orders');
   var auto_fulfill_gift_cards = $('.js-field_after_order_paid .js-auto_fulfill_gift_cards');
   var do_not_auto_fulfill = $('.js-field_after_order_paid .js-do_not_fulfill');
-  
+
   var disabled = $('.js-field_account_choice .js-disabled');
   var required = $('.js-field_account_choice .js-required');
   var optional = $('.js-field_account_choice .js-optional');
-  
+
   $('.js-field_account_choice').click(function() {
     if(optional.is(':selected') || required.is(':selected')){
       hidden_multipass.slideDown();
@@ -51,17 +51,17 @@ $(document).ready(function(){
   /*Payment*/
   $('.js-payments_hidden_field_authorize_and_charge, .js-payments_hidden_field_authorize').css({'display':'none'});
 
-  var authorize_and_charge = $('.js-field_with_authorization_methods .js-authoriz_and_charge');
-  var authorize = $('.js-field_with_authorization_methods .js-authorize');
+  var authorize_and_charge = $('.js-field_with_authorization_methods .js-authorize_and_charge');
+  var authorize = $('.js-field_with_authorization_methods .js-authorize_customer');
   var select_authorization_method = $('.js-field_with_authorization_methods .js-select_method');
-  
+
   var hidden_field_authorize = $('.js-payments_hidden_field_authorize');
   var hidden_field_authorize_and_charge = $('.js-payments_hidden_field_authorize_and_charge');
-  
+
   $('.js-field_with_authorization_methods').click(function(){
     if(select_authorization_method.is(':selected')){
       hidden_field_authorize_and_charge.slideUp();
-      hidden_field_authorize.slideUp();      
+      hidden_field_authorize.slideUp();
     }
     if(authorize_and_charge.is(':selected')){
       hidden_field_authorize_and_charge.slideDown();

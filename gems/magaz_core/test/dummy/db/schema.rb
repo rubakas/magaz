@@ -104,6 +104,16 @@ ActiveRecord::Schema.define(version: 20150130120917) do
     t.integer "shop_id"
   end
 
+  create_table "email_templates", force: :cascade do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "shop_id"
+    t.string   "template_type"
+  end
+
   create_table "files", force: :cascade do |t|
     t.string   "file"
     t.string   "name"
@@ -154,6 +164,14 @@ ActiveRecord::Schema.define(version: 20150130120917) do
     t.string  "subject_params"
     t.integer "subject_id"
     t.integer "link_list_id"
+  end
+
+  create_table "order_subscriptions", force: :cascade do |t|
+    t.string   "notification_method"
+    t.string   "subscription_address"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -248,8 +266,6 @@ ActiveRecord::Schema.define(version: 20150130120917) do
     t.boolean  "notify_customers_of_their_shipment"
     t.boolean  "automatically_fulfill_all_orders"
     t.string   "authorization_settings"
-    t.string   "notificatification_user_email_selection"
-    t.string   "notificatification_selected_user_email"
   end
 
   create_table "themes", force: :cascade do |t|

@@ -36,4 +36,5 @@ Rails.application.configure do
 
   #TODO: will be :random in rails 5
   config.active_support.test_order = :sorted
+  config.action_mailer.delivery_method = :test
 end

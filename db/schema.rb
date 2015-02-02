@@ -274,8 +274,6 @@ ActiveRecord::Schema.define(version: 20150130120917) do
     t.boolean  "notify_customers_of_their_shipment"
     t.boolean  "automatically_fulfill_all_orders"
     t.string   "authorization_settings"
-    t.string   "notificatification_user_email_selection"
-    t.string   "notificatification_selected_user_email"
   end
 
   create_table "themes", force: :cascade do |t|
