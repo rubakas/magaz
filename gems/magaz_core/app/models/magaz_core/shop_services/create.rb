@@ -6,12 +6,6 @@ module MagazCore
 
       def call(shop_params: {})
         @shop          = MagazCore::Shop.new
-        @default_theme = MagazCore::Theme.new(name: "Theme")
-        archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
-        MagazCore::ThemeServices::ImportFromArchive
-          .call(archive_path: archive_path,
-              theme: @default_theme,
-              theme_attributes: { name: 'Default' })
 
         MagazCore::Shop.connection.transaction do
           begin
