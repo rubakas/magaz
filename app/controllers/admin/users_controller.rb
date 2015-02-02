@@ -38,7 +38,7 @@ class Admin::UsersController < ApplicationController
     @user = current_shop.users.find(params[:id])
     @user.destroy
     flash[:notice] = 'User was successfully deleted.'
-    render 'index'
+    redirect_to admin_users_path
   end
 
   protected
