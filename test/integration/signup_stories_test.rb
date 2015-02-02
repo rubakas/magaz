@@ -1,8 +1,14 @@
 require 'test_helper'
 
-class SignupStoriesTest < ActionDispatch::IntegrationTest  
+class SignupStoriesTest < ActionDispatch::IntegrationTest
   setup do
     use_host HOSTNAME
+    @default_theme = build(:theme)
+    archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
+    MagazCore::ThemeServices::ImportFromArchive
+      .call(archive_path: archive_path,
+            theme: @default_theme,
+            theme_attributes: { name: 'Default' })
   end
 
   test "signup success" do

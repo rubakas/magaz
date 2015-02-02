@@ -57,7 +57,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
       delete :destroy, id: @user.id
     end
 
-    assert_template :index
-    assert_response :success
+  assert_redirected_to admin_users_path
   end
 end
