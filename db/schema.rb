@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130120917) do
+ActiveRecord::Schema.define(version: 20150206120320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -239,9 +239,7 @@ ActiveRecord::Schema.define(version: 20150130120917) do
   end
 
   create_table "shops", force: :cascade do |t|
-    t.string   "email"
     t.string   "name"
-    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_salt"
@@ -274,6 +272,8 @@ ActiveRecord::Schema.define(version: 20150130120917) do
     t.boolean  "notify_customers_of_their_shipment"
     t.boolean  "automatically_fulfill_all_orders"
     t.string   "authorization_settings"
+    t.string   "notificatification_user_email_selection"
+    t.string   "notificatification_selected_user_email"
   end
 
   create_table "themes", force: :cascade do |t|
@@ -296,9 +296,10 @@ ActiveRecord::Schema.define(version: 20150130120917) do
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "permissions",     default: [], array: true
+    t.text     "permissions",     default: [],    array: true
     t.string   "user_type"
     t.string   "password_salt"
+    t.boolean  "account_owner",   default: false
   end
 
 end
