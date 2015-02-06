@@ -38,6 +38,13 @@ en:
       shop: "Magaz"
       sign_out: "Sign out"
 
+  welcome:
+    sell:
+      shop_name: "Your shop name"
+      email_address: "Email address"
+      password: "Password"
+      first_name: "User first name"
+      last_name: "User last name"
 
   admin:
     articles:
