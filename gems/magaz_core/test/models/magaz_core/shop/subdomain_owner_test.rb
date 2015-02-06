@@ -3,7 +3,7 @@ require 'test_helper'
 module MagazCore
   class Shop::SubdomainOwnerTest < ActiveSupport::TestCase
     test 'assigns subdomain' do
-      shop = Shop.new(name: 'uniq name', email: 'email@uniq-name.com', password: 'password')
+      shop = Shop.new(name: 'uniq name')
       assert shop.valid?
       assert_equal shop.subdomain, 'uniq-name'
     end

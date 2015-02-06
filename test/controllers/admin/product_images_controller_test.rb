@@ -1,10 +1,11 @@
 require 'test_helper'
 
 class Admin::ProductImagesControllerTest < ActionController::TestCase
-  
+
   setup do
     @shop = create(:shop, subdomain: 'example')
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
     @product = create(:product, shop: @shop, handle: "handle1")
     @product_image = create(:product_image, product: @product)
   end
@@ -41,7 +42,7 @@ class Admin::ProductImagesControllerTest < ActionController::TestCase
 
   test 'should create image' do
     assert_difference('MagazCore::ProductImage.count') do
-      post :create, product_id: @product , id: @product_image 
+      post :create, product_id: @product , id: @product_image
       {product_image: {image: 'sell_bg_berlin.jpg'}}
     end
   end

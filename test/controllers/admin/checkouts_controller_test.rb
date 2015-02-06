@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::CheckoutsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
     @customer = create(:customer, shop: @shop)
     @abandoned_checkout = create(:checkout, customer: @customer, email: "Some Uniq Email")
     @subscriber_notification = create(:subscriber_notification, shop: @shop, notification_method: 'email', subscription_address: 'email@some.com')

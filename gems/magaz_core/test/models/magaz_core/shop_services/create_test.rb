@@ -9,15 +9,23 @@ module MagazCore
         .call(archive_path: archive_path,
               theme: @default_theme,
               theme_attributes: { name: 'Default' })
-      @shop_params = { name: 'example42', email: 'admin@example42.com', password: 'secret' }
+      @shop_params = { name: 'example42', users_attributes: [first_name: 'First' , last_name: 'Last', email: 'email@mail.com', password: 'password'] }
     end
 
-    test 'create shop with valid params' do
+    test 'create shop with valid params and user' do
       service = MagazCore::ShopServices::Create
                   .call(shop_params: @shop_params)
       assert service.shop.persisted?
       refute service.shop.themes.current.blank?
       assert_equal @default_theme, service.shop.themes.current.first.source_theme
+      assert service.shop.users.first.persisted?
+      service.shop.users.each do |user|
+        assert_equal user.first_name, 'First'
+        assert_equal user.last_name, 'Last'
+        assert_equal user.email, 'email@mail.com'
+        assert_equal user.password, 'password'
+        assert_equal user.account_owner, true
+      end
     end
 
     test 'fail shop creation when no default theme in system' do

@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::ProductsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
     @product = create(:product, shop: @shop, handle: "handle1")
   end
 
@@ -55,12 +56,14 @@ class Admin::ProductsControllerTest < ActionController::TestCase
     assert_redirected_to admin_products_path
   end
   #TODO: exctract shared example
-  test "ownership separated" do
+test "ownership separated" do
     @shop2 = create(:shop, subdomain: 'example2')
+    @user2 = create(:user, shop: @shop2)
     @shop3 = create(:shop, subdomain: 'example3')
+    @user3 = create(:user, shop: @shop3)
     @product2 = create(:product, shop: @shop2, handle: "handle")
 
-    session_for_shop @shop3
+    session_for_user @user3
     @product3 = create(:product, shop: @shop3, handle: "handle")
 
     patch :update,
@@ -74,10 +77,12 @@ class Admin::ProductsControllerTest < ActionController::TestCase
   #TODO: exctract shared example
   test "ownership ensured" do
     @shop2 = create(:shop, subdomain: 'example2')
+    @user2 = create(:user, shop: @shop2)
     @shop3 = create(:shop, subdomain: 'example3')
+    @user3 = create(:user, shop: @shop3)
     @product2 = create(:product, shop: @shop2, handle: "handle")
 
-    session_for_shop @shop3
+    session_for_user @user3
     @product3 = create(:product, shop: @shop3, handle: "handle")
 
     assert_raise ActiveRecord::RecordNotFound do

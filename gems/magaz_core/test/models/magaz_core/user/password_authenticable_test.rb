@@ -5,7 +5,7 @@ module MagazCore
     test 'authentic_password?' do
       @shop = create(:shop)
       @user = create(:user, shop: @shop)
-      assert @user.authentic_password?('qwerty1')
+      assert @user.authentic_password?('password')
       refute @user.authentic_password?('wrong password')
       refute @user.authentic_password?('')
     end

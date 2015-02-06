@@ -84,11 +84,6 @@ FactoryGirl.define do
   factory :shop, class: MagazCore::Shop do
     sequence(:name)      { |n| "Example#{n}" }
     sequence(:subdomain) { |n| "example#{n}" }
-    sequence(:email)     { |n| "admin@example#{n}.com" }
-
-    password 'password'
-    password_salt BCrypt::Engine.generate_salt
-    password_digest { BCrypt::Engine.hash_secret('password', password_salt) }
   end
 
   factory :subscriber_notification, class: MagazCore::SubscriberNotification do
@@ -104,6 +99,10 @@ FactoryGirl.define do
     sequence(:email)      {|n| "staff_user@example#{n}.com"}
     sequence(:first_name) {|n| "First Name #{n} "}
     sequence(:last_name)  {|n| "Last Name #{n}"}
-    sequence(:password)   {|n| "qwerty#{n}"}
+    #sequence(:password)   {|n| "qwerty#{n}"}
+
+    password 'password'
+    password_salt BCrypt::Engine.generate_salt
+    password_digest { BCrypt::Engine.hash_secret('password', password_salt) }
   end
 end

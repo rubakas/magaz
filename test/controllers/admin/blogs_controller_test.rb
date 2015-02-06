@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::BlogsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
     @blog = create(:blog, shop: @shop, handle: "handle1")
   end
 

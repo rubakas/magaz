@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::EmailTemplatesControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
     @email_template = create(:email_template, shop: @shop)
   end
 
