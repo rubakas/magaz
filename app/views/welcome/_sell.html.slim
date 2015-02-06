@@ -17,31 +17,47 @@ section class='section-sell-photo'
                 html: { class: 'script-registration-form' }  do |f|
 
                 div class='row'
-              
-                  div class='script-field col-sm-4 form-group'
+
+                  div class='script-field col-sm-12 form-group'
                     = f.text_field :name,
                         placeholder: 'Your shop name',
                         data: form_error_data(@shop, 'name'),
                         class: 'script-input-name form-input'
                     div class='script-error-label form-error hidden'
-                
-                  div class='script-field col-sm-5 form-group'
-                    = f.text_field :email,
-                        placeholder: 'Email address',
-                        data: form_error_data(@shop, 'email'),
-                        class: 'script-input-email form-input'
-                    div class='script-error-label form-error hidden'
-                
-                  div class='script-field col-sm-3 form-group clearfix'
-                    = f.password_field :password,
-                        placeholder: 'Password',
-                        data: form_error_data(@shop, 'password'),
-                        class: 'script-input-password form-input'
-                    div class='script-error-label form-error hidden'
+
+
+                  div class='script-field col-sm-12 form-group'
+                    = f.fields_for :users do |users_fields|
+                      = users_fields.text_field :email,
+                          placeholder: 'Email address',
+                          data: form_error_data(users_fields.object, 'email'),
+                          class: 'script-input-email form-input'
+                      div class='script-error-label form-error hidden'
+
+                      div class='script-field col-sm-12 form-group'
+                      = users_fields.password_field :password,
+                          placeholder: 'Password',
+                          data: form_error_data(users_fields.object, 'password'),
+                          class: 'script-input-password form-input'
+                      div class='script-error-label form-error hidden'
+
+                      div class='script-field col-sm-12 form-group'
+                      = users_fields.text_field :first_name,
+                          placeholder: 'User first name',
+                          data: form_error_data(users_fields.object, 'first_name'),
+                          class: 'script-input-first-name form-input'
+                      div class='script-error-label form-error hidden'
+
+                      div class='script-field col-sm-12 form-group'
+                      = users_fields.text_field :last_name,
+                          placeholder: 'User last name',
+                          data: form_error_data(users_fields.object, 'last_name'),
+                          class: 'script-input-last-name form-input'
+                      div class='script-error-label form-error hidden'
 
                 div class='row'
 
                   div class='col-sm-12 form-group text-right'
-                    = button_tag class: 'button-block' do 
+                    = button_tag class: 'button-block' do
                       i class='icon-ok'
                       |  Create your shop now

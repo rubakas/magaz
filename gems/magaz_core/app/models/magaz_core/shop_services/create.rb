@@ -27,6 +27,9 @@ module MagazCore
 
       def _save_shop_record!(shop:, params:)
         shop.attributes = params
+        shop.users.each do |user|
+          user.update_attributes(account_owner: true)
+        end
         shop.save!
       end
 

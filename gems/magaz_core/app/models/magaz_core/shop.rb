@@ -29,7 +29,6 @@
 module MagazCore
   class Shop < ActiveRecord::Base
     self.table_name = 'shops'
-    include Concerns::PasswordAuthenticable
     include Concerns::SubdomainOwner
     has_many :articles, through: :blogs
     has_many :blogs
@@ -47,12 +46,14 @@ module MagazCore
     has_many :shipping_countries
     has_many :shipping_rates, through: :shipping_countries
     has_many :themes
-    has_many :users
+    has_many :users, class_name: 'MagazCore::User', :dependent => :destroy
     has_many :subscriber_notifications
     has_many :email_templates
 
     ABANDONED_CHECKOUT_TIME_DELAY = ["Never", "Six hours later", "24 hours later"]
     EMAIL_MARKETING_CHOICE = ["Customer agrees to receive promotional emails by default.", "Customer does not agree to receive promotional emails by default.", "Disable and hide this field."]
+
+    accepts_nested_attributes_for :users, :allow_destroy => true
 
     validates :name, presence: true, uniqueness: true
     validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY, :allow_blank => true
