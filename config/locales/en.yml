@@ -534,6 +534,12 @@ en:
         confirmation: "Are you sure?"
 
     users:
+      create:
+        notice: "User was successfully created."
+      update:
+        notice: "User was successfully updated."
+      delete:
+        notice: "User was successfully deleted."
       index:
         title: "Users"
         add: "Add User"

@@ -17,8 +17,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = current_shop.users.new(permitted_params[:user])
     if @user.save
-      flash[:notice] = 'User was successfully created.'
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path(@user), notice: t('.notice')
     else
       render 'show'
     end
@@ -27,8 +26,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = current_shop.users.find(params[:id])
     if @user.update_attributes(permitted_params[:user])
-      flash[:notice] = 'User was successfully updated.'
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path(@user), notice: t('.notice')
     else
       render 'show'
     end
@@ -37,8 +35,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = current_shop.users.find(params[:id])
     @user.destroy
-    flash[:notice] = 'User was successfully deleted.'
-    redirect_to admin_users_path
+    redirect_to admin_users_path, notice: t('.notice')
   end
 
   protected
