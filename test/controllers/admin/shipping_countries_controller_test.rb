@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::ShippingCountriesControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
     @shipping_country = create(:shipping_country, shop: @shop)
     @country = create(:country)
     @another_country = create(:another_country)

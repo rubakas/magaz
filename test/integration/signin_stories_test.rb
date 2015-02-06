@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SigninStoriesTest < ActionDispatch::IntegrationTest  
+class SigninStoriesTest < ActionDispatch::IntegrationTest
   setup do
     use_host HOSTNAME
   end
@@ -17,7 +17,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     click_link 'Sign in'
 
     fill_in 'Your shop name', with: @shop.name
-    fill_in 'Email address', with: @shop.email
+    fill_in 'Email address', with: @user.email
     fill_in 'Password', with: 'password'
 
     use_subdomain @shop.subdomain
@@ -52,7 +52,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     visit '/admin'
     assert page.has_content?('Sign in')
 
-    fill_in 'Email address', with: @shop.email
+    fill_in 'Email address', with: @user.email
     fill_in 'Password', with: 'password'
 
     click_button 'Sign in'
@@ -65,7 +65,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     click_link 'Sign out'
 
     use_host HOSTNAME
-    
+
     assert page.has_content?('Thank you for using magaz')
   end
 end

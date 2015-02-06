@@ -6,14 +6,11 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    @service = MagazCore::ShopServices::Create.call(shop_params: permitted_params)
+    @service = MagazCore::ShopServices::Create.call(shop_params: permitted_params[:shop])
     @shop = @service.shop
-    user_first_name = params[:first_name]
-    user_last_name = params[:last_name]
+    @user = @shop.users.first
     if @shop.persisted?
-      @service2 = MagazCore::ShopServices::CreateUser.call(shop_id: @shop.id,
-                                                           params: permitted_params)
-      session[:user_id] = @shop.id
+      session[:user_id] = @user.id
       redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
       render template: 'welcome/index'
@@ -21,7 +18,7 @@ class RegistrationsController < ApplicationController
   end
 
   def validate
-    @shop = MagazCore::Shop.new permitted_params
+    @shop = MagazCore::Shop.new permitted_params[:shop]
     @shop.valid?
     render json: @shop.errors.to_json
   end
@@ -30,6 +27,6 @@ class RegistrationsController < ApplicationController
 
   def permitted_params
     { shop:
-        params.fetch(:shop, {}).permit(:name, :email, :password, users_attributes: [:first_name, :last_name])}
+        params.fetch(:shop, {}).permit(:name, users_attributes: [:first_name, :last_name, :email, :password, :account_owner])}
   end
 end

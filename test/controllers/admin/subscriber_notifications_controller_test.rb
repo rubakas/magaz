@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::SubscriberNotificationsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
     @subscriber_notification = create(:subscriber_notification, shop: @shop)
   end
 
@@ -16,7 +17,7 @@ class Admin::SubscriberNotificationsControllerTest < ActionController::TestCase
     assert_difference('MagazCore::SubscriberNotification.count') do
       post :create, subscriber_notification: { notification_method: 'email', subscription_address: 'some1@here.run' }
     end
-    assert_redirected_to notifications_settings_admin_settings_path 
+    assert_redirected_to notifications_settings_admin_settings_path
   end
 
   test 'should destroy subscriber_notification' do
