@@ -82,7 +82,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Sign in')
   end
 
-  test "shop sign in success" do
+  test "user sign in success" do
     use_subdomain @shop.subdomain
     visit '/admin'
     click_link 'Sign out' if page.has_content?('Sign out')
