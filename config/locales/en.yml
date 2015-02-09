@@ -342,6 +342,8 @@ en:
         sign_in: "Sign in"
         email: "Email address"
         password: "Password"
+      create:
+        activate_your_email: "Please activate your account by following the instructions in the account confirmation email you received to proceed"
 
     settings:
       edit:
@@ -547,6 +549,8 @@ en:
         notice: "User was successfully updated."
       delete:
         notice: "User was successfully deleted."
+      confirm_email:
+        success: "Your email has been confirmed. Please sign in to continue."
       index:
         title: "Users"
         add: "Add User"

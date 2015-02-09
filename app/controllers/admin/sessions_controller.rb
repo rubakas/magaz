@@ -16,11 +16,13 @@ class Admin::SessionsController < Admin::ApplicationController
 
     if @user && @user.shop_id == @shop.id &&
       (@user.email == params[:session][:email].downcase) &&
-       @user.authentic_password?(params[:session][:password])
+       @user.authentic_password?(params[:session][:password]) &&
+       @user.email_confirmed
       # valid login
       session[:user_id] = @user.id
       redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
+      flash.now[:error] = t('.activate_your_email')
       flash.discard(:alert) #FIXME: WTF is this?
       render :new
     end

@@ -38,6 +38,20 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path, notice: t('.notice')
   end
 
+  def confirm_email
+    @user = User.find_by_confirm_token(params[:id])
+    @shop = MagazCore::Shop.find_by_id(@user.shop_id)
+    if @user
+      @user.email_activate
+      flash[:success] = t('.success')
+      session[:user_id] = @user.id
+      redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
+    else
+      flash[:error] = "Sorry. User does not exist"
+      render template: 'welcome/index'
+    end
+  end
+
   protected
 
   def permitted_params

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206135840) do
+ActiveRecord::Schema.define(version: 20150209144902) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -290,6 +290,8 @@ ActiveRecord::Schema.define(version: 20150206135840) do
     t.string   "password_salt"
     t.boolean  "account_owner",   default: false
     t.string   "permissions",     default: "--- []\n"
+    t.boolean  "email_confirmed", default: false
+    t.string   "confirm_token"
   end
 
 end

@@ -63,7 +63,11 @@ Rails.application.routes.draw do
           get 'notifications_settings'
         end
       end
-      resources :users, except: [:edit]
+      resources :users, except: [:edit] do
+        member do
+          get :confirm_email
+        end
+      end
     end
   end
 

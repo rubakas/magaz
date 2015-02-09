@@ -23,6 +23,11 @@ module MagazCore
         user.attributes = params
         user.update_attributes(account_owner: true)
         user.save!
+        _send_confirmation(user: user)
+      end
+
+      def _send_confirmation(user:)
+        MagazCore::UserMailer.registration_confirmation(user).deliver
       end
     end
   end
