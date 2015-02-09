@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
     if @shop.persisted?
       @service_create_user = MagazCore::UserServices::CreateUser.call(user_params: permitted_params_for_user[:user],
                                                                       shop: @shop)
-      @user = @shop.users.first
+      @user = @service_create_user.user
       session[:user_id] = @user.id
       redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
@@ -29,7 +29,7 @@ class RegistrationsController < ApplicationController
 
   def permitted_params_for_user
     { user:
-        params.fetch(:registration, {}).permit(:first_name, :last_name, :email, :password, :account_owner)}
+        params.fetch(:registration, {}).permit(:first_name, :last_name, :email, :password)}
   end
 
   def permitted_params_for_shop
