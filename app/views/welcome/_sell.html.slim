@@ -11,9 +11,8 @@ section class='section-sell-photo'
       div class='col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2'
         div class='panel-sell panel'
           div class='panel-body'
-            = form_for @shop,
+            = form_for :registration,
                 url: registration_path,
-                data: { validation_url: validate_registration_path },
                 html: { class: 'script-registration-form' }  do |f|
 
                 div class='row'
@@ -21,38 +20,32 @@ section class='section-sell-photo'
                   div class='script-field col-sm-12 form-group'
                     = f.text_field :name,
                         placeholder: t('.shop_name'),
-                        data: form_error_data(@shop, 'name'),
                         class: 'script-input-name form-input'
                     div class='script-error-label form-error hidden'
 
                   div class='script-field col-sm-12 form-group'
-                    = f.fields_for :users do |users_fields|
-                      = users_fields.text_field :email,
-                          placeholder: t('.email_address'),
-                          data: form_error_data(users_fields.object, 'email'),
-                          class: 'script-input-email form-input'
-                      div class='script-error-label form-error hidden'
+                    = f.text_field :email,
+                        placeholder: t('.email_address'),
+                        class: 'script-input-email form-input'
+                    div class='script-error-label form-error hidden'
 
-                      div class='script-field col-sm-12 form-group'
-                      = users_fields.password_field :password,
-                          placeholder: t('.password'),
-                          data: form_error_data(users_fields.object, 'password'),
-                          class: 'script-input-password form-input'
-                      div class='script-error-label form-error hidden'
+                    div class='script-field col-sm-12 form-group'
+                    = f.password_field :password,
+                        placeholder: t('.password'),
+                        class: 'script-input-password form-input'
+                    div class='script-error-label form-error hidden'
 
-                      div class='script-field col-sm-12 form-group'
-                      = users_fields.text_field :first_name,
-                          placeholder: t('.first_name'),
-                          data: form_error_data(users_fields.object, 'first_name'),
-                          class: 'script-input-first-name form-input'
-                      div class='script-error-label form-error hidden'
+                    div class='script-field col-sm-12 form-group'
+                    = f.text_field :first_name,
+                        placeholder: t('.first_name'),
+                        class: 'script-input-first-name form-input'
+                    div class='script-error-label form-error hidden'
 
-                      div class='script-field col-sm-12 form-group'
-                      = users_fields.text_field :last_name,
-                          placeholder: t('.last_name'),
-                          data: form_error_data(users_fields.object, 'last_name'),
-                          class: 'script-input-last-name form-input'
-                      div class='script-error-label form-error hidden'
+                    div class='script-field col-sm-12 form-group'
+                    = f.text_field :last_name,
+                        placeholder: t('.last_name'),
+                        class: 'script-input-last-name form-input'
+                    div class='script-error-label form-error hidden'
 
                 div class='row'
 
