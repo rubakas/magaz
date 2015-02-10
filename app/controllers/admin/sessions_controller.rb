@@ -14,10 +14,9 @@ class Admin::SessionsController < Admin::ApplicationController
     @shop = current_shop
     @user = MagazCore::User.find_by_email(params[:session][:email])
 
-    if @user && @user.shop_id == @shop.id &&
+    if !@user == nil && @user.shop_id == @shop.id &&
       (@user.email == params[:session][:email].downcase) &&
-       @user.authentic_password?(params[:session][:password]) &&
-       @user.email_confirmed
+       @user.authentic_password?(params[:session][:password])
       # valid login
       session[:user_id] = @user.id
       redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)

@@ -64,9 +64,6 @@ Rails.application.routes.draw do
         end
       end
       resources :users, except: [:edit] do
-        member do
-          get :confirm_email
-        end
       end
     end
   end

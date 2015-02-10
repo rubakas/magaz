@@ -12,10 +12,8 @@ class RegistrationsController < ApplicationController
       @service_create_user = MagazCore::UserServices::CreateUser.call(user_params: permitted_params_for_user[:user],
                                                                       shop: @shop)
       @user = @service_create_user.user
-      flash[:nitice] = "Now confirm your email"
-      render template: 'welcome/index'
-      # session[:user_id] = @user.id
-      # redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
+      session[:user_id] = @user.id
+      redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
       render template: 'welcome/index'
     end

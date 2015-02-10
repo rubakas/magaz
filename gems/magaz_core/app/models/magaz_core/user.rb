@@ -11,6 +11,7 @@ module MagazCore
     validates :first_name, presence: true
     validates :last_name, presence: true
 
+    #need for confirmation
     def email_activate
       self.email_confirmed = true
       self.confirm_token = nil

@@ -15,6 +15,7 @@ module MagazCore
       mail(to: subscriber_notification.subscription_address, subject: 'Test Notification')
     end
 
+    #need this for confirmation
     def registration_confirmation(user)
       @user = user
       mail(to: user.email , subject: "Registration Confirmation")
