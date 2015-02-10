@@ -14,7 +14,7 @@ class Admin::SessionsController < Admin::ApplicationController
     @shop = current_shop
     @user = MagazCore::User.find_by_email(params[:session][:email])
 
-    if !@user == nil && @user.shop_id == @shop.id &&
+    if @user && @user.shop_id == @shop.id &&
       (@user.email == params[:session][:email].downcase) &&
        @user.authentic_password?(params[:session][:password])
       # valid login
