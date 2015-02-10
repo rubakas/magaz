@@ -20,6 +20,7 @@ section class='section-sell-photo'
                   div class='script-field col-sm-12 form-group'
                     = f.text_field :name,
                         placeholder: t('.shop_name'),
+                        data: form_error_data(@shop, 'name'),
                         class: 'script-input-name form-input'
                     div class='script-error-label form-error hidden'
 
