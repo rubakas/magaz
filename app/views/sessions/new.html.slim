@@ -14,24 +14,24 @@ div class='container'
               html: { class: 'script-sign-in-form' } do |f|
 
             div class='script-field form-group'
-              = f.label :name, 'Your shop name'
+              = f.label :name
               = f.text_field :subdomain,
-                  placeholder: 'Your shop name',
+                  placeholder: t('.shop_name'),
                   class: 'script-input-subdomain form-input'
 
             div class='script-field form-group'
               = f.label :email
               = f.text_field :email,
-                  placeholder: 'Email address',
+                  placeholder: t('.email_address'),
                   class: 'script-input-email form-input'
 
             div class='script-field form-group'
               = f.label :password
               = f.password_field :password,
-                  placeholder: 'Password',
+                  placeholder: t('.password'),
                   class: 'script-input-password form-input'
             br
             div class='form-group text-right'
               = button_tag class: 'button' do
                 i class='icon-signin'
-                |  Sign in
+                = t('.sign_in')

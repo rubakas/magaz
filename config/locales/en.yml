@@ -46,6 +46,13 @@ en:
       first_name: "User first name"
       last_name: "User last name"
 
+  sessions:
+    new:
+      shop_name: "Your shop name"
+      password: "Password"
+      email_address: "Email address"
+      sign_in: "Sign in"
+
   admin:
     articles:
       index:
