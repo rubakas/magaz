@@ -21,5 +21,11 @@ module MagazCore
       assert_equal service.user.email, 'email@mail.com'
       assert_equal service.user.password, 'password'
     end
+
+    test 'fail shop creation when no shop params' do
+      service = MagazCore::UserServices::CreateUser
+                  .call(user_params: {}, shop: @shop)
+      refute service.user.persisted?
+    end
   end
 end
