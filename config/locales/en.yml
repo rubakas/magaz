@@ -45,6 +45,8 @@ en:
       password: "Password"
       first_name: "User first name"
       last_name: "User last name"
+      error: "error"
+      prohibit: "Prohibited this account from being saved:"
 
   sessions:
     new:

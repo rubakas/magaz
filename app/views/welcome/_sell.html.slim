@@ -15,6 +15,17 @@ section class='section-sell-photo'
                 url: registration_path,
                 html: { class: 'script-registration-form' }  do |f|
 
+                - if @shop.errors.any? || @shop.users.first.errors.any?
+                    div id="error_explanation"
+                      h2 = pluralize(@shop.errors.count + @shop.users.first.errors.count , t('.error'))
+                      br = t('.prohibit')
+
+                      ul
+                      - @shop.errors.full_messages.each do |msg|
+                        li = msg
+                      - @shop.users.first.errors.full_messages.each do |msg|
+                        li = msg
+
                 div class='row'
 
                   div class='script-field col-sm-12 form-group'
