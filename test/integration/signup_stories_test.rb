@@ -34,16 +34,33 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Password', with: ''
     click_button 'Create your shop now'
     assert page.has_content?('Welcome')
+    assert page.has_content?('10 errors')
+  end
+
+  test "signup failure: shope name already been taken" do
+    visit '/'
+    assert page.has_content?('Welcome')
+
+    fill_in 'Your shop name', with: @shop.name
+    fill_in 'Email address', with: 'uniq@example2.com'
+    fill_in 'Password', with: 'password'
+    fill_in 'User first name', with: 'User'
+    fill_in 'User last name', with: 'Puzer'
+    click_button 'Create your shop now'
+
+    assert page.has_content?('2 errors')
+    assert page.has_content?('Welcome')
   end
 
   test "signup failure with just name" do
     visit '/'
     assert page.has_content?('Welcome')
 
-    fill_in 'Your shop name', with: @shop.name
+    fill_in 'Your shop name', with: 'Example2'
     fill_in 'Email address', with: ''
     fill_in 'Password', with: ''
     click_button 'Create your shop now'
+    assert page.has_content?('7 errors')
     assert page.has_content?('Welcome')
   end
 
