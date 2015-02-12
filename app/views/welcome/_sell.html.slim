@@ -3,8 +3,8 @@
 
 section class='section-sell-photo'
   div class='jumbotron-sell'
-    h1 class='loud text-center' Welcome to Magaz
-    h3 class='loud text-center' Everything you need to start selling online &mdash; today
+    h1 class='loud text-center' = t('.welcome')
+    h3 class='loud text-center' = t('.greeting')
 
   div class='container'
     div class='row'
@@ -33,31 +33,26 @@ section class='section-sell-photo'
                         placeholder: t('.shop_name'),
                         data: form_error_data(@shop, 'name'),
                         class: 'script-input-name form-input'
-                    div class='script-error-label form-error hidden'
 
                   div class='script-field col-sm-12 form-group'
                     = f.text_field :email,
                         placeholder: t('.email_address'),
                         class: 'script-input-email form-input'
-                    div class='script-error-label form-error hidden'
 
                     div class='script-field col-sm-12 form-group'
                     = f.password_field :password,
                         placeholder: t('.password'),
                         class: 'script-input-password form-input'
-                    div class='script-error-label form-error hidden'
 
                     div class='script-field col-sm-12 form-group'
                     = f.text_field :first_name,
                         placeholder: t('.first_name'),
                         class: 'script-input-first-name form-input'
-                    div class='script-error-label form-error hidden'
 
                     div class='script-field col-sm-12 form-group'
                     = f.text_field :last_name,
                         placeholder: t('.last_name'),
                         class: 'script-input-last-name form-input'
-                    div class='script-error-label form-error hidden'
 
                 div class='row'
 

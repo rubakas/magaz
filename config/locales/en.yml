@@ -47,6 +47,8 @@ en:
       last_name: "User last name"
       error: "error"
       prohibit: "Prohibited this account from being saved:"
+      welcome: "Welcome to Magaz"
+      greeting: "Everything you need to start selling online — today"
 
   sessions:
     new:
