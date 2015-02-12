@@ -6,12 +6,11 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    @service = MagazCore::ShopServices::Create.call(shop_params: permitted_params_for_shop[:shop])
+    @service = MagazCore::ShopServices::Create.call(shop_params: permitted_params_for_shop[:shop],
+                                                    user_params: permitted_params_for_user[:user])
     @shop = @service.shop
     if @shop.persisted?
-      @service_create_user = MagazCore::UserServices::CreateUser.call(user_params: permitted_params_for_user[:user],
-                                                                      shop: @shop)
-      @user = @service_create_user.user
+      @user = @shop.users.find_by(account_owner: 'true')
       session[:user_id] = @user.id
       redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
@@ -20,7 +19,7 @@ class RegistrationsController < ApplicationController
   end
 
   def validate
-    @shop = MagazCore::Shop.new permitted_params[:shop]
+    @shop = MagazCore::Shop.new permitted_params_for_shop[:shop]
     @shop.valid?
     render json: @shop.errors.to_json
   end

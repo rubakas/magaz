@@ -10,15 +10,15 @@ class RegistarationForm
     $('.script-input-name').bind('blur', @e_validate_name)
     $('.script-input-email').bind('blur', @e_validate_email)
     $('.script-input-password').bind('blur', @e_validate_password)
-  
+
   e_validate_name: (evt)=>
-    @validate_field('name',evt); 
+    @validate_field('name',evt);
 
   e_validate_email: (evt)=>
-    @validate_field('email',evt);       
+    @validate_field('email',evt);
 
   e_validate_password: (evt)=>
-    @validate_field('password',evt);    
+    @validate_field('password',evt);
 
   validate_field:(field_name,evt)=>
     $.ajax(@validation_url,{
@@ -28,13 +28,13 @@ class RegistarationForm
       success:(data)=>
         error_message = data[field_name]?.join(', ') || null;
         $(evt.target).data('errormessage', error_message)
-        
+
         field=$(evt.target).closest('.script-field')
         @show_data_error_message(field)
     })
-  
+
   show_data_error_message: (field)=>
-    popover_options = 
+    popover_options =
       placement: 'top',
       content: $(field).find('input').data('errormessage')
     $(field).find('input').popover(popover_options)
@@ -50,4 +50,4 @@ class RegistarationForm
     #     $(field).removeClass('has-error')
     #     $(field).addClass('has-success')
     #   $error_label.addClass('hidden')
-    
+

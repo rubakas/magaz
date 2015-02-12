@@ -4,17 +4,16 @@ module MagazCore
       include MagazCore::Concerns::Service
       attr_accessor :shop
 
-      def call(shop_params: {})
+      def call(shop_params: {}, user_params: {})
         @shop          = MagazCore::Shop.new
 
         MagazCore::Shop.connection.transaction do
           begin
-            _save_shop_record!(shop: @shop, params: shop_params)
+            _save_shop_record!(shop: @shop, params: shop_params, user_params: user_params)
             _install_default_theme(shop: @shop)
             _create_default_blogs_and_posts!(shop: @shop)
             _create_default_collection!(shop: @shop)
             _create_default_pages!(shop: @shop)
-
             # links created after linked content, right? :)
             _create_default_link_lists!(shop: @shop)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
@@ -25,8 +24,9 @@ module MagazCore
 
       private
 
-      def _save_shop_record!(shop:, params:)
+      def _save_shop_record!(shop:, params:, user_params:)
         shop.attributes = params
+        _create_user(user_params: user_params, shop: shop)
         shop.save!
       end
 
@@ -35,6 +35,11 @@ module MagazCore
         default_theme = MagazCore::Theme.sources.first || fail(ActiveRecord::RecordNotFound)
         MagazCore::ThemeServices::Install
           .call(shop_id: shop.id, source_theme_id: default_theme.id)
+      end
+
+      def _create_user(user_params:, shop:)
+        MagazCore::UserServices::CreateUser.call(user_params: user_params,
+                                                 shop: shop)
       end
 
       def _create_default_blogs_and_posts!(shop:)
