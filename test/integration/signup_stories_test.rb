@@ -36,4 +36,15 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Welcome')
   end
 
+  test "signup failure with just name" do
+    visit '/'
+    assert page.has_content?('Welcome')
+
+    fill_in 'Your shop name', with: @shop.name
+    fill_in 'Email address', with: ''
+    fill_in 'Password', with: ''
+    click_button 'Create your shop now'
+    assert page.has_content?('Welcome')
+  end
+
 end
