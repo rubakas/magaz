@@ -3,6 +3,7 @@ module MagazCore
     class Create
       include MagazCore::Concerns::Service
       attr_accessor :shop
+      attr_accessor :user
 
       def call(shop_params: {}, user_params: {})
         @shop          = MagazCore::Shop.new
@@ -10,7 +11,7 @@ module MagazCore
         MagazCore::Shop.connection.transaction do
           begin
             _create_user!(user_params: user_params, shop: @shop)
-            _save_shop_record!(shop: @shop, params: shop_params, user_params: user_params)
+            _save_shop_record!(shop: @shop, params: shop_params)
             _install_default_theme(shop: @shop)
             _create_default_blogs_and_posts!(shop: @shop)
             _create_default_collection!(shop: @shop)
@@ -30,7 +31,7 @@ module MagazCore
                                                  shop: shop)
       end
 
-      def _save_shop_record!(shop:, params:, user_params:)
+      def _save_shop_record!(shop:, params:)
         shop.attributes = params
         shop.save!
       end
