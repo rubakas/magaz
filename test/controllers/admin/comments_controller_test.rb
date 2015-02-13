@@ -5,7 +5,8 @@ class Admin::CommentsControllerTest < ActionController::TestCase
     @shop = create(:shop, subdomain: 'example')
     @blog = create(:blog, shop: @shop)
     @article = create(:article, blog: @blog)
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
     @comment = create(:comment, article: @article)
   end
 

@@ -38,6 +38,24 @@ en:
       shop: "Magaz"
       sign_out: "Sign out"
 
+  welcome:
+    sell:
+      shop_name: "Your shop name"
+      email_address: "Email address"
+      password: "Password"
+      first_name: "User first name"
+      last_name: "User last name"
+      error: "error"
+      prohibit: "Prohibited this account from being saved:"
+      welcome: "Welcome to Magaz"
+      greeting: "Everything you need to start selling online — today"
+
+  sessions:
+    new:
+      shop_name: "Your shop name"
+      password: "Password"
+      email_address: "Email address"
+      sign_in: "Sign in"
 
   admin:
     articles:
@@ -197,6 +215,12 @@ en:
         confirmation: "Are you sure?"
 
     link_lists:
+      update:
+        notice: "Link list was successfully updated."
+      create:
+        notice: "Link list was successfully created."
+      destroy:
+        notice: "Link list was successfully deleted."
       index:
         title: "Link Lists"
         add: "Add Link List"
@@ -309,14 +333,14 @@ en:
 
     product_images:
       new:
-        new: 'New Image'
+        new: "New Image"
       blank:
-        no_product_images: 'No images'
-        add: 'Add Image' 
+        no_product_images: "No images"
+        add: "Add Image"
       form:
         error: "error"
         prohibit: "prohibited this image from being saved:"
-        select: 'Select your image'
+        select: "Select your image"
       show:
         title: "Images"
       list:
@@ -329,6 +353,8 @@ en:
         sign_in: "Sign in"
         email: "Email address"
         password: "Password"
+      create:
+        notice: "Wrong password or email"
 
     settings:
       edit:
@@ -352,7 +378,7 @@ en:
         account_required: "Account are required"
         account_optional: "Account are optional"
         auto_fulfill_orders: "Automatically fulfill the orders line items."
-        auto_fulfill_gift_cards: "Automatically fulfill only the gift cards of the order." 
+        auto_fulfill_gift_cards: "Automatically fulfill only the gift cards of the order."
         do_not_fulfill: "Do not automatically fulfill any of the orders line items."
         billing_address: "Use the billing address as the shipping address by default"
         abandoned_checkouts: "If the customer abandons their checkout, send them an email reminder to complete their order:"
@@ -368,18 +394,79 @@ en:
         payment_authoriz_settings_inf: "Set up whether payments should be manually or automatically captured. Learn more about."
         hidden_authorization_inf: "Manually capture an amount before the authorization expires."
         hidden_authoriz_and_charge_inf: "Automatically capture payment at the time of sale."
-        as_authorize_and_charge: "Authorize and charge the customers credit card." 
-        as_authorize: "Authorize the customers credit card."
+        authorize_and_charge: "Authorize and charge the customers credit card."
+        authorize_customer: "Authorize the customers credit card."
         select_method: "Select authorization method"
       notifications_settings:
         logo: "Notifications"
+        delete: "delete"
+        confirmation: "Are you sure?"
+        abandoned_notifications: "Abandoned Checkout Notification"
+        send_who_has_abandoned: "Sent to a potential customer who has abandoned their checkout"
+        contact_buyer: "Contact Buyer"
+        used_as_default: "Used as a default template for Email Buyer emails"
+        template: "Template"
+        description: "Description"
         email_templates: "Email templates"
         email_templates_inf: "These emails are automatically sent out to either you or the customer. Click on the templates below to edit the template."
         order_notifications: "Order notifications"
         order_notifications_inf: "Get notified by email or text message whenever a new order comes in. You can also subscribe to the RSS feed for this store's orders."
         webhooks: "Webhooks"
         webhooks_inf: "You can subscribe to events for your products and orders by creating web hooks that will push XML or JSON notifications to a given URL."
-
+        fulfillment: "Fulfillment Request"
+        sent_to_fulfillment: "Sent to custom fulfillment provider when storeowner fulfills order items"
+        gift_card_notification: "Gift Card Notification"
+        sent_to_customer: "Sent to the customer when a gift card is created"
+        new_order_notification: "New Order Notification"
+        sent_to_subscrimer: "Sent to all subscribers of Order Confirmation Notifications"
+        new_order_notification_mobile: "New Order Notification (mobile)"
+        sent_to_subscrimer_mobile: "Sent to all subscribers of Order Confirmation Notifications for mobile"
+        order_cancelled: "Order Cancelled"
+        sent_to_customer_cancelled: "Sent to the customer when an order is cancelled"
+        order_confirmation: "Order Confirmation"
+        sent_to_customer_when_created: "Sent to the customer when an order is created"
+        refund_notification: "Refund Notification"
+        sent_to_customer_refunded: "Sent to the customer when their order is refunded"
+        shipping_confirmation: "Shipping confirmation"
+        sent_to_customer_shipped: "Sent to the customer when an order is shipped"
+        shipping_update: "Shipping update"
+        sent_to_customer_updated: "Sent to the customer when an order's shipping information is updated"
+        event: "Event"
+        callback_URL: "Callback URL"
+        format: "Format"
+        send_test_notification: "send test notification"
+    email_templates:
+      show:
+        name: "Name "
+        subject: "Subject"
+        plain_text: "Plain Text Body"
+      update:
+        notice: "Email template saved successfully"
+      edit:
+        email_subject: "Email subject"
+        html_email: "HTML email"
+        plain_text_email: "Plain text email"
+        close: "Close"
+        preview: "Preview"
+        save: "Save"
+        logo1: "Edit"
+        logo2: " Email Template"
+        info: "Customizing the Plain text template and not the HTML template will result in only the plain text email being sent."
+        error: "error"
+        prohibit: "prohibited this notification from being saved:"
+    subscriber_notifications:
+      create:
+        notice: "Order notification was added successfully."
+      destroy:
+        notice: "Order notification was successfully deleted."
+      send_test_notification:
+        notice: "An example order notification has been sent."
+      new:
+        logo: "Add a subscriber to new order notifications"
+        enter_email: "Email address"
+        enter_mobile: "Mobile phone"
+        prohibit: "prohibited this email from being saved:"
+        error: "error"
     shared:
       sidebar_nav:
         title: "Shop"
@@ -400,11 +487,81 @@ en:
         settings: "Settings"
         files: "Files"
         users: "Users"
+        shipping: "Shipping"
         notifications: "Notifications"
         checkouts: "Checkouts"
         payments: "Payments"
 
+    shipping_countries:
+      create:
+        notice: "Shipping Country was successfully created."
+      update:
+        notice: "Shipping Country was successfully updated."
+      destroy:
+        notice: "Shipping Country was successfully deleted."
+      index:
+        title: "Shipping Countries"
+        add: "Add Shipping Country"
+      new:
+        add: "Add Shipping Country"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this shipping country from being saved:"
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+      show:
+        title: "Editing Shipping Country"
+      blank:
+        no_links: "There are no shipping countries"
+        add: "Add Shipping Country"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this shipping country from being saved:"
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+      list:
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
+    shipping_rates:
+      create:
+        notice: "Shipping rate was successfully created."
+      update:
+        notice: "Shipping rate was successfully updated."
+      destroy:
+        notice: "Shipping rate was successfully deleted."
+      index:
+        title: "Shipping Rates"
+        add: "Add Shipping Rate"
+      new:
+        add: "Add Shipping Rate"
+      show:
+        title: "Editing Shipping Rate"
+      blank:
+        no_links: "There are no shipping rates"
+        add: "Add Shipping Rate"
+      form:
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this shipping rate from being saved:"
+      list:
+        name: "Name"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+
     users:
+      create:
+        notice: "User was successfully created."
+      update:
+        notice: "User was successfully updated."
+      delete:
+        notice: "User was successfully deleted."
+      confirm_email:
+        success: "Your email has been confirmed. Please sign in to continue."
       index:
         title: "Users"
         add: "Add User"
@@ -424,6 +581,17 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+  magaz_core:
+    user_mailer:
+      notification:
+        notification_to: "Test notification to:"
+        notification_text: "Hello, you have a new order"
+      test_notification:
+        subject: "Test Notification"
+        test_notification_text: "Some text"
+        test_notification_to: "Test notification to :"
+      registration_confirmation:
+        subject: "Registration Confirmation"
 
   theme_store:
     themes:

@@ -6,9 +6,12 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    @shop = MagazCore::Shop.new permitted_params
-    if @shop.save
-      session[:user_id] = @shop.id
+    @service = MagazCore::ShopServices::Create.call(shop_params: permitted_params_for_shop[:shop],
+                                                    user_params: permitted_params_for_user[:user])
+    @shop = @service.shop
+    @user = @service.user
+    if @shop.persisted?
+      session[:user_id] = @user.id
       redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
       render template: 'welcome/index'
@@ -16,14 +19,20 @@ class RegistrationsController < ApplicationController
   end
 
   def validate
-    @shop = MagazCore::Shop.new permitted_params
+    @shop = MagazCore::Shop.new permitted_params_for_shop[:shop]
     @shop.valid?
     render json: @shop.errors.to_json
   end
 
   private
-  
-  def permitted_params
-    params.require(:shop).permit(:name, :email, :password)
+
+  def permitted_params_for_user
+    { user:
+        params.fetch(:registration, {}).permit(:first_name, :last_name, :email, :password)}
+  end
+
+  def permitted_params_for_shop
+    { shop:
+        params.fetch(:registration, {}).permit(:name)}
   end
 end

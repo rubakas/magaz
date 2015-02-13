@@ -5,7 +5,7 @@ class SignInForm
     @form=$(element)
     @form.bind('submit', @e_ensure_subdomain_presence)
     $('.script-input-subdomain').trigger('focus') # focus first field
-  
+
   e_ensure_subdomain_presence: (evt)=>
     evt.preventDefault();
     return false if '' == $('.script-input-subdomain').val()
@@ -15,4 +15,4 @@ class SignInForm
     @form.unbind('submit').submit()
 
 
-    
+

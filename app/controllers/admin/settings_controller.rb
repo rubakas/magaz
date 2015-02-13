@@ -28,8 +28,8 @@ class Admin::SettingsController < ApplicationController
     @shop = current_shop
     if @shop.update_attributes(permitted_params_for_payments[:shop])
       flash[:notice] = 'Shop was successfully updated.'
-      redirect_to payments_settings_admin_settings_path 
-    else 
+      redirect_to payments_settings_admin_settings_path
+    else
       render "payments_settings"
     end
   end
@@ -44,21 +44,33 @@ class Admin::SettingsController < ApplicationController
     @shop = current_shop
     if @shop.update_attributes(permitted_params_for_checkouts[:shop])
       flash[:notice] = 'Shop was successfully updated.'
-      redirect_to checkouts_settings_admin_settings_path 
-    else 
+      redirect_to checkouts_settings_admin_settings_path
+    else
       render "checkouts_settings"
+    end
+  end
+
+  #Notifications
+
+  def notifications_settings
+    @shop = current_shop
+  end
+
+  def notifications_settings_update
+    @shop = current_shop
+    if @shop.update_attributes(permitted_params_for_notifications[:shop])
+      flash[:notice] = 'Shop was successfully updated.'
+      redirect_to notifications_settings_admin_settings_path
+    else
+      render "notifications_settings"
     end
   end
 
   protected
 
-  def resource
-    @shop = current_shop
-  end
-
   def permitted_params
     { shop:
-        params.fetch(:shop, {}).permit(:name, :email, :address, :business_name,
+        params.fetch(:shop, {}).permit(:name, :address, :business_name,
                                        :city, :country, :currency, :customer_email,
                                        :phone, :province, :timezone, :unit_system,
                                        :zip, :handle, :page_title, :meta_description) }
@@ -72,14 +84,14 @@ class Admin::SettingsController < ApplicationController
                                       :checkout_language, :checkout_refound_policy,
                                       :checkout_privacy_policy, :checkout_term_of_service) }
   end
-  
+
   def permitted_params_for_payments
     {
       shop:
       params.fetch(:shop, {}).permit(:authorization_settings)}
   end
 
-  def permitted_params_for_payments
+  def permitted_params_for_notifications
     {
       shop:
       params.fetch(:shop, {}).permit()}

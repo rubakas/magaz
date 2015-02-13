@@ -1,0 +1,1 @@
+Dir[Rails.root.join("config/mailer_settings.rb")].each { |f| require f }

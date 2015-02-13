@@ -1,7 +1,8 @@
 class ActionDispatch::IntegrationTest
 
   setup do
-    @shop = create(:shop, name: 'example', subdomain: 'example', password: 'password', email: 'admin@example.com')
+    @shop = create(:shop, name: 'example', subdomain: 'example')
+    @user = create(:user, shop: @shop, first_name: 'First', last_name: 'Last', email: 'email@mail.com', password: 'password')
   end
 
   teardown do
@@ -30,7 +31,7 @@ class ActionDispatch::IntegrationTest
       visit '/'
       click_link 'Sign in'
       fill_in 'Your shop name', with: @shop.subdomain
-      fill_in 'Email address', with: @shop.email
+      fill_in 'Email address', with: @user.email
       fill_in 'Password', with: 'password'
 
       use_subdomain @shop.subdomain
@@ -46,9 +47,9 @@ class ActionController::TestCase
   private
 
   module CustomControllerDsl
-    def session_for_shop(shop)
-      session[:user_id] = shop.id
-      controller_with_subdomain(shop.subdomain)
+    def session_for_user(user)
+      session[:user_id] = user.id
+      controller_with_subdomain(user.shop.subdomain)
     end
 
     def controller_with_subdomain(subdomain)

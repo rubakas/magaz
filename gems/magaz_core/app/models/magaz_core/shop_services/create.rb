@@ -3,18 +3,20 @@ module MagazCore
     class Create
       include MagazCore::Concerns::Service
       attr_accessor :shop
+      attr_accessor :user
 
-      def call(shop_params: {})
-        @shop          = MagazCore::Shop.new
+      def call(shop_params: {}, user_params: {})
+        @shop = MagazCore::Shop.new
+        @user = MagazCore::User.new
 
         MagazCore::Shop.connection.transaction do
           begin
-            _save_shop_record!(shop: @shop, params: shop_params)
+            @shop.update!(shop_params)
+            @user.update!(user_params.merge(account_owner: true, shop_id: @shop.id))
             _install_default_theme(shop: @shop)
             _create_default_blogs_and_posts!(shop: @shop)
             _create_default_collection!(shop: @shop)
             _create_default_pages!(shop: @shop)
-
             # links created after linked content, right? :)
             _create_default_link_lists!(shop: @shop)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
@@ -24,11 +26,6 @@ module MagazCore
       end
 
       private
-
-      def _save_shop_record!(shop:, params:)
-        shop.attributes = params
-        shop.save!
-      end
 
       def _install_default_theme(shop:)
         # Default theme, fail unless found

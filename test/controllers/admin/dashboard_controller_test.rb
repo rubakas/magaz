@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::DashboardControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
   end
 
   test "should get index" do

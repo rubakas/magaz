@@ -4,7 +4,8 @@ class Admin::ArticlesControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @blog = create(:blog, shop: @shop, handle: "handle1")
-    session_for_shop @shop
+    @user = create(:user, shop: @shop)
+    session_for_user @user
     @article = create(:article, blog: @blog, handle: "handle1")
   end
 
