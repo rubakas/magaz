@@ -27,6 +27,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     click_button 'Sign in'
 
     assert page.has_content?('Sign in')
+    assert page.has_content?('Wrong password or email')
 
     fill_in 'Email address', with: @user.email
     fill_in 'Password', with: 'password'
@@ -45,7 +46,10 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Email address', with: @user2.email
     fill_in 'Password', with: 'password2'
 
+    click_button 'Sign in'
+
     assert page.has_content?('Sign in')
+    assert page.has_content?('Wrong password or email')
   end
 
   test "sign in success" do
