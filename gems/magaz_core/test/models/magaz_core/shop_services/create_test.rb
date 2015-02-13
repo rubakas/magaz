@@ -34,6 +34,16 @@ module MagazCore
       refute service.shop.persisted?
     end
 
+    test "shop and user should have association" do
+      service = MagazCore::ShopServices::Create.call(shop_params: @shop_params, user_params: @user_params)
+      assert service.shop.persisted?
+      assert_not service.shop.users.blank?
+
+      service.shop.users.each do |user|
+        assert user.shop_id == service.shop.id
+      end
+    end
+
     test 'default content created' do
       service = MagazCore::ShopServices::Create.call(shop_params: @shop_params, user_params: @user_params)
       assert service.shop.persisted?

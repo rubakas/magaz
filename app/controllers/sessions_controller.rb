@@ -11,10 +11,9 @@ class SessionsController < ApplicationController
   #TODO:  test user not found case
   def create
     @shop = MagazCore::Shop.find_by(subdomain: params[:session][:subdomain])
-    @user = MagazCore::User.find_by_email(params[:session][:email])
+    @user = @shop.users.find_by_email(params[:session][:email].downcase)
 
-    if(@shop && @user.authentic_password?(params[:session][:password]) &&
-      !@shop.users.find_by(id: @user.id) == nil)
+    if @shop && @user && @user.authentic_password?(params[:session][:password])
       session[:user_id] = @user.id
       redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
