@@ -14,7 +14,6 @@ class Admin::ProductsController < Admin::ApplicationController
   end
 
   def create
-    @shop = current_shop
     @product = current_shop.products.new(permitted_params[:product])
     if @product.save
       flash[:notice] = 'Product was successfully created.'

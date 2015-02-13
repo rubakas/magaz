@@ -11,10 +11,9 @@ class Admin::SessionsController < Admin::ApplicationController
 
   #TODO:  test user not found case
   def create
-    @shop = current_shop
-    @user = @shop.find_by_email(params[:session][:email].downcase)
+    @user = current_shop.find_by_email(params[:session][:email].downcase)
 
-    if @user && @user.shop_id == @shop.id &&
+    if @user && @user.shop_id == current_shop.id &&
       (@user.email == params[:session][:email].downcase) &&
        @user.authentic_password?(params[:session][:password])
       # valid login
