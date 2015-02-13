@@ -169,11 +169,6 @@ ActiveRecord::Schema.define(version: 20150209144902) do
     t.integer "link_list_id"
   end
 
-  create_table "magaz_core_email_templates", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "order_subscriptions", force: :cascade do |t|
     t.string   "notification_method"
     t.string   "subscription_address"
@@ -272,8 +267,6 @@ ActiveRecord::Schema.define(version: 20150209144902) do
     t.boolean  "notify_customers_of_their_shipment"
     t.boolean  "automatically_fulfill_all_orders"
     t.string   "authorization_settings"
-    t.string   "notificatification_user_email_selection"
-    t.string   "notificatification_selected_user_email"
   end
 
   create_table "themes", force: :cascade do |t|
