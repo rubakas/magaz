@@ -12,13 +12,13 @@ module MagazCore
 
     def test_notification(subscriber_notification)
       @subscriber_notification = subscriber_notification
-      mail(to: subscriber_notification.subscription_address, subject: 'Test Notification')
+      mail(to: subscriber_notification.subscription_address, subject: t('.subject'))
     end
 
     #need this for confirmation
     def registration_confirmation(user)
       @user = user
-      mail(to: user.email , subject: "Registration Confirmation")
+      mail(to: user.email , subject: t('.subject'))
     end
   end
 end
