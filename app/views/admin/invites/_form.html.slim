@@ -1,0 +1,13 @@
+= form_for([:admin, @invite]) do |f|
+  - if @invite.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@invite.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @invite.errors.full_messages.each do |msg|
+        li = msg
+
+  = f.label :email
+  = f.email_field :email, class: 'form-control'
+  = f.submit 'Send', class: 'button'

@@ -63,6 +63,7 @@ Rails.application.routes.draw do
           get 'notifications_settings'
         end
       end
+      resources :invites, only: [:new, :create, :destroy]
       resources :users, except: [:edit] do
       end
     end

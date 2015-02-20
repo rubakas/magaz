@@ -42,6 +42,6 @@
 
   hr
   div class="form-group"
-    = link_to t('.back'), admin_users_path, class: 'button-secondary'
-    |
     = f.submit(class: 'button')
+    - if !@invite == nil
+      = link_to t('.cancel'), admin_invite_path(@invite), method: :delete, data: { confirm: t('.confirmation')}, class: 'button-secondary'
