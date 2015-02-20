@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209144902) do
+ActiveRecord::Schema.define(version: 20150216144435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,16 @@ ActiveRecord::Schema.define(version: 20150209144902) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "invites", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "shop_id"
+  end
+
   create_table "line_items", force: :cascade do |t|
     t.integer  "checkout_id"
     t.integer  "product_id"
@@ -167,6 +177,11 @@ ActiveRecord::Schema.define(version: 20150209144902) do
     t.string  "subject_params"
     t.integer "subject_id"
     t.integer "link_list_id"
+  end
+
+  create_table "magaz_core_email_templates", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_subscriptions", force: :cascade do |t|
@@ -267,6 +282,8 @@ ActiveRecord::Schema.define(version: 20150209144902) do
     t.boolean  "notify_customers_of_their_shipment"
     t.boolean  "automatically_fulfill_all_orders"
     t.string   "authorization_settings"
+    t.string   "notificatification_user_email_selection"
+    t.string   "notificatification_selected_user_email"
   end
 
   create_table "themes", force: :cascade do |t|

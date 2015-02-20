@@ -187,6 +187,14 @@ en:
         title: "Dashboard"
         welcome: "Welcome to dashboard"
 
+    invites:
+      new:
+        add: "New Invite"
+        back: "Back"
+      create:
+        new_notice_success: "Creation of invite was successfully"
+        new_notice_fail: "Creation of invite has failed"
+
     files:
       index:
         files: "Files"
@@ -558,23 +566,27 @@ en:
         notice: "User was successfully created."
       update:
         notice: "User was successfully updated."
-      delete:
+      destroy:
+        error: "Can't delete account owner"
         notice: "User was successfully deleted."
       confirm_email:
         success: "Your email has been confirmed. Please sign in to continue."
       index:
         title: "Users"
         add: "Add User"
+        invite: "Invite User"
       new:
         add: "Add User"
+        invalid_token: "Invite don't exists"
       show:
        title: "Editing user"
       blank:
         no_users: "No Users"
         add: "Add User"
       form:
+        confirmation: "Are you sure?"
         error: "error"
-        back: "Back"
+        cancel: "Cancel"
         prohibit: "prohibited this product from being saved:"
       list:
         title: "Users"
@@ -590,8 +602,10 @@ en:
         subject: "Test Notification"
         test_notification_text: "Some text"
         test_notification_to: "Test notification to :"
-      registration_confirmation:
-        subject: "Registration Confirmation"
+      invite_new_user:
+        subject: "You are invited"
+        text: "Hi , You are invited to shop "
+        link: "Confirmation"
 
   theme_store:
     themes:

@@ -14,7 +14,7 @@ module MagazCore
       end
 
       def current_user
-        @current_user ||= MagazCore::User.find_by_id(session[:user_id])
+        @current_user ||= MagazCore::Shop.find_by_subdomain(request.subdomain).users.find_by_id(session[:user_id])
       end
     end
   end
