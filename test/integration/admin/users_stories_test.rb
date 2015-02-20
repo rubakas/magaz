@@ -15,15 +15,15 @@ module Admin
       assert page.has_content? @user.email
     end
 
-    test 'create user' do
-      click_link 'Add User'
-      fill_in 'First name', with: 'Some Uniq Firt Name'
-      fill_in 'Last name', with: 'Some Uniq Last Name'
-      fill_in 'Email', with: 'examole@mail.com'
-      fill_in 'Password', with: 'qwerty123'
-      click_button 'Create User'
-      assert page.has_content? 'User was successfully created.'
-    end
+    # test 'create user' do
+    #   click_link 'Add User'
+    #   fill_in 'First name', with: 'Some Uniq Firt Name'
+    #   fill_in 'Last name', with: 'Some Uniq Last Name'
+    #   fill_in 'Email', with: 'examole@mail.com'
+    #   fill_in 'Password', with: 'qwerty123'
+    #   click_button 'Create User'
+    #   assert page.has_content? 'User was successfully created.'
+    # end
 
     test 'edit user' do
       click_link(@user.email, match: :first)

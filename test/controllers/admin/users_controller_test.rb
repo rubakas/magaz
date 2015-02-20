@@ -5,7 +5,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
     session_for_user @user
-    @user = create(:user, shop: @shop)
   end
 
    test "should get index" do
@@ -14,12 +13,12 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
+  # test "should get new" do
+  #   get :new
+  #   assert_response :success
+  # end
 
-  test "should create product" do
+  test "should create user" do
     assert_difference('MagazCore::User.count') do
       post :create, { user: { email: "staff_user@example.com",
                               first_name: "First Name",

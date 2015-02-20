@@ -50,6 +50,12 @@ FactoryGirl.define do
     sequence(:name) {|n| "File #{n}"}
   end
 
+  factory :invite, class: MagazCore::Invite do
+    sequence(:email) {|n| "email#{n}@mail.com"}
+
+    token { Digest::SHA1.hexdigest([11, Time.now, rand].join) }
+  end
+
   factory :link_list, class: MagazCore::LinkList do
     sequence(:name)  { |n| "List #{n}" }
   end
@@ -97,9 +103,8 @@ FactoryGirl.define do
 
   factory :user, class: MagazCore::User do
     sequence(:email)      {|n| "staff_user@example#{n}.com"}
-    sequence(:first_name) {|n| "First Name #{n} "}
-    sequence(:last_name)  {|n| "Last Name #{n}"}
-    #sequence(:password)   {|n| "qwerty#{n}"}
+    sequence(:first_name) {|n| "First Name#{n} "}
+    sequence(:last_name)  {|n| "Last Name#{n}"}
 
     password 'password'
     password_salt BCrypt::Engine.generate_salt
