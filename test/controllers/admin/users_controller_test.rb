@@ -5,7 +5,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
     session_for_user @user
-    @user = create(:user, shop: @shop)
+    @user = create(:user, shop: @shop, invite_token: 'valid_token')
   end
 
    test "should get index" do
@@ -19,15 +19,11 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create product" do
+  test "should invite user" do
     assert_difference('MagazCore::User.count') do
-      post :create, { user: { email: "staff_user@example.com",
-                              first_name: "First Name",
-                              last_name: "Last Name",
-                              password: "qwerty"} }
+      post :create, { user: { email: "staff_user@example.com"} }
     end
-
-    assert_redirected_to admin_user_path(assigns(:user))
+    assert_redirected_to admin_users_path
   end
 
   test "should show user" do
@@ -58,6 +54,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
       delete :destroy, id: @user.id
     end
 
-  assert_redirected_to admin_users_path
+    assert_redirected_to admin_users_path
   end
 end

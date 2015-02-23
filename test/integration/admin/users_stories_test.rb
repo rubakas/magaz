@@ -4,7 +4,7 @@ module Admin
   class UserStoriesTest < ActionDispatch::IntegrationTest
     setup do
       login
-      @user = create(:user, shop: @shop)
+      @user = create(:user, shop: @shop, account_owner: true)
 
       click_link 'Settings'
       click_link 'Users'
@@ -15,12 +15,9 @@ module Admin
       assert page.has_content? @user.email
     end
 
-    test 'create user' do
-      click_link 'Add User'
-      fill_in 'First name', with: 'Some Uniq Firt Name'
-      fill_in 'Last name', with: 'Some Uniq Last Name'
-      fill_in 'Email', with: 'examole@mail.com'
-      fill_in 'Password', with: 'qwerty123'
+    test 'invite user' do
+      click_link 'Invite User'
+      fill_in 'Email', with: 'user@email.com'
       click_button 'Create User'
       assert page.has_content? 'User was successfully created.'
     end
@@ -37,12 +34,11 @@ module Admin
       assert page.has_content? 'User was successfully updated.'
     end
 
-    #need to rewrite
-    #test 'delete user' do
-    #  assert page.has_content? 'Users'
-    #  assert page.has_content? @user.email
-    #  click_link('Delete', match: :first)
-    #  assert page.has_content? "No Users"
-    #end
+    test 'delete shop owner' do
+     assert page.has_content? 'Users'
+     assert page.has_content? @user.email
+     click_link('Delete', match: :first)
+     assert page.has_content? "Can't delete shop owner."
+    end
   end
 end
