@@ -1,8 +1,14 @@
 require 'test_helper'
 
 class UserMailerTest < ActionMailer::TestCase
+  include Rails.application.routes.url_helpers
+
+  def default_url_options
+    Rails.application.config.action_mailer.default_url_options
+  end
+
   def setup
-    @shop = MagazCore::Shop.new
+    @shop = create(:shop, name: 'shop_name')
     @email_template = @shop.email_templates.new(name: 'Order Notification',
                                                 title: 'New order',
                                                 body: 'You have a new order',
@@ -12,6 +18,8 @@ class UserMailerTest < ActionMailer::TestCase
     @subscriber2 = @shop.subscriber_notifications.new(:notification_method => 'email',
                                                       :subscription_address => 'duchess@example.gov')
     @subscribers = @shop.subscriber_notifications
+    @user = create(:user, shop: @shop, invite_token: 'token')
+    @link = admin_user_url(@user, invite_token: @user.invite_token)
   end
 
   test "test notification to email" do
@@ -31,5 +39,15 @@ class UserMailerTest < ActionMailer::TestCase
 
   test "quantity of subscribers" do
     assert_equal 2, @subscribers.size
+  end
+
+  test "invite new user" do
+    mail = MagazCore::UserMailer.invite_new_user(@user, @link)
+    assert_equal [@user.email], mail.to
+    assert_equal ["magazmailer@gmail.com"], mail.from
+    assert_equal "You are invited", mail.subject
+    assert_match @user.invite_token, @link
+    assert_includes mail.body, @shop.name
+    assert_includes mail.body, @link
   end
 end

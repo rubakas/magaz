@@ -15,10 +15,12 @@ module MagazCore
       mail(to: subscriber_notification.subscription_address, subject: t('.subject'))
     end
 
-    #need this for confirmation
-    def registration_confirmation(user)
-      @user = user
-      mail(to: user.email , subject: t('.subject'))
+    def invite_new_user(user, admin_user_url)
+      @shop = MagazCore::Shop.find_by_id(user.shop_id)
+      #@sender = MagazCore::User.find_by_id(user.id)
+      @link = admin_user_url
+      mail(to: user.email,
+           subject: t('.subject'))
     end
   end
 end
