@@ -3,9 +3,9 @@ require 'test_helper'
 class Admin::UsersControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
-    @user = create(:user, shop: @shop)
+    @user = create(:user, shop: @shop, account_owner: true)
+    @user2 = create(:user, shop: @shop)
     session_for_user @user
-    @user = create(:user, shop: @shop, invite_token: 'valid_token')
   end
 
    test "should get index" do
@@ -49,9 +49,17 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should not destroy user" do
+    assert_no_difference('MagazCore::User.count', -1) do
+      delete :destroy, id: @user.id
+    end
+
+    assert_redirected_to admin_users_path
+  end
+
   test "should destroy user" do
     assert_difference('MagazCore::User.count', -1) do
-      delete :destroy, id: @user.id
+      delete :destroy, id: @user2.id
     end
 
     assert_redirected_to admin_users_path

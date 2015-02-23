@@ -39,7 +39,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = current_shop.users.find(params[:id])
-    unless @user.account_owner == true || current_shop.users.count == 1 || current_shop.users.exists?(id: session[:user_id])
+    unless @user.account_owner == true || current_shop.users.count == 1
       @user.destroy
       flash[:notice] = t('.notice')
     else
