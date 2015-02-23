@@ -11,8 +11,10 @@ module MagazCore
 
         MagazCore::Shop.connection.transaction do
           begin
-            @shop.update!(shop_params)
-            @user.update!(user_params.merge(account_owner: true, shop_id: @shop.id))
+            @shop.attributes = shop_params
+            @shop.save!
+            @user.attributes = user_params.merge(account_owner: true, shop_id: @shop.id)
+            @user.save!
             _install_default_theme(shop: @shop)
             _create_default_blogs_and_posts!(shop: @shop)
             _create_default_collection!(shop: @shop)
