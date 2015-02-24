@@ -17,16 +17,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    if valid_email?(permitted_params[:user][:email])
-      @user = current_shop.users.new(permitted_params[:user])
-      @user.invite_token = Digest::SHA1.hexdigest([@user.id, Time.now, rand].join)
-      if @user.save(validate: false)
-        MagazCore::UserMailer.invite_new_user(@user,
+    @service = MagazCore::ShopServices::CreateInvite.call(email: permitted_params[:user][:email],
+                                                          shop: current_shop)
+    @user = @service.user
+    if @user.persisted?
+      MagazCore::UserMailer.invite_new_user(@user,
                                             admin_user_url(@user, invite_token: @user.invite_token)).deliver_now
-        redirect_to admin_users_path, notice: t('.notice')
-      else
-        redirect_to admin_users_path, notice: t('.fails')
-      end
+      redirect_to admin_users_path, notice: t('.notice')
     else
       redirect_to admin_users_path, notice: t('.invalid_email')
     end
@@ -53,13 +50,6 @@ class Admin::UsersController < ApplicationController
   end
 
   private
-
-  def valid_email?(email)
-    valid_email = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-    email.present? &&
-     (email =~ valid_email) &&
-     current_shop.users.find_by(email: email).nil?
-  end
 
   def authenticate?
     unless current_shop.users.exists?(id: session[:user_id])
