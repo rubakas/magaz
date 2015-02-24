@@ -19,7 +19,7 @@ module Admin
     test 'invite user' do
       click_link 'Invite User'
       fill_in 'Email', with: 'user@email.com'
-      click_button 'Create User'
+      click_button 'Invite User'
       assert page.has_content? 'User was successfully created.'
     end
 

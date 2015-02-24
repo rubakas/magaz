@@ -64,6 +64,9 @@ Rails.application.routes.draw do
         end
       end
       resources :users, except: [:edit] do
+        collection do
+          get 'new_invite'
+        end
       end
     end
   end

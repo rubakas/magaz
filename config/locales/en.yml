@@ -630,6 +630,8 @@ en:
       products:
         create: "Create %{model}"
         update: "Update %{model}"
+      user:
+        create: "Invite %{model}"
 
   success_create: "Product was successfully created."
   success_update: "Product was successfully updated."
