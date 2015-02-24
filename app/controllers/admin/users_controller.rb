@@ -17,12 +17,16 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user = current_shop.users.new(permitted_params[:user])
-    @user.invite_token = Digest::SHA1.hexdigest([@user.id, Time.now, rand].join)
-    if @user.save(validate: false)
-      MagazCore::UserMailer.invite_new_user(@user,
-                                            admin_user_url(@user, invite_token: @user.invite_token)).deliver
-      redirect_to admin_users_path, notice: t('.notice')
+    unless current_shop.users.find_by(email: permitted_params[:user][:email])
+      @user = current_shop.users.new(permitted_params[:user])
+      @user.invite_token = Digest::SHA1.hexdigest([@user.id, Time.now, rand].join)
+      if @user.save(validate: false)
+        MagazCore::UserMailer.invite_new_user(@user,
+                                            admin_user_url(@user, invite_token: @user.invite_token)).deliver_now
+        redirect_to admin_users_path, notice: t('.notice')
+      else
+        redirect_to admin_users_path, notice: t('.fails')
+      end
     else
       redirect_to admin_users_path, notice: t('.fails')
     end
