@@ -557,6 +557,7 @@ en:
       create:
         notice: "User was successfully created."
         fails: "User creating was failed."
+        invalid_email: "Email is invalid."
       update:
         notice: "User was successfully updated."
       destroy:

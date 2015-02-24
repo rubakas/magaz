@@ -16,14 +16,31 @@ module Admin
       assert page.has_content? @user2.email
     end
 
-    test 'invite user' do
+    test 'should invite user' do
       click_link 'Invite User'
       fill_in 'Email', with: 'user@email.com'
       click_button 'Invite User'
       assert page.has_content? 'User was successfully created.'
     end
 
-    test 'edit user' do
+    test 'slould not invite user' do
+      click_link 'Invite User'
+      fill_in 'Email', with: 'boobies'
+      click_button 'Invite User'
+      assert page.has_content? 'Email is invalid.'
+
+      click_link 'Invite User'
+      fill_in 'Email', with: ''
+      click_button 'Invite User'
+      assert page.has_content? 'Email is invalid.'
+
+      click_link 'Invite User'
+      fill_in 'Email', with: @user.email
+      click_button 'Invite User'
+      assert page.has_content? 'Email is invalid.'
+    end
+
+    test 'should edit user' do
       click_link(@user2.email, match: :first)
       fill_in 'First name', with: 'Some Uniq Firt Name'
       fill_in 'Last name', with: 'Some Uniq Last Name'

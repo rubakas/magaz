@@ -17,7 +17,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    unless current_shop.users.find_by(email: permitted_params[:user][:email])
+    if valid_email?(permitted_params[:user][:email])
       @user = current_shop.users.new(permitted_params[:user])
       @user.invite_token = Digest::SHA1.hexdigest([@user.id, Time.now, rand].join)
       if @user.save(validate: false)
@@ -28,7 +28,7 @@ class Admin::UsersController < ApplicationController
         redirect_to admin_users_path, notice: t('.fails')
       end
     else
-      redirect_to admin_users_path, notice: t('.fails')
+      redirect_to admin_users_path, notice: t('.invalid_email')
     end
   end
 
@@ -54,6 +54,13 @@ class Admin::UsersController < ApplicationController
 
   private
 
+  def valid_email?(email)
+    valid_email = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+    email.present? &&
+     (email =~ valid_email) &&
+     current_shop.users.find_by(email: email).nil?
+  end
+
   def authenticate?
     unless current_shop.users.exists?(id: session[:user_id])
       redirect_to admin_root_path
@@ -65,11 +72,6 @@ class Admin::UsersController < ApplicationController
       redirect_to admin_root_path, notice: t('.invalid_token')
     end
    end
-
-  def generate_token
-    @user = current_shop.users.find(params[:id])
-    @user.invite_token = Digest::SHA1.hexdigest([@user.id, Time.now, rand].join)
-  end
 
   protected
 
