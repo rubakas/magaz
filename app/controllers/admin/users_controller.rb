@@ -1,6 +1,5 @@
 class Admin::UsersController < ApplicationController
   layout 'admin_settings'
-  include UrlHelper
 
   before_action :authenticate?, except: [:show]
   before_action :token_valid?, only: [:show]
@@ -19,12 +18,10 @@ class Admin::UsersController < ApplicationController
 
   def create
     @service = MagazCore::ShopServices::CreateInvite.call(email: permitted_params[:user][:email],
-                                                          shop: current_shop)
+                                                          shop: current_shop,
+                                                          host: set_host)
     @user = @service.user
     if @user.persisted?
-      MagazCore::UserMailer.invite_new_user(@user,
-                                            admin_user_url(@user , invite_token: @user.invite_token),
-                                            host: set_host).deliver_now
       redirect_to admin_users_path, notice: t('.notice')
     else
       redirect_to admin_users_path, notice: t('.invalid_email')
@@ -54,7 +51,10 @@ class Admin::UsersController < ApplicationController
   private
 
   def set_host
-    with_subdomain(request.subdomain)
+    subdomain = request.subdomain
+    subdomain = (subdomain || "")
+    subdomain += "." unless subdomain.empty?
+    [subdomain, request.domain, request.port_string].join
   end
 
   def authenticate?
