@@ -1,65 +1,66 @@
-abandoned_checkout_notification:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'abandoned_checkout_notification'
+Templates:
+  abandoned_checkout_notification:
+    name: 'Abandoned Checkout Notification'
+    title: 'Complete your Purchase'
+    body: 'Your shopping cart has been reserved and is waiting for your return!'
+    template_type: 'abandoned_checkout_notification'
 
-contact_buyer:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'contact_buyer'
+  contact_buyer:
+    name: 'Contact Buyer'
+    title: 'Order with some stuff'
+    body: 'Dear moran'
+    template_type: 'contact_buyer'
 
-fulfillment_request:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'fulfillment_request'
+  fulfillment_request:
+    name: 'Fulfillment Request'
+    title: 'Order Fulfillment Request'
+    body: 'Please fulfill order'
+    template_type: 'fulfillment_request'
 
-gift_card_notification:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'gift_card_notification'
+  gift_card_notification:
+    name: 'Your gift card is ready!'
+    title: 'New order'
+    body: 'Here is your gift card'
+    template_type: 'gift_card_notification'
 
-new_order_notification:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'new_order_notification'
+  new_order_notification:
+    name: 'New Order Notification'
+    title: 'Order placed'
+    body: 'You have a new order'
+    template_type: 'new_order_notification'
 
-new_order_notification_mobile:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'new_order_notification_mobile'
+  new_order_notification_mobile:
+    name: 'New Order Notification (mobile)'
+    title: 'Order'
+    body: 'You have a new order'
+    template_type: 'new_order_notification_mobile'
 
-order_cancelled:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'order_cancelled'
+  order_cancelled:
+    name: 'Order Cancelled'
+    title: 'Order cancelled'
+    body: 'Your order was cancelled at your request, because we did not have enough stock to fulfill your order.'
+    template_type: 'order_cancelled'
 
-order_confirmation:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'order_confirmation'
+  order_confirmation:
+    name: 'Order Confirmation'
+    title: 'Order confirmation'
+    body: 'This email is to confirm your recent order.'
+    template_type: 'order_confirmation'
 
-refund_notification:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'refund_notification'
+  refund_notification:
+    name: 'Refund Notification'
+    title: 'Refund Notification'
+    body: 'You have a new order'
+    template_type: 'refund_notification'
 
-shipping_confirmation:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'shipping_confirmation'
+  shipping_confirmation:
+    name: 'Shipping confirmation'
+    title: 'Shipping confirmation'
+    body: 'Shop has refunded your order'
+    template_type: 'shipping_confirmation'
 
-shipping_update:
-  name: 'Order Notification'
-  title: 'New order'
-  body: 'You have a new order'
-  template_type: 'shipping_update'
+  shipping_update:
+    name: 'Shipping update'
+    title: 'Shipping update'
+    body: 'The following shipped items from order have been updated with new shipping information:'
+    template_type: 'shipping_update'
