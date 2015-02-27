@@ -20,8 +20,7 @@ class UserMailerTest < ActionMailer::TestCase
     @subscribers = @shop.subscriber_notifications
     @user = create(:user, shop: @shop, invite_token: 'token')
     @host = 'shop_name.magaz.local:3000'
-    @link = admin_user_url(@user, @host,invite_token: @user.invite_token)
-
+    @link = ["http://", @host, "/admin/users/", @user.id, "?", "invite_token=", @user.invite_token].join
   end
 
   test "test notification to email" do
@@ -44,7 +43,7 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test "invite new user" do
-    mail = MagazCore::UserMailer.invite_new_user(@user, @link, @host)
+    mail = MagazCore::UserMailer.invite_new_user(@user, @host)
     assert_equal [@user.email], mail.to
     assert_equal ["magazmailer@gmail.com"], mail.from
     assert_equal "You are invited", mail.subject

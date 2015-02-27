@@ -5,6 +5,6 @@
   </head>
   <body>
     <h1> <%= t('.text') + @shop.name %></h1>
-    <p> <%= link_to t('.link'), @link %> </p>
+    <p> <%= link_to t('.link'), admin_user_url(@user, invite_token: @user.invite_token) %> </p>
   </body>
 </html>

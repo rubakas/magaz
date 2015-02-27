@@ -4,7 +4,7 @@ module MagazCore
   class ShopServices::CreateInviteTest < ActiveSupport::TestCase
     setup do
       @shop = create(:shop, name: 'shop_name')
-      @host = "shop_name.magaz.local:3000"
+      @host = shop_name.magaz.local:3000
       @email = 'some@email.com'
     end
 
