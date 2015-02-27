@@ -10,7 +10,7 @@ module MagazCore
               theme: @default_theme,
               theme_attributes: { name: 'Default' })
       @shop_params = { name: 'example42' }
-       @user_params = { first_name: 'First' , last_name: 'Last', email: 'email@mail.com', password: 'password' }
+      @user_params = { first_name: 'First' , last_name: 'Last', email: 'email@mail.com', password: 'password' }
     end
 
     test 'create shop with valid params' do
@@ -54,6 +54,7 @@ module MagazCore
       service = MagazCore::ShopServices::Create.call(shop_params: @shop_params, user_params: @user_params)
       assert service.shop.persisted?
 
+      assert_equal service.shop.email_templates.length, 11
       assert_equal service.shop.collections.length, 1
       assert_equal service.shop.blogs.length, 1
       assert_equal service.shop.articles.length, 1

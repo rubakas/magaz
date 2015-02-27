@@ -107,7 +107,8 @@ module MagazCore
           shop.email_templates.create( name: value["name"],
                                        title: value["title"],
                                        body: value["body"],
-                                       template_type: value["template_type"])
+                                       template_type: value["template_type"],
+                                       description: value["description"])
         end
       end
     end
