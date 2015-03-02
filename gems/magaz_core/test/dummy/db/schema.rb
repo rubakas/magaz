@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209144902) do
+ActiveRecord::Schema.define(version: 20150302160119) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20150209144902) do
     t.datetime "updated_at"
     t.integer  "shop_id"
     t.string   "template_type"
+    t.string   "description"
   end
 
   create_table "files", force: :cascade do |t|
@@ -266,6 +267,11 @@ ActiveRecord::Schema.define(version: 20150209144902) do
     t.string   "authorization_settings"
   end
 
+  create_table "taxes", force: :cascade do |t|
+    t.float   "base_taxe"
+    t.integer "shipping_country_id"
+  end
+
   create_table "themes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -287,11 +293,10 @@ ActiveRecord::Schema.define(version: 20150209144902) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_type"
+    t.string   "invite_token"
     t.string   "password_salt"
     t.boolean  "account_owner",   default: false
     t.string   "permissions",     default: "--- []\n"
-    t.boolean  "email_confirmed", default: false
-    t.string   "confirm_token"
   end
 
 end
