@@ -13,7 +13,7 @@ class Admin::SessionsController < Admin::ApplicationController
   def create
     @user = current_shop.users.find_by_email(params[:session][:email].downcase)
 
-    if @user &&
+    if @user && @user.shop_id == current_shop.id &&
       (@user.email == params[:session][:email].downcase) &&
        @user.authentic_password?(params[:session][:password])
       # valid login

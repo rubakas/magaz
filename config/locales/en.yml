@@ -590,8 +590,6 @@ en:
         subject: "Test Notification"
         test_notification_text: "Some text"
         test_notification_to: "Test notification to :"
-      registration_confirmation:
-        subject: "Registration Confirmation"
 
   theme_store:
     themes:

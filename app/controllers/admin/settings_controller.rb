@@ -5,12 +5,11 @@ class Admin::SettingsController < ApplicationController
   #Settings
 
   def edit
-    @shop = current_shop
+    current_shop
   end
 
   def update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params[:shop])
+    if current_shop.update_attributes(permitted_params[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       render 'edit'
     else
@@ -21,12 +20,11 @@ class Admin::SettingsController < ApplicationController
   #Payments
 
   def payments_settings
-    @shop = current_shop
+    current_shop
   end
 
   def payments_settings_update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params_for_payments[:shop])
+    if current_shop.update_attributes(permitted_params_for_payments[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to payments_settings_admin_settings_path
     else
@@ -37,12 +35,11 @@ class Admin::SettingsController < ApplicationController
   #Checkouts
 
   def checkouts_settings
-    @shop = current_shop
+    current_shop
   end
 
   def checkouts_settings_update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params_for_checkouts[:shop])
+    if current_shop.update_attributes(permitted_params_for_checkouts[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to checkouts_settings_admin_settings_path
     else
@@ -53,12 +50,11 @@ class Admin::SettingsController < ApplicationController
   #Notifications
 
   def notifications_settings
-    @shop = current_shop
+    current_shop
   end
 
   def notifications_settings_update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params_for_notifications[:shop])
+    if current_shop.update_attributes(permitted_params_for_notifications[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to notifications_settings_admin_settings_path
     else
