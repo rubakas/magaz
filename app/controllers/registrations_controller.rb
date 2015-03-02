@@ -9,8 +9,8 @@ class RegistrationsController < ApplicationController
     @service = MagazCore::ShopServices::Create.call(shop_params: permitted_params_for_shop[:shop],
                                                     user_params: permitted_params_for_user[:user])
     @shop = @service.shop
+    @user = @service.user
     if @shop.persisted?
-      @user = @shop.users.find_by(account_owner: 'true')
       session[:user_id] = @user.id
       redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else

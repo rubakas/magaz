@@ -354,7 +354,7 @@ en:
         email: "Email address"
         password: "Password"
       create:
-        activate_your_email: "Please activate your account by following the instructions in the account confirmation email you received to proceed"
+        notice: "Wrong password or email"
 
     settings:
       edit:

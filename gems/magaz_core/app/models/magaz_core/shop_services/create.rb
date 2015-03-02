@@ -6,12 +6,13 @@ module MagazCore
       attr_accessor :user
 
       def call(shop_params: {}, user_params: {})
-        @shop          = MagazCore::Shop.new
+        @shop = MagazCore::Shop.new
+        @user = MagazCore::User.new
 
         MagazCore::Shop.connection.transaction do
           begin
-            _create_user!(user_params: user_params, shop: @shop)
-            _save_shop_record!(shop: @shop, params: shop_params)
+            @shop.update!(shop_params)
+            @user.update!(user_params.merge(account_owner: true, shop_id: @shop.id))
             _install_default_theme(shop: @shop)
             _create_default_blogs_and_posts!(shop: @shop)
             _create_default_collection!(shop: @shop)
@@ -25,16 +26,6 @@ module MagazCore
       end
 
       private
-
-      def _create_user!(user_params:, shop:)
-        MagazCore::UserServices::CreateUser.call(user_params: user_params,
-                                                 shop: shop)
-      end
-
-      def _save_shop_record!(shop:, params:)
-        shop.attributes = params
-        shop.save!
-      end
 
       def _install_default_theme(shop:)
         # Default theme, fail unless found
