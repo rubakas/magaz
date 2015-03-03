@@ -9,8 +9,7 @@ class Admin::SettingsController < ApplicationController
   end
 
   def update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params[:shop])
+    if current_shop.update_attributes(permitted_params[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       render 'edit'
     else
@@ -25,8 +24,7 @@ class Admin::SettingsController < ApplicationController
   end
 
   def payments_settings_update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params_for_payments[:shop])
+    if current_shop.update_attributes(permitted_params_for_payments[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to payments_settings_admin_settings_path
     else
@@ -41,8 +39,7 @@ class Admin::SettingsController < ApplicationController
   end
 
   def checkouts_settings_update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params_for_checkouts[:shop])
+    if current_shop.update_attributes(permitted_params_for_checkouts[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to checkouts_settings_admin_settings_path
     else
@@ -57,12 +54,26 @@ class Admin::SettingsController < ApplicationController
   end
 
   def notifications_settings_update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params_for_notifications[:shop])
+    if current_shop.update_attributes(permitted_params_for_notifications[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to notifications_settings_admin_settings_path
     else
       render "notifications_settings"
+    end
+  end
+
+  #Taxes
+
+  def taxes_settings
+    @shop = current_shop
+  end
+
+  def taxes_settings_update
+    if current_shop.update_attributes(permitted_params_for_taxes[:shop])
+      flash[:notice] = 'Shop was successfully updated.'
+      redirect_to taxes_settings_admin_settings_path
+    else
+      render "taxes_settings"
     end
   end
 
@@ -86,14 +97,17 @@ class Admin::SettingsController < ApplicationController
   end
 
   def permitted_params_for_payments
-    {
-      shop:
+    { shop:
       params.fetch(:shop, {}).permit(:authorization_settings)}
   end
 
   def permitted_params_for_notifications
-    {
-      shop:
+    { shop:
       params.fetch(:shop, {}).permit()}
+  end
+
+    def permitted_params_for_taxes
+    { shop:
+        params.fetch(:article, {}).permit(:all_taxes_are_included, :charge_taxes_on_shipping_rates) }
   end
 end

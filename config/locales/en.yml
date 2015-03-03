@@ -435,6 +435,27 @@ en:
         callback_URL: "Callback URL"
         format: "Format"
         send_test_notification: "send test notification"
+      taxes_settings:
+        logo: "Taxes"
+        tax_settings: "Tax settings"
+        tax_settings_info: "Change the way Shopify calculates taxes on your store."
+        all_taxes_are_included: "All taxes are included in my prices"
+        if_checkbox_above_is_selected: "If the checkbox above is selected all taxes will be calculated using this formula:"
+        tax_calculates: "Tax = (Tax Rate * Price) / (1 + Tax Rate). Example £1.00 at 20% VAT will be £0.17 (rounded)."
+        charge_taxes_on_shipping_rates: "Charge taxes on shipping rates"
+        charge_vat_taxes: "Charge EU Digital Goods VAT Taxes"
+        link_to_collection: "Digital Goods VAT Tax "
+        vat_taxes_information_middle: "collection will have VAT applied on Checkout."
+        vat_taxes_information_first: "Products in the "
+        link_to_select_collection: "Choose an alternate collection"
+        vat_taxes_information_last: "to specify which products are digital goods."
+        tax_rates: "Tax rates"
+        tax_rates_information: "A list of all the tax rates for the countries you ship to. To add a country to this list, go to Shipping settings and click on Add a country."
+        destination: "Destination"
+        country_tax_rate: "Country Tax Rate"
+        overrides: "Overrides"
+        sub-regions: "Sub-regions"
+        save: "Save"
     email_templates:
       show:
         name: "Name "
@@ -491,6 +512,7 @@ en:
         notifications: "Notifications"
         checkouts: "Checkouts"
         payments: "Payments"
+        taxes: "Taxes"
 
     shipping_countries:
       create:

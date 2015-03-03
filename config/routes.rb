@@ -35,6 +35,7 @@ Rails.application.routes.draw do
         collection { get  :export }
       end
       resources :files, except: [:edit]
+      resources :taxes, only: [:index, :update]
       resources :link_lists, except: [:edit] do
         resources :links
       end
@@ -57,7 +58,10 @@ Rails.application.routes.draw do
         end
         put :notifications_settings_update, :collection do
         end
+        put :taxes_settings_update, :collection do
+        end
         member do
+          get 'taxes_settings'
           get 'payments_settings'
           get 'checkouts_settings'
           get 'notifications_settings'

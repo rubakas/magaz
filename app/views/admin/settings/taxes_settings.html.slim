@@ -1,0 +1,73 @@
+p id="notice"
+  = notice
+
+= form_for [:admin, @shop], url: [:taxes_settings_update,:admin,:settings],
+  method: :put do |f|
+
+  h4
+    i class="icon-cloud"
+    = t('.logo')
+
+  div class="container-fluid"
+
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"
+          = t('.tax_settings')
+        div class='inf'
+          = t('.tax_settings_info')
+
+      div class="col-xs-9"
+        table class="table"
+          tbody
+            tr
+              td
+                = f.check_box :all_taxes_are_included
+                = f.label t('.all_taxes_are_included')
+                div class="inf"
+                  = t('.if_checkbox_above_is_selected')
+                  br
+                  = t('.tax_calculates')
+            tr
+              td
+                = f.check_box :charge_taxes_on_shipping_rates
+                = f.label t('.charge_taxes_on_shipping_rates')
+            tr
+              td
+                = check_box_tag :charge_vat_taxes
+                = f.label t('.charge_vat_taxes')
+                div class="inf"
+                  = t('.vat_taxes_information_first')
+                  = link_to t('.link_to_collection'),admin_collection_path(@shop.collections.last)
+                  = t('.vat_taxes_information_middle')
+                  br
+                  = link_to t('.link_to_select_collection'), '#'
+                  = t('.vat_taxes_information_last')
+
+  div class="form-group"
+    = f.submit( t('.save'), class: 'button')
+
+  div class="row"
+    div class="col-xs-3"
+      div class="label_of_column"
+        = t('.tax_rates')
+      div class="inf"
+        = t('.tax_rates_information')
+
+    div class="col-xs-9"
+      table class="table table-bordered"
+        thead
+          tr
+            th = t('.destination')
+            th = t('.country_tax_rate')
+            th = t('.overrides')
+            th = t('sub_regions')
+
+        - @shop.shipping_countries.each do |country|
+          - @country = MagazCore::Country.find_by_id(country.country_id)
+          tbody
+            tr
+              td = link_to @country.name, admin_shipping_country_path(@country.id)
+              td = country.tax + '%'
+              td = '____'
+              td = ''
