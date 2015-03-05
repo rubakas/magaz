@@ -9,7 +9,8 @@ class Admin::SettingsController < ApplicationController
   end
 
   def update
-    if current_shop.update_attributes(permitted_params[:shop])
+    @shop = current_shop
+    if @shop.update_attributes(permitted_params[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       render 'edit'
     else
@@ -93,7 +94,9 @@ class Admin::SettingsController < ApplicationController
                                       :abandoned_checkout_time_delay, :email_marketing_choice,
                                       :after_order_paid, :after_order_fulfilled_and_paid,
                                       :checkout_language, :checkout_refound_policy,
-                                      :checkout_privacy_policy, :checkout_term_of_service) }
+                                      :checkout_privacy_policy, :checkout_term_of_service,
+                                      :enable_multipass_login, :notify_customers_of_their_shipment,
+                                      :automatically_fulfill_all_orders) }
   end
 
   def permitted_params_for_payments
@@ -108,6 +111,6 @@ class Admin::SettingsController < ApplicationController
 
     def permitted_params_for_taxes
     { shop:
-        params.fetch(:article, {}).permit(:all_taxes_are_included, :charge_taxes_on_shipping_rates) }
+        params.fetch(:shop, {}).permit(:all_taxes_are_included, :charge_taxes_on_shipping_rates) }
   end
 end

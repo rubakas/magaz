@@ -1,8 +1,7 @@
 p id="notice"
   = notice
 
-= form_for [:admin, @shop], url: [:taxes_settings_update,:admin,:settings],
-  method: :put do |f|
+= form_for [:admin, @shop], url: [:taxes_settings_update,:admin,:settings], method: :put do |f|
 
   h4
     i class="icon-cloud"
@@ -38,7 +37,7 @@ p id="notice"
                 = f.label t('.charge_vat_taxes')
                 div class="inf"
                   = t('.vat_taxes_information_first')
-                  = link_to t('.link_to_collection'),admin_collection_path(@shop.collections.last)
+                  = link_to t('.link_to_collection'), '#'
                   = t('.vat_taxes_information_middle')
                   br
                   = link_to t('.link_to_select_collection'), '#'
@@ -64,7 +63,7 @@ p id="notice"
             th = t('sub_regions')
 
         - @shop.shipping_countries.each do |country|
-          - @country = MagazCore::Country.find_by_id(country.country_id)
+          - @country = MagazCore::ShippingCountry.find_by_id(country.id)
           tbody
             tr
               td = link_to @country.name, admin_shipping_country_path(@country.id)
