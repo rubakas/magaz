@@ -445,6 +445,7 @@ en:
         tax_calculates: "Tax = (Tax Rate * Price) / (1 + Tax Rate). Example £1.00 at 20% VAT will be £0.17 (rounded)."
         charge_taxes_on_shipping_rates: "Charge taxes on shipping rates"
         charge_vat_taxes: "Charge EU Digital Goods VAT Taxes"
+        enable_vat_taxes: " EU Digital Goods VAT Taxes"
         link_to_collection: "Digital Goods VAT Tax "
         vat_taxes_information_middle: "collection will have VAT applied on Checkout."
         vat_taxes_information_first: "Products in the "

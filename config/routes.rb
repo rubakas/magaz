@@ -35,7 +35,10 @@ Rails.application.routes.draw do
         collection { get  :export }
       end
       resources :files, except: [:edit]
-      resources :taxes, only: [:index, :update]
+      resources :tax_overrides do
+        put :select_collection, :collection do
+        end
+      end
       resources :link_lists, except: [:edit] do
         resources :links
       end
@@ -59,6 +62,8 @@ Rails.application.routes.draw do
         put :notifications_settings_update, :collection do
         end
         put :taxes_settings_update, :collection do
+        end
+        get :enable_eu_digital_goods_vat_taxes, :collection do
         end
         member do
           get 'taxes_settings'

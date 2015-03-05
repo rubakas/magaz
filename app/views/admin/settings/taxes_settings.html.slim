@@ -33,15 +33,21 @@ p id="notice"
                 = f.label t('.charge_taxes_on_shipping_rates')
             tr
               td
-                = check_box_tag :charge_vat_taxes
-                = f.label t('.charge_vat_taxes')
-                div class="inf"
-                  = t('.vat_taxes_information_first')
-                  = link_to t('.link_to_collection'), '#'
-                  = t('.vat_taxes_information_middle')
-                  br
-                  = link_to t('.link_to_select_collection'), '#'
-                  = t('.vat_taxes_information_last')
+                - if @shop.eu_digital_goods_collection_id == nil
+                  = link_to 'Enable ', {controller: 'admin/settings',  action: 'enable_eu_digital_goods_vat_taxes'}
+                  = f.label t('.enable_vat_taxes')
+                - else
+                  = check_box_tag :charge_vat_taxes, :charge_vat_taxes, true
+                  = f.label t('.charge_vat_taxes')
+                  div class="inf"
+                    = t('.vat_taxes_information_first')
+                    = link_to @default_collection.name, admin_collection_path(@default_collection)
+                    = " "
+                    = t('.vat_taxes_information_middle')
+                    br
+                    = link_to t('.link_to_select_collection'), admin_tax_overrides_path
+                    = " "
+                    = t('.vat_taxes_information_last')
 
   div class="form-group"
     = f.submit( t('.save'), class: 'button')

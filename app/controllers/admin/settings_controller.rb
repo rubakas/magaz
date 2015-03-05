@@ -67,14 +67,31 @@ class Admin::SettingsController < ApplicationController
 
   def taxes_settings
     @shop = current_shop
+    unless @shop.collections.find_by(name: "Digital Goods VAT Tax") == nil
+      @default_collection = @shop.collections.find_by(name: "Digital Goods VAT Tax")
+    end
   end
 
   def taxes_settings_update
     if current_shop.update_attributes(permitted_params_for_taxes[:shop])
       flash[:notice] = 'Shop was successfully updated.'
+      unless params[:charge_vat_taxes]
+        current_shop.update_attributes(eu_digital_goods_collection_id:  nil)
+      end
       redirect_to taxes_settings_admin_settings_path
     else
       render "taxes_settings"
+    end
+  end
+
+  def enable_eu_digital_goods_vat_taxes
+    @default_collection = current_shop.collections.new(name: "Digital Goods VAT Tax")
+    if @default_collection.save
+      current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
+      redirect_to taxes_settings_admin_settings_path
+    else
+      current_shop.update_attributes(eu_digital_goods_collection_id:  false)
+      redirect_to taxes_settings_admin_settings_path
     end
   end
 
