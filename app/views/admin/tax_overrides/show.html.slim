@@ -1,0 +1,51 @@
+p id="notice"
+  = notice
+
+= form_for([:admin, @shipping_country]) do |f|
+
+  h4
+    i class="icon-cloud"
+    = t('.title')
+    = "/"
+    = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+
+
+  - if @shipping_country.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@shipping_country.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @shipping_country.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="container-fluid"
+
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"
+          = t('.base_taxes')
+        div class='inf'
+          = t('.base_taxes_inf')
+
+      div class="col-xs-9"
+        div class="form-group"
+          = f.label t('.country_tax')
+          br
+          div class="input-group"
+            = f.text_field :tax, class: 'form-input'
+            div class="input-group-addon"
+              = "%"
+    hr
+
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"
+          = t('.tax_overrides')
+        div class='inf'
+          = t('.tax_overrides_inf')
+          = link_to t('.add'), new_admin_tax_override_path(country_id: @shipping_country.id), class: 'btn btn-default'
+
+      div class="col-xs-9"
+        div class="form-group"
+    hr

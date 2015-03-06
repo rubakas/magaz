@@ -1,0 +1,63 @@
+= form_for([:admin, @tax_override]) do |f|
+
+  h4
+    i class="icon-cloud"
+    = t('.logo')
+    = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+
+  - if @tax_override.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@tax_override.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @tax_override.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="container-fluid"
+  hr
+    div class="row"
+      div class="col-xs-4"
+        div class="inf"
+          = t('.select_method')
+
+      div class="col-xs-4"
+        div class="field"
+          = radio_button_tag("method", :product, true)
+          = t('.product')
+
+      div class="col-xs-4"
+        div class="field"
+          = radio_button_tag("method", :shipping)
+          = t('.shipping')
+    br
+    div class="row"
+      div class="hidden_fields_for_product"
+        div class="inf"
+          = t('.select_collection')
+          = link_to t('.create'), new_admin_collection_path
+          = '.'
+
+        div class="field"
+          = select_tag(:select_collection,
+                       options_from_collection_for_select(@collections, "id", "name"),
+                       class: 'form-control')
+        table class="table table-hover"
+          thead
+            tr
+              th = "Location"
+              th = "Tax Rate"
+          tbody
+            tr
+              td = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+              td
+                div class="field"
+                  div class="input-group"
+                    = f.text_field :rate, class: 'form-input'
+                    div class="input-group-addon"
+                      = "%"
+        hr
+    div class="form-group"
+      = link_to t('.cancel'), '#', class: 'button-secondary'
+      = f.submit( t('.add'), class: 'button')
+

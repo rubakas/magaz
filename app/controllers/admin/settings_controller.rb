@@ -67,8 +67,10 @@ class Admin::SettingsController < ApplicationController
 
   def taxes_settings
     @shop = current_shop
-    unless @shop.collections.find_by(name: "Digital Goods VAT Tax") == nil
+    if @shop.eu_digital_goods_collection_id == nil
       @default_collection = @shop.collections.find_by(name: "Digital Goods VAT Tax")
+    else
+      @default_collection = @shop.collections.find_by_id(@shop.eu_digital_goods_collection_id)
     end
   end
 
@@ -85,14 +87,32 @@ class Admin::SettingsController < ApplicationController
   end
 
   def enable_eu_digital_goods_vat_taxes
-    @default_collection = current_shop.collections.new(name: "Digital Goods VAT Tax")
-    if @default_collection.save
+    if current_shop.collections.find_by(name: "Digital Goods VAT Tax") == nil
+      @default_collection = current_shop.collections.new(name: "Digital Goods VAT Tax")
+      if @default_collection.save
+        current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
+        redirect_to taxes_settings_admin_settings_path
+      else
+        current_shop.update_attributes(eu_digital_goods_collection_id:  false)
+        redirect_to taxes_settings_admin_settings_path
+      end
+    else
+      @default_collection = current_shop.collections.find_by(name: "Digital Goods VAT Tax")
       current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
       redirect_to taxes_settings_admin_settings_path
-    else
-      current_shop.update_attributes(eu_digital_goods_collection_id:  false)
-      redirect_to taxes_settings_admin_settings_path
     end
+  end
+
+  def set_default_collection
+    @shop = current_shop
+    @default_collection = current_shop.collections.find_by_id(current_shop.eu_digital_goods_collection_id)
+    @collections = current_shop.collections.page(params[:page])
+  end
+
+  def save_default_collection
+    @default_collection = current_shop.collections.find_by_id(params[:default_collection])
+    current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
+    redirect_to taxes_settings_admin_settings_path
   end
 
   protected

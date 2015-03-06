@@ -438,6 +438,7 @@ en:
         send_test_notification: "send test notification"
       taxes_settings:
         logo: "Taxes"
+        enable: "Enable "
         tax_settings: "Tax settings"
         tax_settings_info: "Change the way Shopify calculates taxes on your store."
         all_taxes_are_included: "All taxes are included in my prices"
@@ -457,6 +458,11 @@ en:
         country_tax_rate: "Country Tax Rate"
         overrides: "Overrides"
         sub-regions: "Sub-regions"
+        save: "Save"
+      set_default_collection:
+        logo: "Update EU Digital Goods VAT Tax Rates Collection"
+        select_collection: "Select a collection to specify which products are digital goods. You can also "
+        create_new: "create a new collection"
         save: "Save"
     email_templates:
       show:
@@ -577,6 +583,31 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+    tax_overrides:
+      show:
+        title: "Taxes"
+        base_taxes: "Base Taxes"
+        base_taxes_inf: "All applicable taxes for Ukraine. These taxes will be used unless overrides are specified below."
+        country_tax: "Country Tax"
+        tax_overrides: "Tax Overrides"
+        tax_overrides_inf: "Customize region-based tax rates for specific product collections, or when shipping to designated areas."
+        add: "Add a tax override"
+        instead: "instead of"
+        federal: "federal tax"
+        save: "Save"
+      new:
+        logo: "Add Tax Override for "
+        select_method: "Add tax override for:"
+        prohibit: "prohibited this tax from being saved:"
+        select_collection: "Select a collection to apply the tax override to. You can also "
+        create: "create a new collection"
+        location: "Location"
+        tax_rate: "Tax Rate"
+        products: "Products"
+        shipping: "Shipping"
+        add: "Add Override"
+        cancel: "Cancel"
+        select_collection: "Select a collection"
     users:
       create:
         notice: "User was successfully created."
