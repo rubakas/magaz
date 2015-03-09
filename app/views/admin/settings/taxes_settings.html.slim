@@ -76,5 +76,5 @@ p id="notice"
             tr
               td = link_to @country_name, admin_tax_override_path(@country.id)
               td = country.tax + '%'
-              td = '____'
+              td = @country.tax_overrides.count
               td = ''

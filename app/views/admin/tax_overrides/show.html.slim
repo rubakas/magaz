@@ -44,8 +44,35 @@ p id="notice"
           = t('.tax_overrides')
         div class='inf'
           = t('.tax_overrides_inf')
-          = link_to t('.add'), new_admin_tax_override_path(country_id: @shipping_country.id), class: 'btn btn-default'
+          = link_to t('.add'), new_admin_tax_override_path(shipping_country_id: @shipping_country), class: 'btn btn-default'
 
       div class="col-xs-9"
-        div class="form-group"
+        div class="field"
+          table class="table table-hover"
+            - @tax_overrides.each do |tax|
+              thead
+                tr
+                  th
+                    - if tax.is_shipping
+                      = t('.shipping')
+                    - else
+                      = MagazCore::Collection.find_by_id(tax.collection_id).name
+                    = link_to 'edit', '#'
+              tbody
+                tr
+                  td = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+                  td
+                    div class="loced_field"
+                      div class="input-group"
+                        = text_field_tag :rate, tax.rate, class: 'form-input'
+                        div class="input-group-addon"
+                          = "%"
+                    = t('.instead')
+                    = @shipping_country.tax
+                    = "%"
+                    = t(".federal")
+                  td
+                    = link_to t('.delete'), [:admin, tax] ,method: :delete, data: { confirm: t('.confirmation') }
     hr
+    div class="form-group"
+      = f.button "Save", class: 'button'

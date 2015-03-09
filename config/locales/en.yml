@@ -595,6 +595,11 @@ en:
         instead: "instead of"
         federal: "federal tax"
         save: "Save"
+        shipping: "Shipping"
+        delete: "Delete"
+        instead: "instead of "
+        federal: " federal tax"
+        confirmation: "Are you sure?"
       new:
         logo: "Add Tax Override for "
         select_method: "Add tax override for:"
