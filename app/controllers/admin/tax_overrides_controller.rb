@@ -10,16 +10,29 @@ class Admin::TaxOverridesController < ApplicationController
   def create
     @shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
     @tax_override = @shipping_country.tax_overrides.new(permitted_params[:tax_override])
-    unless params[:tax_override][:is_shipping] == false && params[:collection_id] == nil
-      if @tax_override.save
-        flash[:notice] = "Nice"
-        redirect_to admin_tax_override_path(@shipping_country)
-      else
-        flash[:notice] = "Not Nice"
-        redirect_to admin_tax_override_path(@shipping_country)
-      end
+    if @tax_override.save
+      flash[:notice] = t('.success')
+      redirect_to admin_tax_override_path(@shipping_country)
     else
-      flash[:notice] = "Wrong and Not Nice"
+      flash[:notice] = t('.fail')
+      redirect_to admin_tax_override_path(@shipping_country)
+    end
+  end
+
+  def edit
+    @tax_override = MagazCore::TaxOverride.find(params[:id])
+    @shipping_country = current_shop.shipping_countries.find_by_id(@tax_override.shipping_country_id)
+    @collections = current_shop.collections.all
+  end
+
+  def update
+    @tax_override = MagazCore::TaxOverride.find(params[:id])
+    @shipping_country = current_shop.shipping_countries.find_by_id(@tax_override.shipping_country_id)
+    if @tax_override.update_attributes(permitted_params[:tax_override])
+      flash[:notice] = t('.success')
+      redirect_to admin_tax_override_path(@shipping_country)
+    else
+      flash[:notice] = t('.fail')
       redirect_to admin_tax_override_path(@shipping_country)
     end
   end
@@ -33,6 +46,7 @@ class Admin::TaxOverridesController < ApplicationController
     @tax_override = MagazCore::TaxOverride.find(params[:id])
     @shipping_country = current_shop.shipping_countries.find_by_id(@tax_override.shipping_country_id)
     @tax_override.destroy
+    flash[:notice] = t('.success')
     redirect_to admin_tax_override_path(@shipping_country)
   end
 

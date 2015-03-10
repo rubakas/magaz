@@ -584,6 +584,15 @@ en:
         confirmation: "Are you sure?"
 
     tax_overrides:
+      create:
+        fail: "Creating of override was failed"
+        success: "Override was successfully created."
+      destroy:
+        success: "Override was successfully deleted."
+        fail: "Deleting of override was failed."
+      update:
+        fail: "Updating of override was failed."
+        success: "Override was successfully updated."
       show:
         title: "Taxes"
         base_taxes: "Base Taxes"
@@ -600,8 +609,12 @@ en:
         instead: "instead of "
         federal: " federal tax"
         confirmation: "Are you sure?"
+        edit: "Edit"
       new:
         logo: "Add Tax Override for "
+      edit:
+        logo: "Edit Tax Override"
+      form:
         select_method: "Add tax override for:"
         prohibit: "prohibited this tax from being saved:"
         select_collection: "Select a collection to apply the tax override to. You can also "
@@ -610,9 +623,10 @@ en:
         tax_rate: "Tax Rate"
         products: "Products"
         shipping: "Shipping"
-        add: "Add Override"
+        save: "Save"
         cancel: "Cancel"
         select_collection: "Select a collection"
+
     users:
       create:
         notice: "User was successfully created."

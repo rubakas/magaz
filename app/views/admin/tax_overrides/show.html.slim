@@ -9,16 +9,6 @@ p id="notice"
     = "/"
     = MagazCore::Country.find_by_id(@shipping_country.country_id).name
 
-
-  - if @shipping_country.errors.any?
-    div id="error_explanation"
-      h2 = pluralize(@shipping_country.errors.count, t('.error'))
-      br = t('.prohibit')
-
-      ul
-      - @shipping_country.errors.full_messages.each do |msg|
-        li = msg
-
   div class="container-fluid"
 
     div class="row"
@@ -48,7 +38,7 @@ p id="notice"
 
       div class="col-xs-9"
         div class="field"
-          table class="table table-hover"
+          table class="table table-bordered"
             - @tax_overrides.each do |tax|
               thead
                 tr
@@ -57,22 +47,18 @@ p id="notice"
                       = t('.shipping')
                     - else
                       = MagazCore::Collection.find_by_id(tax.collection_id).name
-                    = link_to 'edit', '#'
+                    th
+                    th = link_to t('.edit'), edit_admin_tax_override_path(tax)
               tbody
                 tr
                   td = MagazCore::Country.find_by_id(@shipping_country.country_id).name
                   td
-                    div class="loced_field"
-                      div class="input-group"
-                        = text_field_tag :rate, tax.rate, class: 'form-input'
-                        div class="input-group-addon"
-                          = "%"
+                    = tax.rate
+                    = "%"
+                    = " "
                     = t('.instead')
                     = @shipping_country.tax
                     = "%"
                     = t(".federal")
                   td
                     = link_to t('.delete'), [:admin, tax] ,method: :delete, data: { confirm: t('.confirmation') }
-    hr
-    div class="form-group"
-      = f.button "Save", class: 'button'

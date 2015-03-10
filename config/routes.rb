@@ -35,7 +35,7 @@ Rails.application.routes.draw do
         collection { get  :export }
       end
       resources :files, except: [:edit]
-      resources :tax_overrides
+      resources :tax_overrides, except: [:index]
       resources :link_lists, except: [:edit] do
         resources :links
       end
