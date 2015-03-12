@@ -10,9 +10,14 @@ class Admin::TaxOverridesController < ApplicationController
   def create
     @shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
     @tax_override = @shipping_country.tax_overrides.new(permitted_params[:tax_override])
-    if @tax_override.save
-      flash[:notice] = t('.success')
-      redirect_to admin_tax_override_path(@shipping_country)
+    if unique?
+      if @tax_override.save
+        flash[:notice] = t('.success')
+        redirect_to admin_tax_override_path(@shipping_country)
+      else
+        flash[:notice] = t('.fail')
+        redirect_to admin_tax_override_path(@shipping_country)
+      end
     else
       flash[:notice] = t('.fail')
       redirect_to admin_tax_override_path(@shipping_country)
@@ -49,6 +54,22 @@ class Admin::TaxOverridesController < ApplicationController
     flash[:notice] = t('.success')
     redirect_to admin_tax_override_path(@shipping_country)
   end
+
+  private
+
+    def unique?
+      shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
+      if permitted_params[:tax_override][:is_shipping] == true
+        override = shipping_country.tax_overrides.find_by(collection_id: permitted_params[:tax_override][:collection_id])
+      else
+        override = shipping_country.tax_overrides.find_by(is_shipping: true)
+      end
+      unless override == nil
+        return false
+      else
+        return true
+      end
+    end
 
   protected
 

@@ -91,6 +91,11 @@ FactoryGirl.define do
     sequence(:subscription_address) { |n| "some1#{n}@here.run" }
   end
 
+  factory :tax_override, class: MagazCore::TaxOverride do
+    sequence(:rate) { |n| "#{n}"}
+    sequence(:is_shipping) { |n| true }
+  end
+
   factory :theme, class: MagazCore::Theme do
     sequence(:name)      { |n| "Theme#{n}" }
   end
