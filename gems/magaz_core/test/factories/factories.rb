@@ -76,6 +76,12 @@ FactoryGirl.define do
     sequence(:tax)  {|n| "1"}
   end
 
+  factory :another_shipping_country, class: MagazCore::ShippingCountry do
+    sequence(:name) {|n| "FI"}
+    sequence(:tax)  {|n| "1"}
+    sequence(:country_id) { |n| n }
+  end
+
   factory :shipping_rate, class: MagazCore::ShippingRate do
     sequence(:name)   { |n| "Shipping Rate #{n}" }
     sequence(:shipping_price) {123}
@@ -93,7 +99,7 @@ FactoryGirl.define do
 
   factory :tax_override, class: MagazCore::TaxOverride do
     sequence(:rate) { |n| "#{n}"}
-    sequence(:is_shipping) { |n| true }
+    sequence(:is_shipping) { |n| false }
   end
 
   factory :theme, class: MagazCore::Theme do

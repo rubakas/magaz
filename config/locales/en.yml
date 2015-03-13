@@ -585,7 +585,7 @@ en:
 
     tax_overrides:
       create:
-        fail: "Creating of override was failed"
+        fail: "Creating of override was failed."
         success: "Override was successfully created."
       destroy:
         success: "Override was successfully deleted."
