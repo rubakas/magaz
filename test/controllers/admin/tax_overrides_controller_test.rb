@@ -8,8 +8,8 @@ class Admin::TaxOverridesControllerTest < ActionController::TestCase
     @country = create(:country)
     @collection = create(:collection, shop: @shop, handle: "handle1")
     @shop.update_attributes(eu_digital_goods_collection_id: @collection.id)
-    @shipping_country = create(:another_shipping_country, shop: @shop)
-    @tax_override = create(:tax_override, shipping_country_id: @shipping_country.id, collection_id: @collection.id)
+    @shipping_country = create(:another_shipping_country, shop: @shop, country_id: @country.id)
+    @tax_override = create(:tax_override, shipping_country: @shipping_country, collection_id: @collection.id)
   end
 
   test "should get new" do

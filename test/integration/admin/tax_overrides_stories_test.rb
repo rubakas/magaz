@@ -6,7 +6,7 @@ class Admin::TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
     @country = create(:country)
     @collection = create(:collection, shop: @shop, handle: "handle1")
     @shop.update_attributes(eu_digital_goods_collection_id: @collection.id)
-    @shipping_country = create(:another_shipping_country, shop: @shop)
+    @shipping_country = create(:another_shipping_country, shop: @shop, country_id: @country.id)
     visit '/admin/settings/taxes_settings'
   end
 

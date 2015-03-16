@@ -79,7 +79,6 @@ FactoryGirl.define do
   factory :another_shipping_country, class: MagazCore::ShippingCountry do
     sequence(:name) {|n| "FI"}
     sequence(:tax)  {|n| "1"}
-    sequence(:country_id) { |n| n }
   end
 
   factory :shipping_rate, class: MagazCore::ShippingRate do
