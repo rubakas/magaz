@@ -1,10 +1,10 @@
 require 'test_helper'
 
 module MagazCore
-  class ShopServices::CreateInviteTest < ActiveSupport::TestCase
+  class ShopServices::CreateInviteTest < ActionController::TestCase
     setup do
       @shop = create(:shop, name: 'shop_name')
-      @host = 'shop_name.magaz.local:3000'
+      @host = request.host
       @email = 'some@email.com'
       @user = create(:user, shop: @shop)
     end

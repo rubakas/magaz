@@ -19,7 +19,7 @@ class UserMailerTest < ActionMailer::TestCase
                                                       :subscription_address => 'duchess@example.gov')
     @subscribers = @shop.subscriber_notifications
     @user = create(:user, shop: @shop, invite_token: 'token')
-    @host = 'shop_name.magaz.local:3000'
+    @host = [@shop.name, '.', default_url_options.values].join
     @link = ["http://", @host, "/admin/users/", @user.id, "?", "invite_token=", @user.invite_token].join
   end
 
