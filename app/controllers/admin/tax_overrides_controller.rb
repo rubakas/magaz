@@ -59,7 +59,7 @@ class Admin::TaxOverridesController < ApplicationController
 
     def unique?
       shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
-      if permitted_params[:tax_override][:is_shipping] == true
+      if permitted_params[:tax_override][:is_shipping] == 'false'
         override = shipping_country.tax_overrides.find_by(collection_id: permitted_params[:tax_override][:collection_id])
       else
         override = shipping_country.tax_overrides.find_by(is_shipping: true)
