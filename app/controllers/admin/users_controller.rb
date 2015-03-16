@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
     if @service.valid_email(email: permitted_params[:user][:email], shop: current_shop)
       @service.create_user_with_email_and_token!(email: permitted_params[:user][:email],
                                                shop: current_shop)
-      @service.send_mail_invite(user: @service.user, host: set_host, link: set_link)
+      @service.send_mail_invite(user: @service.user, link: set_link)
       if @service.user.persisted?
         redirect_to admin_users_path, notice: t('.notice')
       else
@@ -57,13 +57,6 @@ class Admin::UsersController < ApplicationController
 
   def set_link
     @link = admin_user_url(@service.user, invite_token: @service.user.invite_token )
-  end
-
-  def set_host
-    subdomain = request.subdomain
-    subdomain = (subdomain || "")
-    subdomain += "." unless subdomain.empty?
-    [subdomain, request.domain, request.port_string].join
   end
 
   def authenticate?

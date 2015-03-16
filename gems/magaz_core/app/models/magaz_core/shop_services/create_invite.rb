@@ -23,9 +23,9 @@ module MagazCore
           shop.users.find_by(email: email).nil?
       end
 
-      def send_mail_invite(user:, host:, link:)
+      def send_mail_invite(user:, link:)
         MagazCore::UserMailer.invite_new_user(user,
-                                              host, link).deliver_now || fail(ArgumentError)
+                                             link).deliver_now || fail(ArgumentError)
       end
     end
   end

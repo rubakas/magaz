@@ -1,10 +1,9 @@
 require 'test_helper'
 
 module MagazCore
-  class ShopServices::CreateInviteTest < ActionController::TestCase
+  class ShopServices::CreateInviteTest < ActiveSupport::TestCase
     setup do
       @shop = create(:shop, name: 'shop_name')
-      @host = request.host
       @email = 'some@email.com'
       @user = create(:user, shop: @shop)
     end
@@ -30,7 +29,7 @@ module MagazCore
       service.create_user_with_email_and_token!(email: @email,
                                                 shop: @shop)
       @link = "super_link"
-      assert_equal service.send_mail_invite(user: service.user, host: @host, link: @link) , ActionMailer::Base.deliveries.last
+      assert_equal service.send_mail_invite(user: service.user, link: @link) , ActionMailer::Base.deliveries.last
     end
   end
 end

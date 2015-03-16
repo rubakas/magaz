@@ -17,10 +17,9 @@ module MagazCore
       mail(to: subscriber_notification.subscription_address, subject: t('.subject'))
     end
 
-    def invite_new_user(user, host, link)
+    def invite_new_user(user,link)
       @link = link
       @user = user
-      UserMailer.default_url_options[:host] = host
       @shop = MagazCore::Shop.find_by_id(@user.shop_id)
       mail(to: @user.email,
            subject: t('.subject'))

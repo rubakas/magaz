@@ -43,7 +43,7 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test "invite new user" do
-    mail = MagazCore::UserMailer.invite_new_user(@user, @host, @link)
+    mail = MagazCore::UserMailer.invite_new_user(@user, @link)
     assert_equal [@user.email], mail.to
     assert_equal ["magazmailer@gmail.com"], mail.from
     assert_equal "You are invited", mail.subject
