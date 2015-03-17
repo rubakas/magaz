@@ -46,12 +46,12 @@ p id="notice"
                     - if tax.is_shipping
                       = t('.shipping')
                     - else
-                      = MagazCore::Collection.find_by_id(tax.collection_id).name
+                      = tax.collection.name
                     th
                     th = link_to t('.edit'), edit_admin_tax_override_path(tax)
               tbody
                 tr
-                  td = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+                  td = @shipping_country.country.name
                   td
                     = tax.rate
                     = "%"

@@ -141,12 +141,7 @@ class Admin::SettingsController < ApplicationController
       params.fetch(:shop, {}).permit(:authorization_settings)}
   end
 
-  def permitted_params_for_notifications
-    { shop:
-      params.fetch(:shop, {}).permit()}
-  end
-
-    def permitted_params_for_taxes
+  def permitted_params_for_taxes
     { shop:
         params.fetch(:shop, {}).permit(:all_taxes_are_included, :charge_taxes_on_shipping_rates) }
   end

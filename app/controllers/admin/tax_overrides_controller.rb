@@ -8,16 +8,13 @@ class Admin::TaxOverridesController < ApplicationController
   end
 
   def create
+    @service = MagazCore::ShopServices::CreateTaxOverride.call(params: permitted_params[:tax_override],
+                                                               shipping_country_id: params[:shipping_country_id])
+    @tax_override = @service.tax_override
     @shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
-    @tax_override = @shipping_country.tax_overrides.new(permitted_params[:tax_override])
-    if unique?
-      if @tax_override.save
-        flash[:notice] = t('.success')
-        redirect_to admin_tax_override_path(@shipping_country)
-      else
-        flash[:notice] = t('.fail')
-        redirect_to admin_tax_override_path(@shipping_country)
-      end
+    if @tax_override.persisted?
+      flash[:notice] = t('.success')
+      redirect_to admin_tax_override_path(@shipping_country)
     else
       flash[:notice] = t('.fail')
       redirect_to admin_tax_override_path(@shipping_country)
@@ -26,13 +23,13 @@ class Admin::TaxOverridesController < ApplicationController
 
   def edit
     @tax_override = MagazCore::TaxOverride.find(params[:id])
-    @shipping_country = current_shop.shipping_countries.find_by_id(@tax_override.shipping_country_id)
+    @shipping_country = @tax_override.shipping_country
     @collections = current_shop.collections.all
   end
 
   def update
     @tax_override = MagazCore::TaxOverride.find(params[:id])
-    @shipping_country = current_shop.shipping_countries.find_by_id(@tax_override.shipping_country_id)
+    @shipping_country = @tax_override.shipping_country
     if @tax_override.update_attributes(permitted_params[:tax_override])
       flash[:notice] = t('.success')
       redirect_to admin_tax_override_path(@shipping_country)
@@ -49,27 +46,11 @@ class Admin::TaxOverridesController < ApplicationController
 
   def destroy
     @tax_override = MagazCore::TaxOverride.find(params[:id])
-    @shipping_country = current_shop.shipping_countries.find_by_id(@tax_override.shipping_country_id)
+    @shipping_country = @tax_override.shipping_country
     @tax_override.destroy
     flash[:notice] = t('.success')
     redirect_to admin_tax_override_path(@shipping_country)
   end
-
-  private
-
-    def unique?
-      shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
-      if permitted_params[:tax_override][:is_shipping] == 'false'
-        override = shipping_country.tax_overrides.find_by(collection_id: permitted_params[:tax_override][:collection_id])
-      else
-        override = shipping_country.tax_overrides.find_by(is_shipping: true)
-      end
-      unless override == nil
-        return false
-      else
-        return true
-      end
-    end
 
   protected
 

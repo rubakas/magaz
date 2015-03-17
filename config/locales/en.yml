@@ -617,6 +617,7 @@ en:
       form:
         select_method: "Add tax override for:"
         prohibit: "prohibited this tax from being saved:"
+        error: "error"
         select_collection: "Select a collection to apply the tax override to. You can also "
         create: "create a new collection"
         location: "Location"
