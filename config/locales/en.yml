@@ -359,9 +359,13 @@ en:
     settings:
       edit:
         general_settings: "Shop Settings"
+      update:
+        notice: "Shop was successfully updated."
       form:
         error: "error"
         prohibit: "prohibited this shop from being saved:"
+      checkouts_settings_update:
+          notice: "Shop was successfully updated."
       checkouts_settings:
         logo: "Checkouts"
         save: 'Save'
@@ -389,6 +393,8 @@ en:
         refound_policy: "Refund Policy"
         privacy_policy: "Privacy Policy"
         terms_of_service: "Terms of Service"
+      payments_settings_update:
+          notice: "Shop was successfully updated."
       payments_settings:
         logo: "Payments"
         payment_authoriz_settings: "Payment authorization settings"
@@ -398,6 +404,8 @@ en:
         authorize_and_charge: "Authorize and charge the customers credit card."
         authorize_customer: "Authorize the customers credit card."
         select_method: "Select authorization method"
+      notifications_settings_update:
+          notice: "Shop was successfully updated."
       notifications_settings:
         logo: "Notifications"
         delete: "delete"
@@ -436,6 +444,8 @@ en:
         callback_URL: "Callback URL"
         format: "Format"
         send_test_notification: "send test notification"
+      taxes_settings_update:
+          notice: "Shop was successfully updated."
       taxes_settings:
         logo: "Taxes"
         enable: "Enable "

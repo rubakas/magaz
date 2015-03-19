@@ -11,7 +11,7 @@ class Admin::SettingsController < ApplicationController
   def update
     @shop = current_shop
     if @shop.update_attributes(permitted_params[:shop])
-      flash[:notice] = 'Shop was successfully updated.'
+      flash[:notice] = t('.notice')
       render 'edit'
     else
       render 'edit'
@@ -26,7 +26,7 @@ class Admin::SettingsController < ApplicationController
 
   def payments_settings_update
     if current_shop.update_attributes(permitted_params_for_payments[:shop])
-      flash[:notice] = 'Shop was successfully updated.'
+      flash[:notice] = t('.notice')
       redirect_to payments_settings_admin_settings_path
     else
       render "payments_settings"
@@ -41,7 +41,7 @@ class Admin::SettingsController < ApplicationController
 
   def checkouts_settings_update
     if current_shop.update_attributes(permitted_params_for_checkouts[:shop])
-      flash[:notice] = 'Shop was successfully updated.'
+      flash[:notice] = t('.notice')
       redirect_to checkouts_settings_admin_settings_path
     else
       render "checkouts_settings"
@@ -56,7 +56,7 @@ class Admin::SettingsController < ApplicationController
 
   def notifications_settings_update
     if current_shop.update_attributes(permitted_params_for_notifications[:shop])
-      flash[:notice] = 'Shop was successfully updated.'
+      flash[:notice] = t('.notice')
       redirect_to notifications_settings_admin_settings_path
     else
       render "notifications_settings"
@@ -76,7 +76,7 @@ class Admin::SettingsController < ApplicationController
 
   def taxes_settings_update
     if current_shop.update_attributes(permitted_params_for_taxes[:shop])
-      flash[:notice] = 'Shop was successfully updated.'
+      flash[:notice] = t('.notice')
       unless params[:charge_vat_taxes]
         current_shop.update_attributes(eu_digital_goods_collection_id:  nil)
       end
