@@ -35,11 +35,6 @@ FactoryGirl.define do
     sequence(:code) { |n| "PL" }
   end
 
-  factory :one_more_country, class: MagazCore::Country do
-    sequence(:name) {|n| "ARUBA"}
-    sequence(:code) {|n| "AW" }
-  end
-
   factory :customer, class: MagazCore::Customer do
     sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
@@ -85,12 +80,6 @@ FactoryGirl.define do
     sequence(:name) {|n| "FI"}
     sequence(:tax)  {|n| "1"}
   end
-
-  factory :one_more_shipping_country, class: MagazCore::ShippingCountry do
-    sequence(:name) {|n| "AW"}
-    sequence(:tax)  {|n| "1"}
-  end
-
 
   factory :shipping_rate, class: MagazCore::ShippingRate do
     sequence(:name)   { |n| "Shipping Rate #{n}" }

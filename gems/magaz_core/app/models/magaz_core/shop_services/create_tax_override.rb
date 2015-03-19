@@ -12,7 +12,7 @@ module MagazCore
             _unique(params: params, shipping_country_id: shipping_country_id)
             _check_method(params: params)
             _create_tax_override_with_valid_params!(params: params, shipping_country_id: shipping_country_id, override: @tax_override)
-          rescue ArgumentError
+          rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ArgumentError
             raise ActiveRecord::Rollback
           end
         end
