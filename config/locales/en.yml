@@ -596,7 +596,7 @@ en:
         subject: "Registration Confirmation"
       invite_new_user:
         subject: "You are invited"
-        text: "Hi , You are invited to shop "
+        text: "Hi , You are invited to shop %{shop_name} "
         link: "Confirmation"
 
   theme_store:

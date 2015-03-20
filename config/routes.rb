@@ -63,11 +63,7 @@ Rails.application.routes.draw do
           get 'notifications_settings'
         end
       end
-      resources :users, except: [:edit] do
-        collection do
-          get 'new_invite'
-        end
-      end
+      resources :users, except: [:edit]
     end
   end
 

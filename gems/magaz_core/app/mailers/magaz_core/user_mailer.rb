@@ -2,8 +2,8 @@ module MagazCore
   class UserMailer < ApplicationMailer
     include Rails.application.routes.url_helpers
 
-    default :from => ADRESS_SETTINGS[:from]
-    default :to => ADRESS_SETTINGS[:to]
+    default :from => MAILER_SETTINGS[:from]
+    default :to => MAILER_SETTINGS[:to]
 
     def notification(subscriber_notification, email_template)
       mail(to: subscriber_notification.subscription_address,

@@ -18,6 +18,13 @@ module MagazCore
       assert_equal @email, service.user.email
     end
 
+    test 'should not create user without email' do
+      service = MagazCore::ShopServices::CreateInvite.call
+      service.create_user_with_email_and_token!(email: {},
+                                                shop: @shop)
+      refute service.user.persisted?
+    end
+
     test 'should not pass existed user email' do
       service = MagazCore::ShopServices::CreateInvite.call
       assert_equal service.valid_email(email: @user.email, shop: @shop), false
