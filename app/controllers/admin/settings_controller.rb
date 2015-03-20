@@ -70,7 +70,7 @@ class Admin::SettingsController < ApplicationController
     if @shop.eu_digital_goods_collection_id == nil
       @default_collection = @shop.collections.find_by(name: "Digital Goods VAT Tax")
     else
-      @default_collection = @shop.collections.find_by_id(@shop.eu_digital_goods_collection_id)
+      @default_collection = @shop.eu_digital_goods_collection
     end
   end
 
@@ -105,7 +105,7 @@ class Admin::SettingsController < ApplicationController
 
   def set_default_collection
     @shop = current_shop
-    @default_collection = current_shop.collections.find_by_id(current_shop.eu_digital_goods_collection_id)
+    @default_collection = current_shop.eu_digital_goods_collection
     @collections = current_shop.collections.page(params[:page])
   end
 
