@@ -556,22 +556,24 @@ en:
     users:
       create:
         notice: "User was successfully created."
+        fails: "User creating was failed."
+        invalid_email: "Email is invalid."
       update:
         notice: "User was successfully updated."
-      delete:
+      destroy:
+        fail: "Can't delete shop owner."
         notice: "User was successfully deleted."
-      confirm_email:
-        success: "Your email has been confirmed. Please sign in to continue."
       index:
         title: "Users"
-        add: "Add User"
+        add: "Invite User"
       new:
         add: "Add User"
       show:
-       title: "Editing user"
+        invalid_token: "Token is invalid."
+        title: "Editing user"
       blank:
         no_users: "No Users"
-        add: "Add User"
+        add: "Invite new user"
       form:
         error: "error"
         back: "Back"
@@ -592,6 +594,10 @@ en:
         test_notification_to: "Test notification to :"
       registration_confirmation:
         subject: "Registration Confirmation"
+      invite_new_user:
+        subject: "You are invited"
+        text: "Hi , You are invited to shop %{shop_name} "
+        link: "Confirmation"
 
   theme_store:
     themes:
@@ -625,6 +631,8 @@ en:
       products:
         create: "Create %{model}"
         update: "Update %{model}"
+      user:
+        create: "Invite %{model}"
 
   success_create: "Product was successfully created."
   success_update: "Product was successfully updated."
