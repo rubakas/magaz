@@ -25,31 +25,29 @@ p id="notice"
               th = t('.description')
 
           tbody
-            / temperory fix
-            - if !@shop.email_templates.blank?
-              - @shop.email_templates.each do |t|
-                tr
-                  td
-                      = link_to t.name,
-                        edit_admin_settings_email_template_path(t.id)
-                  td
-                    div class="inf"
-                      = t.description
-            br
+            - @shop.email_templates.each do |template|
+              tr
+                td
+                  = link_to template.name,
+                      edit_admin_settings_email_template_path(template.id)
+                td
+                  div class="inf"
+                    = template.description
+          br
     div class="row"
       div class="col-xs-4"
         div class="label_of_column"
           = t('.order_notifications')
         div class="inf"
           = t('.order_notifications_inf')
-          = link_to 'Add an order notification', new_admin_settings_subscriber_notification_path,
+          = link_to t('.add_notification'), new_admin_settings_subscriber_notification_path,
             class:'btn btn-default'
 
       div class="col-xs-8"
         table class="table"
           thead
           tr
-            td = 'Notification'
+            td = t('.title')
             td
             td
 
@@ -58,8 +56,7 @@ p id="notice"
               tr
                 td
                   div class="inf"
-                    = 'Send to '
-                    = subscriber.notification_method
+                    = t('.send_to', notification_method: subscriber.notification_method)
                     br
                     = subscriber.subscription_address
                 td = link_to(t('.send_test_notification'), :controller => "subscriber_notifications", :action => "send_test_notification", :id => subscriber.id)
@@ -71,7 +68,7 @@ p id="notice"
           = t('.webhooks')
         div class="inf"
           = t('.webhooks_inf')
-        = button_to 'Create a webhook','#', class:'btn btn-default'
+        = button_to t('.create_webhook'), notifications_settings_admin_settings_path, class:'btn btn-default'
 
       div class="col-xs-8"
         table class="table"
