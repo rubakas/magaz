@@ -53,12 +53,6 @@ p id="notice"
                 tr
                   td = @shipping_country.country.name
                   td
-                    = tax.rate
-                    = "%"
-                    = " "
-                    = t('.instead')
-                    = @shipping_country.tax
-                    = "%"
-                    = t(".federal")
+                    = t('.instead_of', tax_rate: tax.rate, country_rate: @shipping_country.tax)
                   td
                     = link_to t('.delete'), [:admin, tax] ,method: :delete, data: { confirm: t('.confirmation') }

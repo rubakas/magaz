@@ -365,7 +365,7 @@ en:
         error: "error"
         prohibit: "prohibited this shop from being saved:"
       checkouts_settings_update:
-          notice: "Shop was successfully updated."
+          success_notice: "Shop was successfully updated."
       checkouts_settings:
         logo: "Checkouts"
         save: 'Save'
@@ -374,8 +374,8 @@ en:
         hidden_multipass_inf: "Enable Multipass if you want to integrate with an external customer account system."
         orders_proccessing_inf: "Change how your store responds to checkout and order events."
         orders_proccessing_logo: "Orders Proccessing"
-        refound_and_tos_logo: "Refund, privacy and TOS statements"
-        refound_and_tos_inf: "These statements appear in the footer of your checkout page."
+        refund_and_tos_logo: "Refund, privacy and TOS statements"
+        refund_and_tos_inf: "These statements appear in the footer of your checkout page."
         notify_costumers_of_shipipment: "Notify customers of their shipment via email"
         auto_fulfill_orders: "Automatically fulfill all orders, even those with a high risk of fraud."
         auto_archive: "Automatically archive the order"
@@ -390,11 +390,11 @@ en:
         email_marketing: "Collecting consent to send promotional emails to customers from your store"
         after_order_paid: "After an order has been paid"
         after_order_fulfilled_and_paid: "After an order has been fulfilled and paid"
-        refound_policy: "Refund Policy"
+        refund_policy: "Refund Policy"
         privacy_policy: "Privacy Policy"
         terms_of_service: "Terms of Service"
       payments_settings_update:
-          notice: "Shop was successfully updated."
+          success_notice: "Shop was successfully updated."
       payments_settings:
         logo: "Payments"
         payment_authoriz_settings: "Payment authorization settings"
@@ -405,7 +405,7 @@ en:
         authorize_customer: "Authorize the customers credit card."
         select_method: "Select authorization method"
       notifications_settings_update:
-          notice: "Shop was successfully updated."
+          success_notice: "Shop was successfully updated."
       notifications_settings:
         logo: "Notifications"
         delete: "delete"
@@ -445,7 +445,7 @@ en:
         format: "Format"
         send_test_notification: "send test notification"
       taxes_settings_update:
-          notice: "Shop was successfully updated."
+          success_notice: "Shop was successfully updated."
       taxes_settings:
         logo: "Taxes"
         enable: "Enable "
@@ -611,8 +611,7 @@ en:
         tax_overrides: "Tax Overrides"
         tax_overrides_inf: "Customize region-based tax rates for specific product collections, or when shipping to designated areas."
         add: "Add a tax override"
-        instead: "instead of"
-        federal: "federal tax"
+        instead_of: "%{tax_rate}% instead of %{country_rate}% federal tax"
         save: "Save"
         shipping: "Shipping"
         delete: "Delete"
