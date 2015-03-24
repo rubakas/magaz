@@ -303,8 +303,7 @@ ActiveRecord::Schema.define(version: 20150305165027) do
     t.string   "password_salt"
     t.boolean  "account_owner",   default: false
     t.string   "permissions",     default: [],    array: true
-    t.boolean  "email_confirmed", default: false
-    t.string   "confirm_token"
+    t.string   "invite_token"
   end
 
 end

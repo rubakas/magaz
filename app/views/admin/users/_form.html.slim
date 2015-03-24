@@ -8,7 +8,6 @@
       - @user.errors.full_messages.each do |msg|
         li = msg
 
-  hr
   div class="form-group"
     = f.label :first_name
     br
@@ -18,9 +17,9 @@
     br
     = f.text_field :last_name, class: 'form-input'
   div class="form-group"
-    = f.label :email
-    br
-    = f.text_field :email, class: 'form-input'
+  = f.label :email
+  br
+  = f.text_field :email, class: 'form-input'
   div class="form-group"
     = f.label :password
     = f.password_field :password, class: 'form-control'
