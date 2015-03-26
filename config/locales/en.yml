@@ -364,6 +364,7 @@ en:
         prohibit: "prohibited this shop from being saved:"
       checkouts_settings:
         logo: "Checkouts"
+        save: 'Save'
         customers_logo: "Customer accounts"
         customers_inf: "You can choose if you want to prompt the customer to make an account when they checkout."
         hidden_multipass_inf: "Enable Multipass if you want to integrate with an external customer account system."
@@ -439,6 +440,36 @@ en:
         send_test_notification: "send test notification"
         title: "Notification"
         send_to: "Send to %{notification_method}"
+
+      taxes_settings:
+        logo: "Taxes"
+        enable: "Enable "
+        tax_settings: "Tax settings"
+        tax_settings_info: "Change the way Shopify calculates taxes on your store."
+        all_taxes_are_included: "All taxes are included in my prices"
+        if_checkbox_above_is_selected: "If the checkbox above is selected all taxes will be calculated using this formula:"
+        tax_calculates: "Tax = (Tax Rate * Price) / (1 + Tax Rate). Example £1.00 at 20% VAT will be £0.17 (rounded)."
+        charge_taxes_on_shipping_rates: "Charge taxes on shipping rates"
+        charge_vat_taxes: "Charge EU Digital Goods VAT Taxes"
+        enable_vat_taxes: " EU Digital Goods VAT Taxes"
+        link_to_collection: "Digital Goods VAT Tax "
+        vat_taxes_information_middle: "collection will have VAT applied on Checkout."
+        vat_taxes_information_first: "Products in the "
+        link_to_select_collection: "Choose an alternate collection"
+        vat_taxes_information_last: "to specify which products are digital goods."
+        tax_rates: "Tax rates"
+        tax_rates_information: "A list of all the tax rates for the countries you ship to. To add a country to this list, go to Shipping settings and click on Add a country."
+        destination: "Destination"
+        country_tax_rate: "Country Tax Rate"
+        overrides: "Overrides"
+        sub-regions: "Sub-regions"
+        save: "Save"
+      set_default_collection:
+        logo: "Update EU Digital Goods VAT Tax Rates Collection"
+        select_collection: "Select a collection to specify which products are digital goods. You can also "
+        create_new: "create a new collection"
+        save: "Save"
+
     email_templates:
       show:
         name: "Name "
@@ -495,6 +526,7 @@ en:
         notifications: "Notifications"
         checkouts: "Checkouts"
         payments: "Payments"
+        taxes: "Taxes"
 
     shipping_countries:
       create:
@@ -557,6 +589,31 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+    tax_overrides:
+      show:
+        title: "Taxes"
+        base_taxes: "Base Taxes"
+        base_taxes_inf: "All applicable taxes for Ukraine. These taxes will be used unless overrides are specified below."
+        country_tax: "Country Tax"
+        tax_overrides: "Tax Overrides"
+        tax_overrides_inf: "Customize region-based tax rates for specific product collections, or when shipping to designated areas."
+        add: "Add a tax override"
+        instead: "instead of"
+        federal: "federal tax"
+        save: "Save"
+      new:
+        logo: "Add Tax Override for "
+        select_method: "Add tax override for:"
+        prohibit: "prohibited this tax from being saved:"
+        select_collection: "Select a collection to apply the tax override to. You can also "
+        create: "create a new collection"
+        location: "Location"
+        tax_rate: "Tax Rate"
+        products: "Products"
+        shipping: "Shipping"
+        add: "Add Override"
+        cancel: "Cancel"
+        select_collection: "Select a collection"
     users:
       create:
         notice: "User was successfully created."

@@ -1,0 +1,20 @@
+= form_for [:admin, @shop], url: [:save_default_collection, :admin, :settings], method: :put do |f|
+
+  h4
+    i class="icon-cloud"
+    = t('.logo')
+
+  div class="container-fluid"
+    div class="field"
+      div class="inf"
+        = t('.select_collection')
+        = link_to t('.create_new'), new_admin_collection_path
+        = '.'
+
+    div class="field"
+      = select_tag(:default_collection,
+                   options_from_collection_for_select(@collections, "id", "name"),
+                   class: 'form-control')
+    hr
+    div class="form-group"
+      = f.submit(t('.save'), class: 'button')
