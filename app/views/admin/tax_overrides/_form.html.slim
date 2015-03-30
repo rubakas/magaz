@@ -21,21 +21,20 @@
       div class="hidden_fields_for_product"
         div class="inf"
           = t('.select_collection')
-          = " "
           = link_to t('.create'), new_admin_collection_path
           = '.'
 
         div class="field"
           = f.select(:collection_id,
-                       content_tag(:option, t('.select_collection'),
+                       content_tag(:option, t('.select_collection_drop_down'),
                        :value=>"") + options_from_collection_for_select(@collections, "id", "name"), {},class: 'form-control')
         br
         div class="field"
           table class="table table-hover"
             thead
               tr
-                th = "Location"
-                th = "Tax Rate"
+                th = t('.location')
+                th = t('.tax_rate')
             tbody
               tr
                 td = MagazCore::Country.find_by_id(@shipping_country.country_id).name

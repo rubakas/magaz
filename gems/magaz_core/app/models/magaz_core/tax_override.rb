@@ -14,7 +14,7 @@ module MagazCore
 
     def if_shipping
       if is_shipping == true
-        collection_id == nil
+        self.collection_id = nil
       end
     end
   end

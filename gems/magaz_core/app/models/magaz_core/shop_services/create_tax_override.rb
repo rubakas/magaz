@@ -9,7 +9,7 @@ module MagazCore
 
         MagazCore::TaxOverride.connection.transaction do
           begin
-            _unique(params: params, shipping_country_id: shipping_country_id)
+            _check_for_uniqueness(params: params, shipping_country_id: shipping_country_id)
             _check_method(params: params)
             _create_tax_override_with_valid_params!(params: params, shipping_country_id: shipping_country_id, override: @tax_override)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ArgumentError
@@ -20,7 +20,7 @@ module MagazCore
 
       private
 
-      def _unique(params: {}, shipping_country_id:)
+      def _check_for_uniqueness(params: {}, shipping_country_id:)
         shipping_country = MagazCore::ShippingCountry.find_by_id(shipping_country_id)
         if params[:is_shipping] == 'false'
           override = shipping_country.tax_overrides.find_by(collection_id: params[:collection_id])

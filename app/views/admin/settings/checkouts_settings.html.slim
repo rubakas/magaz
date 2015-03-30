@@ -89,19 +89,19 @@ p id="notice"
           div class="field_with_select"
             = f.label t('.refund_policy')
             = f.text_area :checkout_refund_policy
-            = f.button 'Generate sample', class: 'generate_refund'
+            = f.button t('.generate_sample'), class: 'generate_refund'
 
         div class="field"
           div class="field_with_select"
             = f.label t('.privacy_policy')
             = f.text_area :checkout_privacy_policy
-            = f.button 'Generate sample', class: 'generate_privacy'
+            = f.button t('.generate_sample'), class: 'generate_privacy'
 
         div class="field"
           div class="field_with_select"
             = f.label t('.terms_of_service')
             = f.text_area :checkout_term_of_service
-            = f.button 'Generate sample', class: 'generate_tos'
+            = f.button t('.generate_sample'), class: 'generate_tos'
 
     br
     div class="actions"

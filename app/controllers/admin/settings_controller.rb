@@ -11,7 +11,7 @@ class Admin::SettingsController < ApplicationController
   def update
     @shop = current_shop
     if @shop.update_attributes(permitted_params[:shop])
-      flash[:notice] = t('.notice')
+      flash[:notice] = t('.success_notice')
       render 'edit'
     else
       render 'edit'

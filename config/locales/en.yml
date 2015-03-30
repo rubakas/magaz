@@ -360,7 +360,7 @@ en:
       edit:
         general_settings: "Shop Settings"
       update:
-        notice: "Shop was successfully updated."
+        success_notice: "Shop was successfully updated."
       form:
         error: "error"
         prohibit: "prohibited this shop from being saved:"
@@ -375,6 +375,7 @@ en:
         orders_proccessing_inf: "Change how your store responds to checkout and order events."
         orders_proccessing_logo: "Orders Proccessing"
         refund_and_tos_logo: "Refund, privacy and TOS statements"
+        generate_sample: "Generate sample"
         refund_and_tos_inf: "These statements appear in the footer of your checkout page."
         notify_costumers_of_shipipment: "Notify customers of their shipment via email"
         auto_fulfill_orders: "Automatically fulfill all orders, even those with a high risk of fraud."
@@ -635,7 +636,7 @@ en:
         shipping: "Shipping"
         save: "Save"
         cancel: "Cancel"
-        select_collection: "Select a collection"
+        select_collection_drop_down: "Select a collection"
 
     users:
       create:
