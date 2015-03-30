@@ -103,7 +103,7 @@ module MagazCore
 
       def _create_default_emails!(shop:)
         eml = MagazCore::EmailTemplate::EMAIL_TEMPLATES
-        eml["Templates"].each do |key, value|
+        eml.each do |key, value|
           shop.email_templates.create( name: value["name"],
                                        title: value["title"],
                                        body: value["body"],

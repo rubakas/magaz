@@ -4,6 +4,6 @@ module MagazCore
 
     self.table_name = 'email_templates'
 
-    EMAIL_TEMPLATES = YAML.load_file("#{Rails.root}/config/email_templates/email_templates.yml")
+    EMAIL_TEMPLATES = YAML.load_file("#{Rails.root}/config/locales/en.yml")["en"]["templates"]
   end
 end

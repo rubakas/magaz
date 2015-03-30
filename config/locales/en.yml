@@ -640,3 +640,82 @@ en:
 
   success_create: "Product was successfully created."
   success_update: "Product was successfully updated."
+
+  templates:
+    abandoned_checkout_notification:
+      name: 'Abandoned Checkout Notification'
+      title: 'Complete your Purchase'
+      body: 'Your shopping cart has been reserved and is waiting for your return!'
+      template_type: 'abandoned_checkout_notification'
+      description: 'Sent to a potential customer who has abandoned their checkout'
+
+    contact_buyer:
+      name: 'Contact Buyer'
+      title: 'Order with some stuff'
+      body: 'Dear moran'
+      template_type: 'contact_buyer'
+      description: 'Used as a default template for Email Buyer emails'
+
+    fulfillment_request:
+      name: 'Fulfillment Request'
+      title: 'Order Fulfillment Request'
+      body: 'Please fulfill order'
+      template_type: 'fulfillment_request'
+      description: 'Sent to custom fulfillment provider when storeowner fulfills order items'
+
+    gift_card_notification:
+      name: 'Your gift card is ready!'
+      title: 'New order'
+      body: 'Here is your gift card'
+      template_type: 'gift_card_notification'
+      description: 'Sent to the customer when a gift card is created'
+
+    new_order_notification:
+      name: 'New Order Notification'
+      title: 'Order placed'
+      body: 'You have a new order'
+      template_type: 'new_order_notification'
+      description: 'Sent to all subscribers of Order Confirmation Notifications'
+
+    new_order_notification_mobile:
+      name: 'New Order Notification (mobile)'
+      title: 'Order'
+      body: 'You have a new order'
+      template_type: 'new_order_notification_mobile'
+      description: 'Sent to all subscribers of Order Confirmation Notifications for mobile'
+
+    order_cancelled:
+      name: 'Order Cancelled'
+      title: 'Order cancelled'
+      body: 'Your order was cancelled at your request, because we did not have enough stock to fulfill your order.'
+      template_type: 'order_cancelled'
+      description: 'Sent to the customer when an order is cancelled'
+
+    order_confirmation:
+      name: 'Order Confirmation'
+      title: 'Order confirmation'
+      body: 'This email is to confirm your recent order.'
+      template_type: 'order_confirmation'
+      description: 'Sent to the customer when an order is created'
+
+    refund_notification:
+      name: 'Refund Notification'
+      title: 'Refund Notification'
+      body: 'You have a new order'
+      template_type: 'refund_notification'
+      description: 'Sent to the customer when their order is refunded'
+
+    shipping_confirmation:
+      name: 'Shipping confirmation'
+      title: 'Shipping confirmation'
+      body: 'Shop has refunded your order'
+      template_type: 'shipping_confirmation'
+      description: 'Sent to the customer when an order is shipped'
+
+    shipping_update:
+      name: 'Shipping update'
+      title: 'Shipping update'
+      body: 'The following shipped items from order have been updated with new shipping information:'
+      template_type: 'shipping_update'
+      description: "Sent to the customer when an order's shipping information is updated"
+
