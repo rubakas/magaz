@@ -10,7 +10,7 @@ module MagazCore
               theme: @default_theme,
               theme_attributes: { name: 'Default' })
       @shop_params = { name: 'example42' }
-       @user_params = { first_name: 'First' , last_name: 'Last', email: 'email@mail.com', password: 'password' }
+      @user_params = { first_name: 'First' , last_name: 'Last', email: 'email@mail.com', password: 'password' }
     end
 
     test 'create shop with valid params' do
@@ -24,13 +24,19 @@ module MagazCore
     test 'fail shop creation when no default theme in system' do
       @default_theme.delete
       service = MagazCore::ShopServices::Create
-                  .call(shop_params: @shop_params)
+                  .call(shop_params: @shop_params, user_params: @user_params)
+      refute service.shop.persisted?
+    end
+
+    test 'fail shop creation when no user params' do
+      service = MagazCore::ShopServices::Create
+                  .call(shop_params: @shop_params, user_params: {})
       refute service.shop.persisted?
     end
 
     test 'fail shop creation when no shop params' do
       service = MagazCore::ShopServices::Create
-                  .call(shop_params: {})
+                  .call(shop_params: {}, user_params: @user_params)
       refute service.shop.persisted?
     end
 
