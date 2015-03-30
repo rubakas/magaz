@@ -287,10 +287,10 @@ ActiveRecord::Schema.define(version: 20150220155922) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_type"
-    t.string   "invite_token"
     t.string   "password_salt"
     t.boolean  "account_owner",   default: false
     t.string   "permissions",     default: "--- []\n"
+    t.string   "invite_token"
   end
 
 end
