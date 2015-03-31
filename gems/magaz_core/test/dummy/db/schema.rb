@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220155922) do
+ActiveRecord::Schema.define(version: 20150324140737) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20150220155922) do
     t.datetime "updated_at"
     t.integer  "shop_id"
     t.string   "template_type"
+    t.string   "description"
   end
 
   create_table "files", force: :cascade do |t|
@@ -257,13 +258,23 @@ ActiveRecord::Schema.define(version: 20150220155922) do
     t.string   "after_order_paid"
     t.boolean  "after_order_fulfilled_and_paid"
     t.string   "checkout_language"
-    t.text     "checkout_refound_policy"
+    t.text     "checkout_refund_policy"
     t.text     "checkout_privacy_policy"
     t.text     "checkout_term_of_service"
     t.boolean  "enable_multipass_login"
     t.boolean  "notify_customers_of_their_shipment"
     t.boolean  "automatically_fulfill_all_orders"
     t.string   "authorization_settings"
+    t.boolean  "all_taxes_are_included"
+    t.boolean  "charge_taxes_on_shipping_rates"
+    t.integer  "eu_digital_goods_collection_id"
+  end
+
+  create_table "tax_overrides", force: :cascade do |t|
+    t.float   "rate"
+    t.boolean "is_shipping",         default: false
+    t.integer "collection_id"
+    t.integer "shipping_country_id"
   end
 
   create_table "themes", force: :cascade do |t|

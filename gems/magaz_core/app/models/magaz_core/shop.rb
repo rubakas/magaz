@@ -49,6 +49,7 @@ module MagazCore
     has_many :users, class_name: 'MagazCore::User', :dependent => :destroy
     has_many :subscriber_notifications
     has_many :email_templates
+    belongs_to :eu_digital_goods_collection, class_name: 'MagazCore::Collection' , foreign_key: "eu_digital_goods_collection_id"
 
     ABANDONED_CHECKOUT_TIME_DELAY = ["Never", "Six hours later", "24 hours later"]
     EMAIL_MARKETING_CHOICE = ["Customer agrees to receive promotional emails by default.", "Customer does not agree to receive promotional emails by default.", "Disable and hide this field."]
