@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   constraints(ShopSubdomainConstraint) do
     mount MagazStore::Engine => "/"
 
-    mount MagazStoreAdmin::Engine => "/"
+    mount MagazStoreAdmin::Engine => "/", :as => 'magaz_store_admin'
 
   end
 
