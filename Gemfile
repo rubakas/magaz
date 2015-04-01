@@ -6,6 +6,7 @@ gem 'magaz_style',        path: 'gems/magaz_style'
 gem 'magaz_core',         path: 'gems/magaz_core'
 gem 'magaz_store',        path: 'gems/magaz_store'
 gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
+gem 'magaz_store_admin',  path: 'gems/magaz_store_admin'
 
 gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
 

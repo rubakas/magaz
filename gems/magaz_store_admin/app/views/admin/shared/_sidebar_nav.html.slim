@@ -1,0 +1,81 @@
+section class='sidebar-section'
+
+  h4 = t('.title')
+
+  ul class='nav nav-pills nav-stacked'
+    / this is a short notation for
+    / render partial: partial_name, locals: {...}
+    = render 'admin/shared/li_link_to',
+        path: admin_root_path,
+        icon_class: 'icon-dashboard',
+        label: t('.dashboard'),
+        active_conditions: { controller: 'admin/dashboard' }
+
+    = render 'admin/shared/li_link_to',
+      path: admin_orders_path,
+      icon_class: 'icon-barcode',
+      label: t('.orders'),
+      active_conditions: { controller: 'admin/orders' }
+
+    = render 'admin/shared/li_link_to',
+      path: admin_customers_path,
+      icon_class: 'icon-user',
+      label: t('.customers'),
+      active_conditions: { controller: 'admin/customers' }
+
+    = render 'admin/shared/li_link_to',
+      path: admin_products_path,
+      icon_class: 'icon-gift',
+      label: t('.products'),
+      active_conditions: { controller: 'admin/products' }
+
+    = render 'admin/shared/li_link_to',
+      path: admin_collections_path,
+      icon_class: 'icon-tags',
+      label: t('.collections'),
+      active_conditions: { controller: 'admin/collections' }
+
+  hr
+
+  h4 = t('.your_site')
+
+  ul class='nav nav-pills nav-stacked'
+
+    = render 'admin/shared/li_link_to',
+      path: admin_pages_path,
+      icon_class: 'icon-th',
+      label: t('.pages'),
+      active_conditions: { controller: 'admin/pages' }
+
+    = render 'admin/shared/li_link_to',
+      path: admin_articles_path,
+      icon_class: 'icon-list-alt',
+      label: t('.blogs'),
+      active_conditions: { controller: 'admin/articles' }
+
+    = render 'admin/shared/li_link_to',
+      path: admin_link_lists_path,
+      icon_class: 'icon-link',
+      label: t('.navigation'),
+      active_conditions: { controller: 'admin/link_lists' }
+
+
+  hr
+
+  h4 = t('.config')
+
+  ul class='nav nav-pills nav-stacked'
+
+    = render 'admin/shared/li_link_to',
+        path: edit_admin_settings_path,
+        icon_class: 'icon-cogs',
+        label: t('.settings'),
+        active_conditions: { controller: 'admin/settings',  action: 'edit' }
+
+    = render 'admin/shared/li_link_to',
+        path: admin_root_path,
+        icon_class: 'icon-picture',
+        label: t('.themes'),
+        active_conditions: { controller: 'admin/dashboard' }
+
+  hr

@@ -1,0 +1,58 @@
+p id="notice"
+  = notice
+
+= form_for([:admin, @shipping_country]) do |f|
+
+  h4
+    i class="icon-cloud"
+    = t('.title')
+    = "/"
+    = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+
+  div class="container-fluid"
+
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"
+          = t('.base_taxes')
+        div class='inf'
+          = t('.base_taxes_inf')
+
+      div class="col-xs-9"
+        div class="form-group"
+          = f.label t('.country_tax')
+          br
+          div class="input-group"
+            = f.text_field :tax, class: 'form-input'
+            div class="input-group-addon"
+              = "%"
+    hr
+
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"
+          = t('.tax_overrides')
+        div class='inf'
+          = t('.tax_overrides_inf')
+          = link_to t('.add'), new_admin_tax_override_path(shipping_country_id: @shipping_country), class: 'btn btn-default'
+
+      div class="col-xs-9"
+        div class="field"
+          table class="table table-bordered"
+            - @tax_overrides.each do |tax|
+              thead
+                tr
+                  th
+                    - if tax.is_shipping
+                      = t('.shipping')
+                    - else
+                      = tax.collection.name
+                    th
+                    th = link_to t('.edit'), edit_admin_tax_override_path(tax)
+              tbody
+                tr
+                  td = @shipping_country.country.name
+                  td
+                    = t('.instead_of', tax_rate: tax.rate, country_rate: @shipping_country.tax)
+                  td
+                    = link_to t('.delete'), [:admin, tax] ,method: :delete, data: { confirm: t('.confirmation') }

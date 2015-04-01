@@ -1,0 +1,50 @@
+= form_for([:admin, @tax_override]) do |f|
+
+  div class="container-fluid"
+  hr
+    div class="row"
+      div class="col-xs-4"
+        div class="inf"
+          = t('.select_method')
+
+      div class="col-xs-4"
+        div class="field"
+          = f.radio_button :is_shipping, false
+          = t('.product')
+
+      div class="col-xs-4"
+        div class="field"
+          = f.radio_button :is_shipping, true
+          = t('.shipping')
+    br
+    div class="row"
+      div class="hidden_fields_for_product"
+        div class="inf"
+          = t('.select_collection')
+          = link_to t('.create'), new_admin_collection_path
+          = '.'
+
+        div class="field"
+          = f.select(:collection_id,
+                       content_tag(:option, t('.select_collection_drop_down'),
+                       :value=>"") + options_from_collection_for_select(@collections, "id", "name"), {},class: 'form-control')
+        br
+        div class="field"
+          table class="table table-hover"
+            thead
+              tr
+                th = t('.location')
+                th = t('.tax_rate')
+            tbody
+              tr
+                td = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+                td
+                  div class="loced_field"
+                    div class="input-group"
+                      = f.text_field :rate, class: 'form-input'
+                      div class="input-group-addon"
+                        = "%"
+        hr
+    div class="form-group"
+      = link_to t('.cancel'), admin_tax_override_path(@shipping_country), class: 'button-secondary'
+      = f.button t('.save'), class: 'button', name: "shipping_country_id", value: @shipping_country.id

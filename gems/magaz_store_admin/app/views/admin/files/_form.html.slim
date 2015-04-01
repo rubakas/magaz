@@ -1,0 +1,26 @@
+= form_for([:admin,@file]) do |f|
+  - if @file.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@file.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @file.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="form-group"
+    = f.label :name
+    br
+      = f.text_field :name, class: 'form-input'
+    br
+      = f.label :file
+      = f.file_field :file
+    br
+      = image_tag @file.file_url(:thumb) if @file.file.thumb.present?
+    br
+      = link_to 'Download file', @file.file.url, class: 'btn btn-success' if @file.file?
+  hr
+  div class="form-group"
+    = link_to t('.back'), admin_files_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')

@@ -1,0 +1,9 @@
+p id="notice"
+  = notice
+
+h4
+  i class="icon-cloud"
+  = t('.logo')
+  = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+
+= render 'form'

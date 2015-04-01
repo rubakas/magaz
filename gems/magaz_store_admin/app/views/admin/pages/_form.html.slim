@@ -1,0 +1,39 @@
+= form_for([:admin, @page]) do |f|
+  - if @page.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@page.errors.count, "error")
+      br = t('.prohibit')
+
+      ul
+      - @page.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="form-group"
+    = f.label :title
+    br
+    = f.text_field :title, class: 'form-input'
+  div class="form-group"
+    = f.label :content
+    br
+    = f.text_area :content, class: 'form-input'
+
+  hr
+  h4 = t('.seo')
+  div class="form-group"
+    = f.label :page_title
+    br
+    = f.text_field :page_title, class: 'form-input'
+  div class="form-group"
+    = f.label :meta_description
+    br
+    = f.text_field :meta_description, class: 'form-input'
+  div class="form-group"
+    = f.label :handle
+    br
+    = f.text_field :handle, class: 'form-input'
+
+  hr
+  div class="form-group"
+    = link_to t('.back'), admin_pages_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')

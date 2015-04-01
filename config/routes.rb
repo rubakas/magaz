@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   constraints(ShopSubdomainConstraint) do
     mount MagazStore::Engine => "/"
 
+    mount MagazStoreAdmin::Engine => "/"
+
     namespace :admin do
       root 'dashboard#index'
       resources :articles, except: [:edit]
@@ -44,7 +46,7 @@ Rails.application.routes.draw do
       resources :products, except: [:edit] do
         resources :product_images, except: [:edit]
       end
-      resource  :session, only: [:create, :destroy, :new, :show]
+      #resource  :session, only: [:create, :destroy, :new, :show]
       resource  :settings, only: [:edit, :update] do
         resources :email_templates, only: [:show, :edit, :update, :create]
         resources :subscriber_notifications, except: [:index, :show, :update] do
