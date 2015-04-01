@@ -1,0 +1,582 @@
+en:
+  magaz_store_admin:
+    admin:
+      articles:
+        index:
+         title: "Blog Posts"
+         edit_blogs: "Manage Blogs"
+         edit_comments: "Manage Comments"
+         add_post: "Add Blog Post"
+        new:
+          add: "Add Blog Post"
+        show:
+         edit_post: "Editing Blog Post"
+        blank:
+          no_posts: "You have no blog posts yet, let's create one!"
+          add: "Add Blog Post"
+        form:
+          back: "Back"
+          error: "error"
+          prohibit: "prohibited this article from being saved:"
+          seo: "Search Engines"
+        list:
+          title: "Blog Posts"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      blogs:
+        index:
+          title: "Blogs"
+          add: "Add Blog"
+        new:
+          add: "Add Blog"
+        show:
+         edit: "Editing Blog"
+        blank:
+          no_blogs: "You have no blogs yet, let's create one!"
+          add: "Add Blog"
+        form:
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this blog from being saved:"
+          seo: "Search Engines"
+        list:
+          title: "Blog"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      checkouts:
+        index:
+          title: "Abandoned Checkouts"
+          orders: "Orders"
+        show:
+         title: "Checkout page"
+         back: "Back"
+        blank:
+          no_checkouts: "You have no checkouts yet"
+        form:
+          error: "error"
+          back: "Back"
+        list:
+          title: "Abandoned Checkouts"
+
+      collections:
+        index:
+          title: "Collections"
+          add: "Add Collection"
+        new:
+          add: "Add Collection"
+        show:
+         title: "Editing collection"
+        blank:
+          no_collections: "You have no collections yet, let's create one!"
+          add: "Add Collection"
+        form:
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this collection from being saved:"
+          seo: "Search Engines"
+        list:
+          title: "Collections"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      comments:
+        index:
+          title: "Comments"
+          add: "Add Comment"
+        new:
+          add: "Add Comment"
+        show:
+         title: "Editing comments"
+        blank:
+          no_comments: "You have no comments yet, let's create one!"
+          add: "Add Comment"
+        form:
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this comment from being saved:"
+        list:
+          title: "Comments"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      customers:
+        index:
+          title: "Customers"
+          add: "Add Customer"
+          export_csv: "Export Customers"
+          import_csv: "Import"
+          import_title: "Import Customers"
+        new:
+          add: "Add Customer"
+        show:
+         title: "Editing customers"
+        blank:
+          no_comments: "You have no customers yet, let's create one!"
+          add: "Add Customer"
+        form:
+          add: "Add Customer"
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this customer from being saved:"
+        list:
+          title: "Customers"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      dashboard:
+        index:
+          title: "Dashboard"
+          welcome: "Welcome to dashboard"
+
+      files:
+        index:
+          files: "Files"
+          add: "Add File"
+        new:
+          add: "Add File"
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this link list from being saved:"
+        show:
+          title: "Editing File"
+        blank:
+          no_files: "No Files"
+          add: "Add File"
+        form:
+          add: "Add File"
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this link list from being saved:"
+          name: "Name"
+        list:
+          size: "Size"
+          title: "File"
+          delete: "Delete"
+          link: "URL"
+          confirmation: "Are you sure?"
+
+      link_lists:
+        update:
+          notice: "Link list was successfully updated."
+        create:
+          notice: "Link list was successfully created."
+        destroy:
+          notice: "Link list was successfully deleted."
+        index:
+          title: "Link Lists"
+          add: "Add Link List"
+        new:
+          add: "Add Link List"
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this link list from being saved:"
+        show:
+          title: "Editing Link List"
+        blank:
+          no_link_lists: "No Link Lists"
+          add: "Add Link List"
+        form:
+          add: "Add Link List"
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this link list from being saved:"
+          links: "Links"
+          number: "#"
+          name: "Name"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+        list:
+          title: "Link Lists"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      links:
+        index:
+          title: "Links"
+          add: "Add Link"
+        new:
+          add: "Add Link"
+        show:
+          title: "Editing Link"
+        blank:
+          no_links: "There are no links"
+          add: "Add Link"
+        form:
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this link from being saved:"
+        list:
+          name: "Name"
+          position: "Position"
+          id: "Link List ID"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      orders:
+        index:
+          title: "Orders"
+          checkouts: "Abandoned Checkouts"
+        show:
+           title: "Editing page"
+           back: "Back"
+        blank:
+          no_orders: "You have no orders yet"
+        form:
+          error: "error"
+          back: "Back"
+        list:
+          title: "Orders"
+
+      pages:
+        index:
+          title: "Pages"
+          add: "Add Page"
+        new:
+          new: "New Page"
+        show:
+         title: "Editing page"
+        blank:
+          no_pages: "You have no pages yet, let's create one!"
+          add: "Add Page"
+        form:
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this page from being saved:"
+          seo: "Search Engines"
+        list:
+          title: "Pages"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      products:
+        index:
+          title: "Products"
+          add: "Add Product"
+        new:
+          add: "Add Product"
+        show:
+         title: "Editing product"
+        blank:
+          no_products: "You have no products yet, let's create one!"
+          add: "Add Product"
+        form:
+          error: "error"
+          back: "Back"
+          collections: "Collections"
+          prohibit: "prohibited this product from being saved:"
+          product_images: "Images"
+          seo: "Search Engines"
+          delete: "remove"
+        list:
+          title: "Products"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      product_images:
+        new:
+          new: "New Image"
+        blank:
+          no_product_images: "No images"
+          add: "Add Image"
+        form:
+          error: "error"
+          prohibit: "prohibited this image from being saved:"
+          select: "Select your image"
+        show:
+          title: "Images"
+        list:
+          delete: "Delete"
+          show: "Show Image"
+          confirmation: "Are you sure?"
+
+      sessions:
+        new:
+          sign_in: "Sign in"
+          email: "Email address"
+          password: "Password"
+        create:
+          notice: "Wrong password or email"
+
+      settings:
+        edit:
+          general_settings: "Shop Settings"
+        update:
+          success_notice: "Shop was successfully updated."
+        form:
+          error: "error"
+          prohibit: "prohibited this shop from being saved:"
+        checkouts_settings_update:
+            success_notice: "Shop was successfully updated."
+        checkouts_settings:
+          logo: "Checkouts"
+          save: 'Save'
+          customers_logo: "Customer accounts"
+          customers_inf: "You can choose if you want to prompt the customer to make an account when they checkout."
+          hidden_multipass_inf: "Enable Multipass if you want to integrate with an external customer account system."
+          orders_proccessing_inf: "Change how your store responds to checkout and order events."
+          orders_proccessing_logo: "Orders Proccessing"
+          refund_and_tos_logo: "Refund, privacy and TOS statements"
+          generate_sample: "Generate sample"
+          refund_and_tos_inf: "These statements appear in the footer of your checkout page."
+          notify_costumers_of_shipipment: "Notify customers of their shipment via email"
+          auto_fulfill_orders: "Automatically fulfill all orders, even those with a high risk of fraud."
+          auto_archive: "Automatically archive the order"
+          account_disabled: "Account are disabled"
+          account_required: "Account are required"
+          account_optional: "Account are optional"
+          auto_fulfill_orders: "Automatically fulfill the orders line items."
+          auto_fulfill_gift_cards: "Automatically fulfill only the gift cards of the order."
+          do_not_fulfill: "Do not automatically fulfill any of the orders line items."
+          billing_address: "Use the billing address as the shipping address by default"
+          abandoned_checkouts: "If the customer abandons their checkout, send them an email reminder to complete their order:"
+          email_marketing: "Collecting consent to send promotional emails to customers from your store"
+          after_order_paid: "After an order has been paid"
+          after_order_fulfilled_and_paid: "After an order has been fulfilled and paid"
+          refund_policy: "Refund Policy"
+          privacy_policy: "Privacy Policy"
+          terms_of_service: "Terms of Service"
+        payments_settings_update:
+            success_notice: "Shop was successfully updated."
+        payments_settings:
+          logo: "Payments"
+          payment_authoriz_settings: "Payment authorization settings"
+          payment_authoriz_settings_inf: "Set up whether payments should be manually or automatically captured. Learn more about."
+          hidden_authorization_inf: "Manually capture an amount before the authorization expires."
+          hidden_authoriz_and_charge_inf: "Automatically capture payment at the time of sale."
+          authorize_and_charge: "Authorize and charge the customers credit card."
+          authorize_customer: "Authorize the customers credit card."
+          select_method: "Select authorization method"
+        notifications_settings_update:
+            success_notice: "Shop was successfully updated."
+        notifications_settings:
+          logo: "Notifications"
+          delete: "delete"
+          confirmation: "Are you sure?"
+          abandoned_notifications: "Abandoned Checkout Notification"
+          send_who_has_abandoned: "Sent to a potential customer who has abandoned their checkout"
+          contact_buyer: "Contact Buyer"
+          used_as_default: "Used as a default template for Email Buyer emails"
+          template: "Template"
+          description: "Description"
+          email_templates: "Email templates"
+          email_templates_inf: "These emails are automatically sent out to either you or the customer. Click on the templates below to edit the template."
+          order_notifications: "Order notifications"
+          order_notifications_inf: "Get notified by email or text message whenever a new order comes in. You can also subscribe to the RSS feed for this store's orders."
+          webhooks: "Webhooks"
+          webhooks_inf: "You can subscribe to events for your products and orders by creating web hooks that will push XML or JSON notifications to a given URL."
+          fulfillment: "Fulfillment Request"
+          sent_to_fulfillment: "Sent to custom fulfillment provider when storeowner fulfills order items"
+          gift_card_notification: "Gift Card Notification"
+          sent_to_customer: "Sent to the customer when a gift card is created"
+          new_order_notification: "New Order Notification"
+          sent_to_subscrimer: "Sent to all subscribers of Order Confirmation Notifications"
+          new_order_notification_mobile: "New Order Notification (mobile)"
+          sent_to_subscrimer_mobile: "Sent to all subscribers of Order Confirmation Notifications for mobile"
+          order_cancelled: "Order Cancelled"
+          sent_to_customer_cancelled: "Sent to the customer when an order is cancelled"
+          order_confirmation: "Order Confirmation"
+          sent_to_customer_when_created: "Sent to the customer when an order is created"
+          refund_notification: "Refund Notification"
+          sent_to_customer_refunded: "Sent to the customer when their order is refunded"
+          shipping_confirmation: "Shipping confirmation"
+          sent_to_customer_shipped: "Sent to the customer when an order is shipped"
+          shipping_update: "Shipping update"
+          sent_to_customer_updated: "Sent to the customer when an order's shipping information is updated"
+          event: "Event"
+          callback_URL: "Callback URL"
+          format: "Format"
+          send_test_notification: "send test notification"
+        taxes_settings_update:
+            success_notice: "Shop was successfully updated."
+        taxes_settings:
+          logo: "Taxes"
+          enable: "Enable "
+          tax_settings: "Tax settings"
+          tax_settings_info: "Change the way Shopify calculates taxes on your store."
+          all_taxes_are_included: "All taxes are included in my prices"
+          if_checkbox_above_is_selected: "If the checkbox above is selected all taxes will be calculated using this formula:"
+          tax_calculates: "Tax = (Tax Rate * Price) / (1 + Tax Rate). Example £1.00 at 20% VAT will be £0.17 (rounded)."
+          charge_taxes_on_shipping_rates: "Charge taxes on shipping rates"
+          charge_vat_taxes: "Charge EU Digital Goods VAT Taxes"
+          enable_vat_taxes: " EU Digital Goods VAT Taxes"
+          link_to_collection: "Digital Goods VAT Tax "
+          vat_taxes_information_middle: "collection will have VAT applied on Checkout."
+          vat_taxes_information_first: "Products in the "
+          link_to_select_collection: "Choose an alternate collection"
+          vat_taxes_information_last: "to specify which products are digital goods."
+          tax_rates: "Tax rates"
+          tax_rates_information: "A list of all the tax rates for the countries you ship to. To add a country to this list, go to Shipping settings and click on Add a country."
+          destination: "Destination"
+          country_tax_rate: "Country Tax Rate"
+          overrides: "Overrides"
+          sub-regions: "Sub-regions"
+          save: "Save"
+        set_default_collection:
+          logo: "Update EU Digital Goods VAT Tax Rates Collection"
+          select_collection: "Select a collection to specify which products are digital goods. You can also "
+          create_new: "create a new collection"
+          save: "Save"
+      email_templates:
+        show:
+          name: "Name "
+          subject: "Subject"
+          plain_text: "Plain Text Body"
+        update:
+          notice: "Email template saved successfully"
+        edit:
+          email_subject: "Email subject"
+          html_email: "HTML email"
+          plain_text_email: "Plain text email"
+          close: "Close"
+          preview: "Preview"
+          save: "Save"
+          logo1: "Edit"
+          logo2: " Email Template"
+          info: "Customizing the Plain text template and not the HTML template will result in only the plain text email being sent."
+          error: "error"
+          prohibit: "prohibited this notification from being saved:"
+      subscriber_notifications:
+        create:
+          notice: "Order notification was added successfully."
+        destroy:
+          notice: "Order notification was successfully deleted."
+        send_test_notification:
+          notice: "An example order notification has been sent."
+        new:
+          logo: "Add a subscriber to new order notifications"
+          enter_email: "Email address"
+          enter_mobile: "Mobile phone"
+          prohibit: "prohibited this email from being saved:"
+          error: "error"
+      shared:
+        sidebar_nav:
+          title: "Shop"
+          dashboard: "Dashboard"
+          orders: "Orders"
+          customers: "Customers"
+          products: "Products"
+          collections: "Collections"
+          your_site: "Your Website"
+          pages: "Pages"
+          blogs: "Blog Posts"
+          config: "Configuration"
+          settings: "Settings"
+          themes: "Themes"
+
+        settings_sidebar_nav:
+          back: "Back"
+          settings: "Settings"
+          files: "Files"
+          users: "Users"
+          shipping: "Shipping"
+          notifications: "Notifications"
+          checkouts: "Checkouts"
+          payments: "Payments"
+          taxes: "Taxes"
+
+      shipping_countries:
+        create:
+          notice: "Shipping Country was successfully created."
+        update:
+          notice: "Shipping Country was successfully updated."
+        destroy:
+          notice: "Shipping Country was successfully deleted."
+        index:
+          title: "Shipping Countries"
+          add: "Add Shipping Country"
+        new:
+          add: "Add Shipping Country"
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this shipping country from being saved:"
+          name: "Name"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+        show:
+          title: "Editing Shipping Country"
+        blank:
+          no_links: "There are no shipping countries"
+          add: "Add Shipping Country"
+        form:
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this shipping country from being saved:"
+          name: "Name"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+        list:
+          name: "Name"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      shipping_rates:
+        create:
+          notice: "Shipping rate was successfully created."
+        update:
+          notice: "Shipping rate was successfully updated."
+        destroy:
+          notice: "Shipping rate was successfully deleted."
+        index:
+          title: "Shipping Rates"
+          add: "Add Shipping Rate"
+        new:
+          add: "Add Shipping Rate"
+        show:
+          title: "Editing Shipping Rate"
+        blank:
+          no_links: "There are no shipping rates"
+          add: "Add Shipping Rate"
+        form:
+          error: "error"
+          back: "Back"
+          prohibit: "prohibited this shipping rate from being saved:"
+        list:
+          name: "Name"
+          delete: "Delete"
+          confirmation: "Are you sure?"
+
+      tax_overrides:
+        create:
+          fail: "Creating of override was failed."
+          success: "Override was successfully created."
+        destroy:
+          success: "Override was successfully deleted."
+          fail: "Deleting of override was failed."
+        update:
+          fail: "Updating of override was failed."
+          success: "Override was successfully updated."
+        show:
+          title: "Taxes"
+          base_taxes: "Base Taxes"
+          base_taxes_inf: "All applicable taxes for Ukraine. These taxes will be used unless overrides are specified below."
+          country_tax: "Country Tax"
+          tax_overrides: "Tax Overrides"
+          tax_overrides_inf: "Customize region-based tax rates for specific product collections, or when shipping to designated areas."
+          add: "Add a tax override"
+          instead_of: "%{tax_rate}% instead of %{country_rate}% federal tax"
+          save: "Save"
+          shipping: "Shipping"
+          delete: "Delete"
+          instead: "instead of "
+          federal: " federal tax"
+          confirmation: "Are you sure?"
+          edit: "Edit"
+        new:
+          logo: "Add Tax Override for "
+        edit:
+          logo: "Edit Tax Override"
+        form:
+          select_method: "Add tax override for:"
+          prohibit: "prohibited this tax from being saved:"
+          error: "error"
+          select_collection: "Select a collection to apply the tax override to. You can also "
+          create: "create a new collection"
+          location: "Location"
+          tax_rate: "Tax Rate"
+          products: "Products"
+          shipping: "Shipping"
+          save: "Save"
+          cancel: "Cancel"
+          select_collection_drop_down: "Select a collection"

@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::CustomersController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
   respond_to :csv
@@ -62,4 +63,5 @@ class Admin::CustomersController < Admin::ApplicationController
     { customer:
         params.fetch(:customer, {}).permit(:first_name, :last_name, :email) }
   end
+end
 end

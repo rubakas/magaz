@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::ProductImagesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
@@ -53,4 +54,5 @@ class Admin::ProductImagesController < Admin::ApplicationController
     { product_image:
         params.fetch(:product_image, {}).permit(:image) }
   end
+end
 end

@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::BlogsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
   
@@ -50,4 +51,5 @@ class Admin::BlogsController < Admin::ApplicationController
         params.fetch(:blog, {}).permit(:title, :page_title, :meta_description, :handle) }
   end
 
+end
 end

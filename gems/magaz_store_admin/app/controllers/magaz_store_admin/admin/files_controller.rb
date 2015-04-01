@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::FilesController < ApplicationController
   include MagazCore::Concerns::Authenticable
   layout 'admin_settings'
@@ -48,4 +49,5 @@ class Admin::FilesController < ApplicationController
     { file:
         params.fetch(:file, {}).permit(:file, :name)}
   end
+end
 end

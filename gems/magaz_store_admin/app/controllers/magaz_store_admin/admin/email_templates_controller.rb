@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::EmailTemplatesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
@@ -25,4 +26,5 @@ class Admin::EmailTemplatesController < Admin::ApplicationController
     { email_template:
         params.fetch(:email_template, {}).permit(:name, :title, :body, :template_type) }
   end
+end
 end

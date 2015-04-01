@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::LinkListsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
@@ -46,4 +47,5 @@ class Admin::LinkListsController < Admin::ApplicationController
     { link_list:
         params.fetch(:link_list, {}).permit(:name, :handle, :links_attributes => [:name, :position, :link_type, :link_list_id]) }
   end
+end
 end

@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 module MagazStoreAdmin
   class Admin::SessionsController < Admin::ApplicationController
     #TODO: layout
@@ -31,4 +32,5 @@ module MagazStoreAdmin
       redirect_to goodbye_url
     end
   end
+end
 end

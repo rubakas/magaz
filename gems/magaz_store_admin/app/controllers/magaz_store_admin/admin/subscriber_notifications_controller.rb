@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::SubscriberNotificationsController < ApplicationController
   include MagazCore::Concerns::Authenticable
 
@@ -45,4 +46,5 @@ class Admin::SubscriberNotificationsController < ApplicationController
         params.fetch(:subscriber_notification, {}).permit(:notification_method, 
                                                           :subscription_address) }
   end
+end
 end

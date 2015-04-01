@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::CheckoutsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
   before_action :set_abandoned_checkout, only: [:show, :destroy]
@@ -25,4 +26,5 @@ class Admin::CheckoutsController < Admin::ApplicationController
   def abandoned_checkout_params
     params.require(:abandoned_checkout).permit(:email)
   end
+end
 end

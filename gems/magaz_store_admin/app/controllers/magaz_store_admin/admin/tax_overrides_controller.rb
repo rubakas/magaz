@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::TaxOverridesController < ApplicationController
   layout 'admin_settings'
 
@@ -61,4 +62,5 @@ class Admin::TaxOverridesController < ApplicationController
                                              :collection_id,
                                              :shipping_country_id)}
   end
+end
 end

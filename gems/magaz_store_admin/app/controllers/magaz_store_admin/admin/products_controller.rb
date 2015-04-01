@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::ProductsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
@@ -48,4 +49,5 @@ class Admin::ProductsController < Admin::ApplicationController
     { product:
         params.fetch(:product, {}).permit(:name, :description, :price, :page_title, :meta_description, :handle, product_images_attributes: [:image, :_destroy, :id], collection_ids: []) }
   end
+end
 end

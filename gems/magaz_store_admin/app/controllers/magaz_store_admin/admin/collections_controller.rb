@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::CollectionsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
@@ -49,4 +50,5 @@ class Admin::CollectionsController < Admin::ApplicationController
     { collection:
         params.fetch(:collection, {}).permit(:name, :description, :page_title, :meta_description, :handle) }
   end
+end
 end

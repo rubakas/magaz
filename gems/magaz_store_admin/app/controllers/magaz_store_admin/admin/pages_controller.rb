@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::PagesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
   
@@ -47,4 +48,5 @@ class Admin::PagesController < Admin::ApplicationController
   def permitted_params
     { page: params.fetch(:page, {}).permit(:title, :content, :page_title, :meta_description, :handle) }
   end
+end
 end

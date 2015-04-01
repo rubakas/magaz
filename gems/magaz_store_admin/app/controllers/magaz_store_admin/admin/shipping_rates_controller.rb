@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::ShippingRatesController < ApplicationController
   include MagazCore::Concerns::Authenticable
   layout 'admin_settings'
@@ -53,4 +54,5 @@ class Admin::ShippingRatesController < ApplicationController
     { shipping_rate:
         params.fetch(:shipping_rate, {}).permit(:name, :criteria, :price_from, :price_to, :weight_from, :weight_to, :shipping_price) }
   end
+end
 end

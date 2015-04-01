@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::ShippingCountriesController < ApplicationController
   include MagazCore::Concerns::Authenticable
   layout 'admin_settings'
@@ -54,4 +55,5 @@ class Admin::ShippingCountriesController < ApplicationController
     { shipping_country:
         params.fetch(:shipping_country, {}).permit(:name, :tax, :country_id, :shipping_rates_attributes => [:name, :price_from, :price_to, :weight_from, :weight_to, :shipping_price]) }
   end
+end
 end

@@ -1,3 +1,4 @@
+module MagazStoreAdmin 
 class Admin::UsersController < ApplicationController
   layout 'admin_settings'
 
@@ -73,4 +74,5 @@ class Admin::UsersController < ApplicationController
     { user:
         params.fetch(:user, {}).permit(:first_name, :last_name, :email, :password, permissions:[]) }
   end
+end
 end
