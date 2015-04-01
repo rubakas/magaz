@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126150935) do
+ActiveRecord::Schema.define(version: 20150209144902) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -91,6 +91,11 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.integer  "article_id"
   end
 
+  create_table "countries", force: :cascade do |t|
+    t.string "name", limit: 50
+    t.string "code", limit: 2
+  end
+
   create_table "customers", force: :cascade do |t|
     t.boolean "accepts_marketing"
     t.string  "email"
@@ -161,11 +166,6 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.integer "link_list_id"
   end
 
-  create_table "magaz_core_email_templates", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "order_subscriptions", force: :cascade do |t|
     t.string   "notification_method"
     t.string   "subscription_address"
@@ -210,10 +210,28 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.datetime "published_at"
   end
 
-  create_table "shops", force: :cascade do |t|
-    t.string   "email"
+  create_table "shipping_countries", force: :cascade do |t|
+    t.string  "name"
+    t.string  "tax"
+    t.integer "shop_id"
+    t.integer "country_id"
+  end
+
+  create_table "shipping_rates", force: :cascade do |t|
     t.string   "name"
-    t.string   "password_digest"
+    t.string   "criteria"
+    t.float    "price_from"
+    t.float    "price_to"
+    t.float    "weight_from"
+    t.float    "weight_to"
+    t.float    "shipping_price"
+    t.integer  "shipping_country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_salt"
@@ -268,8 +286,12 @@ ActiveRecord::Schema.define(version: 20150126150935) do
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "permissions",     default: "--- []\n"
     t.string   "user_type"
+    t.string   "password_salt"
+    t.boolean  "account_owner",   default: false
+    t.string   "permissions",     default: "--- []\n"
+    t.boolean  "email_confirmed", default: false
+    t.string   "confirm_token"
   end
 
 end

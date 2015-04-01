@@ -35,7 +35,7 @@ Rails.application.routes.draw do
         collection { get  :export }
       end
       resources :files, except: [:edit]
-      resources :tax_overrides
+      resources :tax_overrides, except: [:index]
       resources :link_lists, except: [:edit] do
         resources :links
       end
@@ -72,11 +72,7 @@ Rails.application.routes.draw do
           get 'notifications_settings'
         end
       end
-      resources :users, except: [:edit] do
-        collection do
-          get 'new_invite'
-        end
-      end
+      resources :users, except: [:edit]
     end
   end
 

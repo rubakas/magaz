@@ -81,27 +81,27 @@ p id="notice"
     div class="row"
       div class="col-xs-3"
         div class="label_of_column"
-          = t('.refound_and_tos_logo')
+          = t('.refund_and_tos_logo')
         div class='inf'
-          = t('.refound_and_tos_inf')
+          = t('.refund_and_tos_inf')
       div class="col-xs-9"
         div class="field"
           div class="field_with_select"
-            = f.label t('.refound_policy')
-            = f.text_area :checkout_refound_policy
-            = f.button 'Generate sample', class: 'generate_refund'
+            = f.label t('.refund_policy')
+            = f.text_area :checkout_refund_policy
+            = f.button t('.generate_sample'), class: 'generate_refund'
 
         div class="field"
           div class="field_with_select"
             = f.label t('.privacy_policy')
             = f.text_area :checkout_privacy_policy
-            = f.button 'Generate sample', class: 'generate_privacy'
+            = f.button t('.generate_sample'), class: 'generate_privacy'
 
         div class="field"
           div class="field_with_select"
             = f.label t('.terms_of_service')
             = f.text_area :checkout_term_of_service
-            = f.button 'Generate sample', class: 'generate_tos'
+            = f.button t('.generate_sample'), class: 'generate_tos'
 
     br
     div class="actions"

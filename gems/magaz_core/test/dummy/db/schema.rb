@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305165027) do
+ActiveRecord::Schema.define(version: 20150324140737) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -258,7 +258,7 @@ ActiveRecord::Schema.define(version: 20150305165027) do
     t.string   "after_order_paid"
     t.boolean  "after_order_fulfilled_and_paid"
     t.string   "checkout_language"
-    t.text     "checkout_refound_policy"
+    t.text     "checkout_refund_policy"
     t.text     "checkout_privacy_policy"
     t.text     "checkout_term_of_service"
     t.boolean  "enable_multipass_login"
@@ -298,10 +298,10 @@ ActiveRecord::Schema.define(version: 20150305165027) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_type"
-    t.string   "invite_token"
     t.string   "password_salt"
     t.boolean  "account_owner",   default: false
     t.string   "permissions",     default: "--- []\n"
+    t.string   "invite_token"
   end
 
 end

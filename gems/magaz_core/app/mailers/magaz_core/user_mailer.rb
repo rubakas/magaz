@@ -1,7 +1,9 @@
 module MagazCore
   class UserMailer < ApplicationMailer
-    default :from => ADRESS_SETTINGS[:from]
-     default :to => ADRESS_SETTINGS[:to]
+    include Rails.application.routes.url_helpers
+
+    default :from => MAILER_SETTINGS[:from]
+    default :to => MAILER_SETTINGS[:to]
 
     def notification(subscriber_notification, email_template)
       mail(to: subscriber_notification.subscription_address,
@@ -15,11 +17,11 @@ module MagazCore
       mail(to: subscriber_notification.subscription_address, subject: t('.subject'))
     end
 
-    def invite_new_user(user, admin_user_url, set_host)
-      UserMailer.default_url_options[:host] = set_host
-      @shop = MagazCore::Shop.find_by_id(user.shop_id)
-      @link = admin_user_url
-      mail(to: user.email,
+    def invite_new_user(user,link)
+      @link = link
+      @user = user
+      @shop = MagazCore::Shop.find_by_id(@user.shop_id)
+      mail(to: @user.email,
            subject: t('.subject'))
     end
   end

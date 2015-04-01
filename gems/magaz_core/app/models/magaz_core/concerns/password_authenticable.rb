@@ -3,12 +3,14 @@ module MagazCore
     module PasswordAuthenticable
       extend ActiveSupport::Concern
 
+      EMAIL_VALID_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
       included do
         attr_accessor :password
 
         validates :email, presence: true,
                           uniqueness: true,
-                          format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
+                          format: { with: EMAIL_VALID_REGEX }
         validates :password, presence: { on: :create }
 
         before_save :update_encrypted_password

@@ -67,7 +67,6 @@ p id="notice"
             th = t('.destination')
             th = t('.country_tax_rate')
             th = t('.overrides')
-            th = t('sub_regions')
 
         - @shop.shipping_countries.each do |country|
           - @country = MagazCore::ShippingCountry.find_by_id(country.id)
@@ -76,5 +75,4 @@ p id="notice"
             tr
               td = link_to @country_name, admin_tax_override_path(@country.id)
               td = country.tax + '%'
-              td = '____'
-              td = ''
+              td = @country.tax_overrides.count

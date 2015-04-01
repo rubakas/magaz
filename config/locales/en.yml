@@ -359,9 +359,13 @@ en:
     settings:
       edit:
         general_settings: "Shop Settings"
+      update:
+        success_notice: "Shop was successfully updated."
       form:
         error: "error"
         prohibit: "prohibited this shop from being saved:"
+      checkouts_settings_update:
+          success_notice: "Shop was successfully updated."
       checkouts_settings:
         logo: "Checkouts"
         save: 'Save'
@@ -370,8 +374,9 @@ en:
         hidden_multipass_inf: "Enable Multipass if you want to integrate with an external customer account system."
         orders_proccessing_inf: "Change how your store responds to checkout and order events."
         orders_proccessing_logo: "Orders Proccessing"
-        refound_and_tos_logo: "Refund, privacy and TOS statements"
-        refound_and_tos_inf: "These statements appear in the footer of your checkout page."
+        refund_and_tos_logo: "Refund, privacy and TOS statements"
+        generate_sample: "Generate sample"
+        refund_and_tos_inf: "These statements appear in the footer of your checkout page."
         notify_costumers_of_shipipment: "Notify customers of their shipment via email"
         auto_fulfill_orders: "Automatically fulfill all orders, even those with a high risk of fraud."
         auto_archive: "Automatically archive the order"
@@ -386,9 +391,11 @@ en:
         email_marketing: "Collecting consent to send promotional emails to customers from your store"
         after_order_paid: "After an order has been paid"
         after_order_fulfilled_and_paid: "After an order has been fulfilled and paid"
-        refound_policy: "Refund Policy"
+        refund_policy: "Refund Policy"
         privacy_policy: "Privacy Policy"
         terms_of_service: "Terms of Service"
+      payments_settings_update:
+          success_notice: "Shop was successfully updated."
       payments_settings:
         logo: "Payments"
         payment_authoriz_settings: "Payment authorization settings"
@@ -398,6 +405,8 @@ en:
         authorize_and_charge: "Authorize and charge the customers credit card."
         authorize_customer: "Authorize the customers credit card."
         select_method: "Select authorization method"
+      notifications_settings_update:
+          success_notice: "Shop was successfully updated."
       notifications_settings:
         add_notification: "Add an order notification"
         logo: "Notifications"
@@ -440,7 +449,8 @@ en:
         send_test_notification: "send test notification"
         title: "Notification"
         send_to: "Send to %{notification_method}"
-
+      taxes_settings_update:
+          success_notice: "Shop was successfully updated."
       taxes_settings:
         logo: "Taxes"
         enable: "Enable "
@@ -590,6 +600,15 @@ en:
         confirmation: "Are you sure?"
 
     tax_overrides:
+      create:
+        fail: "Creating of override was failed."
+        success: "Override was successfully created."
+      destroy:
+        success: "Override was successfully deleted."
+        fail: "Deleting of override was failed."
+      update:
+        fail: "Updating of override was failed."
+        success: "Override was successfully updated."
       show:
         title: "Taxes"
         base_taxes: "Base Taxes"
@@ -598,22 +617,32 @@ en:
         tax_overrides: "Tax Overrides"
         tax_overrides_inf: "Customize region-based tax rates for specific product collections, or when shipping to designated areas."
         add: "Add a tax override"
-        instead: "instead of"
-        federal: "federal tax"
+        instead_of: "%{tax_rate}% instead of %{country_rate}% federal tax"
         save: "Save"
+        shipping: "Shipping"
+        delete: "Delete"
+        instead: "instead of "
+        federal: " federal tax"
+        confirmation: "Are you sure?"
+        edit: "Edit"
       new:
         logo: "Add Tax Override for "
+      edit:
+        logo: "Edit Tax Override"
+      form:
         select_method: "Add tax override for:"
         prohibit: "prohibited this tax from being saved:"
+        error: "error"
         select_collection: "Select a collection to apply the tax override to. You can also "
         create: "create a new collection"
         location: "Location"
         tax_rate: "Tax Rate"
         products: "Products"
         shipping: "Shipping"
-        add: "Add Override"
+        save: "Save"
         cancel: "Cancel"
-        select_collection: "Select a collection"
+        select_collection_drop_down: "Select a collection"
+
     users:
       create:
         notice: "User was successfully created."
@@ -657,7 +686,7 @@ en:
         subject: "Registration Confirmation"
       invite_new_user:
         subject: "You are invited"
-        text: "Hi , You are invited to shop "
+        text: "Hi , You are invited to shop %{shop_name} "
         link: "Confirmation"
 
   theme_store:
