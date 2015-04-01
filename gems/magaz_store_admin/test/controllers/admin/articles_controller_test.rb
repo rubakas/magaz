@@ -1,9 +1,8 @@
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::ArticlesControllerTest < ActionController::TestCase
   setup do
-    puts "*******************************"
-    puts Rails.root.join("../../../gems/magaz_core/test/factories/")
     @shop = create(:shop, subdomain: 'example')
     @blog = create(:blog, shop: @shop, handle: "handle1")
     @user = create(:user, shop: @shop)
@@ -55,4 +54,5 @@ class Admin::ArticlesControllerTest < ActionController::TestCase
 
     assert_redirected_to admin_articles_path
   end
+end
 end
