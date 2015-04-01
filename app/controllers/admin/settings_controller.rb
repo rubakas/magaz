@@ -25,8 +25,7 @@ class Admin::SettingsController < ApplicationController
   end
 
   def payments_settings_update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params_for_payments[:shop])
+    if current_shop.update_attributes(permitted_params_for_payments[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to payments_settings_admin_settings_path
     else
@@ -41,8 +40,7 @@ class Admin::SettingsController < ApplicationController
   end
 
   def checkouts_settings_update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params_for_checkouts[:shop])
+    if current_shop.update_attributes(permitted_params_for_checkouts[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to checkouts_settings_admin_settings_path
     else
@@ -57,13 +55,64 @@ class Admin::SettingsController < ApplicationController
   end
 
   def notifications_settings_update
-    @shop = current_shop
-    if @shop.update_attributes(permitted_params_for_notifications[:shop])
+    if current_shop.update_attributes(permitted_params_for_notifications[:shop])
       flash[:notice] = 'Shop was successfully updated.'
       redirect_to notifications_settings_admin_settings_path
     else
       render "notifications_settings"
     end
+  end
+
+  #Taxes
+
+  def taxes_settings
+    @shop = current_shop
+    if @shop.eu_digital_goods_collection_id == nil
+      @default_collection = @shop.collections.find_by(name: "Digital Goods VAT Tax")
+    else
+      @default_collection = @shop.collections.find_by_id(@shop.eu_digital_goods_collection_id)
+    end
+  end
+
+  def taxes_settings_update
+    if current_shop.update_attributes(permitted_params_for_taxes[:shop])
+      flash[:notice] = 'Shop was successfully updated.'
+      unless params[:charge_vat_taxes]
+        current_shop.update_attributes(eu_digital_goods_collection_id:  nil)
+      end
+      redirect_to taxes_settings_admin_settings_path
+    else
+      render "taxes_settings"
+    end
+  end
+
+  def enable_eu_digital_goods_vat_taxes
+    if current_shop.collections.find_by(name: "Digital Goods VAT Tax") == nil
+      @default_collection = current_shop.collections.new(name: "Digital Goods VAT Tax")
+      if @default_collection.save
+        current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
+        redirect_to taxes_settings_admin_settings_path
+      else
+        current_shop.update_attributes(eu_digital_goods_collection_id:  false)
+        redirect_to taxes_settings_admin_settings_path
+      end
+    else
+      @default_collection = current_shop.collections.find_by(name: "Digital Goods VAT Tax")
+      current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
+      redirect_to taxes_settings_admin_settings_path
+    end
+  end
+
+  def set_default_collection
+    @shop = current_shop
+    @default_collection = current_shop.collections.find_by_id(current_shop.eu_digital_goods_collection_id)
+    @collections = current_shop.collections.page(params[:page])
+  end
+
+  def save_default_collection
+    @default_collection = current_shop.collections.find_by_id(params[:default_collection])
+    current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
+    redirect_to taxes_settings_admin_settings_path
   end
 
   protected
@@ -82,18 +131,23 @@ class Admin::SettingsController < ApplicationController
                                       :abandoned_checkout_time_delay, :email_marketing_choice,
                                       :after_order_paid, :after_order_fulfilled_and_paid,
                                       :checkout_language, :checkout_refound_policy,
-                                      :checkout_privacy_policy, :checkout_term_of_service) }
+                                      :checkout_privacy_policy, :checkout_term_of_service,
+                                      :enable_multipass_login, :notify_customers_of_their_shipment,
+                                      :automatically_fulfill_all_orders) }
   end
 
   def permitted_params_for_payments
-    {
-      shop:
+    { shop:
       params.fetch(:shop, {}).permit(:authorization_settings)}
   end
 
   def permitted_params_for_notifications
-    {
-      shop:
+    { shop:
       params.fetch(:shop, {}).permit()}
+  end
+
+    def permitted_params_for_taxes
+    { shop:
+        params.fetch(:shop, {}).permit(:all_taxes_are_included, :charge_taxes_on_shipping_rates) }
   end
 end

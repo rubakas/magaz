@@ -46,6 +46,12 @@ section class='sidebar-section'
         label: t('.notifications'),
         active_conditions: { controller: 'admin/settings',  action: 'notifications_settings' }
 
+    = render 'admin/shared/li_link_to',
+        path: taxes_settings_admin_settings_path,
+        icon_class: 'icon-cloud',
+        label: t('.taxes'),
+        active_conditions: { controller: 'admin/settings',  action: 'taxes_settings' }
+
     hr
 
     = render 'admin/shared/li_link_to',

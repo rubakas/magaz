@@ -5,6 +5,7 @@ module MagazCore
     belongs_to :shop
     belongs_to :country
     has_many   :shipping_rates, dependent: :destroy
+    has_many :tax_overrides
 
     validates :tax, :name, presence: true
     validates :tax, numericality: true
