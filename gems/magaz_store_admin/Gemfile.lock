@@ -105,6 +105,20 @@ PATH
     magaz_store_admin (0.0.1)
       rails (~> 4.2.1)
 
+PATH
+  remote: ../magaz_core
+  specs:
+    magaz_core (0.0.3)
+      bcrypt
+      carrierwave
+      friendly_id (= 5.0.4)
+      interactor-rails
+      liquid
+      rails (~> 4.2.0)
+      rmagick
+      rubyzip
+      sidekiq
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -113,6 +127,7 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
+    bcrypt (3.1.10)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -123,10 +138,18 @@ GEM
     capybara-webkit (1.3.1)
       capybara (>= 2.0.2, < 2.5.0)
       json
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
     coffee-script (2.3.0)
       coffee-script-source
       execjs
     coffee-script-source (1.9.1)
+    connection_pool (2.1.3)
     countries (0.11.3)
       currencies (~> 0.4.2)
       i18n_data (~> 0.6.0)
@@ -159,6 +182,8 @@ GEM
     font-awesome-sass-rails (3.0.2.2)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     globalid (0.3.3)
@@ -167,8 +192,13 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
+    hitimes (1.2.2)
     i18n (0.7.0)
     i18n_data (0.6.3)
+    interactor (3.1.0)
+    interactor-rails (2.0.1)
+      interactor (~> 3.0)
+      rails (>= 3, < 5)
     jbuilder (2.2.12)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -182,6 +212,7 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    liquid (3.0.1)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -217,8 +248,12 @@ GEM
     rainbow (2.0.0)
     rake (10.4.2)
     rdoc (4.2.0)
+    redis (3.2.1)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rmagick (2.13.4)
     rubocop (0.29.1)
       astrolabe (~> 1.3)
       parser (>= 2.2.0.1, < 3.0)
@@ -228,11 +263,18 @@ GEM
     ruby-progressbar (1.7.5)
     ruby_parser (3.6.5)
       sexp_processor (~> 4.1)
+    rubyzip (1.1.7)
     sass (3.4.13)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.5.0)
+    sidekiq (3.3.3)
+      celluloid (>= 0.16.0)
+      connection_pool (>= 2.1.1)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     skylight (0.6.0)
       activesupport (>= 3.0.0)
     slim (3.0.3)
@@ -255,6 +297,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    timers (4.0.1)
+      hitimes
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -286,6 +330,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  magaz_core!
   magaz_store_admin!
   memcachier
   parallel_tests

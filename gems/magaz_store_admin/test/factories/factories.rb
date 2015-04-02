@@ -1,1 +1,1 @@
-Dir[Rails.root.join("../../../gems/**/test/factories/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("../../../magaz_core/test/factories/**/*.rb")].each { |f| require f }
