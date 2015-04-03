@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   mount MagazStyle::Engine => "/style"
 
   constraints host: HOSTNAME do
-    root 'welcome#index'
+    root :to => 'welcome#index', as: :welcome
+    #get 'welcome' => 'welcome#index', as: :welcome
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
     resource :registration, only: [:create, :show] do
       collection do

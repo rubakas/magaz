@@ -1,6 +1,9 @@
 MagazStoreAdmin::Engine.routes.draw do
   constraints host: HOSTNAME do
+    #root 'welcome#index'
     get 'goodbye', as: :goodbye
+    root action: :welcome, as: :welcome
+    #root action: :welcome
   end
 
   namespace :admin do
