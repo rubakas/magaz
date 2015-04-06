@@ -26,7 +26,7 @@ class Admin::ArticlesControllerTest < ActionController::TestCase
       post :create, { article: { content: @article.content, title: 'New uniq name' } }
     end
 
-    assert_redirected_to admin_article_path(assigns(:article))
+    assert_redirected_to article_path(assigns(:article))
   end
 
   test "should show article" do
@@ -52,7 +52,7 @@ class Admin::ArticlesControllerTest < ActionController::TestCase
       delete :destroy, id: @article.id
     end
 
-    assert_redirected_to admin_articles_path
+    assert_redirected_to articles_path
   end
 end
 end

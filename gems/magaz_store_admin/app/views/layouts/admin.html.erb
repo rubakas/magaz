@@ -20,11 +20,11 @@
 
   <div class='navbar-public'>
     <div class='container'>
-      <%= link_to t('.shop'), admin_root_path, class: 'navbar-brand' %>
+      <%= link_to t('.shop'), magaz_store_admin.root_path, class: 'navbar-brand' %>
 
       <ul class='nav navbar-nav pull-right'>
         <li>
-          <%= link_to admin_session_path, method: :delete do %>
+          <%= link_to session_path, method: :delete do %>
           <%= t('.sign_out')%>
           <i class="icon-signout"></i>
           <% end %>
@@ -36,7 +36,7 @@
   <div class='container'>
     <div class='row'>
       <div class='col-xs-3'>
-        <%= render partial: 'admin/shared/sidebar_nav' %>
+        <%= render partial: 'magaz_store_admin/shared/sidebar_nav' %>
       </div>
       <div class='col-xs-9'>
         <%= yield %>

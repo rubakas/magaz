@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
     if @shop && @user && @user.authentic_password?(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
+      redirect_to magaz_store_admin.root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
       render :new
     end
@@ -23,6 +23,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to goodbye_url
+    redirect_to root_url
   end
 end

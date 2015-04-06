@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::BlogsControllerTest < ActionController::TestCase
@@ -25,7 +25,7 @@ class Admin::BlogsControllerTest < ActionController::TestCase
       post :create, blog: { title: 'New uniq name' }
     end
 
-    assert_redirected_to admin_blog_path(assigns(:blog))
+    assert_redirected_to blog_path(assigns(:blog))
   end
 
   test "should show blog" do
@@ -48,7 +48,7 @@ class Admin::BlogsControllerTest < ActionController::TestCase
       delete :destroy, id: @blog
     end
 
-    assert_redirected_to admin_blogs_path
+    assert_redirected_to blogs_path
   end
 end
 end

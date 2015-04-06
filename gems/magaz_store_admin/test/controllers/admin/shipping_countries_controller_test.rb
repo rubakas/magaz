@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::ShippingCountriesControllerTest < ActionController::TestCase
@@ -27,7 +27,7 @@ class Admin::ShippingCountriesControllerTest < ActionController::TestCase
     end
     assert_equal "#{@country.id}", MagazCore::ShippingCountry.last.country_id.inspect
     assert_equal "#{@shop.id}", MagazCore::ShippingCountry.last.shop_id.inspect
-    assert_redirected_to admin_shipping_country_path(assigns(:shipping_country))
+    assert_redirected_to shipping_country_path(assigns(:shipping_country))
   end
 
   test "should show country" do
@@ -41,7 +41,7 @@ class Admin::ShippingCountriesControllerTest < ActionController::TestCase
         shipping_country: { name: @another_country.code, tax: @shipping_country.tax } }
     assert_equal "#{@another_country.id}", MagazCore::ShippingCountry.last.country_id.inspect
     assert_equal "#{@shop.id}", MagazCore::ShippingCountry.last.shop_id.inspect
-    assert_redirected_to admin_shipping_country_path(assigns(:shipping_country))
+    assert_redirected_to shipping_country_path(assigns(:shipping_country))
   end
 
   test "should not update shipping country" do
@@ -57,7 +57,7 @@ class Admin::ShippingCountriesControllerTest < ActionController::TestCase
       delete :destroy, id: @shipping_country.id
     end
 
-    assert_redirected_to admin_shipping_countries_path
+    assert_redirected_to shipping_countries_path
   end
 end
 end

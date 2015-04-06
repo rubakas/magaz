@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::CollectionsControllerTest < ActionController::TestCase
@@ -25,7 +25,7 @@ class Admin::CollectionsControllerTest < ActionController::TestCase
       post :create, collection: { name: 'Unique Name' }
     end
 
-    assert_redirected_to admin_collection_path(assigns(:collection))
+    assert_redirected_to collection_path(assigns(:collection))
   end
 
   test "should show collection" do
@@ -35,7 +35,7 @@ class Admin::CollectionsControllerTest < ActionController::TestCase
 
   test "should update collection" do
     patch :update, id: @collection, collection: { description: @collection.description, name: @collection.name }
-    assert_redirected_to admin_collection_path(assigns(:collection))
+    assert_redirected_to collection_path(assigns(:collection))
   end
 
   test "should destroy collection" do
@@ -43,7 +43,7 @@ class Admin::CollectionsControllerTest < ActionController::TestCase
       delete :destroy, id: @collection
     end
 
-    assert_redirected_to admin_collections_path
+    assert_redirected_to collections_path
   end
 end
 end

@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   mount MagazStyle::Engine => "/style"
 
   constraints host: HOSTNAME do
-    root :to => 'welcome#index', as: :welcome
-    #get 'welcome' => 'welcome#index', as: :welcome
+    root 'welcome#index'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
     resource :registration, only: [:create, :show] do
       collection do
@@ -21,7 +20,7 @@ Rails.application.routes.draw do
   constraints(ShopSubdomainConstraint) do
     mount MagazStore::Engine => "/"
 
-    mount MagazStoreAdmin::Engine => "/", :as => 'magaz_store_admin'
+    mount MagazStoreAdmin::Engine => "/admin", :as => 'magaz_store_admin'
 
   end
 

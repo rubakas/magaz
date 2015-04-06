@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::OrdersControllerTest < ActionController::TestCase
@@ -24,7 +24,7 @@ class Admin::OrdersControllerTest < ActionController::TestCase
 
   test "should update product" do
     patch :update, id: @order, order: { status: @order.status }
-    assert_redirected_to admin_order_path(assigns(:order))
+    assert_redirected_to order_path(assigns(:order))
   end
 
 end

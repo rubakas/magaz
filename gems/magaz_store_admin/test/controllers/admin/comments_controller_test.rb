@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::CommentsControllerTest < ActionController::TestCase
@@ -27,7 +27,7 @@ class Admin::CommentsControllerTest < ActionController::TestCase
       post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body }
     end
 
-    assert_redirected_to admin_comment_path(assigns(:comment))
+    assert_redirected_to comment_path(assigns(:comment))
   end
 
   test "should show comment" do
@@ -50,7 +50,7 @@ class Admin::CommentsControllerTest < ActionController::TestCase
       delete :destroy, id: @comment
     end
 
-    assert_redirected_to admin_comments_path
+    assert_redirected_to comments_path
   end
 end
 end

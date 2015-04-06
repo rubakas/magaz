@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::CustomersControllerTest < ActionController::TestCase
@@ -31,7 +31,7 @@ class Admin::CustomersControllerTest < ActionController::TestCase
       post :create, { customer: { first_name: 'Very Unique Name' } }
     end
 
-    assert_redirected_to admin_customer_path(assigns(:customer))
+    assert_redirected_to customer_path(assigns(:customer))
   end
 
   test "should show customer" do
@@ -44,14 +44,14 @@ class Admin::CustomersControllerTest < ActionController::TestCase
     patch :update,
       { id: @customer.id,
         customer: { first_name: @customer.first_name } }
-    assert_redirected_to admin_customer_path(assigns(:customer))
+    assert_redirected_to customer_path(assigns(:customer))
   end
 
   test "should destroy customer" do
     assert_difference('MagazCore::Customer.count', -1) do
       delete :destroy, id: @customer.id
     end
-    assert_redirected_to admin_customers_path
+    assert_redirected_to customers_path
   end
 
 end

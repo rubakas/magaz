@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::ShippingRatesControllerTest < ActionController::TestCase
@@ -31,7 +31,7 @@ class Admin::ShippingRatesControllerTest < ActionController::TestCase
     patch :update,
       { :shipping_country_id => @shipping_country.id, id: @shipping_rate.id,
         shipping_rate: { name: @shipping_rate.name } }
-    assert_redirected_to admin_shipping_country_shipping_rate_path(@shipping_country, @shipping_rate)
+    assert_redirected_to shipping_country_shipping_rate_path(@shipping_country, @shipping_rate)
   end
 
   test "should not update shipping_rate" do
@@ -47,7 +47,7 @@ class Admin::ShippingRatesControllerTest < ActionController::TestCase
       delete :destroy, :shipping_country_id => @shipping_country.id, id: @shipping_rate.id
     end
 
-    assert_redirected_to admin_shipping_country_path(@shipping_country)
+    assert_redirected_to shipping_country_path(@shipping_country)
   end
 
   test "criteria validation success" do
@@ -55,7 +55,7 @@ class Admin::ShippingRatesControllerTest < ActionController::TestCase
       { :shipping_country_id => @shipping_country.id, id: @shipping_rate.id,
         shipping_rate: { shipping_price: @shipping_rate.shipping_price, name: @shipping_rate.name,
                           criteria: "price", price_from: 10, price_to: 20} }
-    assert_redirected_to admin_shipping_country_shipping_rate_path(@shipping_country, @shipping_rate)
+    assert_redirected_to shipping_country_shipping_rate_path(@shipping_country, @shipping_rate)
   end
 
   test "criteria validation failure" do

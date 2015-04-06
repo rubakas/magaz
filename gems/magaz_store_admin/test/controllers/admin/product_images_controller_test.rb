@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::ProductImagesControllerTest < ActionController::TestCase
@@ -53,7 +53,7 @@ class Admin::ProductImagesControllerTest < ActionController::TestCase
     assert_difference('MagazCore::ProductImage.count', -1) do
       delete :destroy, product_id: @product , id: @product_image
     end
-    assert_redirected_to admin_product_product_images_path
+    assert_redirected_to product_product_images_path
   end
 end
 end

@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::PagesControllerTest < ActionController::TestCase
@@ -25,7 +25,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
       post :create, page: { content: @page.content, title: 'New uniq name' }
     end
 
-    assert_redirected_to admin_page_path(assigns(:page))
+    assert_redirected_to page_path(assigns(:page))
   end
 
   test "should show page" do
@@ -49,7 +49,7 @@ class Admin::PagesControllerTest < ActionController::TestCase
       delete :destroy, id: @page
     end
 
-    assert_redirected_to admin_pages_path
+    assert_redirected_to pages_path
   end
 end
 end

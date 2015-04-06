@@ -1,4 +1,4 @@
-module MagazStoreAdmin 
+module MagazStoreAdmin
 require 'test_helper'
 
 class Admin::TaxOverridesControllerTest < ActionController::TestCase
@@ -29,7 +29,7 @@ class Admin::TaxOverridesControllerTest < ActionController::TestCase
       delete :destroy, id: @tax_override.id
     end
 
-    assert_redirected_to admin_tax_override_path(assigns(:shipping_country))
+    assert_redirected_to tax_override_path(assigns(:shipping_country))
   end
 end
 end
