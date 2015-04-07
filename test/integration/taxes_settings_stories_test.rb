@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::TaxesSettingsStoriesTest < ActionDispatch::IntegrationTest
+class TaxesSettingsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     click_link "Settings"

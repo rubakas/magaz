@@ -1,6 +1,6 @@
 MagazStoreAdmin::Engine.routes.draw do
   constraints host: HOSTNAME do
-    get 'goodbye'
+    get 'goodbye' => 'welcome#goodbye', as: :goodbye
   end
 
   root 'dashboard#index'

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::PagesStoriesTest < ActionDispatch::IntegrationTest
+class PagesStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @page = create(:page, shop: @shop)

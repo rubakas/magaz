@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::CollectionsStoriesTest < ActionDispatch::IntegrationTest
+class CollectionsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @collection = create(:collection, shop: @shop)

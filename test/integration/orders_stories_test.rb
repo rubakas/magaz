@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::OrdersStoriesTest < ActionDispatch::IntegrationTest
+class OrdersStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @customer = create(:customer, shop: @shop)

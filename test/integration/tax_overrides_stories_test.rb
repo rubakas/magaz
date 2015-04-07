@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
+class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @country = create(:country)

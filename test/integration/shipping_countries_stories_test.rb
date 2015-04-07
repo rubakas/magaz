@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
+class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @country = create(:country)

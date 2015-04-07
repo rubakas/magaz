@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::SettingsStoriesTest < ActionDispatch::IntegrationTest
+class SettingsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     click_link "Settings"

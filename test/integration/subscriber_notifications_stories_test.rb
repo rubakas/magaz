@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::SubscriberNotificationsStoriesTest < ActionDispatch::IntegrationTest
+class SubscriberNotificationsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @subscriber_notification = create(:subscriber_notification, shop: @shop)

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::LinkListsStoriesTest < ActionDispatch::IntegrationTest
+class LinkListsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @link_list = create(:link_list, shop: @shop, handle: "link-list-handle")

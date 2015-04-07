@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::EmailTemplatesStoriesTest < ActionDispatch::IntegrationTest
+class EmailTemplatesStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @email_template = create(:email_template, shop: @shop)
