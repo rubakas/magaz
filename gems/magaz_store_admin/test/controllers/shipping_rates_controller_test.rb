@@ -1,7 +1,7 @@
 module MagazStoreAdmin
 require 'test_helper'
 
-class Admin::ShippingRatesControllerTest < ActionController::TestCase
+class ShippingRatesControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
