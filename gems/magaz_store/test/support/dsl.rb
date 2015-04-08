@@ -47,9 +47,13 @@ class ActionController::TestCase
   private
 
   module CustomControllerDsl
-    def session_for_user(user)
-      session[:user_id] = user.id
-      controller_with_subdomain(user.shop.subdomain)
+    # def session_for_user(user)
+    #   session[:user_id] = user.id
+    #   controller_with_subdomain(user.shop.subdomain)
+    # end
+
+    def session_for_shop(shop)
+      controller_with_subdomain(shop.subdomain)
     end
 
     def controller_with_subdomain(subdomain)
