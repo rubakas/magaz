@@ -1,1 +1,0 @@
-Dir[Rails.root.join("config/email_templates/email_templates.rb")].each { |f| require f }
