@@ -21,6 +21,7 @@ module MagazCore
             _create_default_pages!(shop: @shop)
             # links created after linked content, right? :)
             _create_default_link_lists!(shop: @shop)
+            _create_default_emails!(shop: @shop)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
             raise ActiveRecord::Rollback
           end
@@ -100,6 +101,15 @@ module MagazCore
                   published_at: nil
       end
 
+      def _create_default_emails!(shop:)
+        MagazCore::EmailTemplate::EMAIL_TEMPLATES.each do |template_type|
+          shop.email_templates.create(template_type: template_type,
+                                      name:          I18n.t("email_templates.#{template_type}.name"),
+                                      title:         I18n.t("email_templates.#{template_type}.title"),
+                                      body:          I18n.t("email_templates.#{template_type}.body"),
+                                      description:   I18n.t("email_templates.#{template_type}.description"))
+        end
+      end
     end
   end
 end

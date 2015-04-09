@@ -54,6 +54,7 @@ module MagazCore
       service = MagazCore::ShopServices::Create.call(shop_params: @shop_params, user_params: @user_params)
       assert service.shop.persisted?
 
+      assert_equal service.shop.email_templates.length, 11
       assert_equal service.shop.collections.length, 1
       assert_equal service.shop.blogs.length, 1
       assert_equal service.shop.articles.length, 1

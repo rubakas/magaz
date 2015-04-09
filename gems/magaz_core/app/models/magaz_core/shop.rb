@@ -48,7 +48,7 @@ module MagazCore
     has_many :themes
     has_many :users, class_name: 'MagazCore::User', :dependent => :destroy
     has_many :subscriber_notifications
-    has_many :email_templates
+    has_many :email_templates, class_name: 'MagazCore::EmailTemplate', :dependent => :destroy
     belongs_to :eu_digital_goods_collection, class_name: 'MagazCore::Collection' , foreign_key: "eu_digital_goods_collection_id"
 
     ABANDONED_CHECKOUT_TIME_DELAY = ["Never", "Six hours later", "24 hours later"]
