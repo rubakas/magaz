@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20150324140737) do
     t.datetime "updated_at"
     t.integer  "shop_id"
     t.string   "template_type"
+    t.string   "description"
   end
 
   create_table "files", force: :cascade do |t|

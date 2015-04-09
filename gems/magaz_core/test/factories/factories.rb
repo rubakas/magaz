@@ -44,6 +44,7 @@ FactoryGirl.define do
     sequence(:title) { |n| "New order"}
     sequence(:body)  { |n| "You have a new order"}
     sequence(:template_type)  { |n| "new_order_notification"}
+    sequence(:description) { |n| "some description"}
   end
 
   factory :file, class: MagazCore::File do

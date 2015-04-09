@@ -5,7 +5,7 @@ module MagazCore
     setup do
       @shop = create(:shop, subdomain: 'example')
       @user = create(:user, shop: @shop)
-      @country = MagazCore::Country.first
+      @country = create(:country)
       @collection = create(:collection, shop: @shop, handle: "handle1")
       @shipping_country = create(:shipping_country, shop: @shop, country_id: @country.id)
       @params = { is_shipping: 'false', collection_id: @collection.id, rate: '48'}

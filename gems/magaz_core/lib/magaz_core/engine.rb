@@ -18,13 +18,12 @@ module MagazCore
       end
     end
 
-    initializer :append_uploaders do |app|
-      for_wrapper_app_config_include_dir app: app, dir: "app/uploaders"
+    initializer :append_services do |app|
+      for_wrapper_app_config_include_dir app: app, dir: "app/services"
     end
 
-    initializer :append_constraints do |app|
+    initializer :append_uploaders do |app|
       for_wrapper_app_config_include_dir app: app, dir: "app/uploaders"
-    end
-    
+    end    
   end
 end

@@ -408,6 +408,7 @@ en:
       notifications_settings_update:
           success_notice: "Shop was successfully updated."
       notifications_settings:
+        add_notification: "Add an order notification"
         logo: "Notifications"
         delete: "delete"
         confirmation: "Are you sure?"
@@ -422,6 +423,7 @@ en:
         order_notifications: "Order notifications"
         order_notifications_inf: "Get notified by email or text message whenever a new order comes in. You can also subscribe to the RSS feed for this store's orders."
         webhooks: "Webhooks"
+        create_webhook: "Create a webhook"
         webhooks_inf: "You can subscribe to events for your products and orders by creating web hooks that will push XML or JSON notifications to a given URL."
         fulfillment: "Fulfillment Request"
         sent_to_fulfillment: "Sent to custom fulfillment provider when storeowner fulfills order items"
@@ -445,6 +447,8 @@ en:
         callback_URL: "Callback URL"
         format: "Format"
         send_test_notification: "send test notification"
+        title: "Notification"
+        send_to: "Send to %{notification_method}"
       taxes_settings_update:
           success_notice: "Shop was successfully updated."
       taxes_settings:
@@ -475,6 +479,7 @@ en:
         select_collection: "Select a collection to specify which products are digital goods. You can also "
         create_new: "create a new collection"
         save: "Save"
+
     email_templates:
       show:
         name: "Name "
