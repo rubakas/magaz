@@ -22,7 +22,7 @@ module MagazStoreAdmin
       @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
       @shipping_rate = @shipping_country.shipping_rates.new(permitted_params[:shipping_rate])
       if @shipping_rate.save
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_success')
         render 'show'
       else
         render 'new'
@@ -33,7 +33,7 @@ module MagazStoreAdmin
       @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
       @shipping_rate = @shipping_country.shipping_rates.find(params[:id])
       if @shipping_rate.update_attributes(permitted_params[:shipping_rate])
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_success')
         redirect_to shipping_country_shipping_rate_path
       else
         render 'show'
@@ -44,7 +44,7 @@ module MagazStoreAdmin
       @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
       @shipping_rate = @shipping_country.shipping_rates.find(params[:id])
       @shipping_rate.destroy
-      flash[:notice] = t('.notice')
+      flash[:notice] = t('.notice_success')
       redirect_to shipping_country_path(@shipping_country)
     end
 

@@ -12,7 +12,7 @@ module MagazStoreAdmin
     def update
       @shop = current_shop
       if @shop.update_attributes(permitted_params[:shop])
-        flash[:notice] = t('.success_notice')
+        flash[:notice] = t('.notice_success')
         render 'edit'
       else
         render 'edit'
@@ -27,7 +27,7 @@ module MagazStoreAdmin
 
     def payments_settings_update
       if current_shop.update_attributes(permitted_params_for_payments[:shop])
-        flash[:notice] = t('.success_notice')
+        flash[:notice] = t('.notice_success')
         redirect_to payments_settings_settings_path
       else
         render "payments_settings"
@@ -42,7 +42,7 @@ module MagazStoreAdmin
 
     def checkouts_settings_update
       if current_shop.update_attributes(permitted_params_for_checkouts[:shop])
-        flash[:notice] = t('.success_notice')
+        flash[:notice] = t('.notice_success')
         redirect_to checkouts_settings_settings_path
       else
         render "checkouts_settings"
@@ -57,7 +57,7 @@ module MagazStoreAdmin
 
     def notifications_settings_update
       if current_shop.update_attributes(permitted_params_for_notifications[:shop])
-        flash[:notice] = t('.success_notice')
+        flash[:notice] = t('.notice_success')
         redirect_to notifications_settings_settings_path
       else
         render "notifications_settings"
@@ -79,7 +79,7 @@ module MagazStoreAdmin
 
     def taxes_settings_update
       if current_shop.update_attributes(permitted_params_for_taxes[:shop])
-        flash[:notice] = t('.success_notice')
+        flash[:notice] = t('.notice_success')
         unless params[:charge_vat_taxes]
           current_shop.update_attributes(eu_digital_goods_collection_id:  nil)
         end

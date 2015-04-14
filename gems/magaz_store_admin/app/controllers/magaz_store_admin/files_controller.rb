@@ -18,7 +18,7 @@ module MagazStoreAdmin
     def create
       @file = current_shop.files.new(permitted_params[:file])
       if @file.save
-        flash[:notice] = 'File was successfully created.'
+        flash[:notice] = t('.notice_success')
         redirect_to file_path(@file)
       else
         render 'new'
@@ -29,7 +29,7 @@ module MagazStoreAdmin
     def update
       @file = current_shop.files.find(params[:id])
       if @file.update_attributes(permitted_params[:file])
-        flash[:notice] = 'File was successfully updated.'
+        flash[:notice] = t('.notice_success')
         redirect_to files_path
       else
         redner 'show'
@@ -39,7 +39,7 @@ module MagazStoreAdmin
     def destroy
       @file = current_shop.files.find(params[:id])
       @file.destroy
-      flash[:notice] = 'File was successfully deleted.'
+      flash[:notice] = t('.notice_success')
       redirect_to files_path
     end
 

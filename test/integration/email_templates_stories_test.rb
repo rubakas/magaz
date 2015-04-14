@@ -17,6 +17,6 @@ class EmailTemplatesStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'email_template_title', with: @email_template.name
     fill_in 'email_template_body', with: 'test test test'
     click_button 'Save'
-    assert page.has_content? 'Email template saved successfully'
+    assert page.has_content? 'Email template was successfully updated.'
   end
 end

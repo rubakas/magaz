@@ -18,7 +18,7 @@ class CountriesController < ApplicationController
   def create
     @country = current_shop.countries.new(permitted_params[:country])
     if @country.save
-      flash[:notice] = t('.notice')
+      flash[:notice] = t('.notice_success')
       redirect_to country_path(@country)
     else
       render 'new'
@@ -28,7 +28,7 @@ class CountriesController < ApplicationController
   def update
     @country = current_shop.countries.find(params[:id])
     if @country.update_attributes(permitted_params[:country])
-      flash[:notice] = t('.notice')
+      flash[:notice] = t('.notice_success')
       redirect_to country_path(@country)
     else
       render 'show'
@@ -38,7 +38,7 @@ class CountriesController < ApplicationController
   def destroy
     @country = current_shop.countries.find(params[:id])
     @country.destroy
-    flash[:notice] = t('.notice')
+    flash[:notice] = t('.notice_success')
     redirect_to countries_path
   end
 

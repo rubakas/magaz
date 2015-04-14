@@ -14,10 +14,10 @@ module MagazStoreAdmin
       @tax_override = @service.tax_override
       @shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
       if @tax_override.persisted?
-        flash[:notice] = t('.success')
+        flash[:notice] = t('.notice_success')
         redirect_to tax_override_path(@shipping_country)
       else
-        flash[:notice] = t('.fail')
+        flash[:notice] = t('.notice_fail')
         redirect_to tax_override_path(@shipping_country)
       end
     end
@@ -32,10 +32,10 @@ module MagazStoreAdmin
       @tax_override = MagazCore::TaxOverride.find(params[:id])
       @shipping_country = @tax_override.shipping_country
       if @tax_override.update_attributes(permitted_params[:tax_override])
-        flash[:notice] = t('.success')
+        flash[:notice] = t('.notice_success')
         redirect_to tax_override_path(@shipping_country)
       else
-        flash[:notice] = t('.fail')
+        flash[:notice] = t('.notice_fail')
         redirect_to tax_override_path(@shipping_country)
       end
     end
@@ -49,7 +49,7 @@ module MagazStoreAdmin
       @tax_override = MagazCore::TaxOverride.find(params[:id])
       @shipping_country = @tax_override.shipping_country
       @tax_override.destroy
-      flash[:notice] = t('.success')
+      flash[:notice] = t('.notice_success')
       redirect_to tax_override_path(@shipping_country)
     end
 

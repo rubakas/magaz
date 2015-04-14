@@ -59,15 +59,22 @@ en:
 
   magaz_store_admin:
     articles:
+      create:
+        notice_success: "Article was successfully created."
+        notice_fail: "Can't create such article, try again please."
+      update:
+        notice_success: "Article was successfully updated."
+      destroy:
+        notice_success: "Article was successfully deleted."
       index:
-       title: "Blog Posts"
-       edit_blogs: "Manage Blogs"
-       edit_comments: "Manage Comments"
-       add_post: "Add Blog Post"
+        title: "Blog Posts"
+        edit_blogs: "Manage Blogs"
+        edit_comments: "Manage Comments"
+        add_post: "Add Blog Post"
       new:
         add: "Add Blog Post"
       show:
-       edit_post: "Editing Blog Post"
+        edit_post: "Editing Blog Post"
       blank:
         no_posts: "You have no blog posts yet, let's create one!"
         add: "Add Blog Post"
@@ -82,13 +89,20 @@ en:
         confirmation: "Are you sure?"
 
     blogs:
+      create:
+        notice_success: "Blog was successfully created."
+        notice_fail: "Can't create such blog,try again please."
+      update:
+        notice_success: "Blog was successfully updated."
+      destroy:
+        notice_success: "Blog was successfully deleted."
       index:
         title: "Blogs"
         add: "Add Blog"
       new:
         add: "Add Blog"
       show:
-       edit: "Editing Blog"
+        edit: "Editing Blog"
       blank:
         no_blogs: "You have no blogs yet, let's create one!"
         add: "Add Blog"
@@ -107,8 +121,8 @@ en:
         title: "Abandoned Checkouts"
         orders: "Orders"
       show:
-       title: "Checkout page"
-       back: "Back"
+        title: "Checkout page"
+        back: "Back"
       blank:
         no_checkouts: "You have no checkouts yet"
       form:
@@ -118,13 +132,20 @@ en:
         title: "Abandoned Checkouts"
 
     collections:
+      create:
+        notice_success: "Collection was successfully created."
+        notice_fail: "Can't create such collection, try again please."
+      update:
+        notice_success: "Collection was successfully updated."
+      destroy:
+        notice_success: "Collection was successfully deleted."
       index:
         title: "Collections"
         add: "Add Collection"
       new:
         add: "Add Collection"
       show:
-       title: "Editing collection"
+        title: "Editing collection"
       blank:
         no_collections: "You have no collections yet, let's create one!"
         add: "Add Collection"
@@ -139,13 +160,20 @@ en:
         confirmation: "Are you sure?"
 
     comments:
+      create:
+        notice_success: "Comment was successfully created."
+        notice_fail: "Can't create such comment, try again please."
+      update:
+        notice_success: "Comment was successfully updated."
+      destroy:
+        notice_success: "Comment was successfully deleted."
       index:
         title: "Comments"
         add: "Add Comment"
       new:
         add: "Add Comment"
       show:
-       title: "Editing comments"
+        title: "Editing comments"
       blank:
         no_comments: "You have no comments yet, let's create one!"
         add: "Add Comment"
@@ -158,7 +186,23 @@ en:
         delete: "Delete"
         confirmation: "Are you sure?"
 
+    countries:
+      create:
+        notice_success: "Country was successfully created."
+      update:
+        notice_success: "Country was successfully updated."
+      destroy:
+        notice_success: "Country was successfully deleted."
+
     customers:
+      create:
+        notice_success: "Customer was successfully created."
+      update:
+        notice_success: "Customer was successfully updated."
+      destroy:
+        notice_success: "Customer was successfully deleted."
+      import:
+        notice_success: "Customers imported"
       index:
         title: "Customers"
         add: "Add Customer"
@@ -168,7 +212,7 @@ en:
       new:
         add: "Add Customer"
       show:
-       title: "Editing customers"
+        title: "Editing customers"
       blank:
         no_comments: "You have no customers yet, let's create one!"
         add: "Add Customer"
@@ -188,6 +232,12 @@ en:
         welcome: "Welcome to dashboard"
 
     files:
+      create:
+        notice_success: "File was successfully created."
+      update:
+        notice_success: "File was successfully updated."
+      destroy:
+        notice_success: "File was successfully deleted."
       index:
         files: "Files"
         add: "Add File"
@@ -216,11 +266,11 @@ en:
 
     link_lists:
       update:
-        notice: "Link list was successfully updated."
+        notice_success: "Link list was successfully updated."
       create:
-        notice: "Link list was successfully created."
+        notice_success: "Link list was successfully created."
       destroy:
-        notice: "Link list was successfully deleted."
+        notice_success: "Link list was successfully deleted."
       index:
         title: "Link Lists"
         add: "Add Link List"
@@ -250,6 +300,12 @@ en:
         confirmation: "Are you sure?"
 
     links:
+      create:
+        notice_success: "Link was successfully created."
+      update:
+        notice_success: "Link was successfully updated."
+      destroy:
+        notice_success: "Link was successfully deleted."
       index:
         title: "Links"
         add: "Add Link"
@@ -272,12 +328,16 @@ en:
         confirmation: "Are you sure?"
 
     orders:
+      update:
+        notice_success: "Order was successfully updated."
+      destroy:
+        notice_success: "Order was successfully deleted."
       index:
         title: "Orders"
         checkouts: "Abandoned Checkouts"
       show:
-         title: "Editing page"
-         back: "Back"
+        title: "Editing page"
+        back: "Back"
       blank:
         no_orders: "You have no orders yet"
       form:
@@ -287,13 +347,19 @@ en:
         title: "Orders"
 
     pages:
+      create:
+        notice_success: "Page was successfully created."
+      update:
+        notice_success: "Page was successfully updated."
+      destroy:
+        notice_success: "Page was successfully deleted."
       index:
         title: "Pages"
         add: "Add Page"
       new:
         new: "New Page"
       show:
-       title: "Editing page"
+        title: "Editing page"
       blank:
         no_pages: "You have no pages yet, let's create one!"
         add: "Add Page"
@@ -308,13 +374,19 @@ en:
         confirmation: "Are you sure?"
 
     products:
+      create:
+        notice_success: "Product was successfully created."
+      update:
+        notice_success: "Product was successfully updated."
+      destroy:
+        notice_success: "Product was successfully deleted."
       index:
         title: "Products"
         add: "Add Product"
       new:
         add: "Add Product"
       show:
-       title: "Editing product"
+        title: "Editing product"
       blank:
         no_products: "You have no products yet, let's create one!"
         add: "Add Product"
@@ -332,6 +404,12 @@ en:
         confirmation: "Are you sure?"
 
     product_images:
+      create:
+        notice_success: "Image was successfully created."
+      update:
+        notice_success: "Image was successfully updated."
+      destroy:
+        notice_success: "Image was successfully deleted."
       new:
         new: "New Image"
       blank:
@@ -354,18 +432,18 @@ en:
         email: "Email address"
         password: "Password"
       create:
-        notice: "Wrong password or email"
+        notice_fail: "Wrong password or email"
 
     settings:
       edit:
         general_settings: "Shop Settings"
       update:
-        success_notice: "Shop was successfully updated."
+        notice_success: "Shop was successfully updated."
       form:
         error: "error"
         prohibit: "prohibited this shop from being saved:"
       checkouts_settings_update:
-          success_notice: "Shop was successfully updated."
+        notice_success: "Shop was successfully updated."
       checkouts_settings:
         logo: "Checkouts"
         save: 'Save'
@@ -395,7 +473,7 @@ en:
         privacy_policy: "Privacy Policy"
         terms_of_service: "Terms of Service"
       payments_settings_update:
-          success_notice: "Shop was successfully updated."
+        notice_success: "Shop was successfully updated."
       payments_settings:
         logo: "Payments"
         payment_authoriz_settings: "Payment authorization settings"
@@ -406,7 +484,7 @@ en:
         authorize_customer: "Authorize the customers credit card."
         select_method: "Select authorization method"
       notifications_settings_update:
-          success_notice: "Shop was successfully updated."
+        notice_success: "Shop was successfully updated."
       notifications_settings:
         add_notification: "Add an order notification"
         logo: "Notifications"
@@ -450,7 +528,7 @@ en:
         title: "Notification"
         send_to: "Send to %{notification_method}"
       taxes_settings_update:
-          success_notice: "Shop was successfully updated."
+        notice_success: "Shop was successfully updated."
       taxes_settings:
         logo: "Taxes"
         enable: "Enable "
@@ -486,7 +564,7 @@ en:
         subject: "Subject"
         plain_text: "Plain Text Body"
       update:
-        notice: "Email template saved successfully"
+        notice_success: "Email template was successfully updated."
       edit:
         email_subject: "Email subject"
         html_email: "HTML email"
@@ -501,11 +579,11 @@ en:
         prohibit: "prohibited this notification from being saved:"
     subscriber_notifications:
       create:
-        notice: "Order notification was added successfully."
+        notice_success: "Order notification was added successfully."
       destroy:
-        notice: "Order notification was successfully deleted."
+        notice_success: "Order notification was successfully deleted."
       send_test_notification:
-        notice: "An example order notification has been sent."
+        notice_success: "An example order notification has been sent."
       new:
         logo: "Add a subscriber to new order notifications"
         enter_email: "Email address"
@@ -540,11 +618,11 @@ en:
 
     shipping_countries:
       create:
-        notice: "Shipping Country was successfully created."
+        notice_success: "Shipping Country was successfully created."
       update:
-        notice: "Shipping Country was successfully updated."
+        notice_success: "Shipping Country was successfully updated."
       destroy:
-        notice: "Shipping Country was successfully deleted."
+        notice_success: "Shipping Country was successfully deleted."
       index:
         title: "Shipping Countries"
         add: "Add Shipping Country"
@@ -575,11 +653,11 @@ en:
 
     shipping_rates:
       create:
-        notice: "Shipping rate was successfully created."
+        notice_success: "Shipping rate was successfully created."
       update:
-        notice: "Shipping rate was successfully updated."
+        notice_success: "Shipping rate was successfully updated."
       destroy:
-        notice: "Shipping rate was successfully deleted."
+        notice_success: "Shipping rate was successfully deleted."
       index:
         title: "Shipping Rates"
         add: "Add Shipping Rate"
@@ -601,14 +679,13 @@ en:
 
     tax_overrides:
       create:
-        fail: "Creating of override was failed."
-        success: "Override was successfully created."
+        notice_fail: "Creating of override was failed."
+        notice_success: "Override was successfully created."
       destroy:
-        success: "Override was successfully deleted."
-        fail: "Deleting of override was failed."
+        notice_success: "Override was successfully deleted."
       update:
-        fail: "Updating of override was failed."
-        success: "Override was successfully updated."
+        notice_fail: "Updating of override was failed."
+        notice_success: "Override was successfully updated."
       show:
         title: "Taxes"
         base_taxes: "Base Taxes"
@@ -645,14 +722,14 @@ en:
 
     users:
       create:
-        notice: "User was successfully created."
-        fails: "User creating was failed."
+        notice_success: "User was successfully created."
+        notice_fail: "User creating was failed."
         invalid_email: "Email is invalid."
       update:
-        notice: "User was successfully updated."
+        notice_success: "User was successfully updated."
       destroy:
-        fail: "Can't delete shop owner."
-        notice: "User was successfully deleted."
+        notice_fail: "Can't delete shop owner."
+        notice_success: "User was successfully deleted."
       index:
         title: "Users"
         add: "Invite User"

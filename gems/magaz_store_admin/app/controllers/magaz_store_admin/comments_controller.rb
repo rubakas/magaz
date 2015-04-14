@@ -19,10 +19,10 @@ module MagazStoreAdmin
       @article = current_shop.articles.find_by(params[:id])
       @comment = @article.comments.create(permitted_params[:comment])
       if @comment.save
-        flash[:notice] = 'Comment was successfully created.'
+        flash[:notice] = t('.notice_success')
         redirect_to comment_url(@comment)
       else
-        flash[:error] = "Can't create such comment,try again please."
+        flash[:notice] = t('.notice_fail')
         render 'new'
       end
     end
@@ -30,7 +30,7 @@ module MagazStoreAdmin
     def update
       @comment = current_shop.comments.find(params[:id])
       if @comment.update_attributes(permitted_params[:comment])
-        flash[:notice] = 'Comment was successfully updated.'
+        flash[:notice] = t('.notice_success')
         redirect_to comments_url
       else
         render 'show'
@@ -40,7 +40,7 @@ module MagazStoreAdmin
     def destroy
       @comment = current_shop.comments.find(params[:id])
       @comment.destroy
-      flash[:notice] = "Comment was destroyed."
+      flash[:notice] = t('.notice_success')
       redirect_to comments_url
     end
 

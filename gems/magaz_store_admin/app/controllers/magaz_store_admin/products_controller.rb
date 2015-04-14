@@ -18,7 +18,7 @@ module MagazStoreAdmin
       @shop = current_shop
       @product = current_shop.products.new(permitted_params[:product])
       if @product.save
-        flash[:notice] = 'Product was successfully created.'
+        flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
       else
         render 'show'
@@ -28,7 +28,7 @@ module MagazStoreAdmin
     def update
       @product = current_shop.products.friendly.find(params[:id])
       if @product.update_attributes(permitted_params[:product])
-        flash[:notice] = 'Product was successfully updated.'
+        flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
       else
         render 'show'
@@ -38,7 +38,7 @@ module MagazStoreAdmin
     def destroy
       @product = current_shop.products.friendly.find(params[:id])
       @product.destroy
-      flash[:notice] = 'Product was successfully destroyed.'
+      flash[:notice] = t('.notice_success')
       redirect_to products_path
     end
 

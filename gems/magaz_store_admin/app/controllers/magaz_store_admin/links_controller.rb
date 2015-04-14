@@ -21,7 +21,7 @@ module MagazStoreAdmin
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       @link = @link_list.links.new(permitted_params[:link])
       if @link.save
-        flash[:notice] = 'Link was successfully created.'
+        flash[:notice] = t('.notice_success')
         render 'show'
       else
         render 'new'
@@ -32,7 +32,7 @@ module MagazStoreAdmin
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       @link = @link_list.links.find(params[:id])
       if @link.update_attributes(permitted_params[:link])
-        flash[:notice] = 'Link was successfully updated.'
+        flash[:notice] = t('.notice_success')
         redirect_to link_path(@link)
       else
         render 'show'
@@ -43,7 +43,7 @@ module MagazStoreAdmin
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       @link = @link_list.links.find(params[:id])
       @link.destroy
-      flash[:notice] = 'Link was successfully deleted.'
+      flash[:notice] = t('.notice_success')
       redirect_to link_list_path(@link_list)
     end
 

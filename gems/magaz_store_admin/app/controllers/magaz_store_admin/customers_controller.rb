@@ -18,7 +18,7 @@ class CustomersController < ApplicationController
   def create
     @customer = current_shop.customers.new(permitted_params[:customer])
     if @customer.save
-      flash[:notice] = 'Customer was successfully created.'
+      flash[:notice] = t('.notice_success')
       redirect_to customer_path(@customer)
     else
       render 'new'
@@ -28,7 +28,7 @@ class CustomersController < ApplicationController
   def update
     @customer = current_shop.customers.find(params[:id])
     if @customer.update_attributes(permitted_params[:customer])
-      flash[:notice] = 'Customer was successfully updated.'
+      flash[:notice] = t('.notice_success')
       redirect_to customer_path(@customer)
     else
       render 'show'
@@ -37,7 +37,7 @@ class CustomersController < ApplicationController
 
   def import
     MagazCore::ShopServices::ImportCustomersFromCsv.call(shop_id: current_shop.id, csv_file: params[:csv_file])
-    redirect_to customers_path, notice: "Customers imported"
+    redirect_to customers_path, notice: t('.notice_success')
   end
 
   def export
@@ -51,7 +51,7 @@ class CustomersController < ApplicationController
   def destroy
     @customer = current_shop.customers.find(params[:id])
     @customer.destroy
-    flash[:notice] = 'Customer was successfully deleted.'
+    flash[:notice] = t('.notice_success')
     redirect_to customers_path
   end
 

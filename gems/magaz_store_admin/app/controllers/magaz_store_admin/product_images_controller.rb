@@ -21,7 +21,7 @@ module MagazStoreAdmin
       @product = current_shop.products.friendly.find(params[:product_id])
       @product_image = @product.product_images.find(params[:id])
       if @product_image.update_attributes(permitted_params[:product_image])
-        flash[:notice] = 'Image was successfully updated.'
+        flash[:notice] = t('.notice_success')
         render 'show'
       else
         render 'show'
@@ -32,7 +32,7 @@ module MagazStoreAdmin
       @product = current_shop.products.friendly.find(params[:product_id])
       @product_image = @product.product_images.new(permitted_params[:product_image])
       if @product_image.save
-        flash[:notice] = 'Image was successfully created.'
+        flash[:notice] = t('.notice_success')
         redirect_to product_product_images_path
       else
         render 'show'
@@ -44,7 +44,7 @@ module MagazStoreAdmin
       @product = current_shop.products.friendly.find(params[:product_id])
       @product_image = @product.product_images.find(params[:id])
       @product_image.destroy
-      flash[:notice] = 'Image was successfully deleted.'
+      flash[:notice] = t('.notice_success')
       redirect_to product_product_images_path
     end
 

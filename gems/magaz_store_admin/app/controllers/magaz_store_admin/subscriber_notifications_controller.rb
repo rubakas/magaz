@@ -11,7 +11,7 @@ module MagazStoreAdmin
       @shop = current_shop
       @subscriber_notification = @shop.subscriber_notifications.new(permitted_params[:subscriber_notification])
       if @subscriber_notification.save
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_success')
         redirect_to notifications_settings_settings_path
       else
         render 'new'
@@ -22,7 +22,7 @@ module MagazStoreAdmin
       @shop = current_shop
       @subscriber_notification = @shop.subscriber_notifications.find(params[:id])
       @subscriber_notification.destroy
-      flash[:notice] = t('.notice')
+      flash[:notice] = t('.notice_success')
       redirect_to notifications_settings_settings_path
     end
 
@@ -31,10 +31,10 @@ module MagazStoreAdmin
       @subscriber_notification = @shop.subscriber_notifications.find(params[:id])
       if(@subscriber_notification.notification_method == "email")
         MagazCore::UserMailer.test_notification(@subscriber_notification).deliver_now
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_success')
         redirect_to notifications_settings_settings_path
       else
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_success')
         redirect_to notifications_settings_settings_path
       end
     end

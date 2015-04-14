@@ -25,7 +25,7 @@ module MagazStoreAdmin
                                                  shop: current_shop)
         @service.send_mail_invite(user: @service.user, link: user_url(@service.user, invite_token: @service.user.invite_token ))
         if @service.user.persisted?
-          redirect_to users_path, notice: t('.notice')
+          redirect_to users_path, notice: t('.notice_success')
         else
           redirect_to users_path, notice: t('.invalid_email')
         end
@@ -37,7 +37,7 @@ module MagazStoreAdmin
     def update
       @user = current_shop.users.find(params[:id])
       if @user.update_attributes(permitted_params[:user])
-        redirect_to user_path(@user), notice: t('.notice')
+        redirect_to user_path(@user), notice: t('.notice_success')
       else
         render 'show'
       end
@@ -47,9 +47,9 @@ module MagazStoreAdmin
       @user = current_shop.users.find(params[:id])
       unless @user.account_owner == true || current_shop.users.count == 1
         @user.destroy
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_success')
       else
-        flash[:notice] = t('.fail')
+        flash[:notice] = t('.notice_fail')
       end
       redirect_to users_path
     end

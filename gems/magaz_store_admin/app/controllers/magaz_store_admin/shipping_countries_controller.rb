@@ -20,7 +20,7 @@ module MagazStoreAdmin
       country_relation_id = MagazCore::Country.find_by(code: @shipping_country.name).id
       @shipping_country.country_id = country_relation_id
       if @shipping_country.save
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_success')
         redirect_to shipping_country_path(@shipping_country)
       else
         render 'new'
@@ -35,7 +35,7 @@ module MagazStoreAdmin
         country_relation_id = MagazCore::Country.find_by(code: @shipping_country.name).id
         @shipping_country.country_id = country_relation_id
         @shipping_country.save
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_success')
         redirect_to shipping_country_path(@shipping_country)
       else
         render 'show'
@@ -45,7 +45,7 @@ module MagazStoreAdmin
     def destroy
       @shipping_country = current_shop.shipping_countries.find(params[:id])
       @shipping_country.destroy
-      flash[:notice] = t('.notice')
+      flash[:notice] = t('.notice_success')
       redirect_to shipping_countries_path
     end
 

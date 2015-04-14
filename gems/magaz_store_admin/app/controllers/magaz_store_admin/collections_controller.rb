@@ -17,10 +17,10 @@ module MagazStoreAdmin
     def create
       @collection = current_shop.collections.new(permitted_params[:collection])
       if @collection.save
-        flash[:notice] = 'Collection was successfully created.'
+        flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
-        flash[:error] = "Can't create such collection,try again please."
+        flash[:error] = t('.notice_fail')
         render 'new'
       end
     end
@@ -28,7 +28,7 @@ module MagazStoreAdmin
     def update
       @collection = current_shop.collections.friendly.find(params[:id])
       if @collection.update_attributes(permitted_params[:collection])
-        flash[:notice] = 'Collection was successfully updated.'
+        flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
         render 'show'
@@ -38,7 +38,7 @@ module MagazStoreAdmin
     def destroy
       @collection = current_shop.collections.friendly.find(params[:id])
       @collection.destroy
-      flash[:notice] = "Collection was destroyed."
+      flash[:notice] = t('.notice_success')
       redirect_to collections_url
     end
 

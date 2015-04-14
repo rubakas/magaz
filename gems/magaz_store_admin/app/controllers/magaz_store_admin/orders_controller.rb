@@ -15,7 +15,7 @@
     def update
       @order = current_shop.checkouts.orders.find(params[:id])
       if @order.update_attributes(permitted_params[:order])
-        flash[:notice] = 'Order was successfully updated.'
+        flash[:notice] = t('.notice_success')
         redirect_to order_path(@order)
       else
         render 'show'
@@ -25,7 +25,7 @@
     def destroy
       @order = current_shop.checkouts.orders.find(params[:id])
       @order.destroy
-      flash[:notice] = 'Order was successfully deleted.'
+      flash[:notice] = t('.notice_success')
       render 'index'
     end
 

@@ -17,7 +17,7 @@ module MagazStoreAdmin
     def create
       @page = current_shop.pages.new(permitted_params[:page])
       if @page.save
-        flash[:notice] = 'Page was successfully created.'
+        flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
         render 'show'
@@ -27,7 +27,7 @@ module MagazStoreAdmin
     def update
       @page = current_shop.pages.friendly.find(params[:id])
       if @page.update_attributes(permitted_params[:page])
-        flash[:notice] = 'Page was successfully updated.'
+        flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
         render 'show'
@@ -37,7 +37,7 @@ module MagazStoreAdmin
     def destroy
       @page = current_shop.pages.friendly.find(params[:id])
       @page.destroy
-      flash[:notice] = 'Page was successfully deleted.'
+      flash[:notice] = t('.notice_success')
       redirect_to pages_path
     end
 

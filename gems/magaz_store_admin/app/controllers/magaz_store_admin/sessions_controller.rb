@@ -21,7 +21,7 @@
         session[:user_id] = @user.id
         redirect_to magaz_store_admin.root_path(host: HOSTNAME, subdomain: current_shop.subdomain)
       else
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_fail')
         render :new
       end
     end

@@ -17,7 +17,7 @@ class LinkListsController < ApplicationController
   def create
     @link_list = current_shop.link_lists.new(permitted_params[:link_list])
     if @link_list.save
-      flash[:notice] = t('.notice')
+      flash[:notice] = t('.notice_success')
       redirect_to link_list_path(@link_list)
     else
       render 'new'
@@ -27,7 +27,7 @@ class LinkListsController < ApplicationController
   def update
     @link_list = current_shop.link_lists.friendly.find(params[:id])
     if @link_list.update_attributes(permitted_params[:link_list])
-      flash[:notice] = t('.notice')
+      flash[:notice] = t('.notice_success')
       redirect_to link_list_path(@link_list)
     else
       render 'show'
@@ -37,7 +37,7 @@ class LinkListsController < ApplicationController
   def destroy
     @link_list = current_shop.link_lists.friendly.find(params[:id])
     @link_list.destroy
-    flash[:notice] = 'Link list was successfully deleted.'
+    flash[:notice] = t('.notice_success')
     redirect_to link_lists_path
   end
 

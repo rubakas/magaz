@@ -17,10 +17,10 @@ module MagazStoreAdmin
     def create
       @blog = current_shop.blogs.new(permitted_params[:blog])
       if @blog.save
-        flash[:notice] = 'Blog was successfully created.'
+        flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
-        flash[:error] = "Can't create such blog,try again please."
+        flash[:notice] = t('.notice_fail')
         render 'new'
       end
     end
@@ -28,7 +28,7 @@ module MagazStoreAdmin
     def update
       @blog = current_shop.blogs.friendly.find(params[:id])
       if @blog.update_attributes(permitted_params[:blog])
-        flash[:notice] = 'Blog was successfully updated.'
+        flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
         render 'show'
@@ -38,7 +38,7 @@ module MagazStoreAdmin
     def destroy
       @blog = current_shop.blogs.friendly.find(params[:id])
       @blog.destroy
-      flash[:notice] = "Blog was destroyed."
+      flash[:notice] = t('.notice_success')
       redirect_to blogs_path
     end
 

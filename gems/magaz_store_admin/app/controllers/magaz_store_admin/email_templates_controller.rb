@@ -13,7 +13,7 @@ module MagazStoreAdmin
     def update
       @email_template = current_shop.email_templates.find(params[:id])
       if @email_template.update_attributes(permitted_params[:email_template])
-        flash[:notice] = t('.notice')
+        flash[:notice] = t('.notice_success')
         redirect_to notifications_settings_settings_path
       else
         render 'edit'

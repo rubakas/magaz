@@ -17,10 +17,10 @@ module MagazStoreAdmin
     def create
       @article = current_shop.articles.new(permitted_params[:article])
       if @article.save
-        flash[:notice] = 'Article was successfully created.'
+        flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
-        flash[:error] = "Can't create such article,try again please."
+        flash[:notice] = t('.notice_fail')
         render 'new'
       end
     end
@@ -28,7 +28,7 @@ module MagazStoreAdmin
     def update
       @article = current_shop.articles.friendly.find(params[:id])
       if @article.update_attributes(permitted_params[:article])
-        flash[:notice] = 'Article was successfully updated.'
+        flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
         render 'show'
@@ -38,7 +38,7 @@ module MagazStoreAdmin
     def destroy
       @article = current_shop.articles.friendly.find(params[:id])
       @article.destroy
-      flash[:notice] = "Article was successfully deleted."
+      flash[:notice] = t('.notice_success')
       redirect_to articles_url
     end
 
