@@ -4,7 +4,7 @@ class MagazCore::ThemeServices::Activate
 
   def call(shop_id:, installed_theme_id: nil)
     @shop          = MagazCore::Shop.find(shop_id)
-    @installed_theme = MagazCore::Theme.find(installed_theme_id) unless installed_theme_id.nil?
+    @installed_theme = MagazCore::Theme.find(installed_theme_id)
 
     @shop.transaction do
       @shop.themes.each do |current_theme|
