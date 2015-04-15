@@ -33,6 +33,18 @@ module MagazCore
       @installed_theme = service.installed_theme
     end
 
+    test '#activate!' do
+      @source_theme.activate!
+      @source_theme.reload
+      assert_equal @source_theme, Theme::Roles::MAIN
+    end
+
+    test '#deactivate!' do
+      @source_theme.deactivate!
+      @source_theme.reload
+      assert_equal @source_theme, Theme::Roles::UNPUBLISHED
+    end
+
     test 'self referencing association' do
       assert_equal @source_theme, @installed_theme.source_theme
       assert_includes @source_theme.installed_themes, @installed_theme

@@ -8,11 +8,9 @@ class MagazCore::ThemeServices::Activate
 
     @shop.transaction do
       @shop.themes.each do |current_theme|
-        current_theme.role = 'unpublished'
-        current_theme.save!
+        current_theme.deactivate!
       end
-      @installed_theme.role = 'main'
-      @installed_theme.save!
+      @installed_theme.activate!
       @shop.reload
     end
   end

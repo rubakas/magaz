@@ -13,6 +13,11 @@
 
 module MagazCore
   class Theme < ActiveRecord::Base
+    module Roles
+      MAIN = 'main'.freeze
+      UNPUBLISHED = 'unpublished'.freeze
+    end
+
     self.table_name = 'themes'
     REQUIRED_DIRECTORIES = %w[assets config layout snippets templates].freeze
     
@@ -25,14 +30,25 @@ module MagazCore
     scope :installed, -> { where('source_theme_id IS NOT NULL') }
     scope :with_role, -> (role) { where(role: role) }
 
-    scope :current,   -> { where(role: 'main').first }
-
+    scope :current,     -> { where(role: Roles::MAIN).first }
+    scope :currents,    -> { where(role: Roles::MAIN) }
+    scope :unpublished, -> { where(role: Roles::UNPUBLISHED) }
 
     validate  :default_directories_present, 
               :default_layout_present,
               :default_templates_present,
               # :nested_assets_absent,
               :default_config_present
+
+    def activate!
+      self.role = Roles::MAIN
+      self.save!
+    end
+
+    def deactivate!
+      self.role = Roles::UNPUBLISHED
+      self.save!
+    end
 
     # assets, config, layout, snippets, templates
     def default_directories_present
