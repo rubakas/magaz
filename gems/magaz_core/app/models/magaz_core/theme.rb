@@ -13,26 +13,49 @@
 
 module MagazCore
   class Theme < ActiveRecord::Base
-    self.table_name = 'themes'
+    module Roles
+      MAIN = 'main'.freeze
+      UNPUBLISHED = 'unpublished'.freeze
+    end
+
     REQUIRED_DIRECTORIES = %w[assets config layout snippets templates].freeze
+    REQUIRED_TEMPLATES = %w[
+      templates/blog.liquid 
+      templates/cart.liquid
+      templates/collection.liquid
+      templates/index.liquid
+      templates/page.liquid
+      templates/product.liquid
+    ].freeze
+
+    self.table_name = 'themes'
     
-    has_many :assets
+    has_many   :assets
     has_many   :installed_themes, class_name: 'MagazCore::Theme', foreign_key: :source_theme_id
     belongs_to :shop
     belongs_to :source_theme, class_name: 'MagazCore::Theme', foreign_key: :source_theme_id
 
     scope :sources,   -> { where(source_theme: nil) }
     scope :installed, -> { where('source_theme_id IS NOT NULL') }
-    scope :with_role, -> (role) { where(role: role) }
 
-    scope :current,   -> { where(role: 'main').first }
-
+    scope :main,     -> { where(role: Roles::MAIN).first }
+    scope :unpublished, -> { where(role: Roles::UNPUBLISHED) }
 
     validate  :default_directories_present, 
               :default_layout_present,
               :default_templates_present,
               # :nested_assets_absent,
               :default_config_present
+
+    def activate!
+      self.role = Roles::MAIN
+      self.save!
+    end
+
+    def deactivate!
+      self.role = Roles::UNPUBLISHED
+      self.save!
+    end
 
     # assets, config, layout, snippets, templates
     def default_directories_present
@@ -62,14 +85,9 @@ module MagazCore
     
     # templates/[blog, cart, collection, index, page, product].liquid
     def default_templates_present
-      default_templates = %w[
-        templates/blog.liquid 
-        templates/cart.liquid
-        templates/collection.liquid
-        templates/index.liquid
-        templates/page.liquid
-        templates/product.liquid
-      ]
+      result = REQUIRED_TEMPLATES.all? {|t| assets.select {|a| a.key == t} }
+      errors.add :base, :invalid unless result
+      result
     end
 
     #TODO: implement nested assets verification

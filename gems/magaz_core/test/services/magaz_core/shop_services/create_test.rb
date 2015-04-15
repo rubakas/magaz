@@ -17,8 +17,8 @@ module MagazCore
       service = MagazCore::ShopServices::Create
                   .call(shop_params: @shop_params, user_params: @user_params)
       assert service.shop.persisted?
-      refute service.shop.themes.current.blank?
-      assert_equal @default_theme, service.shop.themes.current.first.source_theme
+      refute service.shop.themes.main.blank?
+      assert_equal @default_theme, service.shop.themes.main.first.source_theme
     end
 
     test 'fail shop creation when no default theme in system' do
