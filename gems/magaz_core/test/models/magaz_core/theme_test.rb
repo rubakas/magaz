@@ -36,13 +36,13 @@ module MagazCore
     test '#activate!' do
       @source_theme.activate!
       @source_theme.reload
-      assert_equal @source_theme, Theme::Roles::MAIN
+      assert_equal @source_theme.role, Theme::Roles::MAIN
     end
 
     test '#deactivate!' do
       @source_theme.deactivate!
       @source_theme.reload
-      assert_equal @source_theme, Theme::Roles::UNPUBLISHED
+      assert_equal @source_theme.role, Theme::Roles::UNPUBLISHED
     end
 
     test 'self referencing association' do
