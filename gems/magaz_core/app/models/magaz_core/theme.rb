@@ -18,8 +18,17 @@ module MagazCore
       UNPUBLISHED = 'unpublished'.freeze
     end
 
-    self.table_name = 'themes'
     REQUIRED_DIRECTORIES = %w[assets config layout snippets templates].freeze
+    REQUIRED_TEMPLATES = %w[
+      templates/blog.liquid 
+      templates/cart.liquid
+      templates/collection.liquid
+      templates/index.liquid
+      templates/page.liquid
+      templates/product.liquid
+    ].freeze
+
+    self.table_name = 'themes'
     
     has_many :assets
     has_many   :installed_themes, class_name: 'MagazCore::Theme', foreign_key: :source_theme_id
@@ -28,10 +37,8 @@ module MagazCore
 
     scope :sources,   -> { where(source_theme: nil) }
     scope :installed, -> { where('source_theme_id IS NOT NULL') }
-    scope :with_role, -> (role) { where(role: role) }
 
-    scope :current,     -> { where(role: Roles::MAIN).first }
-    scope :currents,    -> { where(role: Roles::MAIN) }
+    scope :main,     -> { where(role: Roles::MAIN).first }
     scope :unpublished, -> { where(role: Roles::UNPUBLISHED) }
 
     validate  :default_directories_present, 
@@ -78,14 +85,7 @@ module MagazCore
     
     # templates/[blog, cart, collection, index, page, product].liquid
     def default_templates_present
-      default_templates = %w[
-        templates/blog.liquid 
-        templates/cart.liquid
-        templates/collection.liquid
-        templates/index.liquid
-        templates/page.liquid
-        templates/product.liquid
-      ]
+      default_templates = REQUIRED_TEMPLATES
     end
 
     #TODO: implement nested assets verification
