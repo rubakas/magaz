@@ -30,7 +30,7 @@ module MagazCore
 
     self.table_name = 'themes'
     
-    has_many :assets
+    has_many   :assets
     has_many   :installed_themes, class_name: 'MagazCore::Theme', foreign_key: :source_theme_id
     belongs_to :shop
     belongs_to :source_theme, class_name: 'MagazCore::Theme', foreign_key: :source_theme_id
@@ -85,7 +85,9 @@ module MagazCore
     
     # templates/[blog, cart, collection, index, page, product].liquid
     def default_templates_present
-      default_templates = REQUIRED_TEMPLATES
+      result = REQUIRED_TEMPLATES.all? {|t| assets.select {|a| a.key == t} }
+      errors.add :base, :invalid unless result
+      result
     end
 
     #TODO: implement nested assets verification
