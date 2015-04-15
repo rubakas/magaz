@@ -22,7 +22,7 @@ module MagazCore
                           .call(shop_id: @shop.id, 
                                 installed_theme_id: install_service.installed_theme.id)
 
-      assert @shop.themes.main == install_service.installed_theme
+      assert_equal @shop.themes.main, install_service.installed_theme
     end
 
   end
