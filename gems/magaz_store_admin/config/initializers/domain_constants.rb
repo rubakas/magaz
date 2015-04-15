@@ -1,0 +1,1 @@
+Dir[Rails.root.join("../../../../config/initializers/domain_constants.rb")].each { |f| require f }

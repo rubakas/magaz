@@ -119,6 +119,12 @@ PATH
     magaz_store (0.0.1)
 
 PATH
+  remote: gems/magaz_store_admin
+  specs:
+    magaz_store_admin (0.0.1)
+      rails (~> 4.2.1)
+
+PATH
   remote: gems/magaz_style
   specs:
     magaz_style (0.0.1)
@@ -340,6 +346,7 @@ DEPENDENCIES
   launchy
   magaz_core!
   magaz_store!
+  magaz_store_admin!
   magaz_style!
   magaz_theme_store!
   memcachier

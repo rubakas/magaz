@@ -8,7 +8,7 @@ div class='container'
             h4 Sign in
         div class='panel-body'
           = form_for :session,
-              url: admin_session_url(host: HOSTNAME,
+              url: magaz_store_admin.session_url(host: HOSTNAME,
                 subdomain: 'REPLACE_ME'),
               method: :post,
               html: { class: 'script-sign-in-form' } do |f|

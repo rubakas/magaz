@@ -1,0 +1,108 @@
+p id="notice"
+  = notice
+
+= form_for [ @shop], url: [:checkouts_settings_update,:settings],method: :put do |f|
+
+  h4
+    i class="icon-shopping-cart"
+    = t('.logo')
+
+  div class="container-fluid"
+    div class="row"
+      div class="col-xs-3"
+          div class="label_of_column"
+            = t('.customers_logo')
+          div class='inf'
+            = t('.customers_inf')
+      div class="col-xs-9"
+        div class="field"
+          div class="field_with_select"
+            div class="js-field_account_choice"
+              = f.label :account_type_choice
+              = f.select(:account_type_choice,
+                options_for_select( [[t('.account_disabled'), {'class' => 'js-disabled' }],
+                                    [t('.account_required'), {'class' => 'js-required' }],
+                                    [t('.account_optional'), {'class' => 'js-optional' }]]))
+              hr
+            div class="js-checkouts_hidden_field_multipass"
+              = f.label :enable_multipass_login
+              = f.check_box :enable_multipass_login, :class => "js-checkout_enable_multipass_checkbox"
+              br
+              = t('.hidden_multipass_inf')
+              hr
+        br
+
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"
+          = t('.orders_proccessing_logo')
+        div class='inf'
+          = t('.orders_proccessing_inf')
+      div class="col-xs-9"
+        div class="field"
+          div class="field_with_select"
+            = f.label t('.billing_address')
+            = f.check_box :billing_address_is_shipping_too
+        hr
+        div class="field"
+          div class="field_with_select"
+            = f.label t('.abandoned_checkouts')
+            = f.select :abandoned_checkout_time_delay, MagazCore::Shop::ABANDONED_CHECKOUT_TIME_DELAY
+        hr
+        div class="field"
+          div class="field_with_select"
+            = f.label t('.email_marketing')
+            = f.select :email_marketing_choice, MagazCore::Shop::EMAIL_MARKETING_CHOICE
+        hr
+        div class="field"
+          div class="field_with_select"
+            div class="js-field_after_order_paid"
+              = f.label t('.after_order_paid')
+              = f.select(:after_order_paid,
+                options_for_select([[t('.auto_fulfill_orders'),{'class'=> 'js-auto_fulfill_orders'}],
+                                    [t('.auto_fulfill_gift_cards'),{'class'=>'js-auto_fulfill_gift_cards'}],
+                                    [t('.do_not_fulfill'),{'class'=>'js-do_not_fulfill'}]]))
+        hr
+        div class="js-checkouts_hidden_field_auto_fulfill"
+          div class="field_with_select"
+            = f.label t('.notify_costumers_of_shipipment')
+            = f.check_box :notify_customers_of_their_shipment,:class =>"js-checkout_auto_fulfill_orders_checkbox"
+            = f.label t('.auto_fulfill_orders')
+            = f.check_box :automatically_fulfill_all_orders,:class =>"js-checkout_auto_fulfill_orders_checkbox"
+        hr
+        div class="field"
+          div class="field_with_select"
+            = f.label t('.after_order_fulfilled_and_paid')
+            br
+            = t('.auto_archive')
+            = f.check_box :after_order_fulfilled_and_paid
+        hr
+      br
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"
+          = t('.refund_and_tos_logo')
+        div class='inf'
+          = t('.refund_and_tos_inf')
+      div class="col-xs-9"
+        div class="field"
+          div class="field_with_select"
+            = f.label t('.refund_policy')
+            = f.text_area :checkout_refund_policy
+            = f.button t('.generate_sample'), class: 'generate_refund'
+
+        div class="field"
+          div class="field_with_select"
+            = f.label t('.privacy_policy')
+            = f.text_area :checkout_privacy_policy
+            = f.button t('.generate_sample'), class: 'generate_privacy'
+
+        div class="field"
+          div class="field_with_select"
+            = f.label t('.terms_of_service')
+            = f.text_area :checkout_term_of_service
+            = f.button t('.generate_sample'), class: 'generate_tos'
+
+    br
+    div class="actions"
+      = f.submit(t('.save'), class: 'button')

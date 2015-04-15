@@ -1,0 +1,23 @@
+= form_for([ @product, @product_image]) do |f|
+  - if @product_image.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@product_image.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @product_image.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="form-group"
+    br
+      = f.label t('.select')
+      = f.file_field :image
+    br
+      = image_tag @product_image.image_url(:thumb) if @product_image.image.thumb.present?
+    br
+
+  hr
+  div class="form-group"
+    = link_to t('.back') , product_product_images_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')

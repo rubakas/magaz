@@ -1,0 +1,22 @@
+h4 = t('.add')
+
+= form_for([ @user]) do |f|
+  - if @user.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@user.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @user.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="form-group"
+  = f.label :email
+  br
+  = f.text_field :email, class: 'form-input'
+
+  hr
+  div class="form-group"
+    = link_to t('.back'), users_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')
