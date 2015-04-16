@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324140737) do
+ActiveRecord::Schema.define(version: 20150415130023) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -113,6 +113,17 @@ ActiveRecord::Schema.define(version: 20150324140737) do
     t.integer  "shop_id"
     t.string   "template_type"
     t.string   "description"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string  "arguments",    default: "--- []\n"
+    t.string  "body"
+    t.text    "description"
+    t.string  "path"
+    t.string  "message"
+    t.integer "subject_id"
+    t.string  "subject_type"
+    t.string  "verb"
   end
 
   create_table "files", force: :cascade do |t|
