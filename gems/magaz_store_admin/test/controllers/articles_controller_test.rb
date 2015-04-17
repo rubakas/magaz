@@ -10,6 +10,26 @@ module MagazStoreAdmin
       @article = create(:article, blog: @blog, handle: "handle1")
     end
 
+    test "should create event with article" do
+      assert_difference('MagazCore::Event.count', +1) do
+        post :create, { article: { content: @article.content, title: 'New uniq name' } }
+      end
+    end
+
+    test "should create event with update" do
+      assert_difference('MagazCore::Event.count', +1) do
+        patch :update,
+          { id: @article.id,
+            article: { content: @article.content, title: @article.title } }
+      end
+    end
+
+    test "should create event with delete" do
+      assert_difference('MagazCore::Event.count', +1) do
+        delete :destroy, id: @article.id
+      end
+    end
+
     test "should get index" do
       get :index
       assert_response :success

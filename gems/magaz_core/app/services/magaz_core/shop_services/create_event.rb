@@ -20,8 +20,12 @@ module MagazCore
       private
 
       def _create_event!(subject:, event:, message:, description:)
-        unless subject.name == nil
+        if subject.class.name.split('::').last == "Product" ||
+           subject.class.name.split('::').last == "Collection"
           arguments = [name: subject.name]
+        end
+        if subject.class.name.split('::').last == "Order"
+          arguments = [products: subject.line_items]
         end
         event.update_attributes!(subject_id: subject.id, subject_type: subject.class.name.split('::').last,
                                  arguments: arguments, message: message, description: description) || fail(ArgumentError)

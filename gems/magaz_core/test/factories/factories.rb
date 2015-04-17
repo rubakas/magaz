@@ -47,6 +47,9 @@ FactoryGirl.define do
     sequence(:description) { |n| "some description"}
   end
 
+  factory :event, class: MagazCore::Event do
+  end
+
   factory :file, class: MagazCore::File do
     sequence(:name) {|n| "File #{n}"}
   end
