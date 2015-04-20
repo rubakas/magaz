@@ -21,7 +21,9 @@ module MagazStoreAdmin
       if @comment.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: article_url(@comment),
+                                                                   verb: 'create')
         flash[:notice] = t('.notice_success')
         redirect_to comment_url(@comment)
       else
@@ -35,7 +37,9 @@ module MagazStoreAdmin
       if @comment.update_attributes(permitted_params[:comment])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: article_url(@comment),
+                                                                   verb: 'update')
         flash[:notice] = t('.notice_success')
         redirect_to comments_url
       else
@@ -48,7 +52,9 @@ module MagazStoreAdmin
       @comment.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: nil,
+                                                                   verb: 'destroy')
       flash[:notice] = t('.notice_success')
       redirect_to comments_url
     end

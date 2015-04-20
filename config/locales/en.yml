@@ -229,6 +229,7 @@ en:
     dashboard:
       index:
         title: "Dashboard"
+        activity: "Activity"
         welcome: "Welcome to dashboard"
 
     files:

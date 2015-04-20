@@ -1,5 +1,22 @@
 h4
-  i class="icon-dashboard" 
+  i class="icon-dashboard"
   = t('.title')
 
 p class='lead' = t('.welcome')
+
+table class="table table-striped"
+  thead
+    tr
+      th = t('.activity')
+      th
+
+  tbody
+  - @events.each do |event|
+      tr
+        td = event.message
+        - unless event.path == nil
+          td = link_to event.arguments.first, event.path
+        td = event.created_at
+  tbody
+
+br

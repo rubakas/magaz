@@ -17,7 +17,9 @@
       if @order.update_attributes(permitted_params[:order])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @order,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: nil,
+                                                                   verb: 'update')
         flash[:notice] = t('.notice_success')
         redirect_to order_path(@order)
       else
@@ -30,7 +32,9 @@
       @order.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @order,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: nil,
+                                                                   verb: 'destroy')
       flash[:notice] = t('.notice_success')
       render 'index'
     end

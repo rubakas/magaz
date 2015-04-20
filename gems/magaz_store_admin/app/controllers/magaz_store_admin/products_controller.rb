@@ -20,7 +20,9 @@ module MagazStoreAdmin
       if @product.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @product,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: product_path(@product),
+                                                                   verb: 'create')
         flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
       else
@@ -33,7 +35,9 @@ module MagazStoreAdmin
       if @product.update_attributes(permitted_params[:product])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @product,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: product_path(@product),
+                                                                   verb: 'update')
         flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
       else
@@ -46,7 +50,9 @@ module MagazStoreAdmin
       @product.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @product,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: nil,
+                                                                   verb: 'destroy')
       flash[:notice] = t('.notice_success')
       redirect_to products_path
     end

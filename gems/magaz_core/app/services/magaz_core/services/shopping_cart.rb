@@ -51,7 +51,9 @@ module MagazCore
         @checkout.update(attrs)
         event_service = MagazCore::ShopServices::CreateEvent.call(subject: @checkout,
                                                                   message: 'Order status is open now',
-                                                                  description: 'Order status is open now')
+                                                                  description: 'Order status is open now',
+                                                                  path: nil,
+                                                                  verb: 'update')
         email_template = @shop.email_templates.find_by(template_type: 'new_order_notification')
         @shop.subscriber_notifications.each do |s|
           MagazCore::UserMailer.notification(s, email_template).deliver_now

@@ -19,7 +19,9 @@ module MagazStoreAdmin
       if @collection.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: article_url(@collection),
+                                                                   verb: 'create')
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -33,7 +35,9 @@ module MagazStoreAdmin
       if @collection.update_attributes(permitted_params[:collection])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
                                                                    message: t('.notice_success'),
-                                                                   description: t('.notice_success'))
+                                                                   description: t('.notice_success'),
+                                                                   path: article_url(@collection),
+                                                                   verb: 'update')
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -46,7 +50,9 @@ module MagazStoreAdmin
       @collection.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
                                                                  message: t('.notice_success'),
-                                                                 description: t('.notice_success'))
+                                                                 description: t('.notice_success'),
+                                                                 path: nil,
+                                                                 verb: 'destroy')
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
     end
