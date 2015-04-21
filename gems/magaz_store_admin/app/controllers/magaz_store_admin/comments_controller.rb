@@ -20,10 +20,10 @@ module MagazStoreAdmin
       @comment = @article.comments.create(permitted_params[:comment])
       if @comment.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
-                                                                   message: t('.notice_success'),
-                                                                   description: t('.notice_success'),
-                                                                   path: article_url(@comment),
-                                                                   verb: 'create')
+                                                                   message: t('.message', action: t('.created'), subject: t('.comment'), user_name: full_name(user: current_user)),
+                                                                   description: t('.description', action: t('.created'), subject: t('.comment')),
+                                                                   path: article_path(@article),
+                                                                   verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to comment_url(@comment)
       else
@@ -36,10 +36,10 @@ module MagazStoreAdmin
       @comment = current_shop.comments.find(params[:id])
       if @comment.update_attributes(permitted_params[:comment])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
-                                                                   message: t('.notice_success'),
-                                                                   description: t('.notice_success'),
-                                                                   path: article_url(@comment),
-                                                                   verb: 'update')
+                                                                   message: t('.message', action: t('.updated'), subject: t('.comment'), user_name: full_name(user: current_user)),
+                                                                   description: t('.description', action: t('.updated'), subject: t('.comment')),
+                                                                   path: article_path(@article),
+                                                                   verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to comments_url
       else
@@ -51,12 +51,17 @@ module MagazStoreAdmin
       @comment = current_shop.comments.find(params[:id])
       @comment.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
-                                                                   message: t('.notice_success'),
-                                                                   description: t('.notice_success'),
-                                                                   path: nil,
-                                                                   verb: 'destroy')
+                                                                 message: t('.message', action: t('.deleted'), subject: t('.comment'), user_name: full_name(user: current_user)),
+                                                                 description: t('.description', action: t('.deleted'), subject: t('.comment')),
+                                                                 path: nil,
+                                                                 verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to comments_url
+    end
+
+    private
+    def full_name(user:)
+      [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
 
     protected

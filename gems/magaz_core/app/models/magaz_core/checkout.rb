@@ -28,6 +28,7 @@ module MagazCore
 
     belongs_to :customer
     has_many :line_items
+    has_many :events, as: :subject
 
     scope :orders, -> { where(status: STATUSES) }
     scope :not_orders, -> { where(status: nil) }

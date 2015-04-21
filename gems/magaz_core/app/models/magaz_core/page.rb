@@ -27,8 +27,9 @@ module MagazCore
 
     DEFAULT_WELCOME_TITLE = 'Welcome'
     DEFAULT_WELCOME_CONTENT = 'You made it! Congratulations on starting your own online store!'
-    
+
     belongs_to :shop
+    has_many :events, as: :subject
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 

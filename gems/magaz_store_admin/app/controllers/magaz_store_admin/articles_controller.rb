@@ -18,10 +18,10 @@ module MagazStoreAdmin
       @article = current_shop.articles.new(permitted_params[:article])
       if @article.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
-                                                                   message: t('.notice_success'),
-                                                                   description: t('.notice_success'),
-                                                                   path: article_url(@article),
-                                                                   verb: 'create')
+                                                                   message: t('.message', action: t('.created'), subject: t('.article'), user_name: full_name(user: current_user)),
+                                                                   description: t('.description', action: t('.created'), subject: t('.article')),
+                                                                   path: article_path(@article),
+                                                                   verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
@@ -34,10 +34,10 @@ module MagazStoreAdmin
       @article = current_shop.articles.friendly.find(params[:id])
       if @article.update_attributes(permitted_params[:article])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
-                                                                   message: t('.notice_success'),
-                                                                   description: t('.notice_success'),
-                                                                   path: article_url(@article),
-                                                                   verb: 'update')
+                                                                   message: t('.message', action: t('.updated'), subject: t('.article'), user_name: full_name(user: current_user)),
+                                                                   description: t('.description', action: t('.updated'), subject: t('.article')),
+                                                                   path: article_path(@article),
+                                                                   verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
@@ -49,12 +49,17 @@ module MagazStoreAdmin
       @article = current_shop.articles.friendly.find(params[:id])
       @article.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
-                                                                 message: t('.notice_success'),
-                                                                 description: t('.notice_success'),
+                                                                 message: t('.message', action: t('.deleted'), subject: t('.article'), user_name: full_name(user: current_user)),
+                                                                 description: t('.description', action: t('.deleted'), subject: t('.article')),
                                                                  path: nil,
-                                                                 verb: 'destroy')
+                                                                 verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to articles_url
+    end
+
+    private
+    def full_name(user:)
+      [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
 
     protected

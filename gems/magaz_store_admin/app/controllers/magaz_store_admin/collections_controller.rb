@@ -18,10 +18,10 @@ module MagazStoreAdmin
       @collection = current_shop.collections.new(permitted_params[:collection])
       if @collection.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
-                                                                   message: t('.notice_success'),
-                                                                   description: t('.notice_success'),
-                                                                   path: article_url(@collection),
-                                                                   verb: 'create')
+                                                                   message: t('.message', action: t('.created'), subject: t('.collection'), user_name: full_name(user: current_user)),
+                                                                   description: t('.description', action: t('.created'), subject: t('.collection')),
+                                                                   path: collection_path(@collection),
+                                                                   verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -34,10 +34,10 @@ module MagazStoreAdmin
       @collection = current_shop.collections.friendly.find(params[:id])
       if @collection.update_attributes(permitted_params[:collection])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
-                                                                   message: t('.notice_success'),
-                                                                   description: t('.notice_success'),
-                                                                   path: article_url(@collection),
-                                                                   verb: 'update')
+                                                                   message: t('.message', action: t('.updated'), subject: t('.collection'), user_name: full_name(user: current_user)),
+                                                                   description: t('.description', action: t('.updated'), subject: t('.collection')),
+                                                                   path: collection_path(@collection),
+                                                                   verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -45,14 +45,19 @@ module MagazStoreAdmin
       end
     end
 
+    private
+    def full_name(user:)
+      [user.first_name, user.last_name].map(&:capitalize).join(" ")
+    end
+
     def destroy
       @collection = current_shop.collections.friendly.find(params[:id])
       @collection.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
-                                                                 message: t('.notice_success'),
-                                                                 description: t('.notice_success'),
+                                                                 message: t('.message', action: t('.deleted'), subject: t('.collection'), user_name: full_name(user: current_user)),
+                                                                 description: t('.description', action: t('.deleted'), subject: t('.collection')),
                                                                  path: nil,
-                                                                 verb: 'destroy')
+                                                                 verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
     end

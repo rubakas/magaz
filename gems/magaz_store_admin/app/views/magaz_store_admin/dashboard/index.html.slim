@@ -13,9 +13,12 @@ table class="table table-striped"
   tbody
   - @events.each do |event|
       tr
-        td = event.message
-        - unless event.path == nil
-          td = link_to event.arguments.first, event.path
+        td
+          = event.message
+          - unless event.path == nil
+            = link_to event.arguments.first, event.path
+          - else
+            = event.arguments.first
         td = event.created_at
   tbody
 

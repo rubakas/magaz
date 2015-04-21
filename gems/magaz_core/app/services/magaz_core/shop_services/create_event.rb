@@ -5,13 +5,13 @@ module MagazCore
       attr_accessor :event
 
       def call(subject:, message:, description:, path:, verb:)
-        @event = MagazCore::Event.new
+        @event = subject.events.new
 
         MagazCore::Event.connection.transaction do
           begin
             _create_event!(subject: subject, event: @event,
                            message: message, description: description,
-                           path: path, verb:)
+                           path: path, verb: verb)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ArgumentError
             raise ActiveRecord::Rollback
           end
@@ -29,8 +29,9 @@ module MagazCore
         if subject.class.name.split('::').last == "Order"
           arguments << subject.line_items
         end
-        #arguments << user.first_name.split(" ").split(user.last_name)
-        event.update_attributes!(subject_id: subject.id, subject_type: subject.class.name.split('::').last,
+        #full_name = [user.first_name, user.last_name].map(&:capitalize).join(" ")
+        #arguments << full_name#user.first_name.join(" ").join(user.last_name)
+        event.update_attributes!(subject_type: subject.class.name.split('::').last,
                                  arguments: arguments, message: message, description: description,
                                  shop_id: subject.shop_id, path: path, verb: verb) || fail(ArgumentError)
       end

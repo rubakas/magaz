@@ -49,6 +49,7 @@ module MagazCore
       def checkout_to_order(order_attrs)
         attrs = { :status => 'open' }.merge order_attrs
         @checkout.update(attrs)
+
         event_service = MagazCore::ShopServices::CreateEvent.call(subject: @checkout,
                                                                   message: 'Order status is open now',
                                                                   description: 'Order status is open now',
