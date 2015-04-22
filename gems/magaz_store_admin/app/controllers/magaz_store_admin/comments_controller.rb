@@ -22,7 +22,7 @@ module MagazStoreAdmin
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
                                                                    message: t('.message', action: t('.created'), subject: t('.comment'), user_name: full_name(user: current_user)),
                                                                    description: t('.description', action: t('.created'), subject: t('.comment')),
-                                                                   path: article_path(@article),
+                                                                   path: comment_url(@comment),
                                                                    verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to comment_url(@comment)
@@ -38,7 +38,7 @@ module MagazStoreAdmin
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
                                                                    message: t('.message', action: t('.updated'), subject: t('.comment'), user_name: full_name(user: current_user)),
                                                                    description: t('.description', action: t('.updated'), subject: t('.comment')),
-                                                                   path: article_path(@article),
+                                                                   path: comment_url(@comment),
                                                                    verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to comments_url

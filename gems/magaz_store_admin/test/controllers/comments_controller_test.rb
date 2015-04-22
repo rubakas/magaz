@@ -13,7 +13,7 @@ module MagazStoreAdmin
 
     test "should create event with comment" do
       assert_difference('MagazCore::Event.count', +1) do
-        post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body }
+        post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body, blog_id: @blog.id }
       end
     end
 
@@ -42,7 +42,7 @@ module MagazStoreAdmin
 
     test "should create comment" do
       assert_difference('MagazCore::Comment.count') do
-        post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body }
+        post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body, blog_id: @blog.id}
       end
 
       assert_redirected_to comment_path(assigns(:comment))

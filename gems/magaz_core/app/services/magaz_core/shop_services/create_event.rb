@@ -27,13 +27,27 @@ module MagazCore
           arguments << subject.name
         end
         if subject.class.name.split('::').last == "Order"
-          arguments << subject.line_items
+          #arguments << subject.line_items
         end
         #full_name = [user.first_name, user.last_name].map(&:capitalize).join(" ")
         #arguments << full_name#user.first_name.join(" ").join(user.last_name)
-        event.update_attributes!(subject_type: subject.class.name.split('::').last,
-                                 arguments: arguments, message: message, description: description,
-                                 shop_id: subject.shop_id, path: path, verb: verb) || fail(ArgumentError)
+        if subject.class.name.split('::').last == "Article"
+          event.update_attributes!(subject_type: subject.class.name.split('::').last,
+                                   arguments: arguments, message: message, description: description,
+                                   shop_id: subject.blog.shop_id, path: path, verb: verb) || fail(ArgumentError)
+        elsif subject.class.name.split('::').last == "Comment"
+          event.update_attributes!(subject_type: subject.class.name.split('::').last,
+                                   arguments: arguments, message: message, description: description,
+                                   shop_id: subject.article.blog.shop_id, path: path, verb: verb) || fail(ArgumentError)
+        elsif subject.class.name.split('::').last == "Checkout"
+          event.update_attributes!(subject_type: subject.class.name.split('::').last,
+                                   arguments: arguments, message: message, description: description,
+                                   shop_id: subject.customer.shop_id, path: path, verb: verb) || fail(ArgumentError)
+        else
+          event.update_attributes!(subject_type: subject.class.name.split('::').last,
+                                   arguments: arguments, message: message, description: description,
+                                   shop_id: subject.shop_id, path: path, verb: verb) || fail(ArgumentError)
+        end
       end
     end
   end

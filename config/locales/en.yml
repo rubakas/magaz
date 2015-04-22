@@ -74,6 +74,7 @@ en:
         message: "%{user_name} %{action} a %{subject}: "
         description: "The %{subject} was %{action}."
         notice_success: "Article was successfully updated."
+        notice_fail: "Can't create such article, try again please."
       destroy:
         destroy: "destroy"
         article: "article"

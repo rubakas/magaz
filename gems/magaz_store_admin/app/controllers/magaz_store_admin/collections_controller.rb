@@ -45,11 +45,6 @@ module MagazStoreAdmin
       end
     end
 
-    private
-    def full_name(user:)
-      [user.first_name, user.last_name].map(&:capitalize).join(" ")
-    end
-
     def destroy
       @collection = current_shop.collections.friendly.find(params[:id])
       @collection.destroy
@@ -60,6 +55,12 @@ module MagazStoreAdmin
                                                                  verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
+    end
+
+    private
+
+    def full_name(user:)
+      [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
 
     protected

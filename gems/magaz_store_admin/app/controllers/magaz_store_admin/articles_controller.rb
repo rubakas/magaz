@@ -20,7 +20,7 @@ module MagazStoreAdmin
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                    message: t('.message', action: t('.created'), subject: t('.article'), user_name: full_name(user: current_user)),
                                                                    description: t('.description', action: t('.created'), subject: t('.article')),
-                                                                   path: article_path(@article),
+                                                                   path: article_url(@article),
                                                                    verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
@@ -36,11 +36,12 @@ module MagazStoreAdmin
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                    message: t('.message', action: t('.updated'), subject: t('.article'), user_name: full_name(user: current_user)),
                                                                    description: t('.description', action: t('.updated'), subject: t('.article')),
-                                                                   path: article_path(@article),
+                                                                   path: article_url(@article),
                                                                    verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
+        flash[:notice] = t('.notice_fail')
         render 'show'
       end
     end
@@ -58,6 +59,7 @@ module MagazStoreAdmin
     end
 
     private
+
     def full_name(user:)
       [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
