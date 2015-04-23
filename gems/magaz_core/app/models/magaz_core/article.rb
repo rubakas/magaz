@@ -22,8 +22,8 @@ module MagazCore
     extend FriendlyId
     include Concerns::Visibility
 
-    DEFAULT_ARTICLE_TITLE = 'First Post'
-    DEFAULT_ARTICLE_CONTENT = 'This is your store’s blog. You can use it to talk about new product launches, experiences, tips or other news you want your customers to read about.'
+    DEFAULT_ARTICLE_TITLE = I18n.t('activerecord.models.article.article_title')
+    DEFAULT_ARTICLE_CONTENT = I18n.t('activerecord.models.article.article_content')
 
     belongs_to :blog
     has_many :comments
