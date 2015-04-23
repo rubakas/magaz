@@ -65,7 +65,7 @@ module MagazCore
       assert_equal 3, @checkout.item_count
     end
 
-    test "check checkout_to_order" do
+    test "check checkout_to_order with event" do
       assert_difference('MagazCore::Event.count', +1) do
         @service =
           MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id,
