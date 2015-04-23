@@ -86,3 +86,10 @@ en:
       title: 'Shipping update'
       body: 'The following shipped items from order have been updated with new shipping information:'
       description: "Sent to the customer when an order's shipping information is updated"
+
+  shopping_cart:
+    open: "open"
+    order: "order"
+    placed: "placed"
+    message: "An %{subject} was %{action}"
+    description: "The %{subject} was %{action}."

@@ -66,13 +66,15 @@ module MagazCore
     end
 
     test "check checkout_to_order" do
-      @service =
-        MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id,
-                                              checkout_id: @existing_checkout.id,
-                                              customer_id: @existing_customer.id
-      @service.add_product(product: @existing_product, quantity: 2)
-      @service.checkout_to_order(email: 'shop@email.com')
-      @service.save_cart
+      assert_difference('MagazCore::Event.count', +1) do
+        @service =
+          MagazCore::Services::ShoppingCart.new shop_id: @existing_shop.id,
+                                                checkout_id: @existing_checkout.id,
+                                                customer_id: @existing_customer.id
+        @service.add_product(product: @existing_product, quantity: 2)
+        @service.checkout_to_order(email: 'shop@email.com')
+        @service.save_cart
+      end
       assert_equal "open", @service.checkout.status
     end
   end
