@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/andriytyurnikov/inherited_resources.git
-  revision: 4abedd69aec9295da99f9000e80162c3b78ef213
-  branch: rails_4_2
-  specs:
-    inherited_resources (1.5.0)
-      has_scope (~> 0.6.0.rc)
-      responders (~> 2.0)
-
-GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
   revision: 54b165183fdccc4feb451416d1a46ecae496d6be
   specs:
@@ -195,6 +186,11 @@ GEM
     hitimes (1.2.2)
     i18n (0.7.0)
     i18n_data (0.6.3)
+    inherited_resources (1.6.0)
+      actionpack (>= 3.2, < 5)
+      has_scope (~> 0.6.0.rc)
+      railties (>= 3.2, < 5)
+      responders
     interactor (3.1.0)
     interactor-rails (2.0.1)
       interactor (~> 3.0)
@@ -325,7 +321,7 @@ DEPENDENCIES
   flay
   flog
   font-awesome-sass-rails
-  inherited_resources!
+  inherited_resources
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
