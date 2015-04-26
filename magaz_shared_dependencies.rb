@@ -1,20 +1,18 @@
-ruby "2.2.2"
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-# Use local gems with engines
-gem 'magaz_style',        path: 'gems/magaz_style'
-gem 'magaz_core',         path: 'gems/magaz_core'
-gem 'magaz_store',        path: 'gems/magaz_store'
-gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
-gem 'magaz_store_admin',  path: 'gems/magaz_store_admin'
-
-gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
-
+# Your gem is dependent on dev or edge Rails. Once you can lock this
+# dependency down to a specific version, move it to your gemspec.
+# gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
+# gem 'rack',             github: 'rack/rack'
 # gem 'arel',             github: 'rails/arel'
 # gem 'i18n',             github: 'svenfuchs/i18n'
+gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3'
+
 
 gem 'memcachier'
 gem 'dalli'
@@ -24,7 +22,6 @@ gem 'inherited_resources'
 
 # Use slim-lang for templates
 gem 'slim'
-
 
 # Use edge version of sprockets-rails
 gem 'sprockets-rails'#,  github: "rails/sprockets-rails"
@@ -63,9 +60,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc',             group: :doc, require: false
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
-gem 'spring',           group: :development
-
 # Use puma as the app server
 gem 'puma'
 
@@ -81,10 +75,38 @@ gem 'rubocop', :require => false
 gem 'parallel_tests', group: :development
 gem 'flog', group: :development
 gem 'flay', group: :development
-# gem 'web-console', group: :development
+gem 'web-console', group: :development
 
 gem 'cucumber-rails', :require => false, group: :test
 gem 'capybara-webkit', "~> 1.5.1", group: :test
 gem 'factory_girl', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test
+
+
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.9', require: 'bcrypt'
+
+# Use for upload files in app
+gem "carrierwave"
+gem "rmagick",          require: false
+
+# Use liquid templates for themes
+gem 'liquid'
+
+
+# To use a debugger
+# gem 'byebug', group: [:development, :test]
+gem 'annotate', github: 'ctran/annotate_models'
+
+
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer',     platforms: :ruby
+
+
+# To use a debugger
+# gem 'byebug', group: [:development, :test]
+
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
+gem 'spring',           group: :development
+
