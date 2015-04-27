@@ -15,8 +15,8 @@ table class="table table-striped"
       tr
         td
           = event.message
-          - unless event.path == nil
-            = link_to event.arguments.first, event.path
+          - unless event.verb == 'destroy'
+            = link_to event.arguments.first, event.subject
           - else
             = event.arguments.first
         td = event.created_at

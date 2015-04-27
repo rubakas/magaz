@@ -42,7 +42,7 @@ module MagazCore
           arguments << subject.title
         end
 
-        event.update_attributes!(subject_type: subject.class.name.split('::').last,
+        event.update_attributes!(subject_type: subject.class.name,
                                  arguments: arguments, message: message, description: description,
                                  shop_id: shop_id, verb: verb) || fail(ArgumentError)
       end
