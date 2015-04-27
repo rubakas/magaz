@@ -18,9 +18,8 @@ module MagazStoreAdmin
       @blog = current_shop.blogs.new(permitted_params[:blog])
       if @blog.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
-                                                                   message: t('.message', action: t('.created'), subject: t('.blog'), user_name: full_name(user: current_user)),
-                                                                   description: t('.description', action: t('.created'), subject: t('.blog')),
-                                                                   path: blog_path(@blog),
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.blog'), user_name: full_name(user: current_user)),
+                                                                   description: I18n.t('magaz_store_admin.events.description', action: t('.created'), subject: t('.blog')),
                                                                    verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
@@ -34,9 +33,8 @@ module MagazStoreAdmin
       @blog = current_shop.blogs.friendly.find(params[:id])
       if @blog.update_attributes(permitted_params[:blog])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
-                                                                   message: t('.message', action: t('.updated'), subject: t('.blog'), user_name: full_name(user: current_user)),
-                                                                   description: t('.description', action: t('.updated'), subject: t('.blog')),
-                                                                   path: blog_path(@blog),
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.blog'), user_name: full_name(user: current_user)),
+                                                                   description: I18n.t('magaz_store_admin.events.description', action: t('.updated'), subject: t('.blog')),
                                                                    verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
@@ -49,9 +47,8 @@ module MagazStoreAdmin
       @blog = current_shop.blogs.friendly.find(params[:id])
       @blog.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
-                                                                   message: t('.message', action: t('.deleted'), subject: t('.blog'), user_name: full_name(user: current_user)),
-                                                                   description: t('.description', action: t('.deleted'), subject: t('.blog')),
-                                                                   path: nil,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.blog'), user_name: full_name(user: current_user)),
+                                                                   description: I18n.t('magaz_store_admin.events.description', action: t('.deleted'), subject: t('.blog')),
                                                                    verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to blogs_path

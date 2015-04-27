@@ -58,6 +58,9 @@ en:
       sign_in: "Sign in"
 
   magaz_store_admin:
+    events:
+      message: "%{user_name} %{action} a %{subject}: "
+      description: "The %{subject} was %{action}."
     articles:
       create:
         article: "article"
@@ -466,8 +469,6 @@ en:
         create: "create"
         product: "product"
         created: "created"
-        message: "%{user_name} %{action} a %{subject}: "
-        description: "The %{subject} was %{action}."
         notice_success: "Product was successfully created."
       update:
         product: "product"
