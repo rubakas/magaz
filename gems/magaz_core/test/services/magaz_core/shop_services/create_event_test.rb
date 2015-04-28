@@ -14,7 +14,6 @@ module MagazCore
     test 'create event with product' do
       service = MagazCore::ShopServices::CreateEvent.call(subject: @product,
                                                           message: "Some some created",
-                                                          description: "The product was created",
                                                           verb: 'create')
       assert service.event.persisted?
       assert_equal service.event.subject_id, @product.id
@@ -29,7 +28,6 @@ module MagazCore
     test 'create event with article' do
       service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                           message: "Some some created",
-                                                          description: "The article was created",
                                                           verb: 'create')
       assert service.event.persisted?
       assert_equal service.event.subject_id, @article.id
@@ -43,7 +41,6 @@ module MagazCore
     test 'create event with collection' do
       service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
                                                           message: "Some some created",
-                                                          description: "The collection was created",
                                                           verb: 'create')
       assert service.event.persisted?
       assert_equal service.event.subject_id, @collection.id

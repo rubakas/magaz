@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427154150) do
+ActiveRecord::Schema.define(version: 20150428125901) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 20150427154150) do
   create_table "events", force: :cascade do |t|
     t.string   "arguments",    default: "--- []\n"
     t.string   "body"
-    t.text     "description"
     t.string   "message"
     t.integer  "subject_id"
     t.string   "subject_type"

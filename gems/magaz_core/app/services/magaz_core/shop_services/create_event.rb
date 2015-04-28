@@ -4,14 +4,13 @@ module MagazCore
       include MagazCore::Concerns::Service
       attr_accessor :event
 
-      def call(subject:, message:, description:, verb:)
+      def call(subject:, message:, verb:)
         @event = subject.events.new
 
         MagazCore::Event.connection.transaction do
           begin
             _create_event!(subject: subject, event: @event,
-                           message: message, description: description,
-                           verb: verb)
+                           message: message, verb: verb)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ArgumentError
             raise ActiveRecord::Rollback
           end
@@ -20,7 +19,7 @@ module MagazCore
 
       private
 
-      def _create_event!(subject:, event:, message:, description:, verb:)
+      def _create_event!(subject:, event:, message:, verb:)
         arguments = Array.new
         if subject.class.name.split('::').last == "Article"
           shop_id = subject.blog.shop_id
@@ -42,9 +41,9 @@ module MagazCore
           arguments << subject.title
         end
 
-        event.update_attributes!(subject_type: subject.class.name,
-                                 arguments: arguments, message: message, description: description,
-                                 shop_id: shop_id, verb: verb) || fail(ArgumentError)
+        event.update_attributes!(subject_type: subject.class.name, arguments: arguments,
+                                 message: message, shop_id: shop_id,
+                                 verb: verb) || fail(ArgumentError)
       end
     end
   end

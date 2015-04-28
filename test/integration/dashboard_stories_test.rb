@@ -10,7 +10,7 @@ class DashboardStoriesTest < ActionDispatch::IntegrationTest
 
   test "dashboard index" do
     assert page.has_content? 'Dashboard'
-    assert page.has_content? "User created a product: /admin/products/1"
+    assert page.has_content? "User created a product: /admin/products/#{@product.id}"
     assert page.has_content? @event.created_at
   end
 

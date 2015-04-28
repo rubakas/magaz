@@ -92,13 +92,17 @@ en:
     order: "order"
     placed: "placed"
     message: "An %{subject} was %{action}"
-    description: "The %{subject} was %{action}."
 
   activerecord:
     models:
       article:
         article_title: "First Post"
         article_content: "This is your store’s blog. You can use it to talk about new product launches, experiences, tips or other news you want your customers to read about."
+      events:
+        the: "The"
+        d: "d"
+        ed: "ed"
+        was: "was"
       link:
         home_link_name: "Home"
         blog_link_name: "Blog"

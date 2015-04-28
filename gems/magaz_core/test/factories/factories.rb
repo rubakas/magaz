@@ -49,7 +49,6 @@ FactoryGirl.define do
 
   factory :event, class: MagazCore::Event do
     sequence(:message) { |n| "User created a product: "}
-    sequence(:description) { |n| "The product was created"}
     sequence(:verb) { |n| "create"}
     sequence(:arguments) {|n| "Product_Name"}
   end

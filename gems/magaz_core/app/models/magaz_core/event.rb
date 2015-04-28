@@ -5,9 +5,19 @@ module MagazCore
     belongs_to :shop
     belongs_to :subject, polymorphic: true
 
-    # VERB = ['create', 'update', 'destroy', 'placed']
+    validates_presence_of :verb, :message, :subject_id, :subject_type
 
-     validates_presence_of :verb, :message, :description, :subject_id, :subject_type
-    # validates :verb, inclusion: VERB
+    def description
+      unless self.verb == 'destroy'
+        ending = I18n.t('activerecord.models.events.d')
+      else
+        ending = I18n.t('activerecord.models.events.ed')
+      end
+      [I18n.t('activerecord.models.events.the'), ' ',self.subject_type.split('::').last.downcase, ' ', I18n.t('activerecord.models.events.was'), ' ', self.verb, ending].join
+    end
+
+    def path
+      ['/admin/', self.subject_type.split('::').last.downcase, 's', '/', self.id].join
+    end
   end
 end

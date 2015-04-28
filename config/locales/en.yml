@@ -60,7 +60,6 @@ en:
   magaz_store_admin:
     events:
       message: "%{user_name} %{action} a %{subject}: "
-      description: "The %{subject} was %{action}."
     articles:
       create:
         article: "article"

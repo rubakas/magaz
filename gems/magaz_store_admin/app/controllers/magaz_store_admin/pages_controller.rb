@@ -19,7 +19,6 @@ module MagazStoreAdmin
       if @page.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.page'), user_name: full_name(user: current_user)),
-                                                                   description: I18n.t('magaz_store_admin.events.description', action: t('.created'), subject: t('.page')),
                                                                    verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
@@ -33,7 +32,6 @@ module MagazStoreAdmin
       if @page.update_attributes(permitted_params[:page])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.page'), user_name: full_name(user: current_user)),
-                                                                   description: I18n.t('magaz_store_admin.events.description', action: t('.updated'), subject: t('.page')),
                                                                    verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
@@ -47,7 +45,6 @@ module MagazStoreAdmin
       @page.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.page'), user_name: full_name(user: current_user)),
-                                                                 description: I18n.t('magaz_store_admin.events.description', action: t('.deleted'), subject: t('.page')),
                                                                  verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
