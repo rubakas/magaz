@@ -52,7 +52,6 @@ module MagazCore
         event_service = MagazCore::ShopServices::CreateEvent.call(subject: @checkout,
                                                                   message: I18n.t('shopping_cart.message', action:I18n.t('shopping_cart.placed'), subject: I18n.t('shopping_cart.order')),
                                                                   description: I18n.t('shopping_cart.description', action: I18n.t('shopping_cart.placed'), subject: I18n.t('shopping_cart.order')),
-                                                                  path: nil,
                                                                   verb: I18n.t('shopping_cart.placed'))
         email_template = @shop.email_templates.find_by(template_type: 'new_order_notification')
         @shop.subscriber_notifications.each do |s|
