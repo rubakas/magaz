@@ -19,26 +19,33 @@ module MagazCore
 
       private
 
+      def class_name(subject:)
+        subject.class.name.split('::').last
+      end
+
       def _create_event!(subject:, event:, message:, verb:)
         arguments = Array.new
-        if subject.class.name.split('::').last == "Article"
+        case class_name(subject: subject)
+        when "Article"
           shop_id = subject.blog.shop_id
-        elsif subject.class.name.split('::').last == "Comment"
-          shop_id = subject.article.blog.shop_id
-        elsif subject.class.name.split('::').last == "Checkout"
-          shop_id = subject.customer.shop_id
-        else
-          shop_id = subject.shop_id
-        end
-
-        if subject.class.name.split('::').last == "Product" ||
-           subject.class.name.split('::').last == "Collection"
-          arguments << subject.name
-        elsif subject.class.name.split('::').last == "Order"
-          #arguments << subject.line_items
-        elsif subject.class.name.split('::').last == "Page" ||
-           subject.class.name.split('::').last == "Article"
           arguments << subject.title
+        when "Blog"
+          shop_id = subject.shop_id
+        when "Comment"
+          shop_id = subject.article.blog.shop_id
+        when "Checkout"
+          shop_id = subject.customer.shop_id
+        when "Product"
+          shop_id = subject.shop_id
+          arguments << subject.name
+        when "Collection"
+          shop_id = subject.shop_id
+          arguments << subject.name
+        when "Page"
+          shop_id = subject.shop_id
+          arguments << subject.title
+        else
+          fail(ArgumentError)
         end
 
         event.update_attributes!(subject_type: subject.class.name, arguments: arguments,
