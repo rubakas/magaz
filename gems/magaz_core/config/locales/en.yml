@@ -127,3 +127,7 @@ en:
         not_correct: "Criteria is not correct"
         price_to_must_be_greater: "price_to must be greater than price_from"
         weight_to_must_be_greater: "weight_to must be greater than weight_from"
+      webhooks:
+        product_creation: "Product creation"
+        product_update: "Product update"
+        product_deletion: "Product deletion"

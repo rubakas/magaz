@@ -8,6 +8,7 @@ module MagazCore
       def call(shop_params: {}, user_params: {})
         @shop = MagazCore::Shop.new
         @user = MagazCore::User.new
+        @default_theme = MagazCore::Theme.new
 
         MagazCore::Shop.connection.transaction do
           begin
