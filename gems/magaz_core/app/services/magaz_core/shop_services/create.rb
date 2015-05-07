@@ -23,8 +23,6 @@ module MagazCore
             # links created after linked content, right? :)
             _create_default_link_lists!(shop: @shop)
             _create_default_emails!(shop: @shop)
-            run_log(shop: @shop)
-            subscribe
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
             raise ActiveRecord::Rollback
           end
