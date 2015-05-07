@@ -16,11 +16,12 @@ module MagazStoreAdmin
 
     def create
       @shop = current_shop
-      @product = current_shop.products.new(permitted_params[:product])
+      @product = @shop.products.new(permitted_params[:product])
       if @product.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @product,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.product'), user_name: full_name(user: current_user)),
                                                                    verb: t('.create'))
+        ActiveSupport::Notifications.publish('events', event: @event_service.event)
         flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
       else
