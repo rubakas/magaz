@@ -10,5 +10,8 @@ module MagazCore
 
     validates :topic, inclusion: EVENT_CHOICE
     validates :format, inclusion: FORMAT_CHOICE
+
+    validates :address, presence: true,
+                        format: { with: /https?:\/\/[\S]+/ }
   end
 end

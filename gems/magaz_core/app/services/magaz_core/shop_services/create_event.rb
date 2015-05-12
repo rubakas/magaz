@@ -6,11 +6,13 @@ module MagazCore
 
       def call(subject:, message:, verb:)
         @event = subject.events.new
+        event_name = [verb, class_name(subject: subject).downcase, 'event'].join(" ")
 
         MagazCore::Event.connection.transaction do
           begin
             _create_event!(subject: subject, event: @event,
                            message: message, verb: verb)
+            ActiveSupport::Notifications.publish(event_name, event: @event) || fail(ArgumentError)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ArgumentError
             raise ActiveRecord::Rollback
           end
