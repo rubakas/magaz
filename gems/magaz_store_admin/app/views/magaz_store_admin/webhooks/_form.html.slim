@@ -21,7 +21,7 @@
   div class="form-group"
     = f.label t('.url')
     br
-    = f.text_field :address
+    = f.text_field :address, :placeholder => "https://www.example.com/", class: 'form-input'
 
   hr
   div class="form-group"

@@ -1,22 +1,70 @@
 require 'json'
-require 'net/http'
-require 'net/https'
 require 'uri'
 
 
 ActiveSupport::Notifications.subscribe 'create product event' do |name, data|
   shop = MagazCore::Shop.find(data[:event][:shop_id])
-  shop.webhooks.where(topic: "Product creation").each do |webhook|
-    run_worker(data: data, webhook: webhook)
+  unless shop.webhooks.where(topic: "Product creation").count == 0
+    shop.webhooks.where(topic: "Product creation").each do |webhook|
+      run_worker(data: data, webhook: webhook)
+    end
+  end
+end
+
+ActiveSupport::Notifications.subscribe 'update product event' do |name, data|
+  shop = MagazCore::Shop.find(data[:event][:shop_id])
+  unless shop.webhooks.count == 0
+    shop.webhooks.where(:topic => "Product update").each do |webhook|
+      run_worker(data: data, webhook: webhook)
+    end
+  end
+end
+
+ActiveSupport::Notifications.subscribe 'destroy product event' do |name, data|
+  shop = MagazCore::Shop.find(data[:event][:shop_id])
+  unless shop.webhooks.count == 0
+    shop.webhooks.where(:topic => "Product deletion").each do |webhook|
+      run_worker(data: data, webhook: webhook)
+    end
+  end
+end
+
+ActiveSupport::Notifications.subscribe 'create collection event' do |name, data|
+  shop = MagazCore::Shop.find(data[:event][:shop_id])
+  unless shop.webhooks.count == 0
+    shop.webhooks.where(:topic => "Collection create").each do |webhook|
+      run_worker(data: data, webhook: webhook)
+    end
+  end
+end
+
+ActiveSupport::Notifications.subscribe 'update collection event' do |name, data|
+  shop = MagazCore::Shop.find(data[:event][:shop_id])
+  unless shop.webhooks.count == 0
+    shop.webhooks.where(:topic => "Collection update").each do |webhook|
+      run_worker(data: data, webhook: webhook)
+    end
+  end
+end
+
+ActiveSupport::Notifications.subscribe 'destroy collection event' do |name, data|
+  shop = MagazCore::Shop.find(data[:event][:shop_id])
+  unless shop.webhooks.count == 0
+    shop.webhooks.where(:topic => "Collection deletion").each do |webhook|
+      run_worker(data: data, webhook: webhook)
+    end
   end
 end
 
 def run_worker(data: {}, webhook:)
   unless webhook == nil
-    if webhook.format == "XML"
+    case webhook.format
+    when "XML"
       mail = data.to_xml
-    else
+    when "JSON"
       mail = data.to_json
+    else
+      fail(ArgumentError)
     end
     format = webhook.format.downcase
     address = webhook.address
