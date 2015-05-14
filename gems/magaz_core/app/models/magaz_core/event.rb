@@ -8,12 +8,17 @@ module MagazCore
     validates_presence_of :verb, :message, :subject_id, :subject_type
 
     def description
-      unless self.verb == 'destroy'
-        ending = I18n.t('activerecord.models.events.d')
-      else
-        ending = I18n.t('activerecord.models.events.ed')
+      case self.verb
+      when 'destroy'
+        I18n.t('activerecord.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
+                                                         action: I18n.t('activerecord.models.events.destroyed'))
+      when 'create'
+        I18n.t('activerecord.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
+                                                         action: I18n.t('activerecord.models.events.created'))
+      when 'update'
+        I18n.t('activerecord.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
+                                                         action: I18n.t('activerecord.models.events.updated'))
       end
-      [I18n.t('activerecord.models.events.the'), ' ',self.subject_type.split('::').last.downcase, ' ', I18n.t('activerecord.models.events.was'), ' ', self.verb, ending].join
     end
 
     def path
