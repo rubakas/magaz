@@ -236,10 +236,19 @@ en:
 
     customers:
       create:
+        create: "create"
+        created: "created"
+        customer: "customer"
         notice_success: "Customer was successfully created."
       update:
+        update: "update"
+        updated: "updated"
+        customer: "customer"
         notice_success: "Customer was successfully updated."
       destroy:
+        destroy: "destroy"
+        deleted: "deleted"
+        customer: "customer"
         notice_success: "Customer was successfully deleted."
       import:
         notice_success: "Customers imported"

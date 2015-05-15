@@ -44,6 +44,9 @@ module MagazCore
         when "Page"
           shop_id = subject.shop_id
           arguments << subject.title
+        when "Customer"
+          shop_id = subject.shop_id
+          arguments << subject.email
         else
           fail(ArgumentError)
         end
