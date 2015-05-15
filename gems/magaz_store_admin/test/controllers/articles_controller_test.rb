@@ -4,10 +4,30 @@ module MagazStoreAdmin
   class ArticlesControllerTest < ActionController::TestCase
     setup do
       @shop = create(:shop, subdomain: 'example')
-      @blog = create(:blog, shop: @shop, handle: "handle1")
       @user = create(:user, shop: @shop)
       session_for_user @user
+      @blog = create(:blog, shop: @shop, handle: "handle1")
       @article = create(:article, blog: @blog, handle: "handle1")
+    end
+
+    test "should create event with article" do
+      assert_difference('MagazCore::Event.count', +1) do
+        post :create, { article: { content: @article.content, title: 'New uniq name', blog_id: @blog.id } }
+      end
+    end
+
+    test "should create event with update" do
+      assert_difference('MagazCore::Event.count', +1) do
+        patch :update,
+          { id: @article.id,
+            article: { content: @article.content, title: @article.title } }
+      end
+    end
+
+    test "should create event with delete" do
+      assert_difference('MagazCore::Event.count', +1) do
+        delete :destroy, id: @article.id
+      end
     end
 
     test "should get index" do
@@ -23,7 +43,7 @@ module MagazStoreAdmin
 
     test "should create article" do
       assert_difference('MagazCore::Article.count') do
-        post :create, { article: { content: @article.content, title: 'New uniq name' } }
+        post :create, { article: { content: @article.content, title: 'New uniq name', blog_id: @blog.id } }
       end
 
       assert_redirected_to article_path(assigns(:article))

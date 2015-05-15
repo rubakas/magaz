@@ -17,12 +17,12 @@ module MagazCore
     self.table_name = 'links'
 
     #Main Menu
-    DEFAULT_HOME_LINK_NAME = "Home"
-    DEFAULT_BLOG_LINK_NAME = "Blog"
+    DEFAULT_HOME_LINK_NAME = I18n.t('activerecord.models.link.home_link_name')
+    DEFAULT_BLOG_LINK_NAME = I18n.t('activerecord.models.link.blog_link_name')
 
     #Footer
-    DEFAULT_SEARCH_LINK_NAME = "Search"
-    DEFAULT_ABOUT_LINK_NAME = "About Us"
+    DEFAULT_SEARCH_LINK_NAME = I18n.t('activerecord.models.link.search_link_name')
+    DEFAULT_ABOUT_LINK_NAME = I18n.t('activerecord.models.link.about_link_name')
 
     #TODO, dependent: :destroy?
     belongs_to :link_list

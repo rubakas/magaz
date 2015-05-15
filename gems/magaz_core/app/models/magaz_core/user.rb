@@ -4,6 +4,7 @@ module MagazCore
     self.table_name = 'users'
 
     belongs_to :shop
+    has_many :events, as: :subject
 
     validates :email, presence: true, uniqueness: { scope: :shop_id }
     validates :first_name, presence: true

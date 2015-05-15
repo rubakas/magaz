@@ -17,6 +17,9 @@ module MagazStoreAdmin
     def create
       @collection = current_shop.collections.new(permitted_params[:collection])
       if @collection.save
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.collection'), user_name: full_name(user: current_user)),
+                                                                   verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -28,6 +31,9 @@ module MagazStoreAdmin
     def update
       @collection = current_shop.collections.friendly.find(params[:id])
       if @collection.update_attributes(permitted_params[:collection])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.collection'), user_name: full_name(user: current_user)),
+                                                                   verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -38,8 +44,17 @@ module MagazStoreAdmin
     def destroy
       @collection = current_shop.collections.friendly.find(params[:id])
       @collection.destroy
+      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
+                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.collection'), user_name: full_name(user: current_user)),
+                                                                 verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
+    end
+
+    private
+
+    def full_name(user:)
+      [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
 
     protected

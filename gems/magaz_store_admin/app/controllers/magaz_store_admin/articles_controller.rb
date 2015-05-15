@@ -17,6 +17,9 @@ module MagazStoreAdmin
     def create
       @article = current_shop.articles.new(permitted_params[:article])
       if @article.save
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.article'), user_name: full_name(user: current_user)),
+                                                                   verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
@@ -28,9 +31,13 @@ module MagazStoreAdmin
     def update
       @article = current_shop.articles.friendly.find(params[:id])
       if @article.update_attributes(permitted_params[:article])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.article'), user_name: full_name(user: current_user)),
+                                                                   verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
+        flash[:notice] = t('.notice_fail')
         render 'show'
       end
     end
@@ -38,8 +45,17 @@ module MagazStoreAdmin
     def destroy
       @article = current_shop.articles.friendly.find(params[:id])
       @article.destroy
+      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
+                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.article'), user_name: full_name(user: current_user)),
+                                                                 verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to articles_url
+    end
+
+    private
+
+    def full_name(user:)
+      [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
 
     protected

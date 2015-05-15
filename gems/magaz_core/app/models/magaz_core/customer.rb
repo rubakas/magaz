@@ -15,6 +15,7 @@ module MagazCore
     self.table_name = 'customers'
 
     has_many :checkouts
+    has_many :events, as: :subject
     belongs_to :shop
 
     # validates :email, presence: true

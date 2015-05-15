@@ -17,6 +17,9 @@ module MagazStoreAdmin
     def create
       @blog = current_shop.blogs.new(permitted_params[:blog])
       if @blog.save
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.blog'), user_name: full_name(user: current_user)),
+                                                                   verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
@@ -28,6 +31,9 @@ module MagazStoreAdmin
     def update
       @blog = current_shop.blogs.friendly.find(params[:id])
       if @blog.update_attributes(permitted_params[:blog])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.blog'), user_name: full_name(user: current_user)),
+                                                                   verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
@@ -38,8 +44,16 @@ module MagazStoreAdmin
     def destroy
       @blog = current_shop.blogs.friendly.find(params[:id])
       @blog.destroy
+      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.blog'), user_name: full_name(user: current_user)),
+                                                                   verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to blogs_path
+    end
+
+    private
+    def full_name(user:)
+      [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
 
     protected

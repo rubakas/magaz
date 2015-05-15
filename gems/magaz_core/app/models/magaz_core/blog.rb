@@ -22,6 +22,7 @@ module MagazCore
 
     has_many :articles
     has_many :comments
+    has_many :events, as: :subject
     belongs_to :shop
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop

@@ -11,7 +11,11 @@ module MagazStoreAdmin
 
     def update
       @shop = current_shop
+      @current_user = current_shop.users.find(session[:user_id])
       if @shop.update_attributes(permitted_params[:shop])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @shop,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.shop'), user_name: full_name(user: @current_user)),
+                                                                   verb: t('.update'))
         flash[:notice] = t('.notice_success')
         render 'edit'
       else
@@ -116,6 +120,12 @@ module MagazStoreAdmin
       @default_collection = current_shop.collections.find_by_id(params[:default_collection])
       current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
       redirect_to taxes_settings_settings_path
+    end
+
+    private
+
+    def full_name(user:)
+      [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
 
     protected

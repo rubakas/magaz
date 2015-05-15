@@ -18,6 +18,7 @@ module MagazStoreAdmin
     end
 
     def create
+      @current_user = current_shop.users.find(session[:user_id])
       @service = MagazCore::ShopServices::CreateInvite.call
 
       if @service.valid_email(email: permitted_params[:user][:email], shop: current_shop)
@@ -25,6 +26,9 @@ module MagazStoreAdmin
                                                  shop: current_shop)
         @service.send_mail_invite(user: @service.user, link: user_url(@service.user, invite_token: @service.user.invite_token ))
         if @service.user.persisted?
+          @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @service.user,
+                                                                     message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.user'), user_name: full_name(user: @current_user)),
+                                                                     verb: t('.create'))
           redirect_to users_path, notice: t('.notice_success')
         else
           redirect_to users_path, notice: t('.invalid_email')
@@ -36,7 +40,11 @@ module MagazStoreAdmin
 
     def update
       @user = current_shop.users.find(params[:id])
+      @current_user = current_shop.users.find(session[:user_id])
       if @user.update_attributes(permitted_params[:user])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @user,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.user'), user_name: full_name(user: @current_user)),
+                                                                   verb: t('.update'))
         redirect_to user_path(@user), notice: t('.notice_success')
       else
         render 'show'
@@ -45,7 +53,11 @@ module MagazStoreAdmin
 
     def destroy
       @user = current_shop.users.find(params[:id])
+      @current_user = current_shop.users.find(session[:user_id])
       unless @user.account_owner == true || current_shop.users.count == 1
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @user,
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.user'), user_name: full_name(user: @current_user)),
+                                                                   verb: t('.destroy'))
         @user.destroy
         flash[:notice] = t('.notice_success')
       else
@@ -55,6 +67,10 @@ module MagazStoreAdmin
     end
 
     private
+
+    def full_name(user:)
+      [user.first_name, user.last_name].map(&:capitalize).join(" ")
+    end
 
     def authenticate?
       unless current_shop.users.exists?(id: session[:user_id])

@@ -9,6 +9,26 @@ module MagazStoreAdmin
       @collection = create(:collection, shop: @shop, handle: "handle1")
     end
 
+    test "should create event with collection" do
+      assert_difference('MagazCore::Event.count', +1) do
+        post :create, collection: { name: 'Unique Name' }
+      end
+    end
+
+    test "should create event with update" do
+      assert_difference('MagazCore::Event.count', +1) do
+        patch :update, id: @collection,
+        collection: { description: @collection.description,
+                      name: @collection.name }
+      end
+    end
+
+    test "should create event with delete" do
+      assert_difference('MagazCore::Event.count', +1) do
+        delete :destroy, id: @collection.id
+      end
+    end
+
     test "should get index" do
       get :index
       assert_response :success
@@ -20,7 +40,7 @@ module MagazStoreAdmin
       assert_response :success
     end
 
-    test "should create product" do
+    test "should create collection" do
       assert_difference('MagazCore::Collection.count') do
         post :create, collection: { name: 'Unique Name' }
       end
@@ -40,7 +60,7 @@ module MagazStoreAdmin
 
     test "should destroy collection" do
       assert_difference('MagazCore::Collection.count', -1) do
-        delete :destroy, id: @collection
+        delete :destroy, id: @collection.id
       end
 
       assert_redirected_to collections_path
