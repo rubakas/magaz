@@ -25,6 +25,10 @@ module MagazCore
 
       def _create_event!(subject:, event:, message:, verb:)
         arguments = Array.new
+        puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
+        puts class_name(subject: subject)
+        puts subject.name
+        puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
         case class_name(subject: subject)
         when "Article"
           shop_id = subject.blog.shop_id
@@ -47,6 +51,12 @@ module MagazCore
         when "Customer"
           shop_id = subject.shop_id
           arguments << subject.email
+        when "User"
+          shop_id = subject.shop_id
+          arguments << subject.email
+        when "Shop"
+          shop_id = subject.id
+          arguments << subject.name
         else
           fail(ArgumentError)
         end
