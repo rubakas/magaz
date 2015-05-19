@@ -2,55 +2,10 @@ require 'json'
 require 'uri'
 
 
-ActiveSupport::Notifications.subscribe 'create product event' do |name, data|
+ActiveSupport::Notifications.subscribe 'event' do |name, data|
   shop = MagazCore::Shop.find(data[:event][:shop_id])
-  unless shop.webhooks.where(topic: "Product creation").count == 0
-    shop.webhooks.where(topic: "Product creation").each do |webhook|
-      run_worker(data: data, webhook: webhook)
-    end
-  end
-end
-
-ActiveSupport::Notifications.subscribe 'update product event' do |name, data|
-  shop = MagazCore::Shop.find(data[:event][:shop_id])
-  unless shop.webhooks.count == 0
-    shop.webhooks.where(:topic => "Product update").each do |webhook|
-      run_worker(data: data, webhook: webhook)
-    end
-  end
-end
-
-ActiveSupport::Notifications.subscribe 'destroy product event' do |name, data|
-  shop = MagazCore::Shop.find(data[:event][:shop_id])
-  unless shop.webhooks.count == 0
-    shop.webhooks.where(:topic => "Product deletion").each do |webhook|
-      run_worker(data: data, webhook: webhook)
-    end
-  end
-end
-
-ActiveSupport::Notifications.subscribe 'create collection event' do |name, data|
-  shop = MagazCore::Shop.find(data[:event][:shop_id])
-  unless shop.webhooks.count == 0
-    shop.webhooks.where(:topic => "Collection create").each do |webhook|
-      run_worker(data: data, webhook: webhook)
-    end
-  end
-end
-
-ActiveSupport::Notifications.subscribe 'update collection event' do |name, data|
-  shop = MagazCore::Shop.find(data[:event][:shop_id])
-  unless shop.webhooks.count == 0
-    shop.webhooks.where(:topic => "Collection update").each do |webhook|
-      run_worker(data: data, webhook: webhook)
-    end
-  end
-end
-
-ActiveSupport::Notifications.subscribe 'destroy collection event' do |name, data|
-  shop = MagazCore::Shop.find(data[:event][:shop_id])
-  unless shop.webhooks.count == 0
-    shop.webhooks.where(:topic => "Collection deletion").each do |webhook|
+  unless shop.webhooks.where(topic: data[:webhook]).count == 0
+    shop.webhooks.where(topic: data[:webhook]).each do |webhook|
       run_worker(data: data, webhook: webhook)
     end
   end

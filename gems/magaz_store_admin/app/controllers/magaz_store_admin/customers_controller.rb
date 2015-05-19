@@ -18,6 +18,9 @@ class CustomersController < ApplicationController
   def create
     @customer = current_shop.customers.new(permitted_params[:customer])
     if @customer.save
+      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
+                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.customer'), user_name: full_name(user: current_user)),
+                                                                 verb: t('.create'))
       flash[:notice] = t('.notice_success')
       redirect_to customer_path(@customer)
     else
@@ -28,6 +31,9 @@ class CustomersController < ApplicationController
   def update
     @customer = current_shop.customers.find(params[:id])
     if @customer.update_attributes(permitted_params[:customer])
+      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
+                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.customer'), user_name: full_name(user: current_user)),
+                                                                 verb: t('.update'))
       flash[:notice] = t('.notice_success')
       redirect_to customer_path(@customer)
     else
@@ -51,8 +57,17 @@ class CustomersController < ApplicationController
   def destroy
     @customer = current_shop.customers.find(params[:id])
     @customer.destroy
+    @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
+                                                               message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.customer'), user_name: full_name(user: current_user)),
+                                                               verb: t('.destroy'))
     flash[:notice] = t('.notice_success')
     redirect_to customers_path
+  end
+
+  private
+
+  def full_name(user:)
+    [user.first_name, user.last_name].map(&:capitalize).join(" ")
   end
 
   protected

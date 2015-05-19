@@ -236,10 +236,19 @@ en:
 
     customers:
       create:
+        create: "create"
+        created: "created"
+        customer: "customer"
         notice_success: "Customer was successfully created."
       update:
+        update: "update"
+        updated: "updated"
+        customer: "customer"
         notice_success: "Customer was successfully updated."
       destroy:
+        destroy: "destroy"
+        deleted: "deleted"
+        customer: "customer"
         notice_success: "Customer was successfully deleted."
       import:
         notice_success: "Customers imported"
@@ -503,6 +512,9 @@ en:
       edit:
         general_settings: "Shop Settings"
       update:
+        shop: "shop"
+        update: "update"
+        updated: "updated"
         notice_success: "Shop was successfully updated."
       form:
         error: "error"
@@ -782,12 +794,21 @@ en:
 
     users:
       create:
+        create: "create"
+        created: "created"
+        user: "user"
         notice_success: "User was successfully created."
         notice_fail: "User creating was failed."
         invalid_email: "Email is invalid."
       update:
+        update: "update"
+        updated: "updated"
+        user: "user"
         notice_success: "User was successfully updated."
       destroy:
+        deleted: "deleted"
+        destroy: "destroy"
+        user: "user"
         notice_fail: "Can't delete shop owner."
         notice_success: "User was successfully deleted."
       index:
