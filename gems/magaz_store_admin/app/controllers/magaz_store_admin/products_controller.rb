@@ -16,11 +16,12 @@ module MagazStoreAdmin
 
     def create
       @shop = current_shop
-      @product = current_shop.products.new(permitted_params[:product])
+      @product = @shop.products.new(permitted_params[:product])
       if @product.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @product,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.product'), user_name: full_name(user: current_user)),
-                                                                   verb: t('.create'))
+                                                                   verb: t('.create'),
+                                                                   webhook: MagazCore::Event::Roles::CREATE_PRODUCT_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
       else
@@ -33,7 +34,8 @@ module MagazStoreAdmin
       if @product.update_attributes(permitted_params[:product])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @product,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.product'), user_name: full_name(user: current_user)),
-                                                                   verb: t('.update'))
+                                                                   verb: t('.update'),
+                                                                   webhook: MagazCore::Event::Roles::UPDATE_PRODUCT_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
       else
@@ -46,7 +48,8 @@ module MagazStoreAdmin
       @product.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @product,
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.product'), user_name: full_name(user: current_user)),
-                                                                 verb: t('.destroy'))
+                                                                 verb: t('.destroy'),
+                                                                 webhook: MagazCore::Event::Roles::DELETE_PRODUCT_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to products_path
     end

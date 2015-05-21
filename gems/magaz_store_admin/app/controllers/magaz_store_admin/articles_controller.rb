@@ -19,7 +19,8 @@ module MagazStoreAdmin
       if @article.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.article'), user_name: full_name(user: current_user)),
-                                                                   verb: t('.create'))
+                                                                   verb: t('.create'),
+                                                                   webhook: nil)
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
@@ -33,7 +34,8 @@ module MagazStoreAdmin
       if @article.update_attributes(permitted_params[:article])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.article'), user_name: full_name(user: current_user)),
-                                                                   verb: t('.update'))
+                                                                   verb: t('.update'),
+                                                                   webhook: nil)
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
@@ -47,7 +49,8 @@ module MagazStoreAdmin
       @article.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.article'), user_name: full_name(user: current_user)),
-                                                                 verb: t('.destroy'))
+                                                                 verb: t('.destroy'),
+                                                                 webhook: nil)
       flash[:notice] = t('.notice_success')
       redirect_to articles_url
     end

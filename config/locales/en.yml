@@ -577,9 +577,6 @@ en:
         email_templates_inf: "These emails are automatically sent out to either you or the customer. Click on the templates below to edit the template."
         order_notifications: "Order notifications"
         order_notifications_inf: "Get notified by email or text message whenever a new order comes in. You can also subscribe to the RSS feed for this store's orders."
-        webhooks: "Webhooks"
-        create_webhook: "Create a webhook"
-        webhooks_inf: "You can subscribe to events for your products and orders by creating web hooks that will push XML or JSON notifications to a given URL."
         fulfillment: "Fulfillment Request"
         sent_to_fulfillment: "Sent to custom fulfillment provider when storeowner fulfills order items"
         gift_card_notification: "Gift Card Notification"
@@ -598,9 +595,6 @@ en:
         sent_to_customer_shipped: "Sent to the customer when an order is shipped"
         shipping_update: "Shipping update"
         sent_to_customer_updated: "Sent to the customer when an order's shipping information is updated"
-        event: "Event"
-        callback_URL: "Callback URL"
-        format: "Format"
         send_test_notification: "send test notification"
         title: "Notification"
         send_to: "Send to %{notification_method}"
@@ -692,6 +686,7 @@ en:
         checkouts: "Checkouts"
         payments: "Payments"
         taxes: "Taxes"
+        webhooks: "Webhooks"
 
     shipping_countries:
       create:
@@ -835,6 +830,52 @@ en:
         title: "Users"
         delete: "Delete"
         confirmation: "Are you sure?"
+
+    webhooks:
+      create:
+        created: "created"
+        create: "create"
+        webhook: "webhook"
+        notice_success: "Webhook was successfully created."
+        notice_fail: "Webhook creating was failed."
+      update:
+        updated: "updated"
+        update: "update"
+        webhook: "webhook"
+        notice_success: "Webhook was successfully updated."
+      destroy:
+        deleted: "deleted"
+        destroy: "destroy"
+        webhook: "webhook"
+        notice_success: "Webhook was successfully deleted."
+      blank:
+        no_webhooks: "No Webhooks"
+        add: "Create new webhook"
+      new:
+        new: "New Webhook"
+      index:
+        title: "Webhooks"
+        add: "Create Webhook"
+      list:
+        send_test_notification: "send test notification"
+        title: "Webhooks"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+        webhooks: "Webhooks"
+        create_webhook: "Create a webhook"
+        event: "Event"
+        callback_URL: "Callback URL"
+        format: "Format"
+        webhooks_inf: "You can subscribe to events for your products and orders by creating web hooks that will push XML or JSON notifications to a given URL."
+      form:
+        event: "Event"
+        format: "Format"
+        url: "URL"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this webhook from being saved:"
+      show:
+        title: "Editing webhook"
 
   magaz_core:
     user_mailer:

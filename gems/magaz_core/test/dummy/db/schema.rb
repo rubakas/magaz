@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428143516) do
+ActiveRecord::Schema.define(version: 20150501113306) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -316,6 +316,17 @@ ActiveRecord::Schema.define(version: 20150428143516) do
     t.boolean  "account_owner",   default: false
     t.string   "permissions",     default: "--- []\n"
     t.string   "invite_token"
+  end
+
+  create_table "webhooks", force: :cascade do |t|
+    t.string   "address"
+    t.string   "fields",               default: "--- []\n"
+    t.string   "format"
+    t.string   "metafield_namespaces", default: "--- []\n"
+    t.string   "topic"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

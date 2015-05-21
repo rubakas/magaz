@@ -52,6 +52,12 @@ section class='sidebar-section'
         label: t('.taxes'),
         active_conditions: { controller: 'settings',  action: 'taxes_settings' }
 
+    = render 'magaz_store_admin/shared/li_link_to',
+        path: webhooks_path,
+        icon_class: 'icon-cloud',
+        label: t('.webhooks'),
+        active_conditions: { controller: 'webhooks' }
+
     hr
 
     = render 'magaz_store_admin/shared/li_link_to',
