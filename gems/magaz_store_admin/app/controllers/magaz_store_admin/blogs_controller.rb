@@ -19,7 +19,8 @@ module MagazStoreAdmin
       if @blog.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.blog'), user_name: full_name(user: current_user)),
-                                                                   verb: t('.create'))
+                                                                   verb: t('.create'),
+                                                                   webhook: nil)
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
@@ -33,7 +34,8 @@ module MagazStoreAdmin
       if @blog.update_attributes(permitted_params[:blog])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.blog'), user_name: full_name(user: current_user)),
-                                                                   verb: t('.update'))
+                                                                   verb: t('.update'),
+                                                                   webhook: nil)
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
@@ -46,7 +48,8 @@ module MagazStoreAdmin
       @blog.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.blog'), user_name: full_name(user: current_user)),
-                                                                   verb: t('.destroy'))
+                                                                   verb: t('.destroy'),
+                                                                   webhook: nil)
       flash[:notice] = t('.notice_success')
       redirect_to blogs_path
     end

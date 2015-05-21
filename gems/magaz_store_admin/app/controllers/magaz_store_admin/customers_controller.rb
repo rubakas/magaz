@@ -20,7 +20,8 @@ class CustomersController < ApplicationController
     if @customer.save
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.customer'), user_name: full_name(user: current_user)),
-                                                                 verb: t('.create'))
+                                                                 verb: t('.create'),
+                                                                 webhook: MagazCore::Event::Roles::CREATE_CUSTOMER_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to customer_path(@customer)
     else
@@ -33,7 +34,8 @@ class CustomersController < ApplicationController
     if @customer.update_attributes(permitted_params[:customer])
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.customer'), user_name: full_name(user: current_user)),
-                                                                 verb: t('.update'))
+                                                                 verb: t('.update'),
+                                                                 webhook: MagazCore::Event::Roles::UPDATE_CUSTOMER_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to customer_path(@customer)
     else
@@ -59,7 +61,8 @@ class CustomersController < ApplicationController
     @customer.destroy
     @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
                                                                message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.customer'), user_name: full_name(user: current_user)),
-                                                               verb: t('.destroy'))
+                                                               verb: t('.destroy'),
+                                                               webhook: MagazCore::Event::Roles::DELETE_CUSTOMER_EVENT)
     flash[:notice] = t('.notice_success')
     redirect_to customers_path
   end

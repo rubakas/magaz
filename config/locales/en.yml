@@ -833,11 +833,20 @@ en:
 
     webhooks:
       create:
+        created: "created"
+        create: "create"
+        webhook: "webhook"
         notice_success: "Webhook was successfully created."
         notice_fail: "Webhook creating was failed."
       update:
+        updated: "updated"
+        update: "update"
+        webhook: "webhook"
         notice_success: "Webhook was successfully updated."
       destroy:
+        deleted: "deleted"
+        destroy: "destroy"
+        webhook: "webhook"
         notice_success: "Webhook was successfully deleted."
       blank:
         no_webhooks: "No Webhooks"
@@ -864,7 +873,7 @@ en:
         url: "URL"
         error: "error"
         back: "Back"
-        prohibit: "prohibited this product from being saved:"
+        prohibit: "prohibited this webhook from being saved:"
       show:
         title: "Editing webhook"
 

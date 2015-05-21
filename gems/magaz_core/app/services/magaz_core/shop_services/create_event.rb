@@ -4,19 +4,19 @@ module MagazCore
       include MagazCore::Concerns::Service
       attr_accessor :event
 
-      def call(subject:, message:, verb:)
+      def call(subject:, message:, verb:, webhook:)
         @event = subject.events.new
-        @webhook = 'some some'
+        # @webhook = 'some some'
         # event_name = [verb, class_name(subject: subject).downcase, 'event'].join(" ")
 
         MagazCore::Event.connection.transaction do
           begin
             _create_event!(subject: subject, event: @event,
                            message: message, verb: verb)
-            set_webhook(verb: verb,
-                        subject_type: class_name(subject: subject),
-                        webhook: @webhook)
-            ActiveSupport::Notifications.publish('event', event: @event, webhook: @webhook) || fail(ArgumentError)
+            # set_webhook(verb: verb,
+            #             subject_type: class_name(subject: subject),
+            #             webhook: @webhook)
+            ActiveSupport::Notifications.publish('event', event: @event, webhook: webhook) || fail(ArgumentError)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ArgumentError
             raise ActiveRecord::Rollback
           end
@@ -29,9 +29,9 @@ module MagazCore
         subject.class.name.split('::').last
       end
 
-      def set_webhook(verb:, subject_type:, webhook:)
-        @constant = [verb.upcase, "_", subject_type.upcase, "_EVENT"].join("")
-        @webhook = MagazCore::Event::Roles.const_get(@constant)
+      # def set_webhook(verb:, subject_type:, webhook:)
+      #   @constant = [verb.upcase, "_", subject_type.upcase, "_EVENT"].join("")
+      #   @webhook = MagazCore::Event::Roles.const_get(@constant)
 
         # case [subject_type, verb]
         # when ["Article", "create"]
@@ -91,7 +91,7 @@ module MagazCore
         # else
         #   fail(ArgumentError)
         # end
-      end
+      # end
 
       def _create_event!(subject:, event:, message:, verb:)
         arguments = Array.new

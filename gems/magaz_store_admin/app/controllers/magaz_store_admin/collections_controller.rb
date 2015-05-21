@@ -19,7 +19,8 @@ module MagazStoreAdmin
       if @collection.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.collection'), user_name: full_name(user: current_user)),
-                                                                   verb: t('.create'))
+                                                                   verb: t('.create'),
+                                                                   webhook: MagazCore::Event::Roles::CREATE_COLLECTION_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -33,7 +34,8 @@ module MagazStoreAdmin
       if @collection.update_attributes(permitted_params[:collection])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.collection'), user_name: full_name(user: current_user)),
-                                                                   verb: t('.update'))
+                                                                   verb: t('.update'),
+                                                                   webhook: MagazCore::Event::Roles::UPDATE_COLLECTION_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -46,7 +48,8 @@ module MagazStoreAdmin
       @collection.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.collection'), user_name: full_name(user: current_user)),
-                                                                 verb: t('.destroy'))
+                                                                 verb: t('.destroy'),
+                                                                 webhook: MagazCore::Event::Roles::DELETE_COLLECTION_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
     end

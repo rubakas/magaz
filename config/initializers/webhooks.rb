@@ -4,7 +4,7 @@ require 'uri'
 
 ActiveSupport::Notifications.subscribe 'event' do |name, data|
   shop = MagazCore::Shop.find(data[:event][:shop_id])
-  unless shop.webhooks.where(topic: data[:webhook]).count == 0
+  unless data[:webhook] == 'nil' && shop.webhooks.where(topic: data[:webhook]).count == 0
     shop.webhooks.where(topic: data[:webhook]).each do |webhook|
       run_worker(data: data, webhook: webhook)
     end

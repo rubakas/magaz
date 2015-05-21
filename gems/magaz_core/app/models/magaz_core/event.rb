@@ -32,6 +32,7 @@ module MagazCore
       CREATE_CUSTOMER_EVENT = "Customer creation".freeze
       UPDATE_CUSTOMER_EVENT = "Customer creation".freeze
       DELETE_CUSTOMER_EVENT = "Customer deletion".freeze
+      UPDATE_SHOP_EVENT = "Shop update".freeze
 
     end
 

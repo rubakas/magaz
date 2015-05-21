@@ -122,4 +122,10 @@ FactoryGirl.define do
     password_salt BCrypt::Engine.generate_salt
     password_digest { BCrypt::Engine.hash_secret('password', password_salt) }
   end
+
+  factory :webhook, class: MagazCore::Webhook do
+    sequence(:address) { |n| "https://www.google.com.ua/"}
+    sequence(:format)  { |n| "XML" }
+    sequence(:topic)   {|n| "Product update"}
+  end
 end

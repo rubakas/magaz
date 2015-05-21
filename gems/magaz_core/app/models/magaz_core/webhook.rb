@@ -3,6 +3,7 @@ module MagazCore
     self.table_name = 'webhooks'
 
     belongs_to :shop
+    has_many :events, as: :subject
     EVENT_CHOICE = [I18n.t('activerecord.models.webhooks.product_creation'),
                     I18n.t('activerecord.models.webhooks.product_update'),
                     I18n.t('activerecord.models.webhooks.product_deletion'),
