@@ -10,14 +10,14 @@ module MagazCore
     def description
       case self.verb
       when 'destroy'
-        I18n.t('activerecord.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
-                                                         action: I18n.t('activerecord.models.events.destroyed'))
+        I18n.t('activerecord.default.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
+                                                                 action: I18n.t('activerecord.default.models.events.destroyed'))
       when 'create'
-        I18n.t('activerecord.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
-                                                         action: I18n.t('activerecord.models.events.created'))
+        I18n.t('activerecord.default.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
+                                                                 action: I18n.t('activerecord.default.models.events.created'))
       when 'update'
-        I18n.t('activerecord.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
-                                                         action: I18n.t('activerecord.models.events.updated'))
+        I18n.t('activerecord.default.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
+                                                                 action: I18n.t('activerecord.default.models.events.updated'))
       end
     end
 
@@ -34,10 +34,6 @@ module MagazCore
       DELETE_CUSTOMER_EVENT = "Customer deletion".freeze
       UPDATE_SHOP_EVENT = "Shop update".freeze
 
-    end
-
-    def path
-      ['/admin/', self.subject_type.split('::').last.downcase, 's', '/', self.id].join
     end
   end
 end

@@ -14,8 +14,8 @@ module MagazCore
     extend FriendlyId
     self.table_name = 'link_lists'
 
-    DEFAULT_MENU_LINK_LIST_NAME = I18n.t('activerecord.models.link_list.menu_link_list_name')
-    DEFAULT_FOOTER_LINK_LIST_NAME = I18n.t('activerecord.models.link_list.footer_link_list_name')
+    DEFAULT_MENU_LINK_LIST_NAME = I18n.t('activerecord.default.models.link_list.menu_link_list_name')
+    DEFAULT_FOOTER_LINK_LIST_NAME = I18n.t('activerecord.default.models.link_list.footer_link_list_name')
 
     belongs_to :shop
     has_many   :links

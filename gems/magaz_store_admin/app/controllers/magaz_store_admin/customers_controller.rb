@@ -19,7 +19,7 @@ module MagazStoreAdmin
       @customer = current_shop.customers.new(permitted_params[:customer])
       if @customer.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.customer'), user_name: full_name(user: current_user)),
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.customer'), user_name: current_user.full_name),
                                                                    verb: t('.create'),
                                                                    webhook: MagazCore::Event::Roles::CREATE_CUSTOMER_EVENT)
         flash[:notice] = t('.notice_success')
@@ -33,7 +33,7 @@ module MagazStoreAdmin
       @customer = current_shop.customers.find(params[:id])
       if @customer.update_attributes(permitted_params[:customer])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.customer'), user_name: full_name(user: current_user)),
+                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.customer'), user_name: current_user.full_name),
                                                                    verb: t('.update'),
                                                                    webhook: MagazCore::Event::Roles::UPDATE_CUSTOMER_EVENT)
         flash[:notice] = t('.notice_success')
@@ -60,17 +60,11 @@ module MagazStoreAdmin
       @customer = current_shop.customers.find(params[:id])
       @customer.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
-                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.customer'), user_name: full_name(user: current_user)),
+                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.customer'), user_name: current_user.full_name),
                                                                  verb: t('.destroy'),
                                                                  webhook: MagazCore::Event::Roles::DELETE_CUSTOMER_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to customers_path
-    end
-
-    private
-
-    def full_name(user:)
-      [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
 
     protected

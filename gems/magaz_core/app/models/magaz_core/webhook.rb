@@ -4,16 +4,16 @@ module MagazCore
 
     belongs_to :shop
     has_many :events, as: :subject
-    EVENT_CHOICE = [I18n.t('activerecord.models.webhooks.product_creation'),
-                    I18n.t('activerecord.models.webhooks.product_update'),
-                    I18n.t('activerecord.models.webhooks.product_deletion'),
-                    I18n.t('activerecord.models.webhooks.order_update'),
-                    I18n.t('activerecord.models.webhooks.collection_creation'),
-                    I18n.t('activerecord.models.webhooks.collection_update'),
-                    I18n.t('activerecord.models.webhooks.collection_deleton'),
-                    I18n.t('activerecord.models.webhooks.customer_creation'),
-                    I18n.t('activerecord.models.webhooks.customer_update'),
-                    I18n.t('activerecord.models.webhooks.customer_deletion')]
+    EVENT_CHOICE = [I18n.t('activerecord.default.models.webhooks.product_creation'),
+                    I18n.t('activerecord.default.models.webhooks.product_update'),
+                    I18n.t('activerecord.default.models.webhooks.product_deletion'),
+                    I18n.t('activerecord.default.models.webhooks.order_update'),
+                    I18n.t('activerecord.default.models.webhooks.collection_creation'),
+                    I18n.t('activerecord.default.models.webhooks.collection_update'),
+                    I18n.t('activerecord.default.models.webhooks.collection_deleton'),
+                    I18n.t('activerecord.default.models.webhooks.customer_creation'),
+                    I18n.t('activerecord.default.models.webhooks.customer_update'),
+                    I18n.t('activerecord.default.models.webhooks.customer_deletion')]
     FORMAT_CHOICE = ["JSON", "XML"]
 
 

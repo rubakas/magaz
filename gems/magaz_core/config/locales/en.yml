@@ -94,36 +94,48 @@ en:
     message: "An %{subject} was %{action}"
 
   activerecord:
-    models:
-      article:
-        article_title: "First Post"
-        article_content: "This is your store’s blog. You can use it to talk about new product launches, experiences, tips or other news you want your customers to read about."
-      events:
-        description: "The %{subject_class_name} was %{action}"
-        created: "created"
-        updated: "updated"
-        destroyed: "destroyed"
-      link:
-        home_link_name: "Home"
-        blog_link_name: "Blog"
-        search_link_name: "Search"
-        about_link_name: "About"
-      link_list:
-        menu_link_list_name: "Main Menu"
-        footer_link_list_name: "Footer"
-      page:
-        about_title: "About us"
-        about_content: "The About Us page of your shop is vital because it’s where users go when first trying to determine a level of trust."
-        welcome_title: "Welcome"
-        welcome_content: "You made it! Congratulations on starting your own online store!"
-      shop:
-        never: "Never"
-        six_hours: "Six hours later"
-        day: "24 hours later"
-        customer_agrees: "Customer agrees to receive promotional emails by default."
-        customer_does_not_agree: "Customer does not agree to receive promotional emails by default."
-        disable: "Disable and hide this field."
-      shipping_rate:
-        not_correct: "Criteria is not correct"
-        price_to_must_be_greater: "price_to must be greater than price_from"
-        weight_to_must_be_greater: "weight_to must be greater than weight_from"
+    default:
+      models:
+        article:
+          article_title: "First Post"
+          article_content: "This is your store’s blog. You can use it to talk about new product launches, experiences, tips or other news you want your customers to read about."
+        events:
+          description: "The %{subject_class_name} was %{action}"
+          created: "created"
+          updated: "updated"
+          destroyed: "destroyed"
+        link:
+          home_link_name: "Home"
+          blog_link_name: "Blog"
+          search_link_name: "Search"
+          about_link_name: "About"
+        link_list:
+          menu_link_list_name: "Main Menu"
+          footer_link_list_name: "Footer"
+        page:
+          about_title: "About us"
+          about_content: "The About Us page of your shop is vital because it’s where users go when first trying to determine a level of trust."
+          welcome_title: "Welcome"
+          welcome_content: "You made it! Congratulations on starting your own online store!"
+        shop:
+          never: "Never"
+          six_hours: "Six hours later"
+          day: "24 hours later"
+          customer_agrees: "Customer agrees to receive promotional emails by default."
+          customer_does_not_agree: "Customer does not agree to receive promotional emails by default."
+          disable: "Disable and hide this field."
+        shipping_rate:
+          not_correct: "Criteria is not correct"
+          price_to_must_be_greater: "price_to must be greater than price_from"
+          weight_to_must_be_greater: "weight_to must be greater than weight_from"
+        webhooks:
+          product_creation: "Product creation"
+          product_update: "Product update"
+          product_deletion: "Product deletion"
+          order_update: "Order update"
+          collection_creation: "Collection creation"
+          collection_update: "Collection update"
+          collection_deleton: "Collection deletion"
+          customer_creation: "Customer creation"
+          customer_update: "Customer update"
+          customer_deletion: "Customer deletion"
