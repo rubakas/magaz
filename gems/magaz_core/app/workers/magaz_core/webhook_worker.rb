@@ -2,14 +2,12 @@ require 'sidekiq'
 require 'net/http'
 require 'net/https'
 require 'uri'
-#require 'sidekiq/api'
 
 module MagazCore
   class WebhookWorker
     include Sidekiq::Worker
 
     def perform(format, address, mail)
-      #Sidekiq::Queue.new.clear #clear last jubs
       uri = URI.parse("#{address}")
       https = Net::HTTP.new(uri.host, uri.port)
       https.use_ssl = true
