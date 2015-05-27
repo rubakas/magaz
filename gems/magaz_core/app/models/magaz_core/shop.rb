@@ -50,8 +50,7 @@ module MagazCore
     has_many :subscriber_notifications
     has_many :email_templates, class_name: 'MagazCore::EmailTemplate', :dependent => :destroy
     belongs_to :eu_digital_goods_collection, class_name: 'MagazCore::Collection' , foreign_key: "eu_digital_goods_collection_id"
-    has_many :self_events, class_name: 'Event', :dependent => :destroy
-    has_many :events, as: :subject
+    has_many :events
     has_many :webhooks
 
     ABANDONED_CHECKOUT_TIME_DELAY = [I18n.t('activerecord.default.models.shop.never'), I18n.t('activerecord.default.models.shop.six_hours'), I18n.t('activerecord.default.models.shop.day')]

@@ -54,10 +54,10 @@ module MagazCore
         when "Shop"
           shop_id = subject.id
           arguments << subject.name
+          event.update_attributes(subject_id: shop_id)
         else
           fail(ArgumentError)
         end
-
         event.update_attributes!(subject_type: subject.class.name, arguments: arguments,
                                  message: message, shop_id: shop_id,
                                  verb: verb) || fail(ArgumentError)
