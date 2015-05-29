@@ -28,8 +28,7 @@ module MagazStoreAdmin
         if @service.user.persisted?
           @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @service.user,
                                                                      message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.user'), user_name: @current_user.full_name),
-                                                                     verb: t('.create'),
-                                                                     webhook: nil)
+                                                                     verb: t('.create'))
           redirect_to users_path, notice: t('.notice_success')
         else
           redirect_to users_path, notice: t('.invalid_email')
@@ -45,8 +44,7 @@ module MagazStoreAdmin
       if @user.update_attributes(permitted_params[:user])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @user,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.user'), user_name: @current_user.full_name),
-                                                                   verb: t('.update'),
-                                                                   webhook: nil)
+                                                                   verb: t('.update'))
         redirect_to user_path(@user), notice: t('.notice_success')
       else
         render 'show'
@@ -59,8 +57,7 @@ module MagazStoreAdmin
       unless @user.account_owner == true || current_shop.users.count == 1
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @user,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.user'), user_name: @current_user.full_name),
-                                                                   verb: t('.destroy'),
-                                                                   webhook: nil)
+                                                                   verb: t('.destroy'))
         @user.destroy
         flash[:notice] = t('.notice_success')
       else

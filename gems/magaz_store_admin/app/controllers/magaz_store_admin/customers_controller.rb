@@ -20,8 +20,9 @@ module MagazStoreAdmin
       if @customer.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.customer'), user_name: current_user.full_name),
-                                                                   verb: t('.create'),
-                                                                   webhook: MagazCore::Event::Roles::CREATE_CUSTOMER_EVENT)
+                                                                   verb: t('.create'))
+        @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+                                                                            webhook: MagazCore::Event::Roles::CREATE_CUSTOMER_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to customer_path(@customer)
       else
@@ -34,8 +35,9 @@ module MagazStoreAdmin
       if @customer.update_attributes(permitted_params[:customer])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.customer'), user_name: current_user.full_name),
-                                                                   verb: t('.update'),
-                                                                   webhook: MagazCore::Event::Roles::UPDATE_CUSTOMER_EVENT)
+                                                                   verb: t('.update'))
+        @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+                                                                            webhook: MagazCore::Event::Roles::UPDATE_CUSTOMER_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to customer_path(@customer)
       else
@@ -61,8 +63,9 @@ module MagazStoreAdmin
       @customer.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.customer'), user_name: current_user.full_name),
-                                                                 verb: t('.destroy'),
-                                                                 webhook: MagazCore::Event::Roles::DELETE_CUSTOMER_EVENT)
+                                                                 verb: t('.destroy'))
+      @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+                                                                          webhook: MagazCore::Event::Roles::DELETE_CUSTOMER_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to customers_path
     end

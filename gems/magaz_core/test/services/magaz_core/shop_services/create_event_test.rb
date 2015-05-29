@@ -14,8 +14,7 @@ module MagazCore
     test 'create event with product' do
       service = MagazCore::ShopServices::CreateEvent.call(subject: @product,
                                                           message: "Some some created",
-                                                          verb: 'create',
-                                                          webhook: MagazCore::Event::Roles::CREATE_PRODUCT_EVENT)
+                                                          verb: 'create')
       assert service.event.persisted?
       assert_equal service.event.subject_id, @product.id
       assert_equal service.event.subject_type, "MagazCore::Product"
@@ -29,8 +28,7 @@ module MagazCore
     test 'create event with article' do
       service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                           message: "Some some created",
-                                                          verb: 'create',
-                                                          webhook: nil)
+                                                          verb: 'create')
       assert service.event.persisted?
       assert_equal service.event.subject_id, @article.id
       assert_equal service.event.subject_type, "MagazCore::Article"
@@ -43,8 +41,7 @@ module MagazCore
     test 'create event with collection' do
       service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
                                                           message: "Some some created",
-                                                          verb: 'create',
-                                                          webhook: MagazCore::Event::Roles::CREATE_COLLECTION_EVENT)
+                                                          verb: 'create')
       assert service.event.persisted?
       assert_equal service.event.subject_id, @collection.id
       assert_equal service.event.subject_type, "MagazCore::Collection"

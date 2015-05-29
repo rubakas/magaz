@@ -17,8 +17,9 @@
       if @order.update_attributes(permitted_params[:order])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @order,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.order'), user_name: current_user.full_name),
-                                                                   verb: t('.update'),
-                                                                   webhook: MagazCore::Event::Roles::UPDATE_ORDER_EVENT)
+                                                                   verb: t('.update'))
+        @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+                                                                            webhook: MagazCore::Event::Roles::UPDATE_ORDER_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to order_path(@order)
       else
@@ -31,8 +32,9 @@
       @order.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @order,
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.order'), user_name: current_user.full_name),
-                                                                 verb: t('.destroy'),
-                                                                 webhook: MagazCore::Event::Roles::DELETE_ORDER_EVENT)
+                                                                 verb: t('.destroy'))
+      @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+                                                                          webhook: MagazCore::Event::Roles::DELETE_ORDER_EVENT)
       flash[:notice] = t('.notice_success')
       render 'index'
     end

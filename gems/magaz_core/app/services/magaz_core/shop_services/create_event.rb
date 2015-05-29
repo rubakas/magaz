@@ -4,14 +4,13 @@ module MagazCore
       include MagazCore::Concerns::Service
       attr_accessor :event
 
-      def call(subject:, message:, verb:, webhook:)
+      def call(subject:, message:, verb:)
         @event = subject.events.new
 
         MagazCore::Event.connection.transaction do
           begin
             _create_event!(subject: subject, event: @event,
                            message: message, verb: verb)
-            ActiveSupport::Notifications.publish('event', event: @event, webhook: webhook) || fail(ArgumentError)
           rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ArgumentError
             raise ActiveRecord::Rollback
           end

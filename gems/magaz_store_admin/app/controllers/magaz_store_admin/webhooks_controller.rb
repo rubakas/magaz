@@ -20,8 +20,7 @@ module MagazStoreAdmin
       if @webhook.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @webhook,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.webhook'), user_name: @current_user.full_name),
-                                                                   verb: t('.create'),
-                                                                   webhook: nil)
+                                                                   verb: t('.create'))
         flash[:notice] = t('.notice_success')
         redirect_to webhook_url(@webhook)
       else
@@ -35,8 +34,7 @@ module MagazStoreAdmin
       if @webhook.update_attributes(permitted_params[:webhook])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @webhook,
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.webhook'), user_name: @current_user.full_name),
-                                                                   verb: t('.update'),
-                                                                   webhook: nil)
+                                                                   verb: t('.update'))
         flash[:notice] = t('.notice_success')
         redirect_to webhook_url(@webhook)
       else
@@ -49,8 +47,7 @@ module MagazStoreAdmin
       @webhook.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @webhook,
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.webhook'), user_name: @current_user.full_name),
-                                                                 verb: t('.destroy'),
-                                                                 webhook: nil)
+                                                                 verb: t('.destroy'))
       flash[:notice] = t('.notice_success')
       redirect_to webhooks_url
     end
