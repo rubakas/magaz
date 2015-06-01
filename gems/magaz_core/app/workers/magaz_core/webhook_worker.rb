@@ -7,7 +7,7 @@ module MagazCore
   class WebhookWorker
     include Sidekiq::Worker
 
-    def perform(format, address, mail)
+    def perform(mail, address, format)
       uri = URI.parse("#{address}")
       https = Net::HTTP.new(uri.host, uri.port)
       https.use_ssl = true
