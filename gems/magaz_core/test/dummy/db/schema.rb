@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324140737) do
+ActiveRecord::Schema.define(version: 20150528131117) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -91,11 +91,6 @@ ActiveRecord::Schema.define(version: 20150324140737) do
     t.integer  "article_id"
   end
 
-  create_table "countries", force: :cascade do |t|
-    t.string "name", limit: 50
-    t.string "code", limit: 2
-  end
-
   create_table "customers", force: :cascade do |t|
     t.boolean "accepts_marketing"
     t.string  "email"
@@ -114,6 +109,20 @@ ActiveRecord::Schema.define(version: 20150324140737) do
     t.string   "template_type"
     t.string   "description"
   end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "arguments",    default: "--- []\n"
+    t.string   "body"
+    t.string   "message"
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.string   "verb"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["subject_id"], name: "index_events_on_subject_id"
 
   create_table "files", force: :cascade do |t|
     t.string   "file"
