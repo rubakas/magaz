@@ -10,7 +10,7 @@ module MagazCore
     validates :tax, numericality: true
     validates :name, uniqueness: { scope: :shop_id }
 
-    COUNTRY_LIST = YAML.load_file("#{Rails.root}/config/countries.yml")
+    COUNTRY_LIST = YAML.load_file("#{MagazCore::Engine.root}/config/countries.yml")
 
     def country_info
       COUNTRY_LIST['countries'][self.name]
