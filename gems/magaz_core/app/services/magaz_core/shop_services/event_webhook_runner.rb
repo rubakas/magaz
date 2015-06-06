@@ -7,17 +7,7 @@ module MagazCore
         @shop = event.shop
 
         @shop.webhooks.where(topic: webhook).each do |w|
-          unless w == nil
-            case w.format
-            when "XML"
-              mail = event.to_xml
-            when "JSON"
-              mail = event.to_json
-            end
-            format = w.format.downcase
-            address = w.address
-            MagazCore::WebhookWorker.perform_async(mail, address, format)
-          end
+          MagazCore::WebhookWorker.perform_async(w.id, event.id)
         end
       end
     end

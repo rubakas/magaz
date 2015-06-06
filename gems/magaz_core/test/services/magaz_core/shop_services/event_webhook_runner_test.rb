@@ -27,10 +27,7 @@ module MagazCore
 
     test 'should schedule webhook' do
       Sidekiq::Worker.clear_all
-      mail = @event.to_xml
-      format = @webhook1.format.downcase
-      address = @webhook1.address
-      MagazCore::WebhookWorker.perform_async(mail, address, format)
+      MagazCore::WebhookWorker.perform_async(@webhook1.id, @event.id)
       assert_equal 1, MagazCore::WebhookWorker.jobs.size
     end
   end
