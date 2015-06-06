@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = MagazStore::VERSION
   s.authors     = ["Andriy Tyurnikov"]
   s.email       = ["Andriy.Tyurnikov@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of MagazStore."
-  s.description = "TODO: Description of MagazStore."
+  s.homepage    = "http://github.com/andriytyurnikov/magaz"
+  s.summary     = "Core of SAAS ecommerce platform."
+  s.description = "Core of SAAS ecommerce platform."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
