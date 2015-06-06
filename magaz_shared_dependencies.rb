@@ -78,7 +78,7 @@ gem 'flay', group: :development
 gem 'web-console', group: :development
 
 gem 'cucumber-rails', :require => false, group: :test
-gem 'capybara-webkit', "~> 1.5.1", group: :test
+gem 'capybara-webkit', "~> 1.5.2", group: :test
 gem 'factory_girl', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test
@@ -97,7 +97,7 @@ gem 'liquid'
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-gem 'annotate', github: 'ctran/annotate_models'
+# gem 'annotate' , github: 'ctran/annotate_models'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
