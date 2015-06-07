@@ -1,3 +1,4 @@
+ruby "2.2.2"
 source "https://rubygems.org"
 
 # Your gem is dependent on dev or edge Rails. Once you can lock this
@@ -79,6 +80,7 @@ gem 'web-console', group: :development
 
 gem 'cucumber-rails', :require => false, group: :test
 gem 'capybara-webkit', "~> 1.5.2", group: :test
+# gem 'capybara-webkit', github: 'thoughtbot/capybara-webkit', branch: 'master' #, group: :test
 gem 'factory_girl', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test
