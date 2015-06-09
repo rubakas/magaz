@@ -22,9 +22,6 @@ module MagazCore
     extend FriendlyId
     include Concerns::Visibility
 
-    DEFAULT_ARTICLE_TITLE = I18n.t('activerecord.default.models.article.article_title')
-    DEFAULT_ARTICLE_CONTENT = I18n.t('activerecord.default.models.article.article_content')
-
     belongs_to :blog
     has_many :comments
     has_many :events, as: :subject
