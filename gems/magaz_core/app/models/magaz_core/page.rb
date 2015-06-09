@@ -22,12 +22,6 @@ module MagazCore
     extend FriendlyId
     include Concerns::Visibility
 
-    DEFAULT_ABOUT_US_TITLE = I18n.t('activerecord.default.models.page.about_title')
-    DEFAULT_ABOUT_US_CONTENT = I18n.t('activerecord.default.models.page.about_content')
-
-    DEFAULT_WELCOME_TITLE = I18n.t('activerecord.default.models.page.welcome_title')
-    DEFAULT_WELCOME_CONTENT = I18n.t('activerecord.default.models.page.welcome_content')
-
     belongs_to :shop
     has_many :events, as: :subject
 

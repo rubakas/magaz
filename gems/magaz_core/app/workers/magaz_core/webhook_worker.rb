@@ -26,7 +26,6 @@ module MagazCore
       req = Net::HTTP::Post.new(uri.path, initheader = {"Content-Type" =>"application/#{format}"})
       req.body = "[ #{mail} ]"
       res = https.request(req)
-      puts "Response #{res.code} #{res.message}: #{res.body}"
     end
   end
 end

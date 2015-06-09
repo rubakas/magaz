@@ -18,8 +18,6 @@ module MagazCore
     self.table_name = 'blogs'
     extend FriendlyId
 
-    DEFAULT_BLOG_TITLE = 'News'
-
     has_many :articles
     has_many :comments
     has_many :events, as: :subject
