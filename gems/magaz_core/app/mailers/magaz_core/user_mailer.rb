@@ -2,6 +2,11 @@ module MagazCore
   class UserMailer < ApplicationMailer
     include Rails.application.routes.url_helpers
 
+    SMTP_SETTINGS = YAML.load_file("#{MagazCore::Engine.root}/config/mailer_settings.yml")[Rails.env]["smtp_settings"]
+    MAILER_SETTINGS = YAML.load_file("#{MagazCore::Engine.root}/config/mailer_settings.yml")[Rails.env]["default"]
+
+    ActionMailer::Base.smtp_settings = SMTP_SETTINGS
+
     default :from => MAILER_SETTINGS[:from]
     default :to => MAILER_SETTINGS[:to]
 
