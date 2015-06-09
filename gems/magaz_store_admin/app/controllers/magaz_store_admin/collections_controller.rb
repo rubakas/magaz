@@ -21,7 +21,7 @@ module MagazStoreAdmin
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.collection'), user_name: current_user.full_name),
                                                                    verb: t('.create'))
         @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            webhook: MagazCore::Event::Roles::CREATE_COLLECTION_EVENT)
+                                                                            webhook: "create_collection_event")
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -37,7 +37,7 @@ module MagazStoreAdmin
                                                                    message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.collection'), user_name: current_user.full_name),
                                                                    verb: t('.update'))
         @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            webhook: MagazCore::Event::Roles::UPDATE_COLLECTION_EVENT)
+                                                                            webhook: "update_collection_event")
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -52,7 +52,7 @@ module MagazStoreAdmin
                                                                  message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.collection'), user_name: current_user.full_name),
                                                                  verb: t('.destroy'))
       @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                          webhook: MagazCore::Event::Roles::DELETE_COLLECTION_EVENT)
+                                                                          webhook: "delete_collection_event")
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
     end

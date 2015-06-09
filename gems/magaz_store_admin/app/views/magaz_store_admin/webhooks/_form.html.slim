@@ -11,7 +11,7 @@
   div class="form-group"
     = f.label t('.event')
     br
-    = f.select :topic, MagazCore::Webhook::EVENT_CHOICE, class: 'form-control'
+    = f.select(:topic, MagazCore::Webhook::Topics::WEBHOOKS_TOPICS_LIST.map {|t| [I18n.t("topics.#{t}"), t]})
 
   div class="form-group"
     = f.label t('.format')

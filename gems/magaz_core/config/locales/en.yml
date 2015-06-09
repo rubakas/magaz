@@ -87,6 +87,18 @@ en:
       body: 'The following shipped items from order have been updated with new shipping information:'
       description: "Sent to the customer when an order's shipping information is updated"
 
+  topics:
+    create_product_event: "Product creation"
+    update_product_event: "Product update"
+    delete_product_event: "Product deletion"
+    create_collection_event: "Collection creation"
+    update_collection_event: "Collection update"
+    delete_collection_event: "Collection deletion"
+    create_customer_event: "Customer creation"
+    update_customer_event: "Customer update"
+    delete_customer_event: "Customer deletion"
+    update_order_event: "Order update"
+    update_shop_event: "Shop update"
   shopping_cart:
     open: "open"
     order: "order"
@@ -128,14 +140,3 @@ en:
           not_correct: "Criteria is not correct"
           price_to_must_be_greater: "price_to must be greater than price_from"
           weight_to_must_be_greater: "weight_to must be greater than weight_from"
-        webhooks:
-          product_creation: "Product creation"
-          product_update: "Product update"
-          product_deletion: "Product deletion"
-          order_update: "Order update"
-          collection_creation: "Collection creation"
-          collection_update: "Collection update"
-          collection_deleton: "Collection deletion"
-          customer_creation: "Customer creation"
-          customer_update: "Customer update"
-          customer_deletion: "Customer deletion"
