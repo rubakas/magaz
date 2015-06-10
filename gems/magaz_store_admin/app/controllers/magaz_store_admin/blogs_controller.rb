@@ -17,6 +17,9 @@ module MagazStoreAdmin
     def create
       @blog = current_shop.blogs.new(permitted_params[:blog])
       if @blog.save
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
+                                                                   topic: MagazCore::Webhook::Topics::CREATE_BLOG_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
@@ -28,6 +31,9 @@ module MagazStoreAdmin
     def update
       @blog = current_shop.blogs.friendly.find(params[:id])
       if @blog.update_attributes(permitted_params[:blog])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_BLOG_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
@@ -38,6 +44,9 @@ module MagazStoreAdmin
     def destroy
       @blog = current_shop.blogs.friendly.find(params[:id])
       @blog.destroy
+      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
+                                                                 topic: MagazCore::Webhook::Topics::DELETE_BLOG_EVENT,
+                                                                 current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to blogs_path
     end

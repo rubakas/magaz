@@ -40,63 +40,63 @@ module MagazCore
       def _create_default_blogs_and_posts!(shop:)
         default_blog = shop
           .blogs
-          .create title: MagazCore::Blog::DEFAULT_BLOG_TITLE #Comments are disabled
+          .create title: I18n.t('default.models.blog.blog_title') #Comments are disabled
 
         default_post = default_blog
           .articles
-          .create title:    MagazCore::Article::DEFAULT_ARTICLE_TITLE,
-                  content:  MagazCore::Article::DEFAULT_ARTICLE_CONTENT
+          .create title:    I18n.t('default.models.article.article_title'),
+                  content:  I18n.t('default.models.article.article_content')
       end
 
       def _create_default_collection!(shop:)
         shop
           .collections
-          .create name:         MagazCore::Collection::DEFAULT_COLLECTION_NAME,
-                  description:  MagazCore::Collection::DEFAULT_COLLECTION_DESCRIPTION
+          .create name:         I18n.t('default.models.collection.collection_title'),
+                  description:  I18n.t('default.models.collection.collection_description')
       end
 
       def _create_default_link_lists!(shop:)
         #Main Menu link list
         default_menu_link_list = shop
           .link_lists
-          .create name:         MagazCore::LinkList::DEFAULT_MENU_LINK_LIST_NAME
+          .create name:         I18n.t('default.models.link_list.menu_link_list_name')
 
         #Links for Main Menu
         default_home_link = default_menu_link_list
           .links
-          .create name:         MagazCore::Link::DEFAULT_HOME_LINK_NAME
+          .create name:         I18n.t('default.models.link.home_link_name')
 
         default_blog_link = default_menu_link_list
           .links
-          .create name:         MagazCore::Link::DEFAULT_BLOG_LINK_NAME
+          .create name:         I18n.t('default.models.link.blog_link_name')
 
         #Footer link list
         default_footer_link_list = shop
           .link_lists
-          .create name:         MagazCore::LinkList::DEFAULT_FOOTER_LINK_LIST_NAME
+          .create name:         I18n.t('default.models.link_list.footer_link_list_name')
 
         #Links for Footer
         default_search_link = default_footer_link_list
           .links
-          .create name:         MagazCore::Link::DEFAULT_SEARCH_LINK_NAME
+          .create name:         I18n.t('default.models.link.search_link_name')
 
         default_about_link = default_footer_link_list
           .links
-          .create name:         MagazCore::Link::DEFAULT_ABOUT_LINK_NAME
+          .create name:         I18n.t('default.models.link.about_link_name')
       end
 
       def _create_default_pages!(shop:)
         shop
           .pages
-          .create title:        MagazCore::Page::DEFAULT_ABOUT_US_TITLE,
-                  content:      MagazCore::Page::DEFAULT_ABOUT_US_CONTENT,
+          .create title:        I18n.t('default.models.page.about_title'),
+                  content:      I18n.t('default.models.page.about_content'),
                   publish_on:   nil,
                   published_at: nil
 
         shop
           .pages
-          .create title:        MagazCore::Page::DEFAULT_WELCOME_TITLE,
-                  content:      MagazCore::Page::DEFAULT_WELCOME_CONTENT,
+          .create title:        I18n.t('default.models.page.welcome_title'),
+                  content:      I18n.t('default.models.page.welcome_content'),
                   publish_on:   nil,
                   published_at: nil
       end

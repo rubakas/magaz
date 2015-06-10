@@ -60,11 +60,21 @@ en:
   magaz_store_admin:
     articles:
       create:
+        article: "article"
+        create: "create"
+        created: "created"
         notice_success: "Article was successfully created."
         notice_fail: "Can't create such article, try again please."
       update:
+        article: "article"
+        updated: "updated"
+        update: "update"
         notice_success: "Article was successfully updated."
+        notice_fail: "Can't create such article, try again please."
       destroy:
+        destroy: "destroy"
+        article: "article"
+        deleted: "deleted"
         notice_success: "Article was successfully deleted."
       index:
         title: "Blog Posts"
@@ -90,11 +100,20 @@ en:
 
     blogs:
       create:
+        blog: "blog"
+        create: "create"
+        created: "created"
         notice_success: "Blog was successfully created."
         notice_fail: "Can't create such blog,try again please."
       update:
+        blog: "blog"
+        update: "update"
+        updated: "updated"
         notice_success: "Blog was successfully updated."
       destroy:
+        blog: "blog"
+        destroy: "destroy"
+        deleted: "deleted"
         notice_success: "Blog was successfully deleted."
       index:
         title: "Blogs"
@@ -133,11 +152,20 @@ en:
 
     collections:
       create:
+        collection: "collection"
+        create: "create"
+        created: "created"
         notice_success: "Collection was successfully created."
         notice_fail: "Can't create such collection, try again please."
       update:
+        collection: "collection"
+        update: "update"
+        updated: "updated"
         notice_success: "Collection was successfully updated."
       destroy:
+        collection: "collection"
+        destroy: "destroy"
+        deleted: "deleted"
         notice_success: "Collection was successfully deleted."
       index:
         title: "Collections"
@@ -161,11 +189,21 @@ en:
 
     comments:
       create:
+        comment: "comment"
+        create: "create"
+        created: "created"
+        notice_success: "Order was successfully updated."
         notice_success: "Comment was successfully created."
         notice_fail: "Can't create such comment, try again please."
       update:
+        comment: "comment"
+        update: "update"
+        updated: "updated"
         notice_success: "Comment was successfully updated."
       destroy:
+        comment: "comment"
+        destroy: "destroy"
+        deleted: "deleted"
         notice_success: "Comment was successfully deleted."
       index:
         title: "Comments"
@@ -196,10 +234,19 @@ en:
 
     customers:
       create:
+        create: "create"
+        created: "created"
+        customer: "customer"
         notice_success: "Customer was successfully created."
       update:
+        update: "update"
+        updated: "updated"
+        customer: "customer"
         notice_success: "Customer was successfully updated."
       destroy:
+        destroy: "destroy"
+        deleted: "deleted"
+        customer: "customer"
         notice_success: "Customer was successfully deleted."
       import:
         notice_success: "Customers imported"
@@ -229,6 +276,7 @@ en:
     dashboard:
       index:
         title: "Dashboard"
+        activity: "Activity"
         welcome: "Welcome to dashboard"
 
     files:
@@ -329,8 +377,14 @@ en:
 
     orders:
       update:
+        order: "order"
+        update: "update"
+        updated: "updated"
         notice_success: "Order was successfully updated."
       destroy:
+        order: "order"
+        destroy: "destroy"
+        deleted: "deleted"
         notice_success: "Order was successfully deleted."
       index:
         title: "Orders"
@@ -348,10 +402,19 @@ en:
 
     pages:
       create:
+        page: "page"
+        create: "create"
+        created: "created"
         notice_success: "Page was successfully created."
       update:
+        page: "page"
+        update: "update"
+        updated: "updated"
         notice_success: "Page was successfully updated."
       destroy:
+        page: "page"
+        destroy: "destroy"
+        deleted: "deleted"
         notice_success: "Page was successfully deleted."
       index:
         title: "Pages"
@@ -375,10 +438,19 @@ en:
 
     products:
       create:
+        create: "create"
+        product: "product"
+        created: "created"
         notice_success: "Product was successfully created."
       update:
+        product: "product"
+        updated: "updated"
+        update: "update"
         notice_success: "Product was successfully updated."
       destroy:
+        destroy: "destroy"
+        product: "product"
+        deleted: "deleted"
         notice_success: "Product was successfully deleted."
       index:
         title: "Products"
@@ -438,6 +510,9 @@ en:
       edit:
         general_settings: "Shop Settings"
       update:
+        shop: "shop"
+        update: "update"
+        updated: "updated"
         notice_success: "Shop was successfully updated."
       form:
         error: "error"
@@ -500,9 +575,6 @@ en:
         email_templates_inf: "These emails are automatically sent out to either you or the customer. Click on the templates below to edit the template."
         order_notifications: "Order notifications"
         order_notifications_inf: "Get notified by email or text message whenever a new order comes in. You can also subscribe to the RSS feed for this store's orders."
-        webhooks: "Webhooks"
-        create_webhook: "Create a webhook"
-        webhooks_inf: "You can subscribe to events for your products and orders by creating web hooks that will push XML or JSON notifications to a given URL."
         fulfillment: "Fulfillment Request"
         sent_to_fulfillment: "Sent to custom fulfillment provider when storeowner fulfills order items"
         gift_card_notification: "Gift Card Notification"
@@ -521,9 +593,6 @@ en:
         sent_to_customer_shipped: "Sent to the customer when an order is shipped"
         shipping_update: "Shipping update"
         sent_to_customer_updated: "Sent to the customer when an order's shipping information is updated"
-        event: "Event"
-        callback_URL: "Callback URL"
-        format: "Format"
         send_test_notification: "send test notification"
         title: "Notification"
         send_to: "Send to %{notification_method}"
@@ -615,6 +684,7 @@ en:
         checkouts: "Checkouts"
         payments: "Payments"
         taxes: "Taxes"
+        webhooks: "Webhooks"
 
     shipping_countries:
       create:
@@ -722,12 +792,21 @@ en:
 
     users:
       create:
+        create: "create"
+        created: "created"
+        user: "user"
         notice_success: "User was successfully created."
         notice_fail: "User creating was failed."
         invalid_email: "Email is invalid."
       update:
+        update: "update"
+        updated: "updated"
+        user: "user"
         notice_success: "User was successfully updated."
       destroy:
+        deleted: "deleted"
+        destroy: "destroy"
+        user: "user"
         notice_fail: "Can't delete shop owner."
         notice_success: "User was successfully deleted."
       index:
@@ -749,6 +828,52 @@ en:
         title: "Users"
         delete: "Delete"
         confirmation: "Are you sure?"
+
+    webhooks:
+      create:
+        created: "created"
+        create: "create"
+        webhook: "webhook"
+        notice_success: "Webhook was successfully created."
+        notice_fail: "Webhook creating was failed."
+      update:
+        updated: "updated"
+        update: "update"
+        webhook: "webhook"
+        notice_success: "Webhook was successfully updated."
+      destroy:
+        deleted: "deleted"
+        destroy: "destroy"
+        webhook: "webhook"
+        notice_success: "Webhook was successfully deleted."
+      blank:
+        no_webhooks: "No Webhooks"
+        add: "Create new webhook"
+      new:
+        new: "New Webhook"
+      index:
+        title: "Webhooks"
+        add: "Create Webhook"
+      list:
+        send_test_notification: "send test notification"
+        title: "Webhooks"
+        delete: "Delete"
+        confirmation: "Are you sure?"
+        webhooks: "Webhooks"
+        create_webhook: "Create a webhook"
+        event: "Event"
+        callback_URL: "Callback URL"
+        format: "Format"
+        webhooks_inf: "You can subscribe to events for your products and orders by creating web hooks that will push XML or JSON notifications to a given URL."
+      form:
+        event: "Event"
+        format: "Format"
+        url: "URL"
+        error: "error"
+        back: "Back"
+        prohibit: "prohibited this webhook from being saved:"
+      show:
+        title: "Editing webhook"
 
   magaz_core:
     user_mailer:

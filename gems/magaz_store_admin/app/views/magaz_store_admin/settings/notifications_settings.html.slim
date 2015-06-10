@@ -1,7 +1,7 @@
 p id="notice"
   = notice
 
-= form_for [ @shop], url: [:notifications_settings_update,:settings],
+= form_for [@shop], url: [:notifications_settings_update,:settings],
   method: :put do |f|
 
   h4
@@ -61,19 +61,3 @@ p id="notice"
                     = subscriber.subscription_address
                 td = link_to(t('.send_test_notification'), :controller => "subscriber_notifications", :action => "send_test_notification", :id => subscriber.id)
                 td = link_to t('.delete'), [ :settings, subscriber], method: :delete, data: { confirm: t('.confirmation') }
-
-    div class="row"
-      div class="col-xs-4"
-        div class="label_of_column"
-          = t('.webhooks')
-        div class="inf"
-          = t('.webhooks_inf')
-        = button_to t('.create_webhook'), notifications_settings_settings_path, class:'btn btn-default'
-
-      div class="col-xs-8"
-        table class="table"
-          thead
-          tr
-            td = t('.event')
-            td = t('.callback_URL')
-            td = t('.format')
