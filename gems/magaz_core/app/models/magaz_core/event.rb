@@ -10,14 +10,14 @@ module MagazCore
     def description
       case self.verb
       when 'destroy'
-        I18n.t('activerecord.default.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
-                                                                 action: I18n.t('activerecord.default.models.events.destroyed'))
+        I18n.t('default.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
+                                                                 action: I18n.t('default.models.events.destroyed'))
       when 'create'
-        I18n.t('activerecord.default.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
-                                                                 action: I18n.t('activerecord.default.models.events.created'))
+        I18n.t('default.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
+                                                                 action: I18n.t('default.models.events.created'))
       when 'update'
-        I18n.t('activerecord.default.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
-                                                                 action: I18n.t('activerecord.default.models.events.updated'))
+        I18n.t('default.models.events.description', subject_class_name: self.subject_type.split('::').last.downcase,
+                                                                 action: I18n.t('default.models.events.updated'))
       end
     end
   end
