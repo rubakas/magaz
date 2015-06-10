@@ -1,1 +1,25 @@
-Dir[Rails.root.join("config/mailer_settings.rb")].each { |f| require f }
+development:
+  smtp_settings:
+    :address: smtp.gmail.com
+    :port: 587
+    :domain: gmail.com
+    :user_name: magazmailer@gmail.com
+    :password: QWERTY!@#$%
+    :authentication: plain
+    :enable_starttls_auto: true
+  default:
+    :from: magazmailer@gmail.com
+    :to: magazmailer@gmail.com
+
+test:
+  smtp_settings:
+    :address: smtp.gmail.com
+    :port: 587
+    :domain: gmail.com
+    :user_name: magazmailer@gmail.com
+    :password: QWERTY!@#$%
+    :authentication: plain
+    :enable_starttls_auto: true
+  default:
+    :from: magazmailer@gmail.com
+    :to: magazmailer@gmail.com
