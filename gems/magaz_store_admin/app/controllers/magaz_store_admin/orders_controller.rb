@@ -19,7 +19,7 @@
                                                                    topic: MagazCore::Webhook::Topics::UPDATE_ORDER_EVENT,
                                                                    current_user: current_user)
         @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            webhook: MagazCore::Webhook::Topics::UPDATE_ORDER_EVENT)
+                                                                            topic: MagazCore::Webhook::Topics::UPDATE_ORDER_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to order_path(@order)
       else
@@ -34,7 +34,7 @@
                                                                  topic: MagazCore::Webhook::Topics::DELETE_ORDER_EVENT,
                                                                  current_user: current_user)
       @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                          webhook: MagazCore::Webhook::Topics::DELETE_ORDER_EVENT)
+                                                                          topic: MagazCore::Webhook::Topics::DELETE_ORDER_EVENT)
       flash[:notice] = t('.notice_success')
       render 'index'
     end

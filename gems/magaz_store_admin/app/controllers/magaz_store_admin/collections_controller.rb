@@ -21,7 +21,7 @@ module MagazStoreAdmin
                                                                    topic: MagazCore::Webhook::Topics::CREATE_COLLECTION_EVENT,
                                                                    current_user: current_user)
         @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            webhook: MagazCore::Webhook::Topics::CREATE_COLLECTION_EVENT)
+                                                                            topic: MagazCore::Webhook::Topics::CREATE_COLLECTION_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -37,7 +37,7 @@ module MagazStoreAdmin
                                                                    topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT,
                                                                    current_user: current_user)
         @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            webhook: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
+                                                                            topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -52,7 +52,7 @@ module MagazStoreAdmin
                                                                  topic: MagazCore::Webhook::Topics::DELETE_COLLECTION_EVENT,
                                                                  current_user: current_user)
       @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                          webhook: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
+                                                                          topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
     end
