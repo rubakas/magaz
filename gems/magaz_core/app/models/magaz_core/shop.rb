@@ -53,8 +53,9 @@ module MagazCore
     has_many :events
     has_many :webhooks
 
-    ABANDONED_CHECKOUT_TIME_DELAY = [I18n.t('activerecord.default.models.shop.never'), I18n.t('activerecord.default.models.shop.six_hours'), I18n.t('activerecord.default.models.shop.day')]
-    EMAIL_MARKETING_CHOICE = [I18n.t('activerecord.default.models.shop.customer_agrees'), I18n.t('activerecord.default.models.shop.customer_does_not_agree'), I18n.t('activerecord.default.models.shop.disable')]
+    ABANDONED_CHECKOUT_TIME_DELAY = %w[ never six_hours day]
+    EMAIL_MARKETING_CHOICE = %w[ customer_agrees customer_does_not_agree disable ]
+
 
     validates :name, presence: true, uniqueness: true
     validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY, :allow_blank => true
