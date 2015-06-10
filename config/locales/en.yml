@@ -60,21 +60,12 @@ en:
   magaz_store_admin:
     articles:
       create:
-        article: "article"
-        create: "create"
-        created: "created"
         notice_success: "Article was successfully created."
         notice_fail: "Can't create such article, try again please."
       update:
-        article: "article"
-        updated: "updated"
-        update: "update"
         notice_success: "Article was successfully updated."
         notice_fail: "Can't create such article, try again please."
       destroy:
-        destroy: "destroy"
-        article: "article"
-        deleted: "deleted"
         notice_success: "Article was successfully deleted."
       index:
         title: "Blog Posts"
@@ -100,20 +91,11 @@ en:
 
     blogs:
       create:
-        blog: "blog"
-        create: "create"
-        created: "created"
         notice_success: "Blog was successfully created."
         notice_fail: "Can't create such blog,try again please."
       update:
-        blog: "blog"
-        update: "update"
-        updated: "updated"
         notice_success: "Blog was successfully updated."
       destroy:
-        blog: "blog"
-        destroy: "destroy"
-        deleted: "deleted"
         notice_success: "Blog was successfully deleted."
       index:
         title: "Blogs"
@@ -152,20 +134,11 @@ en:
 
     collections:
       create:
-        collection: "collection"
-        create: "create"
-        created: "created"
         notice_success: "Collection was successfully created."
         notice_fail: "Can't create such collection, try again please."
       update:
-        collection: "collection"
-        update: "update"
-        updated: "updated"
         notice_success: "Collection was successfully updated."
       destroy:
-        collection: "collection"
-        destroy: "destroy"
-        deleted: "deleted"
         notice_success: "Collection was successfully deleted."
       index:
         title: "Collections"
@@ -189,21 +162,12 @@ en:
 
     comments:
       create:
-        comment: "comment"
-        create: "create"
-        created: "created"
         notice_success: "Order was successfully updated."
         notice_success: "Comment was successfully created."
         notice_fail: "Can't create such comment, try again please."
       update:
-        comment: "comment"
-        update: "update"
-        updated: "updated"
         notice_success: "Comment was successfully updated."
       destroy:
-        comment: "comment"
-        destroy: "destroy"
-        deleted: "deleted"
         notice_success: "Comment was successfully deleted."
       index:
         title: "Comments"
@@ -234,19 +198,10 @@ en:
 
     customers:
       create:
-        create: "create"
-        created: "created"
-        customer: "customer"
         notice_success: "Customer was successfully created."
       update:
-        update: "update"
-        updated: "updated"
-        customer: "customer"
         notice_success: "Customer was successfully updated."
       destroy:
-        destroy: "destroy"
-        deleted: "deleted"
-        customer: "customer"
         notice_success: "Customer was successfully deleted."
       import:
         notice_success: "Customers imported"
@@ -377,14 +332,8 @@ en:
 
     orders:
       update:
-        order: "order"
-        update: "update"
-        updated: "updated"
         notice_success: "Order was successfully updated."
       destroy:
-        order: "order"
-        destroy: "destroy"
-        deleted: "deleted"
         notice_success: "Order was successfully deleted."
       index:
         title: "Orders"
@@ -402,19 +351,10 @@ en:
 
     pages:
       create:
-        page: "page"
-        create: "create"
-        created: "created"
         notice_success: "Page was successfully created."
       update:
-        page: "page"
-        update: "update"
-        updated: "updated"
         notice_success: "Page was successfully updated."
       destroy:
-        page: "page"
-        destroy: "destroy"
-        deleted: "deleted"
         notice_success: "Page was successfully deleted."
       index:
         title: "Pages"
@@ -438,19 +378,10 @@ en:
 
     products:
       create:
-        create: "create"
-        product: "product"
-        created: "created"
         notice_success: "Product was successfully created."
       update:
-        product: "product"
-        updated: "updated"
-        update: "update"
         notice_success: "Product was successfully updated."
       destroy:
-        destroy: "destroy"
-        product: "product"
-        deleted: "deleted"
         notice_success: "Product was successfully deleted."
       index:
         title: "Products"
@@ -510,9 +441,6 @@ en:
       edit:
         general_settings: "Shop Settings"
       update:
-        shop: "shop"
-        update: "update"
-        updated: "updated"
         notice_success: "Shop was successfully updated."
       form:
         error: "error"
