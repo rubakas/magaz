@@ -47,12 +47,12 @@ p id="notice"
         div class="field"
           div class="field_with_select"
             = f.label t('.abandoned_checkouts')
-            = f.select :abandoned_checkout_time_delay, MagazCore::Shop::ABANDONED_CHECKOUT_TIME_DELAY
+            = f.select :abandoned_checkout_time_delay, MagazCore::Shop::ABANDONED_CHECKOUT_TIME_DELAY.map {|t| [I18n.t("default.models.shop.#{t}"), t]}
         hr
         div class="field"
           div class="field_with_select"
             = f.label t('.email_marketing')
-            = f.select :email_marketing_choice, MagazCore::Shop::EMAIL_MARKETING_CHOICE
+            = f.select :email_marketing_choice, MagazCore::Shop::EMAIL_MARKETING_CHOICE.map {|t| [I18n.t("default.models.shop.#{t}"), t]}
         hr
         div class="field"
           div class="field_with_select"
