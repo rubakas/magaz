@@ -20,7 +20,7 @@ module MagazCore
     test 'should not throw error and schedule 2 webhooks' do
       assert_nothing_raised do
         service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event,
-                                                                   webhook: @webhook1.topic)
+                                                                   topic: @webhook1.topic)
         assert_equal 2, MagazCore::WebhookWorker.jobs.size
       end
     end

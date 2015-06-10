@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501113306) do
-
+ActiveRecord::Schema.define(version: 20150528131117) do
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
@@ -89,11 +88,6 @@ ActiveRecord::Schema.define(version: 20150501113306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "article_id"
-  end
-
-  create_table "countries", force: :cascade do |t|
-    t.string "name", limit: 50
-    t.string "code", limit: 2
   end
 
   create_table "customers", force: :cascade do |t|

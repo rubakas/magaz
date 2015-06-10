@@ -70,7 +70,7 @@ p id="notice"
 
         - @shop.shipping_countries.each do |country|
           - @country = MagazCore::ShippingCountry.find_by_id(country.id)
-          - @country_name = MagazCore::Country.find_by_id(country.country_id).name
+          - @country_name = @country.country_info['name']
           tbody
             tr
               td = link_to @country_name, tax_override_path(@country.id)

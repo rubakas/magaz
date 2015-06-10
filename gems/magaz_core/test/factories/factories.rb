@@ -25,16 +25,6 @@ FactoryGirl.define do
   factory :checkout, class: MagazCore::Checkout do
   end
 
-  factory :country, class: MagazCore::Country do
-    sequence(:name) { |n| "FINLAND" }
-    sequence(:code) { |n| "FI" }
-  end
-
-  factory :another_country, class: MagazCore::Country do
-    sequence(:name) { |n| "POLAND" }
-    sequence(:code) { |n| "PL" }
-  end
-
   factory :customer, class: MagazCore::Customer do
     sequence(:first_name) {|n| "First Name #{n} "}
     sequence(:last_name)  {|n| "Last Name #{n}"}
@@ -82,11 +72,6 @@ FactoryGirl.define do
 
   factory :shipping_country, class: MagazCore::ShippingCountry do
     sequence(:name) {|n| "UA"}
-    sequence(:tax)  {|n| "1"}
-  end
-
-  factory :another_shipping_country, class: MagazCore::ShippingCountry do
-    sequence(:name) {|n| "FI"}
     sequence(:tax)  {|n| "1"}
   end
 
