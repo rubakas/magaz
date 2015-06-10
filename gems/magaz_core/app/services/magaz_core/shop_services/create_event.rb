@@ -17,11 +17,11 @@ module MagazCore
         end
       end
 
-      # private
+      private
 
-      # def class_name(subject:)
-      #   subject.class.name.split('::').last
-      # end
+      def class_name(subject:)
+        subject.class.name.split('::').last
+      end
 
       # def message(action:, subject:)
       #   I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.#{action}'), subject: I18n.t('magaz_store_admin.events.#{subject}'), user_name: @current_user.full_name)
@@ -32,88 +32,156 @@ module MagazCore
         case topic
         when "create_article_event"
           message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.created'), subject: I18n.t('magaz_store_admin.events.article'), user_name: @current_user.full_name)
-          verb = I18n.t('magaz_store_admin.events.create')
+          verb = MagazCore::Event::Verbs::CREATE
           shop_id = subject.blog.shop_id
           arguments << subject.title
         when "update_article_event"
           message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.article'), user_name: @current_user.full_name)
-          verb = I18n.t('magaz_store_admin.events.update')
+          verb = MagazCore::Event::Verbs::UPDATE
           shop_id = subject.blog.shop_id
           arguments << subject.title
         when "delete_article_event"
           message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.article'), user_name: @current_user.full_name)
-          verb = I18n.t('magaz_store_admin.events.destroy')
+          verb = MagazCore::Event::Verbs::DESTROY
           shop_id = subject.blog.shop_id
           arguments << subject.title
 
         when "create_blog_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.created'), subject: I18n.t('magaz_store_admin.events.blog'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::CREATE
           shop_id = subject.shop_id
         when "update_blog_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.blog'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
           shop_id = subject.shop_id
         when "delete_blog_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.blog'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::DESTROY
           shop_id = subject.shop_id
 
         when "create_comment_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.created'), subject: I18n.t('magaz_store_admin.events.comment'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::CREATE
           shop_id = subject.article.blog.shop_id
         when "update_comment_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.blog'), subject: I18n.t('magaz_store_admin.events.comment'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
           shop_id = subject.article.blog.shop_id
         when "delete_comment_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.comment'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::DESTROY
           shop_id = subject.article.blog.shop_id
 
         when "update_order_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.order'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
+          shop_id = subject.customer.shop_id
+        when "delete_order_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.order'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::DESTROY
+          shop_id = subject.customer.shop_id
+        when "placed_order_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.placed'), subject: I18n.t('magaz_store_admin.events.order'), user_name: [@current_user.first_name, @current_user.last_name].map(&:capitalize).join(" "))
+          verb = MagazCore::Event::Verbs::PLACED
+          arguments << subject.email
           shop_id = subject.customer.shop_id
 
         when "create_product_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.created'), subject: I18n.t('magaz_store_admin.events.product'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::CREATE
           shop_id = subject.shop_id
           arguments << subject.name
         when "update_product_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.product'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
           shop_id = subject.shop_id
           arguments << subject.name
         when "delete_product_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.product'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::DESTROY
           shop_id = subject.shop_id
           arguments << subject.name
 
         when "create_collection_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.created'), subject: I18n.t('magaz_store_admin.events.collection'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::CREATE
           shop_id = subject.shop_id
           arguments << subject.name
         when "update_collection_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.collection'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
           shop_id = subject.shop_id
           arguments << subject.name
         when "delete_collection_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.collection'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::DESTROY
           shop_id = subject.shop_id
           arguments << subject.name
 
         when "create_page_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.created'), subject: I18n.t('magaz_store_admin.events.page'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::CREATE
           shop_id = subject.shop_id
           arguments << subject.title
         when "update_page_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.page'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
           shop_id = subject.shop_id
           arguments << subject.title
         when "delete_page_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.page'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::DESTROY
           shop_id = subject.shop_id
           arguments << subject.title
 
         when "create_customer_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.created'), subject: I18n.t('magaz_store_admin.events.customer'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::CREATE
           shop_id = subject.shop_id
           arguments << subject.email
         when "update_customer_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.customer'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
           shop_id = subject.shop_id
           arguments << subject.email
         when "delete_customer_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.customer'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::DESTROY
           shop_id = subject.shop_id
           arguments << subject.email
 
         when "create_user_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.created'), subject: I18n.t('magaz_store_admin.events.user'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::CREATE
           shop_id = subject.shop_id
           arguments << subject.email
         when "update_user_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.user'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
           shop_id = subject.shop_id
           arguments << subject.email
         when "delete_user_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.user'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::DESTROY
           shop_id = subject.shop_id
           arguments << subject.email
 
+        when "create_webhook_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.created'), subject: I18n.t('magaz_store_admin.events.webhook'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::CREATE
+          shop_id = subject.shop_id
+        when "update_webhook_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.webhook'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
+          shop_id = subject.shop_id
+        when "delete_webhook_event"
+          message = I18n.t('magaz_store_admin.events.message', action: I18n.t('magaz_store_admin.events.deleted'), subject: I18n.t('magaz_store_admin.events.webhook'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::DESTROY
+          shop_id = subject.shop_id
+
         when "update_shop_event"
+          message = I18n.t('magaz_store_admin.evthe managementents.message', action: I18n.t('magaz_store_admin.events.updated'), subject: I18n.t('magaz_store_admin.events.shop'), user_name: @current_user.full_name)
+          verb = MagazCore::Event::Verbs::UPDATE
           shop_id = subject.id
           arguments << subject.name
           event.update_attributes(subject_id: shop_id)

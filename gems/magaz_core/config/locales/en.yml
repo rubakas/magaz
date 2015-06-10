@@ -20,6 +20,24 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  magaz_store_admin:
+    events:
+      message: "%{user_name} %{action} a %{subject}: "
+      placed: "placed"
+      created: "created"
+      updated: "updated"
+      deleted: "deleted"
+      article: "article"
+      blog: "blog"
+      order: "order"
+      page: "page"
+      product: "product"
+      collection: "collection"
+      customer: "customer"
+      shop: "shop"
+      comment: "comment"
+      user: "user"
+      webhook: "webhook"
   email_templates:
     abandoned_checkout_notification:
       name: 'Abandoned Checkout Notification'
@@ -155,4 +173,3 @@ en:
         customer_creation: "Customer creation"
         customer_update: "Customer update"
         customer_deletion: "Customer deletion"
->>>>>>> 96670e3f3752363668a17e33d8b5942a2cbc5fd8

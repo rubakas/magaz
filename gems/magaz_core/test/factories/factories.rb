@@ -36,6 +36,8 @@ FactoryGirl.define do
   end
 
   factory :customer, class: MagazCore::Customer do
+    sequence(:first_name) {|n| "First Name #{n} "}
+    sequence(:last_name)  {|n| "Last Name #{n}"}
     sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
 
@@ -126,6 +128,6 @@ FactoryGirl.define do
   factory :webhook, class: MagazCore::Webhook do
     sequence(:address) { |n| "https://www.google.com.ua/"}
     sequence(:format)  { |n| "XML" }
-    sequence(:topic)   {|n| "Product update"}
+    sequence(:topic)   {|n| MagazCore::Webhook::Topics::UPDATE_PRODUCT_EVENT}
   end
 end

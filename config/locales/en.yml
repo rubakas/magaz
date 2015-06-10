@@ -58,24 +58,6 @@ en:
       sign_in: "Sign in"
 
   magaz_store_admin:
-    events:
-      message: "%{user_name} %{action} a %{subject}: "
-      create: "create"
-      created: "created"
-      update: "update"
-      updated: "updated"
-      destroy: "destroy"
-      deleted: "deleted"
-      article: "article"
-      blog: "blog"
-      order: "order"
-      page: "page"
-      product: "product"
-      collection: "collection"
-      customer: "customer"
-      shop: "shop"
-      comment: "comment"
-      user: "user"
     articles:
       create:
         article: "article"

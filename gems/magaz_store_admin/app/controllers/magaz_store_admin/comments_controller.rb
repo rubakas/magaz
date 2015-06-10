@@ -20,8 +20,8 @@ module MagazStoreAdmin
       @comment = @article.comments.create(permitted_params[:comment])
       if @comment.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.comment'), user_name: current_user.full_name),
-                                                                   verb: t('.create'))
+                                                                   topic: MagazCore::Webhook::Topics::CREATE_COMMENT_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to comment_url(@comment)
       else
@@ -34,8 +34,8 @@ module MagazStoreAdmin
       @comment = current_shop.comments.find(params[:id])
       if @comment.update_attributes(permitted_params[:comment])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.comment'), user_name: current_user.full_name),
-                                                                   verb: t('.update'))
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_COMMENT_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to comments_url
       else
@@ -47,8 +47,8 @@ module MagazStoreAdmin
       @comment = current_shop.comments.find(params[:id])
       @comment.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
-                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.comment'), user_name: current_user.full_name),
-                                                                 verb: t('.destroy'))
+                                                                 topic: MagazCore::Webhook::Topics::DELETE_COMMENT_EVENT,
+                                                                 current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to comments_url
     end

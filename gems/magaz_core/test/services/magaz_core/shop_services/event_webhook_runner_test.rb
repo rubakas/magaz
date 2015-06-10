@@ -11,7 +11,7 @@ module MagazCore
       @webhook2 = create(:webhook, shop: @shop)
 
       @webhook3 = create(:webhook, shop: @shop)
-      @webhook3.update_attributes!(topic: "Product creation")
+      @webhook3.update_attributes!(topic: MagazCore::Webhook::Topics::CREATE_PRODUCT_EVENT)
 
       @product = create(:product, shop: @shop)
       @event = create(:event, shop: @shop, subject: @product)

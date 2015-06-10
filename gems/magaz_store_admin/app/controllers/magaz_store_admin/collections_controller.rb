@@ -18,10 +18,10 @@ module MagazStoreAdmin
       @collection = current_shop.collections.new(permitted_params[:collection])
       if @collection.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.collection'), user_name: current_user.full_name),
-                                                                   verb: t('.create'))
+                                                                   topic: MagazCore::Webhook::Topics::CREATE_COLLECTION_EVENT,
+                                                                   current_user: current_user)
         @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            webhook: "create_collection_event")
+                                                                            webhook: MagazCore::Webhook::Topics::CREATE_COLLECTION_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -34,10 +34,10 @@ module MagazStoreAdmin
       @collection = current_shop.collections.friendly.find(params[:id])
       if @collection.update_attributes(permitted_params[:collection])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.collection'), user_name: current_user.full_name),
-                                                                   verb: t('.update'))
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT,
+                                                                   current_user: current_user)
         @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            webhook: "update_collection_event")
+                                                                            webhook: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
@@ -49,10 +49,10 @@ module MagazStoreAdmin
       @collection = current_shop.collections.friendly.find(params[:id])
       @collection.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
-                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.collection'), user_name: current_user.full_name),
-                                                                 verb: t('.destroy'))
+                                                                 topic: MagazCore::Webhook::Topics::DELETE_COLLECTION_EVENT,
+                                                                 current_user: current_user)
       @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                          webhook: "delete_collection_event")
+                                                                          webhook: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
     end

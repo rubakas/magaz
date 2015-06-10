@@ -18,8 +18,8 @@ module MagazStoreAdmin
       @blog = current_shop.blogs.new(permitted_params[:blog])
       if @blog.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.blog'), user_name: current_user.full_name),
-                                                                   verb: t('.create'))
+                                                                   topic: MagazCore::Webhook::Topics::CREATE_BLOG_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
@@ -32,8 +32,8 @@ module MagazStoreAdmin
       @blog = current_shop.blogs.friendly.find(params[:id])
       if @blog.update_attributes(permitted_params[:blog])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.blog'), user_name: current_user.full_name),
-                                                                   verb: t('.update'))
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_BLOG_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
@@ -45,8 +45,8 @@ module MagazStoreAdmin
       @blog = current_shop.blogs.friendly.find(params[:id])
       @blog.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.blog'), user_name: current_user.full_name),
-                                                                   verb: t('.destroy'))
+                                                                 topic: MagazCore::Webhook::Topics::DELETE_BLOG_EVENT,
+                                                                 current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to blogs_path
     end

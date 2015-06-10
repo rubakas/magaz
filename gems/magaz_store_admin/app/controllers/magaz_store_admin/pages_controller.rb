@@ -18,8 +18,8 @@ module MagazStoreAdmin
       @page = current_shop.pages.new(permitted_params[:page])
       if @page.save
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.created'), subject: t('.page'), user_name: current_user.full_name),
-                                                                   verb: t('.create'))
+                                                                   topic: MagazCore::Webhook::Topics::CREATE_PAGE_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
@@ -31,8 +31,8 @@ module MagazStoreAdmin
       @page = current_shop.pages.friendly.find(params[:id])
       if @page.update_attributes(permitted_params[:page])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.page'), user_name: current_user.full_name),
-                                                                   verb: t('.update'))
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_PAGE_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
@@ -44,8 +44,8 @@ module MagazStoreAdmin
       @page = current_shop.pages.friendly.find(params[:id])
       @page.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
-                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.page'), user_name: current_user.full_name),
-                                                                 verb: t('.destroy'))
+                                                                 topic: MagazCore::Webhook::Topics::DELETE_PAGE_EVENT,
+                                                                 current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
     end

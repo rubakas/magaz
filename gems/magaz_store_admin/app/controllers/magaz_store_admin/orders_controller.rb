@@ -16,10 +16,10 @@
       @order = current_shop.checkouts.orders.find(params[:id])
       if @order.update_attributes(permitted_params[:order])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @order,
-                                                                   message: I18n.t('magaz_store_admin.events.message', action: t('.updated'), subject: t('.order'), user_name: current_user.full_name),
-                                                                   verb: t('.update'))
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_ORDER_EVENT,
+                                                                   current_user: current_user)
         @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            webhook: MagazCore::Event::Roles::UPDATE_ORDER_EVENT)
+                                                                            webhook: MagazCore::Webhook::Topics::UPDATE_ORDER_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to order_path(@order)
       else
@@ -31,10 +31,10 @@
       @order = current_shop.checkouts.orders.find(params[:id])
       @order.destroy
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @order,
-                                                                 message: I18n.t('magaz_store_admin.events.message', action: t('.deleted'), subject: t('.order'), user_name: current_user.full_name),
-                                                                 verb: t('.destroy'))
+                                                                 topic: MagazCore::Webhook::Topics::DELETE_ORDER_EVENT,
+                                                                 current_user: current_user)
       @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                          webhook: MagazCore::Event::Roles::DELETE_ORDER_EVENT)
+                                                                          webhook: MagazCore::Webhook::Topics::DELETE_ORDER_EVENT)
       flash[:notice] = t('.notice_success')
       render 'index'
     end
