@@ -7,8 +7,6 @@ class ShippingCountriesControllerTest < ActionController::TestCase
     @user = create(:user, shop: @shop)
     session_for_user @user
     @shipping_country = create(:shipping_country, shop: @shop)
-    @country = create(:country)
-    @another_country = create(:another_country)
   end
 
   test "should get index" do
@@ -25,8 +23,6 @@ class ShippingCountriesControllerTest < ActionController::TestCase
     assert_difference('MagazCore::ShippingCountry.count') do
       post :create, { shipping_country: { name: 'FI', tax: 10 } }
     end
-    assert_equal "#{@country.id}", MagazCore::ShippingCountry.last.country_id.inspect
-    assert_equal "#{@shop.id}", MagazCore::ShippingCountry.last.shop_id.inspect
     assert_redirected_to shipping_country_path(assigns(:shipping_country))
   end
 
@@ -38,9 +34,7 @@ class ShippingCountriesControllerTest < ActionController::TestCase
   test "should update shipping country" do
     patch :update,
       { id: @shipping_country.id,
-        shipping_country: { name: @another_country.code, tax: @shipping_country.tax } }
-    assert_equal "#{@another_country.id}", MagazCore::ShippingCountry.last.country_id.inspect
-    assert_equal "#{@shop.id}", MagazCore::ShippingCountry.last.shop_id.inspect
+        shipping_country: { name: "FN", tax: @shipping_country.tax } }
     assert_redirected_to shipping_country_path(assigns(:shipping_country))
   end
 

@@ -7,7 +7,7 @@ p id="notice"
     i class="icon-cloud"
     = t('.title')
     = "/"
-    = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+    = @shipping_country.country_info['name']
 
   div class="container-fluid"
 
@@ -51,7 +51,7 @@ p id="notice"
                     th = link_to t('.edit'), edit_tax_override_path(tax)
               tbody
                 tr
-                  td = @shipping_country.country.name
+                  td = @shipping_country.country_info['name']
                   td
                     = t('.instead_of', tax_rate: tax.rate, country_rate: @shipping_country.tax)
                   td

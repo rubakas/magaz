@@ -6,10 +6,9 @@ module MagazStoreAdmin
       @shop = create(:shop, subdomain: 'example')
       @user = create(:user, shop: @shop)
       session_for_user @user
-      @country = create(:country)
       @collection = create(:collection, shop: @shop, handle: "handle1")
       @shop.update_attributes(eu_digital_goods_collection_id: @collection.id)
-      @shipping_country = create(:shipping_country, shop: @shop, country_id: @country.id)
+      @shipping_country = create(:shipping_country, shop: @shop)
       @tax_override = create(:tax_override, shipping_country: @shipping_country, collection_id: @collection.id)
     end
 

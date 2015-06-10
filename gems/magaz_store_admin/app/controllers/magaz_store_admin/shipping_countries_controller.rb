@@ -17,8 +17,6 @@ module MagazStoreAdmin
 
     def create
       @shipping_country = current_shop.shipping_countries.new(permitted_params[:shipping_country])
-      country_relation_id = MagazCore::Country.find_by(code: @shipping_country.name).id
-      @shipping_country.country_id = country_relation_id
       if @shipping_country.save
         flash[:notice] = t('.notice_success')
         redirect_to shipping_country_path(@shipping_country)
@@ -32,8 +30,6 @@ module MagazStoreAdmin
       @shipping_country.assign_attributes(permitted_params[:shipping_country])
 
       if @shipping_country.changed?
-        country_relation_id = MagazCore::Country.find_by(code: @shipping_country.name).id
-        @shipping_country.country_id = country_relation_id
         @shipping_country.save
         flash[:notice] = t('.notice_success')
         redirect_to shipping_country_path(@shipping_country)
