@@ -51,10 +51,10 @@ module MagazCore
       UPDATE_WEBHOOK_EVENT = "update_webhook_event".freeze
       DELETE_WEBHOOK_EVENT = "delete_webhook_event".freeze
 
-      WEBHOOKS_TOPICS_LIST = ["#{CREATE_PRODUCT_EVENT}", "#{UPDATE_PRODUCT_EVENT}", "#{DELETE_PRODUCT_EVENT}",
-                              "#{CREATE_COLLECTION_EVENT}", "#{UPDATE_COLLECTION_EVENT}", "#{DELETE_COLLECTION_EVENT}",
-                              "#{CREATE_CUSTOMER_EVENT}", "#{UPDATE_CUSTOMER_EVENT}", "#{DELETE_CUSTOMER_EVENT}",
-                              "#{UPDATE_ORDER_EVENT}", "#{UPDATE_SHOP_EVENT}"]
+      WEBHOOKS_TOPICS_LIST = [CREATE_PRODUCT_EVENT, UPDATE_PRODUCT_EVENT, DELETE_PRODUCT_EVENT,
+                              CREATE_COLLECTION_EVENT, UPDATE_COLLECTION_EVENT, DELETE_COLLECTION_EVENT,
+                              CREATE_CUSTOMER_EVENT, UPDATE_CUSTOMER_EVENT, DELETE_CUSTOMER_EVENT,
+                              UPDATE_ORDER_EVENT, UPDATE_SHOP_EVENT]
     end
 
     validates :topic, inclusion: MagazCore::Webhook::Topics::WEBHOOKS_TOPICS_LIST
