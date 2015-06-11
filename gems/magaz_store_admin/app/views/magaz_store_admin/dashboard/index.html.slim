@@ -11,7 +11,7 @@ table class="table table-striped"
       th
 
   tbody
-  - @events.each do |event|
+  - @events.reverse.each do |event|
       tr
         td
           = event.message
