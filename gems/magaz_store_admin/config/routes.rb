@@ -1,9 +1,15 @@
 MagazStoreAdmin::Engine.routes.draw do
+
+  #match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
+
+
   constraints host: HOSTNAME do
+    match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ], :as => '/404'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
   end
 
   root 'dashboard#index'
+  resources :errors
   resources :articles, except: [:edit]
   resources :blogs, except: [:edit]
   resources :checkouts, except: [:create, :edit, :new]

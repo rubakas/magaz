@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  #match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
+
   mount MagazStyle::Engine => "/style"
 
   constraints host: HOSTNAME do
+
     root 'welcome#index'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
+    get 'error404' => 'error#error404', :as => "/404"
     resource :registration, only: [:create, :show] do
       collection do
         post :validate
