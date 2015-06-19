@@ -1,9 +1,15 @@
 MagazStoreAdmin::Engine.routes.draw do
+
+  %w( 404 422 500 503 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
+
   constraints host: HOSTNAME do
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
   end
 
   root 'dashboard#index'
+  resources :errors
   resources :articles, except: [:edit]
   resources :blogs, except: [:edit]
   resources :checkouts, except: [:create, :edit, :new]

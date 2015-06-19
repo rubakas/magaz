@@ -3,8 +3,12 @@ Rails.application.routes.draw do
   mount MagazStyle::Engine => "/style"
 
   constraints host: HOSTNAME do
+
     root 'welcome#index'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
+    get '/404', :to => "errors#show"
+    get '/500', :to => "errors#show"
+    get '/503', :to => "errors#show"
     resource :registration, only: [:create, :show] do
       collection do
         post :validate
