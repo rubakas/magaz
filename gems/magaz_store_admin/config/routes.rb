@@ -1,10 +1,10 @@
 MagazStoreAdmin::Engine.routes.draw do
 
-  #match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
-
+  %w( 404 422 500 503 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
 
   constraints host: HOSTNAME do
-    match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ], :as => '/404'
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
   end
 

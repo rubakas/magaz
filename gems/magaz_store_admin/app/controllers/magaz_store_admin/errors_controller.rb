@@ -1,7 +1,12 @@
 module MagazStoreAdmin
   class ErrorsController < ApplicationController
-    def error404
-      render status: :not_found
+    def show
+      puts "*********************"
+      puts 'vanka'
+      puts "*********************"
+      status_code = params[:code] || 500
+      flash.alert = "Status #{status_code}"
+      render status_code.to_s, status: status_code
     end
   end
 end
