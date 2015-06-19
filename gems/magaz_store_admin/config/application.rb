@@ -25,5 +25,7 @@ module Magaz
     config.i18n.enforce_available_locales = false
     config.cache_store = :dalli_store
     config.active_record.raise_in_transactional_callbacks = true
+    config.exceptions_app = self.routes
+    config.consider_all_requests_local = false
   end
 end

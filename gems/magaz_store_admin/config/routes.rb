@@ -1,4 +1,8 @@
 MagazStoreAdmin::Engine.routes.draw do
+
+  get '404', :to => 'errors#page_not_found'
+  get '500', :to => 'errors#server_error'
+
   constraints host: HOSTNAME do
     get 'goodbye' => 'welcome#goodbye', as: :goodbye
   end
