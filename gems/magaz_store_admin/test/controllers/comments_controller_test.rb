@@ -11,6 +11,24 @@ module MagazStoreAdmin
       @comment = create(:comment, article: @article)
     end
 
+    test "should create event with comment" do
+      assert_difference('MagazCore::Event.count', +1) do
+        post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body, blog_id: @blog.id }
+      end
+    end
+
+    test "should create event with update" do
+      assert_difference('MagazCore::Event.count', +1) do
+        patch :update, id: @comment.id, comment: { author: @comment.author, email: @comment.email, body: @comment.body }
+      end
+    end
+
+    test "should create event with delete" do
+      assert_difference('MagazCore::Event.count', +1) do
+        delete :destroy, id: @comment.id
+      end
+    end
+
     test "should get index" do
       get :index
       assert_response :success
@@ -24,30 +42,30 @@ module MagazStoreAdmin
 
     test "should create comment" do
       assert_difference('MagazCore::Comment.count') do
-        post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body }
+        post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body, blog_id: @blog.id}
       end
 
       assert_redirected_to comment_path(assigns(:comment))
     end
 
     test "should show comment" do
-      get :show, id: @comment
+      get :show, id: @comment.id
       assert_response :success
     end
 
     test "should update comment" do
-      patch :update, id: @comment, comment: { author: @comment.author, email: @comment.email, body: @comment.body }
+      patch :update, id: @comment.id, comment: { author: @comment.author, email: @comment.email, body: @comment.body }
       assert_response :redirect
     end
 
     test "should not update comment" do
-      patch :update, id: @comment, comment: { author: @comment.author, email: @comment.email, body: '' }
+      patch :update, id: @comment.id, comment: { author: @comment.author, email: @comment.email, body: '' }
       assert_response :success
     end
 
     test "should destroy comment" do
       assert_difference('MagazCore::Comment.count', -1) do
-        delete :destroy, id: @comment
+        delete :destroy, id: @comment.id
       end
 
       assert_redirected_to comments_path

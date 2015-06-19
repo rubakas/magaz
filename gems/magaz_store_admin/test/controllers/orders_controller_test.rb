@@ -11,6 +11,12 @@ module MagazStoreAdmin
       @order = create(:checkout, customer: @customer, status: MagazCore::Checkout::STATUSES.first)
     end
 
+    test "should create event with update" do
+      assert_difference('MagazCore::Event.count', +1) do
+        patch :update, id: @order, order: { status: @order.status }
+      end
+    end
+
     test "should get index" do
       get :index
       assert_response :success
@@ -22,7 +28,7 @@ module MagazStoreAdmin
       assert_response :success
     end
 
-    test "should update product" do
+    test "should update order" do
       patch :update, id: @order, order: { status: @order.status }
       assert_redirected_to order_path(assigns(:order))
     end

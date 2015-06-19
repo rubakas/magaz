@@ -19,6 +19,9 @@ module MagazStoreAdmin
       @article = current_shop.articles.find_by(params[:id])
       @comment = @article.comments.create(permitted_params[:comment])
       if @comment.save
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
+                                                                   topic: MagazCore::Webhook::Topics::CREATE_COMMENT_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to comment_url(@comment)
       else
@@ -30,6 +33,9 @@ module MagazStoreAdmin
     def update
       @comment = current_shop.comments.find(params[:id])
       if @comment.update_attributes(permitted_params[:comment])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_COMMENT_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to comments_url
       else
@@ -40,9 +46,13 @@ module MagazStoreAdmin
     def destroy
       @comment = current_shop.comments.find(params[:id])
       @comment.destroy
+      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @comment,
+                                                                 topic: MagazCore::Webhook::Topics::DELETE_COMMENT_EVENT,
+                                                                 current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to comments_url
     end
+
 
     protected
 

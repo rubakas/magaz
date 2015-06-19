@@ -1,7 +1,7 @@
 require 'test_helper'
 
 module Admin
-  class UserStoriesTest < ActionDispatch::IntegrationTest
+  class UsersStoriesTest < ActionDispatch::IntegrationTest
     setup do
       login
       @user2 = create(:user, shop: @shop, account_owner: true)

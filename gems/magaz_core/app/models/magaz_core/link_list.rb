@@ -14,9 +14,6 @@ module MagazCore
     extend FriendlyId
     self.table_name = 'link_lists'
 
-    DEFAULT_MENU_LINK_LIST_NAME = "Main Menu"
-    DEFAULT_FOOTER_LINK_LIST_NAME = "Footer"
-
     belongs_to :shop
     has_many   :links
 
