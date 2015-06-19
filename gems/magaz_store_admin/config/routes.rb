@@ -55,4 +55,5 @@ MagazStoreAdmin::Engine.routes.draw do
     end
   end
   resources :users, except: [:edit]
+  resources :webhooks, except: [:edit]
 end

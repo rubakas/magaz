@@ -11,8 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603104850) do
 
+ActiveRecord::Schema.define(version: 20150603104850) do
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
@@ -109,6 +109,20 @@ ActiveRecord::Schema.define(version: 20150603104850) do
     t.string   "template_type"
     t.string   "description"
   end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "arguments",    default: "--- []\n"
+    t.string   "body"
+    t.string   "message"
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.string   "verb"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["subject_id"], name: "index_events_on_subject_id"
 
   create_table "files", force: :cascade do |t|
     t.string   "file"
@@ -296,6 +310,17 @@ ActiveRecord::Schema.define(version: 20150603104850) do
     t.boolean  "account_owner",   default: false
     t.string   "permissions",     default: "--- []\n"
     t.string   "invite_token"
+  end
+
+  create_table "webhooks", force: :cascade do |t|
+    t.string   "address"
+    t.string   "fields",               default: "--- []\n"
+    t.string   "format"
+    t.string   "metafield_namespaces", default: "--- []\n"
+    t.string   "topic"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

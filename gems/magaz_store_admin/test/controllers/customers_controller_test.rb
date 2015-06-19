@@ -26,7 +26,7 @@ module MagazStoreAdmin
       assert_response :success
     end
 
-    test "should create product" do
+    test "should create customer" do
       assert_difference('MagazCore::Customer.count') do
         post :create, { customer: { first_name: 'Very Unique Name' } }
       end

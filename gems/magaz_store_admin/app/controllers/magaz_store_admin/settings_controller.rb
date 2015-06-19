@@ -11,7 +11,13 @@ module MagazStoreAdmin
 
     def update
       @shop = current_shop
+      @current_user = current_shop.users.find(session[:user_id])
       if @shop.update_attributes(permitted_params[:shop])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @shop,
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_SHOP_EVENT,
+                                                                   current_user: @current_user)
+        @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+                                                                            topic: MagazCore::Webhook::Topics::UPDATE_SHOP_EVENT)
         flash[:notice] = t('.notice_success')
         render 'edit'
       else

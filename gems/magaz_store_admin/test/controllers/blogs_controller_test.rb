@@ -9,6 +9,24 @@ module MagazStoreAdmin
       @blog = create(:blog, shop: @shop, handle: "handle1")
     end
 
+    test "should create event with blog" do
+      assert_difference('MagazCore::Event.count', +1) do
+        post :create, blog: { title: 'New uniq name' }
+      end
+    end
+
+    test "should create event with update" do
+      assert_difference('MagazCore::Event.count', +1) do
+        patch :update, id: @blog.id, blog: { title: @blog.title }
+      end
+    end
+
+    test "should create event with delete" do
+      assert_difference('MagazCore::Event.count', +1) do
+        delete :destroy, id: @blog.id
+      end
+    end
+
     test "should get index" do
       get :index
       assert_response :success
@@ -29,23 +47,23 @@ module MagazStoreAdmin
     end
 
     test "should show blog" do
-      get :show, id: @blog
+      get :show, id: @blog.id
       assert_response :success
     end
 
     test "should update blog" do
-      patch :update, id: @blog, blog: { title: @blog.title }
+      patch :update, id: @blog.id, blog: { title: @blog.title }
       assert_response :redirect
     end
 
     test "should not update blog" do
-      patch :update, id: @blog, blog: { title: '' }
+      patch :update, id: @blog.id, blog: { title: '' }
       assert_response :success
     end
 
     test "should destroy blog" do
       assert_difference('MagazCore::Blog.count', -1) do
-        delete :destroy, id: @blog
+        delete :destroy, id: @blog.id
       end
 
       assert_redirected_to blogs_path
