@@ -16,18 +16,23 @@ require 'test_helper'
 module MagazCore
   class ThemeTest < ActiveSupport::TestCase
 
+    should have_many(:assets)
+    should have_many(:installed_themes)
+    should belong_to(:shop)
+    should belong_to(:source_theme)
+
     setup do
       @shop = create(:shop)
       @source_theme = build(:theme)
       @archive_path = ::File.expand_path('./../../../fixtures/files/valid_theme.zip', __FILE__)
-      
+
       MagazCore::ThemeServices::ImportFromArchive
-        .call(archive_path: @archive_path, 
+        .call(archive_path: @archive_path,
               theme: @source_theme,
               theme_attributes: { name: 'Default' })
 
       service = MagazCore::ThemeServices::Install
-                  .call(shop_id: @shop.id, 
+                  .call(shop_id: @shop.id,
                         source_theme_id: @source_theme.id)
 
       @installed_theme = service.installed_theme

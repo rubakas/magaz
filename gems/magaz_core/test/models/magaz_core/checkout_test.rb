@@ -18,6 +18,11 @@ require 'test_helper'
 
 module MagazCore
   class CheckoutTest < ActiveSupport::TestCase
+
+    should belong_to(:customer)
+    should have_many(:line_items)
+    should have_many(:events)
+
     setup do
       @shop = create(:shop)
       @customer = create(:customer, shop: @shop)

@@ -21,7 +21,13 @@ require 'test_helper'
 module MagazCore
   class ArticleTest < ActiveSupport::TestCase
     include MagazCore::Shared::VisibilityExamples
-    
+
+    should validate_presence_of(:title)
+    should belong_to(:blog)
+    should have_many(:events)
+    should have_many(:comments)
+    should validate_uniqueness_of(:title)
+
     setup do
       setup_visibility_examples(model_class: MagazCore::Article, factory_name: :article)
     end

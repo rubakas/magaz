@@ -22,7 +22,14 @@ require 'test_helper'
 module MagazCore
   class ProductTest < ActiveSupport::TestCase
     include MagazCore::Shared::VisibilityExamples
-    
+
+    should have_and_belong_to_many(:collections)
+    should have_many(:product_images)
+    should belong_to(:shop)
+    should have_many(:events)
+    should accept_nested_attributes_for(:product_images)
+    should validate_presence_of(:name)
+
     setup do
       setup_visibility_examples(model_class: MagazCore::Product, factory_name: :product)
     end
