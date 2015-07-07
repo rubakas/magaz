@@ -9,7 +9,7 @@ module MagazCore
 
     should validate_presence_of(:tax)
     should validate_numericality_of(:tax)
-    should validate_uniqueness_of(:name)
+    should validate_uniqueness_of(:name).scoped_to(:shop_id)
     # should validate_inclusion_of(:name).
     #   in_array(MagazCore::ShippingCountry::COUNTRY_LIST['countries'].keys)
 

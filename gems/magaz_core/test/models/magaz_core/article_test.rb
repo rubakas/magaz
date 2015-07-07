@@ -26,7 +26,7 @@ module MagazCore
     should belong_to(:blog)
     should have_many(:events)
     should have_many(:comments)
-    should validate_uniqueness_of(:title)
+    should validate_uniqueness_of(:title).scoped_to(:blog_id)
 
     setup do
       setup_visibility_examples(model_class: MagazCore::Article, factory_name: :article)

@@ -25,7 +25,7 @@ module MagazCore
     should belong_to(:shop)
     should have_many(:tax_overrides)
     should have_many(:events)
-    should validate_uniqueness_of(:name)
+    should validate_uniqueness_of(:name).scoped_to(:shop_id)
     should validate_presence_of(:name)
 
     include MagazCore::Shared::VisibilityExamples

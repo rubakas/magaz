@@ -23,7 +23,7 @@ module MagazCore
     should have_many(:events)
     should belong_to(:shop)
     should validate_presence_of(:title)
-    should validate_uniqueness_of(:title)
+    should validate_uniqueness_of(:title).scoped_to(:shop_id)
 
     test 'two blogs with same handle and different shops' do
       @shop1 = create(:shop, name: "shop1")

@@ -17,7 +17,7 @@ require 'test_helper'
 module MagazCore
   class CommentTest < ActiveSupport::TestCase
 
-    should validate_uniqueness_of(:author)
+    should validate_uniqueness_of(:author).scoped_to(:article_id)
     should validate_presence_of(:author)
     should validate_presence_of(:email)
     should validate_presence_of(:body)

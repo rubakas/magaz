@@ -29,6 +29,7 @@ module MagazCore
     should have_many(:events)
     should accept_nested_attributes_for(:product_images)
     should validate_presence_of(:name)
+    should validate_uniqueness_of(:name).scoped_to(:shop_id)
 
     setup do
       setup_visibility_examples(model_class: MagazCore::Product, factory_name: :product)

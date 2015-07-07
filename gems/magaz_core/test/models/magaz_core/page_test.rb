@@ -24,7 +24,7 @@ module MagazCore
 
     should belong_to(:shop)
     should have_many(:events)
-    should validate_uniqueness_of(:title)
+    should validate_uniqueness_of(:title).scoped_to(:shop_id)
     should validate_presence_of(:title)
 
     setup do

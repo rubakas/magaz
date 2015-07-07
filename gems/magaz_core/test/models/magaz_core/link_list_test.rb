@@ -6,7 +6,7 @@ module MagazCore
     should belong_to(:shop)
     should have_many(:links)
     should validate_presence_of(:name)
-    should validate_uniqueness_of(:name)
+    should validate_uniqueness_of(:name).scoped_to(:shop_id)
 
   end
 end
