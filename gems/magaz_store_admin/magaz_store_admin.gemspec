@@ -7,8 +7,8 @@ require "magaz_store_admin/version"
 Gem::Specification.new do |s|
   s.name        = "magaz_store_admin"
   s.version     = MagazStoreAdmin::VERSION
-  s.authors     = ["Griminy"]
-  s.email       = ["bozya003@gmail.com"]
+  s.authors     = ["Andriy Tyurnikov"]
+  s.email       = ["Andriy.Tyurnikov@gmail.com"]
   s.homepage    = "http://github.com/andriytyurnikov/magaz"
   s.summary     = "Summary of MagazStoreAdmin."
   s.description = "Description of MagazStoreAdmin."
