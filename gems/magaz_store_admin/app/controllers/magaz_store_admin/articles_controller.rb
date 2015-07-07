@@ -17,6 +17,9 @@ module MagazStoreAdmin
     def create
       @article = current_shop.articles.new(permitted_params[:article])
       if @article.save
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
+                                                                   topic: MagazCore::Webhook::Topics::CREATE_ARTICLE_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
@@ -28,9 +31,13 @@ module MagazStoreAdmin
     def update
       @article = current_shop.articles.friendly.find(params[:id])
       if @article.update_attributes(permitted_params[:article])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_ARTICLE_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
+        flash[:notice] = t('.notice_fail')
         render 'show'
       end
     end
@@ -38,6 +45,9 @@ module MagazStoreAdmin
     def destroy
       @article = current_shop.articles.friendly.find(params[:id])
       @article.destroy
+      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
+                                                                 topic: MagazCore::Webhook::Topics::DELETE_ARTICLE_EVENT,
+                                                                 current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to articles_url
     end

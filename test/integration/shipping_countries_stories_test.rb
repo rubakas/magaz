@@ -3,8 +3,6 @@ require 'test_helper'
 class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
-    @country = create(:country)
-    @another_country = create(:another_country)
     @shipping_country = create(:shipping_country, shop: @shop)
     @shipping_rate = create(:shipping_rate, shipping_country: @shipping_country)
     click_link 'Settings'
@@ -33,19 +31,19 @@ class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "edit country" do
-    click_link(@shipping_country.name, match: :first)
+    click_link(@shipping_country.country_info['name'], match: :first)
     select('Poland', :from => 'shipping_country_name')
     click_button 'Update Shipping country'
     assert page.has_content? 'Shipping Country was successfully updated.'
   end
 
   test "shipping country has shipping rate" do
-    click_link(@shipping_country.name, match: :first)
+    click_link(@shipping_country.country_info['name'], match: :first)
     assert page.has_content? @shipping_rate.name
   end
 
   test 'add shipping rate to shipping country' do
-    click_link(@shipping_country.name, match: :first)
+    click_link(@shipping_country.country_info['name'], match: :first)
     click_link 'Add Shipping Rates'
     fill_in 'Name', with: 'Uniq Rate Name'
     select('Based on order price', :from => 'shipping_rate_criteria')
@@ -58,13 +56,13 @@ class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test 'delete shipping rate from shipping country' do
-    click_link(@shipping_country.name, match: :first)
+    click_link(@shipping_country.country_info['name'], match: :first)
     click_link "Delete"
-    assert page.has_no_content? @shipping_rate.name
+    assert page.has_no_content? @shipping_country.country_info['name']
   end
 
   test 'update shipping rate' do
-    click_link(@shipping_country.name, match: :first)
+    click_link(@shipping_country.country_info['name'], match: :first)
     click_link(@shipping_rate.name, match: :first)
     select('Based on order price', :from => 'shipping_rate_criteria')
     fill_in 'shipping_rate_price_from', with: 2
@@ -75,8 +73,8 @@ class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "delete shipping country" do
-    assert page.has_content? @shipping_country.name
+    assert page.has_content? @shipping_country.country_info['name']
     click_link('Delete', match: :first)
-    assert page.has_no_content? @shipping_country.name
+    assert page.has_no_content? @shipping_country.country_info['name']
   end
 end

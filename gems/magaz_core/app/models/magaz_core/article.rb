@@ -22,11 +22,9 @@ module MagazCore
     extend FriendlyId
     include Concerns::Visibility
 
-    DEFAULT_ARTICLE_TITLE = 'First Post'
-    DEFAULT_ARTICLE_CONTENT = 'This is your store’s blog. You can use it to talk about new product launches, experiences, tips or other news you want your customers to read about.'
-
     belongs_to :blog
     has_many :comments
+    has_many :events, as: :subject
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :blog
 

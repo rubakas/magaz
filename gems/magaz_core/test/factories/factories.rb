@@ -25,17 +25,9 @@ FactoryGirl.define do
   factory :checkout, class: MagazCore::Checkout do
   end
 
-  factory :country, class: MagazCore::Country do
-    sequence(:name) { |n| "FINLAND" }
-    sequence(:code) { |n| "FI" }
-  end
-
-  factory :another_country, class: MagazCore::Country do
-    sequence(:name) { |n| "POLAND" }
-    sequence(:code) { |n| "PL" }
-  end
-
   factory :customer, class: MagazCore::Customer do
+    sequence(:first_name) {|n| "First Name #{n} "}
+    sequence(:last_name)  {|n| "Last Name #{n}"}
     sequence(:email)  { |n| "customer#{n}@gmail.com" }
   end
 
@@ -45,6 +37,12 @@ FactoryGirl.define do
     sequence(:body)  { |n| "You have a new order"}
     sequence(:template_type)  { |n| "new_order_notification"}
     sequence(:description) { |n| "some description"}
+  end
+
+  factory :event, class: MagazCore::Event do
+    sequence(:message) { |n| "User created a product: "}
+    sequence(:verb) { |n| "create"}
+    sequence(:arguments) {|n| "Product_Name"}
   end
 
   factory :file, class: MagazCore::File do
@@ -74,11 +72,6 @@ FactoryGirl.define do
 
   factory :shipping_country, class: MagazCore::ShippingCountry do
     sequence(:name) {|n| "UA"}
-    sequence(:tax)  {|n| "1"}
-  end
-
-  factory :another_shipping_country, class: MagazCore::ShippingCountry do
-    sequence(:name) {|n| "FI"}
     sequence(:tax)  {|n| "1"}
   end
 
@@ -115,5 +108,11 @@ FactoryGirl.define do
     password 'password'
     password_salt BCrypt::Engine.generate_salt
     password_digest { BCrypt::Engine.hash_secret('password', password_salt) }
+  end
+
+  factory :webhook, class: MagazCore::Webhook do
+    sequence(:address) { |n| "https://www.google.com.ua/"}
+    sequence(:format)  { |n| "XML" }
+    sequence(:topic)   {|n| MagazCore::Webhook::Topics::UPDATE_PRODUCT_EVENT}
   end
 end

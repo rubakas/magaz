@@ -17,6 +17,9 @@ module MagazStoreAdmin
     def create
       @page = current_shop.pages.new(permitted_params[:page])
       if @page.save
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
+                                                                   topic: MagazCore::Webhook::Topics::CREATE_PAGE_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
@@ -27,6 +30,9 @@ module MagazStoreAdmin
     def update
       @page = current_shop.pages.friendly.find(params[:id])
       if @page.update_attributes(permitted_params[:page])
+        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
+                                                                   topic: MagazCore::Webhook::Topics::UPDATE_PAGE_EVENT,
+                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
@@ -37,13 +43,16 @@ module MagazStoreAdmin
     def destroy
       @page = current_shop.pages.friendly.find(params[:id])
       @page.destroy
+      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
+                                                                 topic: MagazCore::Webhook::Topics::DELETE_PAGE_EVENT,
+                                                                 current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
     end
 
     protected
 
-    #TODO:  collection_ids are not guaranteed to belong to this shop!!!
+    #TODO:  page_ids are not guaranteed to belong to this shop!!!
     # https://github.com/josevalim/inherited_resources#strong-parameters
     def permitted_params
       { page: params.fetch(:page, {}).permit(:title, :content, :page_title, :meta_description, :handle) }

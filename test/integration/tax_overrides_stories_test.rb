@@ -3,10 +3,9 @@ require 'test_helper'
 class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
-    @country = create(:country)
     @collection = create(:collection, shop: @shop, handle: "handle1")
     @shop.update_attributes(eu_digital_goods_collection_id: @collection.id)
-    @shipping_country = create(:another_shipping_country, shop: @shop, country_id: @country.id)
+    @shipping_country = create(:shipping_country, shop: @shop)
     visit '/admin/settings/taxes_settings'
   end
 
@@ -15,11 +14,11 @@ class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "should add new override for country" do
-    assert page.has_content? @country.name
-    click_link @country.name
+    assert page.has_content? @shipping_country.country_info['name']
+    click_link @shipping_country.country_info['name']
     click_link "Add a tax override"
     assert page.has_content? "Add Tax Override for"
-    assert page.has_content? @country.name
+    assert page.has_content? @shipping_country.country_info['name']
     page.choose('tax_override_is_shipping_false')
     page.find_by_id('tax_override_collection_id').find("option[value='#{@collection.id}']").select_option
     fill_in 'tax_override_rate', with: 12
@@ -29,11 +28,11 @@ class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "should not add new override" do
-    assert page.has_content? @country.name
-    click_link @country.name
+    assert page.has_content? @shipping_country.country_info['name']
+    click_link @shipping_country.country_info['name']
     click_link "Add a tax override"
     assert page.has_content? "Add Tax Override for"
-    assert page.has_content? @country.name
+    assert page.has_content? @shipping_country.country_info['name']
     page.choose('tax_override_is_shipping_false')
     fill_in 'tax_override_rate', with: 12
     click_button 'Save'
@@ -41,11 +40,11 @@ class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "should not add new override too" do
-    assert page.has_content? @country.name
-    click_link @country.name
+    assert page.has_content? @shipping_country.country_info['name']
+    click_link @shipping_country.country_info['name']
     click_link "Add a tax override"
     assert page.has_content? "Add Tax Override for"
-    assert page.has_content? @country.name
+    assert page.has_content? @shipping_country.country_info['name']
     page.choose('tax_override_is_shipping_false')
     fill_in 'tax_override_rate', with: ''
     click_button 'Save'
@@ -53,11 +52,11 @@ class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "should add new override for country too" do
-    assert page.has_content? @country.name
-    click_link @country.name
+    assert page.has_content? @shipping_country.country_info['name']
+    click_link @shipping_country.country_info['name']
     click_link "Add a tax override"
     assert page.has_content? "Add Tax Override for"
-    assert page.has_content? @country.name
+    assert page.has_content? @shipping_country.country_info['name']
     page.choose('tax_override_is_shipping_true')
     fill_in 'tax_override_rate', with: 12
     click_button 'Save'

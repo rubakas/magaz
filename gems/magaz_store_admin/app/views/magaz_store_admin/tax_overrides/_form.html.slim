@@ -37,7 +37,7 @@
                 th = t('.tax_rate')
             tbody
               tr
-                td = MagazCore::Country.find_by_id(@shipping_country.country_id).name
+                td = @shipping_country.country_info['name']
                 td
                   div class="loced_field"
                     div class="input-group"

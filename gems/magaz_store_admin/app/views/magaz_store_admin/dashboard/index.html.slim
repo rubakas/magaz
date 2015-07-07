@@ -1,5 +1,25 @@
 h4
-  i class="icon-dashboard" 
+  i class="icon-dashboard"
   = t('.title')
 
 p class='lead' = t('.welcome')
+
+table class="table table-striped"
+  thead
+    tr
+      th = t('.activity')
+      th
+
+  tbody
+  - @events.reverse.each do |event|
+      tr
+        td
+          = event.message
+          - unless event.verb == 'destroy' || event.subject_type == "MagazCore::Shop"
+            = link_to event.arguments.first, event.subject
+          - else
+            = event.arguments.first
+        td = event.created_at
+  tbody
+
+br
