@@ -20,7 +20,7 @@ module MagazCore
 
     REQUIRED_DIRECTORIES = %w[assets config layout snippets templates].freeze
     REQUIRED_TEMPLATES = %w[
-      templates/blog.liquid 
+      templates/blog.liquid
       templates/cart.liquid
       templates/collection.liquid
       templates/index.liquid
@@ -29,7 +29,7 @@ module MagazCore
     ].freeze
 
     self.table_name = 'themes'
-    
+
     has_many   :assets
     has_many   :installed_themes, class_name: 'MagazCore::Theme', foreign_key: :source_theme_id
     belongs_to :shop
@@ -41,7 +41,7 @@ module MagazCore
     scope :main,     -> { where(role: Roles::MAIN).first }
     scope :unpublished, -> { where(role: Roles::UNPUBLISHED) }
 
-    validate  :default_directories_present, 
+    validate  :default_directories_present,
               :default_layout_present,
               :default_templates_present,
               # :nested_assets_absent,
@@ -59,7 +59,7 @@ module MagazCore
 
     # assets, config, layout, snippets, templates
     def default_directories_present
-      directory_names = assets.map do |a| 
+      directory_names = assets.map do |a|
         match_data = a.key.match('([^\/]+)\/')
         match_data[1] if match_data
       end.compact
@@ -82,7 +82,7 @@ module MagazCore
     def _required_asset_present?(filename)
       result = assets.select { |a| a.key == filename }.any?
     end
-    
+
     # templates/[blog, cart, collection, index, page, product].liquid
     def default_templates_present
       result = REQUIRED_TEMPLATES.all? {|t| assets.select {|a| a.key == t} }
@@ -94,7 +94,7 @@ module MagazCore
     def nested_assets_absent
       fail
     end
-    
+
     # config/settings.html
     def default_config_present
       result = _required_asset_present?('config/settings.html')
