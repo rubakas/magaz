@@ -24,7 +24,7 @@ module MagazCore
     include MagazCore::Shared::VisibilityExamples
 
     should have_and_belong_to_many(:collections)
-    should have_many(:product_images)
+    should have_many(:product_images).dependent(:destroy)
     should belong_to(:shop)
     should have_many(:events)
     should accept_nested_attributes_for(:product_images)

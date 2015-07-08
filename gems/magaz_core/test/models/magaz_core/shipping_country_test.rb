@@ -4,7 +4,7 @@ module MagazCore
   class ShippingCountryTest < ActiveSupport::TestCase
 
     should belong_to(:shop)
-    should have_many(:shipping_rates)
+    should have_many(:shipping_rates).dependent(:destroy)
     should have_many(:tax_overrides)
 
     should validate_presence_of(:tax)
