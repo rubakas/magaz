@@ -5,7 +5,7 @@ module MagazCore
 
     should belong_to(:shop)
     should have_many(:shipping_rates).dependent(:destroy)
-    should have_many(:tax_overrides)
+    should have_many(:tax_overrides).dependent(:destroy)
 
     should validate_presence_of(:tax)
     should validate_numericality_of(:tax)

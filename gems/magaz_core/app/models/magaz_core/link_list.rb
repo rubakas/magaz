@@ -15,7 +15,7 @@ module MagazCore
     self.table_name = 'link_lists'
 
     belongs_to :shop
-    has_many   :links
+    has_many   :links, class_name: 'MagazCore::Link', :dependent => :destroy
 
     accepts_nested_attributes_for :links
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop

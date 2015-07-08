@@ -22,10 +22,13 @@ module MagazCore
     end
 
     test 'fail shop creation when no default theme in system' do
-      @default_theme.delete
+      #@default_theme.delete
+      MagazCore::Theme.destroy_all
+      assert MagazCore::Theme.count == 0
       service = MagazCore::ShopServices::Create
                   .call(shop_params: @shop_params, user_params: @user_params)
       refute service.shop.persisted?
+      refute service.user.persisted?
     end
 
     test 'fail shop creation when no user params' do
@@ -44,10 +47,9 @@ module MagazCore
       service = MagazCore::ShopServices::Create.call(shop_params: @shop_params, user_params: @user_params)
       assert service.shop.persisted?
       assert_not service.shop.users.blank?
+      assert service.user.persisted?
 
-      service.shop.users.each do |user|
-        assert user.shop_id == service.shop.id
-      end
+      assert service.user.shop_id == service.shop.id
     end
 
     test 'default content created' do

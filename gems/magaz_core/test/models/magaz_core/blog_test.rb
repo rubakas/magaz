@@ -18,7 +18,7 @@ require 'test_helper'
 module MagazCore
   class BlogTest < ActiveSupport::TestCase
 
-    should have_many(:articles)
+    should have_many(:articles), class_name: 'MagazCore::Article', :dependent => :destroy
     should have_many(:comments)
     should have_many(:events)
     should belong_to(:shop)

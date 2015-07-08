@@ -23,7 +23,7 @@ module MagazCore
     include Concerns::Visibility
 
     belongs_to :blog
-    has_many :comments
+    has_many :comments, class_name: 'MagazCore::Comment', :dependent => :destroy
     has_many :events, as: :subject
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :blog

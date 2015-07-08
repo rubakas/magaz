@@ -25,7 +25,7 @@ module MagazCore
     should validate_presence_of(:title)
     should belong_to(:blog)
     should have_many(:events)
-    should have_many(:comments)
+    should have_many(:comments).dependent(:destroy)
     should validate_uniqueness_of(:title).scoped_to(:blog_id)
 
     setup do
