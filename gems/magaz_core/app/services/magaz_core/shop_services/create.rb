@@ -5,6 +5,9 @@ module MagazCore
       attr_accessor :shop
       attr_accessor :user
 
+      class NoDefaultThemeException < Exception
+      end
+
       def call(shop_params: {}, user_params: {})
         @shop = MagazCore::Shop.new
         @user = MagazCore::User.new
@@ -32,7 +35,7 @@ module MagazCore
 
       def _install_default_theme(shop:)
         # Default theme, fail unless found
-        default_theme = MagazCore::Theme.sources.first || fail(ActiveRecord::RecordNotFound)
+        default_theme = MagazCore::Theme.sources.first || raise(NoDefaultThemeException)
         MagazCore::ThemeServices::Install
           .call(shop_id: shop.id, source_theme_id: default_theme.id)
       end
