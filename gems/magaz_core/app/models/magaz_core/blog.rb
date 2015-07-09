@@ -18,7 +18,7 @@ module MagazCore
     self.table_name = 'blogs'
     extend FriendlyId
 
-    has_many :articles
+    has_many :articles, class_name: 'MagazCore::Article', :dependent => :destroy
     has_many :comments
     has_many :events, as: :subject
     belongs_to :shop

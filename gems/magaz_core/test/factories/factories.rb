@@ -86,7 +86,7 @@ FactoryGirl.define do
   end
 
   factory :subscriber_notification, class: MagazCore::SubscriberNotification do
-    sequence(:notification_method) { |n| "email #{n}" }
+    sequence(:notification_method) { |n| "email" }
     sequence(:subscription_address) { |n| "some1#{n}@here.run" }
   end
 

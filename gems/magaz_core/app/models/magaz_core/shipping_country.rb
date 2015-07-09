@@ -5,8 +5,8 @@ module MagazCore
     COUNTRY_LIST = YAML.load_file("#{MagazCore::Engine.root}/config/countries.yml")
 
     belongs_to :shop
-    has_many   :shipping_rates, dependent: :destroy
-    has_many :tax_overrides
+    has_many   :shipping_rates, class_name: 'MagazCore::ShippingRate', :dependent => :destroy
+    has_many :tax_overrides, class_name: 'MagazCore::TaxOverride', :dependent => :destroy
 
     validates :tax, :name, presence: true
     validates :tax, numericality: true

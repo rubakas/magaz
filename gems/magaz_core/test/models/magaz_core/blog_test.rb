@@ -17,6 +17,14 @@ require 'test_helper'
 
 module MagazCore
   class BlogTest < ActiveSupport::TestCase
+
+    should have_many(:articles), class_name: 'MagazCore::Article', :dependent => :destroy
+    should have_many(:comments)
+    should have_many(:events)
+    should belong_to(:shop)
+    should validate_presence_of(:title)
+    should validate_uniqueness_of(:title).scoped_to(:shop_id)
+
     test 'two blogs with same handle and different shops' do
       @shop1 = create(:shop, name: "shop1")
       @shop2 = create(:shop, name: "shop2")

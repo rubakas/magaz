@@ -20,8 +20,16 @@ require 'test_helper'
 
 module MagazCore
   class CollectionTest < ActiveSupport::TestCase
+
+    should have_and_belong_to_many(:products)
+    should belong_to(:shop)
+    should have_many(:tax_overrides)
+    should have_many(:events)
+    should validate_uniqueness_of(:name).scoped_to(:shop_id)
+    should validate_presence_of(:name)
+
     include MagazCore::Shared::VisibilityExamples
-    
+
     setup do
       setup_visibility_examples(model_class: MagazCore::Collection, factory_name: :collection)
     end

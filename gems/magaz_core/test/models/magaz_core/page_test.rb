@@ -21,7 +21,12 @@ require 'test_helper'
 module MagazCore
   class PageTest < ActiveSupport::TestCase
     include MagazCore::Shared::VisibilityExamples
-    
+
+    should belong_to(:shop)
+    should have_many(:events)
+    should validate_uniqueness_of(:title).scoped_to(:shop_id)
+    should validate_presence_of(:title)
+
     setup do
       setup_visibility_examples(model_class: MagazCore::Page, factory_name: :page)
     end

@@ -2,6 +2,17 @@ require 'test_helper'
 
 module MagazCore
   class ShippingRateTest < ActiveSupport::TestCase
+
+    should belong_to(:shipping_country)
+
+    should validate_presence_of(:name)
+    should validate_presence_of(:shipping_price)
+    should validate_numericality_of(:price_from)
+    should validate_numericality_of(:price_to)
+    should validate_numericality_of(:weight_from)
+    should validate_numericality_of(:weight_to)
+    should validate_numericality_of(:shipping_price)
+
     setup do
       @shop = create(:shop)
       @shipping_country = create(:shipping_country, shop: @shop)

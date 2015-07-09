@@ -16,8 +16,14 @@ require 'test_helper'
 
 module MagazCore
   class CommentTest < ActiveSupport::TestCase
-    # test "the truth" do
-    #   assert true
-    # end
+
+    should validate_uniqueness_of(:author).scoped_to(:article_id)
+    should validate_presence_of(:author)
+    should validate_presence_of(:email)
+    should validate_presence_of(:body)
+    should belong_to(:article)
+    should belong_to(:blog)
+    should have_many(:events)
+
   end
 end

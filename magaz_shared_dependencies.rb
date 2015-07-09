@@ -112,3 +112,5 @@ gem 'liquid'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
 gem 'spring',           group: :development
 
+gem 'shoulda'
+gem 'shoulda-matchers'
