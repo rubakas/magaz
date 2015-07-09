@@ -61,11 +61,11 @@ module MagazCore
       @shop_params = { name: 'example42' }
       @user_params = { first_name: 'First' , last_name: 'Last', email: 'email@mail.com', password: 'password' }
       @default_theme = build(:theme)
-      # archive_path = ::File.expand_path('./../../../fixtures/files/valid_theme.zip', __FILE__)
-      # MagazCore::ThemeServices::ImportFromArchive
-      #   .call(archive_path: archive_path,
-      #         theme: @default_theme,
-      #         theme_attributes: { name: 'Default' })
+      archive_path = ::File.expand_path('./../../../fixtures/files/valid_theme.zip', __FILE__)
+      MagazCore::ThemeServices::ImportFromArchive
+        .call(archive_path: archive_path,
+              theme: @default_theme,
+              theme_attributes: { name: 'Default' })
       @create_service = MagazCore::ShopServices::Create.call(shop_params: @shop_params,
                                                              user_params: @user_params)
       @shop = @create_service.shop
