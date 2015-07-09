@@ -71,6 +71,7 @@ module MagazCore
       @shop = @create_service.shop
       @user = @create_service.user
 
+      @article = @shop.articles.last
       @comment = create(:comment, article: @article)
       @file = create(:file, shop: @shop)
       @product = create(:product, shop: @shop)
@@ -83,7 +84,7 @@ module MagazCore
       @webhook = create(:webhook, shop: @shop)
     end
 
-    #SCORE: 1
+    #SCORE: 2
     test "should destroy with shop" do
       assert_equal 1, MagazCore::User.count
       assert_equal 1, MagazCore::Blog.count
