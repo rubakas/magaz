@@ -28,7 +28,7 @@ gem 'slim'
 gem 'sprockets-rails'#,  github: "rails/sprockets-rails"
 
 # Use SCSS for stylesheets
-gem 'sass-rails',       github: "rails/sass-rails"
+gem 'sass-rails'#,       github: "rails/sass-rails"
 
 # Use twitter bootstrap and font icons
 gem 'anjlab-bootstrap-rails',
