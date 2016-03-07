@@ -3,7 +3,7 @@ require 'test_helper'
 module MagazCore
   class ShopServices::CreateTest < ActiveSupport::TestCase
     setup do
-      @default_theme = build(:theme)
+      @default_theme = Theme.new
       archive_path = ::File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
       MagazCore::ThemeServices::ImportFromArchive
         .call(archive_path: archive_path,
