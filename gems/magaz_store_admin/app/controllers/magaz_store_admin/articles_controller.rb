@@ -15,12 +15,10 @@ module MagazStoreAdmin
     end
 
     def create
-      #add
       service = MagazCore::ShopServices::AddArticle.run(title: params[:title], content: params[:content],
                                                          blog_id: params[:blog_id], page_title: params[:page_title],
                                                          meta_description: params[:meta_description], handle: params[:handle])
-      #params.fetch(:article, {}).permit(:title, :content, :blog_id, :page_title, :meta_description, :handle) }
-      if service.success?
+      if service.valid?
         @article = service.result
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                    topic: MagazCore::Webhook::Topics::CREATE_ARTICLE_EVENT,
@@ -34,9 +32,12 @@ module MagazStoreAdmin
     end
 
     def update
-      #change
-      @article = current_shop.articles.friendly.find(params[:id])
-      if @article.update_attributes(permitted_params[:article])
+      service = MagazCore::ShopServices::ChangeArticle.run(id: params[:id], title: params[:title],
+                                                           blog_id: params[:blog_id], page_title: params[:page_title],
+                                                           meta_description: params[:meta_description], content: params[:content],
+                                                           handle: params[:handle])
+      if service.valid?
+        @article = current_shop.articles.friendly.find(params[:id])
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                    topic: MagazCore::Webhook::Topics::UPDATE_ARTICLE_EVENT,
                                                                    current_user: current_user)

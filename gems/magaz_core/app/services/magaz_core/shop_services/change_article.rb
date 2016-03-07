@@ -1,24 +1,23 @@
 module MagazCore
   module ShopServices
-    class AddArticle < ActiveInteraction::Base
+    class ChangeArticle < ActiveInteraction::Base
 
       string :title, :content, :page_title, :handle, :meta_description
-      integer :blog_id
+      integer :id, :blog_id
 
       validates :title, :blog_id, presence: true
 
       validate :title_uniqueness
 
       def execute
-        article = MagazCore::Article.new(title: title, content: content,
-                                         blog_id: blog_id, page_title: page_title,
-                                         meta_description: meta_description, handle: handle)
+        article = MagazCore::Article.find(id)
+        article.update_attributes!(title: title, content: content,
+                                   blog_id: blog_id, page_title: page_title,
+                                   meta_description: meta_description, handle: handle)
 
         unless article.save
           errors.merge!(article.errors)
         end
-
-        article
       end
 
       private
