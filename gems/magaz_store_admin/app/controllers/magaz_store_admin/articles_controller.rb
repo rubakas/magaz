@@ -52,23 +52,13 @@ module MagazStoreAdmin
     end
 
     def destroy
-      #delete
       @article = current_shop.articles.friendly.find(params[:id])
-      @article.destroy
+      service = MagazCore::ShopServices::DeleteArticle.run(id: @article.id)
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                  topic: MagazCore::Webhook::Topics::DELETE_ARTICLE_EVENT,
                                                                  current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to articles_url
-    end
-
-    protected
-
-    #TODO:  collection_ids are not guaranteed to belong to this shop!!!
-    # https://github.com/josevalim/inherited_resources#strong-parameters
-    def permitted_params
-      { article:
-          params.fetch(:article, {}).permit(:title, :content, :blog_id, :page_title, :meta_description, :handle) }
     end
   end
 end
