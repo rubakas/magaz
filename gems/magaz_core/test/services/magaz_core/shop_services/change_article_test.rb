@@ -38,5 +38,15 @@ module MagazCore
       assert_equal 1, service.errors.full_messages.count
       assert_equal "Title has already been taken", service.errors.full_messages.first
     end
+
+    test 'should not update article with' do
+      service = MagazCore::ShopServices::ChangeArticle.
+                  run(id: @article2.id, title: @article2.title, blog_id: @blog.id,
+                      content: "", page_title: "", handle: "",
+                      meta_description: "")
+      assert service.valid?
+      assert_equal '', service.result.handle
+      assert_equal '', service.result.page_title
+    end
   end
 end
