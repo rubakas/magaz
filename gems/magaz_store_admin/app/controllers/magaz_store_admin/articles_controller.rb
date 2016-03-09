@@ -11,13 +11,13 @@ module MagazStoreAdmin
     end
 
     def new
-      @article = current_shop.articles.new
+      @article = MagazCore::ShopServices::AddArticle.new
     end
 
     def create
-      service = MagazCore::ShopServices::AddArticle.run(title: params[:title], content: params[:content],
-                                                         blog_id: params[:blog_id], page_title: params[:page_title],
-                                                         meta_description: params[:meta_description], handle: params[:handle])
+      service = MagazCore::ShopServices::AddArticle.run(title: params[:article][:title], content: params[:article][:content],
+                                                        blog_id: params[:article][:blog_id], page_title: params[:article][:page_title],
+                                                        meta_description: params[:article][:meta_description], handle: params[:article][:handle])
       if service.valid?
         @article = service.result
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
@@ -26,18 +26,20 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
+        @article = service
         flash[:notice] = t('.notice_fail')
         render 'new'
       end
     end
 
     def update
-      service = MagazCore::ShopServices::ChangeArticle.run(id: params[:id], title: params[:title],
-                                                           blog_id: params[:blog_id], page_title: params[:page_title],
-                                                           meta_description: params[:meta_description], content: params[:content],
-                                                           handle: params[:handle])
+      @article = current_shop.articles.friendly.find(params[:id])
+      service = MagazCore::ShopServices::ChangeArticle.run(id: @article.id, title: params[:article][:title],
+                                                           blog_id: params[:article][:blog_id], page_title: params[:article][:page_title],
+                                                           meta_description: params[:article][:meta_description], content: params[:article][:content],
+                                                           handle: params[:article][:handle])
       if service.valid?
-        @article = current_shop.articles.friendly.find(params[:id])
+        @article = service.result
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                    topic: MagazCore::Webhook::Topics::UPDATE_ARTICLE_EVENT,
                                                                    current_user: current_user)

@@ -9,6 +9,10 @@ module MagazCore
 
       validate :title_uniqueness
 
+      def to_model
+        MagazCore::Article.new
+      end
+
       def execute
         article = MagazCore::Article.new(title: title, content: content,
                                          blog_id: blog_id, page_title: page_title,
@@ -28,8 +32,7 @@ module MagazCore
       end
 
       def title_unique?
-        blog = MagazCore::Blog.find_by_id(blog_id)
-        !blog.articles.find_by(title: title)
+        MagazCore::Article.where(blog_id: blog_id, title: title).count == 0
       end
     end
   end

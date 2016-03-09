@@ -26,6 +26,7 @@ class ArticlesStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Content', with: ''
     click_button 'Create Article'
     assert page.has_content? '1 error prohibited this article from being saved'
+    assert page.has_content? "Title can't be blank"
   end
 
   test "handle url" do
