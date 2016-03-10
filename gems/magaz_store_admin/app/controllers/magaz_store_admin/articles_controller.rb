@@ -53,7 +53,7 @@ module MagazStoreAdmin
 
     def destroy
       @article = current_shop.articles.friendly.find(params[:id])
-      service = MagazCore::ShopServices::DeleteArticle.run(article: @article)
+      service = MagazCore::ShopServices::DeleteArticle.run(id: @article.id)
       @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @article,
                                                                  topic: MagazCore::Webhook::Topics::DELETE_ARTICLE_EVENT,
                                                                  current_user: current_user)
