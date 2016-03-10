@@ -34,7 +34,7 @@ module MagazStoreAdmin
 
     def update
       @article = current_shop.articles.friendly.find(params[:id])
-      service = MagazCore::ShopServices::ChangeArticle.run(id: @article.id, title: params[:article][:title],
+      service = MagazCore::ShopServices::ChangeArticle.run(article: @article, title: params[:article][:title],
                                                            blog_id: params[:article][:blog_id], page_title: params[:article][:page_title],
                                                            meta_description: params[:article][:meta_description], content: params[:article][:content],
                                                            handle: params[:article][:handle])
