@@ -14,8 +14,7 @@ module MagazCore
       end
 
       def execute
-        blog = MagazCore::Blog.new(title: title, shop_id: shop_id, page_title: page_title,
-                                      meta_description: meta_description, handle: handle)
+        blog = MagazCore::Blog.new(inputs)
 
         unless blog.save
           errors.merge!(blog.errors)
