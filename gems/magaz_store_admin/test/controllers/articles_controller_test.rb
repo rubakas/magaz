@@ -2,6 +2,7 @@ module MagazStoreAdmin
   require 'test_helper'
 
   class ArticlesControllerTest < ActionController::TestCase
+
     setup do
       @shop = create(:shop, subdomain: 'example')
       @user = create(:user, shop: @shop)
@@ -12,7 +13,9 @@ module MagazStoreAdmin
 
     test "should create event with article" do
       assert_difference('MagazCore::Event.count', +1) do
-        post :create, { article: { content: @article.content, title: 'New uniq name', blog_id: @blog.id } }
+        post :create, { article: { title: "Changed title", blog_id: @blog.id,
+                                   content: "Changed content", page_title: "Changed page_title",
+                                   handle: "ChangedC handle", meta_description: "Changed meta_description" } }
       end
     end
 
@@ -20,12 +23,14 @@ module MagazStoreAdmin
       assert_difference('MagazCore::Event.count', +1) do
         patch :update,
           { id: @article.id,
-            article: { content: @article.content, title: @article.title } }
+            article: { title: "Changed title", blog_id: @blog.id,
+                         content: "Changed content", page_title: "Changed page_title",
+                         handle: "ChangedC handle", meta_description: "Changed meta_description" } }
       end
     end
 
     test "should create event with delete" do
-      assert_difference('MagazCore::Event.count', +1) do
+      assert_difference('MagazCore::Event.count') do
         delete :destroy, id: @article.id
       end
     end
@@ -42,8 +47,10 @@ module MagazStoreAdmin
     end
 
     test "should create article" do
-      assert_difference('MagazCore::Article.count') do
-        post :create, { article: { content: @article.content, title: 'New uniq name', blog_id: @blog.id } }
+      assert_difference('MagazCore::Article.count', +1) do
+        post :create, { article: { title: "Changed title", blog_id: @blog.id,
+                                   content: "Changed content", page_title: "Changed page_title",
+                                   handle: "ChangedC handle", meta_description: "Changed meta_description" } }
       end
 
       assert_redirected_to article_path(assigns(:article))
@@ -58,7 +65,9 @@ module MagazStoreAdmin
     test "should update article" do
       patch :update,
         { id: @article.id,
-          article: { content: @article.content, title: @article.title } }
+          article: { title: "Changed title", blog_id: @blog.id,
+                     content: "Changed content", page_title: "Changed page_title",
+                     handle: "ChangedC handle", meta_description: "Changed meta_description"} }
       assert_response :redirect
     end
 

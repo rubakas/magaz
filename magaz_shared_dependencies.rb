@@ -7,13 +7,15 @@ source "https://rubygems.org"
 # gem 'rack',             github: 'rack/rack'
 # gem 'arel',             github: 'rails/arel'
 # gem 'i18n',             github: 'svenfuchs/i18n'
+
+gem 'active_interaction'
+
 gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-
 
 gem 'memcachier'
 gem 'dalli'
