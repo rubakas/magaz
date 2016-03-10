@@ -11,18 +11,22 @@ module MagazStoreAdmin
     end
 
     def new
-      @blog = current_shop.blogs.new
+      @blog = MagazCore::ShopServices::AddBlog.new
     end
 
     def create
-      @blog = current_shop.blogs.new(permitted_params[:blog])
-      if @blog.save
+      service = MagazCore::ShopServices::AddBlog.run(title: params[:blog][:title], shop_id: current_shop.id,
+                                                     page_title: params[:blog][:page_title], handle: params[:blog][:handle],
+                                                     meta_description: params[:blog][:meta_description])
+      if service.valid?
+        @blog = service.result
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
                                                                    topic: MagazCore::Webhook::Topics::CREATE_BLOG_EVENT,
                                                                    current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
+        @blog = service
         flash[:notice] = t('.notice_fail')
         render 'new'
       end

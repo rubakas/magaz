@@ -4,6 +4,7 @@ module MagazCore
   class ShopServices::AddArticleTest < ActiveSupport::TestCase
 
     setup do
+      @shop = create(:shop, name: 'shop_name')
       @blog = create(:blog, shop: @shop)
       @success_params = { title: "Test title", blog_id: @blog.id, content: "Test text",
                           page_title: "Test page_title", handle: "Test handle", meta_description: "Test meta_description" }
