@@ -9,9 +9,7 @@ module MagazCore
 
       def execute
         article = MagazCore::Article.friendly.find(id)
-        article.update_attributes!(title: title, content: content,
-                                   blog_id: blog_id, page_title: page_title,
-                                   meta_description: meta_description, handle: handle) ||
+        article.update_attributes!(inputs.slice!(:id)) ||
           errors.add(:base, "Wrong params for article")
 
         article
@@ -20,7 +18,7 @@ module MagazCore
       private
 
       def title_changed?
-        MagazCore::Article.friendly.find(id).title != title
+        MagazCore::Blog.friendly.find(blog_id).articles.friendly.find(id).title != title
       end
 
       def title_uniqueness

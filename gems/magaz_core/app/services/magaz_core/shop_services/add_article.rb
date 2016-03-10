@@ -14,9 +14,7 @@ module MagazCore
       end
 
       def execute
-        article = MagazCore::Article.new(title: title, content: content,
-                                         blog_id: blog_id, page_title: page_title,
-                                         meta_description: meta_description, handle: handle)
+        article = MagazCore::Article.new(inputs)
 
         unless article.save
           errors.merge!(article.errors)
