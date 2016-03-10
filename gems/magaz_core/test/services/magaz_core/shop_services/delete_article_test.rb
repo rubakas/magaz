@@ -11,18 +11,11 @@ module MagazCore
 
     test 'should delete article with valid id' do
       assert_equal 2, @blog.articles.count
-      service = MagazCore::ShopServices::DeleteArticle.run(id: @article.id)
+      service = MagazCore::ShopServices::DeleteArticle.run(article: @article)
       assert service.valid?
       refute MagazCore::Article.find_by_id(@article.id)
       assert MagazCore::Article.find_by_id(@article2.id)
       assert_equal 1, @blog.articles.count
-    end
-
-    test 'should not delete article with valid blank id' do
-      assert_equal 2, @blog.articles.count
-      service = MagazCore::ShopServices::DeleteArticle.run(id: "")
-      refute service.valid?
-      assert_equal 2, @blog.articles.count
     end
   end
 end

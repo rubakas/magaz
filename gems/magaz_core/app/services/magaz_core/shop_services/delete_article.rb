@@ -2,20 +2,12 @@ module MagazCore
   module ShopServices
     class DeleteArticle < ActiveInteraction::Base
 
-      integer :id
+      object :article, class: MagazCore::Article
 
-      validates :id, presence: true
-
-      validate :article_exist?
+      validates :article, presence: true
 
       def execute
-        MagazCore::Article.friendly.find(id).destroy
-      end
-
-      private
-
-      def article_exist?
-        MagazCore::Article.friendly.find(id)
+        article.destroy
       end
     end
   end

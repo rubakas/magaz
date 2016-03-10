@@ -2,16 +2,17 @@ module MagazCore
   module ShopServices
     class ChangeArticle < ActiveInteraction::Base
 
+      object :article, class: MagazCore::Article
+
       string :title, :content, :page_title, :handle, :meta_description
-      integer :id, :blog_id
+      integer :blog_id
+
+      validates :article, presence: true
 
       validate :title_uniqueness, if: :title_changed?
 
       def execute
-        article = MagazCore::Article.friendly.find(id)
-        article.update_attributes!(title: title, content: content,
-                                   blog_id: blog_id, page_title: page_title,
-                                   meta_description: meta_description, handle: handle) ||
+        article.update_attributes!(inputs.slice!(:article)) ||
           errors.add(:base, "Wrong params for article")
 
         article
@@ -20,7 +21,7 @@ module MagazCore
       private
 
       def title_changed?
-        MagazCore::Article.friendly.find(id).title != title
+        article.title != title
       end
 
       def title_uniqueness
