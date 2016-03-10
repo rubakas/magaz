@@ -4,6 +4,7 @@ module MagazCore
   class ShopServices::ChangeArticleTest < ActiveSupport::TestCase
 
     setup do
+      @shop = create(:shop, name: 'shop_name')
       @blog = create(:blog, shop: @shop)
       @article = create(:article, blog: @blog)
       @article2 = create(:article, blog: @blog)
@@ -39,7 +40,7 @@ module MagazCore
       assert_equal "Title has already been taken", service.errors.full_messages.first
     end
 
-    test 'should not update article with' do
+    test 'should update article with some blank params' do
       service = MagazCore::ShopServices::ChangeArticle.
                   run(id: @article2.id, title: @article2.title, blog_id: @blog.id,
                       content: "", page_title: "", handle: "",

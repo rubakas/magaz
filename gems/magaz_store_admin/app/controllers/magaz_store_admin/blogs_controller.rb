@@ -34,7 +34,11 @@ module MagazStoreAdmin
 
     def update
       @blog = current_shop.blogs.friendly.find(params[:id])
-      if @blog.update_attributes(permitted_params[:blog])
+      service = MagazCore::ShopServices::ChangeBlog.run(id: @blog.id, title: params[:blog][:title],
+                                                        shop_id: current_shop.id, page_title: params[:blog][:page_title],
+                                                        meta_description: params[:blog][:meta_description], handle: params[:blog][:handle])
+      if service.valid?
+        @blog = service.result
         @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @blog,
                                                                    topic: MagazCore::Webhook::Topics::UPDATE_BLOG_EVENT,
                                                                    current_user: current_user)
