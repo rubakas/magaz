@@ -11,24 +11,6 @@ module MagazStoreAdmin
       @comment = create(:comment, article: @article)
     end
 
-    test "should create event with comment" do
-      assert_difference('MagazCore::Event.count', +1) do
-        post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body, blog_id: @blog.id }
-      end
-    end
-
-    test "should create event with update" do
-      assert_difference('MagazCore::Event.count', +1) do
-        patch :update, id: @comment.id, comment: { author: @comment.author, email: @comment.email, body: @comment.body }
-      end
-    end
-
-    test "should create event with delete" do
-      assert_difference('MagazCore::Event.count', +1) do
-        delete :destroy, id: @comment.id
-      end
-    end
-
     test "should get index" do
       get :index
       assert_response :success

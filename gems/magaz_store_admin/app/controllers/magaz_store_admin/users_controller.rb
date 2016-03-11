@@ -26,9 +26,6 @@ module MagazStoreAdmin
                                                  shop: current_shop)
         @service.send_mail_invite(user: @service.user, link: user_url(@service.user, invite_token: @service.user.invite_token ))
         if @service.user.persisted?
-          @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @service.user,
-                                                                     topic: MagazCore::Webhook::Topics::CREATE_USER_EVENT,
-                                                                     current_user: @current_user)
           redirect_to users_path, notice: t('.notice_success')
         else
           redirect_to users_path, notice: t('.invalid_email')
