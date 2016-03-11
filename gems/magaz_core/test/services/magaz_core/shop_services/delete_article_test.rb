@@ -4,6 +4,7 @@ module MagazCore
   class ShopServices::DeleteArticleTest < ActiveSupport::TestCase
 
     setup do
+      @shop = create(:shop, name: 'shop_name')
       @blog = create(:blog, shop: @shop)
       @article = create(:article, blog: @blog)
       @article2 = create(:article, blog: @blog)
