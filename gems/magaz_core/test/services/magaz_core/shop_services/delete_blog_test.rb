@@ -18,7 +18,7 @@ module MagazCore
       assert_equal 1, @shop.blogs.count
     end
 
-    test 'should not delete blog with valid blank id' do
+    test 'should not delete blog with blank id' do
       assert_equal 2, @shop.blogs.count
       service = MagazCore::ShopServices::DeleteBlog.run(id: "")
       refute service.valid?
