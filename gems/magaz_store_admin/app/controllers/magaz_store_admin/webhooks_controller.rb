@@ -18,9 +18,6 @@ module MagazStoreAdmin
     def create
       @webhook = current_shop.webhooks.new(permitted_params[:webhook])
       if @webhook.save
-        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @webhook,
-                                                                   topic: MagazCore::Webhook::Topics::CREATE_WEBHOOK_EVENT,
-                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to webhook_url(@webhook)
       else
@@ -32,9 +29,6 @@ module MagazStoreAdmin
     def update
       @webhook = current_shop.webhooks.find(params[:id])
       if @webhook.update_attributes(permitted_params[:webhook])
-        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @webhook,
-                                                                   topic: MagazCore::Webhook::Topics::UPDATE_WEBHOOK_EVENT,
-                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to webhook_url(@webhook)
       else
@@ -45,9 +39,6 @@ module MagazStoreAdmin
     def destroy
       @webhook = current_shop.webhooks.find(params[:id])
       @webhook.destroy
-      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @webhook,
-                                                                 topic: MagazCore::Webhook::Topics::DELETE_WEBHOOK_EVENT,
-                                                                 current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to webhooks_url
     end

@@ -17,9 +17,6 @@ module MagazStoreAdmin
     def create
       @page = current_shop.pages.new(permitted_params[:page])
       if @page.save
-        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
-                                                                   topic: MagazCore::Webhook::Topics::CREATE_PAGE_EVENT,
-                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
@@ -30,9 +27,6 @@ module MagazStoreAdmin
     def update
       @page = current_shop.pages.friendly.find(params[:id])
       if @page.update_attributes(permitted_params[:page])
-        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
-                                                                   topic: MagazCore::Webhook::Topics::UPDATE_PAGE_EVENT,
-                                                                   current_user: current_user)
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
@@ -43,9 +37,6 @@ module MagazStoreAdmin
     def destroy
       @page = current_shop.pages.friendly.find(params[:id])
       @page.destroy
-      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @page,
-                                                                 topic: MagazCore::Webhook::Topics::DELETE_PAGE_EVENT,
-                                                                 current_user: current_user)
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
     end
