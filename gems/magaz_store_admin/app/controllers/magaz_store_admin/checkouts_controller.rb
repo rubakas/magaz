@@ -11,7 +11,7 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @abandoned_checkout.destroy
+      service = MagazCore::ShopServices::DeleteCheckout.run(id: @abandoned_checkout.id)
       redirect_to checkouts_url
     end
 
