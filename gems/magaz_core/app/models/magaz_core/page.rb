@@ -27,10 +27,6 @@ module MagazCore
 
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 
-    validates :title,
-      presence: true,
-      uniqueness: { scope: :shop_id }
-
     def should_generate_new_friendly_id?
       handle_changed?
     end
