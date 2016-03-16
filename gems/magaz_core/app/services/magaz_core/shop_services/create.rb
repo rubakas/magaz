@@ -86,19 +86,15 @@ module MagazCore
       end
 
       def _create_default_pages!(shop:)
-        shop
-          .pages
-          .create title:        I18n.t('default.models.page.about_title'),
-                  content:      I18n.t('default.models.page.about_content'),
-                  publish_on:   nil,
-                  published_at: nil
+        MagazCore::ShopServices::AddPage.run(title: I18n.t('default.models.page.about_title'), page_title: '',
+                                             content: I18n.t('default.models.page.about_content'), handle: '',
+                                             meta_description: '', shop_id: shop.id,
+                                             publish_on: nil, published_at: nil)
 
-        shop
-          .pages
-          .create title:        I18n.t('default.models.page.welcome_title'),
-                  content:      I18n.t('default.models.page.welcome_content'),
-                  publish_on:   nil,
-                  published_at: nil
+        MagazCore::ShopServices::AddPage.run(title: I18n.t('default.models.page.welcome_title'), page_title: '',
+                                             content: I18n.t('default.models.page.welcome_content'), handle: '',
+                                             meta_description: '', shop_id: shop.id,
+                                             publish_on: nil, published_at: nil)
       end
 
       def _create_default_emails!(shop:)
