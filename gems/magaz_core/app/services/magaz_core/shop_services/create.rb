@@ -57,9 +57,10 @@ module MagazCore
 
       def _create_default_link_lists!(shop:)
         #Main Menu link list
-        default_menu_link_list = shop
-          .link_lists
-          .create name:         I18n.t('default.models.link_list.menu_link_list_name')
+        link_list_service = MagazCore::ShopServices::AddLinkList.run(name: I18n.t('default.models.link_list.menu_link_list_name'),
+                                                                     handle: '',
+                                                                     shop_id: shop.id)
+        default_menu_link_list = link_list_service.result
 
         #Links for Main Menu
         default_home_link = default_menu_link_list
