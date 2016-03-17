@@ -2,15 +2,17 @@ module MagazCore
   module ShopServices
     class ChangePage < ActiveInteraction::Base
 
-      object :page, class: MagazCore::Page
       string :title, :content, :page_title, :meta_description, :handle
-      integer :shop_id
+      integer :id, :shop_id
+
+      validates :id, :shop_id, :title, presence: true
 
       validate :title_uniqueness, if: :title_changed?
 
       def execute
-        page.update_attributes!(inputs.slice!(:page)) ||
-          errors.add(:base, "Wrong params for page")
+        page = MagazCore::Page.friendly.find(id)
+        page.update_attributes!(inputs.slice!(:id)) ||
+          errors.add(:base, I18n.t('default.services.change_page.wrong_params'))
 
         page
       end
@@ -18,11 +20,11 @@ module MagazCore
       private
 
       def title_changed?
-        page.title != title
+        MagazCore::Page.friendly.find(id).title != title
       end
 
       def title_uniqueness
-        errors.add(:base, "Title has already been taken") unless title_unique?
+        errors.add(:base, I18n.t('default.services.change_page.title_not_unique')) unless title_unique?
       end
 
       def title_unique?

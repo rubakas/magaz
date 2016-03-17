@@ -10,7 +10,7 @@ module MagazCore
       def execute
         article = MagazCore::Article.friendly.find(id)
         article.update_attributes!(inputs.slice!(:id)) ||
-          errors.add(:base, "Wrong params for article")
+          errors.add(:base, I18n.t('default.services.change_article.wrong_params'))
 
         article
       end
@@ -22,7 +22,7 @@ module MagazCore
       end
 
       def title_uniqueness
-        errors.add(:base, "Title has already been taken") unless title_unique?
+        errors.add(:base, I18n.t('default.services.change_article.title_not_unique')) unless title_unique?
       end
 
       def title_unique?

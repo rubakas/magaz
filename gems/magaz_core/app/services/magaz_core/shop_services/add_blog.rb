@@ -26,7 +26,7 @@ module MagazCore
       private
 
       def title_uniqueness
-        errors.add(:base, "Title has already been taken") unless title_unique?
+        errors.add(:base, I18n.t('default.services.add_blog.title_not_unique')) unless title_unique?
       end
 
       def title_unique?

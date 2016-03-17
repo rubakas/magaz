@@ -7,7 +7,7 @@ module MagazCore
       @shop = create(:shop, name: 'shop_name')
       @page = create(:page, shop: @shop)
       @page2 = create(:page, shop: @shop)
-      @success_params = { page: @page, title: "Changed title", shop_id: @shop.id,
+      @success_params = { id: @page.id, title: "Changed title", shop_id: @shop.id,
                           page_title: "Changed page_title", handle: "Changed handle",
                           meta_description: "Changed meta_description", content: "Changed content" }
     end
@@ -22,7 +22,7 @@ module MagazCore
 
     test 'should not update page with existing title' do
       service = MagazCore::ShopServices::ChangePage.
-                  run(page: @page, title: @page2.title, shop_id: @shop.id,
+                  run(id: @page.id, title: @page2.title, shop_id: @shop.id,
                       page_title: "Changed page_title", handle: "ChangedC handle",
                       meta_description: "Changed meta_description", content: "Changed content")
       refute service.valid?
@@ -32,7 +32,7 @@ module MagazCore
 
     test 'should update page with some blank params' do
       service = MagazCore::ShopServices::ChangePage.
-                  run(page: @page2, title: @page2.title, shop_id: @shop.id,
+                  run(id: @page2.id, title: @page2.title, shop_id: @shop.id,
                       page_title: '', handle: '', meta_description: '',
                       content: '')
       assert service.valid?
