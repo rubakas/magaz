@@ -173,3 +173,7 @@ en:
         customer_creation: "Customer creation"
         customer_update: "Customer update"
         customer_deletion: "Customer deletion"
+
+    services:
+      add_link:
+        title_not_unique: "Name has already been taken"
