@@ -33,12 +33,14 @@ module MagazStoreAdmin
 
     def update
       @collection = current_shop.collections.friendly.find(params[:id])
-      if @collection.update_attributes(permitted_params[:collection])
-        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
-                                                                   topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT,
-                                                                   current_user: current_user)
-        @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
+      service = MagazCore::ShopServices::ChangeCollection.run(id: @collection.id, name: params[:collection][:name],
+                                                              shop_id: current_shop.id, page_title: params[:collection][:page_title],
+                                                              meta_description: params[:collection][:meta_description], handle: params[:collection][:handle],
+                                                              description: params[:collection][:description])
+      if service.valid?
+        #@webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        #                                                                    topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
+        @collection = service.result
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else

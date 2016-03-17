@@ -35,7 +35,8 @@ module MagazStoreAdmin
     end
 
     test "should update collection" do
-      patch :update, id: @collection, collection: { description: @collection.description, name: @collection.name }
+      patch :update, id: @collection, collection: { name: "Changed name", shop_id: @shop.id, page_title: "Changed page_title",
+                                                    handle: "Changed handle", meta_description: "Changed meta_description", description: "Changed description" }
       assert_redirected_to collection_path(assigns(:collection))
     end
 
