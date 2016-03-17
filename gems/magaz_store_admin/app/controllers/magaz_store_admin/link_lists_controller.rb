@@ -24,6 +24,9 @@ class LinkListsController < ApplicationController
       redirect_to link_list_path(@link_list)
     else
       @link_list = current_shop.link_lists.new
+      service.errors.full_messages.each do |msg|
+        @link_list.errors.add(:base, msg)
+      end
       render 'new'
     end
   end

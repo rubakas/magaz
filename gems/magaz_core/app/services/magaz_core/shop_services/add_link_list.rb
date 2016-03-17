@@ -22,7 +22,7 @@ module MagazCore
       private
 
       def name_uniqueness
-        errors.add(:base, "Name has already been taken") unless name_unique?
+        errors.add(:base, I18n.t('default.services.add_link_list.name_not_unique')) unless name_unique?
       end
 
       def name_unique?
