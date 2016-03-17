@@ -3,7 +3,8 @@ module MagazStoreAdmin
     include MagazCore::Concerns::Authenticable
 
     def index
-      @link_list = current_shop.link_lists.frieldly.find(params[:link_list_id])
+      #@link_list = current_shop.link_lists.frieldly.find(params[:link_list_id])
+      @link_list = MagazCore::LinkList.find(params[:link_list_id])
       @links = @link_lists.links.page(params[:page])
     end
 
@@ -13,17 +14,19 @@ module MagazStoreAdmin
     end
 
     def new
-      @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
-      @link = @link_list.links.new
+      @link = MagazCore::ShopServices::AddLink.new
     end
 
     def create
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
-      @link = @link_list.links.new(permitted_params[:link])
-      if @link.save
+      service = MagazCore::ShopServices::AddLink.run(name: params[:link][:name], link_type: params[:link][:link_type],
+                                                     position: params[:link][:position], link_list_id: @link_list.id)
+      if service.valid?
+        @link = service.link
         flash[:notice] = t('.notice_success')
         render 'show'
       else
+        @link = service
         render 'new'
       end
     end
