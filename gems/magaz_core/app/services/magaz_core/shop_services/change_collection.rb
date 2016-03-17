@@ -5,7 +5,7 @@ module MagazCore
       string :name, :page_title, :handle, :meta_description, :description
       integer :id, :shop_id
 
-      validates :id, :shop_id, presence: true
+      validates :id, :shop_id, :name, presence: true
 
       validate :name_uniqueness, if: :name_changed?
 
