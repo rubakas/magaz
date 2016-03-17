@@ -7,7 +7,7 @@ module MagazCore
       @shop = create(:shop, name: 'shop_name')
       @collection = create(:collection, shop: @shop)
       @collection2 = create(:collection, shop: @shop)
-      @success_params = { collection: @collection, name: "Changed name", shop_id: @shop.id,
+      @success_params = { id: @collection.id, name: "Changed name", shop_id: @shop.id,
                           page_title: "Changed page_title", handle: "Changed handle",
                           meta_description: "Changed meta_description", description: "Test description" }
     end
@@ -22,7 +22,7 @@ module MagazCore
 
     test 'should not update collection with existing name' do
       service = MagazCore::ShopServices::ChangeCollection.
-                  run(collection: @collection, name: @collection2.name, shop_id: @shop.id,
+                  run(id: @collection.id, name: @collection2.name, shop_id: @shop.id,
                       page_title: "Changed page_title", handle: "Changed handle",
                       meta_description: "Changed meta_description", description: "description")
       refute service.valid?
@@ -32,7 +32,7 @@ module MagazCore
 
     test 'should update collection with some blank params' do
       service = MagazCore::ShopServices::ChangeCollection.
-                  run(collection: @collection2, name: @collection2.name, shop_id: @shop.id,
+                  run(id: @collection2.id, name: @collection2.name, shop_id: @shop.id,
                       page_title: '', handle: '', meta_description: '', description: '')
       assert service.valid?
       assert_equal '', service.result.handle

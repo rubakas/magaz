@@ -2,13 +2,15 @@ module MagazCore
   module ShopServices
     class ChangeCollection < ActiveInteraction::Base
 
-      object :collection, class: MagazCore::Collection
       string :name, :page_title, :handle, :meta_description, :description
-      integer :shop_id
+      integer :id, :shop_id
+
+      validates :id, :shop_id, presence: true
 
       validate :name_uniqueness, if: :name_changed?
 
       def execute
+        collection = MagazCore::Collection.friendly.find(id)
         collection.update_attributes!(inputs.slice!(:collection)) ||
           errors.add(:base, "Wrong params for collection")
 
@@ -18,7 +20,7 @@ module MagazCore
       private
 
       def name_changed?
-        collection.name != name
+        MagazCore::Collection.friendly.find(id).name != name
       end
 
       def name_uniqueness

@@ -33,7 +33,7 @@ module MagazStoreAdmin
 
     def update
       @collection = current_shop.collections.friendly.find(params[:id])
-      service = MagazCore::ShopServices::ChangeCollection.run(collection: @collection, name: params[:collection][:name],
+      service = MagazCore::ShopServices::ChangeCollection.run(id: @collection.id, name: params[:collection][:name],
                                                               shop_id: current_shop.id, page_title: params[:collection][:page_title],
                                                               meta_description: params[:collection][:meta_description], handle: params[:collection][:handle],
                                                               description: params[:collection][:description])
