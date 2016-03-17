@@ -43,7 +43,7 @@ module MagazStoreAdmin
     end
 
     test "should not update link_list" do
-      patch :update, id: @link_list, link_list: { handle: @link_list.handle, name: '' }
+      patch :update, id: @link_list, link_list: { handle: @link_list.handle }
       assert_response :success
     end
 

@@ -189,6 +189,9 @@ en:
 
       add_link_list:
         name_not_unique: "Name has already been taken"
+      change_link_list:
+        wrong_params: "Wrong params for blog"
+        name_not_unique: "Name has already been taken"
 
       change_page:
         wrong_params: "Wrong params for page"
