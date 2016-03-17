@@ -9,6 +9,14 @@ module MagazCore
 
       validate :name_uniqueness
 
+      def to_model
+        MagazCore::LinkList.new
+      end
+
+      def links
+        return []
+      end
+
       def execute
         link_list = MagazCore::LinkList.new(inputs)
 
