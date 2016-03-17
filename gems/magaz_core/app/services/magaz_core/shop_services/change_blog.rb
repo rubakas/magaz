@@ -10,7 +10,7 @@ module MagazCore
 
       def execute
         blog.update_attributes!(inputs.slice!(:blog)) ||
-          errors.add(:base, "Wrong params for blog")
+          errors.add(:base, I18n.t('default.services.change_blog.wrong_params'))
 
         blog
       end
@@ -22,7 +22,7 @@ module MagazCore
       end
 
       def title_uniqueness
-        errors.add(:base, "Title has already been taken") unless title_unique?
+        errors.add(:base, I18n.t('default.services.change_blog.title_not_unique')) unless title_unique?
       end
 
       def title_unique?
