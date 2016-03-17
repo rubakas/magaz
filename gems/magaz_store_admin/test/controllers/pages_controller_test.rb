@@ -22,7 +22,8 @@ module MagazStoreAdmin
 
     test "should create page" do
       assert_difference('MagazCore::Page.count') do
-        post :create, page: { content: @page.content, title: 'New uniq name' }
+        post :create, page: { title: "Test title", page_title: "Test page_title", handle: "Test handle",
+                              meta_description: "Test meta_description", content: "Test content" }
       end
 
       assert_redirected_to page_path(assigns(:page))
@@ -34,7 +35,8 @@ module MagazStoreAdmin
     end
 
     test "should update page" do
-      patch :update, id: @page, page: { content: @page.content, title: @page.title }
+      patch :update, id: @page, page: { title: "Test title", page_title: "Test page_title", handle: "Test handle",
+                                        meta_description: "Test meta_description", content: "Test content"}
       assert_response :redirect
     end
 

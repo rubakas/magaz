@@ -41,6 +41,9 @@ module MagazStoreAdmin
         redirect_to article_url(@article)
       else
         flash[:notice] = t('.notice_fail')
+        service.errors.full_messages.each do |msg|
+          @article.errors.add(:base, msg)
+        end
         render 'show'
       end
     end

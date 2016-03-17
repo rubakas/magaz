@@ -38,21 +38,26 @@ module MagazCore
       end
 
       def _create_default_blogs_and_posts!(shop:)
-        default_blog = shop
-          .blogs
-          .create title: I18n.t('default.models.blog.blog_title') #Comments are disabled
+        add_blog_service = MagazCore::ShopServices::AddBlog
+                                .run(title: I18n.t('default.models.blog.blog_title'),
+                                     shop_id: shop.id, page_title: '', handle: '',
+                                     meta_description: '')
 
-        default_post = default_blog
-          .articles
-          .create title:    I18n.t('default.models.article.article_title'),
-                  content:  I18n.t('default.models.article.article_content')
+        default_blog = add_blog_service.result
+
+        add_article_service = MagazCore::ShopServices::AddArticle
+                                  .run(title: I18n.t('default.models.article.article_title'), content: I18n.t('default.models.article.article_content'),
+                                       blog_id: default_blog.id, page_title: '',
+                                       meta_description: '', handle: '')
+
+        default_post = add_article_service.result
       end
 
       def _create_default_collection!(shop:)
-        shop
-          .collections
-          .create name:         I18n.t('default.models.collection.collection_title'),
-                  description:  I18n.t('default.models.collection.collection_description')
+        service = MagazCore::ShopServices::AddCollection
+                    .run(name: I18n.t('default.models.collection.collection_title'),
+                         description: I18n.t('default.models.collection.collection_description'),
+                         shop_id: shop.id, page_title: '', meta_description: '',  handle: '')
       end
 
       def _create_default_link_lists!(shop:)
@@ -87,19 +92,15 @@ module MagazCore
       end
 
       def _create_default_pages!(shop:)
-        shop
-          .pages
-          .create title:        I18n.t('default.models.page.about_title'),
-                  content:      I18n.t('default.models.page.about_content'),
-                  publish_on:   nil,
-                  published_at: nil
+        MagazCore::ShopServices::AddPage.run(title: I18n.t('default.models.page.about_title'), page_title: '',
+                                             content: I18n.t('default.models.page.about_content'), handle: '',
+                                             meta_description: '', shop_id: shop.id,
+                                             publish_on: nil, published_at: nil)
 
-        shop
-          .pages
-          .create title:        I18n.t('default.models.page.welcome_title'),
-                  content:      I18n.t('default.models.page.welcome_content'),
-                  publish_on:   nil,
-                  published_at: nil
+        MagazCore::ShopServices::AddPage.run(title: I18n.t('default.models.page.welcome_title'), page_title: '',
+                                             content: I18n.t('default.models.page.welcome_content'), handle: '',
+                                             meta_description: '', shop_id: shop.id,
+                                             publish_on: nil, published_at: nil)
       end
 
       def _create_default_emails!(shop:)
