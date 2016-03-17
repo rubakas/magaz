@@ -2,13 +2,15 @@ module MagazCore
   module ShopServices
     class ChangeBlog < ActiveInteraction::Base
 
-      object :blog, class: MagazCore::Blog
       string :title, :page_title, :handle, :meta_description
-      integer :shop_id
+      integer :id, :shop_id
+
+      validates :id, :shop_id, :title, presence: true
 
       validate :title_uniqueness, if: :title_changed?
 
       def execute
+        blog = MagazCore::Blog.friendly.find(id)
         blog.update_attributes!(inputs.slice!(:blog)) ||
           errors.add(:base, I18n.t('default.services.change_blog.wrong_params'))
 
@@ -18,7 +20,7 @@ module MagazCore
       private
 
       def title_changed?
-        blog.title != title
+        MagazCore::Blog.friendly.find(id).title != title
       end
 
       def title_uniqueness
