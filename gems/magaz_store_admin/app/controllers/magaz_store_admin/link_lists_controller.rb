@@ -15,11 +15,15 @@ class LinkListsController < ApplicationController
   end
 
   def create
-    @link_list = current_shop.link_lists.new(permitted_params[:link_list])
-    if @link_list.save
+    service = MagazCore::ShopServices::AddLinkList.run(name: params[:link_list][:name],
+                                                       handle: params[:link_list][:handle],
+                                                       shop_id: current_shop.id)
+    if service.valid?
+      @link_list = service.result
       flash[:notice] = t('.notice_success')
       redirect_to link_list_path(@link_list)
     else
+      @link_list = service
       render 'new'
     end
   end
