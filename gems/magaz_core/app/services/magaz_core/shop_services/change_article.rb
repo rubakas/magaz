@@ -5,6 +5,8 @@ module MagazCore
       string :title, :content, :page_title, :handle, :meta_description
       integer :id, :blog_id
 
+      validates :id, :blog_id, presence: true
+
       validate :title_uniqueness, if: :title_changed?
 
       def execute

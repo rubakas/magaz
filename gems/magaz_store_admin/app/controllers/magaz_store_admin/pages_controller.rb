@@ -11,15 +11,19 @@ module MagazStoreAdmin
     end
 
     def new
-      @page = current_shop.pages.new
+      @page = MagazCore::ShopServices::AddPage.new
     end
 
     def create
-      @page = current_shop.pages.new(permitted_params[:page])
-      if @page.save
+      service = MagazCore::ShopServices::AddPage.run(title: params[:page][:title], content: params[:page][:content],
+                                                     page_title: params[:page][:page_title], meta_description: params[:page][:meta_description],
+                                                     handle: params[:page][:handle], shop_id: current_shop.id)
+      if service.valid?
+        @page = service.result
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
+        @page = service
         render 'show'
       end
     end
