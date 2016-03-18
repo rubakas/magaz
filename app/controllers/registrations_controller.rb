@@ -12,6 +12,7 @@ class RegistrationsController < ApplicationController
     @user = @service.user
     if @shop.persisted?
       session[:user_id] = @user.id
+      cookies[:session] = { domain: @shop.subdomain }
       redirect_to magaz_store_admin.root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
       render template: 'welcome/index'

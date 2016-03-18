@@ -19,6 +19,7 @@
          @user.authentic_password?(params[:session][:password])
         # valid login
         session[:user_id] = @user.id
+        cookies[:session] = { domain: current_shop.subdomain }
         redirect_to magaz_store_admin.root_path(host: HOSTNAME, subdomain: current_shop.subdomain)
       else
         flash[:notice] = t('.notice_fail')
@@ -28,6 +29,7 @@
 
     def destroy
       session[:user_id] = nil
+      cookies.delete(:session, domain: current_shop.subdomain)
       redirect_to root_url
     end
   end
