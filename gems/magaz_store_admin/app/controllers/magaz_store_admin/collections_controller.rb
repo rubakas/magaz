@@ -50,24 +50,11 @@ module MagazStoreAdmin
 
     def destroy
       @collection = current_shop.collections.friendly.find(params[:id])
-      @collection.destroy
-      @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @collection,
-                                                                 topic: MagazCore::Webhook::Topics::DELETE_COLLECTION_EVENT,
-                                                                 current_user: current_user)
-      @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                          topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
+      service = MagazCore::ShopServices::DeleteCollection.run(id:  @collection.id)
+      # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+      #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
     end
-
-    protected
-
-    #TODO:  collection_ids are not guaranteed to belong to this shop!!!
-    # https://github.com/josevalim/inherited_resources#strong-parameters
-    def permitted_params
-      { collection:
-          params.fetch(:collection, {}).permit(:name, :description, :page_title, :meta_description, :handle) }
-    end
-
   end
 end
