@@ -48,17 +48,9 @@ module MagazStoreAdmin
 
     def destroy
       @page = current_shop.pages.friendly.find(params[:id])
-      @page.destroy
+      service = MagazCore::ShopServices::DeletePage.run(id: @page.id)
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
-    end
-
-    protected
-
-    #TODO:  page_ids are not guaranteed to belong to this shop!!!
-    # https://github.com/josevalim/inherited_resources#strong-parameters
-    def permitted_params
-      { page: params.fetch(:page, {}).permit(:title, :content, :page_title, :meta_description, :handle) }
     end
   end
 end
