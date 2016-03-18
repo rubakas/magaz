@@ -9,26 +9,6 @@ module MagazStoreAdmin
       @collection = create(:collection, shop: @shop, handle: "handle1")
     end
 
-    test "should create event with collection" do
-      assert_difference('MagazCore::Event.count', +1) do
-        post :create, collection: { name: 'Unique Name' }
-      end
-    end
-
-    test "should create event with update" do
-      assert_difference('MagazCore::Event.count', +1) do
-        patch :update, id: @collection,
-        collection: { description: @collection.description,
-                      name: @collection.name }
-      end
-    end
-
-    test "should create event with delete" do
-      assert_difference('MagazCore::Event.count', +1) do
-        delete :destroy, id: @collection.id
-      end
-    end
-
     test "should get index" do
       get :index
       assert_response :success
@@ -42,7 +22,8 @@ module MagazStoreAdmin
 
     test "should create collection" do
       assert_difference('MagazCore::Collection.count') do
-        post :create, collection: { name: 'Unique Name' }
+        post :create, collection: { name: "Test name", shop_id: @shop.id, page_title: "Test page_title",
+                                    handle: "Test handle", meta_description: "Test meta_description", description: "Test description" }
       end
 
       assert_redirected_to collection_path(assigns(:collection))
@@ -54,7 +35,8 @@ module MagazStoreAdmin
     end
 
     test "should update collection" do
-      patch :update, id: @collection, collection: { description: @collection.description, name: @collection.name }
+      patch :update, id: @collection, collection: { name: "Changed name", shop_id: @shop.id, page_title: "Changed page_title",
+                                                    handle: "Changed handle", meta_description: "Changed meta_description", description: "Changed description" }
       assert_redirected_to collection_path(assigns(:collection))
     end
 

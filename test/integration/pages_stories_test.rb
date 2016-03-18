@@ -21,7 +21,6 @@ class PagesStoriesTest < ActionDispatch::IntegrationTest
 
   test "create page failure" do
     click_link 'Add Page'
-    fill_in 'Title', with: ''
     fill_in 'Content', with: ''
     click_button 'Create Page'
     assert page.has_content? '1 error prohibited this page from being saved'

@@ -1,13 +1,13 @@
 module MagazCore
   module ShopServices
-    class DeleteCheckout < ActiveInteraction::Base
+    class DeletePage < ActiveInteraction::Base
 
       integer :id
 
       validates :id, presence: true
 
       def execute
-        MagazCore::Checkout.find(id).destroy
+        MagazCore::Page.friendly.find(id).destroy
       end
     end
   end

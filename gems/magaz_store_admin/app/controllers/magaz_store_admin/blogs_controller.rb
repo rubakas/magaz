@@ -31,7 +31,7 @@ module MagazStoreAdmin
 
     def update
       @blog = current_shop.blogs.friendly.find(params[:id])
-      service = MagazCore::ShopServices::ChangeBlog.run(blog: @blog, title: params[:blog][:title],
+      service = MagazCore::ShopServices::ChangeBlog.run(id: @blog.id, title: params[:blog][:title],
                                                         shop_id: current_shop.id, page_title: params[:blog][:page_title],
                                                         meta_description: params[:blog][:meta_description], handle: params[:blog][:handle])
       if service.valid?
@@ -39,6 +39,9 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
+        service.errors.full_messages.each do |msg|
+          @blog.errors.add(:base, msg)
+        end
         render 'show'
       end
     end

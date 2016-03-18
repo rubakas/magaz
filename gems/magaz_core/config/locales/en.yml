@@ -175,5 +175,27 @@ en:
         customer_deletion: "Customer deletion"
 
     services:
+      add_article:
+        title_not_unique: "Title has already been taken"
+      change_article:
+        wrong_params: "Wrong params for article"
+        title_not_unique: "Title has already been taken"
+
+      add_blog:
+        title_not_unique: "Title has already been taken"
+      change_blog:
+        wrong_params: "Wrong params for blog"
+        title_not_unique: "Title has already been taken"
+
       add_link:
         title_not_unique: "Name has already been taken"
+
+      add_link_list:
+        name_not_unique: "Name has already been taken"
+      change_link_list:
+        wrong_params: "Wrong params for blog"
+        name_not_unique: "Name has already been taken"
+
+      change_page:
+        wrong_params: "Wrong params for page"
+        title_not_unique: "Title has already been taken"
