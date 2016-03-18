@@ -68,27 +68,37 @@ module MagazCore
         default_menu_link_list = link_list_service.result
 
         #Links for Main Menu
-        default_home_link = default_menu_link_list
-          .links
-          .create name:         I18n.t('default.models.link.home_link_name')
+        default_home_link_service = MagazCore::ShopServices::AddLink.
+                              run(name: I18n.t('default.models.link.home_link_name'), link_type: '',
+                                  position: '', link_list_id: default_menu_link_list.id)
 
-        default_blog_link = default_menu_link_list
-          .links
-          .create name:         I18n.t('default.models.link.blog_link_name')
+        default_home_link = default_home_link_service.result
+
+        default_blog_link_service = MagazCore::ShopServices::AddLink.
+                                      run(name: I18n.t('default.models.link.blog_link_name'), link_type: '',
+                                          position: '', link_list_id: default_menu_link_list.id)
+
+        default_blog_link = default_blog_link_service.result
 
         #Footer link list
-        default_footer_link_list = shop
-          .link_lists
-          .create name:         I18n.t('default.models.link_list.footer_link_list_name')
+        default_footer_link_list_service = MagazCore::ShopServices::AddLinkList.
+                                            run(name: I18n.t('default.models.link_list.footer_link_list_name'), handle: '',
+                                                shop_id: shop.id)
+
+        default_footer_link_list = default_footer_link_list_service.result
 
         #Links for Footer
-        default_search_link = default_footer_link_list
-          .links
-          .create name:         I18n.t('default.models.link.search_link_name')
+        default_search_link_service = MagazCore::ShopServices::AddLink.
+                                        run(name: I18n.t('default.models.link.search_link_name'), link_type: '',
+                                            position: '', link_list_id: default_footer_link_list.id)
 
-        default_about_link = default_footer_link_list
-          .links
-          .create name:         I18n.t('default.models.link.about_link_name')
+        default_search_link = default_search_link_service.result
+
+        default_about_link_service = MagazCore::ShopServices::AddLink.
+                                      run(name: I18n.t('default.models.link.about_link_name'), link_type: '',
+                                          position: '', link_list_id: default_footer_link_list.id)
+
+        default_about_link = default_about_link_service.result
       end
 
       def _create_default_pages!(shop:)
