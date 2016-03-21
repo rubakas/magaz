@@ -189,11 +189,14 @@ en:
 
       add_link:
         title_not_unique: "Name has already been taken"
+      change_link:
+        wrong_params: "Wrong params for link"
+        name_not_unique: "Name has already been taken"
 
       add_link_list:
         name_not_unique: "Name has already been taken"
       change_link_list:
-        wrong_params: "Wrong params for blog"
+        wrong_params: "Wrong params for link_list"
         name_not_unique: "Name has already been taken"
 
       change_page:
