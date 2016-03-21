@@ -47,16 +47,9 @@ module MagazStoreAdmin
 
     def destroy
       @link_list = current_shop.link_lists.friendly.find(params[:id])
-      @link_list.destroy
+      service = MagazCore::ShopServices::DeleteLinkList.run(id: @link_list.id)
       flash[:notice] = t('.notice_success')
       redirect_to link_lists_path
-    end
-
-    protected
-
-    def permitted_params
-      { link_list:
-          params.fetch(:link_list, {}).permit(:name, :handle, :links_attributes => [:name, :position, :link_type, :link_list_id]) }
     end
   end
 end
