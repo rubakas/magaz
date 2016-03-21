@@ -34,10 +34,19 @@ module MagazStoreAdmin
     def update
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       @link = @link_list.links.find(params[:id])
-      if @link.update_attributes(permitted_params[:link])
+      service = MagazCore::ShopServices::ChangeLink.
+                  run(id: @link.id, link_list_id: @link_list.id,
+                      name: params[:link][:name], link_type: params[:link][:link_type],
+                      position: params[:link][:position])
+      if service.valid?
+        @link = service.result
         flash[:notice] = t('.notice_success')
         redirect_to link_list_path(@link_list)
       else
+        #@link = MagazCore::LinkList.friendly.find(params[:link_list_id]).links.find(params[:id])
+        service.errors.full_messages.each do |msg|
+          @link.errors.add(:base, msg)
+        end
         render 'show'
       end
     end

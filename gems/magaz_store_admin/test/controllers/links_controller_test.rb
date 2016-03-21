@@ -41,13 +41,13 @@ module MagazStoreAdmin
     test "should update link" do
       patch :update,
         { id: @link.id, link_list_id: @link_list.id,
-          link: { name: "Changed name", position: "Changed position", link_type: "Changed link_type"} }
+          link: { name: "Changed name", position: "123", link_type: "Changed link_type"} }
       assert_response :redirect
     end
 
     test "should not update link" do
       patch :update, id: @link.id, link_list_id: @link_list.id,
-                     link: { position: 'some position', name: '' }
+                     link: { position: '123', name: '' }
       assert_template 'show'
       assert_response :success
     end
