@@ -3,12 +3,12 @@ module MagazStoreAdmin
     include MagazCore::Concerns::Authenticable
 
     def index
-      @link_list = current_shop.link_lists.frieldly.find(params[:link_list_id])
-      @links = @link_lists.links.page(params[:page])
+      @link_list = MagazCore::LinkList.find(params[:link_list_id])
+      @links = @link_list.links.page(params[:page])
     end
 
     def show
-      @link_list = current_shop.link_lists.frinedly.find(params[:link_list_id])
+      @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       @link = @link_list.links.find(params[:id])
     end
 
@@ -19,11 +19,14 @@ module MagazStoreAdmin
 
     def create
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
-      @link = @link_list.links.new(permitted_params[:link])
-      if @link.save
+      service = MagazCore::ShopServices::AddLink.run(name: params[:link][:name], link_type: params[:link][:link_type],
+                                                     position: params[:link][:position], link_list_id: @link_list.id)
+      if service.valid?
+        @link = service.result
         flash[:notice] = t('.notice_success')
         render 'show'
       else
+        @link = service
         render 'new'
       end
     end
@@ -33,7 +36,7 @@ module MagazStoreAdmin
       @link = @link_list.links.find(params[:id])
       if @link.update_attributes(permitted_params[:link])
         flash[:notice] = t('.notice_success')
-        redirect_to link_path(@link)
+        redirect_to link_list_path(@link_list)
       else
         render 'show'
       end

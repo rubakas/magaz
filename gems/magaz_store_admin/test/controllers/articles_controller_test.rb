@@ -26,7 +26,7 @@ module MagazStoreAdmin
       assert_difference('MagazCore::Article.count', +1) do
         post :create, { article: { title: "Changed title", blog_id: @blog.id,
                                    content: "Changed content", page_title: "Changed page_title",
-                                   handle: "ChangedC handle", meta_description: "Changed meta_description" } }
+                                   handle: "Changed handle", meta_description: "Changed meta_description" } }
       end
 
       assert_redirected_to article_path(assigns(:article))
