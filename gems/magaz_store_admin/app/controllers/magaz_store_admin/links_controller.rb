@@ -43,7 +43,6 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to link_list_path(@link_list)
       else
-        #@link = MagazCore::LinkList.friendly.find(params[:link_list_id]).links.find(params[:id])
         service.errors.full_messages.each do |msg|
           @link.errors.add(:base, msg)
         end
@@ -54,7 +53,7 @@ module MagazStoreAdmin
     def destroy
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       @link = @link_list.links.find(params[:id])
-      @link.destroy
+      MagazCore::ShopServices::DeleteLink.run(id: @link.id)
       flash[:notice] = t('.notice_success')
       redirect_to link_list_path(@link_list)
     end
