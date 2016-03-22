@@ -187,8 +187,14 @@ en:
         wrong_params: "Wrong params for blog"
         title_not_unique: "Title has already been taken"
 
+      add_collection:
+        name_not_unique: "Name has already been taken"
+      change_collection:
+        wrong_params: "Wrong params for collection"
+        name_not_unique: "Name has already been taken"
+
       add_link:
-        title_not_unique: "Name has already been taken"
+        name_not_unique: "Name has already been taken"
       change_link:
         wrong_params: "Wrong params for link"
         name_not_unique: "Name has already been taken"
@@ -199,6 +205,12 @@ en:
         wrong_params: "Wrong params for link_list"
         name_not_unique: "Name has already been taken"
 
+      add_page:
+        title_not_unique: "Title has already been taken"
       change_page:
         wrong_params: "Wrong params for page"
         title_not_unique: "Title has already been taken"
+
+      create:
+        name_not_unique: "Name has already been taken"
+        no_default_theme: "No default theme in system"
