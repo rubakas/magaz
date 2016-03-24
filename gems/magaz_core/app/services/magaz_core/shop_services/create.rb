@@ -4,35 +4,38 @@ module MagazCore
 
     string :shop_name, :first_name, :last_name, :email, :password
 
+    object :shop, class: MagazCore::Shop, default: MagazCore::Shop.new
+    object :user, class: MagazCore::User, default: MagazCore::User.new
+
     validates :shop_name, :email, :password, :first_name, :last_name, presence: true
 
     validate :shop_name_uniqueness
 
     def execute
-      @shop = MagazCore::Shop.new
-      @user = MagazCore::User.new
+      # shop = MagazCore::Shop.new
+      # user = MagazCore::User.new
 
 
       MagazCore::Shop.connection.transaction do
         begin
-          @shop.update_attributes!(name: shop_name)
-          @user.update_attributes!(email: email, password: password,
-                                   account_owner: true, shop_id: @shop.id,
+          shop.update_attributes!(name: shop_name)
+          user.update_attributes!(email: email, password: password,
+                                   account_owner: true, shop_id: shop.id,
                                    first_name: first_name, last_name: last_name)
 
-          _install_default_theme(shop_id: @shop.id)
-          _create_default_blogs_and_posts!(shop_id: @shop.id)
-          _create_default_collection!(shop_id: @shop.id)
-          _create_default_pages!(shop_id: @shop.id)
+          _install_default_theme(shop_id: shop.id)
+          _create_default_blogs_and_posts!(shop_id: shop.id)
+          _create_default_collection!(shop_id: shop.id)
+          _create_default_pages!(shop_id: shop.id)
           # links created after linked content, right? :)
-          _create_default_link_lists!(shop_id: @shop.id)
-          _create_default_emails!(shop: @shop)
+          _create_default_link_lists!(shop_id: shop.id)
+          _create_default_emails!(shop: shop)
         rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
           raise ActiveRecord::Rollback
         end
       end
 
-      {shop: @shop, user: @user}
+      {shop: shop, user: user}
     end
 
     private
