@@ -20,8 +20,8 @@ module MagazCore
     belongs_to :blog
     has_many :events, as: :subject
 
-    validates :author, presence: true, uniqueness: { scope: :article_id }
-    validates :email, presence: true
-    validates :body, presence: true
+    # validates :author, presence: true, uniqueness: { scope: :article_id }
+    # validates :email, presence: true
+    # validates :body, presence: true
   end
 end

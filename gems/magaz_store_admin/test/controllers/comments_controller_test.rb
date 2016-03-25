@@ -24,7 +24,8 @@ module MagazStoreAdmin
 
     test "should create comment" do
       assert_difference('MagazCore::Comment.count') do
-        post :create, comment: { author: 'New uniq name', email: @comment.email, body: @comment.body, blog_id: @blog.id}
+        post :create, comment: { author: 'New uniq name', email: @comment.email,
+                                 body: @comment.body, blog_id: @blog.id, article_id: @article.id}
       end
 
       assert_redirected_to comment_path(assigns(:comment))
@@ -41,7 +42,7 @@ module MagazStoreAdmin
     end
 
     test "should not update comment" do
-      patch :update, id: @comment.id, comment: { author: @comment.author, email: @comment.email, body: '' }
+      patch :update, id: @comment.id, comment: { author: '', email: '', body: '' }
       assert_response :success
     end
 

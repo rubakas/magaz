@@ -19,7 +19,7 @@ module MagazCore
     extend FriendlyId
 
     has_many :articles
-    has_many :comments
+    has_many :comments, through: :articles
     has_many :events, as: :subject
     belongs_to :shop
 

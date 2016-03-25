@@ -17,13 +17,17 @@ module MagazStoreAdmin
 
     def create
       @article = current_shop.articles.find_by(params[:id])
-      @comment = @article.comments.create(permitted_params[:comment])
-      if @comment.save
+      service = MagazCore::ShopServices::AddComment.run(author: params[:comment][:author], email: params[:comment][:email],
+                                                        body: params[:comment][:body], article_id: params[:comment][:article_id],
+                                                        blog_id: params[:comment][:blog_id])
+      if service.valid?
+        @comment = service.result
         flash[:notice] = t('.notice_success')
         redirect_to comment_url(@comment)
       else
+        @comment = service
         flash[:notice] = t('.notice_fail')
-        render 'new'
+        redirect_to 'new'
       end
     end
 
