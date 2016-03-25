@@ -4,38 +4,41 @@ module MagazCore
 
     string :shop_name, :first_name, :last_name, :email, :password
 
-    object :shop, class: MagazCore::Shop, default: MagazCore::Shop.new
-    object :user, class: MagazCore::User, default: MagazCore::User.new
-
     validates :shop_name, :email, :password, :first_name, :last_name, presence: true
 
     validate :shop_name_uniqueness
 
-    def execute
-      # shop = MagazCore::Shop.new
-      # user = MagazCore::User.new
+    def to_model
+      MagazCore::Shop.new
+    end
 
+
+    def execute
+      @shop = MagazCore::Shop.new
+      @user = MagazCore::User.new
 
       MagazCore::Shop.connection.transaction do
         begin
-          shop.update_attributes!(name: shop_name)
-          user.update_attributes!(email: email, password: password,
-                                   account_owner: true, shop_id: shop.id,
-                                   first_name: first_name, last_name: last_name)
+          @shop.attributes = {name: shop_name}
+          @shop.save!
+          @user.attributes = {email: email, password: password,
+                             account_owner: true, shop_id: @shop.id,
+                             first_name: first_name, last_name: last_name}
+          @user.save!
 
-          _install_default_theme(shop_id: shop.id)
-          _create_default_blogs_and_posts!(shop_id: shop.id)
-          _create_default_collection!(shop_id: shop.id)
-          _create_default_pages!(shop_id: shop.id)
+          _install_default_theme(shop_id: @shop.id)
+          _create_default_blogs_and_posts!(shop_id: @shop.id)
+          _create_default_collection!(shop_id: @shop.id)
+          _create_default_pages!(shop_id: @shop.id)
           # links created after linked content, right? :)
-          _create_default_link_lists!(shop_id: shop.id)
-          _create_default_emails!(shop: shop)
+          _create_default_link_lists!(shop_id: @shop.id)
+          _create_default_emails!(shop: @shop)
         rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
           raise ActiveRecord::Rollback
         end
       end
 
-      {shop: shop, user: user}
+      {shop: @shop, user: @user}
     end
 
     private
@@ -51,6 +54,7 @@ module MagazCore
     def _install_default_theme(shop_id:)
       # Default theme, fail unless found
       default_theme = MagazCore::Theme.sources.first
+
       if default_theme
         MagazCore::ThemeServices::Install.call(shop_id: shop_id, source_theme_id: default_theme.id)
       else
@@ -65,10 +69,10 @@ module MagazCore
                                  shop_id: shop_id, page_title: '')
 
 
-      default_post = compose(MagazCore::ShopServices::AddArticle, handle: '',
-                                    title: I18n.t('default.models.article.article_title'), page_title: '',
-                                    content: I18n.t('default.models.article.article_content'), meta_description: '',
-                                    blog_id: default_blog.id)
+      compose(MagazCore::ShopServices::AddArticle, handle: '',
+              title: I18n.t('default.models.article.article_title'), page_title: '',
+              content: I18n.t('default.models.article.article_content'), meta_description: '',
+              blog_id: default_blog.id)
     end
 
     def _create_default_collection!(shop_id:)
@@ -101,8 +105,6 @@ module MagazCore
                                             name: I18n.t('default.models.link.search_link_name'), link_type: '',
                                             link_list_id: default_footer_link_list.id)
 
-      #default_search_link = default_search_link_service.result
-
       default_about_link = compose(MagazCore::ShopServices::AddLink, position: '',
                                            name: I18n.t('default.models.link.about_link_name'), link_type: '',
                                            link_list_id: default_footer_link_list.id)
@@ -124,11 +126,11 @@ module MagazCore
 
       def _create_default_emails!(shop:)
         MagazCore::EmailTemplate::EMAIL_TEMPLATES.each do |template_type|
-          shop.email_templates.create(template_type: template_type,
-                                      name:          I18n.t("email_templates.#{template_type}.name"),
-                                      title:         I18n.t("email_templates.#{template_type}.title"),
-                                      body:          I18n.t("email_templates.#{template_type}.body"),
-                                      description:   I18n.t("email_templates.#{template_type}.description"))
+          @shop.email_templates.create(template_type: template_type,
+                                       name:          I18n.t("email_templates.#{template_type}.name"),
+                                       title:         I18n.t("email_templates.#{template_type}.title"),
+                                       body:          I18n.t("email_templates.#{template_type}.body"),
+                                       description:   I18n.t("email_templates.#{template_type}.description"))
         end
       end
 

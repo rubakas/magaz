@@ -58,7 +58,7 @@ module MagazCore
 
 
     #validates :name, presence: true, uniqueness: true
-    validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY, :allow_blank => true
-    validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE, :allow_blank => true
+    #validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY, :allow_blank => true
+    #validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE, :allow_blank => true
   end
 end

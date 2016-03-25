@@ -11,19 +11,19 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
             theme_attributes: { name: 'Default' })
   end
 
-  # test "signup success" do
-  #   visit '/'
-  #   assert page.has_content?('Welcome')
+  test "signup success" do
+    visit '/'
+    assert page.has_content?('Welcome')
 
-  #   fill_in 'Your shop name', with: 'Example2'
-  #   fill_in 'Email address', with: 'uniq@example2.com'
-  #   fill_in 'Password', with: 'password'
-  #   fill_in 'User first name', with: 'User'
-  #   fill_in 'User last name', with: 'Puzer'
-  #   click_button 'Create your shop now'
+    fill_in 'Your shop name', with: 'Example2'
+    fill_in 'Email address', with: 'uniq@example2.com'
+    fill_in 'Password', with: 'password'
+    fill_in 'User first name', with: 'User'
+    fill_in 'User last name', with: 'Puzer'
+    click_button 'Create your shop now'
 
-  #   assert page.has_content?('Dashboard')
-  # end
+    assert page.has_content?('Dashboard')
+  end
 
   test "signup failure" do
     visit '/'
@@ -37,31 +37,31 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?('5 errors')
   end
 
-  # test "signup failure: shope name already been taken" do
-  #   visit '/'
-  #   assert page.has_content?('Welcome')
+  test "signup failure: shope name already been taken" do
+    visit '/'
+    assert page.has_content?('Welcome')
 
-  #   fill_in 'Your shop name', with: @shop.name
-  #   fill_in 'Email address', with: 'uniq@example2.com'
-  #   fill_in 'Password', with: 'password'
-  #   fill_in 'User first name', with: 'User'
-  #   fill_in 'User last name', with: 'Puzer'
-  #   click_button 'Create your shop now'
+    fill_in 'Your shop name', with: @shop.name
+    fill_in 'Email address', with: 'uniq@example2.com'
+    fill_in 'Password', with: 'password'
+    fill_in 'User first name', with: 'User'
+    fill_in 'User last name', with: 'Puzer'
+    click_button 'Create your shop now'
 
-  #   assert page.has_content?('Name has already been taken')
-  #   assert page.has_content?('Welcome')
-  # end
+    assert page.has_content?('Name has already been taken')
+    assert page.has_content?('Welcome')
+  end
 
-  # test "signup failure with just name" do
-  #   visit '/'
-  #   assert page.has_content?('Welcome')
+  test "signup failure with just name" do
+    visit '/'
+    assert page.has_content?('Welcome')
 
-  #   fill_in 'Your shop name', with: 'Example2'
-  #   fill_in 'Email address', with: ''
-  #   fill_in 'Password', with: ''
-  #   click_button 'Create your shop now'
-  #   assert page.has_content?('4 errors')
-  #   assert page.has_content?('Welcome')
-  # end
+    fill_in 'Your shop name', with: 'Example2'
+    fill_in 'Email address', with: ''
+    fill_in 'Password', with: ''
+    click_button 'Create your shop now'
+    assert page.has_content?('4 errors')
+    assert page.has_content?('Welcome')
+  end
 
 end

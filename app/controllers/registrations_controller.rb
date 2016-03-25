@@ -10,15 +10,13 @@ class RegistrationsController < ApplicationController
                 run(shop_name: params[:registration][:name], first_name: params[:registration][:first_name],
                     last_name: params[:registration][:last_name], email: params[:registration][:email],
                     password: params[:registration][:password])
-    @shop = service.shop
-    @user = service.user
     if service.valid?
+      @shop = service.result[:shop]
+      @user = service.result[:user]
       session[:user_id] = @user.id
       redirect_to magaz_store_admin.root_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
-      service.errors.full_messages.each do |msg|
-       @shop.errors.add(:base, msg)
-      end
+      @shop = service
       render template: 'welcome/index'
     end
   end

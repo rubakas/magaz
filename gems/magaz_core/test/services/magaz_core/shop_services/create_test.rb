@@ -18,9 +18,11 @@ module MagazCore
 
     test 'create shop with valid params' do
       service = MagazCore::ShopServices::Create.run(@success_params)
+
       assert service.valid?
       assert service.result[:user]
       assert service.result[:shop]
+
       refute service.result[:shop].themes.main.blank?
       assert_equal @default_theme, service.result[:shop].themes.main.first.source_theme
     end
@@ -48,9 +50,10 @@ module MagazCore
 
     test "shop and user should have association" do
       service = MagazCore::ShopServices::Create.run(@success_params)
+
       assert service.valid?
       assert service.result[:shop]
-      assert_not service.result[:shop].users.blank?
+      refute service.result[:user].shop.blank?
 
       service.result[:shop].users.each do |user|
         assert user.shop_id == service.result[:shop].id
@@ -62,13 +65,13 @@ module MagazCore
       assert service.valid?
       assert service.result[:shop]
 
-      assert_equal service.result[:shop].email_templates.length, 11
-      assert_equal service.result[:shop].collections.length, 1
-      assert_equal service.result[:shop].blogs.length, 1
-      assert_equal service.result[:shop].articles.length, 1
-      assert_equal service.result[:shop].pages.length, 2
-      assert_equal service.result[:shop].link_lists.length, 2
-      assert_equal service.result[:shop].links.length, 4
+      assert_equal 11, service.result[:shop].email_templates.length
+      assert_equal 1, service.result[:shop].collections.length
+      assert_equal 1, service.result[:shop].blogs.length
+      assert_equal 1, service.result[:shop].articles.length
+      assert_equal 2, service.result[:shop].pages.length
+      assert_equal 2, service.result[:shop].link_lists.length
+      assert_equal 4, service.result[:shop].links.length
     end
 
   end

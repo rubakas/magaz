@@ -8,9 +8,10 @@ class MagazCore::ThemeServices::Install
 
     #TODO: process payment
     # copy theme data and associate with shop
-    @installed_theme = 
+
+    @installed_theme =
       @shop.themes.build(name: @source_theme.name, source_theme: @source_theme)
-    
+
     @source_theme.assets.each do |source_asset|
       @installed_theme
         .assets
