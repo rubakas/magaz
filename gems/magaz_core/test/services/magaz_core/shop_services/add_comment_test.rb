@@ -28,7 +28,7 @@ module MagazCore
       refute service.valid?
       assert_equal 0, MagazCore::Article.find_by_id(@article.id).comments.count
       assert_equal 1, service.errors.full_messages.count
-      assert_equal "This article is not belongs to blog", service.errors.full_messages.last
+      assert_equal "This article is not belongs to this blog", service.errors.full_messages.last
     end
 
     test 'should not create comment with blank params' do

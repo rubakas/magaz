@@ -7,7 +7,7 @@ module MagazCore
 
       validates :author, :body, :email, :article_id, :blog_id, presence: true
 
-      validate :blog_existence, :article_belongs, :article_existence
+      validate :blog_existence, :article_existence, :blog_has_article
 
       def to_model
         MagazCore::Comment.new
@@ -33,7 +33,7 @@ module MagazCore
         errors.add(:base, I18n.t('default.services.add_comment.article_not_exist')) unless article_exist?
       end
 
-      def article_belongs
+      def blog_has_article
         errors.add(:base, I18n.t('default.services.add_comment.article_not_belongs')) unless article_belongs_to_blog?
       end
 
