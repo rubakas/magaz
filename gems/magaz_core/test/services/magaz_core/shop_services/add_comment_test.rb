@@ -12,6 +12,8 @@ module MagazCore
       @success_params = {author: "Test author", email: "Test test@test.com", body: "Test body",
                          article_id: @article.id, blog_id: @blog.id}
       @blank_params = {author: "", email: "", body: "", article_id: nil, blog_id: nil}
+      @invalid_param = {author: "Test author", email: "Test test@test.com", body: "Test body",
+                         article_id: @article2.id, blog_id: @blog.id}
     end
 
     test 'should create comment with valid params' do
@@ -23,8 +25,7 @@ module MagazCore
     end
 
     test 'should not create comment for article that belongs to another blog' do
-      service = MagazCore::ShopServices::AddComment.run(author: "Test author", email: "Test test@test.com", body: "Test body",
-                         article_id: @article2.id, blog_id: @blog.id)
+      service = MagazCore::ShopServices::AddComment.run(@invalid_param)
       refute service.valid?
       assert_equal 0, MagazCore::Article.find_by_id(@article.id).comments.count
       assert_equal 1, service.errors.full_messages.count
