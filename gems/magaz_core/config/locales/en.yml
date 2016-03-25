@@ -187,6 +187,9 @@ en:
         wrong_params: "Wrong params for blog"
         title_not_unique: "Title has already been taken"
 
+      add_comment:
+        article_not_belongs: "This article is not belongs to this blog"
+
       add_link:
         title_not_unique: "Name has already been taken"
       change_link:
