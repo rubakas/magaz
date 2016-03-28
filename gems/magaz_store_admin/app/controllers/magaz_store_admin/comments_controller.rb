@@ -43,19 +43,9 @@ module MagazStoreAdmin
 
     def destroy
       @comment = current_shop.comments.find(params[:id])
-      @comment.destroy
+      service = MagazCore::ShopServices::DeleteComment.run(id: @comment.id)
       flash[:notice] = t('.notice_success')
       redirect_to comments_url
-    end
-
-
-    protected
-
-    #TODO:  collection_ids are not guaranteed to belong to this shop!!!
-    # https://github.com/josevalim/inherited_resources#strong-parameters
-    def permitted_params
-      { comment:
-          params.fetch(:comment, {}).permit(:author, :email, :body) }
     end
   end
 end
