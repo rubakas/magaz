@@ -193,6 +193,9 @@ en:
         wrong_params: "Wrong params for collection"
         name_not_unique: "Name has already been taken"
 
+      add_comment:
+        article_not_belongs: "This article is not belongs to this blog"
+
       add_link:
         name_not_unique: "Name has already been taken"
       change_link:
