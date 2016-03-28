@@ -35,7 +35,19 @@ module MagazCore
                 description: I18n.t('default.models.collection.collection_description'), shop_id: @shop.id,
                 meta_description: '')
 
-            _create_default_pages!(shop_id: @shop.id)
+            # create default pages
+            compose(MagazCore::ShopServices::AddPage, shop_id: @shop.id,
+                    title: I18n.t('default.models.page.about_title'), page_title: '',
+                    content: I18n.t('default.models.page.about_content'), handle: '',
+                    meta_description: '', publish_on: nil,
+                    published_at: nil)
+
+            compose(MagazCore::ShopServices::AddPage, shop_id: @shop.id,
+                    title: I18n.t('default.models.page.welcome_title'), page_title: '',
+                    content: I18n.t('default.models.page.welcome_content'), handle: '',
+                    meta_description: '', publish_on: nil,
+                    published_at: nil)
+
             # links created after linked content, right? :)
             _create_default_link_lists!(shop_id: @shop.id)
             _create_default_emails!(shop: @shop)
@@ -62,7 +74,8 @@ module MagazCore
         default_theme = MagazCore::Theme.sources.first
 
         if default_theme
-          MagazCore::ThemeServices::Install.call(shop_id: shop_id, source_theme_id: default_theme.id)
+          MagazCore::ThemeServices::InstallTheme.run(shop_id: shop_id,
+                                                     source_theme_id: default_theme.id)
         else
           errors.add(:base, I18n.t('default.services.create.no_default_theme'))
           fail 'No default theme in system'
