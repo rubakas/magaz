@@ -33,7 +33,7 @@ module MagazCore
           # links created after linked content, right? :)
           _create_default_link_lists!(shop_id: @shop.id)
           _create_default_emails!(shop: @shop)
-        rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
+        rescue RuntimeError, ActiveRecord::RecordInvalid
           raise ActiveRecord::Rollback
         end
       end
@@ -59,7 +59,7 @@ module MagazCore
         MagazCore::ThemeServices::Install.call(shop_id: shop_id, source_theme_id: default_theme.id)
       else
         errors.add(:base, I18n.t('default.services.create.no_default_theme'))
-        fail(ActiveRecord::RecordNotFound)
+        fail 'No default theme in system'
       end
     end
 
@@ -137,3 +137,4 @@ module MagazCore
     end
   end
 end
+
