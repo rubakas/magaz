@@ -2,11 +2,10 @@ module MagazCore
   module ShopServices
     class AddCustomer < ActiveInteraction::Base
 
-      string :first_name
+      string :first_name, :last_name, :email
       integer :shop_id
-      string :last_name, :email, default: nil
 
-      validates :first_name, presence: true
+      validates :email, presence: true
 
       validate :customer_uniquness
 
@@ -29,7 +28,7 @@ module MagazCore
       end
 
       def customer_unique?
-        MagazCore::Customer.where(shop_id: shop_id, first_name: first_name).count == 0
+        MagazCore::Customer.where(shop_id: shop_id, email: email).count == 0
       end
     end
   end
