@@ -7,10 +7,10 @@ module MagazCore
       @shop = create(:shop, name: 'shop_name')
       @customer = create(:customer, shop: @shop)
       @customer2 = create(:customer, shop: @shop)
-      @success_params = { id: @customer.id, first_name: "Changed first name", last_name: "CHanged last name",
-                           email: "Changedtest@test.com", shop_id: @shop.id }
-      @blank_params =   { id: nil, first_name: "", last_name: "",
-                           email: '', shop_id: nil }
+      @success_params = { id: @customer.id, first_name: "Changed first name",
+                          last_name: "CHanged last name", email: "Changedtest@test.com",
+                          shop_id: @shop.id }
+      @blank_params =   { id: nil, first_name: "", last_name: "", email: '', shop_id: nil }
     end
 
     test 'should update customer with valid params' do
@@ -27,18 +27,24 @@ module MagazCore
     end
 
     test 'should not update customer with existing email' do
-      service = MagazCore::ShopServices::ChangeCustomer.run( id: @customer.id, first_name: "Changed first name",
-                                                             last_name: "CHanged last name",
-                                                             email: @customer2.email, shop_id: @shop.id)
+      service = MagazCore::ShopServices::ChangeCustomer
+                                                  .run( id: @customer.id,
+                                                        first_name: "Changed first name",
+                                                        last_name: "CHanged last name",
+                                                        email: @customer2.email,
+                                                        shop_id: @shop.id )
       refute service.valid?
       assert_equal 1, service.errors.full_messages.count
-      assert_equal "This customer is already exist in this shop", service.errors.full_messages.first
+      assert_equal "This customer is already exist in this shop", service.errors
+                                                                      .full_messages.first
     end
 
     test 'should update customer with some blank params' do
-      service = MagazCore::ShopServices::ChangeCustomer.run(id: @customer.id, first_name: "Changed first name",
-                                                             last_name: '',
-                                                             email: @customer.email, shop_id: @shop.id)
+      service = MagazCore::ShopServices::ChangeCustomer
+                                                .run( id: @customer.id,
+                                                      first_name: "Changed first name",
+                                                      last_name: '', email: @customer.email,
+                                                      shop_id: @shop.id )
       assert service.valid?
       assert_equal '', service.result.last_name
     end
