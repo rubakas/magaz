@@ -22,13 +22,12 @@ module MagazCore
       assert @shop.themes.installed.include?(service.result)
     end
 
-    test 'should not install_theme without theme in system' do
-      @source_theme.delete
-      service = MagazCore::ThemeServices::InstallTheme.run(shop_id: @shop.id,
+    test 'should not install_theme with invalid shop_id' do
+      service = MagazCore::ThemeServices::InstallTheme.run(shop_id: 111,
                                                            source_theme_id: @theme.id)
       refute service.valid?
       assert_equal 1, service.errors.full_messages.count
-      assert_equal 'No default theme in system', service.errors.full_messages.last
+      assert_equal "Can't find shop with such id", service.errors.full_messages.last
     end
 
   end

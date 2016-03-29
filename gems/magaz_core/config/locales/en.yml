@@ -224,4 +224,4 @@ en:
         no_default_theme: "No default theme in system"
 
       install_theme:
-        no_default_theme: "No default theme in system"
+        invalid_shop_id: "Can't find shop with such id"

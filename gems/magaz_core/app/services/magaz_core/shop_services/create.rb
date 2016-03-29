@@ -21,31 +21,45 @@ module MagazCore
           begin
             @shop.attributes = {name: shop_name}
             @shop.save!
-            @user.attributes = {email: email, password: password,
-                               account_owner: true, shop_id: @shop.id,
-                               first_name: first_name, last_name: last_name}
+            @user.attributes = {email: email,
+                                password: password,
+                                account_owner: true,
+                                shop_id: @shop.id,
+                                first_name: first_name,
+                                last_name: last_name}
             @user.save!
 
             _install_default_theme(shop_id: @shop.id)
             _create_default_blogs_and_posts!(shop_id: @shop.id)
 
             # create default collection
-            compose(MagazCore::ShopServices::AddCollection, handle: '',
-                name: I18n.t('default.models.collection.collection_title'), page_title: '',
-                description: I18n.t('default.models.collection.collection_description'), shop_id: @shop.id,
-                meta_description: '')
+            compose(MagazCore::ShopServices::AddCollection,
+                    handle: '',
+                    name: I18n.t('default.models.collection.collection_title'),
+                    page_title: '',
+                    description: I18n.t('default.models.collection.collection_description'),
+                    shop_id: @shop.id,
+                    meta_description: '')
 
             # create default pages
-            compose(MagazCore::ShopServices::AddPage, shop_id: @shop.id,
-                    title: I18n.t('default.models.page.about_title'), page_title: '',
-                    content: I18n.t('default.models.page.about_content'), handle: '',
-                    meta_description: '', publish_on: nil,
+            compose(MagazCore::ShopServices::AddPage,
+                    shop_id: @shop.id,
+                    title: I18n.t('default.models.page.about_title'),
+                    page_title: '',
+                    content: I18n.t('default.models.page.about_content'),
+                    handle: '',
+                    meta_description: '',
+                    publish_on: nil,
                     published_at: nil)
 
-            compose(MagazCore::ShopServices::AddPage, shop_id: @shop.id,
-                    title: I18n.t('default.models.page.welcome_title'), page_title: '',
-                    content: I18n.t('default.models.page.welcome_content'), handle: '',
-                    meta_description: '', publish_on: nil,
+            compose(MagazCore::ShopServices::AddPage,
+                    shop_id: @shop.id,
+                    title: I18n.t('default.models.page.welcome_title'),
+                    page_title: '',
+                    content: I18n.t('default.models.page.welcome_content'),
+                    handle: '',
+                    meta_description: '',
+                    publish_on: nil,
                     published_at: nil)
 
             # links created after linked content, right? :)
@@ -71,11 +85,10 @@ module MagazCore
 
       def _install_default_theme(shop_id:)
         # Default theme, fail unless found
-        default_theme = MagazCore::Theme.sources.first
-
-        if default_theme
-          MagazCore::ThemeServices::InstallTheme.run(shop_id: shop_id,
-                                                     source_theme_id: default_theme.id)
+        if MagazCore::Theme.sources.first
+          compose(MagazCore::ThemeServices::InstallTheme,
+                  shop_id: shop_id,
+                  source_theme_id: MagazCore::Theme.sources.first.id)
         else
           errors.add(:base, I18n.t('default.services.create.no_default_theme'))
           fail 'No default theme in system'
@@ -91,9 +104,12 @@ module MagazCore
                                page_title: '')
 
 
-        compose(MagazCore::ShopServices::AddArticle, handle: '',
-                title: I18n.t('default.models.article.article_title'), page_title: '',
-                content: I18n.t('default.models.article.article_content'), meta_description: '',
+        compose(MagazCore::ShopServices::AddArticle,
+                handle: '',
+                title: I18n.t('default.models.article.article_title'),
+                page_title: '',
+                content: I18n.t('default.models.article.article_content'),
+                meta_description: '',
                 blog_id: default_blog.id)
       end
 

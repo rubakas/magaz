@@ -3,11 +3,10 @@ module MagazCore
     class InstallTheme < ActiveInteraction::Base
 
       integer :shop_id, :source_theme_id
-      #integer :source_theme_id, default: nil
 
       validates :shop_id, :source_theme_id, presence: true
 
-      validate :default_theme_exists?
+      validate :shop_exists?
 
       def execute
         shop          = MagazCore::Shop.find(shop_id)
@@ -32,11 +31,11 @@ module MagazCore
 
       private
 
-      def default_theme_exists?
-        if MagazCore::Theme.find_by_id(source_theme_id)
+      def shop_exists?
+        if MagazCore::Shop.find_by_id(shop_id)
           return true
         else
-          errors.add(:base, I18n.t('default.services.install_theme.no_default_theme'))
+          errors.add(:base, I18n.t('default.services.install_theme.invalid_shop_id'))
           return false
         end
       end

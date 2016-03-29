@@ -3,10 +3,12 @@ Given(/^store exists$/) do
     * themes exist
   ]
 
-  service = MagazCore::ShopServices::Create.
-              run(shop_name: 'example', password: 'password',
-                  email: 'admin@example.com', first_name: 'First',
-                  last_name: 'Last')
+  service = MagazCore::ShopServices::Create
+              .run(shop_name: 'example',
+                   password: 'password',
+                   email: 'admin@example.com',
+                   first_name: 'First',
+                   last_name: 'Last')
   @shop = service.result[:shop]
 end
 

@@ -6,10 +6,12 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    service = MagazCore::ShopServices::Create.
-                run(shop_name: params[:registration][:name], first_name: params[:registration][:first_name],
-                    last_name: params[:registration][:last_name], email: params[:registration][:email],
-                    password: params[:registration][:password])
+    service = MagazCore::ShopServices::Create
+                .run(shop_name: params[:registration][:name],
+                     first_name: params[:registration][:first_name],
+                     last_name: params[:registration][:last_name],
+                     email: params[:registration][:email],
+                     password: params[:registration][:password])
     if service.valid?
       @shop = service.result[:shop]
       @user = service.result[:user]
