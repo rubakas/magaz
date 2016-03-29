@@ -192,6 +192,8 @@ en:
 
       add_comment:
         article_not_belongs: "This article is not belongs to this blog"
+      change_comment:
+        wrong_params: "Wrong params for comment"
 
       add_link:
         title_not_unique: "Name has already been taken"

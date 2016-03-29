@@ -37,7 +37,7 @@ module MagazStoreAdmin
     end
 
     test "should update comment" do
-      patch :update, id: @comment.id, comment: { author: @comment.author, email: @comment.email, body: @comment.body }
+      patch :update, id: @comment.id, comment: { author: "boo", email: @comment.email, body: @comment.body }
       assert_response :redirect
     end
 
