@@ -207,6 +207,10 @@ en:
         wrong_params: "Wrong params for link_list"
         name_not_unique: "Name has already been taken"
 
+      change_email_template:
+        wrong_params: "Wrong params for email_template"
+        name_not_unique: "Name has already been taken"  
+        
       change_page:
         wrong_params: "Wrong params for page"
         title_not_unique: "Title has already been taken"
