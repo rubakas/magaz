@@ -28,7 +28,7 @@ module MagazStoreAdmin
 
     test "should create customer" do
       assert_difference('MagazCore::Customer.count') do
-        post :create, { customer: { email: 'email.email.com', first_name: "Some First Name", last_name: "Some Last Name" } }
+        post :create, { customer: { email: 'email@gmail.com', first_name: "Some First Name", last_name: "Some Last Name" } }
       end
 
       assert_redirected_to customer_path(assigns(:customer))
