@@ -16,31 +16,37 @@ module MagazStoreAdmin
     end
 
     def create
-      @customer = current_shop.customers.new(permitted_params[:customer])
-      if @customer.save
-        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
-                                                                   topic: MagazCore::Webhook::Topics::CREATE_CUSTOMER_EVENT,
-                                                                   current_user: current_user)
-        @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            topic: MagazCore::Webhook::Topics::CREATE_CUSTOMER_EVENT)
+      service = MagazCore::ShopServices::AddCustomer.run(first_name: params[:customer][:first_name], last_name: params[:customer][:last_name],
+                                                         email: params[:customer][:email], shop_id: current_shop.id)
+      if service.valid?
+        # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        #                                                                     topic: MagazCore::Webhook::Topics::CREATE_CUSTOMER_EVENT)
+        @customer = service.result
         flash[:notice] = t('.notice_success')
         redirect_to customer_path(@customer)
       else
+        @customer = service
+        flash[:notice] = t('.notice_fail')
         render 'new'
       end
     end
 
     def update
       @customer = current_shop.customers.find(params[:id])
-      if @customer.update_attributes(permitted_params[:customer])
-        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @customer,
-                                                                   topic: MagazCore::Webhook::Topics::UPDATE_CUSTOMER_EVENT,
-                                                                   current_user: current_user)
-        @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
-                                                                            topic: MagazCore::Webhook::Topics::UPDATE_CUSTOMER_EVENT)
+      service = MagazCore::ShopServices::ChangeCustomer.run(id: @customer.id, first_name: params[:customer][:first_name],
+                                                            last_name: params[:customer][:last_name], email: params[:customer][:email],
+                                                            shop_id: current_shop.id)
+      if service.valid?
+        # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_CUSTOMER_EVENT)
+        @customer = service.result
         flash[:notice] = t('.notice_success')
         redirect_to customer_path(@customer)
       else
+        flash[:notice] = t('.notice_fail')
+        service.errors.full_messages.each do |msg|
+          @customer.errors.add(:base, msg)
+        end
         render 'show'
       end
     end

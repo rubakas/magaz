@@ -187,8 +187,16 @@ en:
         wrong_params: "Wrong params for blog"
         title_not_unique: "Title has already been taken"
 
+      add_customer:
+        customer_exist: "This customer is already exist in this shop"
+      change_customer:
+        customer_exist: "This customer is already exist in this shop"
+        wrong_params: "Wrong params for customer"
+
       add_comment:
         article_not_belongs: "This article is not belongs to this blog"
+      change_comment:
+        wrong_params: "Wrong params for comment"
 
       add_link:
         title_not_unique: "Name has already been taken"

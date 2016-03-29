@@ -28,7 +28,7 @@ module MagazStoreAdmin
 
     test "should create customer" do
       assert_difference('MagazCore::Customer.count') do
-        post :create, { customer: { first_name: 'Very Unique Name' } }
+        post :create, { customer: { email: 'email@gmail.com', first_name: "Some First Name", last_name: "Some Last Name" } }
       end
 
       assert_redirected_to customer_path(assigns(:customer))
@@ -43,7 +43,7 @@ module MagazStoreAdmin
     test "should update customer" do
       patch :update,
         { id: @customer.id,
-          customer: { first_name: @customer.first_name } }
+          customer: { first_name: @customer.first_name, last_name: "Changed Last Name", email: "changed@gamil.com" } }
       assert_redirected_to customer_path(assigns(:customer))
     end
 
