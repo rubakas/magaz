@@ -23,7 +23,7 @@ module MagazCore
       service = MagazCore::ShopServices::ChangeComment.run(@blank_params)
       refute service.valid?
       assert_equal 4, service.errors.full_messages.count
-      assert_equal "Comment 1", MagazCore::Comment.find(@comment.id).body
+      assert_equal @comment.body, MagazCore::Comment.find(@comment.id).body
     end
   end
 end
