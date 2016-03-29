@@ -193,8 +193,13 @@ en:
         wrong_params: "Wrong params for collection"
         name_not_unique: "Name has already been taken"
 
+      add_customer:
+        customer_exist: "This customer is already exist in this shop"
+
       add_comment:
         article_not_belongs: "This article is not belongs to this blog"
+      change_comment:
+        wrong_params: "Wrong params for comment"
 
       add_link:
         name_not_unique: "Name has already been taken"

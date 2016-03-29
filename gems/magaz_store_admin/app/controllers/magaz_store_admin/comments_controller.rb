@@ -33,29 +33,27 @@ module MagazStoreAdmin
 
     def update
       @comment = current_shop.comments.find(params[:id])
-      if @comment.update_attributes(permitted_params[:comment])
+      service = MagazCore::ShopServices::ChangeComment.run(id: @comment.id, author: params[:comment][:author],
+                                                          email: params[:comment][:email],
+                                                          body: params[:comment][:body])
+      if service.valid?
+        @comment = service.result
         flash[:notice] = t('.notice_success')
         redirect_to comments_url
       else
+        flash[:notice] = t('.notice_fail')
+        service.errors.full_messages.each do |msg|
+          @comment.errors.add(:base, msg)
+        end
         render 'show'
       end
     end
 
     def destroy
       @comment = current_shop.comments.find(params[:id])
-      @comment.destroy
+      service = MagazCore::ShopServices::DeleteComment.run(id: @comment.id)
       flash[:notice] = t('.notice_success')
       redirect_to comments_url
-    end
-
-
-    protected
-
-    #TODO:  collection_ids are not guaranteed to belong to this shop!!!
-    # https://github.com/josevalim/inherited_resources#strong-parameters
-    def permitted_params
-      { comment:
-          params.fetch(:comment, {}).permit(:author, :email, :body) }
     end
   end
 end
