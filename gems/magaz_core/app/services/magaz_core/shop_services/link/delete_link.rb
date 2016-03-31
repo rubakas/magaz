@@ -1,14 +1,10 @@
-module MagazCore
-  module ShopServices
-    class DeleteLink < ActiveInteraction::Base
+class MagazCore::ShopServices::Link::DeleteLink < ActiveInteraction::Base
 
-      integer :id
+  integer :id
 
-      validates :id, presence: true
+  validates :id, presence: true
 
-      def execute
-        MagazCore::Link.find(id).destroy
-      end
-    end
+  def execute
+    MagazCore::Link.find(id).destroy
   end
 end

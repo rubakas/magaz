@@ -121,17 +121,17 @@ module MagazCore
                                          handle: '')
 
         #Links for Main Menu
-        default_home_link = compose(MagazCore::ShopServices::AddLink,
-                                    position: '',
-                                    name: I18n.t('default.models.link.home_link_name'),
-                                    link_type: '',
-                                    link_list_id: default_menu_link_list.id)
+        compose(MagazCore::ShopServices::Link::AddLink,
+                position: '',
+                name: I18n.t('default.models.link.home_link_name'),
+                link_type: '',
+                link_list_id: default_menu_link_list.id)
 
-        default_blog_link = compose(MagazCore::ShopServices::AddLink,
-                                    position: '',
-                                    name: I18n.t('default.models.link.blog_link_name'),
-                                    link_type: '',
-                                    link_list_id: default_menu_link_list.id)
+        compose(MagazCore::ShopServices::Link::AddLink,
+                position: '',
+                name: I18n.t('default.models.link.blog_link_name'),
+                link_type: '',
+                link_list_id: default_menu_link_list.id)
 
         #Footer link list
         default_footer_link_list = compose(MagazCore::ShopServices::AddLinkList,
@@ -140,17 +140,17 @@ module MagazCore
                                            handle: '')
 
         #Links for Footer
-        default_search_link = compose(MagazCore::ShopServices::AddLink,
-                                      position: '',
-                                      name: I18n.t('default.models.link.search_link_name'),
-                                      link_type: '',
-                                      link_list_id: default_footer_link_list.id)
+        compose(MagazCore::ShopServices::Link::AddLink,
+                position: '',
+                name: I18n.t('default.models.link.search_link_name'),
+                link_type: '',
+                link_list_id: default_footer_link_list.id)
 
-        default_about_link = compose(MagazCore::ShopServices::AddLink,
-                                     position: '',
-                                     name: I18n.t('default.models.link.about_link_name'),
-                                     link_type: '',
-                                     link_list_id: default_footer_link_list.id)
+        compose(MagazCore::ShopServices::Link::AddLink,
+                position: '',
+                name: I18n.t('default.models.link.about_link_name'),
+                link_type: '',
+                link_list_id: default_footer_link_list.id)
       end
 
       def _create_default_emails!(shop:)
