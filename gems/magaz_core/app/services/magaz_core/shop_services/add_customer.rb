@@ -5,7 +5,7 @@ class MagazCore::ShopServices::Customer::AddCustomer < ActiveInteraction::Base
 
   validates :email, presence: true
 
-  validate :customer_uniquness
+  validate :customer_uniqueness
 
   def to_model
     MagazCore::Customer.new
@@ -23,9 +23,9 @@ class MagazCore::ShopServices::Customer::AddCustomer < ActiveInteraction::Base
 
   private
 
-  def customer_uniquness
+  def customer_uniqueness
     errors.add(:base, I18n
-                .t('default.services.add_customer.customer_exist')) unless customer_unique?
+      .t('default.services.add_customer.customer_exist')) unless customer_unique?
   end
 
   def customer_unique?
