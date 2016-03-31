@@ -34,7 +34,7 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Password', with: ''
     click_button 'Create your shop now'
     assert page.has_content?('Welcome')
-    assert page.has_content?('3 errors')
+    assert page.has_content?('5 errors')
   end
 
   test "signup failure: shope name already been taken" do
@@ -48,7 +48,7 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'User last name', with: 'Puzer'
     click_button 'Create your shop now'
 
-    assert page.has_content?('2 errors')
+    assert page.has_content?('Name has already been taken')
     assert page.has_content?('Welcome')
   end
 
@@ -60,7 +60,7 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Email address', with: ''
     fill_in 'Password', with: ''
     click_button 'Create your shop now'
-    assert page.has_content?('6 errors')
+    assert page.has_content?('4 errors')
     assert page.has_content?('Welcome')
   end
 

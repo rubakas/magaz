@@ -37,19 +37,5 @@ module MagazCore
       assert user.invalid?
     end
 
-    test 'validation first name presence' do
-      user = User.new last_name: 'number One',
-                      email: 'example@example.com',
-                      password: '1234q'
-      assert user.invalid?
-    end
-
-    test 'validation last name presence' do
-      user = User.new first_name: 'New user',
-                      email: 'example@example.com',
-                      password: '1234q'
-      assert user.invalid?
-    end
-
   end
 end
