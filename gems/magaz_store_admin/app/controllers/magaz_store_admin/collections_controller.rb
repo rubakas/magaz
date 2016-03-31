@@ -24,7 +24,7 @@ module MagazStoreAdmin
                        description: params[:collection][:description])
       if service.valid?
         @collection = service.result
-        #@webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        #@webhook_service = MagazCore::ShopServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
         #                                                                    topic: MagazCore::Webhook::Topics::CREATE_COLLECTION_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
@@ -46,7 +46,7 @@ module MagazStoreAdmin
                        handle: params[:collection][:handle],
                        description: params[:collection][:description])
       if service.valid?
-        #@webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        #@webhook_service = MagazCore::ShopServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
         #                                                                    topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
         @collection = service.result
         flash[:notice] = t('.notice_success')
@@ -60,7 +60,7 @@ module MagazStoreAdmin
       @collection = current_shop.collections.friendly.find(params[:id])
       service = MagazCore::ShopServices::Collection::DeleteCollection
                   .run(id:  @collection.id)
-      # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+      # @webhook_service = MagazCore::ShopServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
       #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to collections_url
