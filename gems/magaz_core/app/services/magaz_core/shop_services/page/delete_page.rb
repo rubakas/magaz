@@ -1,14 +1,10 @@
-module MagazCore
-  module ShopServices
-    class DeletePage < ActiveInteraction::Base
+class MagazCore::ShopServices::Page::DeletePage < ActiveInteraction::Base
 
-      integer :id
+  integer :id
 
-      validates :id, presence: true
+  validates :id, presence: true
 
-      def execute
-        MagazCore::Page.friendly.find(id).destroy
-      end
-    end
+  def execute
+    MagazCore::Page.friendly.find(id).destroy
   end
 end

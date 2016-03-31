@@ -42,7 +42,7 @@ module MagazCore
                     meta_description: '')
 
             # create default pages
-            compose(MagazCore::ShopServices::AddPage,
+            compose(MagazCore::ShopServices::Page::AddPage,
                     shop_id: @shop.id,
                     title: I18n.t('default.models.page.about_title'),
                     page_title: '',
@@ -52,7 +52,7 @@ module MagazCore
                     publish_on: nil,
                     published_at: nil)
 
-            compose(MagazCore::ShopServices::AddPage,
+            compose(MagazCore::ShopServices::Page::AddPage,
                     shop_id: @shop.id,
                     title: I18n.t('default.models.page.welcome_title'),
                     page_title: '',
