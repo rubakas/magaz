@@ -20,7 +20,7 @@ module MagazStoreAdmin
                   .run(first_name: params[:customer][:first_name],
                        last_name: params[:customer][:last_name],
                        email: params[:customer][:email],
-                       shop_id: current_shop.id )
+                       shop_id: current_shop.id)
 
       if service.valid?
         # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
@@ -38,10 +38,11 @@ module MagazStoreAdmin
     def update
       @customer = current_shop.customers.find(params[:id])
       service = MagazCore::ShopServices::Customer::ChangeCustomer
-                        .run( id: @customer.id, first_name: params[:customer][:first_name],
-                              last_name: params[:customer][:last_name],
-                              email: params[:customer][:email],
-                              shop_id: current_shop.id)
+                  .run(id: @customer.id,
+                       first_name: params[:customer][:first_name],
+                       last_name: params[:customer][:last_name],
+                       email: params[:customer][:email],
+                       shop_id: current_shop.id)
       if service.valid?
         # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
         #                         topic: MagazCore::Webhook::Topics::UPDATE_CUSTOMER_EVENT)
