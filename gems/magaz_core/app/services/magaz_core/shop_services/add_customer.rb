@@ -23,8 +23,11 @@ module MagazCore
         customer
       end
 
-      def customer_uniqueness
-        errors.add(:base, I18n.t('default.services.add_customer.customer_exist')) unless customer_unique?
+      private
+
+      def customer_uniqueness      
+        errors.add(:base, I18n
+          .t('default.services.add_customer.customer_exist')) unless customer_unique?
       end
 
       def customer_unique?

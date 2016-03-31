@@ -12,7 +12,7 @@ module MagazStoreAdmin
     end
 
     def new
-      @customer = current_shop.customers.new
+      @customer = MagazCore::ShopServices::AddCustomer.new
     end
 
     def create
@@ -48,10 +48,8 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to customer_path(@customer)
       else
+        @customer = service
         flash[:notice] = t('.notice_fail')
-        service.errors.full_messages.each do |msg|
-          @customer.errors.add(:base, msg)
-        end
         render 'show'
       end
     end
@@ -73,25 +71,11 @@ module MagazStoreAdmin
 
     def destroy
       @customer = current_shop.customers.find(params[:id])
-      @customer.destroy
-      @event_service = MagazCore::ShopServices::CreateEvent
-                            .call(subject: @customer,
-                                  topic: MagazCore::Webhook::Topics::DELETE_CUSTOMER_EVENT,
-                                  current_user: current_user)
-      @webhook_service = MagazCore::ShopServices::EventWebhookRunner
-                            .call(event: @event_service.event,
-                                  topic: MagazCore::Webhook::Topics::DELETE_CUSTOMER_EVENT)
+      service = MagazCore::ShopServices::DeleteCustomer.run(id: @customer.id)
+      # @webhook_service = MagazCore::ShopServices::EventWebhookRunner
+        #.call(event: @event_service.event, topic: MagazCore::Webhook::Topics::DELETE_CUSTOMER_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to customers_path
-    end
-
-    protected
-
-    #TODO:  collection_ids are not guaranteed to belong to this shop!!!
-    # https://github.com/josevalim/inherited_resources#strong-parameters
-    def permitted_params
-      { customer:
-          params.fetch(:customer, {}).permit(:first_name, :last_name, :email) }
     end
   end
 end
