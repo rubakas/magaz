@@ -39,9 +39,6 @@ module MagazStoreAdmin
       @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
       if @user.update_attributes(permitted_params[:user])
-        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @user,
-                                                                   topic: MagazCore::Webhook::Topics::UPDATE_USER_EVENT,
-                                                                   current_user: @current_user)
         redirect_to user_path(@user), notice: t('.notice_success')
       else
         render 'show'
@@ -52,9 +49,6 @@ module MagazStoreAdmin
       @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
       unless @user.account_owner == true || current_shop.users.count == 1
-        @event_service = MagazCore::ShopServices::CreateEvent.call(subject: @user,
-                                                                   topic: MagazCore::Webhook::Topics::DELETE_USER_EVENT,
-                                                                   current_user: @current_user)
         @user.destroy
         flash[:notice] = t('.notice_success')
       else
