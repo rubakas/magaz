@@ -1,6 +1,6 @@
 require "csv"
 
-class MagazCore::ShopServices::ImportCustomersFromCsv
+class MagazCore::ShopServices::Customer::ImportCustomersFromCsv
   include MagazCore::Concerns::Service
 
   def call(shop_id:, csv_file:)
