@@ -43,7 +43,7 @@ module MagazStoreAdmin
     test "should update customer" do
       patch :update,
         { id: @customer.id,
-          customer: { first_name: @customer.first_name } }
+          customer: { first_name: @customer.first_name, last_name: "Changed Last Name", email: "changed@gamil.com" } }
       assert_redirected_to customer_path(assigns(:customer))
     end
 
