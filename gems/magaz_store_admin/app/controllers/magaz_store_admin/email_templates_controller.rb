@@ -23,15 +23,9 @@ module MagazStoreAdmin
         redirect_to notifications_settings_settings_path
       else
         @email_template = service
+        flash[:notice] = t('.notice_fail')
         render 'edit'
       end
     end
-
-    protected
-
-    # def permitted_params
-    #   { email_template:
-    #       params.fetch(:email_template, {}).permit(:name, :title, :body, :template_type) }
-    # end
   end
 end

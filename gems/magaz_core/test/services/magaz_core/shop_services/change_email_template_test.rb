@@ -8,7 +8,7 @@ module MagazCore
       @email_template = create(:email_template, shop: @shop)
       @success_params = {id: @email_template.id, title: "Changed title",
                          shop_id: @shop.id, body: "Changed body" }
-      @blank_params = { id: nil, title: "", shop_id: nil, body: "", }    
+      @blank_params = { id: "", title: "", shop_id: "", body: "", }    
     end
 
     test 'should update email template with valid params' do
@@ -24,8 +24,8 @@ module MagazCore
       service = MagazCore::ShopServices::ChangeEmailTemplate.run(@blank_params)
       refute service.valid?
       assert_equal 2, service.errors.full_messages.count
-      assert_equal "Id is required", service.errors.full_messages.first
-      assert_equal "Shop is required", service.errors.full_messages.last
+      assert_equal "Id is not a valid integer", service.errors.full_messages.first
+      assert_equal "Shop is not a valid integer", service.errors.full_messages.last
     end
 
     test 'should update update email with some blank params' do
