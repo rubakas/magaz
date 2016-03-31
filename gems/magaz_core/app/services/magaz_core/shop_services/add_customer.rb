@@ -7,7 +7,7 @@ module MagazCore
 
       validates :email, presence: true
 
-      validate :customer_uniquness
+      validate :customer_uniqueness
 
       def to_model
         MagazCore::Customer.new
@@ -23,8 +23,11 @@ module MagazCore
         customer
       end
 
-      def customer_uniquness
-        errors.add(:base, I18n.t('default.services.add_customer.customer_exist')) unless customer_unique?
+      private
+
+      def customer_uniqueness      
+        errors.add(:base, I18n
+          .t('default.services.add_customer.customer_exist')) unless customer_unique?
       end
 
       def customer_unique?

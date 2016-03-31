@@ -187,8 +187,17 @@ en:
         wrong_params: "Wrong params for blog"
         title_not_unique: "Title has already been taken"
 
+      add_collection:
+        name_not_unique: "Name has already been taken"
+      change_collection:
+        wrong_params: "Wrong params for collection"
+        name_not_unique: "Name has already been taken"
+
       add_customer:
         customer_exist: "This customer is already exist in this shop"
+      change_customer:
+        customer_exist: "This customer is already exist in this shop"
+        wrong_params: "Wrong params for customer"
 
       add_comment:
         article_not_belongs: "This article is not belongs to this blog"
@@ -196,7 +205,7 @@ en:
         wrong_params: "Wrong params for comment"
 
       add_link:
-        title_not_unique: "Name has already been taken"
+        name_not_unique: "Name has already been taken"
       change_link:
         wrong_params: "Wrong params for link"
         name_not_unique: "Name has already been taken"
@@ -204,13 +213,22 @@ en:
       add_link_list:
         name_not_unique: "Name has already been taken"
       change_link_list:
-        wrong_params: "Wrong params for link_list"
+        wrong_params: "Wrong params for link list"
         name_not_unique: "Name has already been taken"
 
       change_email_template:
-        wrong_params: "Wrong params for email_template"
+        wrong_params: "Wrong params for email template"
         name_not_unique: "Name has already been taken"  
         
+      add_page:
+        title_not_unique: "Title has already been taken"
       change_page:
         wrong_params: "Wrong params for page"
         title_not_unique: "Title has already been taken"
+
+      create:
+        name_not_unique: "Name has already been taken"
+        no_default_theme: "No default theme in system"
+
+      install_theme:
+        invalid_shop_id: "Can't find shop with such id"
