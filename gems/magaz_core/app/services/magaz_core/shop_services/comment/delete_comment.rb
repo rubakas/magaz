@@ -1,14 +1,10 @@
-module MagazCore
-  module ShopServices
-    class DeleteComment < ActiveInteraction::Base
-      
-      integer :id
+class MagazCore::ShopServices::Comment::DeleteComment < ActiveInteraction::Base
 
-      validates :id, presence: true
+  integer :id
 
-      def execute
-        MagazCore::Comment.find(id).destroy
-      end
-    end
+  validates :id, presence: true
+
+  def execute
+    MagazCore::Comment.find(id).destroy
   end
 end

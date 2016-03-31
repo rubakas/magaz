@@ -1,19 +1,15 @@
-module MagazCore
-  module ShopServices
-    class ChangeComment < ActiveInteraction::Base
+class MagazCore::ShopServices::Comment::ChangeComment < ActiveInteraction::Base
 
-      string :author, :email, :body
-      integer :id
+  string :author, :email, :body
+  integer :id
 
-      validates :author, :email, :body, :id, presence: true
+  validates :author, :email, :body, :id, presence: true
 
-      def execute
-        comment = MagazCore::Comment.find(id)
-        comment.update_attributes!(inputs.slice!(:id)) ||
-          errors.add(:base, I18n.t('default.services.change_comment.wrong_params'))
+  def execute
+    comment = MagazCore::Comment.find(id)
+    comment.update_attributes!(inputs.slice!(:id)) ||
+      errors.add(:base, I18n.t('default.services.change_comment.wrong_params'))
 
-        comment
-      end
-    end
+    comment
   end
 end

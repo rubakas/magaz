@@ -17,9 +17,12 @@ module MagazStoreAdmin
 
     def create
       @article = current_shop.articles.find_by(params[:id])
-      service = MagazCore::ShopServices::AddComment.run(author: params[:comment][:author], email: params[:comment][:email],
-                                                        body: params[:comment][:body], article_id: params[:comment][:article_id],
-                                                        blog_id: params[:comment][:blog_id])
+      service = MagazCore::ShopServices::Comment::AddComment
+                  .run(author: params[:comment][:author],
+                       email: params[:comment][:email],
+                       body: params[:comment][:body],
+                       article_id: params[:comment][:article_id],
+                       blog_id: params[:comment][:blog_id])
       if service.valid?
         @comment = service.result
         flash[:notice] = t('.notice_success')
@@ -33,9 +36,11 @@ module MagazStoreAdmin
 
     def update
       @comment = current_shop.comments.find(params[:id])
-      service = MagazCore::ShopServices::ChangeComment.run(id: @comment.id, author: params[:comment][:author],
-                                                          email: params[:comment][:email],
-                                                          body: params[:comment][:body])
+      service = MagazCore::ShopServices::Comment::ChangeComment
+                  .run(id: @comment.id,
+                       author: params[:comment][:author],
+                       email: params[:comment][:email],
+                       body: params[:comment][:body])
       if service.valid?
         @comment = service.result
         flash[:notice] = t('.notice_success')
@@ -51,7 +56,7 @@ module MagazStoreAdmin
 
     def destroy
       @comment = current_shop.comments.find(params[:id])
-      service = MagazCore::ShopServices::DeleteComment.run(id: @comment.id)
+      service = MagazCore::ShopServices::Comment::DeleteComment.run(id: @comment.id)
       flash[:notice] = t('.notice_success')
       redirect_to comments_url
     end
