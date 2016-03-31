@@ -1,127 +1,168 @@
 module MagazCore
   module ShopServices
-    class Create
-      include MagazCore::Concerns::Service
-      attr_accessor :shop
-      attr_accessor :user
+    class Create < ActiveInteraction::Base
 
-      def call(shop_params: {}, user_params: {})
+      string :shop_name, :first_name, :last_name, :email, :password
+
+      validates :shop_name, :email, :password, :first_name, :last_name, presence: true
+
+      validate :shop_name_uniqueness
+
+      def to_model
+        MagazCore::Shop.new
+      end
+
+
+      def execute
         @shop = MagazCore::Shop.new
         @user = MagazCore::User.new
 
         MagazCore::Shop.connection.transaction do
           begin
-            @shop.attributes = shop_params
+            @shop.attributes = {name: shop_name}
             @shop.save!
-            @user.attributes = user_params.merge(account_owner: true, shop_id: @shop.id)
+            @user.attributes = {email: email,
+                                password: password,
+                                account_owner: true,
+                                shop_id: @shop.id,
+                                first_name: first_name,
+                                last_name: last_name}
             @user.save!
-            _install_default_theme(shop: @shop)
-            _create_default_blogs_and_posts!(shop: @shop)
-            _create_default_collection!(shop: @shop)
-            _create_default_pages!(shop: @shop)
+
+            _install_default_theme(shop_id: @shop.id)
+            _create_default_blogs_and_posts!(shop_id: @shop.id)
+
+            # create default collection
+            compose(MagazCore::ShopServices::AddCollection,
+                    handle: '',
+                    name: I18n.t('default.models.collection.collection_title'),
+                    page_title: '',
+                    description: I18n.t('default.models.collection.collection_description'),
+                    shop_id: @shop.id,
+                    meta_description: '')
+
+            # create default pages
+            compose(MagazCore::ShopServices::AddPage,
+                    shop_id: @shop.id,
+                    title: I18n.t('default.models.page.about_title'),
+                    page_title: '',
+                    content: I18n.t('default.models.page.about_content'),
+                    handle: '',
+                    meta_description: '',
+                    publish_on: nil,
+                    published_at: nil)
+
+            compose(MagazCore::ShopServices::AddPage,
+                    shop_id: @shop.id,
+                    title: I18n.t('default.models.page.welcome_title'),
+                    page_title: '',
+                    content: I18n.t('default.models.page.welcome_content'),
+                    handle: '',
+                    meta_description: '',
+                    publish_on: nil,
+                    published_at: nil)
+
             # links created after linked content, right? :)
-            _create_default_link_lists!(shop: @shop)
+            _create_default_link_lists!(shop_id: @shop.id)
             _create_default_emails!(shop: @shop)
-          rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
+          rescue RuntimeError, ActiveRecord::RecordInvalid
             raise ActiveRecord::Rollback
           end
         end
+
+        {shop: @shop, user: @user}
       end
 
       private
 
-      def _install_default_theme(shop:)
+      def shop_name_uniqueness
+        errors.add(:base, I18n.t('default.services.create.name_not_unique')) unless shop_name_unique?
+      end
+
+      def shop_name_unique?
+        MagazCore::Shop.where(name: shop_name).count == 0
+      end
+
+      def _install_default_theme(shop_id:)
         # Default theme, fail unless found
-        default_theme = MagazCore::Theme.sources.first || fail(ActiveRecord::RecordNotFound)
-        MagazCore::ThemeServices::Install
-          .call(shop_id: shop.id, source_theme_id: default_theme.id)
+        if MagazCore::Theme.sources.first
+          compose(MagazCore::ThemeServices::InstallTheme,
+                  shop_id: shop_id,
+                  source_theme_id: MagazCore::Theme.sources.first.id)
+        else
+          errors.add(:base, I18n.t('default.services.create.no_default_theme'))
+          fail 'No default theme in system'
+        end
       end
 
-      def _create_default_blogs_and_posts!(shop:)
-        add_blog_service = MagazCore::ShopServices::AddBlog
-                                .run(title: I18n.t('default.models.blog.blog_title'),
-                                     shop_id: shop.id, page_title: '', handle: '',
-                                     meta_description: '')
+      def _create_default_blogs_and_posts!(shop_id:)
+        default_blog = compose(MagazCore::ShopServices::AddBlog,
+                               meta_description: '',
+                               title: I18n.t('default.models.blog.blog_title'),
+                               handle: '',
+                               shop_id: shop_id,
+                               page_title: '')
 
-        default_blog = add_blog_service.result
 
-        add_article_service = MagazCore::ShopServices::AddArticle
-                                  .run(title: I18n.t('default.models.article.article_title'), content: I18n.t('default.models.article.article_content'),
-                                       blog_id: default_blog.id, page_title: '',
-                                       meta_description: '', handle: '')
-
-        default_post = add_article_service.result
+        compose(MagazCore::ShopServices::AddArticle,
+                handle: '',
+                title: I18n.t('default.models.article.article_title'),
+                page_title: '',
+                content: I18n.t('default.models.article.article_content'),
+                meta_description: '',
+                blog_id: default_blog.id)
       end
 
-      def _create_default_collection!(shop:)
-        service = MagazCore::ShopServices::AddCollection
-                    .run(name: I18n.t('default.models.collection.collection_title'),
-                         description: I18n.t('default.models.collection.collection_description'),
-                         shop_id: shop.id, page_title: '', meta_description: '',  handle: '')
-      end
-
-      def _create_default_link_lists!(shop:)
+      def _create_default_link_lists!(shop_id:)
         #Main Menu link list
-        link_list_service = MagazCore::ShopServices::AddLinkList.run(name: I18n.t('default.models.link_list.menu_link_list_name'),
-                                                                     handle: '',
-                                                                     shop_id: shop.id)
-        default_menu_link_list = link_list_service.result
+        default_menu_link_list = compose(MagazCore::ShopServices::AddLinkList,
+                                         shop_id: shop_id,
+                                         name: I18n.t('default.models.link_list.menu_link_list_name'),
+                                         handle: '')
 
         #Links for Main Menu
-        default_home_link_service = MagazCore::ShopServices::AddLink.
-                              run(name: I18n.t('default.models.link.home_link_name'), link_type: '',
-                                  position: '', link_list_id: default_menu_link_list.id)
+        default_home_link = compose(MagazCore::ShopServices::AddLink,
+                                    position: '',
+                                    name: I18n.t('default.models.link.home_link_name'),
+                                    link_type: '',
+                                    link_list_id: default_menu_link_list.id)
 
-        default_home_link = default_home_link_service.result
-
-        default_blog_link_service = MagazCore::ShopServices::AddLink.
-                                      run(name: I18n.t('default.models.link.blog_link_name'), link_type: '',
-                                          position: '', link_list_id: default_menu_link_list.id)
-
-        default_blog_link = default_blog_link_service.result
+        default_blog_link = compose(MagazCore::ShopServices::AddLink,
+                                    position: '',
+                                    name: I18n.t('default.models.link.blog_link_name'),
+                                    link_type: '',
+                                    link_list_id: default_menu_link_list.id)
 
         #Footer link list
-        default_footer_link_list_service = MagazCore::ShopServices::AddLinkList.
-                                            run(name: I18n.t('default.models.link_list.footer_link_list_name'), handle: '',
-                                                shop_id: shop.id)
-
-        default_footer_link_list = default_footer_link_list_service.result
+        default_footer_link_list = compose(MagazCore::ShopServices::AddLinkList,
+                                           shop_id: shop_id,
+                                           name: I18n.t('default.models.link_list.footer_link_list_name'),
+                                           handle: '')
 
         #Links for Footer
-        default_search_link_service = MagazCore::ShopServices::AddLink.
-                                        run(name: I18n.t('default.models.link.search_link_name'), link_type: '',
-                                            position: '', link_list_id: default_footer_link_list.id)
+        default_search_link = compose(MagazCore::ShopServices::AddLink,
+                                      position: '',
+                                      name: I18n.t('default.models.link.search_link_name'),
+                                      link_type: '',
+                                      link_list_id: default_footer_link_list.id)
 
-        default_search_link = default_search_link_service.result
-
-        default_about_link_service = MagazCore::ShopServices::AddLink.
-                                      run(name: I18n.t('default.models.link.about_link_name'), link_type: '',
-                                          position: '', link_list_id: default_footer_link_list.id)
-
-        default_about_link = default_about_link_service.result
-      end
-
-      def _create_default_pages!(shop:)
-        MagazCore::ShopServices::AddPage.run(title: I18n.t('default.models.page.about_title'), page_title: '',
-                                             content: I18n.t('default.models.page.about_content'), handle: '',
-                                             meta_description: '', shop_id: shop.id,
-                                             publish_on: nil, published_at: nil)
-
-        MagazCore::ShopServices::AddPage.run(title: I18n.t('default.models.page.welcome_title'), page_title: '',
-                                             content: I18n.t('default.models.page.welcome_content'), handle: '',
-                                             meta_description: '', shop_id: shop.id,
-                                             publish_on: nil, published_at: nil)
+        default_about_link = compose(MagazCore::ShopServices::AddLink,
+                                     position: '',
+                                     name: I18n.t('default.models.link.about_link_name'),
+                                     link_type: '',
+                                     link_list_id: default_footer_link_list.id)
       end
 
       def _create_default_emails!(shop:)
         MagazCore::EmailTemplate::EMAIL_TEMPLATES.each do |template_type|
-          shop.email_templates.create(template_type: template_type,
-                                      name:          I18n.t("email_templates.#{template_type}.name"),
-                                      title:         I18n.t("email_templates.#{template_type}.title"),
-                                      body:          I18n.t("email_templates.#{template_type}.body"),
-                                      description:   I18n.t("email_templates.#{template_type}.description"))
+          @shop.email_templates.create(template_type: template_type,
+                                       name:          I18n.t("email_templates.#{template_type}.name"),
+                                       title:         I18n.t("email_templates.#{template_type}.title"),
+                                       body:          I18n.t("email_templates.#{template_type}.body"),
+                                       description:   I18n.t("email_templates.#{template_type}.description"))
         end
       end
     end
   end
 end
+
