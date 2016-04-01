@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Event::CreateEventCreateEventTest < ActiveSupport::TestCase
+class MagazCore::StoreServices::CreateEventCreateEventTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -12,7 +12,7 @@ class MagazCore::AdminServices::Event::CreateEventCreateEventTest < ActiveSuppor
   end
 
   test 'create event with product' do
-    service = MagazCore::AdminServices::Event::CreateEvent
+    service = MagazCore::StoreServices::CreateEvent
                 .call(subject: @product,
                       topic: MagazCore::Webhook::Topics::CREATE_PRODUCT_EVENT,
                       current_user: @user)
@@ -28,7 +28,7 @@ class MagazCore::AdminServices::Event::CreateEventCreateEventTest < ActiveSuppor
   end
 
   test 'create event with article' do
-    service = MagazCore::AdminServices::Event::CreateEvent
+    service = MagazCore::StoreServices::CreateEvent
                 .call(subject: @article,
                       topic: MagazCore::Webhook::Topics::CREATE_ARTICLE_EVENT,
                       current_user: @user)
@@ -43,7 +43,7 @@ class MagazCore::AdminServices::Event::CreateEventCreateEventTest < ActiveSuppor
   end
 
   test 'create event with collection' do
-    service = MagazCore::AdminServices::Event::CreateEvent
+    service = MagazCore::StoreServices::CreateEvent
                 .call(subject: @collection,
                       topic: MagazCore::Webhook::Topics::CREATE_COLLECTION_EVENT,
                       current_user: @user)
@@ -59,7 +59,7 @@ class MagazCore::AdminServices::Event::CreateEventCreateEventTest < ActiveSuppor
   end
 
   test 'create event with Webhook' do
-    service = MagazCore::AdminServices::Event::CreateEvent
+    service = MagazCore::StoreServices::CreateEvent
                 .call(subject: @webhook,
                       topic: MagazCore::Webhook::Topics::CREATE_WEBHOOK_EVENT,
                       current_user: @user)

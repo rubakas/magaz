@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Shop::Create < ActiveInteraction::Base
+class MagazCore::StoreServices::Create < ActiveInteraction::Base
 
   string :shop_name, :first_name, :last_name, :email, :password
 

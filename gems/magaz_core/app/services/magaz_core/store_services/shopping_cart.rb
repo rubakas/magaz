@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Order::ShoppingCart
+class MagazCore::StoreServices::ShoppingCart
   attr_reader :checkout, :customer, :shop
 
   def initialize(shop_id:, checkout_id:, customer_id:)

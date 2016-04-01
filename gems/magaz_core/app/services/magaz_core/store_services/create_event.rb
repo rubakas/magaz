@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Event::CreateEvent
+class MagazCore::StoreServices::CreateEvent
   include MagazCore::Concerns::Service
   attr_accessor :event
 

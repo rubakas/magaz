@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Shop::CreateTest < ActiveSupport::TestCase
+class MagazCore::StoreServices::CreateTest < ActiveSupport::TestCase
   setup do
     @default_theme = build(:theme)
-    archive_path = ::File.expand_path('./../../../../../fixtures/files/valid_theme.zip', __FILE__)
+    archive_path = ::File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
 
     MagazCore::ThemeServices::ImportFromArchive
       .call(archive_path: archive_path,
@@ -16,7 +16,7 @@ class MagazCore::AdminServices::Shop::CreateTest < ActiveSupport::TestCase
   end
 
   test 'create shop with valid params' do
-    service = MagazCore::AdminServices::Shop::Create.run(@success_params)
+    service = MagazCore::StoreServices::Create.run(@success_params)
 
     assert service.valid?
     assert service.result[:user]
@@ -28,27 +28,27 @@ class MagazCore::AdminServices::Shop::CreateTest < ActiveSupport::TestCase
 
   test 'fail shop creation when no default theme in system' do
     @default_theme.delete
-    service = MagazCore::AdminServices::Shop::Create.run(@success_params)
+    service = MagazCore::StoreServices::Create.run(@success_params)
     refute service.valid?
     assert_equal "No default theme in system", service.errors.full_messages.last
   end
 
   test 'fail shop creation when no user params' do
-    service = MagazCore::AdminServices::Shop::Create.run(shop_name: 'example42', first_name: '' ,
+    service = MagazCore::StoreServices::Create.run(shop_name: 'example42', first_name: '' ,
                                                   last_name: '', email: '',
                                                   password: '')
     refute service.valid?
   end
 
   test 'fail shop creation when no shop params' do
-    service = MagazCore::AdminServices::Shop::Create.run(shop_name: '', first_name: 'First' ,
+    service = MagazCore::StoreServices::Create.run(shop_name: '', first_name: 'First' ,
                                                   last_name: 'Last', email: 'email@mail.com',
                                                   password: 'password')
     refute service.valid?
   end
 
   test "shop and user should have association" do
-    service = MagazCore::AdminServices::Shop::Create.run(@success_params)
+    service = MagazCore::StoreServices::Create.run(@success_params)
 
     assert service.valid?
     assert service.result[:shop]
@@ -60,7 +60,7 @@ class MagazCore::AdminServices::Shop::CreateTest < ActiveSupport::TestCase
   end
 
   test 'default content created' do
-    service = MagazCore::AdminServices::Shop::Create.run(@success_params)
+    service = MagazCore::StoreServices::Create.run(@success_params)
     assert service.valid?
     assert service.result[:shop]
 
