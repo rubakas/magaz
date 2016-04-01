@@ -24,10 +24,10 @@ module MagazStoreAdmin
     test "should update email_template" do
       patch :update,
         { id: @email_template.id,
-          product: { name: @email_template.name,
-                     title: @email_template.title,
-                     body: @email_template.body,
-                     template_type: @email_template.template_type } }
+          email_template: {name: @email_template.name,
+                           title: @email_template.title,
+                           body: @email_template.body,
+                           template_type: @email_template.template_type } }
       assert_redirected_to notifications_settings_settings_path
     end
   end
