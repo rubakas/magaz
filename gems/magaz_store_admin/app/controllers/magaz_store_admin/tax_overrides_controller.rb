@@ -9,8 +9,10 @@ module MagazStoreAdmin
     end
 
     def create
-      @service = MagazCore::ShopServices::CreateTaxOverride.call(params: permitted_params[:tax_override],
-                                                                 shipping_country_id: params[:shipping_country_id])
+      @service = MagazCore::AdminServices::TaxOverride::CreateTaxOverride
+                  .call(params: permitted_params[:tax_override],
+                        shipping_country_id: params[:shipping_country_id])
+
       @tax_override = @service.tax_override
       @shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
       if @tax_override.persisted?

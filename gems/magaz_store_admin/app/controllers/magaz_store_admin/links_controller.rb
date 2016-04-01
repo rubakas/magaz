@@ -19,8 +19,12 @@ module MagazStoreAdmin
 
     def create
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
-      service = MagazCore::ShopServices::AddLink.run(name: params[:link][:name], link_type: params[:link][:link_type],
-                                                     position: params[:link][:position], link_list_id: @link_list.id)
+      service = MagazCore::AdminServices::Link::AddLink
+                  .run(name: params[:link][:name],
+                       link_type: params[:link][:link_type],
+                       position: params[:link][:position],
+                       link_list_id: @link_list.id)
+
       if service.valid?
         @link = service.result
         flash[:notice] = t('.notice_success')
@@ -34,10 +38,13 @@ module MagazStoreAdmin
     def update
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       @link = @link_list.links.find(params[:id])
-      service = MagazCore::ShopServices::ChangeLink.
-                  run(id: @link.id, link_list_id: @link_list.id,
-                      name: params[:link][:name], link_type: params[:link][:link_type],
-                      position: params[:link][:position])
+      service = MagazCore::AdminServices::Link::ChangeLink
+                  .run(id: @link.id,
+                       link_list_id: @link_list.id,
+                       name: params[:link][:name],
+                       link_type: params[:link][:link_type],
+                       position: params[:link][:position])
+
       if service.valid?
         @link = service.result
         flash[:notice] = t('.notice_success')
@@ -53,7 +60,7 @@ module MagazStoreAdmin
     def destroy
       @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       @link = @link_list.links.find(params[:id])
-      MagazCore::ShopServices::DeleteLink.run(id: @link.id)
+      MagazCore::AdminServices::Link::DeleteLink.run(id: @link.id)
       flash[:notice] = t('.notice_success')
       redirect_to link_list_path(@link_list)
     end

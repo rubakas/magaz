@@ -11,13 +11,15 @@ module MagazStoreAdmin
     end
 
     def new
-      @link_list = MagazCore::ShopServices::AddLinkList.new
+      @link_list = MagazCore::AdminServices::LinkList::AddLinkList.new
     end
 
     def create
-      service = MagazCore::ShopServices::AddLinkList.run(name: params[:link_list][:name],
-                                                         handle: params[:link_list][:handle],
-                                                         shop_id: current_shop.id)
+      service = MagazCore::AdminServices::LinkList::AddLinkList
+                  .run(name: params[:link_list][:name],
+                       handle: params[:link_list][:handle],
+                       shop_id: current_shop.id)
+
       if service.valid?
         @link_list = service.result
         flash[:notice] = t('.notice_success')
@@ -30,8 +32,11 @@ module MagazStoreAdmin
 
     def update
       @link_list = current_shop.link_lists.friendly.find(params[:id])
-      service = MagazCore::ShopServices::ChangeLinkList.run(id: @link_list.id, name: params[:link_list][:name],
-                                                            handle: params[:link_list][:handle], shop_id: current_shop.id)
+      service = MagazCore::AdminServices::LinkList::ChangeLinkList
+                  .run(id: @link_list.id,
+                       name: params[:link_list][:name],
+                       handle: params[:link_list][:handle],
+                       shop_id: current_shop.id)
 
       if service.valid?
         @link_list = service.result
@@ -47,7 +52,7 @@ module MagazStoreAdmin
 
     def destroy
       @link_list = current_shop.link_lists.friendly.find(params[:id])
-      service = MagazCore::ShopServices::DeleteLinkList.run(id: @link_list.id)
+      service = MagazCore::AdminServices::LinkList::DeleteLinkList.run(id: @link_list.id)
       flash[:notice] = t('.notice_success')
       redirect_to link_lists_path
     end

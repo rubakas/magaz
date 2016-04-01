@@ -11,13 +11,16 @@ module MagazStoreAdmin
     end
 
     def new
-      @blog = MagazCore::ShopServices::AddBlog.new
+      @blog = MagazCore::AdminServices::Blog::AddBlog.new
     end
 
     def create
-      service = MagazCore::ShopServices::AddBlog.run(title: params[:blog][:title], shop_id: current_shop.id,
-                                                     page_title: params[:blog][:page_title], handle: params[:blog][:handle],
-                                                     meta_description: params[:blog][:meta_description])
+      service = MagazCore::AdminServices::Blog::AddBlog
+                .run(title: params[:blog][:title],
+                     shop_id: current_shop.id,
+                     page_title: params[:blog][:page_title],
+                     handle: params[:blog][:handle],
+                     meta_description: params[:blog][:meta_description])
       if service.valid?
         @blog = service.result
         flash[:notice] = t('.notice_success')
@@ -31,9 +34,13 @@ module MagazStoreAdmin
 
     def update
       @blog = current_shop.blogs.friendly.find(params[:id])
-      service = MagazCore::ShopServices::ChangeBlog.run(id: @blog.id, title: params[:blog][:title],
-                                                        shop_id: current_shop.id, page_title: params[:blog][:page_title],
-                                                        meta_description: params[:blog][:meta_description], handle: params[:blog][:handle])
+      service = MagazCore::AdminServices::Blog::ChangeBlog
+                  .run(id: @blog.id,
+                       title: params[:blog][:title],
+                       shop_id: current_shop.id,
+                       page_title: params[:blog][:page_title],
+                       meta_description: params[:blog][:meta_description],
+                       handle: params[:blog][:handle])
       if service.valid?
         @blog = service.result
         flash[:notice] = t('.notice_success')
@@ -48,7 +55,7 @@ module MagazStoreAdmin
 
     def destroy
       @blog = current_shop.blogs.friendly.find(params[:id])
-      service = MagazCore::ShopServices::DeleteBlog.run(id: @blog.id)
+      service = MagazCore::AdminServices::Blog::DeleteBlog.run(id: @blog.id)
       flash[:notice] = t('.notice_success')
       redirect_to blogs_path
     end

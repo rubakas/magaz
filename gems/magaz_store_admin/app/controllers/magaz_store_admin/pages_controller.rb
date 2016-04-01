@@ -11,13 +11,18 @@ module MagazStoreAdmin
     end
 
     def new
-      @page = MagazCore::ShopServices::AddPage.new
+      @page = MagazCore::AdminServices::Page::AddPage.new
     end
 
     def create
-      service = MagazCore::ShopServices::AddPage.run(title: params[:page][:title], content: params[:page][:content],
-                                                     page_title: params[:page][:page_title], meta_description: params[:page][:meta_description],
-                                                     handle: params[:page][:handle], shop_id: current_shop.id)
+      service = MagazCore::AdminServices::Page::AddPage
+                  .run(title: params[:page][:title],
+                       content: params[:page][:content],
+                       page_title: params[:page][:page_title],
+                       meta_description: params[:page][:meta_description],
+                       handle: params[:page][:handle],
+                       shop_id: current_shop.id)
+
       if service.valid?
         @page = service.result
         flash[:notice] = t('.notice_success')
@@ -30,10 +35,15 @@ module MagazStoreAdmin
 
     def update
       @page = current_shop.pages.friendly.find(params[:id])
-      service = MagazCore::ShopServices::ChangePage.run(id: @page.id, title: params[:page][:title],
-                                                        shop_id: current_shop.id, page_title: params[:page][:page_title],
-                                                        meta_description: params[:page][:meta_description], handle: params[:page][:handle],
-                                                        content: params[:page][:content])
+      service = MagazCore::AdminServices::Page::ChangePage
+                  .run(id: @page.id,
+                       title: params[:page][:title],
+                       shop_id: current_shop.id,
+                       page_title: params[:page][:page_title],
+                       meta_description: params[:page][:meta_description],
+                       handle: params[:page][:handle],
+                       content: params[:page][:content])
+
       if service.valid?
         @page = service.result
         flash[:notice] = t('.notice_success')
@@ -48,7 +58,7 @@ module MagazStoreAdmin
 
     def destroy
       @page = current_shop.pages.friendly.find(params[:id])
-      service = MagazCore::ShopServices::DeletePage.run(id: @page.id)
+      service = MagazCore::AdminServices::Page::DeletePage.run(id: @page.id)
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
     end
