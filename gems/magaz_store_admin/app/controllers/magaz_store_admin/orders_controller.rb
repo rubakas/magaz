@@ -15,7 +15,7 @@
     def update
       @order = current_shop.checkouts.orders.find(params[:id])
       if @order.update_attributes(permitted_params[:order])
-        # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_ORDER_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to order_path(@order)
@@ -27,7 +27,7 @@
     def destroy
       @order = current_shop.checkouts.orders.find(params[:id])
       @order.destroy
-      # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+      # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
       #                                                                     topic: MagazCore::Webhook::Topics::DELETE_ORDER_EVENT)
       flash[:notice] = t('.notice_success')
       render 'index'

@@ -7,8 +7,8 @@ module MagazCore
       archive_path = ::File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
       theme = Theme.new
       theme_attributes = {}
-      archive_importer = 
-        MagazCore::ThemeServices::ImportFromArchive.call archive_path: archive_path, 
+      archive_importer =
+        MagazCore::ThemeServices::ImportFromArchive.call archive_path: archive_path,
                                                          theme: theme,
                                                          theme_attributes: theme_attributes
       assert_kind_of Theme, archive_importer.theme

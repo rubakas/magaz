@@ -19,7 +19,7 @@ module MagazStoreAdmin
 
     def create
       @current_user = current_shop.users.find(session[:user_id])
-      @service = MagazCore::ShopServices::Invite::CreateInvite.call
+      @service = MagazCore::AdminServices::Invite::CreateInvite.call
 
       if @service.valid_email(email: permitted_params[:user][:email], shop: current_shop)
         @service.create_user_with_email_and_token!(email: permitted_params[:user][:email],

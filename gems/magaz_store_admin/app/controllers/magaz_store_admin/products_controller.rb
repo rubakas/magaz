@@ -18,7 +18,7 @@ module MagazStoreAdmin
       @shop = current_shop
       @product = @shop.products.new(permitted_params[:product])
       if @product.save
-        # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                                                                     topic: MagazCore::Webhook::Topics::CREATE_PRODUCT_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
@@ -30,7 +30,7 @@ module MagazStoreAdmin
     def update
       @product = current_shop.products.friendly.find(params[:id])
       if @product.update_attributes(permitted_params[:product])
-        # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_PRODUCT_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
@@ -42,7 +42,7 @@ module MagazStoreAdmin
     def destroy
       @product = current_shop.products.friendly.find(params[:id])
       @product.destroy
-      # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+      # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
       #                                                                     topic: MagazCore::Webhook::Topics::DELETE_PRODUCT_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to products_path

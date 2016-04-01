@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    service = MagazCore::ShopServices::Shop::Create
+    service = MagazCore::AdminServices::Shop::Create
                 .run(shop_name: params[:registration][:name],
                      first_name: params[:registration][:first_name],
                      last_name: params[:registration][:last_name],

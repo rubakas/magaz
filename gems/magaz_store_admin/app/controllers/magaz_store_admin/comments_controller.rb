@@ -17,7 +17,7 @@ module MagazStoreAdmin
 
     def create
       @article = current_shop.articles.find_by(params[:id])
-      service = MagazCore::ShopServices::Comment::AddComment
+      service = MagazCore::AdminServices::Comment::AddComment
                   .run(author: params[:comment][:author],
                        email: params[:comment][:email],
                        body: params[:comment][:body],
@@ -36,7 +36,7 @@ module MagazStoreAdmin
 
     def update
       @comment = current_shop.comments.find(params[:id])
-      service = MagazCore::ShopServices::Comment::ChangeComment
+      service = MagazCore::AdminServices::Comment::ChangeComment
                   .run(id: @comment.id,
                        author: params[:comment][:author],
                        email: params[:comment][:email],
@@ -56,7 +56,7 @@ module MagazStoreAdmin
 
     def destroy
       @comment = current_shop.comments.find(params[:id])
-      service = MagazCore::ShopServices::Comment::DeleteComment.run(id: @comment.id)
+      service = MagazCore::AdminServices::Comment::DeleteComment.run(id: @comment.id)
       flash[:notice] = t('.notice_success')
       redirect_to comments_url
     end

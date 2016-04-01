@@ -11,11 +11,11 @@ module MagazStoreAdmin
     end
 
     def new
-      @article = MagazCore::ShopServices::Article::AddArticle.new
+      @article = MagazCore::AdminServices::Article::AddArticle.new
     end
 
     def create
-      service = MagazCore::ShopServices::Article::AddArticle
+      service = MagazCore::AdminServices::Article::AddArticle
                   .run(title: params[:article][:title],
                        content: params[:article][:content],
                        blog_id: params[:article][:blog_id],
@@ -35,7 +35,7 @@ module MagazStoreAdmin
 
     def update
       @article = current_shop.articles.friendly.find(params[:id])
-      service = MagazCore::ShopServices::Article::ChangeArticle
+      service = MagazCore::AdminServices::Article::ChangeArticle
                   .run(id: @article.id,
                        title: params[:article][:title],
                        blog_id: params[:article][:blog_id],
@@ -58,7 +58,7 @@ module MagazStoreAdmin
 
     def destroy
       @article = current_shop.articles.friendly.find(params[:id])
-      service = MagazCore::ShopServices::Article::DeleteArticle.run(id: @article.id)
+      service = MagazCore::AdminServices::Article::DeleteArticle.run(id: @article.id)
       flash[:notice] = t('.notice_success')
       redirect_to articles_url
     end

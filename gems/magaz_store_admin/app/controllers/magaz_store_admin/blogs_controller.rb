@@ -11,11 +11,11 @@ module MagazStoreAdmin
     end
 
     def new
-      @blog = MagazCore::ShopServices::Blog::AddBlog.new
+      @blog = MagazCore::AdminServices::Blog::AddBlog.new
     end
 
     def create
-      service = MagazCore::ShopServices::Blog::AddBlog
+      service = MagazCore::AdminServices::Blog::AddBlog
                 .run(title: params[:blog][:title],
                      shop_id: current_shop.id,
                      page_title: params[:blog][:page_title],
@@ -34,7 +34,7 @@ module MagazStoreAdmin
 
     def update
       @blog = current_shop.blogs.friendly.find(params[:id])
-      service = MagazCore::ShopServices::Blog::ChangeBlog
+      service = MagazCore::AdminServices::Blog::ChangeBlog
                   .run(id: @blog.id,
                        title: params[:blog][:title],
                        shop_id: current_shop.id,
@@ -55,7 +55,7 @@ module MagazStoreAdmin
 
     def destroy
       @blog = current_shop.blogs.friendly.find(params[:id])
-      service = MagazCore::ShopServices::Blog::DeleteBlog.run(id: @blog.id)
+      service = MagazCore::AdminServices::Blog::DeleteBlog.run(id: @blog.id)
       flash[:notice] = t('.notice_success')
       redirect_to blogs_path
     end

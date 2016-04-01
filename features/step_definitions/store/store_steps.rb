@@ -3,7 +3,7 @@ Given(/^store exists$/) do
     * themes exist
   ]
 
-  service = MagazCore::ShopServices::Create
+  service = MagazCore::AdminServices::Create
               .run(shop_name: 'example',
                    password: 'password',
                    email: 'admin@example.com',

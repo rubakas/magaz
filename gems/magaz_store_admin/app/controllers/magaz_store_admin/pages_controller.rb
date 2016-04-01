@@ -11,11 +11,11 @@ module MagazStoreAdmin
     end
 
     def new
-      @page = MagazCore::ShopServices::Page::AddPage.new
+      @page = MagazCore::AdminServices::Page::AddPage.new
     end
 
     def create
-      service = MagazCore::ShopServices::Page::AddPage
+      service = MagazCore::AdminServices::Page::AddPage
                   .run(title: params[:page][:title],
                        content: params[:page][:content],
                        page_title: params[:page][:page_title],
@@ -35,7 +35,7 @@ module MagazStoreAdmin
 
     def update
       @page = current_shop.pages.friendly.find(params[:id])
-      service = MagazCore::ShopServices::Page::ChangePage
+      service = MagazCore::AdminServices::Page::ChangePage
                   .run(id: @page.id,
                        title: params[:page][:title],
                        shop_id: current_shop.id,
@@ -58,7 +58,7 @@ module MagazStoreAdmin
 
     def destroy
       @page = current_shop.pages.friendly.find(params[:id])
-      service = MagazCore::ShopServices::Page::DeletePage.run(id: @page.id)
+      service = MagazCore::AdminServices::Page::DeletePage.run(id: @page.id)
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
     end

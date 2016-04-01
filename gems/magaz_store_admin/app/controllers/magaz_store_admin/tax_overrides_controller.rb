@@ -9,7 +9,7 @@ module MagazStoreAdmin
     end
 
     def create
-      @service = MagazCore::ShopServices::TaxOverride::CreateTaxOverride
+      @service = MagazCore::AdminServices::TaxOverride::CreateTaxOverride
                   .call(params: permitted_params[:tax_override],
                         shipping_country_id: params[:shipping_country_id])
 

@@ -12,18 +12,18 @@ module MagazStoreAdmin
     end
 
     def new
-      @customer = MagazCore::ShopServices::Customer::AddCustomer.new
+      @customer = MagazCore::AdminServices::Customer::AddCustomer.new
     end
 
     def create
-      service = MagazCore::ShopServices::Customer::AddCustomer
+      service = MagazCore::AdminServices::Customer::AddCustomer
                   .run(first_name: params[:customer][:first_name],
                        last_name: params[:customer][:last_name],
                        email: params[:customer][:email],
                        shop_id: current_shop.id)
 
       if service.valid?
-        # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                         topic: MagazCore::Webhook::Topics::CREATE_CUSTOMER_EVENT)
         @customer = service.result
         flash[:notice] = t('.notice_success')
@@ -37,14 +37,14 @@ module MagazStoreAdmin
 
     def update
       @customer = current_shop.customers.find(params[:id])
-      service = MagazCore::ShopServices::Customer::ChangeCustomer
+      service = MagazCore::AdminServices::Customer::ChangeCustomer
                   .run(id: @customer.id,
                        first_name: params[:customer][:first_name],
                        last_name: params[:customer][:last_name],
                        email: params[:customer][:email],
                        shop_id: current_shop.id)
       if service.valid?
-        # @webhook_service = MagazCore::ShopServices::EventWebhookRunner.call(event: @event_service.event,
+        # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                         topic: MagazCore::Webhook::Topics::UPDATE_CUSTOMER_EVENT)
         @customer = service.result
         flash[:notice] = t('.notice_success')
@@ -57,7 +57,7 @@ module MagazStoreAdmin
     end
 
     def import
-      MagazCore::ShopServices::Customer::ImportCustomersFromCsv
+      MagazCore::AdminServices::Customer::ImportCustomersFromCsv
         .call(shop_id: current_shop.id, csv_file: params[:csv_file])
 
       redirect_to customers_path, notice: t('.notice_success')
@@ -74,8 +74,8 @@ module MagazStoreAdmin
 
     def destroy
       @customer = current_shop.customers.find(params[:id])
-      service = MagazCore::ShopServices::Customer::DeleteCustomer.run(id: @customer.id)
-      # @webhook_service = MagazCore::ShopServices::EventWebhookRunner
+      service = MagazCore::AdminServices::Customer::DeleteCustomer.run(id: @customer.id)
+      # @webhook_service = MagazCore::AdminServices::EventWebhookRunner
         #.call(event: @event_service.event, topic: MagazCore::Webhook::Topics::DELETE_CUSTOMER_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to customers_path
