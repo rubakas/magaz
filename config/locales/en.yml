@@ -167,6 +167,7 @@ en:
         notice_fail: "Can't create such comment, try again please."
       update:
         notice_success: "Comment was successfully updated."
+        notice_fail: "Can't create such comment, try again please."
       destroy:
         notice_success: "Comment was successfully deleted."
       index:

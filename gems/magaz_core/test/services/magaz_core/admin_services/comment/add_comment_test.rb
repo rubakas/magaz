@@ -10,7 +10,7 @@ class MagazCore::AdminServices::Comment::AddCommentTest < ActiveSupport::TestCas
     @article2 = create(:article, blog: @blog2)
     @success_params = {author: "Test author", email: "Test test@test.com", body: "Test body",
                        article_id: @article.id, blog_id: @blog.id}
-    @blank_params = {author: "", email: "", body: "", article_id: nil, blog_id: nil}
+    @blank_params = {author: "", email: "", body: "", article_id: "", blog_id: ""}
     @invalid_param = {author: "Test author", email: "Test test@test.com", body: "Test body",
                        article_id: @article2.id, blog_id: @blog.id}
   end
