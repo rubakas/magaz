@@ -21,8 +21,8 @@ module MagazStoreAdmin
                   .run(author: params[:comment][:author],
                        email: params[:comment][:email],
                        body: params[:comment][:body],
-                       article_id: params[:comment][:article_id],
-                       blog_id: params[:comment][:blog_id])
+                       article_id: @article.id,
+                       blog_id: @article.blog.id)
       if service.valid?
         @comment = service.result
         flash[:notice] = t('.notice_success')
@@ -44,7 +44,7 @@ module MagazStoreAdmin
       if service.valid?
         @comment = service.result
         flash[:notice] = t('.notice_success')
-        redirect_to comments_url
+        redirect_to comment_url(@comment)
       else
         flash[:notice] = t('.notice_fail')
         service.errors.full_messages.each do |msg|
@@ -57,8 +57,8 @@ module MagazStoreAdmin
     def destroy
       @comment = current_shop.comments.find(params[:id])
       service = MagazCore::AdminServices::Comment::DeleteComment.run(id: @comment.id)
-      flash[:notice] = t('.notice_success')
       redirect_to comments_url
+      flash[:notice] = t('.notice_success')
     end
   end
 end

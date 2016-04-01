@@ -7,8 +7,9 @@ class MagazCore::AdminServices::Comment::ChangeCommentTest < ActiveSupport::Test
     @blog = create(:blog, shop: @shop)
     @article = create(:article, blog: @blog)
     @comment = create(:comment, blog: @blog, article: @article)
-    @success_params = { id: @comment.id, author: "Changed author", email: "Changed test@test.com", body: "Changed body"}
-    @blank_params = { id: nil, author: nil, email: nil, body: nil }
+    @success_params = {id: @comment.id, author: "Changed author",
+                       email: "Changed test@test.com", body: "Changed body"}
+    @blank_params = { id: "", author: "", email: "", body: "" }
   end
 
   test 'should update comment with valid params' do
@@ -21,7 +22,7 @@ class MagazCore::AdminServices::Comment::ChangeCommentTest < ActiveSupport::Test
   test 'should not update comment with blank params' do
     service = MagazCore::AdminServices::Comment::ChangeComment.run(@blank_params)
     refute service.valid?
-    assert_equal 4, service.errors.full_messages.count
+    assert_equal 1, service.errors.full_messages.count
     assert_equal @comment.body, MagazCore::Comment.find(@comment.id).body
   end
 end
