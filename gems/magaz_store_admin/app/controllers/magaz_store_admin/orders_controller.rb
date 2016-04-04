@@ -13,13 +13,17 @@
     end
 
     def update
-      @order = current_shop.checkouts.orders.find(params[:id])
-      if @order.update_attributes(permitted_params[:order])
+      service = MagazCore::AdminServices::Order::ChangeOrder
+                  .run(id: @order.id,
+                       status: params[:order][:status])
+      if service.valid?
+        @order = service.result
         # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_ORDER_EVENT)
         flash[:notice] = t('.notice_success')
         redirect_to order_path(@order)
       else
+        @order = service
         render 'show'
       end
     end
@@ -36,15 +40,6 @@
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = current_shop.checkouts.orders.find(params[:id])
-    end
-
-    protected
-
-    #TODO:  order_ids are not guaranteed to belong to this shop!!!
-    # https://github.com/josevalim/inherited_resources#strong-parameters
-    def permitted_params
-      { order:
-          params.fetch(:product, {}).permit(:title, :content) }
     end
   end
 end
