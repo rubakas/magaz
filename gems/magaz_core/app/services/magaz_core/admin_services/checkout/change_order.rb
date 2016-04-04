@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Order::ChangeOrder < ActiveInteraction::Base
+class MagazCore::AdminServices::Checkout::ChangeOrder < ActiveInteraction::Base
 
   string :status
   integer :id
