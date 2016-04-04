@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Order::ChangeOrderTest < ActiveSupport::TestCase
+class MagazCore::AdminServices::Checkout::ChangeOrderTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -15,13 +15,13 @@ class MagazCore::AdminServices::Order::ChangeOrderTest < ActiveSupport::TestCase
   end
 
   test 'should update order with valid params' do
-    service = MagazCore::AdminServices::Order::ChangeOrder.run(@success_params)
+    service = MagazCore::AdminServices::Checkout::ChangeOrder.run(@success_params)
     assert service.valid?
     assert_equal 'open', MagazCore::Checkout.find(@checkout.id).status
   end
 
   test 'should not update order with valid params' do
-    service = MagazCore::AdminServices::Order::ChangeOrder.run(@blank_params)
+    service = MagazCore::AdminServices::Checkout::ChangeOrder.run(@blank_params)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "Id is not a valid integer", service.errors.full_messages.first
