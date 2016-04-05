@@ -228,6 +228,10 @@ en:
         wrong_params: "Wrong params for page"
         title_not_unique: "Title has already been taken"
 
+      change_shop:
+        wrong_params: "Wrong params for shop"
+        name_not_unique: "Name has already been taken"
+
       create:
         name_not_unique: "Name has already been taken"
         no_default_theme: "No default theme in system"

@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
 
   def execute
     blog = MagazCore::Blog.friendly.find(id)
-    blog.update_attributes!(inputs.slice!(:blog)) ||
+    blog.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('default.services.change_blog.wrong_params'))
 
     blog
