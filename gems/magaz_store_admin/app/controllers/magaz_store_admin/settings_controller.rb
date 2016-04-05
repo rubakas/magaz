@@ -12,12 +12,31 @@ module MagazStoreAdmin
     def update
       @shop = current_shop
       @current_user = current_shop.users.find(session[:user_id])
-      if @shop.update_attributes(permitted_params[:shop])
+      service = MagazCore::AdminServices::Shop::ChangeShop
+                  .run(id: @shop.id,
+                       name: params[:shop][:name],
+                       business_name: params[:shop][:business_name],
+                       city: params[:shop][:city],
+                       country: params[:shop][:country],
+                       currency: params[:shop][:currency],
+                       customer_email: params[:shop][:customer_email],
+                       phone: params[:shop][:phone],
+                       timezone: params[:shop][:timezone] ,
+                       unit_system: params[:shop][:unit_system],
+                       zip: params[:shop][:zip],
+                       page_title: params[:shop][:page_title],
+                       meta_description: params[:shop][:meta_description],
+                       address: params[:shop][:address])
+      if service.valid?
+        @shop = service.result
         # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_SHOP_EVENT)
         flash[:notice] = t('.notice_success')
         render 'edit'
       else
+        service.errors.full_messages.each do |msg|
+          @shop.errors.add(:base, msg)
+        end
         render 'edit'
       end
     end
