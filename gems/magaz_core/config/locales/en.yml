@@ -222,6 +222,12 @@ en:
       change_email_template:
         wrong_params: "Wrong params for email template"
 
+      change_payments:
+        wrong_params: "Wrong params for shop"
+        authorize_and_charge: "Authorize and charge the customers credit card."
+        authorize: "Authorize the customers credit card."
+        method_not_included: "Authorization method is not included in the list"
+
       add_page:
         title_not_unique: "Title has already been taken"
       change_page:
