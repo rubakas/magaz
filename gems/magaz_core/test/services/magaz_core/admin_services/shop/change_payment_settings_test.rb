@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Shop::ChangePaymentsTest < ActiveSupport::TestCase
+class MagazCore::AdminServices::Shop::ChangePaymentSettingsTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
   end
 
   test 'should update shop with valid params' do
-    service = MagazCore::AdminServices::Shop::ChangePayments
+    service = MagazCore::AdminServices::Shop::ChangePaymentSettings
                 .run(id: @shop.id,
                      authorization_settings: "Authorize the customers credit card.")
 
@@ -17,7 +17,7 @@ class MagazCore::AdminServices::Shop::ChangePaymentsTest < ActiveSupport::TestCa
   end
 
   test 'should update authorization_settings to nil with wrong value' do
-    service = MagazCore::AdminServices::Shop::ChangePayments
+    service = MagazCore::AdminServices::Shop::ChangePaymentSettings
                 .run(id: @shop.id,
                      authorization_settings: "wrong")
 

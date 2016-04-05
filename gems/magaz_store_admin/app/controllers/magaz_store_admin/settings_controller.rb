@@ -30,7 +30,7 @@ module MagazStoreAdmin
 
     def payments_settings_update
       @shop = current_shop
-      service = MagazCore::AdminServices::Shop::ChangePayments
+      service = MagazCore::AdminServices::Shop::ChangePaymentSettings
                   .run(id: @shop.id,
                        authorization_settings: params[:shop][:authorization_settings])
       if service.valid?

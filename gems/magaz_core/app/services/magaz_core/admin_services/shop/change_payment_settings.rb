@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Shop::ChangePayments < ActiveInteraction::Base
+class MagazCore::AdminServices::Shop::ChangePaymentSettings < ActiveInteraction::Base
 
   AUTHORIZATION_METHOD = [I18n.t('default.services.change_payments.authorize_and_charge'),
                           I18n.t('default.services.change_payments.authorize') ]
