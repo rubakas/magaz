@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Shop::ChangePaymentSettingsTest < ActiveSupport:
   test 'should update shop with valid params' do
     service = MagazCore::AdminServices::Shop::ChangePaymentSettings
                 .run(id: @shop.id,
-                     authorization_settings: "Authorize the customers credit card.")
+                     authorization_settings: 'authorize_and_charge')
 
     assert service.valid?
     assert service.result
