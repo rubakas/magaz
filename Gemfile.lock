@@ -115,7 +115,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    active_interaction (3.0.1)
+    active_interaction (3.1.0)
       activemodel (>= 4, < 6)
     addressable (2.4.0)
     arel (6.0.3)
@@ -169,7 +169,7 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
-    factory_girl (4.5.0)
+    factory_girl (4.7.0)
       activesupport (>= 3.0.0)
     flay (2.7.0)
       erubis (~> 2.7.0)
@@ -225,13 +225,13 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     parallel (1.8.0)
-    parallel_tests (2.4.1)
+    parallel_tests (2.5.0)
       parallel
     parser (2.3.0.7)
       ast (~> 2.2)
     pg (0.18.4)
     powerpack (0.1.1)
-    puma (3.2.0)
+    puma (3.3.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
