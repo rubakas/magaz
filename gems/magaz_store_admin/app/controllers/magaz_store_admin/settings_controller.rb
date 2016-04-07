@@ -48,7 +48,12 @@ module MagazStoreAdmin
     end
 
     def payments_settings_update
-      if current_shop.update_attributes(permitted_params_for_payments[:shop])
+      @shop = current_shop
+      service = MagazCore::AdminServices::Shop::ChangePaymentSettings
+                  .run(id: @shop.id,
+                       authorization_settings: params[:shop][:authorization_settings])
+      if service.valid?
+        @shop = service.result
         flash[:notice] = t('.notice_success')
         redirect_to payments_settings_settings_path
       else
@@ -159,11 +164,6 @@ module MagazStoreAdmin
                                         :checkout_privacy_policy, :checkout_term_of_service,
                                         :enable_multipass_login, :notify_customers_of_their_shipment,
                                         :automatically_fulfill_all_orders) }
-    end
-
-    def permitted_params_for_payments
-      { shop:
-        params.fetch(:shop, {}).permit(:authorization_settings)}
     end
 
     def permitted_params_for_taxes
