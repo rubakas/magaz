@@ -1,4 +1,4 @@
-ruby "2.2.3"
+ruby "2.3.0"
 source "https://rubygems.org"
 
 # Your gem is dependent on dev or edge Rails. Once you can lock this
