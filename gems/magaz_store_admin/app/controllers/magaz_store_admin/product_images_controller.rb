@@ -66,20 +66,12 @@ module MagazStoreAdmin
       end
     end
 
-
     def destroy
       @product = current_shop.products.friendly.find(params[:product_id])
       @product_image = @product.product_images.find(params[:id])
-      @product_image.destroy
+      service = MagazCore::AdminServices::ProductImage::DeleteProductImage.run(id: @product_image.id)
       flash[:notice] = t('.notice_success')
       redirect_to product_product_images_path
-    end
-
-    protected
-
-    def permitted_params
-      { product_image:
-          params.fetch(:product_image, {}).permit(:image) }
     end
   end
 end
