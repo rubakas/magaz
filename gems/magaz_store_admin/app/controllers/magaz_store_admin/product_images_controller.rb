@@ -43,17 +43,25 @@ module MagazStoreAdmin
 
     def create
       @product = current_shop.products.friendly.find(params[:product_id])
-      service = MagazCore::AdminServices::ProductImage::AddProductImage
-                  .run(image: params[:product_image][:image], product_id: @product.id)
-      if service.valid?
-        @product_image = service.result
-        flash[:notice] = t('.notice_success')
-        redirect_to product_product_images_path
+      if params[:product_image]
+        service = MagazCore::AdminServices::ProductImage::AddProductImage
+                    .run(image: params[:product_image][:image], product_id: @product.id)
+        if service.valid?
+          @product_image = service.result
+          flash[:notice] = t('.notice_success')
+          redirect_to product_product_images_path
+        else
+          @product_image = MagazCore::ProductImage.new
+          service.errors.full_messages.each do |msg|
+            @product_image.errors.add(:base, msg)
+          end
+          flash.now[:notice] = t('.notice_fail')
+          render 'show'
+        end
       else
         @product_image = MagazCore::ProductImage.new
-        service.errors.full_messages.each do |msg|
-          @product_image.errors.add(:base, msg)
-        end
+        @product_image.errors.add(:base, I18n.t('default.services.add_product_image.no_image'))
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end

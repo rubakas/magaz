@@ -6,6 +6,7 @@ class MagazCore::AdminServices::ProductImage::AddProductImageTest < ActiveSuppor
     @shop = create(:shop, name: "shop name")
     @product = create(:product, shop: @shop)
     @image = fixture_file_upload('/files/tapir.jpg', 'image/jpg')
+    @not_image = fixture_file_upload('/files/test.txt', 'image/jpg')
   end
 
   teardown do
@@ -26,6 +27,16 @@ class MagazCore::AdminServices::ProductImage::AddProductImageTest < ActiveSuppor
     service = MagazCore::AdminServices::ProductImage::AddProductImage.run(image: "", product_id: "")
     refute service.valid?
     assert_equal 2, service.errors.full_messages.count
+    assert_equal 0, MagazCore::ProductImage.count
+  end
+
+  test "should not create image with wrong extension" do
+    assert_equal 0, MagazCore::ProductImage.count
+    service = MagazCore::AdminServices::ProductImage::AddProductImage
+                .run(product_id: @product.id, image: @not_image)
+    refute service.valid?
+    assert_equal 1, service.errors.full_messages.count
+    assert_equal "Image You are not allowed to upload \"txt\" files, allowed types: jpg, jpeg, gif, png", service.errors.full_messages.last
     assert_equal 0, MagazCore::ProductImage.count
   end
 end
