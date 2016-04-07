@@ -25,17 +25,18 @@ module MagazStoreAdmin
                     .run(image: params[:product_image][:image], id: @product_image.id)
         if service.valid?
           @product_image = service.result
-          flash[:notice] = t('.notice_success')
+          flash.now[:notice] = t('.notice_success')
           render 'show'
         else
           service.errors.full_messages.each do |msg|
             @product_image.errors.add(:base, msg)
           end
-          flash[:notice] = t('.notice_fail')
+          flash.now[:notice] = t('.notice_fail')
           render 'show'
         end
       else
-        flash[:notice] = t('.notice_fail')
+        @product_image.errors.add(:base, I18n.t('default.services.change_product_image.no_image'))
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end

@@ -412,6 +412,7 @@ en:
         notice_success: "Image was successfully created."
       update:
         notice_success: "Image was successfully updated."
+        notice_fail: "Image was not updated."
       destroy:
         notice_success: "Image was successfully deleted."
       new:
