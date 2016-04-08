@@ -15,15 +15,25 @@ module MagazStoreAdmin
     end
 
     def create
-      @shop = current_shop
-      @product = @shop.products.new(permitted_params[:product])
-      if @product.save
-        # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
-        #                                                                     topic: MagazCore::Webhook::Topics::CREATE_PRODUCT_EVENT)
+      service = MagazCore::AdminServices::Product::AddProduct
+                  .run(name: params[:product][:name],description: params[:product][:description],
+                      price: params[:product][:price].to_f, page_title: params[:product][:page_title],
+                      meta_description:params[:product][:meta_description],handle: params[:product][:handle],
+                      product_images_attributes: params[:product][:product_images_attributes],
+                      collection_ids: params[:product][:collection_ids], shop_id: current_shop.id)
+      if service.valid?
+        @product = service.result
         flash[:notice] = t('.notice_success')
         redirect_to product_path(@product)
       else
-        render 'show'
+        @product = MagazCore::Product.new
+        service.errors.full_messages.each do |msg|
+          @product.errors.add(:base, msg)
+        end
+        flash.now[:notice] = t('.notice_fail')
+        render 'new'
+         # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
+         #                                                                     topic: MagazCore::Webhook::Topics::CREATE_PRODUCT_EVENT)
       end
     end
 
@@ -53,7 +63,9 @@ module MagazStoreAdmin
     # https://github.com/josevalim/inherited_resources#strong-parameters
     def permitted_params
       { product:
-          params.fetch(:product, {}).permit(:name, :description, :price, :page_title, :meta_description, :handle, product_images_attributes: [:image, :_destroy, :id], collection_ids: []) }
+          params.fetch(:product, {}).permit(:name, :description, :price,
+           :page_title, :meta_description, :handle,
+           product_images_attributes: [:image, :_destroy, :id], collection_ids: []) }
     end
   end
 end

@@ -32,7 +32,7 @@ module MagazCore
 
     accepts_nested_attributes_for :product_images, :allow_destroy => true
 
-    validates :name, presence: true, uniqueness: { scope: :shop_id }
+    # validates :name, presence: true, uniqueness: { scope: :shop_id }
 
     def should_generate_new_friendly_id?
       handle_changed?
