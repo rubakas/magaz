@@ -125,13 +125,22 @@ module MagazStoreAdmin
     end
 
     def taxes_settings_update
-      if current_shop.update_attributes(permitted_params_for_taxes[:shop])
+      @shop = current_shop
+      service = MagazCore::AdminServices::Shop::ChangeTaxesSettings
+                  .run(id: @shop.id,
+                       all_taxes_are_included: params[:shop][:all_taxes_are_included],
+                       charge_taxes_on_shipping_rates: params[:shop][:charge_taxes_on_shipping_rates])
+      if service.valid?
+        @shop = service.result
         flash[:notice] = t('.notice_success')
         unless params[:charge_vat_taxes]
           current_shop.update_attributes(eu_digital_goods_collection_id:  nil)
         end
         redirect_to taxes_settings_settings_path
       else
+        service.errors.full_messages.each do |msg|
+          @shop.errors.add(:base, msg)
+        end
         render "taxes_settings"
       end
     end
@@ -165,19 +174,5 @@ module MagazStoreAdmin
       redirect_to taxes_settings_settings_path
     end
 
-    protected
-
-    def permitted_params
-      { shop:
-          params.fetch(:shop, {}).permit(:name, :address, :business_name,
-                                         :city, :country, :currency, :customer_email,
-                                         :phone, :province, :timezone, :unit_system,
-                                         :zip, :handle, :page_title, :meta_description) }
-    end
-
-    def permitted_params_for_taxes
-      { shop:
-          params.fetch(:shop, {}).permit(:all_taxes_are_included, :charge_taxes_on_shipping_rates) }
-    end
   end
 end
