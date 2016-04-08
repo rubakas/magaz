@@ -193,6 +193,9 @@ en:
         wrong_params: "Wrong params for collection"
         name_not_unique: "Name has already been taken"
 
+      chenge_checkout_settings:
+        wrong_params: "Wrong params for shop"
+
       add_customer:
         customer_exist: "This customer is already exist in this shop"
       change_customer:

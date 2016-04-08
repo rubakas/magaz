@@ -63,10 +63,30 @@ module MagazStoreAdmin
     end
 
     def checkouts_settings_update
-      if current_shop.update_attributes(permitted_params_for_checkouts[:shop])
+      @shop = current_shop
+      service = MagazCore::AdminServices::Shop::ChangeCheckoutSettings
+                  .run(id: @shop.id,
+                       account_type_choice: params[:shop][:account_type_choice],
+                       enable_multipass_login: params[:shop][:enable_multipass_login],
+                       billing_address_is_shipping_too: params[:shop][:billing_address_is_shipping_too],
+                       abandoned_checkout_time_delay: params[:shop][:abandoned_checkout_time_delay],
+                       email_marketing_choice: params[:shop][:email_marketing_choice],
+                       after_order_paid: params[:shop][:after_order_paid],
+                       notify_customers_of_their_shipment: params[:shop][:notify_customers_of_their_shipment],
+                       automatically_fulfill_all_orders: params[:shop][:automatically_fulfill_all_orders],
+                       after_order_fulfilled_and_paid: params[:shop][:after_order_fulfilled_and_paid],
+                       checkout_refund_policy: params[:shop][:checkout_refund_policy],
+                       checkout_privacy_policy: params[:shop][:checkout_privacy_policy],
+                       checkout_term_of_service: params[:shop][:checkout_term_of_service])
+
+      if service.valid?
+        @shop = service.result
         flash[:notice] = t('.notice_success')
         redirect_to checkouts_settings_settings_path
       else
+        service.errors.full_messages.each do |msg|
+          @shop.errors.add(:base, msg)
+        end
         render "checkouts_settings"
       end
     end
@@ -148,17 +168,6 @@ module MagazStoreAdmin
                                          :city, :country, :currency, :customer_email,
                                          :phone, :province, :timezone, :unit_system,
                                          :zip, :handle, :page_title, :meta_description) }
-    end
-
-    def permitted_params_for_checkouts
-      { shop:
-          params.fetch(:shop, {}).permit(:account_type_choice, :billing_address_is_shipping_too,
-                                        :abandoned_checkout_time_delay, :email_marketing_choice,
-                                        :after_order_paid, :after_order_fulfilled_and_paid,
-                                        :checkout_language, :checkout_refund_policy,
-                                        :checkout_privacy_policy, :checkout_term_of_service,
-                                        :enable_multipass_login, :notify_customers_of_their_shipment,
-                                        :automatically_fulfill_all_orders) }
     end
 
     def permitted_params_for_payments
