@@ -20,18 +20,31 @@ module MagazStoreAdmin
     def update
       @product = current_shop.products.friendly.find(params[:product_id])
       @product_image = @product.product_images.find(params[:id])
-      if @product_image.update_attributes(permitted_params[:product_image])
-        flash[:notice] = t('.notice_success')
-        render 'show'
+      if params[:product_image]
+        service = MagazCore::AdminServices::ProductImage::ChangeProductImage
+                    .run(image: params[:product_image][:image], id: @product_image.id)
+        if service.valid?
+          @product_image = service.result
+          flash.now[:notice] = t('.notice_success')
+          render 'show'
+        else
+          service.errors.full_messages.each do |msg|
+            @product_image.errors.add(:base, msg)
+          end
+          flash.now[:notice] = t('.notice_fail')
+          render 'show'
+        end
       else
+        @product_image.errors.add(:base, I18n.t('default.services.change_product_image.no_image'))
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end
 
     def create
       @product = current_shop.products.friendly.find(params[:product_id])
-      service = MagazCore::AdminServices::ProductImage::AddProductImage.run(image: params[:product_image][:image],
-                                                                            product_id: @product.id)
+      service = MagazCore::AdminServices::ProductImage::AddProductImage
+                  .run(image: params[:product_image][:image], product_id: @product.id)
       if service.valid?
         @product_image = service.result
         flash[:notice] = t('.notice_success')

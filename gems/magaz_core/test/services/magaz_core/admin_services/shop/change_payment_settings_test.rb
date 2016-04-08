@@ -13,7 +13,7 @@ class MagazCore::AdminServices::Shop::ChangePaymentSettingsTest < ActiveSupport:
 
     assert service.valid?
     assert service.result
-    assert_equal "Authorize the customers credit card.", service.result.authorization_settings
+    assert_equal "authorize_and_charge", service.result.authorization_settings
   end
 
   test 'should update authorization_settings to nil with wrong value' do
