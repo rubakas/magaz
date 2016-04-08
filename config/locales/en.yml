@@ -410,8 +410,10 @@ en:
     product_images:
       create:
         notice_success: "Image was successfully created."
+        notice_fail: "Image was not created."
       update:
         notice_success: "Image was successfully updated."
+        notice_fail: "Image was not updated."
       destroy:
         notice_success: "Image was successfully deleted."
       new:

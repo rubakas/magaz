@@ -11,6 +11,10 @@ module MagazStoreAdmin
       @product_image = create(:product_image, product: @product)
     end
 
+    teardown do
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
+    end
+
     test 'should get index' do
       get :index, product_id: @product ,id: @product_image
       assert_response :success
@@ -28,23 +32,23 @@ module MagazStoreAdmin
     end
 
     test 'should update image' do
-      patch :update, product_id: @product ,id: @product_image
-       { product_image: {image: 'sell_bg_berlin.jpg' }}
+      patch :update, product_id: @product ,id: @product_image,
+        product_image: {image: fixture_file_upload('/files/sell_bg_berlin.jpg', 'image/jpg')}
         assert_template :show
         assert_response :success
     end
 
     test 'should not update image' do
-      patch :update, product_id: @product ,id: @product_image
-       { product_image: {image: ''}}
+      patch :update, product_id: @product ,id: @product_image,
+        product_image: {image: ''}
         assert_template :show
         assert_response :success
     end
 
     test 'should create image' do
       assert_difference('MagazCore::ProductImage.count') do
-        post :create, product_id: @product , id: @product_image
-        {product_image: {image: 'sell_bg_berlin.jpg'}}
+        post :create, product_id: @product , id: @product_image,
+        product_image: {image: fixture_file_upload('/files/tapir.jpg', 'image/jpg')}
       end
     end
 

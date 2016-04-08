@@ -20,39 +20,58 @@ module MagazStoreAdmin
     def update
       @product = current_shop.products.friendly.find(params[:product_id])
       @product_image = @product.product_images.find(params[:id])
-      if @product_image.update_attributes(permitted_params[:product_image])
-        flash[:notice] = t('.notice_success')
-        render 'show'
+      if params[:product_image]
+        service = MagazCore::AdminServices::ProductImage::ChangeProductImage
+                    .run(image: params[:product_image][:image], id: @product_image.id)
+        if service.valid?
+          @product_image = service.result
+          flash.now[:notice] = t('.notice_success')
+          render 'show'
+        else
+          service.errors.full_messages.each do |msg|
+            @product_image.errors.add(:base, msg)
+          end
+          flash.now[:notice] = t('.notice_fail')
+          render 'show'
+        end
       else
+        @product_image.errors.add(:base, I18n.t('default.services.change_product_image.no_image'))
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end
 
     def create
       @product = current_shop.products.friendly.find(params[:product_id])
-      @product_image = @product.product_images.new(permitted_params[:product_image])
-      if @product_image.save
-        flash[:notice] = t('.notice_success')
-        redirect_to product_product_images_path
+      if params[:product_image]
+        service = MagazCore::AdminServices::ProductImage::AddProductImage
+                    .run(image: params[:product_image][:image], product_id: @product.id)
+        if service.valid?
+          @product_image = service.result
+          flash[:notice] = t('.notice_success')
+          redirect_to product_product_images_path
+        else
+          @product_image = MagazCore::ProductImage.new
+          service.errors.full_messages.each do |msg|
+            @product_image.errors.add(:base, msg)
+          end
+          flash.now[:notice] = t('.notice_fail')
+          render 'show'
+        end
       else
+        @product_image = MagazCore::ProductImage.new
+        @product_image.errors.add(:base, I18n.t('default.services.add_product_image.no_image'))
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end
 
-
     def destroy
       @product = current_shop.products.friendly.find(params[:product_id])
       @product_image = @product.product_images.find(params[:id])
-      @product_image.destroy
+      service = MagazCore::AdminServices::ProductImage::DeleteProductImage.run(id: @product_image.id)
       flash[:notice] = t('.notice_success')
       redirect_to product_product_images_path
-    end
-
-    protected
-
-    def permitted_params
-      { product_image:
-          params.fetch(:product_image, {}).permit(:image) }
     end
   end
 end

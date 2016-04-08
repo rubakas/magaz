@@ -14,3 +14,15 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 if ActiveSupport::TestCase.method_defined?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)
 end
+
+class CarrierWave::Mount::Mounter
+  def store!
+  end
+end
+
+class ActiveSupport::TestCase
+include ActionDispatch::TestProcess
+
+  fixtures :all
+  CarrierWave.root = Rails.root
+end

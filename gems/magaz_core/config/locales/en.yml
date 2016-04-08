@@ -225,12 +225,20 @@ en:
       change_email_template:
         wrong_params: "Wrong params for email template"
 
+      change_payments:
+        wrong_params: "Wrong params for shop"
+        method_not_included: "Authorization method is not included in the list"
+
       add_page:
         title_not_unique: "Title has already been taken"
       change_page:
         wrong_params: "Wrong params for page"
         title_not_unique: "Title has already been taken"
 
+      add_product_image:
+        no_image: "Image was not selected"        
+      change_product_image:
+        no_image: "Image was not selected"
       change_shop:
         wrong_params: "Wrong params for shop"
         name_not_unique: "Name has already been taken"
