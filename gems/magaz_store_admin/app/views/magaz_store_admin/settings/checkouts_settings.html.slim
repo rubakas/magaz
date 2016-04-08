@@ -3,6 +3,15 @@ p id="notice"
 
 = form_for [ @shop], url: [:checkouts_settings_update,:settings],method: :put do |f|
 
+  - if @shop.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@shop.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @shop.errors.full_messages.each do |msg|
+        li = msg
+
   h4
     i class="icon-shopping-cart"
     = t('.logo')
@@ -88,20 +97,20 @@ p id="notice"
         div class="field"
           div class="field_with_select"
             = f.label t('.refund_policy')
-            = f.text_area :checkout_refund_policy
-            = f.button t('.generate_sample'), class: 'generate_refund'
+            = f.text_area :checkout_refund_policy, class: "form-control", rows: '3'
+            = f.button t('.generate_sample'), class: 'generate_refund btn btn-default'
 
         div class="field"
           div class="field_with_select"
             = f.label t('.privacy_policy')
-            = f.text_area :checkout_privacy_policy
-            = f.button t('.generate_sample'), class: 'generate_privacy'
+            = f.text_area :checkout_privacy_policy, class: "form-control", rows: '3'
+            = f.button t('.generate_sample'), class: 'generate_privacy btn btn-default'
 
         div class="field"
           div class="field_with_select"
             = f.label t('.terms_of_service')
-            = f.text_area :checkout_term_of_service
-            = f.button t('.generate_sample'), class: 'generate_tos'
+            = f.text_area :checkout_term_of_service, class: "form-control", rows: '3'
+            = f.button t('.generate_sample'), class: 'generate_tos btn btn-default'
 
     br
     div class="actions"
