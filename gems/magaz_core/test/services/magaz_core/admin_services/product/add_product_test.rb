@@ -9,18 +9,18 @@ class MagazCore::AdminServices::Product::AddProductTest < ActiveSupport::TestCas
                                                                  'files', 'tapir.jpg')) 
     @not_image = Rack::Test::UploadedFile.new(File.join(Rails.root, 'test', 'fixtures',
                                                                      'files', 'test.txt')) 
-    @success_params = { name: "T-shirt", shop_id: @shop.id, description: "Red T-shirt",
-                        price: "10", page_title: "Red T-shirt", meta_description: "T-shirt",
-                        handle: "clothes", collection_ids: [@collection.id],
-                        product_images_attributes: {"0" => {"image" => @image}} }
-    @blank_params = { name: "", shop_id: "", description: "",
-                        price: "", page_title: "", meta_description: "",
-                        handle: "", product_images_attributes: nil, 
-                        collection_ids: [] }
-    @invalid_image = { name: "T-shirt", shop_id: @shop.id, description: "Red T-shirt",
-                        price: "10", page_title: "Red T-shirt", meta_description: "T-shirt",
-                        handle: "clothes", collection_ids: [@collection.id],
-                        product_images_attributes: {"0" => {"image" => @not_image}} }
+    @success_params = {price: "10",
+                       name: "T-shirt",
+                       handle: "clothes",
+                       shop_id: @shop.id,
+                       page_title: "Red T-shirt",
+                       description: "Red T-shirt",
+                       meta_description: "T-shirt",
+                       collection_ids: [@collection.id],
+                       product_images_attributes: {"0" => {"image" => @image}}}
+    @blank_params = {name: "", shop_id: "", description: "", price: "", page_title: "",
+                     meta_description: "",handle: "", product_images_attributes: nil, 
+                     collection_ids: [] }
   end
 
   teardown do
@@ -68,8 +68,9 @@ class MagazCore::AdminServices::Product::AddProductTest < ActiveSupport::TestCas
   end
 
   test "should not create product with invalid image" do
+    @success_params[:product_images_attributes] = {"0" => {"image" => @not_image}}
     assert_equal 0, MagazCore::Product.count
-    service = MagazCore::AdminServices::Product::AddProduct.run(@invalid_image)
+    service = MagazCore::AdminServices::Product::AddProduct.run(@success_params)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "Image You are not allowed to upload \"txt\" files, allowed types: "+

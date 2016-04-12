@@ -16,11 +16,15 @@ module MagazStoreAdmin
 
     def create
       service = MagazCore::AdminServices::Product::AddProduct
-                  .run(name: params[:product][:name],description: params[:product][:description],
-                      price: params[:product][:price].to_f, page_title: params[:product][:page_title],
-                      meta_description:params[:product][:meta_description],handle: params[:product][:handle],
-                      product_images_attributes: params[:product][:product_images_attributes],
-                      collection_ids: params[:product][:collection_ids], shop_id: current_shop.id)
+                  .run(shop_id: current_shop.id,
+                       name: params[:product][:name],
+                       handle: params[:product][:handle],
+                       price: params[:product][:price].to_f,
+                       page_title: params[:product][:page_title],
+                       description: params[:product][:description],
+                       collection_ids: params[:product][:collection_ids],
+                       meta_description:params[:product][:meta_description],
+                       product_images_attributes: params[:product][:product_images_attributes])
       if service.valid?
         @product = service.result
         flash[:notice] = t('.notice_success')
