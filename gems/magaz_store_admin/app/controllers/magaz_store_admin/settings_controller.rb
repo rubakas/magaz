@@ -146,18 +146,14 @@ module MagazStoreAdmin
     end
 
     def enable_eu_digital_goods_vat_taxes
-      if current_shop.collections.find_by(name: DIGITAL_GOODS_VAT_TAX) == nil
-        @default_collection = current_shop.collections.new(name: DIGITAL_GOODS_VAT_TAX)
-        if @default_collection.save
-          current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
-          redirect_to taxes_settings_settings_path
-        else
-          current_shop.update_attributes(eu_digital_goods_collection_id:  false)
-          redirect_to taxes_settings_settings_path
-        end
+      service = MagazCore::AdminServices::Shop::EnableEuDigitalGoods
+                  .run(id: current_shop.id,
+                       collection_name: DIGITAL_GOODS_VAT_TAX)
+      if service.valid?
+        flash[:notice] = t('.notice_success')
+        redirect_to taxes_settings_settings_path
       else
-        @default_collection = current_shop.collections.find_by(name: DIGITAL_GOODS_VAT_TAX)
-        current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
+        flash[:notice] = service.errors.first
         redirect_to taxes_settings_settings_path
       end
     end
