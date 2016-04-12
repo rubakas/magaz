@@ -102,15 +102,6 @@ module MagazStoreAdmin
       @shop = current_shop
     end
 
-    def notifications_settings_update
-      if current_shop.update_attributes(permitted_params_for_notifications[:shop])
-        flash[:notice] = t('.notice_success')
-        redirect_to notifications_settings_settings_path
-      else
-        render "notifications_settings"
-      end
-    end
-
     #Taxes
 
     DIGITAL_GOODS_VAT_TAX = "Digital Goods VAT Tax"
