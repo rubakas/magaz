@@ -165,8 +165,11 @@ module MagazStoreAdmin
     end
 
     def save_default_collection
-      @default_collection = current_shop.collections.find_by_id(params[:default_collection])
-      current_shop.update_attributes(eu_digital_goods_collection_id:  @default_collection.id)
+      service = MagazCore::AdminServices::Shop::ChangeDefaultCollection
+                  .run(id: current_shop.id, collection_id: params[:default_collection])
+      unless service.valid?
+        flash[:notice] = service.errors.full_messages.first
+      end
       redirect_to taxes_settings_settings_path
     end
 

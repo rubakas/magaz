@@ -207,6 +207,9 @@ en:
       change_comment:
         wrong_params: "Wrong params for comment"
 
+      change_default_collection:
+        wrong_params: "Wrong params for shop"
+
       enable_eu_digital_goods:
         wrong_params: "Wrong params for shop"
 
