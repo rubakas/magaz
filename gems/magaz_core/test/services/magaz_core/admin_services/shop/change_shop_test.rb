@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Blog::ChangeShopTest < ActiveSupport::TestCase
+class MagazCore::AdminServices::Shop::ChangeShopTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')

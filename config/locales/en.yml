@@ -443,6 +443,8 @@ en:
     settings:
       edit:
         general_settings: "Shop Settings"
+      enable_eu_digital_goods_vat_taxes:
+        notice_success: "Shop was successfully updated."
       update:
         notice_success: "Shop was successfully updated."
       form:
@@ -451,6 +453,8 @@ en:
       checkouts_settings_update:
         notice_success: "Shop was successfully updated."
       checkouts_settings:
+        error: "error"
+        prohibit: "prohibited this shop from being saved:"
         logo: "Checkouts"
         save: 'Save'
         customers_logo: "Customer accounts"
