@@ -443,6 +443,8 @@ en:
     settings:
       edit:
         general_settings: "Shop Settings"
+      enable_eu_digital_goods_vat_taxes:
+        notice_success: "Shop was successfully updated."
       update:
         notice_success: "Shop was successfully updated."
       form:

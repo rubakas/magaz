@@ -210,6 +210,9 @@ en:
       change_default_collection:
         wrong_params: "Wrong params for shop"
 
+      enable_eu_digital_goods:
+        wrong_params: "Wrong params for shop"
+
       add_link:
         name_not_unique: "Name has already been taken"
       change_link:
