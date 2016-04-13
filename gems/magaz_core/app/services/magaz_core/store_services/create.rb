@@ -63,6 +63,8 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
         # links created after linked content, right? :)
         _create_default_link_lists!(shop_id: @shop.id)
         _create_default_emails!(shop: @shop)
+
+        raise RuntimeError.new() unless self.errors.blank?
       rescue RuntimeError, ActiveRecord::RecordInvalid
         raise ActiveRecord::Rollback
       end
