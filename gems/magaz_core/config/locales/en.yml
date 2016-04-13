@@ -175,6 +175,9 @@ en:
         customer_deletion: "Customer deletion"
 
     services:
+      shop_services:
+        wrong_params: "Wrong params for shop"
+
       add_article:
         title_not_unique: "Title has already been taken"
       change_article:
@@ -193,9 +196,6 @@ en:
         wrong_params: "Wrong params for collection"
         name_not_unique: "Name has already been taken"
 
-      chenge_checkout_settings:
-        wrong_params: "Wrong params for shop"
-
       add_customer:
         customer_exist: "This customer is already exist in this shop"
       change_customer:
@@ -206,12 +206,6 @@ en:
         article_not_belongs: "This article is not belongs to this blog"
       change_comment:
         wrong_params: "Wrong params for comment"
-
-      change_default_collection:
-        wrong_params: "Wrong params for shop"
-
-      enable_eu_digital_goods:
-        wrong_params: "Wrong params for shop"
 
       add_link:
         name_not_unique: "Name has already been taken"
@@ -232,7 +226,6 @@ en:
         wrong_params: "Wrong params for email template"
 
       change_payments_settings:
-        wrong_params: "Wrong params for shop"
         method_not_included: "Authorization method is not included in the list"
 
       add_page:
@@ -246,7 +239,6 @@ en:
       change_product_image:
         no_image: "Image was not selected"
       change_shop:
-        wrong_params: "Wrong params for shop"
         name_not_unique: "Name has already been taken"
 
       create:

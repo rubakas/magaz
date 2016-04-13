@@ -15,7 +15,7 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   def execute
     shop = MagazCore::Shop.find(id)
     shop.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_shop.wrong_params'))
+      errors.add(:base, I18n.t('default.services.shop_services.wrong_params'))
 
     shop
   end

@@ -144,7 +144,7 @@ module MagazStoreAdmin
         flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to taxes_settings_settings_path
       else
-        flash[:notice] = service.errors.first
+        flash[:notice] = service.errors.full_messages.first
         redirect_to taxes_settings_settings_path
       end
     end

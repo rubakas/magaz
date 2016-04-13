@@ -37,7 +37,7 @@ class MagazCore::AdminServices::Shop::ChangeCheckoutSettings < ActiveInteraction
   def execute
     shop = MagazCore::Shop.find(id)
     shop.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_checkout_settings.wrong_params'))
+      errors.add(:base, I18n.t('default.services.shop_services.wrong_params'))
 
     shop
   end

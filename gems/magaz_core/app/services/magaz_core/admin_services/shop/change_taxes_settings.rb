@@ -8,7 +8,7 @@ class MagazCore::AdminServices::Shop::ChangeTaxesSettings < ActiveInteraction::B
   def execute
     shop = MagazCore::Shop.find(id)
     shop.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_taxes_settings.wrong_params'))
+      errors.add(:base, I18n.t('default.services.shop_services.wrong_params'))
 
     shop
   end
