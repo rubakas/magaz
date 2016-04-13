@@ -249,6 +249,9 @@ en:
         wrong_params: "Wrong params for shop"
         name_not_unique: "Name has already been taken"
 
+      change_user:
+        email_not_valid: "Email is not valid or already has been taken"
+
       create:
         name_not_unique: "Name has already been taken"
         no_default_theme: "No default theme in system"
