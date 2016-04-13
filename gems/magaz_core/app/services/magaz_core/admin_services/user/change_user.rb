@@ -8,10 +8,11 @@ class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
   validate :email_uniqueness, if: :email_changed?
   
   def execute
-    @user.update_attributes!(inputs.slice!(:id)) ||
+    user = MagazCore::User.find(id)
+    user.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('default.services.change_user.wrong_params'))
 
-    @user
+    user
   end
 
   private
@@ -25,10 +26,9 @@ class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
   end
 
   def valid_email?
-    @user = MagazCore::User.find(id)
     email.present? &&
       (email =~ MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX) &&
-        MagazCore::User.where(shop_id: @user.shop_id, email: email).count == 0
+        MagazCore::User.where(shop_id: MagazCore::User.find(id).shop_id, email: email).count == 0
   end
 
 end
