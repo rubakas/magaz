@@ -10,7 +10,8 @@ class MagazCore::AdminServices::Article::ChangeArticle < ActiveInteraction::Base
   def execute
     article = MagazCore::Article.friendly.find(id)
     article.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_article.wrong_params'))
+      errors.add(:base, I18n.t('default.services.wrong_params',
+                               model: I18n.t('default.services.shop')))
 
     article
   end
@@ -22,7 +23,8 @@ class MagazCore::AdminServices::Article::ChangeArticle < ActiveInteraction::Base
   end
 
   def title_uniqueness
-    errors.add(:base, I18n.t('default.services.change_article.title_not_unique')) unless title_unique?
+    errors.add(:base, I18n.t('default.services.not_unique',
+                             parameter: I18n.t('default.services.title'))) unless title_unique?
   end
 
   def title_unique?

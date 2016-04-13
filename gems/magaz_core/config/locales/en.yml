@@ -175,82 +175,38 @@ en:
         customer_deletion: "Customer deletion"
 
     services:
-      add_article:
-        title_not_unique: "Title has already been taken"
-      change_article:
-        wrong_params: "Wrong params for article"
-        title_not_unique: "Title has already been taken"
-
-      add_blog:
-        title_not_unique: "Title has already been taken"
-      change_blog:
-        wrong_params: "Wrong params for blog"
-        title_not_unique: "Title has already been taken"
-
-      add_collection:
-        name_not_unique: "Name has already been taken"
-      change_collection:
-        wrong_params: "Wrong params for collection"
-        name_not_unique: "Name has already been taken"
-
-      chenge_checkout_settings:
-        wrong_params: "Wrong params for shop"
+      wrong_params: "Wrong params for %{model}"
+      not_unique: "%{parameter} has already been taken"
+      name: 'Name'
+      title: 'Title'
+      shop: 'shop'
+      blog: 'blog'
+      order: 'order'
+      collection: 'collection'
+      comment: 'comment'
+      customer: 'customer'
+      email_template: 'email_template'
+      link: 'link'
+      link_list: 'link_list'
+      page: 'page'
 
       add_customer:
         customer_exist: "This customer is already exist in this shop"
       change_customer:
         customer_exist: "This customer is already exist in this shop"
-        wrong_params: "Wrong params for customer"
 
       add_comment:
         article_not_belongs: "This article is not belongs to this blog"
-      change_comment:
-        wrong_params: "Wrong params for comment"
-
-      change_default_collection:
-        wrong_params: "Wrong params for shop"
-
-      enable_eu_digital_goods:
-        wrong_params: "Wrong params for shop"
-
-      add_link:
-        name_not_unique: "Name has already been taken"
-      change_link:
-        wrong_params: "Wrong params for link"
-        name_not_unique: "Name has already been taken"
-
-      add_link_list:
-        name_not_unique: "Name has already been taken"
-      change_link_list:
-        wrong_params: "Wrong params for link list"
-        name_not_unique: "Name has already been taken"
-
-      change_order:
-        wrong_params: "Wrong params for order"
-
-      change_email_template:
-        wrong_params: "Wrong params for email template"
 
       change_payments_settings:
-        wrong_params: "Wrong params for shop"
         method_not_included: "Authorization method is not included in the list"
-
-      add_page:
-        title_not_unique: "Title has already been taken"
-      change_page:
-        wrong_params: "Wrong params for page"
-        title_not_unique: "Title has already been taken"
 
       add_product_image:
         no_image: "Image was not selected"
       change_product_image:
         no_image: "Image was not selected"
-      change_shop:
-        wrong_params: "Wrong params for shop"
-        name_not_unique: "Name has already been taken"
 
       create:
-        name_not_unique: "Name has already been taken"
         no_default_theme: "No default theme in system"
 
       install_theme:

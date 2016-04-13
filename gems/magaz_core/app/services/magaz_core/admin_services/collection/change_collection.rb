@@ -10,7 +10,8 @@ class MagazCore::AdminServices::Collection::ChangeCollection < ActiveInteraction
   def execute
     collection = MagazCore::Collection.friendly.find(id)
     collection.update_attributes!(inputs.slice!(:collection)) ||
-      errors.add(:base, "Wrong params for collection")
+      errors.add(:base, I18n.t('default.services.wrong_params',
+                               model: I18n.t('default.services.collection')))
 
     collection
   end
@@ -22,7 +23,8 @@ class MagazCore::AdminServices::Collection::ChangeCollection < ActiveInteraction
   end
 
   def name_uniqueness
-    errors.add(:base, "Name has already been taken") unless name_unique?
+    errors.add(:base, I18n.t('default.services.not_unique',
+                             parameter: I18n.t('default.services.name'))) unless name_unique?
   end
 
   def name_unique?

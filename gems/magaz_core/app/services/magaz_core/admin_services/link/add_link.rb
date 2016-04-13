@@ -24,7 +24,8 @@ class MagazCore::AdminServices::Link::AddLink < ActiveInteraction::Base
   private
 
   def name_uniqueness
-    errors.add(:base, I18n.t('default.services.add_link.name_not_unique')) unless name_unique?
+    errors.add(:base, I18n.t('default.services.not_unique',
+                             parameter: I18n.t('default.services.name'))) unless name_unique?
   end
 
   def name_unique?

@@ -8,7 +8,8 @@ class MagazCore::AdminServices::Comment::ChangeComment < ActiveInteraction::Base
   def execute
     comment = MagazCore::Comment.find(id)
     comment.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_comment.wrong_params'))
+      errors.add(:base, I18n.t('default.services.wrong_params',
+                               model: I18n.t('default.services.comment')))
 
     comment
   end
