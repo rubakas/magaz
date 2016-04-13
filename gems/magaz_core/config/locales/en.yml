@@ -249,6 +249,8 @@ en:
         wrong_params: "Wrong params for shop"
         name_not_unique: "Name has already been taken"
 
+      change_user:
+        email_not_valid: "Email is not valid or already has been taken"
       delete_user:
         account_owner: "Can't delete shop owner."
 

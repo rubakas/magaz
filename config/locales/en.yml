@@ -738,6 +738,7 @@ en:
         updated: "updated"
         user: "user"
         notice_success: "User was successfully updated."
+        notice_fail: "User was not updated."
       destroy:
         deleted: "deleted"
         destroy: "destroy"
