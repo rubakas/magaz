@@ -35,15 +35,15 @@ class MagazCore::StoreServices::CreateTest < ActiveSupport::TestCase
 
   test 'fail shop creation when no user params' do
     service = MagazCore::StoreServices::Create.run(shop_name: 'example42', first_name: '' ,
-                                                  last_name: '', email: '',
-                                                  password: '')
+                                                   last_name: '', email: '',
+                                                   password: '')
     refute service.valid?
   end
 
   test 'fail shop creation when no shop params' do
     service = MagazCore::StoreServices::Create.run(shop_name: '', first_name: 'First' ,
-                                                  last_name: 'Last', email: 'email@mail.com',
-                                                  password: 'password')
+                                                   last_name: 'Last', email: 'email@mail.com',
+                                                   password: 'password')
     refute service.valid?
   end
 

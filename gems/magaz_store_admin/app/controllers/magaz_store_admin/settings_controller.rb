@@ -31,7 +31,7 @@ module MagazStoreAdmin
         @shop = service.result
         # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_SHOP_EVENT)
-        flash[:notice] = t('.notice_success')
+        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         render 'edit'
       else
         service.errors.full_messages.each do |msg|
@@ -54,7 +54,7 @@ module MagazStoreAdmin
                        authorization_settings: params[:shop][:authorization_settings])
       if service.valid?
         @shop = service.result
-        flash[:notice] = t('.notice_success')
+        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to payments_settings_settings_path
       else
         render "payments_settings"
@@ -86,7 +86,7 @@ module MagazStoreAdmin
 
       if service.valid?
         @shop = service.result
-        flash[:notice] = t('.notice_success')
+        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to checkouts_settings_settings_path
       else
         service.errors.full_messages.each do |msg|
@@ -123,7 +123,7 @@ module MagazStoreAdmin
                        charge_taxes_on_shipping_rates: params[:shop][:charge_taxes_on_shipping_rates])
       if service.valid?
         @shop = service.result
-        flash[:notice] = t('.notice_success')
+        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         unless params[:charge_vat_taxes]
           current_shop.update_attributes(eu_digital_goods_collection_id:  nil)
         end
@@ -141,10 +141,10 @@ module MagazStoreAdmin
                   .run(id: current_shop.id,
                        collection_name: DIGITAL_GOODS_VAT_TAX)
       if service.valid?
-        flash[:notice] = t('.notice_success')
+        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to taxes_settings_settings_path
       else
-        flash[:notice] = service.errors.first
+        flash[:notice] = service.errors.full_messages.first
         redirect_to taxes_settings_settings_path
       end
     end
