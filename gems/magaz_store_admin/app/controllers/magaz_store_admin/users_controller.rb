@@ -36,7 +36,6 @@ module MagazStoreAdmin
     end
 
     def update
-      puts params[:user][:permissions].inspect
       @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
       service = MagazCore::AdminServices::User::ChangeUser
