@@ -4,7 +4,7 @@ class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
   string :first_name, :last_name, :email, :password
   array :permissions, default: nil
 
-  validates :id, :email, presence: true
+  validates :id, :email, :first_name, :last_name, presence: true
   validate :email_uniqueness, if: :email_changed?
   
   def execute
@@ -26,10 +26,11 @@ class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
   end
 
   def valid_email?
+    user = MagazCore::User.find(id)
     valid_email = MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
     email.present? &&
       (email =~ valid_email) &&
-        MagazCore::Shop.where(shop_id: user.shop_id, email: email).count == 0
+        MagazCore::User.where(shop_id: user.shop_id, email: email).count == 0
   end
 
 end
