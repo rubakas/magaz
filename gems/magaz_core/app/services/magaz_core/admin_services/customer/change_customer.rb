@@ -10,7 +10,8 @@ class MagazCore::AdminServices::Customer::ChangeCustomer < ActiveInteraction::Ba
   def execute
     customer = MagazCore::Customer.find(id)
     customer.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_customer.wrong_params'))
+      errors.add(:base, I18n.t('default.services.wrong_params',
+                               model: I18n.t('default.services.customer')))
 
     customer
   end

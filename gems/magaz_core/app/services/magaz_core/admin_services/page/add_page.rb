@@ -24,7 +24,8 @@ class MagazCore::AdminServices::Page::AddPage < ActiveInteraction::Base
   private
 
   def title_uniqueness
-    errors.add(:base, I18n.t('default.services.add_page.title_not_unique')) unless title_unique?
+    errors.add(:base, I18n.t('default.services.not_unique',
+                             parameter: I18n.t('default.services.title'))) unless title_unique?
   end
 
   def title_unique?

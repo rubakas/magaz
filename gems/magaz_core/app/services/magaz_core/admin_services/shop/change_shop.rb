@@ -15,7 +15,8 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   def execute
     shop = MagazCore::Shop.find(id)
     shop.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_shop.wrong_params'))
+      errors.add(:base, I18n.t('default.services.wrong_params',
+                               model: I18n.t('default.services.shop')))
 
     shop
   end
@@ -27,7 +28,8 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   end
 
   def name_uniqueness
-    errors.add(:base, I18n.t('default.services.change_shop.name_not_unique')) unless name_unique?
+    errors.add(:base, I18n.t('default.services.not_unique',
+                             parameter: I18n.t('default.services.name'))) unless name_unique?
   end
 
   def name_unique?

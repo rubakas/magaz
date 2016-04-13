@@ -63,6 +63,8 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
         # links created after linked content, right? :)
         _create_default_link_lists!(shop_id: @shop.id)
         _create_default_emails!(shop: @shop)
+
+        raise RuntimeError.new() unless self.errors.blank?
       rescue RuntimeError, ActiveRecord::RecordInvalid
         raise ActiveRecord::Rollback
       end
@@ -74,7 +76,8 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
   private
 
   def shop_name_uniqueness
-    errors.add(:base, I18n.t('default.services.create.name_not_unique')) unless shop_name_unique?
+    errors.add(:base, I18n.t('default.services.not_unique',
+                             parameter: I18n.t('default.services.name'))) unless shop_name_unique?
   end
 
   def shop_name_unique?

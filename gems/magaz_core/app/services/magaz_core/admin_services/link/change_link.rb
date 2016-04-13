@@ -10,7 +10,8 @@ class MagazCore::AdminServices::Link::ChangeLink < ActiveInteraction::Base
   def execute
     link = MagazCore::LinkList.friendly.find(link_list_id).links.find(id)
     link.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_link.wrong_params'))
+      errors.add(:base, I18n.t('default.services.wrong_params',
+                               model: I18n.t('default.services.link')))
 
     link
   end
@@ -22,7 +23,8 @@ class MagazCore::AdminServices::Link::ChangeLink < ActiveInteraction::Base
   end
 
   def name_uniqueness
-    errors.add(:base, I18n.t('default.services.change_link.name_not_unique')) unless name_unique?
+    errors.add(:base, I18n.t('default.services.not_unique',
+                             parameter: I18n.t('default.services.name'))) unless name_unique?
   end
 
   def name_unique?

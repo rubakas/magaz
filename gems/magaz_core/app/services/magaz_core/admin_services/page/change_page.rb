@@ -10,7 +10,8 @@ class MagazCore::AdminServices::Page::ChangePage < ActiveInteraction::Base
   def execute
     page = MagazCore::Page.friendly.find(id)
     page.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_page.wrong_params'))
+      errors.add(:base, I18n.t('default.services.wrong_params',
+                               model: I18n.t('default.services.page')))
 
     page
   end
@@ -22,7 +23,8 @@ class MagazCore::AdminServices::Page::ChangePage < ActiveInteraction::Base
   end
 
   def title_uniqueness
-    errors.add(:base, I18n.t('default.services.change_page.title_not_unique')) unless title_unique?
+    errors.add(:base, I18n.t('default.services.not_unique',
+                             parameter: I18n.t('default.services.title'))) unless title_unique?
   end
 
   def title_unique?
