@@ -54,7 +54,7 @@ module MagazStoreAdmin
                        authorization_settings: params[:shop][:authorization_settings])
       if service.valid?
         @shop = service.result
-        flash[:notice] = t('.notice_success')
+        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to payments_settings_settings_path
       else
         render "payments_settings"
