@@ -249,6 +249,9 @@ en:
         wrong_params: "Wrong params for shop"
         name_not_unique: "Name has already been taken"
 
+      delete_user:
+        account_owner: "Can't delete shop owner."
+
       create:
         name_not_unique: "Name has already been taken"
         no_default_theme: "No default theme in system"

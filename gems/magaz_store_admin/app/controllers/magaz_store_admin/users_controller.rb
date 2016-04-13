@@ -48,11 +48,12 @@ module MagazStoreAdmin
     def destroy
       @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
-      unless @user.account_owner == true || current_shop.users.count == 1
-        service = MagazCore::AdminServices::User::DeleteUser.run(id: @user.id)
+      service = MagazCore::AdminServices::User::DeleteUser.run(id: @user.id,
+                                                               shop_id: current_shop.id)
+      if service.valid?
         flash[:notice] = t('.notice_success')
       else
-        flash[:notice] = t('.notice_fail')
+        flash[:notice] = service.errors.full_messages.first
       end
       redirect_to users_path
     end
@@ -69,7 +70,7 @@ module MagazStoreAdmin
       end
      end
 
-    protected
+   protected
 
     def permitted_params
       { user:
