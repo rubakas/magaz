@@ -49,7 +49,7 @@ module MagazStoreAdmin
       @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
       unless @user.account_owner == true || current_shop.users.count == 1
-        @user.destroy
+        service = MagazCore::AdminServices::User::DeleteUser.run(id: @user.id)
         flash[:notice] = t('.notice_success')
       else
         flash[:notice] = t('.notice_fail')
