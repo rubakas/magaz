@@ -6,7 +6,7 @@ class MagazCore::AdminServices::User::DeleteUser < ActiveInteraction::Base
   validate :can_destroy?
 
   def execute
-    MagazCore::User.find(id).destroy
+    @user.destroy
   end
 
   protected 
@@ -16,9 +16,8 @@ class MagazCore::AdminServices::User::DeleteUser < ActiveInteraction::Base
   end
 
   def account_owner?
-    user = MagazCore::User.find(id)
-    shop = MagazCore::Shop.find(shop_id)
-    user.account_owner == true || shop.users.count == 1
+    @user = MagazCore::User.find(id)
+    @user.account_owner == true || MagazCore::Shop.find(shop_id).users.count == 1
   end
 
 end
