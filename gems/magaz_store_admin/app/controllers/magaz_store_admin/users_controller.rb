@@ -36,11 +36,25 @@ module MagazStoreAdmin
     end
 
     def update
+      puts params[:user][:permissions].inspect
       @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
-      if @user.update_attributes(permitted_params[:user])
-        redirect_to user_path(@user), notice: t('.notice_success')
+      service = MagazCore::AdminServices::User::ChangeUser
+                 .run(id: @user.id,
+                      first_name: params[:user][:first_name],
+                      last_name: params[:user][:last_name],
+                      email: params[:user][:email],
+                      password: params[:user][:password],
+                      permissions: params[:user][:permissions])
+      if service.valid?
+        @user = service.result
+        flash[:notice] = t('.notice_success')
+        redirect_to user_path(@user)
       else
+        flash[:notice] = t('.notice_fail')
+        service.errors.full_messages.each do |msg|
+          @user.errors.add(:base, msg)
+        end
         render 'show'
       end
     end
