@@ -10,7 +10,7 @@ class MagazCore::AdminServices::LinkList::ChangeLinkList < ActiveInteraction::Ba
   def execute
     link_list = MagazCore::LinkList.friendly.find(id)
     link_list.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_link_list.wrong_params'))
+      errors.add(:base, I18n.t('services.change_link_list.wrong_params'))
 
     link_list
   end
@@ -22,7 +22,7 @@ class MagazCore::AdminServices::LinkList::ChangeLinkList < ActiveInteraction::Ba
   end
 
   def name_uniqueness
-    errors.add(:base, I18n.t('default.services.change_link_list.name_not_unique')) unless name_unique?
+    errors.add(:base, I18n.t('services.change_link_list.name_not_unique')) unless name_unique?
   end
 
   def name_unique?

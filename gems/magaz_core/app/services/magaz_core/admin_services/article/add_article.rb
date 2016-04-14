@@ -24,7 +24,7 @@ class MagazCore::AdminServices::Article::AddArticle < ActiveInteraction::Base
   private
 
   def title_uniqueness
-    errors.add(:base, I18n.t('default.services.add_article.title_not_unique')) unless title_unique?
+    errors.add(:base, I18n.t('services.add_article.title_not_unique')) unless title_unique?
   end
 
   def title_unique?

@@ -9,10 +9,10 @@ class MagazCore::AdminServices::User::DeleteUser < ActiveInteraction::Base
     @user.destroy
   end
 
-  protected 
+  protected
 
   def can_destroy?
-    errors.add(:base, I18n.t('default.services.delete_user.account_owner')) if account_owner?
+    errors.add(:base, I18n.t('services.delete_user.account_owner')) if account_owner?
   end
 
   def account_owner?

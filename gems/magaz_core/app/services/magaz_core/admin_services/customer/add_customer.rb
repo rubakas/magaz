@@ -25,7 +25,7 @@ class MagazCore::AdminServices::Customer::AddCustomer < ActiveInteraction::Base
 
   def customer_uniquness
     errors.add(:base, I18n
-                .t('default.services.add_customer.customer_exist')) unless customer_unique?
+                .t('services.add_customer.customer_exist')) unless customer_unique?
   end
 
   def customer_unique?
