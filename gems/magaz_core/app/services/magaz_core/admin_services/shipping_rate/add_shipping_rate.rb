@@ -31,7 +31,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteractio
           @inputs[key] = nil
         else
           @inputs[key] = nil
-          errors.add(key, I18n.t('default.services.add_shipping_rate.wrong_param'))
+          errors.add(key, I18n.t('services.add_shipping_rate.wrong_param'))
         end
       end
     end
