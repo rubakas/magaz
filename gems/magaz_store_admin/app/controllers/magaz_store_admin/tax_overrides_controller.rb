@@ -36,7 +36,15 @@ module MagazStoreAdmin
     def update
       @tax_override = MagazCore::TaxOverride.find(params[:id])
       @shipping_country = @tax_override.shipping_country
-      if @tax_override.update_attributes(permitted_params[:tax_override])
+      service = MagazCore::AdminServices::TaxOverride::ChangeTaxOverride
+                  .run(id: @tax_override.id,
+                       shipping_country_id: params[:tax_override][:shipping_country_id],
+                       collection_id: params[:tax_override][:collection_id],
+                       rate: params[:tax_override][:rate],
+                       is_shipping: params[:tax_override][:is_shipping])
+      if service.valid?
+        @tax_override = service.result
+        @shipping_country = @tax_override.shipping_country
         flash[:notice] = t('.notice_success')
         redirect_to tax_override_path(@shipping_country)
       else
