@@ -241,6 +241,10 @@ en:
     change_shop:
       name_not_unique: "Name has already been taken"
 
+    add_tax_override:
+      wrong_params: "Wrong params for tax override"
+      already_exists: "Tax override already exists"
+
     change_user:
       email_not_valid: "Email is not valid or already has been taken"
     delete_user:
