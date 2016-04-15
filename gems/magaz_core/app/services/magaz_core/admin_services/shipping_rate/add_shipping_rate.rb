@@ -1,7 +1,7 @@
 class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteraction::Base
 
-  string :name, :criteria
-  string :price_from, :price_to, :weight_from, :weight_to, default: nil
+  string :name
+  string :price_from, :price_to, :weight_from, :weight_to, :criteria, default: nil
   float :shipping_price
   integer :shipping_country_id
 
