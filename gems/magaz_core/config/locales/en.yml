@@ -234,6 +234,9 @@ en:
         wrong_params: "Wrong params for page"
         title_not_unique: "Title has already been taken"
 
+      add_shipping_rate:
+        wrong_param: "is not correct"
+
       add_product_image:
         no_image: "Image was not selected"
       change_product_image:

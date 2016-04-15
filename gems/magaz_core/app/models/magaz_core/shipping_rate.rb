@@ -4,17 +4,17 @@ module MagazCore
 
     belongs_to :shipping_country
 
-    validates_presence_of :name, :shipping_price
-    validates_numericality_of :price_from,     allow_blank: true
-    validates_numericality_of :price_to,       allow_blank: true
-    validates_numericality_of :weight_from,    allow_blank: true
-    validates_numericality_of :weight_to,      allow_blank: true
-    validates_numericality_of :shipping_price, allow_blank: true
+    # validates_presence_of :name, :shipping_price
+    # validates_numericality_of :price_from,     allow_blank: true
+    # validates_numericality_of :price_to,       allow_blank: true
+    # validates_numericality_of :weight_from,    allow_blank: true
+    # validates_numericality_of :weight_to,      allow_blank: true
+    # validates_numericality_of :shipping_price, allow_blank: true
 
 
-    validate :price_criteria_check
-    validate :weight_criteria_check
-    validate :price_comparison_check, :weight_comparison_check
+    # validate :price_criteria_check
+    # validate :weight_criteria_check
+    # validate :price_comparison_check, :weight_comparison_check
 
     private
 
