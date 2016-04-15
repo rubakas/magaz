@@ -174,84 +174,88 @@ en:
         customer_update: "Customer update"
         customer_deletion: "Customer deletion"
 
-    services:
-      shop_services:
-        wrong_params: "Wrong params for shop"
+  services:
+    shop_services:
+      wrong_params: "Wrong params for shop"
 
-      add_article:
-        title_not_unique: "Title has already been taken"
-      change_article:
-        wrong_params: "Wrong params for article"
-        title_not_unique: "Title has already been taken"
+    add_article:
+      title_not_unique: "Title has already been taken"
+    change_article:
+      wrong_params: "Wrong params for article"
+      title_not_unique: "Title has already been taken"
 
-      add_blog:
-        title_not_unique: "Title has already been taken"
-      change_blog:
-        wrong_params: "Wrong params for blog"
-        title_not_unique: "Title has already been taken"
+    add_blog:
+      title_not_unique: "Title has already been taken"
+    change_blog:
+      wrong_params: "Wrong params for blog"
+      title_not_unique: "Title has already been taken"
 
-      add_collection:
-        name_not_unique: "Name has already been taken"
-      change_collection:
-        wrong_params: "Wrong params for collection"
-        name_not_unique: "Name has already been taken"
+    add_collection:
+      name_not_unique: "Name has already been taken"
+    change_collection:
+      wrong_params: "Wrong params for collection"
+      name_not_unique: "Name has already been taken"
 
-      add_customer:
-        customer_exist: "This customer is already exist in this shop"
-      change_customer:
-        customer_exist: "This customer is already exist in this shop"
-        wrong_params: "Wrong params for customer"
+    add_customer:
+      customer_exist: "This customer is already exist in this shop"
+    change_customer:
+      customer_exist: "This customer is already exist in this shop"
+      wrong_params: "Wrong params for customer"
 
-      add_comment:
-        article_not_belongs: "This article is not belongs to this blog"
-      change_comment:
-        wrong_params: "Wrong params for comment"
+    add_comment:
+      article_not_belongs: "This article is not belongs to this blog"
+    change_comment:
+      wrong_params: "Wrong params for comment"
 
-      add_link:
-        name_not_unique: "Name has already been taken"
-      change_link:
-        wrong_params: "Wrong params for link"
-        name_not_unique: "Name has already been taken"
+    add_link:
+      name_not_unique: "Name has already been taken"
+    change_link:
+      wrong_params: "Wrong params for link"
+      name_not_unique: "Name has already been taken"
 
-      add_link_list:
-        name_not_unique: "Name has already been taken"
-      change_link_list:
-        wrong_params: "Wrong params for link list"
-        name_not_unique: "Name has already been taken"
+    add_link_list:
+      name_not_unique: "Name has already been taken"
+    change_link_list:
+      wrong_params: "Wrong params for link list"
+      name_not_unique: "Name has already been taken"
 
-      change_order:
-        wrong_params: "Wrong params for order"
+    change_order:
+      wrong_params: "Wrong params for order"
 
-      change_email_template:
-        wrong_params: "Wrong params for email template"
+    change_email_template:
+      wrong_params: "Wrong params for email template"
 
-      change_payments_settings:
-        method_not_included: "Authorization method is not included in the list"
+    change_payments_settings:
+      method_not_included: "Authorization method is not included in the list"
 
-      add_page:
-        title_not_unique: "Title has already been taken"
-      change_page:
-        wrong_params: "Wrong params for page"
-        title_not_unique: "Title has already been taken"
+    add_page:
+      title_not_unique: "Title has already been taken"
+    change_page:
+      wrong_params: "Wrong params for page"
+      title_not_unique: "Title has already been taken"
 
-      add_shipping_rate:
-        wrong_param: "is not correct"
+    add_product_image:
+      no_image: "Image was not selected"
+    change_product_image:
+      no_image: "Image was not selected"
 
-      add_product_image:
-        no_image: "Image was not selected"
-      change_product_image:
-        no_image: "Image was not selected"
-      change_shop:
-        name_not_unique: "Name has already been taken"
+    add_shipping_rate:
+      wrong_param: "is not correct"
 
-      change_user:
-        email_not_valid: "Email is not valid or already has been taken"
-      delete_user:
-        account_owner: "Can't delete shop owner."
+    change_shop:
+      name_not_unique: "Name has already been taken"
 
-      create:
-        name_not_unique: "Name has already been taken"
-        no_default_theme: "No default theme in system"
+    change_tax_override:
+      wrong_params: "Wrong params for tax override"
 
-      install_theme:
-        invalid_shop_id: "Can't find shop with such id"
+    change_user:
+      email_not_valid: "Email is not valid or already has been taken"
+    delete_user:
+      account_owner: "Can't delete shop owner."
+
+    create:
+      name_not_unique: "Name has already been taken"
+      no_default_theme: "No default theme in system"
+
+    install_theme:
+      invalid_shop_id: "Can't find shop with such id"

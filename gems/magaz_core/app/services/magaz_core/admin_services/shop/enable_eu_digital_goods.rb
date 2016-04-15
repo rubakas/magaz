@@ -15,7 +15,7 @@ class MagazCore::AdminServices::Shop::EnableEuDigitalGoods < ActiveInteraction::
     end
 
     @shop.update_attributes(eu_digital_goods_collection_id: default_collection.id) ||
-      errors.add(:base, I18n.t('default.services.shop_services.wrong_params'))
+      errors.add(:base, I18n.t('services.shop_services.wrong_params'))
 
     @shop
   end

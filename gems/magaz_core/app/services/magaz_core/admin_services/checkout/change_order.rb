@@ -8,7 +8,7 @@ class MagazCore::AdminServices::Checkout::ChangeOrder < ActiveInteraction::Base
   def execute
     order = MagazCore::Checkout.find(id)
     order.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_order.wrong_params'))
+      errors.add(:base, I18n.t('services.change_order.wrong_params'))
 
     order
   end
