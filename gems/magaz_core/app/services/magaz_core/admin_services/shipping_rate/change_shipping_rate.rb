@@ -5,12 +5,12 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInterac
   float :shipping_price
   integer :id
 
-  validates :name, :shipping_price, :shipping_country_id, presence: true
+  validates :name, :shipping_price, :id, presence: true
   validate :valid_numerical, :price_criteria_check, :weight_criteria_check,
              :price_comparison_check, :weight_comparison_check
 
   def execute 
-    shipping_rate = MagazCore::ShippingRate.find(:id)
+    shipping_rate = MagazCore::ShippingRate.find(id)
     shipping_rate.update_attributes!(@inputs.slice!(:id)) || 
       errors.add(:base, I18n.t('services.change_shipping_rate.wrong_params'))
 
