@@ -17,7 +17,10 @@ class ShippingRatesControllerTest < ActionController::TestCase
 
   test "should create shipping_rate" do
     assert_difference('MagazCore::ShippingRate.count') do
-      post :create, { :shipping_country_id => @shipping_country.id, shipping_rate: { name: 'Very Unique Name', shipping_price: '12' } }
+      post :create, { :shipping_country_id => @shipping_country.id,
+                       shipping_rate: { name: 'Very Unique Name', shipping_price: '12',
+                                        price_to: "20.5", weight_to: "5.5",
+                                        price_from: "15.7", weight_from: "3.1", } }
     end
     assert_response :success
   end
