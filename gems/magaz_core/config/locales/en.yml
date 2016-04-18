@@ -158,10 +158,6 @@ en:
         customer_agrees: "Customer agrees to receive promotional emails by default."
         customer_does_not_agree: "Customer does not agree to receive promotional emails by default."
         disable: "Disable and hide this field."
-      shipping_rate:
-        not_correct: "Criteria is not correct"
-        price_to_must_be_greater: "price_to must be greater than price_from"
-        weight_to_must_be_greater: "weight_to must be greater than weight_from"        
       webhooks:
         product_creation: "Product creation"
         product_update: "Product update"
@@ -242,8 +238,14 @@ en:
     add_shipping_rate:
       wrong_param: "is not correct"
       not_correct: "Criteria is not correct"
-      price_to_must_be_greater: "price_to must be greater than price_from"
-      weight_to_must_be_greater: "weight_to must be greater than weight_from"
+      price_to_must_be_greater: "price to must be greater than price from"
+      weight_to_must_be_greater: "weight to must be greater than weight from"
+    change_shipping_rate:
+      wrong_param: "is not correct"
+      wrong_params: "Wrong params for shipping rate"
+      not_correct: "Criteria is not correct"
+      price_to_must_be_greater: "price to must be greater than price from"
+      weight_to_must_be_greater: "weight to must be greater than weight from"
 
     change_shop:
       name_not_unique: "Name has already been taken"
