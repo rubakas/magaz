@@ -1,11 +1,11 @@
 class MagazCore::AdminServices::ShippingRate::DeleteShippingRate < ActiveInteraction::Base
 
-  integer :id
+  integer :id, :shipping_country_id
 
-  validates :id, presence: true
+  validates :id, :shipping_country_id, presence: true
 
   def execute
-    MagazCore::ShippingRate.find(id).destroy
+    MagazCore::ShippingCountry.find(shipping_country_id).shipping_rates.find(id).destroy
   end
 
 end
