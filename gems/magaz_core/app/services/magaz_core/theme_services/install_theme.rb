@@ -35,7 +35,7 @@ module MagazCore
         if MagazCore::Shop.find_by_id(shop_id)
           return true
         else
-          errors.add(:base, I18n.t('default.services.install_theme.invalid_shop_id'))
+          errors.add(:base, I18n.t('services.install_theme.invalid_shop_id'))
           return false
         end
       end

@@ -63,6 +63,8 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
         # links created after linked content, right? :)
         _create_default_link_lists!(shop_id: @shop.id)
         _create_default_emails!(shop: @shop)
+
+        raise RuntimeError.new() unless self.errors.blank?
       rescue RuntimeError, ActiveRecord::RecordInvalid
         raise ActiveRecord::Rollback
       end
@@ -74,7 +76,7 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
   private
 
   def shop_name_uniqueness
-    errors.add(:base, I18n.t('default.services.create.name_not_unique')) unless shop_name_unique?
+    errors.add(:base, I18n.t('services.create.name_not_unique')) unless shop_name_unique?
   end
 
   def shop_name_unique?
@@ -88,7 +90,7 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
               shop_id: shop_id,
               source_theme_id: MagazCore::Theme.sources.first.id)
     else
-      errors.add(:base, I18n.t('default.services.create.no_default_theme'))
+      errors.add(:base, I18n.t('services.create.no_default_theme'))
       fail 'No default theme in system'
     end
   end

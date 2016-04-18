@@ -17,7 +17,8 @@ class ShippingRatesControllerTest < ActionController::TestCase
 
   test "should create shipping_rate" do
     assert_difference('MagazCore::ShippingRate.count') do
-      post :create, { :shipping_country_id => @shipping_country.id, shipping_rate: { name: 'Very Unique Name', shipping_price: '12' } }
+      post :create, { :shipping_country_id => @shipping_country.id,
+                       shipping_rate: { name: 'Very Unique Name', shipping_price: 12 } }
     end
     assert_response :success
   end
@@ -30,7 +31,7 @@ class ShippingRatesControllerTest < ActionController::TestCase
   test "should update shipping_rate" do
     patch :update,
       { :shipping_country_id => @shipping_country.id, id: @shipping_rate.id,
-        shipping_rate: { name: @shipping_rate.name } }
+        shipping_rate: { name: @shipping_rate.name, shipping_price: 12 } }
     assert_redirected_to shipping_country_shipping_rate_path(@shipping_country, @shipping_rate)
   end
 

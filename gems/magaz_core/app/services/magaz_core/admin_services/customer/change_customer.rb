@@ -10,7 +10,7 @@ class MagazCore::AdminServices::Customer::ChangeCustomer < ActiveInteraction::Ba
   def execute
     customer = MagazCore::Customer.find(id)
     customer.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('default.services.change_customer.wrong_params'))
+      errors.add(:base, I18n.t('services.change_customer.wrong_params'))
 
     customer
   end
@@ -23,7 +23,7 @@ class MagazCore::AdminServices::Customer::ChangeCustomer < ActiveInteraction::Ba
 
   def customer_uniqueness
     errors.add(:base, I18n
-                .t('default.services.change_customer.customer_exist')) unless customer_unique?
+                .t('services.change_customer.customer_exist')) unless customer_unique?
   end
 
   def customer_unique?

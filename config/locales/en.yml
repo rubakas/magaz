@@ -442,17 +442,12 @@ en:
         notice_fail: "Wrong password or email"
 
     settings:
+      notice_success: "Shop was successfully updated."
       edit:
         general_settings: "Shop Settings"
-      enable_eu_digital_goods_vat_taxes:
-        notice_success: "Shop was successfully updated."
-      update:
-        notice_success: "Shop was successfully updated."
       form:
         error: "error"
         prohibit: "prohibited this shop from being saved:"
-      checkouts_settings_update:
-        notice_success: "Shop was successfully updated."
       checkouts_settings:
         error: "error"
         prohibit: "prohibited this shop from being saved:"
@@ -483,8 +478,6 @@ en:
         refund_policy: "Refund Policy"
         privacy_policy: "Privacy Policy"
         terms_of_service: "Terms of Service"
-      payments_settings_update:
-        notice_success: "Shop was successfully updated."
       payments_settings:
         logo: "Payments"
         payment_authoriz_settings: "Payment authorization settings"
@@ -494,8 +487,6 @@ en:
         authorize_and_charge: "Authorize and charge the customers credit card."
         authorize_customer: "Authorize the customers credit card."
         select_method: "Select authorization method"
-      notifications_settings_update:
-        notice_success: "Shop was successfully updated."
       notifications_settings:
         add_notification: "Add an order notification"
         logo: "Notifications"
@@ -532,8 +523,6 @@ en:
         send_test_notification: "send test notification"
         title: "Notification"
         send_to: "Send to %{notification_method}"
-      taxes_settings_update:
-        notice_success: "Shop was successfully updated."
       taxes_settings:
         logo: "Taxes"
         enable: "Enable "
@@ -662,6 +651,7 @@ en:
         notice_success: "Shipping rate was successfully created."
       update:
         notice_success: "Shipping rate was successfully updated."
+        notice_fail: "Shipping rate was not updated."
       destroy:
         notice_success: "Shipping rate was successfully deleted."
       index:
@@ -739,6 +729,7 @@ en:
         updated: "updated"
         user: "user"
         notice_success: "User was successfully updated."
+        notice_fail: "User was not updated."
       destroy:
         deleted: "deleted"
         destroy: "destroy"

@@ -15,7 +15,7 @@ class MagazCore::AdminServices::Shop::ChangePaymentSettings < ActiveInteraction:
     params[:authorization_settings] = nil unless authorization_method_included?
 
     shop.update_attributes!(params) ||
-      errors.add(:base, I18n.t('default.services.change_payments_settings.wrong_params'))
+      errors.add(:base, I18n.t('services.shop_services.wrong_params'))
 
     shop
   end

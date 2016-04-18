@@ -24,6 +24,6 @@ class MagazCore::AdminServices::Comment::AddComment < ActiveInteraction::Base
   private
 
   def blog_has_article
-    errors.add(:base, I18n.t('default.services.add_comment.article_not_belongs')) unless MagazCore::Article.find(article_id).blog_id == blog_id
+    errors.add(:base, I18n.t('services.add_comment.article_not_belongs')) unless MagazCore::Article.find(article_id).blog_id == blog_id
   end
 end

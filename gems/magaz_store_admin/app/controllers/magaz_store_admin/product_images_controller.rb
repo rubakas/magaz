@@ -35,7 +35,7 @@ module MagazStoreAdmin
           render 'show'
         end
       else
-        @product_image.errors.add(:base, I18n.t('default.services.change_product_image.no_image'))
+        @product_image.errors.add(:base, I18n.t('services.change_product_image.no_image'))
         flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
@@ -60,7 +60,7 @@ module MagazStoreAdmin
         end
       else
         @product_image = MagazCore::ProductImage.new
-        @product_image.errors.add(:base, I18n.t('default.services.add_product_image.no_image'))
+        @product_image.errors.add(:base, I18n.t('services.add_product_image.no_image'))
         flash.now[:notice] = t('.notice_fail')
         render 'show'
       end

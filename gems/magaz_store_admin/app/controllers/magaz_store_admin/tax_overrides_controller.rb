@@ -9,16 +9,19 @@ module MagazStoreAdmin
     end
 
     def create
-      @service = MagazCore::AdminServices::TaxOverride::CreateTaxOverride
-                  .call(params: permitted_params[:tax_override],
-                        shipping_country_id: params[:shipping_country_id])
+      service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
+                  .run(rate: params[:tax_override][:rate],
+                       collection_id: params[:tax_override][:collection_id].to_i,
+                       is_shipping: params[:tax_override][:is_shipping],
+                       shipping_country_id: params[:shipping_country_id])
 
-      @tax_override = @service.tax_override
-      @shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
-      if @tax_override.persisted?
+      if service.valid?
+        @tax_override = service.result
+        @shipping_country = @tax_override.shipping_country
         flash[:notice] = t('.notice_success')
         redirect_to tax_override_path(@shipping_country)
       else
+        @shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
         flash[:notice] = t('.notice_fail')
         redirect_to tax_override_path(@shipping_country)
       end
@@ -33,7 +36,15 @@ module MagazStoreAdmin
     def update
       @tax_override = MagazCore::TaxOverride.find(params[:id])
       @shipping_country = @tax_override.shipping_country
-      if @tax_override.update_attributes(permitted_params[:tax_override])
+      service = MagazCore::AdminServices::TaxOverride::ChangeTaxOverride
+                  .run(id: @tax_override.id,
+                       shipping_country_id: params[:tax_override][:shipping_country_id],
+                       collection_id: params[:tax_override][:collection_id],
+                       rate: params[:tax_override][:rate],
+                       is_shipping: params[:tax_override][:is_shipping])
+      if service.valid?
+        @tax_override = service.result
+        @shipping_country = @tax_override.shipping_country
         flash[:notice] = t('.notice_success')
         redirect_to tax_override_path(@shipping_country)
       else

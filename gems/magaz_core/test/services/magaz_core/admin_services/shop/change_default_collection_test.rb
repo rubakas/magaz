@@ -18,7 +18,6 @@ class MagazCore::AdminServices::Shop::ChangeDefaultCollectionTest < ActiveSuppor
     service = MagazCore::AdminServices::Shop::ChangeDefaultCollection
                 .run(id: '', collection_id: '')
     refute service.valid?
-    puts service.errors.full_messages
     assert_equal 2, service.errors.full_messages.count
     assert_equal 'Id is not a valid integer', service.errors.full_messages.first
     assert_equal 'Collection is not a valid integer', service.errors.full_messages.last

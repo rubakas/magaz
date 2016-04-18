@@ -38,9 +38,22 @@ module MagazStoreAdmin
     def update
       @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
-      if @user.update_attributes(permitted_params[:user])
-        redirect_to user_path(@user), notice: t('.notice_success')
+      service = MagazCore::AdminServices::User::ChangeUser
+                 .run(id: @user.id,
+                      first_name: params[:user][:first_name],
+                      last_name: params[:user][:last_name],
+                      email: params[:user][:email],
+                      password: params[:user][:password],
+                      permissions: params[:user][:permissions])
+      if service.valid?
+        @user = service.result
+        flash[:notice] = t('.notice_success')
+        redirect_to user_path(@user)
       else
+        flash[:notice] = t('.notice_fail')
+        service.errors.full_messages.each do |msg|
+          @user.errors.add(:base, msg)
+        end
         render 'show'
       end
     end
@@ -48,11 +61,12 @@ module MagazStoreAdmin
     def destroy
       @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
-      unless @user.account_owner == true || current_shop.users.count == 1
-        @user.destroy
+      service = MagazCore::AdminServices::User::DeleteUser.run(id: @user.id,
+                                                               shop_id: current_shop.id)
+      if service.valid?
         flash[:notice] = t('.notice_success')
       else
-        flash[:notice] = t('.notice_fail')
+        flash[:notice] = service.errors.full_messages.first
       end
       redirect_to users_path
     end
@@ -69,7 +83,7 @@ module MagazStoreAdmin
       end
      end
 
-    protected
+   protected
 
     def permitted_params
       { user:

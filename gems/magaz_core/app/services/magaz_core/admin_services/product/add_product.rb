@@ -42,7 +42,7 @@ class MagazCore::AdminServices::Product::AddProduct < ActiveInteraction::Base
   private
 
   def name_uniqueness
-    errors.add(:base, I18n.t('default.services.add_product.name_not_unique')) unless name_unique?
+    errors.add(:base, I18n.t('services.add_product.name_not_unique')) unless name_unique?
   end
 
   def name_unique?
