@@ -80,7 +80,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                      id: @shipping_rate.id)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
-    assert_equal "weight_to must be greater than weight_from", service.errors.full_messages.first
+    assert_equal "weight to must be greater than weight from", service.errors.full_messages.first
   end
 
   test "should not update shipping rate with wrong weight" do

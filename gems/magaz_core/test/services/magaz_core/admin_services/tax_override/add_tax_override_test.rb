@@ -53,7 +53,7 @@ class MagazCore::AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport:
     service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
                 .run(@wrong_params)
     refute service.valid?
-    assert_equal 1, service.errors.count
+    assert_equal 2, service.errors.count
     assert_equal 'Wrong params for tax override', service.errors.full_messages.first
   end
 

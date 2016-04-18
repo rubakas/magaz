@@ -85,7 +85,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
                      shipping_country_id: @shipping_country.id)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
-    assert_equal "weight_to must be greater than weight_from", service.errors.full_messages.first
+    assert_equal "weight to must be greater than weight from", service.errors.full_messages.first
     assert_equal 0, MagazCore::ShippingRate.count
   end
 

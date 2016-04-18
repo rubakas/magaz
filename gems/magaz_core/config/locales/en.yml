@@ -242,6 +242,7 @@ en:
       weight_to_must_be_greater: "weight to must be greater than weight from"
     change_shipping_rate:
       wrong_param: "is not correct"
+      wrong_params: "Wrong params for shipping rate"
       not_correct: "Criteria is not correct"
       price_to_must_be_greater: "price to must be greater than price from"
       weight_to_must_be_greater: "weight to must be greater than weight from"

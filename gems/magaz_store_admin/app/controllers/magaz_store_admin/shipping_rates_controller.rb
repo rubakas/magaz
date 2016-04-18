@@ -59,7 +59,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to shipping_country_shipping_rate_path
       else
-        flash[:notice] = t('.notice_fail')
+        flash.now[:notice] = t('.notice_fail')
         service.errors.full_messages.each do |msg|
           @shipping_rate.errors.add(:base, msg)
         end
