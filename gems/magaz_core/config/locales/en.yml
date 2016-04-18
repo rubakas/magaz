@@ -248,6 +248,9 @@ en:
     change_shop:
       name_not_unique: "Name has already been taken"
 
+    add_tax_override:
+      wrong_params: "Wrong params for tax override"
+      already_exists: "Tax override already exists"
     change_tax_override:
       wrong_params: "Wrong params for tax override"
 
