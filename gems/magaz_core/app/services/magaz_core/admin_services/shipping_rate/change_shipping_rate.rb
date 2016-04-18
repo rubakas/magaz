@@ -1,20 +1,18 @@
-class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteraction::Base
+class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInteraction::Base
 
   string :name
   string :price_from, :price_to, :weight_from, :weight_to, :criteria, default: nil
   float :shipping_price
-  integer :shipping_country_id
+  integer :id
 
-  validates :name, :shipping_price, :shipping_country_id, presence: true
+  validates :name, :shipping_price, :id, presence: true
   validate :valid_numerical, :price_criteria_check, :weight_criteria_check,
              :price_comparison_check, :weight_comparison_check
 
   def execute 
-    shipping_rate = MagazCore::ShippingRate.new(@inputs)
-
-    unless shipping_rate.save
-      errors.merge!(shipping_rate.errors)
-    end
+    shipping_rate = MagazCore::ShippingRate.find(id)
+    shipping_rate.update_attributes!(@inputs.slice!(:id)) || 
+      errors.add(:base, I18n.t('services.change_shipping_rate.wrong_params'))
 
     shipping_rate
   end
@@ -29,11 +27,11 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteractio
           @inputs[key] = value.to_f
         elsif value =~ /^$/ 
           @inputs[key] = nil
-        elsif value.nil?
+        elsif value.nil? 
           next
         else
           @inputs[key] = nil
-          errors.add(key, I18n.t('services.add_shipping_rate.wrong_param'))
+          errors.add(key, I18n.t('services.change_shipping_rate.wrong_param'))
         end
       end
     end
@@ -42,7 +40,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteractio
   def price_criteria_check
     if @inputs[:price_from].present? && @inputs[:price_to].present? && 
          criteria == "weight" && @inputs[:weight_from].nil? && @inputs[:weight_to].nil?
-      errors.add(:base, I18n.t('services.add_shipping_rate.not_correct'))
+      errors.add(:base, I18n.t('services.change_shipping_rate.not_correct'))
     else
       return
     end
@@ -51,7 +49,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteractio
   def weight_criteria_check
     if @inputs[:weight_from].present? && @inputs[:weight_to].present? &&
          criteria == "price" && @inputs[:price_from].nil? && @inputs[:price_to].nil?
-      errors.add(:base, I18n.t('services.add_shipping_rate.not_correct'))
+      errors.add(:base, I18n.t('services.change_shipping_rate.not_correct'))
     else
       return
     end
@@ -60,7 +58,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteractio
   def price_comparison_check
     if @inputs[:price_to].present? && @inputs[:price_from].present? &&
          @inputs[:price_to] < @inputs[:price_from]
-      errors.add(:base, I18n.t('services.add_shipping_rate.price_to_must_be_greater'))
+      errors.add(:base, I18n.t('services.change_shipping_rate.price_to_must_be_greater'))
     else
       return
     end
@@ -69,7 +67,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteractio
   def weight_comparison_check
     if @inputs[:weight_from].present? && @inputs[:weight_to].present? &&
          @inputs[:weight_to] < @inputs[:weight_from]
-      errors.add(:base, I18n.t('services.add_shipping_rate.weight_to_must_be_greater'))
+      errors.add(:base, I18n.t('services.change_shipping_rate.weight_to_must_be_greater'))
     else
       return
     end
