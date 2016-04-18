@@ -12,7 +12,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInterac
   def execute 
     shipping_rate = MagazCore::ShippingRate.find(id)
     shipping_rate.update_attributes!(@inputs.slice!(:id)) || 
-      errors.add(:base, I18n.t('services.change_shipping_rate.wrong_params'))
+      errors.add(:base, I18n.t('services.change_shipping_rate.wrong_param'))
 
     shipping_rate
   end
