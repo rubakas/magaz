@@ -2,13 +2,13 @@ require 'test_helper'
 
 class MagazCore::AdminServices::Product::AddProductTest < ActiveSupport::TestCase
 
-  setup do 
+  setup do
     @shop = create(:shop, name: "New shop")
     @collection = create(:collection, shop: @shop)
     @image =  Rack::Test::UploadedFile.new(File.join(Rails.root, 'test', 'fixtures',
-                                                                 'files', 'tapir.jpg')) 
+                                                                 'files', 'tapir.jpg'))
     @not_image = Rack::Test::UploadedFile.new(File.join(Rails.root, 'test', 'fixtures',
-                                                                     'files', 'test.txt')) 
+                                                                     'files', 'test.txt'))
     @success_params = {price: "10",
                        name: "T-shirt",
                        handle: "clothes",
@@ -19,7 +19,7 @@ class MagazCore::AdminServices::Product::AddProductTest < ActiveSupport::TestCas
                        collection_ids: [@collection.id],
                        product_images_attributes: {"0" => {"image" => @image}}}
     @blank_params = {name: "", shop_id: "", description: "", price: "", page_title: "",
-                     meta_description: "",handle: "", product_images_attributes: nil, 
+                     meta_description: "",handle: "", product_images_attributes: nil,
                      collection_ids: [] }
   end
 
@@ -60,7 +60,7 @@ class MagazCore::AdminServices::Product::AddProductTest < ActiveSupport::TestCas
     service = MagazCore::AdminServices::Product::AddProduct
                 .run(name: "T-shirt", shop_id: @shop.id, description: "",
                         price: nil, page_title: "", meta_description: "",
-                        handle: "", product_images_attributes: nil, 
+                        handle: "", product_images_attributes: nil,
                         collection_ids: nil)
     assert service.valid?
     assert MagazCore::Product.find(service.result.id)

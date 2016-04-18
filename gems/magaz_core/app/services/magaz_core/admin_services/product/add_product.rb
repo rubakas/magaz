@@ -11,18 +11,31 @@ class MagazCore::AdminServices::Product::AddProduct < ActiveInteraction::Base
   validate :name_uniqueness
 
   def execute
+    @product = MagazCore::Product.new
+    should_rollback = true
+
     MagazCore::Product.connection.transaction do
       begin
-        @product = MagazCore::Product.new(inputs.slice!(:product_images_attributes))
+
+        @product.attributes = inputs.slice!(:product_images_attributes)
+
         unless @product.save
           errors.merge!(@product.errors)
         end
-        add_image_to_product if product_images_attributes["0"]
+
+        catch(:interrupt) do
+          compose(MagazCore::AdminServices::ProductImage::AddProductImage,
+                  image: product_images_attributes["0"][:image],
+                  product_id: @product.id) if product_images_attributes["0"]
+          should_rollback = false
+        end
+        raise RuntimeError.new if should_rollback
+
       rescue RuntimeError
         raise ActiveRecord::Rollback
       end
     end
-
+    throw :interrupt if should_rollback
     @product
   end
 
@@ -34,18 +47,6 @@ class MagazCore::AdminServices::Product::AddProduct < ActiveInteraction::Base
 
   def name_unique?
     MagazCore::Product.where(shop_id: shop_id, name: name).count == 0
-  end
-
-  def add_image_to_product
-    add_product_image_service =  MagazCore::AdminServices::ProductImage::AddProductImage
-                                   .run(image: product_images_attributes["0"][:image],
-                                        product_id: @product.id)
-    unless add_product_image_service.valid?
-      add_product_image_service.errors.full_messages.each do |msg|
-        self.errors.add(:base, msg)
-      end
-      fail "Add product image service is not valid"
-    end
   end
 
 end
