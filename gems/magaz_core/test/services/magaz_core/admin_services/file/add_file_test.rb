@@ -8,7 +8,7 @@ class MagazCore::AdminServices::File::AddFileTest < ActiveSupport::TestCase
   end
 
   teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/uploads"])
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
   end
 
   test "should add file with valid params" do
