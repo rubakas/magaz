@@ -16,11 +16,19 @@ module MagazStoreAdmin
     end
 
     def create
-      @shipping_country = current_shop.shipping_countries.new(permitted_params[:shipping_country])
-      if @shipping_country.save
+      service = MagazCore::AdminServices::ShippingCountry::AddShippingCountry
+                  .run(shop_id: current_shop.id,
+                       tax: params[:shipping_country][:tax],
+                       name: params[:shipping_country][:name])
+      if service.valid?
+        @shipping_country = service.result
         flash[:notice] = t('.notice_success')
         redirect_to shipping_country_path(@shipping_country)
       else
+        @shipping_country = MagazCore::ShippingCountry.new
+        service.errors.full_messages.each do |msg|
+          @shipping_country.errors.add(:base, msg)
+        end
         render 'new'
       end
     end
