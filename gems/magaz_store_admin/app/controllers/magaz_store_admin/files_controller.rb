@@ -47,17 +47,11 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @file = current_shop.files.find(params[:id])
-      @file.destroy
+      MagazCore::AdminServices::File::DeleteFile
+        .run(id: params[:id],
+             shop_id: current_shop.id)
       flash[:notice] = t('.notice_success')
       redirect_to files_path
-    end
-
-    protected
-
-    def permitted_params
-      { file:
-          params.fetch(:file, {}).permit(:file, :name)}
     end
   end
 end
