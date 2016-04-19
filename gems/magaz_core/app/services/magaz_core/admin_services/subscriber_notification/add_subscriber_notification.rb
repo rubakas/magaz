@@ -14,8 +14,7 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
   set_callback :execute, :before, -> { :downcase_email }
 
   def execute
-    subscriber_notification = MagazCore::Shop.find(shop_id).subscriber_notifications
-                                .new(inputs)
+    subscriber_notification = MagazCore::Shop.find(shop_id).subscriber_notifications.new(inputs)
 
     unless subscriber_notification.save
       errors.merge!(subscriber_notification.errors)

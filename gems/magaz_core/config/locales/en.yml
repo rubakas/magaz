@@ -245,6 +245,9 @@ en:
       price_to_must_be_greater: "price_to must be greater than price_from"
       weight_to_must_be_greater: "weight_to must be greater than weight_from"
 
+    add_subscriber_notification:
+      email_not_unique: "Email has already been taken"
+
     change_shop:
       name_not_unique: "Name has already been taken"
 
