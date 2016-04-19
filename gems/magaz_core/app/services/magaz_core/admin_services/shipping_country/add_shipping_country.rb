@@ -23,7 +23,7 @@ class MagazCore::AdminServices::ShippingCountry::AddShippingCountry < ActiveInte
   private
 
   def country_info
-    COUNTRY_LIST['countries'][self.name]
+    COUNTRY_LIST['countries'][name]
   end
 
   def name_uniqueness

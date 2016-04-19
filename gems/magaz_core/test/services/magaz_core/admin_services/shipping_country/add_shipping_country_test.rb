@@ -18,4 +18,47 @@ class MagazCore::AdminServices::ShippingCountry::AddShippingCountryTest < Active
     assert_equal 2, MagazCore::ShippingCountry.count
   end
 
+  test "should not create shipping country with blank params" do
+    assert_equal 1, MagazCore::ShippingCountry.count
+    service = MagazCore::AdminServices::ShippingCountry::AddShippingCountry
+                .run(@blank_params)
+    refute service.valid?
+    assert_equal 1, service.errors.full_messages.count
+    assert_equal "Shop is not a valid integer", service.errors.full_messages.first
+    assert_equal 1, MagazCore::ShippingCountry.count
+  end
+
+  test "should not create existing shipping country" do
+    @success_params[:name] = @shipping_country.name
+    assert_equal 1, MagazCore::ShippingCountry.count
+    service = MagazCore::AdminServices::ShippingCountry::AddShippingCountry
+                .run(@success_params)
+    refute service.valid?
+    assert_equal 1, service.errors.full_messages.count
+    assert_equal "This shipping country has already been added", service.errors.full_messages.first
+    assert_equal 1, MagazCore::ShippingCountry.count
+  end
+
+  test "should not create shipping country with invalid tax" do
+    @success_params[:tax] = "VERY BIG TAX" 
+    assert_equal 1, MagazCore::ShippingCountry.count
+    service = MagazCore::AdminServices::ShippingCountry::AddShippingCountry
+                .run(@success_params)
+    refute service.valid?
+    assert_equal 1, service.errors.full_messages.count
+    assert_equal "Tax is not a number", service.errors.full_messages.first
+    assert_equal 1, MagazCore::ShippingCountry.count
+  end
+
+  test "should not create shipping country with invalid name" do
+    @success_params[:name] = "AX" 
+    assert_equal 1, MagazCore::ShippingCountry.count
+    service = MagazCore::AdminServices::ShippingCountry::AddShippingCountry
+                .run(@success_params)
+    refute service.valid?
+    assert_equal 1, service.errors.full_messages.count
+    assert_equal "Name is not included in the list", service.errors.full_messages.first
+    assert_equal 1, MagazCore::ShippingCountry.count
+  end
+
 end
