@@ -16,11 +16,16 @@ module MagazStoreAdmin
     end
 
     def create
-      @file = current_shop.files.new(permitted_params[:file])
-      if @file.save
+      service = MagazCore::AdminServices::File::AddFile
+                  .run(shop_id: current_shop.id,
+                       name: params[:file][:name],
+                       file: params[:file][:file])
+      if service.valid?
+        @file = service.result
         flash[:notice] = t('.notice_success')
         redirect_to file_path(@file)
       else
+        @file = service
         render 'new'
       end
     end
