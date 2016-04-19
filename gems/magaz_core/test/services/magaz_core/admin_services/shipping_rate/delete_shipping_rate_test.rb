@@ -26,6 +26,8 @@ class MagazCore::AdminServices::ShippingRate::DeleteShippingRateTest < ActiveSup
                 .run(id: "", shipping_country_id: "")
     refute service.valid?
     assert_equal 2, service.errors.full_messages.count
+    assert_equal "Id is not a valid integer", service.errors.full_messages.first
+    assert_equal "Shipping country is not a valid integer", service.errors.full_messages.last
     assert_equal 2, @shipping_country.shipping_rates.count
   end
 end
