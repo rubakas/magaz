@@ -650,6 +650,7 @@ en:
         notice_success: "Shipping rate was successfully created."
       update:
         notice_success: "Shipping rate was successfully updated."
+        notice_fail: "Shipping rate was not updated."
       destroy:
         notice_success: "Shipping rate was successfully deleted."
       index:
