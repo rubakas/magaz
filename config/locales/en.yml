@@ -380,6 +380,7 @@ en:
     products:
       create:
         notice_success: "Product was successfully created."
+        notice_fail: "Product was not created."
       update:
         notice_success: "Product was successfully updated."
       destroy:
