@@ -22,10 +22,6 @@ class MagazCore::AdminServices::ShippingCountry::AddShippingCountry < ActiveInte
 
   private
 
-  def country_info
-    COUNTRY_LIST['countries'][name]
-  end
-
   def name_uniqueness
     errors.add(:base, I18n.t('services.add_shipping_country.name_not_unique')) unless name_unique?
   end
@@ -33,5 +29,4 @@ class MagazCore::AdminServices::ShippingCountry::AddShippingCountry < ActiveInte
   def name_unique?
     MagazCore::ShippingCountry.where(shop_id: shop_id, name: name).count == 0
   end
-
 end
