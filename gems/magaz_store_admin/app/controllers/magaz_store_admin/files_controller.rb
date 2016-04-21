@@ -16,38 +16,42 @@ module MagazStoreAdmin
     end
 
     def create
-      @file = current_shop.files.new(permitted_params[:file])
-      if @file.save
+      service = MagazCore::AdminServices::File::AddFile
+                  .run(shop_id: current_shop.id,
+                       name: params[:file][:name],
+                       file: params[:file][:file])
+      if service.valid?
+        @file = service.result
         flash[:notice] = t('.notice_success')
         redirect_to file_path(@file)
       else
+        @file = service
         render 'new'
       end
     end
 
-
     def update
-      @file = current_shop.files.find(params[:id])
-      if @file.update_attributes(permitted_params[:file])
+      service = MagazCore::AdminServices::File::ChangeFile
+                  .run(id: params[:id],
+                       name: params[:file][:name],
+                       file: params[:file][:file],
+                       shop_id: current_shop.id)
+      if service.valid?
+        @file = service.result
         flash[:notice] = t('.notice_success')
         redirect_to files_path
       else
+        @file = service
         redner 'show'
       end
     end
 
     def destroy
-      @file = current_shop.files.find(params[:id])
-      @file.destroy
+      MagazCore::AdminServices::File::DeleteFile
+        .run(id: params[:id],
+             shop_id: current_shop.id)
       flash[:notice] = t('.notice_success')
       redirect_to files_path
-    end
-
-    protected
-
-    def permitted_params
-      { file:
-          params.fetch(:file, {}).permit(:file, :name)}
     end
   end
 end

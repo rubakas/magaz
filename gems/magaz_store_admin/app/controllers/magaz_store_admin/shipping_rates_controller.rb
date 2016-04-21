@@ -68,18 +68,11 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])
-      @shipping_rate = @shipping_country.shipping_rates.find(params[:id])
-      @shipping_rate.destroy
+      service = MagazCore::AdminServices::ShippingRate::DeleteShippingRate
+                  .run(id: params[:id],
+                       shipping_country_id: params[:shipping_country_id])
       flash[:notice] = t('.notice_success')
-      redirect_to shipping_country_path(@shipping_country)
-    end
-
-    protected
-
-    def permitted_params
-      { shipping_rate:
-          params.fetch(:shipping_rate, {}).permit(:name, :criteria, :price_from, :price_to, :weight_from, :weight_to, :shipping_price) }
+      redirect_to shipping_country_path(MagazCore::ShippingCountry.find_by_id(params[:shipping_country_id]))
     end
   end
 end
