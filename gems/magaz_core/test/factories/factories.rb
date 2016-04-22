@@ -72,7 +72,7 @@ FactoryGirl.define do
 
   factory :shipping_country, class: MagazCore::ShippingCountry do
     sequence(:name) {|n| "UA"}
-    sequence(:tax)  {|n| "1"}
+    sequence(:tax)  {|n| "#{n}"}
   end
 
   factory :shipping_rate, class: MagazCore::ShippingRate do

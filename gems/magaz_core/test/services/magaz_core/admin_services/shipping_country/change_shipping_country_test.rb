@@ -4,7 +4,7 @@ class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountryTest < Act
   setup do
     @shop = create(:shop)
     @first_shipping_country = create(:shipping_country, shop: @shop)
-    @second_shipping_country = create(:shipping_country, shop: @shop)
+    @second_shipping_country = create(:shipping_country, shop: @shop, name: "AF")
     @success_params = {tax: "69",
                        name: "AL",
                        shop_id: @shop.id,
@@ -24,10 +24,10 @@ class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountryTest < Act
   test "should not update shipping country with blank params" do
     assert_equal 2, MagazCore::ShippingCountry.count
     service = MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry
-                .run(@success_params)
+                .run(@blank_params)
     refute service.valid?
     assert_equal 2, service.errors.full_messages.count
-    assert_equal "Shop is not a valid integer", service.errors.full_messages.fisrt
+    assert_equal "Shop is not a valid integer", service.errors.full_messages.first
     assert_equal "Id is not a valid integer", service.errors.full_messages.last
   end
 
@@ -38,7 +38,7 @@ class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountryTest < Act
                 .run(@success_params)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
-    assert_equal "Name has already been taken", service.errors.full_messages.fisrt
+    assert_equal "Name has already been taken", service.errors.full_messages.first
   end
 
   test "should not update shipping country with invalid tax" do
@@ -48,6 +48,6 @@ class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountryTest < Act
                 .run(@success_params)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
-    assert_equal "Tax is not a number", service.errors.full_messages.fisrt
+    assert_equal "Tax is not a number", service.errors.full_messages.first
   end
 end

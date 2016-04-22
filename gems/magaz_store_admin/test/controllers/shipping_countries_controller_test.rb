@@ -34,14 +34,14 @@ class ShippingCountriesControllerTest < ActionController::TestCase
   test "should update shipping country" do
     patch :update,
       { id: @shipping_country.id,
-        shipping_country: { name: "FN", tax: @shipping_country.tax } }
+        shipping_country: { name: "UA", tax: @shipping_country.tax, shop_id: @shop.id } }
     assert_redirected_to shipping_country_path(assigns(:shipping_country))
   end
 
   test "should not update shipping country" do
     patch :update,
       { id: @shipping_country.id,
-        country: { name: ''} }
+        shipping_country: { name: ''} }
     assert_template :show
     assert_response :success
   end

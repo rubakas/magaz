@@ -235,6 +235,11 @@ en:
     change_product_image:
       no_image: "Image was not selected"
 
+    change_shipping_country:
+      wrong_params: "Wrong params for shipping country"
+      name_not_unique: "Name has already been taken"
+
+
     add_shipping_rate:
       wrong_param: "is not correct"
       not_correct: "Criteria is not correct"

@@ -8,11 +8,6 @@ module MagazCore
     has_many   :shipping_rates, dependent: :destroy
     has_many :tax_overrides
 
-    validates :tax, :name, presence: true
-    validates :tax, numericality: true
-    validates :name, uniqueness: { scope: :shop_id }
-    validates :name, inclusion: COUNTRY_LIST['countries'].keys
-
     def country_info
       COUNTRY_LIST['countries'][self.name]
     end
