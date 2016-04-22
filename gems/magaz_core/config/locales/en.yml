@@ -230,16 +230,21 @@ en:
       wrong_params: "Wrong params for page"
       title_not_unique: "Title has already been taken"
 
+    add_product:
+      name_not_unique: "Name has already been taken"
+
     add_product_image:
       no_image: "Image was not selected"
     change_product_image:
       no_image: "Image was not selected"
 
+    add_shipping_country:
+      name_not_unique: "This shipping country has already been added"
+
     change_shipping_country:
       wrong_params: "Wrong params for shipping country"
       name_not_unique: "Name has already been taken"
-
-
+      
     add_shipping_rate:
       wrong_param: "is not correct"
       not_correct: "Criteria is not correct"
@@ -251,6 +256,9 @@ en:
       not_correct: "Criteria is not correct"
       price_to_must_be_greater: "price to must be greater than price from"
       weight_to_must_be_greater: "weight to must be greater than weight from"
+
+    add_subscriber_notification:
+      email_not_unique: "Email has already been taken"
 
     change_shop:
       name_not_unique: "Name has already been taken"
