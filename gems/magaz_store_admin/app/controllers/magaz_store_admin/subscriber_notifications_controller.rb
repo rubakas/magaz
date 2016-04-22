@@ -26,9 +26,9 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @shop = current_shop
-      @subscriber_notification = @shop.subscriber_notifications.find(params[:id])
-      @subscriber_notification.destroy
+      service = MagazCore::AdminServices::SubscriberNotification::DeleteSubscriberNotification
+                  .run(id: params[:id],
+                       shop_id: current_shop.id)
       flash[:notice] = t('.notice_success')
       redirect_to notifications_settings_settings_path
     end

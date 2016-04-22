@@ -3,6 +3,6 @@ module MagazCore
 
     self.table_name = 'order_subscriptions'
     belongs_to :shop
-    
+
   end
 end
