@@ -58,12 +58,6 @@ module MagazStoreAdmin
       flash[:notice] = t('.notice_success')
       redirect_to shipping_countries_path
     end
-
-    protected
-
-    def permitted_params
-      { shipping_country:
-          params.fetch(:shipping_country, {}).permit(:name, :tax, :country_id, :shipping_rates_attributes => [:name, :price_from, :price_to, :weight_from, :weight_to, :shipping_price]) }
-    end
+    
   end
 end

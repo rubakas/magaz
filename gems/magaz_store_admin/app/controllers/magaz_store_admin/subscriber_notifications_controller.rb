@@ -46,12 +46,5 @@ module MagazStoreAdmin
       end
     end
 
-    protected
-
-    def permitted_params
-      { subscriber_notification:
-          params.fetch(:subscriber_notification, {}).permit(:notification_method,
-                                                            :subscription_address) }
-    end
   end
 end
