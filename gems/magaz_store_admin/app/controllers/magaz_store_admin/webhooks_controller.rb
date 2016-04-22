@@ -37,8 +37,8 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @webhook = current_shop.webhooks.find(params[:id])
-      @webhook.destroy
+      service = MagazCore::AdminServices::Webhook::DeleteWebhook
+                  .run(id: params[:id], shop_id: current_shop.id)
       flash[:notice] = t('.notice_success')
       redirect_to webhooks_url
     end
