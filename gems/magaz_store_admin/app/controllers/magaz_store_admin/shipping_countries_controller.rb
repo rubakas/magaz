@@ -39,8 +39,9 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @shipping_country = current_shop.shipping_countries.find(params[:id])
-      @shipping_country.destroy
+      service = MagazCore::AdminServices::ShippingCountry::DeleteShippingCountry
+                  .run(id: params[:id],
+                       shop_id: current_shop.id)
       flash[:notice] = t('.notice_success')
       redirect_to shipping_countries_path
     end
