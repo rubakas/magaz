@@ -59,9 +59,8 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
-      service = MagazCore::AdminServices::User::DeleteUser.run(id: @user.id,
+      service = MagazCore::AdminServices::User::DeleteUser.run(id: params[:id],
                                                                shop_id: current_shop.id)
       if service.valid?
         flash[:notice] = t('.notice_success')

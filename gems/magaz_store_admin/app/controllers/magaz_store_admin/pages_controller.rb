@@ -57,8 +57,7 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @page = current_shop.pages.friendly.find(params[:id])
-      service = MagazCore::AdminServices::Page::DeletePage.run(id: @page.id)
+      service = MagazCore::AdminServices::Page::DeletePage.run(id: params[:id])
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
     end
