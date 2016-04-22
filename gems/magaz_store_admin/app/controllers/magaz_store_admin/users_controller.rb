@@ -19,17 +19,17 @@ module MagazStoreAdmin
 
     def create
       @current_user = current_shop.users.find(session[:user_id])
-      @service = MagazCore::AdminServices::Invite::CreateInvite.call
+      url_building_proc = lambda {|user_object|
+                                  user_url(user_object,
+                                           invite_token: user_object.invite_token)}
 
-      if @service.valid_email(email: permitted_params[:user][:email], shop: current_shop)
-        @service.create_user_with_email_and_token!(email: permitted_params[:user][:email],
-                                                 shop: current_shop)
-        @service.send_mail_invite(user: @service.user, link: user_url(@service.user, invite_token: @service.user.invite_token ))
-        if @service.user.persisted?
-          redirect_to users_path, notice: t('.notice_success')
-        else
-          redirect_to users_path, notice: t('.invalid_email')
-        end
+      service = MagazCore::AdminServices::Invite::CreateInvite
+                  .run(url_building_proc: url_building_proc,
+                       email: params[:user][:email],
+                       shop_id: current_shop.id)
+
+      if service.valid?
+        redirect_to users_path, notice: t('.notice_success')
       else
         redirect_to users_path, notice: t('.invalid_email')
       end
