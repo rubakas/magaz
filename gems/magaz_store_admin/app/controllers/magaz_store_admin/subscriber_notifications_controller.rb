@@ -8,12 +8,19 @@ module MagazStoreAdmin
     end
 
     def create
-      @shop = current_shop
-      @subscriber_notification = @shop.subscriber_notifications.new(permitted_params[:subscriber_notification])
-      if @subscriber_notification.save
+      service = MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification
+                  .run(shop_id: current_shop.id,
+                       notification_method: params[:subscriber_notification][:notification_method],
+                       subscription_address: params[:subscriber_notification][:subscription_address])
+      if service.valid?
+        @subscriber_notification = service.result
         flash[:notice] = t('.notice_success')
         redirect_to notifications_settings_settings_path
       else
+        @subscriber_notification = MagazCore::SubscriberNotification.new
+        service.errors.full_messages.each do |msg|
+          @subscriber_notification.errors.add(:base, msg)
+        end
         render 'new'
       end
     end
