@@ -27,11 +27,23 @@ module MagazStoreAdmin
     end
 
     def update
-      @webhook = current_shop.webhooks.find(params[:id])
-      if @webhook.update_attributes(permitted_params[:webhook])
+      service = MagazCore::AdminServices::Webhook::ChangeWebhook
+                  .run(id: params[:id],
+                       shop_id: current_shop.id,
+                       topic: params[:webhook][:topic],
+                       format: params[:webhook][:format],
+                       fields: params[:webhook][:fields],
+                       address: params[:webhook][:address],
+                       metafield_namespaces: params[:webhook][:metafield_namespaces])
+      if service.valid?
+        @webhook = service.result
         flash[:notice] = t('.notice_success')
         redirect_to webhook_url(@webhook)
       else
+        @webhook = current_shop.webhooks.find(params[:id])
+        service.errors.full_messages.each do |msg|
+          @webhook.errors.add(:base, msg)
+        end
         render 'show'
       end
     end

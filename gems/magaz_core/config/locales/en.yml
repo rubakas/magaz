@@ -264,6 +264,9 @@ en:
     delete_user:
       account_owner: "Can't delete shop owner."
 
+    change_webhook:
+      wrong_params: "Wrong params for webhook"
+
     create:
       name_not_unique: "Name has already been taken"
       no_default_theme: "No default theme in system"
