@@ -203,6 +203,10 @@ en:
     change_comment:
       wrong_params: "Wrong params for comment"
 
+    create_invite:
+      email_not_valid: "Email is not valid"
+      email_not_unique: "Email is already been taken"
+
     add_link:
       name_not_unique: "Name has already been taken"
     change_link:
@@ -265,6 +269,10 @@ en:
     change_tax_override:
       wrong_params: "Wrong params for tax override"
 
+    add_user:
+      wrong_params: "Wrong params for user"
+      email_not_unique: "Email is already been taken"
+      email_not_valid: "Email is not valid"
     change_user:
       email_not_valid: "Email is not valid or already has been taken"
     delete_user:
