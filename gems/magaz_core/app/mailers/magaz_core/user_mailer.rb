@@ -22,7 +22,7 @@ module MagazCore
       mail(to: subscriber_notification.subscription_address, subject: t('.subject'))
     end
 
-    def invite_new_user(user,link)
+    def invite_new_user(user, link)
       @link = link
       @user = user
       @shop = MagazCore::Shop.find_by_id(@user.shop_id)
