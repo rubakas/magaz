@@ -51,8 +51,9 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @link_list = current_shop.link_lists.friendly.find(params[:id])
-      service = MagazCore::AdminServices::LinkList::DeleteLinkList.run(id: @link_list.id)
+      service = MagazCore::AdminServices::LinkList::DeleteLinkList
+                  .run(shop_id: current_shop.id,
+                       id: params[:id])
       flash[:notice] = t('.notice_success')
       redirect_to link_lists_path
     end

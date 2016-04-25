@@ -1,6 +1,6 @@
 class MagazCore::AdminServices::Article::DeleteArticle < ActiveInteraction::Base
 
-  integer :id
+  string :id
 
   validates :id, presence: true
 
