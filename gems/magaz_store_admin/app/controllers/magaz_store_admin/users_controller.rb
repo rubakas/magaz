@@ -59,7 +59,6 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @current_user = current_shop.users.find(session[:user_id])
       service = MagazCore::AdminServices::User::DeleteUser.run(id: params[:id],
                                                                shop_id: current_shop.id)
       if service.valid?
