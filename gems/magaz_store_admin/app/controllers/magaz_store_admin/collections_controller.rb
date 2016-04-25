@@ -57,9 +57,8 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @collection = current_shop.collections.friendly.find(params[:id])
       service = MagazCore::AdminServices::Collection::DeleteCollection
-                  .run(id:  @collection.id)
+                  .run(id: params[:id], shop_id: current_shop.id)
       # @webhook_service = MagazCore::AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
       #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
       flash[:notice] = t('.notice_success')

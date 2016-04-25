@@ -49,7 +49,7 @@ module MagazStoreAdmin
 
     test "should destroy link_list" do
       assert_difference('MagazCore::LinkList.count', -1) do
-        delete :destroy, id: @link_list.id
+        delete :destroy, id: @link_list.id.to_s, shop_id: @shop.id
       end
 
       assert_redirected_to link_lists_path

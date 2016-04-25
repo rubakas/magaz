@@ -54,8 +54,7 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @blog = current_shop.blogs.friendly.find(params[:id])
-      service = MagazCore::AdminServices::Blog::DeleteBlog.run(id: @blog.id)
+      service = MagazCore::AdminServices::Blog::DeleteBlog.run(id: params[:id])
       flash[:notice] = t('.notice_success')
       redirect_to blogs_path
     end
