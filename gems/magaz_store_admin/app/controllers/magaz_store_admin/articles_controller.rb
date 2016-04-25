@@ -57,8 +57,7 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @article = current_shop.articles.friendly.find(params[:id])
-      service = MagazCore::AdminServices::Article::DeleteArticle.run(id: @article.id)
+      service = MagazCore::AdminServices::Article::DeleteArticle.run(id: params[:id])
       flash[:notice] = t('.notice_success')
       redirect_to articles_url
     end

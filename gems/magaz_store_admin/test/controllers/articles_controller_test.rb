@@ -54,7 +54,7 @@ module MagazStoreAdmin
 
     test "should destroy article" do
       assert_difference('MagazCore::Article.count', -1) do
-        delete :destroy, id: @article.id
+        delete :destroy, id: @article.id.to_s
       end
 
       assert_redirected_to articles_path

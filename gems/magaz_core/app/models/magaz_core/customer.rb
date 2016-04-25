@@ -18,8 +18,6 @@ module MagazCore
     has_many :events, as: :subject
     belongs_to :shop
 
-    # validates :email, presence: true
-
     def self.to_csv
       CSV.generate do |csv|
         csv << column_names
@@ -28,5 +26,6 @@ module MagazCore
         end
       end
     end
+    
   end
 end

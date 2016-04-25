@@ -49,7 +49,7 @@ module MagazStoreAdmin
 
     test "should destroy customer" do
       assert_difference('MagazCore::Customer.count', -1) do
-        delete :destroy, id: @customer.id
+        delete :destroy, id: @customer.id, shop_id: @shop.id
       end
       assert_redirected_to customers_path
     end

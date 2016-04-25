@@ -11,7 +11,7 @@ class MagazCore::AdminServices::DeleteArticleTest < ActiveSupport::TestCase
 
   test 'should delete article with valid id' do
     assert_equal 2, @blog.articles.count
-    service = MagazCore::AdminServices::Article::DeleteArticle.run(id: @article.id)
+    service = MagazCore::AdminServices::Article::DeleteArticle.run(id: @article.id.to_s)
     assert service.valid?
     refute MagazCore::Article.find_by_id(@article.id)
     assert MagazCore::Article.find_by_id(@article2.id)
@@ -22,6 +22,8 @@ class MagazCore::AdminServices::DeleteArticleTest < ActiveSupport::TestCase
     assert_equal 2, @blog.articles.count
     service = MagazCore::AdminServices::Article::DeleteArticle.run(id: "")
     refute service.valid?
+    assert_equal 1, service.errors.count
+    assert_equal "Id can't be blank", service.errors.full_messages.last
     assert_equal 2, @blog.articles.count
   end
 end
