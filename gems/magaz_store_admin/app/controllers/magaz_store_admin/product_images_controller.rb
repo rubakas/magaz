@@ -67,8 +67,8 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @product = current_shop.products.friendly.find(params[:product_id])
-      service = MagazCore::AdminServices::ProductImage::DeleteProductImage.run(id: params[:id])
+      service = MagazCore::AdminServices::ProductImage::DeleteProductImage
+                  .run(id: params[:id], product_id: params[:product_id])
       flash[:notice] = t('.notice_success')
       redirect_to product_product_images_path
     end
