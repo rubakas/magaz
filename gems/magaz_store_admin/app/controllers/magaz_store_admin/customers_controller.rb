@@ -73,7 +73,8 @@ module MagazStoreAdmin
     end
 
     def destroy
-      service = MagazCore::AdminServices::Customer::DeleteCustomer.run(id: params[:id])
+      service = MagazCore::AdminServices::Customer::DeleteCustomer
+                  .run(id: params[:id], shop_id: current_shop.id)
       # @webhook_service = MagazCore::AdminServices::EventWebhookRunner
         #.call(event: @event_service.event, topic: MagazCore::Webhook::Topics::DELETE_CUSTOMER_EVENT)
       flash[:notice] = t('.notice_success')
