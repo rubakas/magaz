@@ -1,10 +1,10 @@
 class MagazCore::AdminServices::Page::DeletePage < ActiveInteraction::Base
 
-  integer :id
-
-  validates :id, presence: true
+  string :id
+  integer :shop_id
+  validates :id, :shop_id, presence: true
 
   def execute
-    MagazCore::Page.friendly.find(id).destroy
+    MagazCore::Shop.find(shop_id).pages.friendly.find(id).destroy
   end
 end

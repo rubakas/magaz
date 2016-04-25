@@ -19,13 +19,15 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
       begin
         @shop.attributes = {name: shop_name}
         @shop.save!
-        @user.attributes = {email: email,
-                            password: password,
-                            account_owner: true,
-                            shop_id: @shop.id,
-                            first_name: first_name,
-                            last_name: last_name}
-        @user.save!
+
+        @user = compose(MagazCore::AdminServices::User::AddUser,
+                        email: email,
+                        password: password,
+                        account_owner: true,
+                        shop_id: @shop.id,
+                        first_name: first_name,
+                        last_name: last_name,
+                        permissions: nil)
 
         _install_default_theme(shop_id: @shop.id)
         _create_default_blogs_and_posts!(shop_id: @shop.id)
