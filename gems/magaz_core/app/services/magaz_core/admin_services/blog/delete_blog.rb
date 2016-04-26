@@ -1,6 +1,6 @@
 class MagazCore::AdminServices::Blog::DeleteBlog < ActiveInteraction::Base
 
-  integer :id
+  string :id
 
   validates :id, presence: true
 
