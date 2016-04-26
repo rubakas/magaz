@@ -182,9 +182,11 @@ en:
 
     add_blog:
       title_not_unique: "Title has already been taken"
+      handle_not_unique: "Handle has already been taken"
     change_blog:
       wrong_params: "Wrong params for blog"
       title_not_unique: "Title has already been taken"
+      handle_not_unique: "Handle has already been taken"
 
     add_collection:
       name_not_unique: "Name has already been taken"
