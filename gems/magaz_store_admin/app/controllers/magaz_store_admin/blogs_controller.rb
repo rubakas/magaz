@@ -16,10 +16,10 @@ module MagazStoreAdmin
 
     def create
       service = MagazCore::AdminServices::Blog::AddBlog
-                .run(title: params[:blog][:title],
-                     shop_id: current_shop.id,
-                     page_title: params[:blog][:page_title],
+                .run(shop_id: current_shop.id,
+                     title: params[:blog][:title],
                      handle: params[:blog][:handle],
+                     page_title: params[:blog][:page_title],
                      meta_description: params[:blog][:meta_description])
       if service.valid?
         @blog = service.result
@@ -33,19 +33,19 @@ module MagazStoreAdmin
     end
 
     def update
-      @blog = current_shop.blogs.friendly.find(params[:id])
       service = MagazCore::AdminServices::Blog::ChangeBlog
-                  .run(id: @blog.id,
-                       title: params[:blog][:title],
+                  .run(id: params[:id],
                        shop_id: current_shop.id,
+                       title: params[:blog][:title],
+                       handle: params[:blog][:handle],
                        page_title: params[:blog][:page_title],
-                       meta_description: params[:blog][:meta_description],
-                       handle: params[:blog][:handle])
+                       meta_description: params[:blog][:meta_description])
       if service.valid?
         @blog = service.result
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
+        @blog = current_shop.blogs.friendly.find(params[:id])
         service.errors.full_messages.each do |msg|
           @blog.errors.add(:base, msg)
         end
