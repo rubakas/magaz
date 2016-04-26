@@ -59,12 +59,10 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @shipping_country = MagazCore::TaxOverride.find(params[:id]).shipping_country
       service = MagazCore::AdminServices::TaxOverride::DeleteTaxOverride
-                  .run(id: params[:id],
-                       shipping_country_id: @shipping_country.id)
+                  .run(id: params[:id])
       flash[:notice] = t('.notice_success')
-      redirect_to tax_override_path(@shipping_country)
+      redirect_to tax_override_path(service.shipping_country)
     end
 
   end

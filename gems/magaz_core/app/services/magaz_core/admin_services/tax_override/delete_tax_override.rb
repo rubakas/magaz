@@ -1,11 +1,11 @@
 class MagazCore::AdminServices::TaxOverride::DeleteTaxOverride < ActiveInteraction::Base
 
-  integer :id, :shipping_country_id
+  integer :id
 
-  validates :id, :shipping_country_id, presence: true
+  validates :id, presence: true
 
   def execute 
-    MagazCore::ShippingCountry.find(shipping_country_id).tax_overrides.find(id).destroy
+    MagazCore::TaxOverride.find(id).destroy
   end
 
 end

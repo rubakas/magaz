@@ -11,7 +11,7 @@ class MagazCore::AdminServices::TaxOverride::DeleteTaxOverrideTest < ActiveSuppo
   test "should destroy tax override with valid ids" do
     assert_equal 1, MagazCore::TaxOverride.count
     service = MagazCore::AdminServices::TaxOverride::DeleteTaxOverride
-                .run(id: @tax_override.id, shipping_country_id: @shipping_country.id)
+                .run(id: @tax_override.id)
     refute MagazCore::TaxOverride.find_by_id(@tax_override.id)
     assert_equal 0, MagazCore::TaxOverride.count
   end
@@ -19,9 +19,9 @@ class MagazCore::AdminServices::TaxOverride::DeleteTaxOverrideTest < ActiveSuppo
   test "should not destroy tax override with blank ids" do
     assert_equal 1, MagazCore::TaxOverride.count
     service = MagazCore::AdminServices::TaxOverride::DeleteTaxOverride
-                .run(id: '', shipping_country_id: '')
+                .run(id: '')
     assert MagazCore::TaxOverride.find_by_id(@tax_override.id)
-    assert_equal 2, service.errors.count
+    assert_equal 1, service.errors.count
     assert_equal "Id is not a valid integer", service.errors.full_messages.first
     assert_equal 1, MagazCore::TaxOverride.count
   end
