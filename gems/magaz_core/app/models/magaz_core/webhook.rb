@@ -56,12 +56,10 @@ module MagazCore
                               CREATE_CUSTOMER_EVENT, UPDATE_CUSTOMER_EVENT, DELETE_CUSTOMER_EVENT,
                               UPDATE_ORDER_EVENT, UPDATE_SHOP_EVENT]
     end
-
     validates :topic, inclusion: MagazCore::Webhook::Topics::WEBHOOKS_TOPICS_LIST
     validates :format, inclusion: FORMAT_CHOICE
 
     validates :address, presence: true,
                         format: { with: /https?:\/\/[\S]+/ }
-
   end
 end

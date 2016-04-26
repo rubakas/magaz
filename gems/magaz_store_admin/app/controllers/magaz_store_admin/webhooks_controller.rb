@@ -16,11 +16,22 @@ module MagazStoreAdmin
     end
 
     def create
-      @webhook = current_shop.webhooks.new(permitted_params[:webhook])
-      if @webhook.save
+      service = MagazCore::AdminServices::Webhook::AddWebhook
+                  .run(shop_id: current_shop.id,
+                       topic: params[:webhook][:topic],
+                       format: params[:webhook][:format],
+                       fields: params[:webhook][:fields],
+                       address: params[:webhook][:address],
+                       metafield_namespaces: params[:webhook][:metafield_namespaces])
+      if service.valid?
+        @webhook = service.result
         flash[:notice] = t('.notice_success')
         redirect_to webhook_url(@webhook)
       else
+        @webhook = MagazCore::Webhook.new
+        service.errors.full_messages.each do |msg|
+          @webhook.errors.add(:base, msg)
+        end
         flash[:error] = t('.notice_fail')
         render 'new'
       end
