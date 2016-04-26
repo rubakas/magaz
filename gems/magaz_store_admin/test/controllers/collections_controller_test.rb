@@ -42,7 +42,7 @@ module MagazStoreAdmin
 
     test "should destroy collection" do
       assert_difference('MagazCore::Collection.count', -1) do
-        delete :destroy, id: @collection.id
+        delete :destroy, id: @collection.id.to_s, shop_id: @shop.id
       end
 
       assert_redirected_to collections_path

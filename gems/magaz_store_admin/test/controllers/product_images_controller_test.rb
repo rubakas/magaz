@@ -55,7 +55,7 @@ module MagazStoreAdmin
 
     test 'should destroy image' do
       assert_difference('MagazCore::ProductImage.count', -1) do
-        delete :destroy, product_id: @product , id: @product_image
+        delete :destroy, product_id: @product.id , id: @product_image.id
       end
       assert_redirected_to product_product_images_path
     end
