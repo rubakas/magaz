@@ -2,6 +2,11 @@ module MagazStoreAdmin
   class TaxOverridesController < ApplicationController
     layout 'admin_settings'
 
+    def show
+      @shipping_country = current_shop.shipping_countries.find_by_id(params[:id])
+      @tax_overrides = @shipping_country.tax_overrides.all
+    end
+
     def new
       @collections = current_shop.collections.all
       @shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
@@ -53,27 +58,12 @@ module MagazStoreAdmin
       end
     end
 
-    def show
-      @shipping_country = current_shop.shipping_countries.find_by_id(params[:id])
-      @tax_overrides = @shipping_country.tax_overrides.all
-    end
-
     def destroy
-      @tax_override = MagazCore::TaxOverride.find(params[:id])
-      @shipping_country = @tax_override.shipping_country
-      @tax_override.destroy
+      service = MagazCore::AdminServices::TaxOverride::DeleteTaxOverride
+                  .run(id: params[:id])
       flash[:notice] = t('.notice_success')
-      redirect_to tax_override_path(@shipping_country)
+      redirect_to tax_override_path(service.shipping_country)
     end
 
-    protected
-
-    def permitted_params
-      { tax_override:
-        params.fetch(:tax_override, {}).permit(:rate,
-                                               :is_shipping,
-                                               :collection_id,
-                                               :shipping_country_id)}
-    end
   end
 end
