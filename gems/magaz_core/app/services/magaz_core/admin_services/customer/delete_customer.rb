@@ -1,10 +1,10 @@
 class MagazCore::AdminServices::Customer::DeleteCustomer < ActiveInteraction::Base
 
-  integer :id
+  integer :id, :shop_id
 
-  validates :id, presence: true
+  validates :id, :shop_id, presence: true
 
   def execute
-    MagazCore::Customer.find(id).destroy
+    MagazCore::Shop.find(shop_id).customers.find(id).destroy
   end
 end

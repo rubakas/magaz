@@ -55,8 +55,7 @@ module MagazStoreAdmin
     end
 
     def destroy
-      @comment = current_shop.comments.find(params[:id])
-      service = MagazCore::AdminServices::Comment::DeleteComment.run(id: @comment.id)
+      service = MagazCore::AdminServices::Comment::DeleteComment.run(id: params[:id])
       redirect_to comments_url
       flash[:notice] = t('.notice_success')
     end
