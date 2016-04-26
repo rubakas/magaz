@@ -7,7 +7,7 @@ class MagazCore::AdminServices::Article::ChangeArticleTest < ActiveSupport::Test
     @blog = create(:blog, shop: @shop)
     @article = create(:article, blog: @blog)
     @article2 = create(:article, blog: @blog)
-    @success_params = { id: @article.id, title: "Changed title", blog_id: @blog.id,
+    @success_params = { id: @article.id.to_s, title: "Changed title", blog_id: @blog.id,
                         content: "Changed content", page_title: "Changed page_title", handle: "ChangedC handle",
                         meta_description: "Changed meta_description" }
     @blank_params =   { id: "", title: "", blog_id: "",
@@ -25,13 +25,13 @@ class MagazCore::AdminServices::Article::ChangeArticleTest < ActiveSupport::Test
   test 'should not update article with blank_params' do
     service = MagazCore::AdminServices::Article::ChangeArticle.run(@blank_params)
     refute service.valid?
-    assert_equal 2, service.errors.full_messages.count
-    assert_equal "Id is not a valid integer", service.errors.full_messages.first
+    assert_equal 1, service.errors.full_messages.count
+    assert_equal "Blog is not a valid integer", service.errors.full_messages.first
   end
 
   test 'should not update article with existing title' do
     service = MagazCore::AdminServices::Article::ChangeArticle.
-                run(id: @article.id, title: @article2.title, blog_id: @blog.id,
+                run(id: @article.id.to_s, title: @article2.title, blog_id: @blog.id,
                     content: "Changed content", page_title: "Changed page_title", handle: "ChangedC handle",
                     meta_description: "Changed meta_description")
     refute service.valid?
@@ -41,7 +41,7 @@ class MagazCore::AdminServices::Article::ChangeArticleTest < ActiveSupport::Test
 
   test 'should update article with some blank params' do
     service = MagazCore::AdminServices::Article::ChangeArticle.
-                run(id: @article2.id, title: @article2.title, blog_id: @blog.id,
+                run(id: @article2.id.to_s, title: @article2.title, blog_id: @blog.id,
                     content: "", page_title: "", handle: "",
                     meta_description: "")
     assert service.valid?
