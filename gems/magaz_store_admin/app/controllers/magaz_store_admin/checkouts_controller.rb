@@ -1,26 +1,19 @@
 module MagazStoreAdmin
   class CheckoutsController < ApplicationController
     include MagazCore::Concerns::Authenticable
-    before_action :set_abandoned_checkout, only: [:show, :destroy]
 
     def index
       @abandoned_checkouts = current_shop.checkouts.abandoned_checkouts.page(params[:page])
     end
 
     def show
+      @abandoned_checkout = current_shop.checkouts.abandoned_checkouts.find(params[:id])
     end
 
     def destroy
-      service = MagazCore::AdminServices::Checkout::DeleteCheckout
-                  .run(id: @abandoned_checkout.id)
+      service = MagazCore::AdminServices::Checkout::DeleteCheckout.run(id: params[:id])
       redirect_to checkouts_url
     end
 
-    private
-
-    # Use callbacks to share common setup or constraints between actions.
-    def set_abandoned_checkout
-      @abandoned_checkout = current_shop.checkouts.abandoned_checkouts.find(params[:id])
-    end
   end
 end

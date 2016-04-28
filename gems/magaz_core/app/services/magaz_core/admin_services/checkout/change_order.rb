@@ -5,6 +5,10 @@ class MagazCore::AdminServices::Checkout::ChangeOrder < ActiveInteraction::Base
 
   validates :id, :status, presence: true
 
+  def to_model
+    MagazCore::Checkout.find(id)
+  end
+  
   def execute
     order = MagazCore::Checkout.find(id)
     order.update_attributes!(inputs.slice!(:id)) ||
