@@ -7,6 +7,10 @@ class MagazCore::AdminServices::Customer::ChangeCustomer < ActiveInteraction::Ba
 
   validate :customer_uniqueness, if: :email_changed?
 
+  def to_model
+    MagazCore::Customer.find(id)
+  end
+
   def execute
     customer = MagazCore::Customer.find(id)
     customer.update_attributes!(inputs.slice!(:id)) ||

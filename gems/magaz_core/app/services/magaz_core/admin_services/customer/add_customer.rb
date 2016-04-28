@@ -12,7 +12,7 @@ class MagazCore::AdminServices::Customer::AddCustomer < ActiveInteraction::Base
   end
 
   def execute
-    customer = MagazCore::Customer.new(inputs)
+    customer = MagazCore::Shop.find(shop_id).customers.new(inputs)
 
     unless customer.save
       errors.merge!(customer.errors)
