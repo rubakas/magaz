@@ -30,15 +30,14 @@ module MagazStoreAdmin
         redirect_to customer_path(@customer)
       else
         @customer = service
-        flash[:notice] = t('.notice_fail')
+        flash.now[:notice] = t('.notice_fail')
         render 'new'
       end
     end
 
     def update
-      @customer = current_shop.customers.find(params[:id])
       service = MagazCore::AdminServices::Customer::ChangeCustomer
-                  .run(id: @customer.id,
+                  .run(id: params[:id],
                        first_name: params[:customer][:first_name],
                        last_name: params[:customer][:last_name],
                        email: params[:customer][:email],
@@ -51,7 +50,7 @@ module MagazStoreAdmin
         redirect_to customer_path(@customer)
       else
         @customer = service
-        flash[:notice] = t('.notice_fail')
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end

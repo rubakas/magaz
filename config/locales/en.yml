@@ -200,8 +200,10 @@ en:
     customers:
       create:
         notice_success: "Customer was successfully created."
+        notice_fail: "Can't create such customer, try again please."
       update:
         notice_success: "Customer was successfully updated."
+        notice_fail: "Can't create such customer, try again please."
       destroy:
         notice_success: "Customer was successfully deleted."
       import:
