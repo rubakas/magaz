@@ -6,7 +6,7 @@ class MagazCore::AdminServices::Collection::ChangeCollectionTest < ActiveSupport
     @shop = create(:shop, name: 'shop_name')
     @collection = create(:collection, shop: @shop)
     @collection2 = create(:collection, shop: @shop)
-    @success_params = { id: @collection.id, name: "Changed name", shop_id: @shop.id,
+    @success_params = { id: @collection.id.to_s, name: "Changed name", shop_id: @shop.id,
                         page_title: "Changed page_title", handle: "Changed handle",
                         meta_description: "Changed meta_description", description: "Test description" }
   end
@@ -21,7 +21,7 @@ class MagazCore::AdminServices::Collection::ChangeCollectionTest < ActiveSupport
 
   test 'should not update collection with existing name' do
     service = MagazCore::AdminServices::Collection::ChangeCollection.
-                run(id: @collection.id, name: @collection2.name, shop_id: @shop.id,
+                run(id: @collection.id.to_s, name: @collection2.name, shop_id: @shop.id,
                     page_title: "Changed page_title", handle: "Changed handle",
                     meta_description: "Changed meta_description", description: "description")
     refute service.valid?
@@ -31,7 +31,7 @@ class MagazCore::AdminServices::Collection::ChangeCollectionTest < ActiveSupport
 
   test 'should update collection with some blank params' do
     service = MagazCore::AdminServices::Collection::ChangeCollection.
-                run(id: @collection2.id, name: @collection2.name, shop_id: @shop.id,
+                run(id: @collection2.id.to_s, name: @collection2.name, shop_id: @shop.id,
                     page_title: '', handle: '', meta_description: '', description: '')
     assert service.valid?
     assert_equal '', service.result.handle

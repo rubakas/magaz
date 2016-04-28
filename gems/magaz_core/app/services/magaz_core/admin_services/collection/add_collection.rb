@@ -6,6 +6,7 @@ class MagazCore::AdminServices::Collection::AddCollection < ActiveInteraction::B
   validates :name, :shop_id, presence: true
 
   validate :name_uniqueness
+  validate :handle_uniqueness
 
   def to_model
     MagazCore::Collection.new

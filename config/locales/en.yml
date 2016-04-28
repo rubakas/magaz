@@ -138,6 +138,7 @@ en:
         notice_fail: "Can't create such collection, try again please."
       update:
         notice_success: "Collection was successfully updated."
+        notice_fail: "Can't create such collection, try again please."
       destroy:
         notice_success: "Collection was successfully deleted."
       index:

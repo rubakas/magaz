@@ -28,8 +28,8 @@ class MagazCore::AdminServices::Collection::AddCollectionTest < ActiveSupport::T
     service2 = MagazCore::AdminServices::Collection::AddCollection.run(@success_params)
     refute service2.valid?
     assert_equal 2, @shop.collections.count
-    assert_equal 1, service2.errors.full_messages.count
-    assert_equal "Name has already been taken", service2.errors.full_messages.last
+    assert_equal 2, service2.errors.full_messages.count
+    assert_equal "Name has already been taken", service2.errors.full_messages.first
   end
 
   test 'should not create collection with blank params' do
