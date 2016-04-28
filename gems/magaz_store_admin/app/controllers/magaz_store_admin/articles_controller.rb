@@ -17,11 +17,11 @@ module MagazStoreAdmin
     def create
       service = MagazCore::AdminServices::Article::AddArticle
                   .run(title: params[:article][:title],
+                       handle: params[:article][:handle],
                        content: params[:article][:content],
                        blog_id: params[:article][:blog_id],
                        page_title: params[:article][:page_title],
-                       meta_description: params[:article][:meta_description],
-                       handle: params[:article][:handle])
+                       meta_description: params[:article][:meta_description])
       if service.valid?
         @article = service.result
         flash[:notice] = t('.notice_success')
@@ -34,24 +34,21 @@ module MagazStoreAdmin
     end
 
     def update
-      @article = current_shop.articles.friendly.find(params[:id])
       service = MagazCore::AdminServices::Article::ChangeArticle
-                  .run(id: @article.id,
+                  .run(id: params[:id],
                        title: params[:article][:title],
+                       handle: params[:article][:handle],
                        blog_id: params[:article][:blog_id],
-                       page_title: params[:article][:page_title],
-                       meta_description: params[:article][:meta_description],
                        content: params[:article][:content],
-                       handle: params[:article][:handle])
+                       page_title: params[:article][:page_title],
+                       meta_description: params[:article][:meta_description])
       if service.valid?
         @article = service.result
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
+        @article = service
         flash[:notice] = t('.notice_fail')
-        service.errors.full_messages.each do |msg|
-          @article.errors.add(:base, msg)
-        end
         render 'show'
       end
     end
@@ -61,5 +58,6 @@ module MagazStoreAdmin
       flash[:notice] = t('.notice_success')
       redirect_to articles_url
     end
+    
   end
 end

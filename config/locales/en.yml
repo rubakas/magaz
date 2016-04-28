@@ -64,7 +64,7 @@ en:
         notice_fail: "Can't create such article, try again please."
       update:
         notice_success: "Article was successfully updated."
-        notice_fail: "Can't create such article, try again please."
+        notice_fail: "Can't update article, try again please."
       destroy:
         notice_success: "Article was successfully deleted."
       index:
