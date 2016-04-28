@@ -38,7 +38,7 @@ module MagazStoreAdmin
     def update
       @collection = current_shop.collections.friendly.find(params[:id])
       service = MagazCore::AdminServices::Collection::ChangeCollection
-                  .run(id: @collection.id,
+                  .run(id: params[:collection][:id],
                        name: params[:collection][:name],
                        shop_id: current_shop.id,
                        page_title: params[:collection][:page_title],
@@ -52,6 +52,8 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
+        @collection = service
+        flash[:notice] = t('.notice_fail')
         render 'show'
       end
     end
