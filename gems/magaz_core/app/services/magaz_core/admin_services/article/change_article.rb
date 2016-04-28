@@ -8,6 +8,10 @@ class MagazCore::AdminServices::Article::ChangeArticle < ActiveInteraction::Base
   validate :title_uniqueness, if: :title_changed?
   validate :handle_uniqueness, if: :handle_changed?
 
+  def to_model
+    MagazCore::Blog.find(blog_id).articles.friendly.find(id)
+  end
+
   def execute
     article = MagazCore::Blog.find(blog_id).articles.friendly.find(id)
     article.update_attributes!(inputs.slice!(:id)) ||

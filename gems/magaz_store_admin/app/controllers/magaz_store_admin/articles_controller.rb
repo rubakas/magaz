@@ -47,10 +47,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
-        @article = current_shop.articles.friendly.find(params[:id])
-        service.errors.full_messages.each do |msg|
-          @article.errors.add(:base, msg)
-        end
+        @article = service
         flash[:notice] = t('.notice_fail')
         render 'show'
       end

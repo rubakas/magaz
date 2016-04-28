@@ -48,7 +48,7 @@ module MagazStoreAdmin
     end
 
     test "should not update article" do
-      patch :update, id: @article, article: { content: @article.content, title: '' }
+      patch :update, id: @article, article: { content: @article.content, title: '', blog_id: @blog.id }
       assert_response :success
     end
 
