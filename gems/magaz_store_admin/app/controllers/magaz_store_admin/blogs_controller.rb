@@ -45,10 +45,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
-        @blog = current_shop.blogs.friendly.find(params[:id])
-        service.errors.full_messages.each do |msg|
-          @blog.errors.add(:base, msg)
-        end
+        @blog = service
         render 'show'
       end
     end
