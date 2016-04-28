@@ -1,8 +1,6 @@
  module MagazStoreAdmin
   class OrdersController < ApplicationController
     include MagazCore::Concerns::Authenticable
-    before_action :set_order, only: [:show, :update]
-
 
     def index
      @orders = current_shop.checkouts.orders.page(params[:page])
@@ -14,7 +12,7 @@
 
     def update
       service = MagazCore::AdminServices::Checkout::ChangeOrder
-                  .run(id: @order.id,
+                  .run(id: params[:id],
                        status: params[:order][:status])
       if service.valid?
         @order = service.result
@@ -28,9 +26,5 @@
       end
     end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = current_shop.checkouts.orders.find(params[:id])
-    end
   end
 end
