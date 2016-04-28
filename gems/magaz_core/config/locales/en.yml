@@ -192,9 +192,11 @@ en:
 
     add_collection:
       name_not_unique: "Name has already been taken"
+      handle_not_unique: "Handle has already been taken"
     change_collection:
       wrong_params: "Wrong params for collection"
       name_not_unique: "Name has already been taken"
+      handle_not_unique: "Handle has already been taken"
 
     add_customer:
       customer_exist: "This customer is already exist in this shop"
