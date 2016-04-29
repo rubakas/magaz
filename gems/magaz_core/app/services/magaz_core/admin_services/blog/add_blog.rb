@@ -1,6 +1,6 @@
 class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
 
-  set_callback :validate, :after, -> {create_object}
+  set_callback :validate, :after, -> {object}
 
   string :title, :page_title, :meta_description, :handle
   integer :shop_id
@@ -8,25 +8,25 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
   validates :title, :shop_id, presence: true
   validate :title_uniqueness, :handle_uniqueness
 
-  def create_object
-    @blog = MagazCore::Blog.new
+  def object
+    @object = MagazCore::Blog.new
     add_errors if errors.any?
-    @blog
+    @object
   end
 
   def execute
-    @blog = MagazCore::Blog.new(inputs)
-    unless @blog.save
+    blog = MagazCore::Blog.new(inputs)
+    unless blog.save
       errors.merge!(blog.errors)
     end
-    @blog
+    blog
   end
 
   private
 
   def add_errors
     errors.full_messages.each do |msg|
-      @blog.errors.add(:base, msg)
+      @object.errors.add(:base, msg)
     end
   end
 

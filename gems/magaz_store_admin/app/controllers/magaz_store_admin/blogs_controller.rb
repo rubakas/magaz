@@ -26,7 +26,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
-        @blog = service.create_object
+        @blog = service.object
         flash[:notice] = t('.notice_fail')
         render 'new'
       end
@@ -40,12 +40,11 @@ module MagazStoreAdmin
                        handle: params[:blog][:handle],
                        page_title: params[:blog][:page_title],
                        meta_description: params[:blog][:meta_description])
+      @blog = service.object
       if service.valid?
-        @blog = service.result
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
-        @blog = service.find_object
         render 'show'
       end
     end
