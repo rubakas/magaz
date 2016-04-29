@@ -42,7 +42,7 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   end
 
   def handle_changed?
-    MagazCore::Blog.friendly.find(id).handle != handle
+    MagazCore::Shop.find(shop_id).blogs.friendly.find(id).handle != handle
   end
 
   def handle_uniqueness
