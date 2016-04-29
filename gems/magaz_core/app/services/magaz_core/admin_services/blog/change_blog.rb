@@ -1,26 +1,34 @@
 class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
 
+  set_callback :validate, :after, -> {find_object}
+
   string :id, :title, :page_title, :handle, :meta_description
   integer :shop_id
 
   validates :id, :shop_id, :title, presence: true
-
   validate :title_uniqueness, if: :title_changed?
   validate :handle_uniqueness, if: :handle_changed?
 
-  def to_model
-    MagazCore::Shop.find(shop_id).blogs.friendly.find(id)
+  def find_object
+    @blog = MagazCore::Shop.find(shop_id).blogs.friendly.find(id)
+    add_errors if errors.any?
+    @blog
   end
 
   def execute
-    blog = MagazCore::Shop.find(shop_id).blogs.friendly.find(id)
-    blog.update_attributes!(inputs.slice!(:id)) ||
+    @blog.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('services.change_blog.wrong_params'))
 
-    blog
+    @blog
   end
 
   private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @blog.errors.add(:base, msg)
+    end
+  end
 
   def title_changed?
     MagazCore::Blog.friendly.find(id).title != title
@@ -45,6 +53,11 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   end
 
   def handle_unique?
-    MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
+    if handle =~ /^-?[1-9]\d*$/
+      MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0 &&
+                          MagazCore::Blog.where(shop_id: shop_id, id: handle.to_i.abs).count == 0
+    else
+      MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
+    end
   end
 end
