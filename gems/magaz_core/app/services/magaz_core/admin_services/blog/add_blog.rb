@@ -9,24 +9,23 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
   validate :title_uniqueness, :handle_uniqueness
 
   def blog
-    @object = MagazCore::Blog.new
+    @blog = MagazCore::Shop.find(shop_id).blogs.new
     add_errors if errors.any?
-    @object
+    @blog
   end
 
   def execute
-    blog = MagazCore::Blog.new(inputs)
-    unless blog.save
-      errors.merge!(blog.errors)
+    unless @blog.update_attributes(inputs)
+      errors.merge!(@blog.errors)
     end
-    blog
+    @blog
   end
 
   private
 
   def add_errors
     errors.full_messages.each do |msg|
-      @object.errors.add(:base, msg)
+      @blog.errors.add(:base, msg)
     end
   end
 
@@ -45,12 +44,7 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
   end
 
   def handle_unique?
-    if handle =~ /^-?[1-9]\d*$/
-      MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0 &&
-                          MagazCore::Blog.where(shop_id: shop_id, id: handle.to_i.abs).count == 0
-    else
-      MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
-    end
+    MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end

@@ -40,11 +40,12 @@ module MagazStoreAdmin
                        handle: params[:blog][:handle],
                        page_title: params[:blog][:page_title],
                        meta_description: params[:blog][:meta_description])
-      @blog = service.blog
       if service.valid?
+        @blog = service.result
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
+        @blog = service.blog
         render 'show'
       end
     end

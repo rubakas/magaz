@@ -18,7 +18,6 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   def execute
     @blog.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('services.change_blog.wrong_params'))
-
     @blog
   end
 
@@ -31,7 +30,7 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   end
 
   def title_changed?
-    MagazCore::Blog.friendly.find(id).title != title
+    MagazCore::Shop.find(shop_id).blogs.friendly.find(id).title != title
   end
 
   def title_uniqueness
@@ -53,11 +52,7 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   end
 
   def handle_unique?
-    if handle =~ /^-?[1-9]\d*$/
-      MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0 &&
-                          MagazCore::Blog.where(shop_id: shop_id, id: handle.to_i.abs).count == 0
-    else
-      MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
-    end
+    MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
   end
+
 end
