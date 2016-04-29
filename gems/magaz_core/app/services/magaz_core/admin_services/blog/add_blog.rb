@@ -5,7 +5,7 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
   string :title, :page_title, :meta_description, :handle
   integer :shop_id
 
-  validates :title, presence: true
+  validates :title, :shop_id, presence: true
   validate :title_uniqueness, :handle_uniqueness
 
   def create_object
@@ -52,6 +52,5 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
       MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
     end
   end
-
 
 end

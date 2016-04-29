@@ -5,7 +5,7 @@ class MagazCore::AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop, name: 'shop_name')
     @blog = create(:blog, shop: @shop)
-    @blog2 = create(:blog, shop: @shop)
+    @blog2 = create(:blog, shop: @shop, handle: "HANDLE")
     @success_params = { id: @blog.id.to_s, title: "Changed title", shop_id: @shop.id,
                         page_title: "Changed page_title", handle: "Changed handle",
                         meta_description: "Changed meta_description" }
@@ -27,6 +27,26 @@ class MagazCore::AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "Title has already been taken", service.errors.full_messages.first
+  end
+
+  test 'should not update blog with existing handle' do
+    service = MagazCore::AdminServices::Blog::ChangeBlog.
+                run(id: @blog.id.to_s, title: "some title", shop_id: @shop.id,
+                    page_title: "Changed page_title", handle: @blog2.handle,
+                    meta_description: "Changed meta_description")
+    refute service.valid?
+    assert_equal 1, service.errors.full_messages.count
+    assert_equal "Handle has already been taken", service.errors.full_messages.first
+  end
+
+  test 'should not update blog with wrong handle' do
+    service = MagazCore::AdminServices::Blog::ChangeBlog.
+                run(id: @blog.id.to_s, title: "some title", shop_id: @shop.id,
+                    page_title: "Changed page_title", handle: @blog2.id.to_s,
+                    meta_description: "Changed meta_description")
+    refute service.valid?
+    assert_equal 1, service.errors.full_messages.count
+    assert_equal "Handle has already been taken", service.errors.full_messages.first
   end
 
   test 'should update blog with some blank params' do
