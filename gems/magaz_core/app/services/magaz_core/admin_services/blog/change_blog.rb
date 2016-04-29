@@ -1,6 +1,6 @@
 class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
 
-  set_callback :validate, :after, -> {object}
+  set_callback :validate, :after, -> {blog}
 
   string :id, :title, :page_title, :handle, :meta_description
   integer :shop_id
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   validate :title_uniqueness, if: :title_changed?
   validate :handle_uniqueness, if: :handle_changed?
 
-  def object
+  def blog
     @blog = MagazCore::Shop.find(shop_id).blogs.friendly.find(id)
     add_errors if errors.any?
     @blog

@@ -1,6 +1,6 @@
 class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
 
-  set_callback :validate, :after, -> {object}
+  set_callback :validate, :after, -> {blog}
 
   string :title, :page_title, :meta_description, :handle
   integer :shop_id
@@ -8,7 +8,7 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
   validates :title, :shop_id, presence: true
   validate :title_uniqueness, :handle_uniqueness
 
-  def object
+  def blog
     @object = MagazCore::Blog.new
     add_errors if errors.any?
     @object
