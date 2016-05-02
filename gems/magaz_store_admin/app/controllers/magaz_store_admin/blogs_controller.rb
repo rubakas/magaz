@@ -11,7 +11,7 @@ module MagazStoreAdmin
     end
 
     def new
-      @blog = MagazCore::AdminServices::Blog::AddBlog.new
+      @blog = current_shop.blogs.new
     end
 
     def create
@@ -26,7 +26,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
-        @blog = service
+        @blog = service.blog
         flash[:notice] = t('.notice_fail')
         render 'new'
       end
@@ -45,7 +45,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to blog_path(@blog)
       else
-        @blog = service
+        @blog = service.blog
         render 'show'
       end
     end

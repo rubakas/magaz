@@ -16,13 +16,14 @@
       service = MagazCore::AdminServices::Checkout::ChangeOrder
                   .run(id: @order.id,
                        status: params[:order][:status])
-      @order = service.order
       if service.valid?
         # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_ORDER_EVENT)
+        @order = service.result
         flash[:notice] = t('.notice_success')
         redirect_to order_path(@order)
       else
+        @order = service.order
         render 'show'
       end
     end
