@@ -11,7 +11,7 @@ module MagazStoreAdmin
     end
 
     def new
-      @collection = MagazCore::AdminServices::Collection::AddCollection.new
+      @collection = current_shop.collections.new
     end
 
     def create
@@ -29,22 +29,22 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
-        @collection = service
+        @collection = service.collection
         flash[:error] = t('.notice_fail')
         render 'new'
       end
     end
 
     def update
-      @collection = current_shop.collections.friendly.find(params[:id])
       service = MagazCore::AdminServices::Collection::ChangeCollection
-                  .run(id: @collection.id,
+                  .run(id: params[:id],
                        name: params[:collection][:name],
                        shop_id: current_shop.id,
                        page_title: params[:collection][:page_title],
                        meta_description: params[:collection][:meta_description],
                        handle: params[:collection][:handle],
                        description: params[:collection][:description])
+
       if service.valid?
         #@webhook_service = MagazCore::AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
         #                                                                    topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
@@ -52,6 +52,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to collection_url(@collection)
       else
+        @collection = service.collection
         render 'show'
       end
     end
@@ -62,7 +63,7 @@ module MagazStoreAdmin
       # @webhook_service = MagazCore::AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
       #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
       flash[:notice] = t('.notice_success')
-      redirect_to collections_url
+      redirect_to collections_path
     end
   end
 end
