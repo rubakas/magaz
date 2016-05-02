@@ -36,10 +36,10 @@ module MagazStoreAdmin
     end
 
     def update
-      @user = current_shop.users.find(params[:id])
       @current_user = current_shop.users.find(session[:user_id])
       service = MagazCore::AdminServices::User::ChangeUser
-                 .run(id: @user.id,
+                 .run(id: params[:id],
+                      shop_id: current_shop.id,
                       first_name: params[:user][:first_name],
                       last_name: params[:user][:last_name],
                       email: params[:user][:email],
@@ -50,10 +50,8 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to user_path(@user)
       else
+        @user = service.user
         flash[:notice] = t('.notice_fail')
-        service.errors.full_messages.each do |msg|
-          @user.errors.add(:base, msg)
-        end
         render 'show'
       end
     end
