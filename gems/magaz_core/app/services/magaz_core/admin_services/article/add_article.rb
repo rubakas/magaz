@@ -1,27 +1,33 @@
 class MagazCore::AdminServices::Article::AddArticle < ActiveInteraction::Base
 
+  set_callback :validate, :after, -> {article}
+
   string :title, :content, :page_title, :handle, :meta_description
   integer :blog_id
 
   validates :title, :blog_id, presence: true
-
   validate :title_uniqueness, :handle_uniqueness
 
-  def to_model
-    MagazCore::Article.new
+  def article
+    @article = MagazCore::Blog.find(blog_id).articles.new
+    add_errors if errors.any?
+    @article
   end
 
   def execute
-    article = MagazCore::Blog.find(blog_id).articles.new(inputs)
-
-    unless article.save
+    unless @article.uprate_attributes(inputs)
       errors.merge!(article.errors)
     end
-
-    article
+    @article
   end
 
   private
+
+  def add_errors
+    errors.full_messages.each. do |msg|
+      @article.errors.add(:base, msg)
+    end
+  end
 
   def title_uniqueness
     errors.add(:base, I18n.t('services.add_article.title_not_unique')) unless title_unique?

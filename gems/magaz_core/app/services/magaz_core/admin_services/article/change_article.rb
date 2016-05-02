@@ -1,26 +1,33 @@
 class MagazCore::AdminServices::Article::ChangeArticle < ActiveInteraction::Base
 
+  set_callback :validate, :after, -> {article}
+
   string  :id, :title, :content, :page_title, :handle, :meta_description
   integer :blog_id
 
   validates :id, :blog_id, :title, presence: true
-
   validate :title_uniqueness, if: :title_changed?
   validate :handle_uniqueness, if: :handle_changed?
 
-  def to_model
-    MagazCore::Blog.find(blog_id).articles.friendly.find(id)
+  def article
+    @article = MagazCore::Blog.find(blog_id).articles.friendly.find(id)
+    add_errors if arrors.any?
+    @article
   end
 
   def execute
-    article = MagazCore::Blog.find(blog_id).articles.friendly.find(id)
-    article.update_attributes!(inputs.slice!(:id)) ||
+    @article.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('services.change_article.wrong_params'))
-
-    article
+    @article
   end
 
   private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @article.errors.add(:base, msg)
+    end
+  end
 
   def title_changed?
     MagazCore::Blog.friendly.find(blog_id).articles.friendly.find(id).title != title
