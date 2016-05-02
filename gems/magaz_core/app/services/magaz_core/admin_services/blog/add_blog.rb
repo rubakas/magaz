@@ -5,7 +5,7 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
 
   validates :title, :shop_id, presence: true
 
-  validate :title_uniqueness
+  validate :title_uniqueness, :handle_uniqueness
 
   def to_model
     MagazCore::Blog.new
@@ -29,6 +29,16 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
 
   def title_unique?
     MagazCore::Blog.where(shop_id: shop_id, title: title).count == 0
+  end
+
+  def handle_uniqueness
+    unless handle.empty?
+      errors.add(:base, I18n.t('services.add_blog.handle_not_unique')) unless handle_unique?
+    end
+  end
+
+  def handle_unique?
+    MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end

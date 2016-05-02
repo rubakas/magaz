@@ -1,14 +1,19 @@
 class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
 
-  string :title, :page_title, :handle, :meta_description
-  integer :id, :shop_id
+  string :id, :title, :page_title, :handle, :meta_description
+  integer :shop_id
 
   validates :id, :shop_id, :title, presence: true
 
   validate :title_uniqueness, if: :title_changed?
+  validate :handle_uniqueness, if: :handle_changed?
+
+  def to_model
+    MagazCore::Shop.find(shop_id).blogs.friendly.find(id)
+  end
 
   def execute
-    blog = MagazCore::Blog.friendly.find(id)
+    blog = MagazCore::Shop.find(shop_id).blogs.friendly.find(id)
     blog.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('services.change_blog.wrong_params'))
 
@@ -29,4 +34,17 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
     MagazCore::Blog.where(shop_id: shop_id, title: title).count == 0
   end
 
+  def handle_changed?
+    MagazCore::Blog.friendly.find(id).handle != handle
+  end
+
+  def handle_uniqueness
+    unless handle.empty?
+      errors.add(:base, I18n.t('services.change_blog.handle_not_unique')) unless handle_unique?
+    end
+  end
+
+  def handle_unique?
+    MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
+  end
 end

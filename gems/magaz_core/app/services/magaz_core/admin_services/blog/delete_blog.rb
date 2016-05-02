@@ -1,11 +1,12 @@
 class MagazCore::AdminServices::Blog::DeleteBlog < ActiveInteraction::Base
 
-  integer :id
+  string :id
+  integer :shop_id
 
-  validates :id, presence: true
+  validates :id, :shop_id, presence: true
 
   def execute
-    MagazCore::Blog.friendly.find(id).destroy
+    MagazCore::Shop.find(shop_id).blogs.friendly.find(id).destroy
   end
 
 end
