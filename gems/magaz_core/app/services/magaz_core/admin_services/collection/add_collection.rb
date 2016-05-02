@@ -18,7 +18,7 @@ class MagazCore::AdminServices::Collection::AddCollection < ActiveInteraction::B
 
   def execute
     unless @collection.update_attributes(inputs)
-      errors.merge!(collection.errors)
+      errors.merge!(@collection.errors)
     end
 
     @collection
