@@ -12,7 +12,7 @@ module MagazStoreAdmin
     end
 
     def new
-      @customer = MagazCore::AdminServices::Customer::AddCustomer.new
+      @customer = current_shop.customers.new
     end
 
     def create
@@ -29,7 +29,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to customer_path(@customer)
       else
-        @customer = service
+        @customer = service.customer
         flash.now[:notice] = t('.notice_fail')
         render 'new'
       end
@@ -49,7 +49,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to customer_path(@customer)
       else
-        @customer = service
+        @customer = service.customer
         flash.now[:notice] = t('.notice_fail')
         render 'show'
       end

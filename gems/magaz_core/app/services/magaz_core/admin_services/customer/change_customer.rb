@@ -1,25 +1,32 @@
 class MagazCore::AdminServices::Customer::ChangeCustomer < ActiveInteraction::Base
 
+  set_callback :validate, :after, -> {customer}
+
   string :first_name, :last_name, :email
   integer :id, :shop_id
 
   validates :id, :shop_id, :email, presence: true
-
   validate :customer_uniqueness, if: :email_changed?
 
-  def to_model
-    MagazCore::Customer.find(id)
+  def customer
+    @customer = MagazCore::Shop.find(shop_id).customers.find(id)
+    add_errors if errors.any?
+    @customer
   end
 
   def execute
-    customer = MagazCore::Customer.find(id)
-    customer.update_attributes!(inputs.slice!(:id)) ||
+    @customer.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('services.change_customer.wrong_params'))
-
-    customer
+    @customer
   end
 
   private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @customer.errors.add(:base, msg)
+    end
+  end
 
   def email_changed?
     MagazCore::Shop.find(shop_id).customers.find(id).email != email

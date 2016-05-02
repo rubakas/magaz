@@ -4,8 +4,9 @@ class MagazCore::AdminServices::Customer::AddCustomeromerTest < ActiveSupport::T
 
   setup do
     @shop = create(:shop, name: 'shop_name')
-    @success_params = { first_name: "Test first name", last_name: "Test last name", email: "test@test.com", shop_id: @shop.id }
-    @blank_params = { first_name: "", last_name: "", email: "", shop_id: nil}
+    @success_params = { first_name: "Test first name", last_name: "Test last name",
+                        email: "test@test.com", shop_id: @shop.id }
+    @blank_params = { first_name: "", last_name: "", email: "", shop_id: @shop.id}
   end
 
   test 'should create customer with valid params' do
