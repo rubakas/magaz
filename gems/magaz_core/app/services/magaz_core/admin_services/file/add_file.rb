@@ -1,19 +1,32 @@
 class MagazCore::AdminServices::File::AddFile < ActiveInteraction::Base
 
+  set_callback :validate, :after, -> {datafile} 
+
   file :file
   integer :shop_id
   string :name
 
   validates :name, :shop_id, :file, presence: true
 
+  def datafile
+    @datafile = MagazCore::Shop.find(shop_id).files.new
+    add_errors if errors.any?
+    @datafile
+  end
+
   def execute
-    file = MagazCore::File.new(inputs)
-
-    unless file.save
-      errors.merge!(file.errors)
+    unless @datafile.update_attributes(inputs)
+      errors.merge!(@datafile.errors)
     end
+    @datafile
+  end
 
-    file
+  private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @datafile.errors.add(:base, msg)
+    end
   end
 
 end

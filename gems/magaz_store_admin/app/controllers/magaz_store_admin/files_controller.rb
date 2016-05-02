@@ -25,7 +25,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to file_path(@file)
       else
-        @file = service
+        @file = service.datafile
         render 'new'
       end
     end
@@ -41,8 +41,8 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to files_path
       else
-        @file = service
-        redner 'show'
+        @file = service.datafile
+        render 'show'
       end
     end
 
@@ -53,5 +53,6 @@ module MagazStoreAdmin
       flash[:notice] = t('.notice_success')
       redirect_to files_path
     end
+    
   end
 end

@@ -27,12 +27,11 @@ class MagazCore::AdminServices::File::ChangeFileTest < ActiveSupport::TestCase
                 .run(id: '',
                      file: '',
                      name: '',
-                     shop_id: '')
+                     shop_id: @shop.id)
     refute service.valid?
-    assert_equal 3, service.errors.count
+    assert_equal 2, service.errors.count
     assert_equal 'File is not a valid file', service.errors.full_messages.first
-    assert_equal 'Id is not a valid integer', service.errors.full_messages[1]
-    assert_equal 'Shop is not a valid integer', service.errors.full_messages.last
+    assert_equal 'Id is not a valid integer', service.errors.full_messages.last
   end
 
 end
