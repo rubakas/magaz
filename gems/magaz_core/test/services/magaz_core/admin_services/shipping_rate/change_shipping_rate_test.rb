@@ -12,7 +12,8 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                         criteria: "weight",
                         price_from: "15.7",
                         weight_from: "3.1",
-                        id: @shipping_rate.id}
+                        id: @shipping_rate.id,
+                        shipping_country_id: @shipping_country.id}
     @blank_params = {name: "",
                      price_to: "",
                      weight_to: "",
@@ -20,7 +21,8 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                      criteria: "",
                      price_from: "",
                      weight_from: "",
-                     id: ""}
+                     id: "",
+                     shipping_country_id: @shipping_country.id}
   end
 
   test "should update shipping rate with valid params" do
@@ -62,7 +64,8 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                      criteria: "weight",
                      price_from: "0.15",
                      weight_from: "",
-                     id: @shipping_rate.id)
+                     id: @shipping_rate.id,
+                     shipping_country_id: @shipping_country.id)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "Criteria is not correct", service.errors.full_messages.first
@@ -77,7 +80,8 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                      criteria: "weight",
                      price_from: "",
                      weight_from: "10.7",
-                     id: @shipping_rate.id)
+                     id: @shipping_rate.id,
+                     shipping_country_id: @shipping_country.id)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "weight to must be greater than weight from", service.errors.full_messages.first
@@ -92,10 +96,12 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                      criteria: "weight",
                      price_from: "",
                      weight_from: "text",
-                     id: @shipping_rate.id)
+                     id: @shipping_rate.id,
+                     shipping_country_id: @shipping_country.id)
     refute service.valid?
     assert_equal 2, service.errors.full_messages.count
     assert_equal "Weight from is not correct", service.errors.full_messages.first
     assert_equal "Weight to is not correct", service.errors.full_messages.last
   end
+  
 end

@@ -106,4 +106,5 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
     assert_equal "Weight to is not correct", service.errors.full_messages.last
     assert_equal 0, MagazCore::ShippingRate.count
   end
+  
 end
