@@ -25,10 +25,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to shipping_country_path(@shipping_country)
       else
-        @shipping_country = MagazCore::ShippingCountry.new
-        service.errors.full_messages.each do |msg|
-          @shipping_country.errors.add(:base, msg)
-        end
+        @shipping_country = service.shipping_country
         render 'new'
       end
     end
@@ -44,10 +41,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to shipping_country_path(@shipping_country)
       else
-        @shipping_country = current_shop.shipping_countries.find(params[:id])
-        service.errors.full_messages.each do |msg|
-          @shipping_country.errors.add(:base, msg)
-        end
+        @shipping_country = service.shipping_country
         render 'show'
       end
     end

@@ -1,6 +1,9 @@
 class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry < ActiveInteraction::Base
 
   COUNTRY_LIST = YAML.load_file("#{MagazCore::Engine.root}/config/countries.yml")
+
+  set_callback :validate, :after, -> {shipping_country}
+
   integer :shop_id, :id
   string :name, :tax
 
@@ -9,15 +12,25 @@ class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry < ActiveI
   validates :shop_id, :id, :name, :tax, presence: true
   validates :name, inclusion: COUNTRY_LIST['countries'].keys
 
-  def execute
-    shipping_country = MagazCore::Shop.find(shop_id).shipping_countries.find(id)
-    shipping_country.update_attributes!(inputs.slice!(:id, :shop_id)) ||
-      errors.add(:base, I18n.t('services.change_shipping_country.wrong_params'))
+  def shipping_country
+    @shipping_country = MagazCore::Shop.find(shop_id).shipping_countries.find(id)    
+    add_errors if errors.any?
+    @shipping_country
+  end
 
-    shipping_country
+  def execute
+    @shipping_country.update_attributes!(inputs.slice!(:id, :shop_id)) ||
+      errors.add(:base, I18n.t('services.change_shipping_country.wrong_params'))
+    @shipping_country
   end
 
   private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @shipping_country.errors.add(:base, msg)
+    end
+  end
 
   def name_changed
     MagazCore::Shop.find(shop_id).shipping_countries.find(id).name != name
