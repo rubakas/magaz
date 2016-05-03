@@ -44,12 +44,11 @@ module MagazStoreAdmin
     end
 
     def payments_settings_update
-      @shop = current_shop
       service = MagazCore::AdminServices::Shop::ChangePaymentSettings
-                  .run(id: @shop.id,
+                  .run(id: current_shop.id,
                        authorization_settings: params[:shop][:authorization_settings])
+      @shop = service.result
       if service.valid?
-        @shop = service.result
         flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to payments_settings_settings_path
       else
