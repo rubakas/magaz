@@ -1,21 +1,33 @@
 class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
 
-  integer :id
+  set_callback :validate, :after, -> {user}
+
+  integer :id, :shop_id
   string :first_name, :last_name, :email, :password
   array :permissions, default: nil
 
-  validates :id, :email, :first_name, :last_name, presence: true
+  validates :id, :shop_id, :email, :first_name, :last_name, presence: true
   validate :email_uniqueness, if: :email_changed?
 
-  def execute
-    user = MagazCore::User.find(id)
-    user.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('services.change_user.wrong_params'))
+  def user
+    @user = MagazCore::Shop.find(shop_id).users.find(id)
+    add_errors if errors.any?
+    @user
+  end
 
-    user
+  def execute
+    @user.update_attributes!(inputs.slice!(:id)) ||
+      errors.add(:base, I18n.t('services.change_user.wrong_params'))
+    @user
   end
 
   private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @user.errors.add(:base, msg)
+    end
+  end
 
   def email_changed?
     MagazCore::User.find(id).email != email
@@ -28,7 +40,7 @@ class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
   def valid_email?
     email.present? &&
       (email =~ MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX) &&
-        MagazCore::User.where(shop_id: MagazCore::User.find(id).shop_id, email: email).count == 0
+        MagazCore::User.where(shop_id: shop_id, email: email).count == 0
   end
 
 end

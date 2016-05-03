@@ -15,18 +15,9 @@ class MagazCore::AdminServices::ProductImage::DeleteProductImageTest < ActiveSup
   test "should delete image with valid params" do
     assert_equal 1, MagazCore::ProductImage.count
     service = MagazCore::AdminServices::ProductImage::DeleteProductImage
-                .run(id: @product_image.id, product_id: @product_image.id)
+                .run(id: @product_image.id, product_id: "#{@product_image.id}")
     assert service.valid?
     assert_equal 0, MagazCore::ProductImage.count
   end
 
-  test "should not delete image with blank params" do
-    assert_equal 1, MagazCore::ProductImage.count
-    service = MagazCore::AdminServices::ProductImage::DeleteProductImage
-                .run(id: "", product_id: '')
-    refute service.valid?
-    assert_equal 2, service.errors.full_messages.count
-    assert_equal "Id is not a valid integer", service.errors.full_messages.first
-    assert_equal 1, MagazCore::ProductImage.count
-  end
 end
