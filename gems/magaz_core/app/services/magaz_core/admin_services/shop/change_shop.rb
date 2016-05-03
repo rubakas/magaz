@@ -1,5 +1,10 @@
 class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
 
+  UNIT_SYSTEM = %w[ metric imperial]
+  CURRENCY    = %w[ USD EURO HRN]
+
+  set_callback :validate, :after, -> {shop}
+
   string :name
 
   string :address, :business_name, :city, :country,
@@ -9,18 +14,43 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   integer :id
 
   validates :id, :name, presence: true
+  validates :country, inclusion: YAML.load_file("#{MagazCore::Engine.root}/config/countries.yml")['countries'].keys
+  validates :unit_system, inclusion: UNIT_SYSTEM
+  validates :currency, inclusion: CURRENCY
+  validates :timezone, inclusion: ActiveSupport::TimeZone.zones_map.values.collect{|z| z.name}
 
+  validate :check_customer_email
   validate :name_uniqueness, if: :name_changed?
 
+  def shop
+    @shop = MagazCore::Shop.find(id)
+    add_errors if errors.any?
+    @shop
+  end
+
   def execute
-    shop = MagazCore::Shop.find(id)
-    shop.update_attributes!(inputs.slice!(:id)) ||
+    @shop.update_attributes(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('services.shop_services.wrong_params'))
 
-    shop
+    @shop
   end
 
   private
+
+  def check_customer_email
+    errors.add(:base, I18n.t('services.change_shop.email_not_valid')) unless email_valid?
+  end
+
+  def email_valid?
+    customer_email =~
+    MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX if customer_email
+  end
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @shop.errors.add(:base, msg)
+    end
+  end
 
   def name_changed?
     MagazCore::Shop.find(id).name != name

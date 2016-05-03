@@ -10,10 +10,8 @@ module MagazStoreAdmin
     end
 
     def update
-      @shop = current_shop
-      @current_user = current_shop.users.find(session[:user_id])
       service = MagazCore::AdminServices::Shop::ChangeShop
-                  .run(id: @shop.id,
+                  .run(id: current_shop.id,
                        name: params[:shop][:name],
                        business_name: params[:shop][:business_name],
                        city: params[:shop][:city],
@@ -31,12 +29,10 @@ module MagazStoreAdmin
         @shop = service.result
         # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_SHOP_EVENT)
-        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
+        flash.now[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         render 'edit'
       else
-        service.errors.full_messages.each do |msg|
-          @shop.errors.add(:base, msg)
-        end
+        @shop = service.shop
         render 'edit'
       end
     end

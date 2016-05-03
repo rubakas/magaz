@@ -276,7 +276,7 @@ en:
 
     change_shop:
       name_not_unique: "Name has already been taken"
-
+      email_not_valid: "Customer email is not valid"
     add_tax_override:
       wrong_params: "Wrong params for tax override"
       already_exists: "Tax override already exists"
