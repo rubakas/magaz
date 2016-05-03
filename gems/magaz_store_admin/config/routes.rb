@@ -8,7 +8,6 @@ MagazStoreAdmin::Engine.routes.draw do
   resources :blogs, except: [:edit]
   resources :checkouts, except: [:create, :edit, :new]
   resources :collections, except: [:edit]
-  resources :comments, except: [:edit]
   resources :shipping_countries, except: [:edit] do
     resources :shipping_rates
   end

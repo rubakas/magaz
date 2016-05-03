@@ -238,9 +238,11 @@ en:
 
     add_page:
       title_not_unique: "Title has already been taken"
+      handle_not_unique: "Handle has already been taken"
     change_page:
       wrong_params: "Wrong params for page"
       title_not_unique: "Title has already been taken"
+      handle_not_unique: "Handle has already been taken"
 
     add_product:
       name_not_unique: "Name has already been taken"

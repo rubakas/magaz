@@ -7,4 +7,5 @@ class MagazCore::AdminServices::Page::DeletePage < ActiveInteraction::Base
   def execute
     MagazCore::Shop.find(shop_id).pages.friendly.find(id).destroy
   end
+  
 end

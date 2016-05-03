@@ -5,8 +5,8 @@ class MagazCore::AdminServices::Page::ChangePageTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop, name: 'shop_name')
     @page = create(:page, shop: @shop)
-    @page2 = create(:page, shop: @shop)
-    @success_params = { id: @page.id, title: "Changed title", shop_id: @shop.id,
+    @page2 = create(:page, shop: @shop, handle: "Handle")
+    @success_params = { id: "#{@page.id}", title: "Changed title", shop_id: @shop.id,
                         page_title: "Changed page_title", handle: "Changed handle",
                         meta_description: "Changed meta_description", content: "Changed content" }
   end
@@ -21,17 +21,27 @@ class MagazCore::AdminServices::Page::ChangePageTest < ActiveSupport::TestCase
 
   test 'should not update page with existing title' do
     service = MagazCore::AdminServices::Page::ChangePage.
-                run(id: @page.id, title: @page2.title, shop_id: @shop.id,
+                run(id: "#{@page.id}", title: @page2.title, shop_id: @shop.id,
                     page_title: "Changed page_title", handle: "ChangedC handle",
                     meta_description: "Changed meta_description", content: "Changed content")
     refute service.valid?
-    assert_equal 1, service.errors.full_messages.count
-    assert_equal "Title has already been taken", service.errors.full_messages.first
+    assert_equal 1, service.page.errors.full_messages.count
+    assert_equal "Title has already been taken", service.page.errors.full_messages.first
+  end
+
+  test 'should not update page with existing handle' do
+    service = MagazCore::AdminServices::Page::ChangePage.
+                run(id: "#{@page.id}", title: "ChangedTitle", shop_id: @shop.id,
+                    page_title: "Changed page_title", handle: @page2.handle,
+                    meta_description: "Changed meta_description", content: "Changed content")
+    refute service.valid?
+    assert_equal 1, service.page.errors.full_messages.count
+    assert_equal "Handle has already been taken", service.page.errors.full_messages.first
   end
 
   test 'should update page with some blank params' do
     service = MagazCore::AdminServices::Page::ChangePage.
-                run(id: @page2.id, title: @page2.title, shop_id: @shop.id,
+                run(id: "#{@page2.id}", title: @page2.title, shop_id: @shop.id,
                     page_title: '', handle: '', meta_description: '',
                     content: '')
     assert service.valid?
