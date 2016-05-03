@@ -1,5 +1,7 @@
 class MagazCore::AdminServices::Shop::ChangeCheckoutSettings < ActiveInteraction::Base
 
+  set_callback :validate, :after, -> {shop}
+
   ACCOUNT_TYPE_CHOISE = %w[ disabled required optional]
 
   AFTER_ORDER_PAID = %w[ automatically_fulfill
@@ -29,35 +31,30 @@ class MagazCore::AdminServices::Shop::ChangeCheckoutSettings < ActiveInteraction
 
   validates :id, presence: true
 
-  validate :account_type_choice_included?
-  validate :abandoned_checkout_time_delay_included?
-  validate :email_marketing_choice_included?
-  validate :after_order_paid_included?
+  validates :account_type_choice, inclusion: ACCOUNT_TYPE_CHOISE
+  validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY
+  validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE
+  validates :after_order_paid, inclusion: AFTER_ORDER_PAID
+
+  def shop
+    @shop = MagazCore::Shop.find(id)
+    add_errors if errors.any?
+    @shop
+  end
 
   def execute
-    shop = MagazCore::Shop.find(id)
-    shop.update_attributes!(inputs.slice!(:id)) ||
+    @shop.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('services.shop_services.wrong_params'))
 
-    shop
+    @shop
   end
 
   private
 
-  def account_type_choice_included?
-    ACCOUNT_TYPE_CHOISE.include?(account_type_choice)
-  end
-
-  def abandoned_checkout_time_delay_included?
-    ABANDONED_CHECKOUT_TIME_DELAY.include?(abandoned_checkout_time_delay)
-  end
-
-  def email_marketing_choice_included?
-    EMAIL_MARKETING_CHOICE.include?(email_marketing_choice)
-  end
-
-  def after_order_paid_included?
-    AFTER_ORDER_PAID.include?(after_order_paid)
+  def add_errors
+    errors.full_messages.each do |msg|
+      @shop.errors.add(:base, msg)
+    end
   end
 
 end

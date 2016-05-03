@@ -63,9 +63,8 @@ module MagazStoreAdmin
     end
 
     def checkouts_settings_update
-      @shop = current_shop
       service = MagazCore::AdminServices::Shop::ChangeCheckoutSettings
-                  .run(id: @shop.id,
+                  .run(id: current_shop.id,
                        account_type_choice: params[:shop][:account_type_choice],
                        enable_multipass_login: params[:shop][:enable_multipass_login],
                        billing_address_is_shipping_too: params[:shop][:billing_address_is_shipping_too],
@@ -84,9 +83,7 @@ module MagazStoreAdmin
         flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to checkouts_settings_settings_path
       else
-        service.errors.full_messages.each do |msg|
-          @shop.errors.add(:base, msg)
-        end
+        @shop = service.shop
         render "checkouts_settings"
       end
     end
