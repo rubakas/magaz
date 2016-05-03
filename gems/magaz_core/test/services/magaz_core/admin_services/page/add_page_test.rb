@@ -27,8 +27,9 @@ class MagazCore::AdminServices::Page::AddPageTest < ActiveSupport::TestCase
     service2 = MagazCore::AdminServices::Page::AddPage.run(@success_params)
     refute service2.valid?
     assert_equal 2, @shop.pages.count
-    assert_equal 1, service2.page.errors.full_messages.count
-    assert_equal "Title has already been taken", service2.page.errors.full_messages.last
+    assert_equal 2, service2.page.errors.full_messages.count
+    assert_equal "Title has already been taken", service2.page.errors.full_messages.first
+    assert_equal "Handle has already been taken", service2.page.errors.full_messages.last
   end
 
   test 'should not create page with blank params' do
@@ -36,7 +37,7 @@ class MagazCore::AdminServices::Page::AddPageTest < ActiveSupport::TestCase
     service = MagazCore::AdminServices::Page::AddPage.run(@blank_params)
     refute service.valid?
     assert_equal 1, service.page.errors.full_messages.count
-    assert_equal "Title can't be blank"
+    assert_equal "Title can't be blank", service.page.errors.full_messages.first
     assert_equal 1, @shop.pages.count
   end
 end

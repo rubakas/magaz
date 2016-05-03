@@ -11,7 +11,7 @@ module MagazStoreAdmin
     end
 
     def new
-      @page = MagazCore::AdminServices::Page::AddPage.new
+      @page = current_shop.pages.new
     end
 
     def create
@@ -27,6 +27,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
+        flash.now[:notice] = t('.notice_fail')
         @page = service.page
         render 'show'
       end
@@ -46,6 +47,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
+        flash.now[:notice] = t('.notice_fail')
         @page = service.page
         render 'show'
       end
@@ -57,6 +59,6 @@ module MagazStoreAdmin
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
     end
-    
+
   end
 end

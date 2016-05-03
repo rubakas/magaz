@@ -5,7 +5,7 @@ class MagazCore::AdminServices::Page::ChangePageTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop, name: 'shop_name')
     @page = create(:page, shop: @shop)
-    @page2 = create(:page, shop: @shop)
+    @page2 = create(:page, shop: @shop, handle: "Handle")
     @success_params = { id: "#{@page.id}", title: "Changed title", shop_id: @shop.id,
                         page_title: "Changed page_title", handle: "Changed handle",
                         meta_description: "Changed meta_description", content: "Changed content" }
@@ -29,7 +29,7 @@ class MagazCore::AdminServices::Page::ChangePageTest < ActiveSupport::TestCase
     assert_equal "Title has already been taken", service.page.errors.full_messages.first
   end
 
-  test 'should not update page with existing title' do
+  test 'should not update page with existing handle' do
     service = MagazCore::AdminServices::Page::ChangePage.
                 run(id: "#{@page.id}", title: "ChangedTitle", shop_id: @shop.id,
                     page_title: "Changed page_title", handle: @page2.handle,
