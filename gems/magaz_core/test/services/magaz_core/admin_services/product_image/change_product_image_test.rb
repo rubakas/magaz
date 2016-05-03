@@ -17,30 +17,29 @@ class MagazCore::AdminServices::ProductImage::ChangeProductImageTest < ActiveSup
   test "should update image with valid params" do
     assert_equal 1, MagazCore::ProductImage.count
     service = MagazCore::AdminServices::ProductImage::ChangeProductImage
-                .run(id: @product_image.id, image: @image2)
+                .run(id: @product_image.id, image: @image2, product_id: "#{@product.id}")
     assert service.valid?
     assert_equal "sell_bg_berlin.jpg", MagazCore::ProductImage.find(@product_image.id)
                                          .image.file.filename
   end
 
-  test "should not update image with blank params" do
+  test "should not update image without image" do
     assert_equal 1, MagazCore::ProductImage.count
     service = MagazCore::AdminServices::ProductImage::ChangeProductImage
-                .run(id: "", image: "")
+                .run(id: @product_image.id, image: nil, product_id: "#{@product.id}")
     refute service.valid?
-    assert_equal 2, service.errors.full_messages.count
-    assert_equal "Id is not a valid integer", service.errors.full_messages.last
-    assert_equal "Image is not a valid file", service.errors.full_messages.first
+    assert_equal 1, service.product_image.errors.full_messages.count
+    assert_equal "Image is required", service.product_image.errors.full_messages.first
     assert_equal "tapir.jpg", MagazCore::ProductImage.find(@product_image.id).image.file.filename
   end
 
   test "should not update image with wrong extension" do
     assert_equal 1, MagazCore::ProductImage.count
     service = MagazCore::AdminServices::ProductImage::ChangeProductImage
-                .run(id: @product_image.id, image: @not_image)
+                .run(id: @product_image.id, image: @not_image, product_id: "#{@product.id}")
     refute service.valid?
-    assert_equal 1, service.errors.full_messages.count
-    assert_equal "Image You are not allowed to upload \"txt\" files, allowed types: jpg, jpeg, gif, png", service.errors.full_messages.last
+    assert_equal 1, service.product_image.errors.full_messages.count
+    assert_equal "Image You are not allowed to upload \"txt\" files, allowed types: jpg, jpeg, gif, png", service.product_image.errors.full_messages.last
     assert_equal "tapir.jpg", MagazCore::ProductImage.find(@product_image.id).image.file.filename
 
   end
