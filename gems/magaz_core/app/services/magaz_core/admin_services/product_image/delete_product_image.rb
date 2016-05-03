@@ -2,6 +2,7 @@ class MagazCore::AdminServices::ProductImage::DeleteProductImage < ActiveInterac
 
   integer :id
   string :product_id
+  
   validates :id, :product_id, presence: true
 
   def execute
