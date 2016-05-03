@@ -11,7 +11,7 @@ module MagazStoreAdmin
     end
 
     def new
-      @link_list = MagazCore::AdminServices::LinkList::AddLinkList.new
+      @link_list = current_shop.link_lists.new
     end
 
     def create
@@ -19,21 +19,20 @@ module MagazStoreAdmin
                   .run(name: params[:link_list][:name],
                        handle: params[:link_list][:handle],
                        shop_id: current_shop.id)
-
       if service.valid?
         @link_list = service.result
         flash[:notice] = t('.notice_success')
         redirect_to link_list_path(@link_list)
       else
-        @link_list = service
+        @link_list = service.link_list
+        flash.now[:notice] = t('.notice_fail')
         render 'new'
       end
     end
 
     def update
-      @link_list = current_shop.link_lists.friendly.find(params[:id])
       service = MagazCore::AdminServices::LinkList::ChangeLinkList
-                  .run(id: @link_list.id,
+                  .run(id: params[:id],
                        name: params[:link_list][:name],
                        handle: params[:link_list][:handle],
                        shop_id: current_shop.id)
@@ -43,9 +42,8 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to link_list_path(@link_list)
       else
-        service.errors.full_messages.each do |msg|
-          @link_list.errors.add(:base, msg)
-        end
+        @link_list = service.link_list
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end
