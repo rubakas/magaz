@@ -18,29 +18,26 @@ module MagazStoreAdmin
     end
 
     def create
-      @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       service = MagazCore::AdminServices::Link::AddLink
                   .run(name: params[:link][:name],
                        link_type: params[:link][:link_type],
                        position: params[:link][:position],
-                       link_list_id: @link_list.id)
+                       link_list_id: params[:link_list_id])
 
       if service.valid?
         @link = service.result
         flash[:notice] = t('.notice_success')
         render 'show'
       else
-        @link = service
+        @link = service.link
         render 'new'
       end
     end
 
     def update
-      @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
-      @link = @link_list.links.find(params[:id])
       service = MagazCore::AdminServices::Link::ChangeLink
-                  .run(id: @link.id,
-                       link_list_id: @link_list.id,
+                  .run(id: params[:id],
+                       link_list_id: params[:link_list_id],
                        name: params[:link][:name],
                        link_type: params[:link][:link_type],
                        position: params[:link][:position])
@@ -50,19 +47,16 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to link_list_path(@link_list)
       else
-        service.errors.full_messages.each do |msg|
-          @link.errors.add(:base, msg)
-        end
+        @link = service.link
         render 'show'
       end
     end
 
     def destroy
-      @link_list = current_shop.link_lists.friendly.find(params[:link_list_id])
       MagazCore::AdminServices::Link::DeleteLink.run(id: params[:id],
-                                                     link_list_id: @link_list.id)
+                                                     link_list_id: params[:link_list_id])
       flash[:notice] = t('.notice_success')
-      redirect_to link_list_path(@link_list)
+      redirect_to link_list_path(service.link.link_list)
     end
 
   end
