@@ -22,18 +22,29 @@ class MagazCore::AdminServices::Article::AddArticleTest < ActiveSupport::TestCas
   test 'should not create article with same params' do
     service = MagazCore::AdminServices::Article::AddArticle.run(@success_params)
     assert service.valid?
-
     service2 = MagazCore::AdminServices::Article::AddArticle.run(@success_params)
     refute service2.valid?
     assert_equal 1, @blog.articles.count
-    assert_equal 2, service2.errors.full_messages.count
-    assert_equal "Title has already been taken", service2.errors.full_messages.first
+    assert_equal 2, service2.article.errors.full_messages.count
+    assert_equal "Title has already been taken", service2.article.errors.full_messages.first
+  end
+
+  test 'should not create article with existing handle' do
+    service = MagazCore::AdminServices::Article::AddArticle.run(@success_params)
+    assert service.valid?
+    @success_params[:title] = "Second title" 
+    service2 = MagazCore::AdminServices::Article::AddArticle.run(@success_params)
+    refute service2.valid?
+    assert_equal 1, @blog.articles.count
+    assert_equal 1, service2.article.errors.full_messages.count
+    assert_equal "Handle has already been taken", service2.article.errors.full_messages.first
   end
 
   test 'should not create article with blank params' do
     service = MagazCore::AdminServices::Article::AddArticle.run(@blank_params)
     refute service.valid?
-    assert_equal 1, service.errors.full_messages.count
+    assert_equal 1, service.article.errors.full_messages.count
     assert_equal 0, @blog.articles.count
   end
+
 end

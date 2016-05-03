@@ -11,7 +11,7 @@ module MagazStoreAdmin
     end
 
     def new
-      @article = MagazCore::AdminServices::Article::AddArticle.new
+      @article = current_shop.articles.new
     end
 
     def create
@@ -27,7 +27,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
-        @article = service
+        @article = service.article
         flash[:notice] = t('.notice_fail')
         render 'new'
       end
@@ -47,7 +47,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to article_url(@article)
       else
-        @article = service
+        @article = service.article
         flash[:notice] = t('.notice_fail')
         render 'show'
       end
