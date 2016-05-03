@@ -3,9 +3,10 @@ class MagazCore::AdminServices::ProductImage::ChangeProductImage < ActiveInterac
   set_callback :validate, :after, -> {product_image}
 
   file    :image
+  string :product_id
   integer :id
 
-  validates :id, :image, presence: true
+  validates :id, :image, :product_id, presence: true
 
   def product_image
     product = MagazCore::Product.friendly.find(product_id)

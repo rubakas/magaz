@@ -18,14 +18,9 @@ module MagazStoreAdmin
     end
 
     def create
-      if params[:product_image]
-        image = params[:product_image][:image]
-      else
-        image = nil
-      end
       service = MagazCore::AdminServices::ProductImage::AddProductImage
                   .run(product_id: params[:product_id],
-                       image: image)
+                       image: set_image(params[:product_image]))
       @product = service.product_image.product
       if service.valid?
         @product_image = service.result
@@ -39,14 +34,9 @@ module MagazStoreAdmin
     end
 
     def update
-      if params[:product_image]
-        image = params[:product_image][:image]
-      else
-        image = nil
-      end
       service = MagazCore::AdminServices::ProductImage::ChangeProductImage
                   .run(product_id: params[:product_id],
-                       image: params[:product_image][:image], id: params[:id])
+                       image: set_image(params[:product_image]), id: params[:id])
       @product = service.product_image.product
       if service.valid?
         @product_image = service.result
@@ -66,6 +56,16 @@ module MagazStoreAdmin
       flash[:notice] = t('.notice_success')
       redirect_to product_product_images_path
     end
-    
+
+    private 
+
+    def set_image(params)
+      if params
+        image = params[:image]
+      else
+        image = nil
+      end
+      image
+    end
   end
 end

@@ -32,7 +32,7 @@ module MagazStoreAdmin
     end
 
     test 'should update image' do
-      patch :update, product_id: @product ,id: @product_image,
+      patch :update, product_id: @product.id ,id: @product_image.id,
         product_image: {image: fixture_file_upload('/files/sell_bg_berlin.jpg', 'image/jpg')}
         assert_template :show
         assert_response :success

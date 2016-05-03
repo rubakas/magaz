@@ -26,7 +26,7 @@ class MagazCore::AdminServices::Product::AddProduct < ActiveInteraction::Base
         catch(:interrupt) do
           compose(MagazCore::AdminServices::ProductImage::AddProductImage,
                   image: product_images_attributes["0"][:image],
-                  product_id: @product.id) if product_images_attributes["0"]
+                  product_id: "#{@product.id}") if product_images_attributes["0"]
           should_rollback = false
         end
         raise RuntimeError.new if should_rollback
