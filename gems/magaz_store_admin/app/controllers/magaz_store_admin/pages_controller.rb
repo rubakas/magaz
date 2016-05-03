@@ -27,8 +27,8 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
-        flash.now[:notice] = t('.notice_fail')
         @page = service.page
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end
@@ -47,8 +47,8 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
-        flash.now[:notice] = t('.notice_fail')
         @page = service.page
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end
