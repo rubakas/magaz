@@ -13,7 +13,7 @@ class MagazCore::AdminServices::ShippingCountry::AddShippingCountry < ActiveInte
   validates :name, inclusion: COUNTRY_LIST['countries'].keys
 
   def shipping_country
-    @shipping_country = MagazCore::Shop.find(shop_id).shipping_countries.new    
+    @shipping_country = MagazCore::ShippingCountry.new    
     add_errors if errors.any?
     @shipping_country
   end
