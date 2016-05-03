@@ -271,8 +271,10 @@ en:
     link_lists:
       update:
         notice_success: "Link list was successfully updated."
+        notice_fail: "Link list was not updated."
       create:
         notice_success: "Link list was successfully created."
+        notice_fail: "Link list was not created."
       destroy:
         notice_success: "Link list was successfully deleted."
       index:

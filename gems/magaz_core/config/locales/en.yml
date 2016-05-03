@@ -221,9 +221,11 @@ en:
 
     add_link_list:
       name_not_unique: "Name has already been taken"
+      handle_not_unique: "Handle has already been taken"
     change_link_list:
       wrong_params: "Wrong params for link list"
       name_not_unique: "Name has already been taken"
+      handle_not_unique: "Handle has already been taken"
 
     change_order:
       wrong_params: "Wrong params for order"

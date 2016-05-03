@@ -19,5 +19,10 @@ module MagazCore
 
     accepts_nested_attributes_for :links
     friendly_id :handle, use: [:slugged, :scoped], scope: :shop
+
+    def should_generate_new_friendly_id?
+      handle_changed?
+    end
+    
   end
 end
