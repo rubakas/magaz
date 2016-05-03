@@ -206,7 +206,9 @@ en:
 
     add_comment:
       article_not_belongs: "This article is not belongs to this blog"
+      email_not_valid: "Email is not valid"
     change_comment:
+      email_not_valid: "Email is not valid"
       wrong_params: "Wrong params for comment"
 
     create_invite:
