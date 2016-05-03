@@ -22,36 +22,31 @@ module MagazStoreAdmin
                        meta_description: params[:page][:meta_description],
                        handle: params[:page][:handle],
                        shop_id: current_shop.id)
-
       if service.valid?
         @page = service.result
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
-        @page = service
+        @page = service.page
         render 'show'
       end
     end
 
     def update
-      @page = current_shop.pages.friendly.find(params[:id])
       service = MagazCore::AdminServices::Page::ChangePage
-                  .run(id: @page.id,
+                  .run(id: params[:id],
                        title: params[:page][:title],
                        shop_id: current_shop.id,
                        page_title: params[:page][:page_title],
                        meta_description: params[:page][:meta_description],
                        handle: params[:page][:handle],
                        content: params[:page][:content])
-
       if service.valid?
         @page = service.result
         flash[:notice] = t('.notice_success')
         redirect_to page_path(@page)
       else
-        service.errors.full_messages.each do |msg|
-          @page.errors.add(:base, msg)
-        end
+        @page = service.page
         render 'show'
       end
     end
@@ -62,5 +57,6 @@ module MagazStoreAdmin
       flash[:notice] = t('.notice_success')
       redirect_to pages_path
     end
+    
   end
 end
