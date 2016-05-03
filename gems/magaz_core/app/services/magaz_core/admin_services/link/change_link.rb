@@ -1,21 +1,33 @@
 class MagazCore::AdminServices::Link::ChangeLink < ActiveInteraction::Base
 
-  string :name, :link_type
-  integer :id, :link_list_id, :position
+  set_callback :validate, :after, -> {link}
+
+  string :name, :link_list_id, :link_type, :position
+  integer :id
 
   validates :id, :link_list_id, :name, presence: true
-
   validate :name_uniqueness, if: :name_changed?
 
-  def execute
-    link = MagazCore::LinkList.friendly.find(link_list_id).links.find(id)
-    link.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('services.change_link.wrong_params'))
+  def link
+    link_list = MagazCore::LinkList.friendly.find(link_list_id)
+    @link = link_list.links.find(id)
+    add_errors if errors.any?
+    @link
+  end
 
-    link
+  def execute
+    @link.update_attributes!(inputs.slice!(:id, :link_list_id)) ||
+      errors.add(:base, I18n.t('services.change_link.wrong_params'))
+    @link
   end
 
   private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @link.errors.add(:base, msg)
+    end
+  end
 
   def name_changed?
     MagazCore::LinkList.friendly.find(link_list_id).links.find(id).name != name

@@ -8,8 +8,8 @@ class MagazCore::AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
     @link = create(:link, link_list: @link_list)
     @link2 = create(:link, link_list: @link_list)
     @success_params = { id: @link_list.id, name: "Test name",
-                        link_list_id: @link_list.id, link_type: "Test type",
-                        position: 0 }
+                        link_list_id: "#{@link_list.id}", link_type: "Test type",
+                        position: "2" }
   end
 
   test 'should update link with valid params' do
@@ -22,17 +22,17 @@ class MagazCore::AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
   test 'should not update link with existing name' do
     service = MagazCore::AdminServices::Link::ChangeLink.
                 run(id: @link.id, name: @link2.name,
-                    link_list_id: @link_list.id, link_type: "Changed type",
-                    position: 1111)
+                    link_list_id: "#{@link_list.id}", link_type: "Changed type",
+                    position: "1111")
     refute service.valid?
-    assert_equal 1, service.errors.full_messages.count
-    assert_equal "Name has already been taken", service.errors.full_messages.first
+    assert_equal 1, service.link.errors.full_messages.count
+    assert_equal "Name has already been taken", service.link.errors.full_messages.first
   end
 
-  test 'should update link some blank params' do
+  test 'should update link with some blank params' do
     service = MagazCore::AdminServices::Link::ChangeLink.
                 run(id: @link_list.id, name: "Changed name",
-                    link_list_id: @shop.id, position: '123', link_type: '')
+                    link_list_id: "#{@link_list.id}", position: '123', link_type: '')
     assert service.valid?
     assert_equal 123, service.result.position
     assert_equal '', service.result.link_type

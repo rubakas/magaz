@@ -56,8 +56,8 @@ module MagazStoreAdmin
       assert_difference('MagazCore::Link.count', -1) do
         delete :destroy, id: @link.id, link_list_id: @link_list.id
       end
-
       assert_redirected_to link_list_path(@link_list)
     end
+    
   end
 end
