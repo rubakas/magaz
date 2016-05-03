@@ -1,23 +1,36 @@
 class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInteraction::Base
 
+  set_callback :validate, :after, -> {shipping_rate}
+
   string :name
   string :price_from, :price_to, :weight_from, :weight_to, :criteria, default: nil
   float :shipping_price
-  integer :id
+  integer :id, :shipping_country_id
 
   validates :name, :shipping_price, :id, presence: true
   validate :valid_numerical, :price_criteria_check, :weight_criteria_check,
              :price_comparison_check, :weight_comparison_check
 
-  def execute 
-    shipping_rate = MagazCore::ShippingRate.find(id)
-    shipping_rate.update_attributes!(@inputs.slice!(:id)) || 
-      errors.add(:base, I18n.t('services.change_shipping_rate.wrong_params'))
+  def shipping_rate
+    shipping_country = MagazCore::ShippingCountry.find(shipping_country_id)
+    @shipping_rate = shipping_country.shipping_rates.find(id)
+    add_errors if errors.any?
+    @shipping_rate
+  end
 
-    shipping_rate
+  def execute 
+    @shipping_rate.update_attributes!(@inputs.slice!(:id)) || 
+      errors.add(:base, I18n.t('services.change_shipping_rate.wrong_params'))
+    @shipping_rate
   end
 
   private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @shipping_rate.errors.add(:base, msg)
+    end
+  end
 
   def valid_numerical
     @inputs = inputs

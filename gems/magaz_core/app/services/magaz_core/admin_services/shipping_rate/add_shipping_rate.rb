@@ -1,5 +1,7 @@
 class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteraction::Base
 
+  set_callback :validate, :after, -> {shipping_rate}
+
   string :name
   string :price_from, :price_to, :weight_from, :weight_to, :criteria, default: nil
   float :shipping_price
@@ -9,18 +11,28 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRate < ActiveInteractio
   validate :valid_numerical, :price_criteria_check, :weight_criteria_check,
              :price_comparison_check, :weight_comparison_check
 
+  def shipping_rate
+    shipping_country = MagazCore::ShippingCountry.find(shipping_country_id)
+    @shipping_rate = shipping_country.shipping_rates.new
+    add_errors if errors.any?
+    @shipping_rate
+  end
+
   def execute 
-    shipping_rate = MagazCore::ShippingRate.new(@inputs)
-
-    unless shipping_rate.save
-      errors.merge!(shipping_rate.errors)
+    unless @shipping_rate.update_attributes(inputs)
+      errors.merge!(@shipping_rate.errors)
     end
-
-    shipping_rate
+    @shipping_rate
   end
 
   private
 
+  def add_errors
+    errors.full_messages.each do |msg|
+      @shipping_rate.errors.add(:base, msg)
+    end
+  end
+  
   def valid_numerical
     @inputs = inputs
     @inputs.each do |key, value|
