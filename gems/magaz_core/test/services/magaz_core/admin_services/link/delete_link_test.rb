@@ -11,16 +11,17 @@ class MagazCore::AdminServices::Link::DeleteLinkTest < ActiveSupport::TestCase
   test 'should delete link with valid id' do
     assert_equal 1, MagazCore::Link.count
     service = MagazCore::AdminServices::Link::DeleteLink.run(id: @link.id,
-                                                             link_list_id: @link_list.id)
+                                                             link_list_id: "#{@link_list.id}")
     assert service.valid?
     assert_equal 0, MagazCore::Link.count
   end
 
   test 'should not delete link with blank id' do
     assert_equal 1, MagazCore::Link.count
-    service = MagazCore::AdminServices::Link::DeleteLink.run(id: '', link_list_id: '')
+    service = MagazCore::AdminServices::Link::DeleteLink.run(id: '', link_list_id: "#{@link_list.id}")
     refute service.valid?
-    assert_equal 2, service.errors.count
+    assert_equal 1, service.errors.count
+    assert_equal "Id is not a valid integer", service.errors.full_messages.first
     assert_equal 1, MagazCore::Link.count
   end
 end

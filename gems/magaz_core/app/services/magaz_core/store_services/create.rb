@@ -127,13 +127,13 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
             position: '',
             name: I18n.t('default.models.link.home_link_name'),
             link_type: '',
-            link_list_id: default_menu_link_list.id)
+            link_list_id: "#{default_menu_link_list.id}")
 
     compose(MagazCore::AdminServices::Link::AddLink,
             position: '',
             name: I18n.t('default.models.link.blog_link_name'),
             link_type: '',
-            link_list_id: default_menu_link_list.id)
+            link_list_id: "#{default_menu_link_list.id}")
 
     #Footer link list
     default_footer_link_list = compose(MagazCore::AdminServices::LinkList::AddLinkList,
@@ -146,13 +146,13 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
             position: '',
             name: I18n.t('default.models.link.search_link_name'),
             link_type: '',
-            link_list_id: default_footer_link_list.id)
+            link_list_id: "#{default_footer_link_list.id}")
 
     compose(MagazCore::AdminServices::Link::AddLink,
             position: '',
             name: I18n.t('default.models.link.about_link_name'),
             link_type: '',
-            link_list_id: default_footer_link_list.id)
+            link_list_id: "#{default_footer_link_list.id}")
   end
 
   def _create_default_emails!(shop:)

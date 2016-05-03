@@ -3,7 +3,7 @@ module MagazStoreAdmin
     include MagazCore::Concerns::Authenticable
 
     def index
-      @link_list = MagazCore::LinkList.find(params[:link_list_id])
+      @link_list = MagazCore::LinkList.friendly.find(params[:link_list_id])
       @links = @link_list.links.page(params[:page])
     end
 
@@ -23,10 +23,10 @@ module MagazStoreAdmin
                        link_type: params[:link][:link_type],
                        position: params[:link][:position],
                        link_list_id: params[:link_list_id])
-
+      @link_list = service.link.link_list
       if service.valid?
         @link = service.result
-        flash[:notice] = t('.notice_success')
+        flash.now[:notice] = t('.notice_success')
         render 'show'
       else
         @link = service.link
@@ -41,7 +41,7 @@ module MagazStoreAdmin
                        name: params[:link][:name],
                        link_type: params[:link][:link_type],
                        position: params[:link][:position])
-
+      @link_list = service.link.link_list
       if service.valid?
         @link = service.result
         flash[:notice] = t('.notice_success')
@@ -53,10 +53,10 @@ module MagazStoreAdmin
     end
 
     def destroy
-      MagazCore::AdminServices::Link::DeleteLink.run(id: params[:id],
-                                                     link_list_id: params[:link_list_id])
+      service = MagazCore::AdminServices::Link::DeleteLink
+                  .run(id: params[:id], link_list_id: params[:link_list_id])
       flash[:notice] = t('.notice_success')
-      redirect_to link_list_path(service.link.link_list)
+      redirect_to link_list_path(service.result)
     end
 
   end
