@@ -26,6 +26,7 @@ module MagazStoreAdmin
         redirect_to shipping_country_path(@shipping_country)
       else
         @shipping_country = service.shipping_country
+        flash.now[:notice] = t('.notice_fail')
         render 'new'
       end
     end
@@ -42,6 +43,7 @@ module MagazStoreAdmin
         redirect_to shipping_country_path(@shipping_country)
       else
         @shipping_country = service.shipping_country
+        flash.now[:notice] = t('.notice_fail')
         render 'show'
       end
     end
