@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Customer::ChangeCustomerTest < ActiveSupport::Te
     @success_params = { id: @customer.id, first_name: "Changed first name",
                         last_name: "CHanged last name", email: "Changedtest@test.com",
                         shop_id: @shop.id }
-    @blank_params =   { id: nil, first_name: "", last_name: "", email: '', shop_id: nil }
+    @blank_params =   { id: nil, first_name: "", last_name: "", email: '', shop_id: @shop.id }
   end
 
   test 'should update customer with valid params' do
@@ -22,7 +22,7 @@ class MagazCore::AdminServices::Customer::ChangeCustomerTest < ActiveSupport::Te
   test 'should not update customer with blank_params' do
     service = MagazCore::AdminServices::Customer::ChangeCustomer.run(@blank_params)
     refute service.valid?
-    assert_equal 2, service.errors.full_messages.count
+    assert_equal 1, service.errors.full_messages.count
   end
 
   test 'should not update customer with existing email' do
