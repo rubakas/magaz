@@ -9,8 +9,8 @@ class MagazCore::AdminServices::Link::ChangeLink < ActiveInteraction::Base
   validate :name_uniqueness, if: :name_changed?
 
   def link
-    @link_list = MagazCore::LinkList.friendly.find(link_list_id)
-    @link = @link_list.links.find(id)
+    link_list = MagazCore::LinkList.friendly.find(link_list_id)
+    @link = link_list.links.find(id)
     add_errors if errors.any?
     @link
   end

@@ -56,7 +56,7 @@ module MagazStoreAdmin
       service = MagazCore::AdminServices::Link::DeleteLink
                   .run(id: params[:id], link_list_id: params[:link_list_id])
       flash[:notice] = t('.notice_success')
-      redirect_to link_list_path(service.result)
+      redirect_to link_list_path(service.link_list)
     end
 
   end

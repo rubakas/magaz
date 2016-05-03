@@ -8,8 +8,8 @@ class MagazCore::AdminServices::Link::AddLink < ActiveInteraction::Base
   validate :name_uniqueness
 
   def link
-    @link_list = MagazCore::LinkList.friendly.find(link_list_id)
-    @link = @link_list.links.new
+    link_list = MagazCore::LinkList.friendly.find(link_list_id)
+    @link = link_list.links.new
     add_errors if errors.any?
     @link
   end
