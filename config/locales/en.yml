@@ -357,8 +357,10 @@ en:
     pages:
       create:
         notice_success: "Page was successfully created."
+        notice_fail: "Page was not created."
       update:
         notice_success: "Page was successfully updated."
+        notice_fail: "Page was not updated."
       destroy:
         notice_success: "Page was successfully deleted."
       index:
