@@ -7,7 +7,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
     @succsess_params = {name: "Test name",
                         price_to: "20.5",
                         weight_to: "5.5",
-                        shipping_price: 5,
+                        shipping_price: "5",
                         criteria: "weight",
                         price_from: "15.7",
                         weight_from: "3.1",
@@ -19,7 +19,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
                      criteria: "",
                      price_from: "",
                      weight_from: "",
-                     shipping_country_id: ""}
+                     shipping_country_id: @shipping_country.id}
   end
 
   test "should add shipping rate with valid params" do
@@ -35,9 +35,9 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
     assert_equal 0, MagazCore::ShippingRate.count
     service = MagazCore::AdminServices::ShippingRate::AddShippingRate.run(@blank_params)
     refute service.valid?
-    assert_equal 2, service.errors.full_messages.count
-    assert_equal "Shipping price is not a valid float", service.errors.full_messages.first
-    assert_equal "Shipping country is not a valid integer", service.errors.full_messages.last
+    assert_equal 3, service.errors.full_messages.count
+    assert_equal "Name can't be blank", service.errors.full_messages.first
+    assert_equal "Criteria can't be blank", service.errors.full_messages.last
     assert_equal 0, MagazCore::ShippingRate.count
   end
 
@@ -61,7 +61,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
                 .run(name: "Test name",
                      price_to: "20.5",
                      weight_to: "",
-                     shipping_price: 5,
+                     shipping_price: "5",
                      criteria: "weight",
                      price_from: "0.15",
                      weight_from: "",
@@ -78,7 +78,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
                 .run(name: "Test name",
                      price_to: "",
                      weight_to: "5.5",
-                     shipping_price: 5,
+                     shipping_price: "5",
                      criteria: "weight",
                      price_from: "",
                      weight_from: "10.7",
@@ -95,7 +95,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
                 .run(name: "Test name",
                      price_to: "",
                      weight_to: "some",
-                     shipping_price: 5,
+                     shipping_price: "5",
                      criteria: "weight",
                      price_from: "",
                      weight_from: "text",

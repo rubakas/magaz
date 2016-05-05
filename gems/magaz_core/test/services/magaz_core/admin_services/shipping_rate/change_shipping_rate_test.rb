@@ -8,7 +8,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
     @succsess_params = {name: "Updated name",
                         price_to: "20.5",
                         weight_to: "5.5",
-                        shipping_price: 5,
+                        shipping_price: "5",
                         criteria: "weight",
                         price_from: "15.7",
                         weight_from: "3.1",
@@ -21,7 +21,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                      criteria: "",
                      price_from: "",
                      weight_from: "",
-                     id: "",
+                     id: @shipping_rate.id,
                      shipping_country_id: @shipping_country.id}
   end
 
@@ -31,15 +31,16 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
     assert service.valid?
     assert_equal @succsess_params[:name], MagazCore::ShippingRate.find(service.result.id).name
     assert_equal @succsess_params[:criteria], MagazCore::ShippingRate.find(service.result.id).criteria
-    assert_equal @succsess_params[:shipping_price], MagazCore::ShippingRate.find(service.result.id).shipping_price
+    assert_equal @succsess_params[:shipping_price].to_f, MagazCore::ShippingRate.find(service.result.id).shipping_price
   end
 
   test "should not update shipping rate with blank params" do
     assert_equal 1, MagazCore::ShippingRate.count
     service = MagazCore::AdminServices::ShippingRate::ChangeShippingRate.run(@blank_params)
     refute service.valid?
-    assert_equal "Shipping price is not a valid float", service.errors.full_messages.first
-    assert_equal "Id is not a valid integer", service.errors.full_messages.last
+    assert_equal 3, service.errors.full_messages.count
+    assert_equal "Name can't be blank", service.errors.full_messages.first
+    assert_equal "Criteria can't be blank", service.errors.full_messages.last
   end
 
   test "shoul update shipping rate with some blank params" do
@@ -60,7 +61,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                 .run(name: "Updated name",
                      price_to: "20.5",
                      weight_to: "",
-                     shipping_price: 5,
+                     shipping_price: "5",
                      criteria: "weight",
                      price_from: "0.15",
                      weight_from: "",
@@ -76,7 +77,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                 .run(name: "Updated name",
                      price_to: "",
                      weight_to: "5.5",
-                     shipping_price: 5,
+                     shipping_price: "5",
                      criteria: "weight",
                      price_from: "",
                      weight_from: "10.7",
@@ -92,7 +93,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
                 .run(name: "Updated name",
                      price_to: "",
                      weight_to: "some",
-                     shipping_price: 5,
+                     shipping_price: "5",
                      criteria: "weight",
                      price_from: "",
                      weight_from: "text",

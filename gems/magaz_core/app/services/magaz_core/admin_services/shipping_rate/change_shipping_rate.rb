@@ -2,12 +2,11 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInterac
 
   set_callback :validate, :after, -> {shipping_rate}
 
-  string :name
-  string :price_from, :price_to, :weight_from, :weight_to, :criteria, default: nil
-  float :shipping_price
+  string :name, :shipping_price, :criteria
+  string :price_from, :price_to, :weight_from, :weight_to, default: nil
   integer :id, :shipping_country_id
 
-  validates :name, :shipping_price, :id, presence: true
+  validates :id, :name, :shipping_price, :shipping_country_id, :criteria, presence: true
   validate :valid_numerical, :price_criteria_check, :weight_criteria_check,
              :price_comparison_check, :weight_comparison_check
 
@@ -19,7 +18,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInterac
   end
 
   def execute 
-    @shipping_rate.update_attributes!(@inputs.slice!(:id)) || 
+    @shipping_rate.update_attributes(@inputs.slice!(:id, :shipping_country_id)) || 
       errors.add(:base, I18n.t('services.change_shipping_rate.wrong_params'))
     @shipping_rate
   end
@@ -34,18 +33,15 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInterac
 
   def valid_numerical
     @inputs = inputs
-    @inputs.each do |key, value|
-      if key == :price_from || key == :price_to || key == :weight_from || key == :weight_to
-        if value =~ /^(?:[1-9]\d*|0)+(?:\.\d+)?$/m
-          @inputs[key] = value.to_f
-        elsif value =~ /^$/ 
-          @inputs[key] = nil
-        elsif value.nil? 
-          next
-        else
-          @inputs[key] = nil
-          errors.add(key, I18n.t('services.change_shipping_rate.wrong_param'))
-        end
+    @inputs.slice!(:id, :shipping_country_id, :name, :criteria).each do |key, value|
+      if value =~ /^(?:[1-9]\d*|0)+(?:\.\d+)?$/m
+        @inputs[key] = value.to_f
+      elsif value =~ /^$/ 
+        @inputs[key] = nil
+      elsif value.nil? 
+        next
+      else
+        errors.add(key, I18n.t('services.change_shipping_rate.wrong_param'))
       end
     end
   end
