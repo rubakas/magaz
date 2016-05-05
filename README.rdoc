@@ -15,7 +15,7 @@
 
 * Rmagick
 
-* QT4 for caoybara-webkit
+* QT4 for capybara-webkit
 
 * Database creation:
   
@@ -32,6 +32,12 @@
     127.0.0.1 example3.magaz.local
     127.0.0.1 themes.magaz.local
 
+* For Mac
+    ::1       magaz.local
+    ::1       example.magaz.local
+    ::1       example2.magaz.local
+    ::1       example3.magaz.local
+    ::1       themes.magaz.local
 
 * How to run the test suite
 
