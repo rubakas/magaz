@@ -10,7 +10,7 @@ module MagazStore
 
     def shopping_cart_service
       @shopping_cart_service ||=
-        MagazCore::AdminServices::Order::ShoppingCart
+        MagazCore::StoreServices::ShoppingCart
           .new(shop_id: current_shop.id,
                checkout_id: session[:checkout_id],
                customer_id: session[:customer_id])
