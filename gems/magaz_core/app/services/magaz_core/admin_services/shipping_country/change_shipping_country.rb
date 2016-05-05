@@ -1,7 +1,5 @@
 class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry < ActiveInteraction::Base
 
-  COUNTRY_LIST = YAML.load_file("#{MagazCore::Engine.root}/config/countries.yml")
-
   set_callback :validate, :after, -> {shipping_country}
 
   integer :shop_id, :id
@@ -10,7 +8,7 @@ class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry < ActiveI
   validate  :name_uniqueness, if: :name_changed
   validates :tax, numericality: true
   validates :shop_id, :id, :name, :tax, presence: true
-  validates :name, inclusion: COUNTRY_LIST['countries'].keys
+  validates :name, inclusion: MagazCore::ShippingCountry::COUNTRY_LIST['countries'].keys
 
   def shipping_country
     @shipping_country = MagazCore::Shop.find(shop_id).shipping_countries.find(id)    
