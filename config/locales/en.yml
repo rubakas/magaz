@@ -620,8 +620,10 @@ en:
     shipping_countries:
       create:
         notice_success: "Shipping Country was successfully created."
+        notice_fail: "Shipping Country was not created."
       update:
         notice_success: "Shipping Country was successfully updated."
+        notice_fail: "Shipping Country was not updated."
       destroy:
         notice_success: "Shipping Country was successfully deleted."
       index:

@@ -1,6 +1,6 @@
 class MagazCore::AdminServices::ShippingCountry::AddShippingCountry < ActiveInteraction::Base
 
-  COUNTRY_LIST = YAML.load_file("#{MagazCore::Engine.root}/config/countries.yml")
+  set_callback :validate, :after, -> {shipping_country}
 
   integer :shop_id
   string :tax, :name
@@ -8,19 +8,28 @@ class MagazCore::AdminServices::ShippingCountry::AddShippingCountry < ActiveInte
   validate  :name_uniqueness
   validates :tax, numericality: true
   validates :tax, :name, :shop_id, presence: true
-  validates :name, inclusion: COUNTRY_LIST['countries'].keys
+  validates :name, inclusion: MagazCore::ShippingCountry::COUNTRY_LIST['countries'].keys
+
+  def shipping_country
+    @shipping_country = MagazCore::ShippingCountry.new    
+    add_errors if errors.any?
+    @shipping_country
+  end
 
   def execute
-    shipping_country = MagazCore::Shop.find(shop_id).shipping_countries.new(inputs)
-
-    unless shipping_country.save
-      errors.merge!(shipping_country.errors)
+    unless @shipping_country.update_attributes(inputs)
+      errors.merge!(@shipping_country.errors)
     end
-
-    shipping_country
+    @shipping_country
   end
 
   private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @shipping_country.errors.add(:base, msg)
+    end
+  end
 
   def name_uniqueness
     errors.add(:base, I18n.t('services.add_shipping_country.name_not_unique')) unless name_unique?
