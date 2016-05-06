@@ -28,10 +28,7 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to webhook_url(@webhook)
       else
-        @webhook = MagazCore::Webhook.new
-        service.errors.full_messages.each do |msg|
-          @webhook.errors.add(:base, msg)
-        end
+        @webhook = service.webhook
         flash[:error] = t('.notice_fail')
         render 'new'
       end
@@ -51,16 +48,14 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to webhook_url(@webhook)
       else
-        @webhook = current_shop.webhooks.find(params[:id])
-        service.errors.full_messages.each do |msg|
-          @webhook.errors.add(:base, msg)
-        end
+        @webhook = service.webhook
+        flash[:notice] = t('.notice_fail')
         render 'show'
       end
     end
 
     def destroy
-      service = MagazCore::AdminServices::Webhook::DeleteWebhook
+      MagazCore::AdminServices::Webhook::DeleteWebhook
                   .run(id: params[:id], shop_id: current_shop.id)
       flash[:notice] = t('.notice_success')
       redirect_to webhooks_url
@@ -72,13 +67,5 @@ module MagazStoreAdmin
       [user.first_name, user.last_name].map(&:capitalize).join(" ")
     end
 
-    protected
-
-    #TODO:  webhook_ids are not guaranteed to belong to this shop!!!
-    # https://github.com/josevalim/inherited_resources#strong-parameters
-    def permitted_params
-      { webhook:
-          params.fetch(:webhook, {}).permit(:topic, :format, :address, :metafield_namespaces, :fields) }
-    end
   end
 end

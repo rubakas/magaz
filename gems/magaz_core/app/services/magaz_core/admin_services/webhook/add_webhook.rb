@@ -1,24 +1,35 @@
 class MagazCore::AdminServices::Webhook::AddWebhook < ActiveInteraction::Base
 
-  FORMAT_CHOICE = ["JSON", "XML"]
+  set_callback :validate, :after, -> {webhook}
 
   integer :shop_id
   string :topic, :address, :format
   array :metafield_namespaces, :fields, default: nil
 
   validates :topic, inclusion: MagazCore::Webhook::Topics::WEBHOOKS_TOPICS_LIST
-  validates :format, inclusion: FORMAT_CHOICE
+  validates :format, inclusion: MagazCore::Webhook::FORMAT_CHOICE
   validates :address, presence: true,
                       format: { with: /https?:\/\/[\S]+/ }
 
+  def webhook
+    @webhook = MagazCore::Webhook.new
+    add_errors if errors.any?
+    @webhook
+  end
+
   def execute
-    webhook = MagazCore::Shop.find(shop_id).webhooks.new(inputs)
-
-    unless webhook.save
-      errors.merge!(webhook.errors)
+    unless @webhook.update_attributes(inputs)
+      errors.merge!(@webhook.errors)
     end
+    @webhook
+  end
 
-    webhook
+  private
+
+  def add_errors
+    errors.full_messages.each do |msg|
+      @webhook.errors.add(:base, msg)
+    end
   end
 
 end
