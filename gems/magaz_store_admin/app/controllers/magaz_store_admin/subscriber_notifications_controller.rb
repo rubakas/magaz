@@ -17,16 +17,14 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to notifications_settings_settings_path
       else
-        @subscriber_notification = MagazCore::SubscriberNotification.new
-        service.errors.full_messages.each do |msg|
-          @subscriber_notification.errors.add(:base, msg)
-        end
+        @subscriber_notification = service.subscriber_notification
+        flash[:notice] = t('.notice_fail')
         render 'new'
       end
     end
 
     def destroy
-      service = MagazCore::AdminServices::SubscriberNotification::DeleteSubscriberNotification
+      MagazCore::AdminServices::SubscriberNotification::DeleteSubscriberNotification
                   .run(id: params[:id],
                        shop_id: current_shop.id)
       flash[:notice] = t('.notice_success')

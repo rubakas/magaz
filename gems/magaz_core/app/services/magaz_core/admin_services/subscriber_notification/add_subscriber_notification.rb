@@ -1,5 +1,8 @@
 class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification < ActiveInteraction::Base
 
+  set_callback :validate, :after, -> { subscriber_notification }
+  set_callback :execute, :before, -> { subscription_address.downcase! }
+
   string :notification_method, :subscription_address
   integer :shop_id
 
@@ -11,22 +14,25 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
                 if: :select_email_address_method?
   validate :email_uniqueness, if: :select_email_address_method?
 
-  set_callback :execute, :before, -> { :downcase_email }
+  def subscriber_notification
+    @subscriber_notification = MagazCore::SubscriberNotification.new    
+    add_errors if errors.any?
+    @subscriber_notification
+  end
 
   def execute
-    subscriber_notification = MagazCore::Shop.find(shop_id).subscriber_notifications.new(inputs)
-
-    unless subscriber_notification.save
-      errors.merge!(subscriber_notification.errors)
+    unless @subscriber_notification.update_attributes(inputs)
+      errors.merge!(@subscriber_notification.errors)
     end
-
-    subscriber_notification
+    @subscriber_notification
   end
 
   private
 
-  def downcase_email
-    subscription_address = subscription_address.downcase
+  def add_errors
+    errors.full_messages.each do |msg|
+      @subscriber_notification.errors.add(:base, msg)
+    end
   end
 
   def select_phone_number_method?
@@ -45,4 +51,5 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
     MagazCore::SubscriberNotification
       .where(shop_id: shop_id, subscription_address: subscription_address).count == 0
   end
+
 end
