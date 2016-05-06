@@ -8,8 +8,10 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   string :name
 
   string :address, :business_name, :city, :country,
-         :meta_description, :currency, :customer_email, :phone,
-         :timezone, :unit_system, :zip, :page_title, default: nil
+         :meta_description, :currency, :phone, :timezone,
+         :unit_system, :zip, :page_title, default: nil
+
+  string :customer_email, default: nil
 
   integer :id
 
@@ -42,8 +44,12 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   end
 
   def email_valid?
-    customer_email =~
-    MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX if customer_email
+    if customer_email.present?
+      customer_email =~
+      MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
+    else
+      true
+    end
   end
 
   def add_errors

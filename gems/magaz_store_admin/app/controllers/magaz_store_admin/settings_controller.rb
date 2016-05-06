@@ -108,22 +108,17 @@ module MagazStoreAdmin
     end
 
     def taxes_settings_update
-      @shop = current_shop
       service = MagazCore::AdminServices::Shop::ChangeTaxesSettings
-                  .run(id: @shop.id,
+                  .run(id: current_shop.id,
                        all_taxes_are_included: params[:shop][:all_taxes_are_included],
-                       charge_taxes_on_shipping_rates: params[:shop][:charge_taxes_on_shipping_rates])
+                       charge_taxes_on_shipping_rates: params[:shop][:charge_taxes_on_shipping_rates],
+                       charge_vat_taxes: params[:charge_vat_taxes])
       if service.valid?
         @shop = service.result
         flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
-        unless params[:charge_vat_taxes]
-          current_shop.update_attributes(eu_digital_goods_collection_id:  nil)
-        end
         redirect_to taxes_settings_settings_path
       else
-        service.errors.full_messages.each do |msg|
-          @shop.errors.add(:base, msg)
-        end
+        @shop = service.shop
         render "taxes_settings"
       end
     end
@@ -133,10 +128,10 @@ module MagazStoreAdmin
                   .run(id: current_shop.id,
                        collection_name: DIGITAL_GOODS_VAT_TAX)
       if service.valid?
-        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
+        flash.now[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to taxes_settings_settings_path
       else
-        flash[:notice] = service.errors.full_messages.first
+        flash.now[:notice] = service.errors.full_messages.first
         redirect_to taxes_settings_settings_path
       end
     end
@@ -151,7 +146,7 @@ module MagazStoreAdmin
       service = MagazCore::AdminServices::Shop::ChangeDefaultCollection
                   .run(id: current_shop.id, collection_id: params[:default_collection])
       unless service.valid?
-        flash[:notice] = service.errors.full_messages.first
+        flash.now[:notice] = service.errors.full_messages.first
       end
       redirect_to taxes_settings_settings_path
     end
