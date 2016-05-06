@@ -3,8 +3,7 @@ module MagazStoreAdmin
     include MagazCore::Concerns::Authenticable
 
     def new
-      @shop = current_shop
-      @subscriber_notification = @shop.subscriber_notifications.new
+      @subscriber_notification = current_shop.subscriber_notifications.new
     end
 
     def create
@@ -18,16 +17,16 @@ module MagazStoreAdmin
         redirect_to notifications_settings_settings_path
       else
         @subscriber_notification = service.subscriber_notification
-        flash[:notice] = t('.notice_fail')
+        flash.now[:notice] = t('.notice_fail')
         render 'new'
       end
     end
 
     def destroy
       MagazCore::AdminServices::SubscriberNotification::DeleteSubscriberNotification
-                  .run(id: params[:id],
-                       shop_id: current_shop.id)
-      flash[:notice] = t('.notice_success')
+        .run(id: params[:id],
+             shop_id: current_shop.id)
+      flash.now[:notice] = t('.notice_success')
       redirect_to notifications_settings_settings_path
     end
 
