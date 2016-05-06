@@ -11,7 +11,7 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
     @email_params = {shop_id: @shop.id,
                      notification_method: "email",
                      subscription_address: "valid@email.com"}
-    @blank_params = {shop_id: "",
+    @blank_params = {shop_id: @shop.id,
                      notification_method: "",
                      subscription_address: ""}
   end
@@ -38,10 +38,14 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
 
   test "should not add subscriber notification with blank params" do
     assert_equal 1, MagazCore::SubscriberNotification.count
-    service = MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification.run(@blank_params)
+    service = MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification
+                .run(@blank_params)
     refute service.valid?
-    assert_equal 1, service.errors.full_messages.count
-    assert_equal "Shop is not a valid integer", service.errors.full_messages.first
+    assert_equal 2, service.subscriber_notification.errors.full_messages.count
+    assert_equal "Subscription address can't be blank",
+                 service.subscriber_notification.errors.full_messages.first
+    assert_equal "Notification method can't be blank",
+                 service.subscriber_notification.errors.full_messages.last
     assert_equal 1, MagazCore::SubscriberNotification.count
   end
 
@@ -50,8 +54,9 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
     assert_equal 1, MagazCore::SubscriberNotification.count
     service = MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification.run(@phone_params)
     refute service.valid?
-    assert_equal 1, service.errors.full_messages.count
-    assert_equal "Subscription address is not a number", service.errors.full_messages.first
+    assert_equal 1, service.subscriber_notification.errors.full_messages.count
+    assert_equal "Subscription address is not a number",
+                 service.subscriber_notification.errors.full_messages.first
     assert_equal 1, MagazCore::SubscriberNotification.count
   end
 
@@ -60,8 +65,9 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
     assert_equal 1, MagazCore::SubscriberNotification.count
     service = MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification.run(@email_params)
     refute service.valid?
-    assert_equal 1, service.errors.full_messages.count
-    assert_equal "Subscription address is invalid", service.errors.full_messages.first
+    assert_equal 1, service.subscriber_notification.errors.full_messages.count
+    assert_equal "Subscription address is invalid",
+                 service.subscriber_notification.errors.full_messages.first
     assert_equal 1, MagazCore::SubscriberNotification.count
   end
 
@@ -70,18 +76,20 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
     assert_equal 1, MagazCore::SubscriberNotification.count
     service = MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification.run(@email_params)
     refute service.valid?
-    assert_equal 1, service.errors.full_messages.count
-    assert_equal "Subscription address is too long (maximum is 30 characters)", service.errors.full_messages.first
+    assert_equal 1, service.subscriber_notification.errors.full_messages.count
+    assert_equal "Subscription address is too long (maximum is 30 characters)",
+                 service.subscriber_notification.errors.full_messages.first
     assert_equal 1, MagazCore::SubscriberNotification.count
   end
 
   test "shoul not add subscriber notification with existing email" do
-    @email_params[:subscription_address] = @subscriber_notification.subscription_address    
+    @email_params[:subscription_address] = @subscriber_notification.subscription_address
     assert_equal 1, MagazCore::SubscriberNotification.count
     service = MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification.run(@email_params)
     refute service.valid?
-    assert_equal 1, service.errors.full_messages.count
-    assert_equal "Email has already been taken", service.errors.full_messages.first
+    assert_equal 1, service.subscriber_notification.errors.full_messages.count
+    assert_equal "Email has already been taken",
+                 service.subscriber_notification.errors.full_messages.first
     assert_equal 1, MagazCore::SubscriberNotification.count
   end
 

@@ -1,4 +1,5 @@
-= form_for([ :settings ,@subscriber_notification]) do |f|
+= form_for([ :settings, @subscriber_notification]) do |f|
+
   - if @subscriber_notification.errors.any?
     div id="error_explanation"
       h2 = pluralize(@subscriber_notification.errors.count, t('.error'))
@@ -12,8 +13,8 @@
 
     div class='field_with_notif_email'
       = f.select(:notification_method,
-        options_for_select([[t('.enter_email'),'email'],
-                            [t('.enter_mobile'),'phone']]))
+        options_for_select([[t('.enter_email'), 'email'],
+                            [t('.enter_mobile'), 'phone']]))
       br
       = f.text_field :subscription_address,
         class:'form-control'
