@@ -7,4 +7,5 @@ class MagazCore::AdminServices::Webhook::DeleteWebhook < ActiveInteraction::Base
   def execute
     MagazCore::Shop.find(shop_id).webhooks.find(id).destroy
   end
+  
 end

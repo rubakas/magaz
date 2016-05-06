@@ -27,8 +27,8 @@ class MagazCore::AdminServices::Webhook::AddWebhookTest < ActiveSupport::TestCas
     assert_equal 0, MagazCore::Webhook.count
     service = MagazCore::AdminServices::Webhook::AddWebhook.run(@blank_params)
     refute service.valid?
-    assert_equal 1, service.errors.count
-    assert_equal "Shop is not a valid integer", service.errors.full_messages.first
+    assert_equal 1, service.webhook.errors.count
+    assert_equal "Shop is not a valid integer", service.webhook.errors.full_messages.first
     assert_equal 0, MagazCore::Webhook.count
   end
 
@@ -37,8 +37,8 @@ class MagazCore::AdminServices::Webhook::AddWebhookTest < ActiveSupport::TestCas
     @success_params[:address] = "invalid_adress"
     service = MagazCore::AdminServices::Webhook::AddWebhook.run(@success_params)
     refute service.valid?
-    assert_equal 1, service.errors.count
-    assert_equal "Address is invalid", service.errors.full_messages.first
+    assert_equal 1, service.webhook.errors.count
+    assert_equal "Address is invalid", service.webhook.errors.full_messages.first
     assert_equal 0, MagazCore::Webhook.count
   end
 end
