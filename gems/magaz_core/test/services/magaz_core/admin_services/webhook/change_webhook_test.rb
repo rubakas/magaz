@@ -10,8 +10,8 @@ class MagazCore::AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::Test
                        topic: "create_product_event",
                        format: "JSON",
                        address: "https://www.examplee.com"}
-    @blank_params = {id: "",
-                     shop_id: "",
+    @blank_params = {id: @webhook.id,
+                     shop_id: @shop.id,
                      topic: "",
                      format: "",
                      address: ""}
@@ -29,9 +29,15 @@ class MagazCore::AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::Test
     assert_equal 1, MagazCore::Webhook.count
     service = MagazCore::AdminServices::Webhook::ChangeWebhook.run(@blank_params)
     refute service.valid?
-    assert_equal 2, service.errors.count
-    assert_equal "Shop is not a valid integer", service.errors.full_messages.first
-    assert_equal "Id is not a valid integer", service.errors.full_messages.last
+    assert_equal 4, service.webhook.errors.count
+    assert_equal "Topic is not included in the list",
+                 service.webhook.errors.full_messages.first
+    assert_equal "Format is not included in the list",
+                 service.webhook.errors.full_messages[1]
+    assert_equal "Address can't be blank",
+                 service.webhook.errors.full_messages[2]
+    assert_equal "Address is invalid",
+                 service.webhook.errors.full_messages.last
   end
 
   test "should not create webhook with invalid address" do
@@ -39,7 +45,7 @@ class MagazCore::AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::Test
     @success_params[:address] = "invalid_adress"
     service = MagazCore::AdminServices::Webhook::ChangeWebhook.run(@success_params)
     refute service.valid?
-    assert_equal 1, service.errors.count
-    assert_equal "Address is invalid", service.errors.full_messages.first
+    assert_equal 1, service.webhook.errors.count
+    assert_equal "Address is invalid", service.webhook.errors.full_messages.first
   end
 end

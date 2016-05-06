@@ -14,7 +14,7 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
   validate :email_uniqueness, if: :select_email_address_method?
 
   def subscriber_notification
-    @subscriber_notification = MagazCore::Shop.find(shop_id).subscriber_notifications.new
+    @subscriber_notification = MagazCore::SubscriberNotification.new
     add_errors if errors.any?
     @subscriber_notification
   end
@@ -23,7 +23,6 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
     unless @subscriber_notification.update_attributes(params)
       errors.merge!(@subscriber_notification.errors)
     end
-
     @subscriber_notification
   end
 
@@ -58,4 +57,5 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
     MagazCore::SubscriberNotification
       .where(shop_id: shop_id, subscription_address: subscription_address).count == 0
   end
+
 end

@@ -52,17 +52,17 @@ class MagazCore::AdminServices::Shop::ChangeCheckoutSettingsTest < ActiveSupport
                      checkout_privacy_policy: '',
                      checkout_term_of_service: '')
     refute service.valid?
-    assert_equal 5, service.errors.count
+    assert_equal 5, service.shop.errors.count
     assert_equal 'Billing address is shipping too is not a valid boolean',
-                 service.errors.full_messages[0]
+                 service.shop.errors.full_messages[0]
     assert_equal 'Enable multipass login is not a valid boolean',
-                 service.errors.full_messages[1]
+                 service.shop.errors.full_messages[1]
     assert_equal 'Notify customers of their shipment is not a valid boolean',
-                 service.errors.full_messages[2]
+                 service.shop.errors.full_messages[2]
     assert_equal 'Automatically fulfill all orders is not a valid boolean',
-                 service.errors.full_messages[3]
+                 service.shop.errors.full_messages[3]
     assert_equal 'After order fulfilled and paid is not a valid boolean',
-                 service.errors.full_messages[4]
+                 service.shop.errors.full_messages[4]
 
   end
 end

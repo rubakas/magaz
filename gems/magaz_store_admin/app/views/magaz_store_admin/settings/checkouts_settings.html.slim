@@ -29,9 +29,12 @@ p id="notice"
             div class="js-field_account_choice"
               = f.label :account_type_choice
               = f.select(:account_type_choice,
-                options_for_select( [[t('.account_disabled'), {'class' => 'js-disabled' }],
-                                    [t('.account_required'), {'class' => 'js-required' }],
-                                    [t('.account_optional'), {'class' => 'js-optional' }]]))
+                options_for_select([[t('.account_disabled'), 'disabled',
+                                     {'class' => 'js-disabled'}],
+                                    [t('.account_required'), 'required',
+                                     {'class' => 'js-required'}],
+                                    [t('.account_optional'), 'optional',
+                                     {'class' => 'js-optional'}]]))
               hr
             div class="js-checkouts_hidden_field_multipass"
               = f.label :enable_multipass_login
@@ -56,21 +59,29 @@ p id="notice"
         div class="field"
           div class="field_with_select"
             = f.label t('.abandoned_checkouts')
-            = f.select :abandoned_checkout_time_delay, MagazCore::Shop::ABANDONED_CHECKOUT_TIME_DELAY.map {|t| [I18n.t("default.models.shop.#{t}"), t]}
+            = f.select :abandoned_checkout_time_delay,
+              MagazCore::AdminServices::Shop::ChangeCheckoutSettings::ABANDONED_CHECKOUT_TIME_DELAY.map {|t| [I18n.t("default.models.shop.#{t}"), t]}
         hr
         div class="field"
           div class="field_with_select"
             = f.label t('.email_marketing')
-            = f.select :email_marketing_choice, MagazCore::Shop::EMAIL_MARKETING_CHOICE.map {|t| [I18n.t("default.models.shop.#{t}"), t]}
+            = f.select :email_marketing_choice,
+              MagazCore::AdminServices::Shop::ChangeCheckoutSettings::EMAIL_MARKETING_CHOICE.map {|t| [I18n.t("default.models.shop.#{t}"), t]}
         hr
         div class="field"
           div class="field_with_select"
             div class="js-field_after_order_paid"
               = f.label t('.after_order_paid')
               = f.select(:after_order_paid,
-                options_for_select([[t('.auto_fulfill_orders'),{'class'=> 'js-auto_fulfill_orders'}],
-                                    [t('.auto_fulfill_gift_cards'),{'class'=>'js-auto_fulfill_gift_cards'}],
-                                    [t('.do_not_fulfill'),{'class'=>'js-do_not_fulfill'}]]))
+                options_for_select([[t('.auto_fulfill_orders'),
+                                     'automatically_fulfill',
+                                     {'class'=> 'js-auto_fulfill_orders'}],
+                                    [t('.auto_fulfill_gift_cards'),
+                                     'automatically_fulfill_gift_cards',
+                                     {'class'=>'js-auto_fulfill_gift_cards'}],
+                                    [t('.do_not_fulfill'),
+                                     'not_automatically_fulfill',
+                                     {'class'=>'js-do_not_fulfill'}]]))
         hr
         div class="js-checkouts_hidden_field_auto_fulfill"
           div class="field_with_select"

@@ -10,10 +10,8 @@ module MagazStoreAdmin
     end
 
     def update
-      @shop = current_shop
-      @current_user = current_shop.users.find(session[:user_id])
       service = MagazCore::AdminServices::Shop::ChangeShop
-                  .run(id: @shop.id,
+                  .run(id: current_shop.id,
                        name: params[:shop][:name],
                        business_name: params[:shop][:business_name],
                        city: params[:shop][:city],
@@ -31,12 +29,10 @@ module MagazStoreAdmin
         @shop = service.result
         # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
         #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_SHOP_EVENT)
-        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
+        flash.now[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         render 'edit'
       else
-        service.errors.full_messages.each do |msg|
-          @shop.errors.add(:base, msg)
-        end
+        @shop = service.shop
         render 'edit'
       end
     end
@@ -48,12 +44,11 @@ module MagazStoreAdmin
     end
 
     def payments_settings_update
-      @shop = current_shop
       service = MagazCore::AdminServices::Shop::ChangePaymentSettings
-                  .run(id: @shop.id,
+                  .run(id: current_shop.id,
                        authorization_settings: params[:shop][:authorization_settings])
+      @shop = service.result
       if service.valid?
-        @shop = service.result
         flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to payments_settings_settings_path
       else
@@ -68,9 +63,8 @@ module MagazStoreAdmin
     end
 
     def checkouts_settings_update
-      @shop = current_shop
       service = MagazCore::AdminServices::Shop::ChangeCheckoutSettings
-                  .run(id: @shop.id,
+                  .run(id: current_shop.id,
                        account_type_choice: params[:shop][:account_type_choice],
                        enable_multipass_login: params[:shop][:enable_multipass_login],
                        billing_address_is_shipping_too: params[:shop][:billing_address_is_shipping_too],
@@ -89,9 +83,7 @@ module MagazStoreAdmin
         flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to checkouts_settings_settings_path
       else
-        service.errors.full_messages.each do |msg|
-          @shop.errors.add(:base, msg)
-        end
+        @shop = service.shop
         render "checkouts_settings"
       end
     end
@@ -116,22 +108,17 @@ module MagazStoreAdmin
     end
 
     def taxes_settings_update
-      @shop = current_shop
       service = MagazCore::AdminServices::Shop::ChangeTaxesSettings
-                  .run(id: @shop.id,
+                  .run(id: current_shop.id,
                        all_taxes_are_included: params[:shop][:all_taxes_are_included],
-                       charge_taxes_on_shipping_rates: params[:shop][:charge_taxes_on_shipping_rates])
+                       charge_taxes_on_shipping_rates: params[:shop][:charge_taxes_on_shipping_rates],
+                       charge_vat_taxes: params[:charge_vat_taxes])
       if service.valid?
         @shop = service.result
         flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
-        unless params[:charge_vat_taxes]
-          current_shop.update_attributes(eu_digital_goods_collection_id:  nil)
-        end
         redirect_to taxes_settings_settings_path
       else
-        service.errors.full_messages.each do |msg|
-          @shop.errors.add(:base, msg)
-        end
+        @shop = service.shop
         render "taxes_settings"
       end
     end
@@ -141,10 +128,10 @@ module MagazStoreAdmin
                   .run(id: current_shop.id,
                        collection_name: DIGITAL_GOODS_VAT_TAX)
       if service.valid?
-        flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
+        flash.now[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
         redirect_to taxes_settings_settings_path
       else
-        flash[:notice] = service.errors.full_messages.first
+        flash.now[:notice] = service.errors.full_messages.first
         redirect_to taxes_settings_settings_path
       end
     end
@@ -159,7 +146,7 @@ module MagazStoreAdmin
       service = MagazCore::AdminServices::Shop::ChangeDefaultCollection
                   .run(id: current_shop.id, collection_id: params[:default_collection])
       unless service.valid?
-        flash[:notice] = service.errors.full_messages.first
+        flash.now[:notice] = service.errors.full_messages.first
       end
       redirect_to taxes_settings_settings_path
     end

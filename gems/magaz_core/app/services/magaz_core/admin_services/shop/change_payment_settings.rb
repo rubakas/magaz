@@ -1,20 +1,13 @@
 class MagazCore::AdminServices::Shop::ChangePaymentSettings < ActiveInteraction::Base
 
-  AUTHORIZATION_METHOD = %w[ authorize_and_charge authorize ]
-
   string :authorization_settings
   integer :id
 
   validates :id, :authorization_settings, presence: true
 
-  validate :authorization_method_included?
-
   def execute
-    params = inputs.slice!(:id)
     shop = MagazCore::Shop.find(id)
-    params[:authorization_settings] = nil unless authorization_method_included?
-
-    shop.update_attributes!(params) ||
+    shop.update_attributes!(shop_params) ||
       errors.add(:base, I18n.t('services.shop_services.wrong_params'))
 
     shop
@@ -22,8 +15,14 @@ class MagazCore::AdminServices::Shop::ChangePaymentSettings < ActiveInteraction:
 
   private
 
+  def shop_params
+    params = inputs.slice!(:id)
+    params[:authorization_settings] = nil unless authorization_method_included?
+    params
+  end
+
   def authorization_method_included?
-    AUTHORIZATION_METHOD.include?(authorization_settings)
+    %w[ authorize_and_charge authorize ].include?(authorization_settings)
   end
 
 end
