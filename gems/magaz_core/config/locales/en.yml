@@ -173,6 +173,7 @@ en:
   services:
     shop_services:
       wrong_params: "Wrong params for shop"
+      wrong_collection: "Collection does not exist in this shop"
 
     add_article:
       title_not_unique: "Title has already been taken"

@@ -4,7 +4,7 @@ class MagazCore::AdminServices::Shop::ChangeDefaultCollection < ActiveInteractio
 
   validates :id, :collection_id, presence: true
 
-  validate :collection_exists?
+  validate :collection_existence
 
   def execute
     shop = MagazCore::Shop.find(id)
@@ -16,6 +16,10 @@ class MagazCore::AdminServices::Shop::ChangeDefaultCollection < ActiveInteractio
   end
 
   private
+
+  def collection_existence
+    errors.add(:base, I18n.t('services.shop_services.wrong_collection')) unless collection_exists?
+  end
 
   def collection_exists?
     MagazCore::Collection.where(shop_id: id, id: collection_id).present?

@@ -1,8 +1,5 @@
 class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
 
-  UNIT_SYSTEM = %w[ metric imperial]
-  CURRENCY    = %w[ USD EURO HRN]
-
   set_callback :validate, :after, -> {shop}
 
   string :name
@@ -17,8 +14,8 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
 
   validates :id, :name, presence: true
   validates :country, inclusion: YAML.load_file("#{MagazCore::Engine.root}/config/countries.yml")['countries'].keys
-  validates :unit_system, inclusion: UNIT_SYSTEM
-  validates :currency, inclusion: CURRENCY
+  validates :unit_system, inclusion: %w[ metric imperial]
+  validates :currency, inclusion: %w[ USD EURO HRN]
   validates :timezone, inclusion: ActiveSupport::TimeZone.zones_map.values.collect{|z| z.name}
 
   validate :check_customer_email
