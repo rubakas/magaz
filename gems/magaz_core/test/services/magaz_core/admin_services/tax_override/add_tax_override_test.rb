@@ -18,7 +18,7 @@ class MagazCore::AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport:
     @blank_params = { is_shipping: '',
                       collection_id: '',
                       rate: '',
-                      shipping_country_id: '' }
+                      shipping_country_id: @shipping_country.id }
     @wrong_params = { is_shipping: 'false',
                       collection_id: nil,
                       rate: '4',
@@ -53,14 +53,21 @@ class MagazCore::AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport:
     service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
                 .run(@wrong_params)
     refute service.valid?
-    assert_equal 2, service.errors.count
-    assert_equal 'Wrong params for tax override', service.errors.full_messages.first
+    assert_equal 2, service.tax_override.errors.count
+    assert_equal 'Wrong params for tax override',
+                 service.tax_override.errors.full_messages.first
   end
 
   test 'fails to create tax_override with blank_params params' do
     service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
                 .run(@blank_params)
     refute service.valid?
-    assert_equal 4, service.errors.count
+    assert_equal 3, service.tax_override.errors.count
+    assert_equal "Rate is not a valid float",
+                 service.tax_override.errors.full_messages.first
+    assert_equal "Collection is not a valid integer",
+                 service.tax_override.errors.full_messages[1]
+    assert_equal "Is shipping is not a valid boolean",
+                 service.tax_override.errors.full_messages.last
   end
 end

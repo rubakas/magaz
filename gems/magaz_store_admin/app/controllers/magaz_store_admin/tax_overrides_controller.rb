@@ -26,7 +26,8 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to tax_override_path(@shipping_country)
       else
-        @shipping_country = current_shop.shipping_countries.find_by_id(params[:shipping_country_id])
+        @tax_override = service.tax_override
+        @shipping_country = @tax_override.shipping_country
         flash[:notice] = t('.notice_fail')
         redirect_to tax_override_path(@shipping_country)
       end
@@ -39,12 +40,10 @@ module MagazStoreAdmin
     end
 
     def update
-      @tax_override = MagazCore::TaxOverride.find(params[:id])
-      @shipping_country = @tax_override.shipping_country
       service = MagazCore::AdminServices::TaxOverride::ChangeTaxOverride
-                  .run(id: @tax_override.id,
-                       shipping_country_id: params[:tax_override][:shipping_country_id],
-                       collection_id: params[:tax_override][:collection_id],
+                  .run(id: params[:id],
+                       shipping_country_id: params[:shipping_country_id],
+                       collection_id: params[:tax_override][:collection_id].to_i,
                        rate: params[:tax_override][:rate],
                        is_shipping: params[:tax_override][:is_shipping])
       if service.valid?
@@ -53,6 +52,8 @@ module MagazStoreAdmin
         flash[:notice] = t('.notice_success')
         redirect_to tax_override_path(@shipping_country)
       else
+        @tax_override = service.tax_override
+        @shipping_country = @tax_override.shipping_country
         flash[:notice] = t('.notice_fail')
         redirect_to tax_override_path(@shipping_country)
       end
@@ -62,7 +63,7 @@ module MagazStoreAdmin
       service = MagazCore::AdminServices::TaxOverride::DeleteTaxOverride
                   .run(id: params[:id])
       flash[:notice] = t('.notice_success')
-      redirect_to tax_override_path(service.shipping_country)
+      redirect_to tax_override_path(service.result.shipping_country)
     end
 
   end

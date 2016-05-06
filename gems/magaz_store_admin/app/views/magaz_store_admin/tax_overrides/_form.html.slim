@@ -24,10 +24,12 @@
           = link_to t('.create'), new_collection_path
           = '.'
 
-        div class="field"
-          = f.select(:collection_id,
-                       content_tag(:option, t('.select_collection_drop_down'),
-                       :value=>"") + options_from_collection_for_select(@collections, "id", "name"), {},class: 'form-control')
+        - if @tax_override.collection
+          div class="field"
+            = f.select(:collection_id, options_from_collection_for_select(@collections, :id, :name, selected: @tax_override.collection) + content_tag(:option, t('.select_collection_drop_down'), value: nil), {}, class: "form-control")
+        - else
+          div class="field"
+            = f.select(:collection_id, options_from_collection_for_select(@collections, :id, :name, selected: "Soome"), {:include_blank => t('.select_collection_drop_down'), value: nil}, class: "form-control")
         br
         div class="field"
           table class="table table-hover"
