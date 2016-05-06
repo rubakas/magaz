@@ -28,7 +28,7 @@ module MagazStoreAdmin
         delete :destroy, id: @tax_override.id
       end
 
-      assert_redirected_to tax_override_path(assigns(:shipping_country))
+      assert_redirected_to tax_override_path(@shipping_country)
     end
   end
 end

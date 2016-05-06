@@ -13,10 +13,10 @@ class MagazCore::AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSuppo
                         collection_id: @collection.id,
                         shipping_country_id: @shipping_country.id,
                         rate: '48'}
-    @blank_params = { id: '',
+    @blank_params = { id: @tax_override.id,
                       is_shipping: '',
                       collection_id: '',
-                      shipping_country_id: '',
+                      shipping_country_id: @shipping_country.id,
                       rate: '' }
   end
 
@@ -34,11 +34,12 @@ class MagazCore::AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSuppo
     service = MagazCore::AdminServices::TaxOverride::ChangeTaxOverride
                 .run(@blank_params)
     refute service.valid?
-    assert_equal 5, service.errors.count
-    assert_equal "Id is not a valid integer", service.errors.full_messages.first
-    assert_equal "Collection is not a valid integer", service.errors.full_messages[1]
-    assert_equal "Shipping country is not a valid integer", service.errors.full_messages[2]
-    assert_equal "Rate is not a valid float", service.errors.full_messages[3]
-    assert_equal "Is shipping is not a valid boolean", service.errors.full_messages.last
+    assert_equal 3, service.tax_override.errors.count
+    assert_equal "Collection is not a valid integer",
+                 service.tax_override.errors.full_messages.first
+    assert_equal "Rate is not a valid float",
+                 service.tax_override.errors.full_messages[1]
+    assert_equal "Is shipping is not a valid boolean",
+                 service.tax_override.errors.full_messages.last
   end
 end
