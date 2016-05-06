@@ -52,13 +52,5 @@ module MagazCore
     belongs_to :eu_digital_goods_collection, class_name: 'MagazCore::Collection' , foreign_key: "eu_digital_goods_collection_id"
     has_many :events
     has_many :webhooks
-
-    ABANDONED_CHECKOUT_TIME_DELAY = %w[ never six_hours day]
-    EMAIL_MARKETING_CHOICE = %w[ customer_agrees customer_does_not_agree disable ]
-
-
-    #validates :name, presence: true, uniqueness: true
-    #validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY, :allow_blank => true
-    #validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE, :allow_blank => true
   end
 end
