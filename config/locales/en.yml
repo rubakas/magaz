@@ -657,6 +657,7 @@ en:
     shipping_rates:
       create:
         notice_success: "Shipping rate was successfully created."
+        notice_fail: "Shipping rate was not created."
       update:
         notice_success: "Shipping rate was successfully updated."
         notice_fail: "Shipping rate was not updated."
