@@ -1,0 +1,17 @@
+= paginate @articles
+
+table class="table table-striped"
+  thead
+    tr
+      th = t('.title')
+      th
+
+  tbody
+    - @articles.each do |article|
+      tr
+        td = link_to article.title, [ article]
+        td = link_to t('.delete'), [ article], method: :delete, data: { confirm: t('.confirmation') }
+
+br
+
+= paginate @articles

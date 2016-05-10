@@ -1,0 +1,43 @@
+= form_for([@link_list]) do |f|
+  - if @link_list.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@link_list.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @link_list.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="form-group"
+    = f.label :name
+    br
+    = f.text_field :name, class: 'form-input'
+  div class="form-group"
+    = f.label :handle
+    br
+    = f.text_field :handle, class: 'form-input'
+
+  hr
+  h4 = t('.links')
+  table class="table table-striped"
+    thead
+      tr
+        th = t('.number')
+        th = t('.name')
+        th
+    tbody
+      - @link_list.links.each do |l|
+        tr
+          td = l.position
+          td = l.name
+          td = link_to t('.delete'), [ @link_list, l], method: :delete, data: { confirm: t('.confirmation') }
+        br
+  = link_to t('.add_links'), new_admin_link_list_link_path(@link_list), class: 'button-secondary'
+
+
+
+  hr
+  div class="form-group"
+    = link_to t('.back'), admin_link_lists_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')

@@ -1,0 +1,24 @@
+= paginate @orders
+
+table class="table table-striped"
+  thead
+    tr
+      th = t('.number')
+      th = t('.date')
+      th = t('.customer')
+      th = t('.payment_status')
+      th = t('.fulfillment_status')
+      th = t('.total')
+
+  tbody
+    - @orders.each do |order|
+      tr
+        td = link_to "##{order.id}", order_path(order)
+        td = order.created_at
+        td = order.customer.id
+        td = order.financial_status
+        td = order.fulfillment_status
+        td = order.total_price
+br
+
+= paginate @orders

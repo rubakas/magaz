@@ -1,0 +1,24 @@
+= form_for([:settings, @email_template]) do |f|
+
+  h4
+    = t('.logo1')
+    = " "
+    = @email_template.name
+    = t('.logo2')
+
+  div class="field"
+    = f.label t('.email_subject')
+    = f.text_field :title, class: 'form-control'
+  div class='action'
+      = link_to t('.plain_text_email'), '#' , class:'btn btn-default'
+      = link_to t('.html_email'), '#' , class:'btn btn-default'
+
+  div class='inf'
+      = t('.info')
+  div class="field"
+      = f.text_area :body, class: "form-control"
+
+  div class='action'
+      = button_tag t('.save'), class:'btn btn-primary'
+      = link_to t('.close'), notifications_settings_admin_settings_path, class:'btn btn-default'
+      = link_to t('.preview'), admin_settings_email_template_path(@email_template.id) , class:'btn btn-default'

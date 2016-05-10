@@ -1,0 +1,30 @@
+= form_for([@webhook]) do |f|
+  - if @webhook.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@webhook.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @webhook.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="form-group"
+    = f.label t('.event')
+    br
+    = f.select(:topic, MagazCore::Webhook::Topics::WEBHOOKS_TOPICS_LIST.map {|t| [I18n.t("topics.#{t}"), t]})
+
+  div class="form-group"
+    = f.label t('.format')
+    br
+    = f.select :format, MagazCore::Webhook::FORMAT_CHOICE, class: 'form-control'
+
+  div class="form-group"
+    = f.label t('.url')
+    br
+    = f.text_field :address, :placeholder => "https://www.example.com/", class: 'form-input'
+
+  hr
+  div class="form-group"
+    = link_to t('.back'), admin_webhooks_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')

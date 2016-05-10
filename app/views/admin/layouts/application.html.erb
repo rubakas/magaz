@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('.shop') %></title>
+	<meta name="viewport"
+    content="width=device-width, initial-scale=1.0"/>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+  <%= stylesheet_link_tag    "application",
+        media: "all",
+        "data-turbolinks-track" => true %>
+
+  <%= javascript_include_tag "application",
+        "data-turbolinks-track" => true,
+        defer: "defer" %>
+
+  <%= csrf_meta_tags %>
+</head>
+  <body>
+
+  <div class="navbar-public">
+    <div class='container'>
+      <%= link_to t('.shop'), root_path, class: 'navbar-brand' %>
+      <ul class='nav navbar-nav pull-right'>
+        <li>
+          <%= link_to new_admin_session_path,
+                      class: 'pull-right' do %>
+            <i class="icon-signin"></i>
+            <%= t('.sign_in')%>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <%= yield %>
+
+  </body>
+</html>

@@ -1,0 +1,24 @@
+= form_for([@shipping_country]) do |f|
+  - if @shipping_country.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@shipping_country.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @shipping_country.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="form-group"
+    = f.label :name
+    br
+    = f.country_select :name, class: 'form-input'
+  div class="form-group"
+    = f.label :tax
+    br
+    = f.text_field :tax, class: 'form-input'
+
+  hr
+  div class="form-group"
+    = link_to t('.back'), admin_shipping_countries_path, class: 'button-secondary'
+    |
+    = f.submit(class: 'button')

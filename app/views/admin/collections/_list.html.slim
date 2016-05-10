@@ -1,0 +1,17 @@
+= paginate @collections
+
+table class="table table-striped"
+  thead
+    tr
+      th = t('.title')
+      th
+
+  tbody
+    - @collections.each do |collection|
+      tr
+        td = link_to collection.name, [ collection]
+        td = link_to t('.delete'), [ collection], method: :delete, data: { confirm: t('.confirmation') }
+
+br
+
+= paginate @collections

@@ -1,0 +1,28 @@
+= form_for([ @link_list, @link]) do |f|
+  - if @link.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@link.errors.count, t('.error'))
+      br = t('.prohibit')
+
+      ul
+      - @link.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="form-group"
+    = f.label :name
+    br
+    = f.text_field :name, class: 'form-input'
+  div class="form-group"
+    = f.label :position
+    br
+    = f.text_field :position
+  div class="form-group"
+    = f.label :link_type
+    br
+    = f.text_field :link_type
+
+    hr
+  div class="form-group"
+    = link_to t('.back'), admin_link_list_url(@link_list), class: 'button-secondary'
+    |
+    = f.submit(class: 'button')
