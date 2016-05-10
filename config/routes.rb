@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     mount MagazStoreAdmin::Engine => "/admin", :as => 'magaz_store_admin'
 
   end
-
+  get 'learn_more' => 'themes_store#learn_more'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
