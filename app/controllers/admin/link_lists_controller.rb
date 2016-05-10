@@ -1,4 +1,4 @@
-class Admin::LinkListsController < ApplicationController
+class Admin::LinkListsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
   def index

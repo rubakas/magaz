@@ -1,6 +1,6 @@
-class Admin::ShippingCountriesController < ApplicationController
+class Admin::ShippingCountriesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  layout 'admin_settings'
+  layout 'admin/admin_settings'
 
   def index
     @shipping_countries = current_shop.shipping_countries.page(params[:page])

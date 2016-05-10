@@ -1,4 +1,4 @@
-class Admin::CollectionsController < ApplicationController
+class Admin::CollectionsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
   def index

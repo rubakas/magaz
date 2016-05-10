@@ -1,4 +1,4 @@
-class Admin::EmailTemplatesController < ApplicationController
+class Admin::EmailTemplatesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
   def show

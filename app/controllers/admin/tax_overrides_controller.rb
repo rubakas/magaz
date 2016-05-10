@@ -1,5 +1,5 @@
-class Admin::TaxOverridesController < ApplicationController
-  layout 'admin_settings'
+class Admin::TaxOverridesController < Admin::ApplicationController
+  layout 'admin/admin_settings'
 
   def show
     @shipping_country = current_shop.shipping_countries.find_by_id(params[:id])

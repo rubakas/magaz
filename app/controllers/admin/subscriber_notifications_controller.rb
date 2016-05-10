@@ -1,4 +1,4 @@
-class Admin::SubscriberNotificationsController < ApplicationController
+class Admin::SubscriberNotificationsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
   def new

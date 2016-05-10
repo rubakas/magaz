@@ -1,5 +1,5 @@
-class Admin::UsersController < ApplicationController
-  layout 'admin_settings'
+class Admin::UsersController < Admin::ApplicationController
+  layout 'admin/admin_settings'
 
   before_action :authenticate?, except: [:show]
   before_action :token_valid?, only: [:show]

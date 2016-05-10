@@ -1,6 +1,6 @@
-class Admin::FilesController < ApplicationController
+class Admin::FilesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  layout 'admin_settings'
+  layout 'admin/admin_settings'
 
   def index
     @files = current_shop.files.page(params[:page])

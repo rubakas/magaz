@@ -1,6 +1,6 @@
-class Admin::ShippingRatesController < ApplicationController
+class Admin::ShippingRatesController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
-  layout 'admin_settings'
+  layout 'admin/admin_settings'
 
   def index
     @shipping_country = current_shop.shipping_countries.find(params[:shipping_country_id])

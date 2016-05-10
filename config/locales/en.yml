@@ -439,6 +439,7 @@ en:
         show: "Show Image"
         confirmation: "Are you sure?"
 
+  admin:
     sessions:
       new:
         sign_in: "Sign in"

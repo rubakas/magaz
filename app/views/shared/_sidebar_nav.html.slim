@@ -9,31 +9,31 @@ section class='sidebar-section'
         path: admin_root_path,
         icon_class: 'icon-dashboard',
         label: t('.dashboard'),
-        active_conditions: { controller: 'dashboard' }
+        active_conditions: { controller: 'admin/dashboard' }
 
     = render 'shared/li_link_to',
       path: admin_orders_path,
       icon_class: 'icon-barcode',
       label: t('.orders'),
-      active_conditions: { controller: 'orders' }
+      active_conditions: { controller: 'admin/orders' }
 
     = render 'shared/li_link_to',
       path: admin_customers_path,
       icon_class: 'icon-user',
       label: t('.customers'),
-      active_conditions: { controller: 'customers' }
+      active_conditions: { controller: 'admin/customers' }
 
     = render 'shared/li_link_to',
       path: admin_products_path,
       icon_class: 'icon-gift',
       label: t('.products'),
-      active_conditions: { controller: 'products' }
+      active_conditions: { controller: 'admin/products' }
 
     = render 'shared/li_link_to',
       path: admin_collections_path,
       icon_class: 'icon-tags',
       label: t('.collections'),
-      active_conditions: { controller: 'collections' }
+      active_conditions: { controller: 'admin/collections' }
 
   hr
 
@@ -45,19 +45,19 @@ section class='sidebar-section'
       path: admin_pages_path,
       icon_class: 'icon-th',
       label: t('.pages'),
-      active_conditions: { controller: 'pages' }
+      active_conditions: { controller: 'admin/pages' }
 
     = render 'shared/li_link_to',
       path: admin_articles_path,
       icon_class: 'icon-list-alt',
       label: t('.blogs'),
-      active_conditions: { controller: 'articles' }
+      active_conditions: { controller: 'admin/articles' }
 
     = render 'shared/li_link_to',
       path: admin_link_lists_path,
       icon_class: 'icon-link',
       label: t('.navigation'),
-      active_conditions: { controller: 'link_lists' }
+      active_conditions: { controller: 'admin/link_lists' }
 
 
   hr
@@ -70,12 +70,12 @@ section class='sidebar-section'
         path: edit_admin_settings_path,
         icon_class: 'icon-cogs',
         label: t('.settings'),
-        active_conditions: { controller: 'settings',  action: 'edit' }
+        active_conditions: { controller: 'admin/settings',  action: 'edit' }
 
     = render 'shared/li_link_to',
         path: admin_root_path,
         icon_class: 'icon-picture',
         label: t('.themes'),
-        active_conditions: { controller: 'dashboard' }
+        active_conditions: { controller: 'admin/dashboard' }
 
   hr

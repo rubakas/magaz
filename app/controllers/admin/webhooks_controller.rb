@@ -1,5 +1,5 @@
-class Admin::WebhooksController < ApplicationController
-  layout 'admin_settings'
+class Admin::WebhooksController < Admin::ApplicationController
+  layout 'admin/admin_settings'
   include MagazCore::Concerns::Authenticable
 
   def index

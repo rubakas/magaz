@@ -1,4 +1,4 @@
-class Admin::BlogsController < ApplicationController
+class Admin::BlogsController < Admin::ApplicationController
   include MagazCore::Concerns::Authenticable
 
   def index

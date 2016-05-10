@@ -8,7 +8,7 @@ module MagazCore
       end
 
       protected
-      
+
       def current_shop
         MagazCore::Shop.find_by_subdomain(request.subdomain)
       end

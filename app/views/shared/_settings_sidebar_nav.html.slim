@@ -8,55 +8,55 @@ section class='sidebar-section'
         path: edit_admin_settings_path,
         icon_class: 'icon-cogs',
         label: t('.settings'),
-        active_conditions: { controller: 'settings',  action: 'edit' }
+        active_conditions: { controller: 'admin/settings',  action: 'edit' }
 
     = render 'shared/li_link_to',
         path: admin_files_path,
         icon_class: 'icon-hdd',
         label: t('.files'),
-        active_conditions: { controller: 'files' }
+        active_conditions: { controller: 'admin/files' }
 
     = render 'shared/li_link_to',
         path: admin_users_path,
         icon_class: 'icon-asterisk',
         label: t('.users'),
-        active_conditions: { controller: 'users' }
+        active_conditions: { controller: 'admin/users' }
 
     = render 'shared/li_link_to',
         path: admin_shipping_countries_path,
         icon_class: 'icon-road',
         label: t('.shipping'),
-        active_conditions: { controller: 'shipping_countries' }
+        active_conditions: { controller: 'admin/shipping_countries' }
 
     = render 'shared/li_link_to',
         path: checkouts_settings_admin_settings_path,
         icon_class: 'icon-shopping-cart',
         label: t('.checkouts'),
-        active_conditions: { controller: 'settings',  action: 'checkouts_settings' }
+        active_conditions: { controller: 'admin/settings',  action: 'checkouts_settings' }
 
     = render 'shared/li_link_to',
         path: payments_settings_admin_settings_path,
         icon_class: 'icon-credit-card',
         label: t('.payments'),
-        active_conditions: { controller: 'settings',  action: 'payments_settings' }
+        active_conditions: { controller: 'admin/settings',  action: 'payments_settings' }
 
     = render 'shared/li_link_to',
         path: notifications_settings_admin_settings_path,
         icon_class: 'icon-bell',
         label: t('.notifications'),
-        active_conditions: { controller: 'settings',  action: 'notifications_settings' }
+        active_conditions: { controller: 'admin/settings',  action: 'notifications_settings' }
 
     = render 'shared/li_link_to',
         path: taxes_settings_admin_settings_path,
         icon_class: 'icon-legal',
         label: t('.taxes'),
-        active_conditions: { controller: 'settings',  action: 'taxes_settings' }
+        active_conditions: { controller: 'admin/settings',  action: 'taxes_settings' }
 
     = render 'shared/li_link_to',
         path: admin_webhooks_path,
         icon_class: 'icon-cloud',
         label: t('.webhooks'),
-        active_conditions: { controller: 'webhooks' }
+        active_conditions: { controller: 'admin/webhooks' }
 
     hr
 
@@ -64,6 +64,6 @@ section class='sidebar-section'
         path: admin_root_path,
         icon_class: 'icon-arrow-left',
         label: t('.back'),
-        active_conditions: { controller: 'dashboard' }
+        active_conditions: { controller: 'admin/dashboard' }
 
   hr
