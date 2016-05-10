@@ -58,6 +58,6 @@ module MagazStoreAdmin
       flash[:notice] = t('.notice_success')
       redirect_to articles_url
     end
-    
+
   end
 end

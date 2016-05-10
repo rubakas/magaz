@@ -11,13 +11,18 @@ Rails.application.routes.draw do
       end
     end
     resource :session, only: [:create, :destroy, :new, :show]
+  end
 
+  constraints(ThemeStoreSubdomainConstraint) do
+    mount MagazThemeStore::Engine => "/"
+  end
+
+  constraints(ShopSubdomainConstraint) do
+  #  mount MagazStore::Engine => "/"
+  #
+  #   # mount MagazStoreAdmin::Engine => "/admin", :as => 'magaz_store_admin'
+  #
     namespace :admin do
-
-      constraints host: HOSTNAME do
-        get 'goodbye' => 'welcome#goodbye', as: :goodbye
-      end
-
       root 'dashboard#index'
       resources :articles, except: [:edit]
       resources :blogs, except: [:edit]
@@ -71,20 +76,7 @@ Rails.application.routes.draw do
       resources :users, except: [:edit]
       resources :webhooks, except: [:edit]
     end
-
   end
-
-  constraints(ThemeStoreSubdomainConstraint) do
-    mount MagazThemeStore::Engine => "/"
-  end
-
-  # constraints(ShopSubdomainConstraint) do
-  #   mount MagazStore::Engine => "/"
-  #
-  #   # mount MagazStoreAdmin::Engine => "/admin", :as => 'magaz_store_admin'
-  #
-  #   end
-  # end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
