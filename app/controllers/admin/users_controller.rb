@@ -19,8 +19,8 @@ class Admin::UsersController < ApplicationController
   def create
     @current_user = current_shop.users.find(session[:user_id])
     url_building_proc = lambda {|user_object|
-                                user_url(user_object,
-                                         invite_token: user_object.invite_token)}
+                                admin_user_url(user_object,
+                                               invite_token: user_object.invite_token)}
 
     service = MagazCore::AdminServices::Invite::CreateInvite
                 .run(url_building_proc: url_building_proc,
@@ -68,13 +68,13 @@ class Admin::UsersController < ApplicationController
 
   def authenticate?
     unless current_shop.users.exists?(id: session[:user_id])
-      redirect_to root_path
+      redirect_to admin_root_path
     end
   end
 
   def token_valid?
     if !current_shop.users.exists?(invite_token: params[:invite_token])
-      redirect_to root_path, notice: t('.invalid_token')
+      redirect_to admin_root_path, notice: t('.invalid_token')
     end
    end
 

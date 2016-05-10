@@ -1,7 +1,7 @@
 p id="notice"
   = notice
 
-= form_for [@shop], url: [:notifications_settings, :settings]
+= form_for [:admin, @shop], url: [:admin, :notifications_settings, :settings]
 
   h4
     i class="icon-bell"
@@ -59,4 +59,4 @@ p id="notice"
                     br
                     = subscriber.subscription_address
                 td = link_to(t('.send_test_notification'), :controller => "subscriber_notifications", :action => "send_test_notification", :id => subscriber.id)
-                td = link_to t('.delete'), [ :settings, subscriber], method: :delete, data: { confirm: t('.confirmation') }
+                td = link_to t('.delete'), [:admin, :settings, subscriber], method: :delete, data: { confirm: t('.confirmation') }

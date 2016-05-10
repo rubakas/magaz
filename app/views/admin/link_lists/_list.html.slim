@@ -10,7 +10,7 @@ table class="table table-striped"
   - @link_lists.each do |link_list|
     tr
       td = link_to link_list.name, [:admin, link_list]
-      td = link_to t('.add_links'), new_link_list_link_path(link_list)
+      td = link_to t('.add_links'), new_admin_link_list_link_path(link_list)
       td = link_to t('.delete'), [:admin, link_list], method: :delete, data: { confirm: t('.confirmation') }
   tbody
 

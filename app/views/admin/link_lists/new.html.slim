@@ -1,5 +1,5 @@
 h4 = t('.add')
-= form_for([@link_list]) do |f|
+= form_for([:admin, @link_list]) do |f|
   - if @link_list.errors.any?
     div id="error_explanation"
       h2 = pluralize(@link_list.errors.count, t('.error'))
@@ -31,7 +31,7 @@ h4 = t('.add')
         tr
           td = l.position
           td = l.name
-          td = link_to t('.delete'), [ @link_list, l], method: :delete, data: { confirm: t('.confirmation') }
+          td = link_to t('.delete'), [:admin, @link_list, l], method: :delete, data: { confirm: t('.confirmation') }
         br
   hr
   div class="form-group"

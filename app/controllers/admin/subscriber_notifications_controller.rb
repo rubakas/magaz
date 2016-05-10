@@ -13,7 +13,7 @@ class Admin::SubscriberNotificationsController < ApplicationController
     if service.valid?
       @subscriber_notification = service.result
       flash[:notice] = t('.notice_success')
-      redirect_to admin_notifications_settings_settings_path
+      redirect_to notifications_settings_admin_settings_path
     else
       @subscriber_notification = service.subscriber_notification
       flash.now[:notice] = t('.notice_fail')
@@ -26,7 +26,7 @@ class Admin::SubscriberNotificationsController < ApplicationController
       .run(id: params[:id],
            shop_id: current_shop.id)
     flash.now[:notice] = t('.notice_success')
-    redirect_to admin_notifications_settings_settings_path
+    redirect_to notifications_settings_admin_settings_path
   end
 
   def send_test_notification
@@ -38,7 +38,7 @@ class Admin::SubscriberNotificationsController < ApplicationController
       redirect_to admin_notifications_settings_settings_path
     else
       flash[:notice] = t('.notice_success')
-      redirect_to admin_notifications_settings_settings_path
+      redirect_to notifications_settings_admin_settings_path
     end
   end
 

@@ -1,4 +1,4 @@
-= form_for(:admin, @webhook) do |f|
+= form_for [:admin, @webhook] do |f|
   - if @webhook.errors.any?
     div id="error_explanation"
       h2 = pluralize(@webhook.errors.count, t('.error'))

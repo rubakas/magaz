@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= t('.shop') %></title>
-	<meta name="viewport"
-    content="width=device-width, initial-scale=1.0"/>
+  <title><%= t('.admin_title') %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
@@ -17,23 +16,33 @@
 
   <%= csrf_meta_tags %>
 </head>
-  <body>
+<body>
 
-  <div class="navbar-public">
+  <div class='navbar-public'>
     <div class='container'>
       <%= link_to t('.shop'), admin_root_path, class: 'navbar-brand' %>
+
       <ul class='nav navbar-nav pull-right'>
         <li>
-          <%= link_to new_admin_session_path,
-                      class: 'pull-right' do %>
-            <i class="icon-signin"></i>
-            <%= t('.sign_in')%>
+          <%= link_to admin_session_path, method: :delete do %>
+          <%= t('.sign_out')%>
+          <i class="icon-signout"></i>
           <% end %>
         </li>
       </ul>
     </div>
   </div>
-  <%= yield %>
 
-  </body>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-xs-3'>
+        <%= render partial: 'shared/settings_sidebar_nav' %>
+      </div>
+      <div class='col-xs-9'>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+</body>
 </html>

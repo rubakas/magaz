@@ -1,7 +1,7 @@
 p id="notice"
   = notice
 
-= form_for [ @shop], url: [:payments_settings_update,:settings], method: :put do |f|
+= form_for [:admin, @shop], url: [:admin, :payments_settings_update,:settings], method: :put do |f|
 
   h4
     i class="icon-credit-card"

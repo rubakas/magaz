@@ -1,4 +1,4 @@
-= form_for([ :settings, @subscriber_notification]) do |f|
+= form_for [:admin, :settings, @subscriber_notification] do |f|
 
   - if @subscriber_notification.errors.any?
     div id="error_explanation"

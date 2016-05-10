@@ -11,7 +11,7 @@ table class="table table-striped"
   tbody
   - @abandoned_checkouts.each do |checkout|
       tr
-        td = link_to "##{checkout.id}", admin_checkout_path(checkout)
+        td = link_to "#{checkout.id}", admin_checkout_path(checkout)
         td = checkout.email
         td = checkout.created_at
   tbody

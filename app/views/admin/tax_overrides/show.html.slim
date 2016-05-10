@@ -1,7 +1,7 @@
 p id="notice"
   = notice
 
-= form_for([ @shipping_country]) do |f|
+= form_for [:admin, @shipping_country] do |f|
 
   h4
     i class="icon-cloud"
@@ -55,4 +55,4 @@ p id="notice"
                   td
                     = t('.instead_of', tax_rate: tax.rate, country_rate: @shipping_country.tax)
                   td
-                    = link_to t('.delete'), [ tax] ,method: :delete, data: { confirm: t('.confirmation') }
+                    = link_to t('.delete'), [:admin, tax], method: :delete, data: { confirm: t('.confirmation') }

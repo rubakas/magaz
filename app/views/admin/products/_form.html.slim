@@ -45,7 +45,7 @@
   div
     - new_product_image = @product.product_images.build
     = f.fields_for :product_images, new_product_image do |new_product_image|
-      = new_admin_product_image.file_field :image
+      = new_product_image.file_field :image
 
   hr
   h4 = t('.seo')
