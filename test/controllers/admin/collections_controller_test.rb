@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CollectionsControllerTest < ActionController::TestCase
+class Admin::CollectionsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -25,7 +25,7 @@ class CollectionsControllerTest < ActionController::TestCase
                                   handle: "Test handle", meta_description: "Test meta_description", description: "Test description" }
     end
 
-    assert_redirected_to collection_path(assigns(:collection))
+    assert_redirected_to admin_collection_path(assigns(:collection))
   end
 
   test "should show collection" do
@@ -36,7 +36,7 @@ class CollectionsControllerTest < ActionController::TestCase
   test "should update collection" do
     patch :update, id: @collection, collection: { name: "Changed name", shop_id: @shop.id, page_title: "Changed page_title",
                                                   handle: "Changed handle", meta_description: "Changed meta_description", description: "Changed description" }
-    assert_redirected_to collection_path(assigns(:collection))
+    assert_redirected_to admin_collection_path(assigns(:collection))
   end
 
   test "should destroy collection" do
@@ -44,6 +44,6 @@ class CollectionsControllerTest < ActionController::TestCase
       delete :destroy, id: @collection.id.to_s, shop_id: @shop.id
     end
 
-    assert_redirected_to collections_path
+    assert_redirected_to admin_collections_path
   end
 end

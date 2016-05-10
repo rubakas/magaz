@@ -1,4 +1,4 @@
-class Admin:CheckoutsController < ApplicationController
+class Admin::CheckoutsController < ApplicationController
   include MagazCore::Concerns::Authenticable
   before_action :set_abandoned_checkout, only: [:show, :destroy]
 

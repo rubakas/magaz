@@ -1,4 +1,4 @@
-class Admin:SettingsController < ApplicationController
+class Admin::SettingsController < ApplicationController
   include MagazCore::Concerns::Authenticable
   layout 'admin_settings'
 

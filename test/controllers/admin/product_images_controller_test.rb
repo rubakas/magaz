@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProductImagesControllerTest < ActionController::TestCase
+class Admin::ProductImagesControllerTest < ActionController::TestCase
 
   setup do
     @shop = create(:shop, subdomain: 'example')
@@ -56,6 +56,6 @@ class ProductImagesControllerTest < ActionController::TestCase
     assert_difference('MagazCore::ProductImage.count', -1) do
       delete :destroy, product_id: @product.id , id: @product_image.id
     end
-    assert_redirected_to product_product_images_path
+    assert_redirected_to admin_product_product_images_path
   end
 end

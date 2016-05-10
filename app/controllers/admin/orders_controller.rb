@@ -1,4 +1,4 @@
-class Admin:OrdersController < ApplicationController
+class Admin::OrdersController < ApplicationController
   include MagazCore::Concerns::Authenticable
   before_action :set_order, only: [:show, :update]
 

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DashboardControllerTest < ActionController::TestCase
+class Admin::DashboardControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)

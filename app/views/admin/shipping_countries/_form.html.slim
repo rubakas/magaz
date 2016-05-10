@@ -1,4 +1,4 @@
-= form_for([@shipping_country]) do |f|
+= form_for(:admin, @shipping_country) do |f|
   - if @shipping_country.errors.any?
     div id="error_explanation"
       h2 = pluralize(@shipping_country.errors.count, t('.error'))
@@ -27,8 +27,8 @@
     tbody
       - @shipping_country.shipping_rates.each do |sh_r|
         tr
-          td = link_to sh_r.name, [ @shipping_country, sh_r]
-          td = link_to t('.delete'), [ @shipping_country, sh_r], method: :delete, data: { confirm: t('.confirmation') }
+          td = link_to sh_r.name, [:admin, @shipping_country, sh_r]
+          td = link_to t('.delete'), [:admin, @shipping_country, sh_r], method: :delete, data: { confirm: t('.confirmation') }
         br
   = link_to t('.add_shipping_rates'), new_admin_shipping_country_shipping_rate_path(@shipping_country), class: 'button-secondary'
 

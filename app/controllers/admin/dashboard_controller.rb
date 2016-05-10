@@ -1,4 +1,4 @@
-class Admin:DashboardController < MagazStoreAdmin::ApplicationController
+class Admin::DashboardController < ApplicationController
   include MagazCore::Concerns::Authenticable
 
   def index

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionController::TestCase
+class Admin::UsersControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop, account_owner: true)
@@ -23,7 +23,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_difference('MagazCore::User.count') do
       post :create, { user: { email: "staff_user@example.com"} }
     end
-    assert_redirected_to users_path
+    assert_redirected_to admin_users_path
   end
 
   test "should show user" do
@@ -37,7 +37,7 @@ class UsersControllerTest < ActionController::TestCase
       { id: @user.id,
         user: { first_name: @user.first_name, last_name: @user.last_name,
                 email: @user.email, password: @user.password  } }
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to admin_user_path(assigns(:user))
   end
 
   test "should not update user" do
@@ -54,7 +54,7 @@ class UsersControllerTest < ActionController::TestCase
       delete :destroy, id: @user.id
     end
 
-    assert_redirected_to users_path
+    assert_redirected_to admin_users_path
   end
 
   test "should destroy user" do
@@ -62,6 +62,6 @@ class UsersControllerTest < ActionController::TestCase
       delete :destroy, id: @user2.id
     end
 
-    assert_redirected_to users_path
+    assert_redirected_to admin_users_path
   end
 end

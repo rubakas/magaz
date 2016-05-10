@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LinkListsControllerTest < ActionController::TestCase
+class Admin::LinkListsControllerTest < ActionController::TestCase
 
   setup do
     @shop = create(:shop, subdomain: 'example')
@@ -25,7 +25,7 @@ class LinkListsControllerTest < ActionController::TestCase
       post :create, { link_list: { name: "title", handle: "handle", shop_id: @shop.id} }
     end
 
-    assert_redirected_to link_list_path(assigns(:link_list))
+    assert_redirected_to admin_link_list_path(assigns(:link_list))
   end
 
   test "should show link_list" do
@@ -51,6 +51,6 @@ class LinkListsControllerTest < ActionController::TestCase
       delete :destroy, id: "#{@link_list.id}", shop_id: @shop.id
     end
 
-    assert_redirected_to link_lists_path
+    assert_redirected_to admin_link_lists_path
   end
 end

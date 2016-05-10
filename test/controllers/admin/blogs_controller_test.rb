@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BlogsControllerTest < ActionController::TestCase
+class Admin::BlogsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -25,7 +25,7 @@ class BlogsControllerTest < ActionController::TestCase
                             handle: "Test handle", meta_description: "Test meta_description" }
     end
 
-    assert_redirected_to blog_path(assigns(:blog))
+    assert_redirected_to admin_blog_path(assigns(:blog))
   end
 
   test "should show blog" do
@@ -49,6 +49,6 @@ class BlogsControllerTest < ActionController::TestCase
       delete :destroy, id: @blog.id
     end
 
-    assert_redirected_to blogs_path
+    assert_redirected_to admin_blogs_path
   end
 end

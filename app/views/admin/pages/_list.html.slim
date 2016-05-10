@@ -9,8 +9,8 @@ table class="table table-striped"
   tbody
     - @pages.each do |page|
       tr
-        td = link_to page.title, [ page]
-        td = link_to t('.delete'), [ page], method: :delete, data: { confirm: t('.confirmation') }
+        td = link_to page.title, [:admin, page]
+        td = link_to t('.delete'), [:admin, page], method: :delete, data: { confirm: t('.confirmation') }
 
 br
 

@@ -1,4 +1,4 @@
-class Admin:SessionsController < ApplicationController
+class Admin::SessionsController < Admin::ApplicationController
   #TODO: layout
   respond_to :html
 

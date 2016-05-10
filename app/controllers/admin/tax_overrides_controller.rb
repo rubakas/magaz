@@ -1,4 +1,4 @@
-class Admin:TaxOverridesController < ApplicationController
+class Admin::TaxOverridesController < ApplicationController
   layout 'admin_settings'
 
   def show

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProductsControllerTest < ActionController::TestCase
+class Admin::ProductsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -24,7 +24,7 @@ class ProductsControllerTest < ActionController::TestCase
       post :create, { product: { name: 'Very Unique Name' } }
     end
 
-    assert_redirected_to product_path(assigns(:product))
+    assert_redirected_to admin_product_path(assigns(:product))
   end
 
   test "should show product" do
@@ -37,7 +37,7 @@ class ProductsControllerTest < ActionController::TestCase
     patch :update,
       { id: @product.id,
         product: { description: @product.description, name: @product.name } }
-    assert_redirected_to product_path(assigns(:product))
+    assert_redirected_to admin_product_path(assigns(:product))
   end
 
   test "should not update product" do
@@ -53,7 +53,7 @@ class ProductsControllerTest < ActionController::TestCase
       delete :destroy, id: @product.id
     end
 
-    assert_redirected_to products_path
+    assert_redirected_to admin_products_path
   end
   #TODO: exctract shared example
 test "ownership separated" do
@@ -69,7 +69,7 @@ test "ownership separated" do
     patch :update,
       { id: @product3.id,
         product: { name: "changed" } }
-    assert_redirected_to product_path(assigns(:product))
+    assert_redirected_to admin_product_path(assigns(:product))
     assert_equal "changed", @product3.reload.name
     refute_equal "changed", @product2.reload.name
   end

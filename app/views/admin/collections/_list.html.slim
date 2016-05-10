@@ -9,8 +9,8 @@ table class="table table-striped"
   tbody
     - @collections.each do |collection|
       tr
-        td = link_to collection.name, [ collection]
-        td = link_to t('.delete'), [ collection], method: :delete, data: { confirm: t('.confirmation') }
+        td = link_to collection.name, [:admin, collection]
+        td = link_to t('.delete'), [:admin, collection], method: :delete, data: { confirm: t('.confirmation') }
 
 br
 

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class WebhooksControllerTest < ActionController::TestCase
+class Admin::WebhooksControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop, account_owner: true)
@@ -30,7 +30,7 @@ class WebhooksControllerTest < ActionController::TestCase
         webhook: { address: @webhook.address,
                    format: @webhook.format,
                    topic: @webhook.topic } }
-    assert_redirected_to webhook_path(assigns(:webhook))
+    assert_redirected_to admin_webhook_path(assigns(:webhook))
   end
 
   test "should not update webhook" do
@@ -46,6 +46,6 @@ class WebhooksControllerTest < ActionController::TestCase
       delete :destroy, id: @webhook.id
     end
 
-    assert_redirected_to webhooks_path
+    assert_redirected_to admin_webhooks_path
   end
 end

@@ -1,4 +1,4 @@
-class Admin:UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   layout 'admin_settings'
 
   before_action :authenticate?, except: [:show]

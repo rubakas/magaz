@@ -9,8 +9,8 @@ table class="table table-striped"
   tbody
   - @customers.each do |customer|
     tr
-      td = link_to customer.email, [ customer]
-      td = link_to t('.delete'), [ customer], method: :delete, data: { confirm: t('.confirmation') }
+      td = link_to customer.email, [:admin, customer]
+      td = link_to t('.delete'), [:admin, customer], method: :delete, data: { confirm: t('.confirmation') }
   tbody
 
 br

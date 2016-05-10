@@ -1,4 +1,4 @@
-class Admin:CustomersController < ApplicationController
+class Admin::CustomersController < ApplicationController
   include MagazCore::Concerns::Authenticable
   respond_to :csv
 

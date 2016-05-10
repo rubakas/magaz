@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CheckoutsControllerTest < ActionController::TestCase
+class Admin::CheckoutsControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)

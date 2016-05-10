@@ -1,4 +1,4 @@
-class Admin:EmailTemplatesController < ApplicationController
+class Admin::EmailTemplatesController < ApplicationController
   include MagazCore::Concerns::Authenticable
 
   def show
@@ -19,7 +19,7 @@ class Admin:EmailTemplatesController < ApplicationController
     if service.valid?
       @email_template = service.result
       flash[:notice] = t('.notice_success')
-      redirect_to admin_notifications_settings_settings_path
+      redirect_to notifications_settings_admin_settings_path
     else
       @email_template = service
       flash[:notice] = t('.notice_fail')

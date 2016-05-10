@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OrdersControllerTest < ActionController::TestCase
+class Admin::OrdersControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -23,7 +23,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should update order" do
     patch :update, id: @order, order: { status: @order.status }
-    assert_redirected_to order_path(assigns(:order))
+    assert_redirected_to admin_order_path(assigns(:order))
   end
 
 end

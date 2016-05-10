@@ -9,8 +9,8 @@ table class="table table-striped"
   tbody
   - @shipping_rates.each do |sh|
     tr
-      td = link_to sh.name, [ @shipping_country, sh]
-      td = link_to t('.delete'), [ @shipping_country, sh], method: :delete, data: { confirm: t(".confirmation") }
+      td = link_to sh.name, [:admin, @shipping_country, sh]
+      td = link_to t('.delete'), [:admin, @shipping_country, sh], method: :delete, data: { confirm: t(".confirmation") }
   tbody
 
 br

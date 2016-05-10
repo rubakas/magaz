@@ -1,4 +1,4 @@
-class Admin:WebhooksController < ApplicationController
+class Admin::WebhooksController < ApplicationController
   layout 'admin_settings'
   include MagazCore::Concerns::Authenticable
 

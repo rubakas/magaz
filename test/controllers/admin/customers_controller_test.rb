@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CustomersControllerTest < ActionController::TestCase
+class Admin::CustomersControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -30,7 +30,7 @@ class CustomersControllerTest < ActionController::TestCase
       post :create, { customer: { email: 'email@gmail.com', first_name: "Some First Name", last_name: "Some Last Name" } }
     end
 
-    assert_redirected_to customer_path(assigns(:customer))
+    assert_redirected_to admin_customer_path(assigns(:customer))
   end
 
   test "should show customer" do
@@ -43,14 +43,14 @@ class CustomersControllerTest < ActionController::TestCase
     patch :update,
       { id: @customer.id,
         customer: { first_name: @customer.first_name, last_name: "Changed Last Name", email: "changed@gamil.com" } }
-    assert_redirected_to customer_path(assigns(:customer))
+    assert_redirected_to admin_customer_path(assigns(:customer))
   end
 
   test "should destroy customer" do
     assert_difference('MagazCore::Customer.count', -1) do
       delete :destroy, id: @customer.id, shop_id: @shop.id
     end
-    assert_redirected_to customers_path
+    assert_redirected_to admin_customers_path
   end
 
 end

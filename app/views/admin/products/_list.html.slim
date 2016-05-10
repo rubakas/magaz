@@ -9,9 +9,9 @@ table class="table table-striped"
   tbody
   - @products.each do |product|
     tr
-      td = link_to product.name, [ product]
-      td = link_to t('.delete'), [ product], method: :delete, data: { confirm: t('.confirmation') }
-      td = link_to 'Show Images', [ product , :product_images]
+      td = link_to product.name, [:admin, product]
+      td = link_to t('.delete'), [:admin, product], method: :delete, data: { confirm: t('.confirmation') }
+      td = link_to 'Show Images', [:admin, product, :product_images]
   tbody
 
 br

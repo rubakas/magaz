@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ShippingCountriesControllerTest < ActionController::TestCase
+class Admin::ShippingCountriesControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -22,7 +22,7 @@ class ShippingCountriesControllerTest < ActionController::TestCase
     assert_difference('MagazCore::ShippingCountry.count') do
       post :create, { shipping_country: { name: 'FI', tax: 10 } }
     end
-    assert_redirected_to shipping_country_path(assigns(:shipping_country))
+    assert_redirected_to admin_shipping_country_path(assigns(:shipping_country))
   end
 
   test "should show country" do
@@ -34,7 +34,7 @@ class ShippingCountriesControllerTest < ActionController::TestCase
     patch :update,
       { id: @shipping_country.id,
         shipping_country: { name: "UA", tax: @shipping_country.tax, shop_id: @shop.id } }
-    assert_redirected_to shipping_country_path(assigns(:shipping_country))
+    assert_redirected_to admin_shipping_country_path(assigns(:shipping_country))
   end
 
   test "should not update shipping country" do
@@ -50,6 +50,6 @@ class ShippingCountriesControllerTest < ActionController::TestCase
       delete :destroy, id: @shipping_country.id
     end
 
-    assert_redirected_to shipping_countries_path
+    assert_redirected_to admin_shipping_countries_path
   end
 end

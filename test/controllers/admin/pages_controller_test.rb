@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PagesControllerTest < ActionController::TestCase
+class Admin::PagesControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -25,7 +25,7 @@ class PagesControllerTest < ActionController::TestCase
                             meta_description: "Test meta_description", content: "Test content" }
     end
 
-    assert_redirected_to page_path(assigns(:page))
+    assert_redirected_to admin_page_path(assigns(:page))
   end
 
   test "should show page" do
@@ -50,6 +50,6 @@ class PagesControllerTest < ActionController::TestCase
       delete :destroy, id: @page.id, shop_id: @shop.id
     end
 
-    assert_redirected_to pages_path
+    assert_redirected_to admin_pages_path
   end
 end

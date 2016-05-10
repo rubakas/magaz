@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TaxOverridesControllerTest < ActionController::TestCase
+class Admin::TaxOverridesControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -27,6 +27,6 @@ class TaxOverridesControllerTest < ActionController::TestCase
       delete :destroy, id: @tax_override.id
     end
 
-    assert_redirected_to tax_override_path(@shipping_country)
+    assert_redirected_to admin_tax_override_path(@shipping_country)
   end
 end

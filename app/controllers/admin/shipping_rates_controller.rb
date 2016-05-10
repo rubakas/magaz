@@ -1,4 +1,4 @@
-class Admin:ShippingRatesController < ApplicationController
+class Admin::ShippingRatesController < ApplicationController
   include MagazCore::Concerns::Authenticable
   layout 'admin_settings'
 

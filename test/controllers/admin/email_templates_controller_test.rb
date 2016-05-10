@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EmailTemplatesControllerTest < ActionController::TestCase
+class Admin::EmailTemplatesControllerTest < ActionController::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -27,6 +27,6 @@ class EmailTemplatesControllerTest < ActionController::TestCase
                          title: @email_template.title,
                          body: @email_template.body,
                          template_type: @email_template.template_type } }
-    assert_redirected_to notifications_settings_settings_path
+    assert_redirected_to notifications_settings_admin_settings_path
   end
 end

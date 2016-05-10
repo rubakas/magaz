@@ -1,4 +1,4 @@
-= form_for([ @collection]) do |f|
+= form_for(:admin, @collection) do |f|
   - if @collection.errors.any?
     div id="error_explanation"
       h2 = pluralize(@collection.errors.count, t('.error'))

@@ -1,4 +1,4 @@
-class Admin:ShippingCountriesController < ApplicationController
+class Admin::ShippingCountriesController < ApplicationController
   include MagazCore::Concerns::Authenticable
   layout 'admin_settings'
 

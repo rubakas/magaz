@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LinksControllerTest < ActionController::TestCase
+class Admin::LinksControllerTest < ActionController::TestCase
 
   setup do
     @shop = create(:shop, subdomain: 'example')
@@ -55,7 +55,7 @@ class LinksControllerTest < ActionController::TestCase
     assert_difference('MagazCore::Link.count', -1) do
       delete :destroy, id: @link.id, link_list_id: @link_list.id
     end
-    assert_redirected_to link_list_path(@link_list)
+    assert_redirected_to admin_link_list_path(@link_list)
   end
 
 end
