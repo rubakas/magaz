@@ -57,7 +57,7 @@ en:
       email_address: "Email address"
       sign_in: "Sign in"
 
-  magaz_store_admin:
+  admin:
     articles:
       create:
         notice_success: "Article was successfully created."
@@ -439,7 +439,6 @@ en:
         show: "Show Image"
         confirmation: "Are you sure?"
 
-  admin:
     sessions:
       new:
         sign_in: "Sign in"
