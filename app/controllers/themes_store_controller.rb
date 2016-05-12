@@ -3,5 +3,8 @@ class ThemesStoreController < ApplicationController
 
   def learn_more
   end
+
+  def authors_themes
+  end
   
 end
