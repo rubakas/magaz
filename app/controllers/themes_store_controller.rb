@@ -3,5 +3,7 @@ class ThemesStoreController < ApplicationController
 	def homepage
 	end
 	def theme_page
-	end	
+	end
+	def template_page
+	end
 end
