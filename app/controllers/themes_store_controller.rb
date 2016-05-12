@@ -4,4 +4,7 @@ class ThemesStoreController < ApplicationController
   def learn_more
   end
   
+  def preview_in_store
+  end
+  
 end
