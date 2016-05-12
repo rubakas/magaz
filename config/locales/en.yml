@@ -33,8 +33,6 @@ en:
       shop_cart: "Cart"
     theme_store:
       theme_store_title: "Theme Store"
-    themes_store:
-      themes_store_title: "Themes Store"
     admin_settings:
       admin_title: "Magaz Administration"
       shop: "Magaz"

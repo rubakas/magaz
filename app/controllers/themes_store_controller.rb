@@ -1,5 +1,5 @@
 class ThemesStoreController < ApplicationController
-  layout "themes_store"
+  layout "theme_store"
 
   def learn_more
   end
