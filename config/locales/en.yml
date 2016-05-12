@@ -28,6 +28,8 @@ en:
     application:
       shop: "Magaz"
       sign_in: "Sign in"
+    demo_page:
+      page_title: "Demo page"
     store:
       shop: "Magaz"
       shop_cart: "Cart"
