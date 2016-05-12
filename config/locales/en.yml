@@ -32,7 +32,7 @@ en:
       shop: "Magaz"
       shop_cart: "Cart"
     theme_store:
-      theme_store_title: "Theme Store"
+      page_title: "Theme Store"
     admin_settings:
       admin_title: "Magaz Administration"
       shop: "Magaz"
