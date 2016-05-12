@@ -1,7 +1,7 @@
 p id="notice"
   = notice
 
-= form_for [:admin, @shop], url: [:admin, :notifications_settings, :settings]
+= form_for @shop, url: [:notifications_settings, :admin, :settings]
 
   h4
     i class="icon-bell"

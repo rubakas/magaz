@@ -28,7 +28,7 @@ class Admin::SettingsController < Admin::ApplicationController
       @shop = service.result
       # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
       #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_SHOP_EVENT)
-      flash.now[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
+      flash.now[:notice] = I18n.t('admin.settings.notice_success')
       render 'edit'
     else
       @shop = service.shop
@@ -48,8 +48,8 @@ class Admin::SettingsController < Admin::ApplicationController
                      authorization_settings: params[:shop][:authorization_settings])
     @shop = service.result
     if service.valid?
-      flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
-      redirect_to admin_payments_settings_settings_path
+      flash[:notice] = I18n.t('admin.settings.notice_success')
+      redirect_to payments_settings_admin_settings_path
     else
       render "payments_settings"
     end
@@ -79,8 +79,8 @@ class Admin::SettingsController < Admin::ApplicationController
 
     if service.valid?
       @shop = service.result
-      flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
-      redirect_to admin_checkouts_settings_settings_path
+      flash[:notice] = I18n.t('admin.settings.notice_success')
+      redirect_to checkouts_settings_admin_settings_path
     else
       @shop = service.shop
       render "checkouts_settings"
@@ -114,8 +114,8 @@ class Admin::SettingsController < Admin::ApplicationController
                      charge_vat_taxes: params[:charge_vat_taxes])
     if service.valid?
       @shop = service.result
-      flash[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
-      redirect_to admin_taxes_settings_settings_path
+      flash[:notice] = I18n.t('admin.settings.notice_success')
+      redirect_to taxes_settings_admin_settings_path
     else
       @shop = service.shop
       render "taxes_settings"
@@ -127,11 +127,11 @@ class Admin::SettingsController < Admin::ApplicationController
                 .run(id: current_shop.id,
                      collection_name: DIGITAL_GOODS_VAT_TAX)
     if service.valid?
-      flash.now[:notice] = I18n.t('magaz_store_admin.settings.notice_success')
-      redirect_to admin_taxes_settings_settings_path
+      flash.now[:notice] = I18n.t('admin.settings.notice_success')
+      redirect_to taxes_settings_admin_settings_path
     else
       flash.now[:notice] = service.errors.full_messages.first
-      redirect_to admin_taxes_settings_settings_path
+      redirect_to taxes_settings_admin_settings_path
     end
   end
 
@@ -147,7 +147,7 @@ class Admin::SettingsController < Admin::ApplicationController
     unless service.valid?
       flash.now[:notice] = service.errors.full_messages.first
     end
-    redirect_to admin_taxes_settings_settings_path
+    redirect_to taxes_settings_admin_settings_path
   end
 
 end
