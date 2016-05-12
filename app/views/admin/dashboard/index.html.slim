@@ -16,7 +16,7 @@ table class="table table-striped"
         td
           = event.message
           - unless event.verb == 'destroy' || event.subject_type == "MagazCore::Shop"
-            = link_to event.arguments.first, event.subject
+            = link_to event.arguments.first, [:admin, event.subject]
           - else
             = event.arguments.first
         td = event.created_at

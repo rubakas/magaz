@@ -20,7 +20,7 @@ class Admin::SessionsController < Admin::ApplicationController
       session[:user_id] = @user.id
       redirect_to admin_root_path(host: HOSTNAME, subdomain: current_shop.subdomain)
     else
-      flash[:notice] = t('.notice_fail')
+      flash.now[:notice] = t('.notice_fail')
       render :new
     end
   end
