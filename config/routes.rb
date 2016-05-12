@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   end
   get 'homepage' => 'themes_store#homepage'
+  get 'theme_page' => 'themes_store#theme_page'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
