@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   constraints(ShopSubdomainConstraint) do
-  #  mount MagazStore::Engine => "/"
+    mount MagazStore::Engine => "/"
   #
   #   # mount MagazStoreAdmin::Engine => "/admin", :as => 'magaz_store_admin'
   #

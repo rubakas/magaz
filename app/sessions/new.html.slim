@@ -9,23 +9,24 @@ div class='container'
         div class='panel-heading text-center'
           div class='panel-title'
             h4 = t('.sign_in')
+
         div class='panel-body'
           = form_for :session,
-              url: session_url,
-              method: :post,
-              html: { class: 'script-admin-sign-in-form' } do |f|
+            url: admin_session_url,
+            method: :post,
+            html: { class: 'script-admin-sign-in-form' } do |f|
 
             div class='script-field form-group'
               = f.label :email
               = f.text_field :email,
-                  placeholder: t('.email'),
-                  class: 'script-input-email form-input'
+                placeholder: t('.email'),
+                class: 'script-input-email form-input'
 
             div class='script-field form-group'
               = f.label :password
               = f.password_field :password,
-                  placeholder: t('.password'),
-                  class: 'script-input-password form-input'
+                placeholder: t('.password'),
+                class: 'script-input-password form-input'
             br
             div class='form-group text-right'
               = button_tag class: 'button' do
