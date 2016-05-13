@@ -2,11 +2,20 @@ eval(File.read(File.dirname(__FILE__) + '/magaz_shared_dependencies.rb'))
 
 # Use local gems with engines
 gem 'magaz_style',        path: 'gems/magaz_style'
-gem 'magaz_core',         path: 'gems/magaz_core'
 gem 'magaz_store',        path: 'gems/magaz_store'
 gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
-# gem 'magaz_store_admin',  path: 'gems/magaz_store_admin'
 
+
+
+
+gem "rails", "~> 4.2.0"
+gem "carrierwave"
+gem "rmagick"
+gem "rubyzip"
+gem "friendly_id", "5.0.4"
+gem "liquid"
+gem "bcrypt"
+gem "sidekiq"
 # gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
 
 # gem 'arel',             github: 'rails/arel'
