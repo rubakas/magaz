@@ -8,28 +8,28 @@ div class='container'
             h4 Sign in
         div class='panel-body'
           = form_for :session,
-              url: magaz_store_admin.session_url(host: HOSTNAME,
-                subdomain: 'REPLACE_ME'),
-              method: :post,
-              html: { class: 'script-sign-in-form' } do |f|
+            url: admin_session_url(host: HOSTNAME,
+                                   subdomain: 'REPLACE_ME'),
+            method: :post,
+            html: { class: 'script-sign-in-form' } do |f|
 
             div class='script-field form-group'
               = f.label :name
               = f.text_field :subdomain,
-                  placeholder: t('.shop_name'),
-                  class: 'script-input-subdomain form-input'
+                placeholder: t('.shop_name'),
+                class: 'script-input-subdomain form-input'
 
             div class='script-field form-group'
               = f.label :email
               = f.text_field :email,
-                  placeholder: t('.email_address'),
-                  class: 'script-input-email form-input'
+                placeholder: t('.email_address'),
+                class: 'script-input-email form-input'
 
             div class='script-field form-group'
               = f.label :password
               = f.password_field :password,
-                  placeholder: t('.password'),
-                  class: 'script-input-password form-input'
+                placeholder: t('.password'),
+                class: 'script-input-password form-input'
             br
             div class='form-group text-right'
               = button_tag class: 'button' do

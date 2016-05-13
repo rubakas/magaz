@@ -1,0 +1,78 @@
+p id="notice"
+  = notice
+
+= form_for @shop, url: [:taxes_settings_update,:admin, :settings], method: :put do |f|
+
+  h4
+    i class="icon-cloud"
+    = t('.logo')
+
+  div class="container-fluid"
+
+    div class="row"
+      div class="col-xs-3"
+        div class="label_of_column"
+          = t('.tax_settings')
+        div class='inf'
+          = t('.tax_settings_info')
+
+      div class="col-xs-9"
+        table class="table"
+          tbody
+            tr
+              td
+                = f.check_box :all_taxes_are_included
+                = f.label t('.all_taxes_are_included')
+                div class="inf"
+                  = t('.if_checkbox_above_is_selected')
+                  br
+                  = t('.tax_calculates')
+            tr
+              td
+                = f.check_box :charge_taxes_on_shipping_rates
+                = f.label t('.charge_taxes_on_shipping_rates')
+            tr
+              td
+                - if @shop.eu_digital_goods_collection_id == nil
+                  = link_to t('.enable'), {controller: 'settings',
+                                           action: 'enable_eu_digital_goods_vat_taxes'}
+                  = f.label t('.enable_vat_taxes')
+                - else
+                  = check_box_tag :charge_vat_taxes, :charge_vat_taxes, true
+                  = f.label t('.charge_vat_taxes')
+                  div class="inf"
+                    = t('.vat_taxes_information_first')
+                    = link_to @default_collection.name, admin_collection_path(@default_collection)
+                    = " "
+                    = t('.vat_taxes_information_middle')
+                    br
+                    = link_to t('.link_to_select_collection'), set_default_collection_admin_settings_path
+                    = " "
+                    = t('.vat_taxes_information_last')
+
+  div class="form-group"
+    = f.submit( t('.save'), class: 'button')
+
+  div class="row"
+    div class="col-xs-3"
+      div class="label_of_column"
+        = t('.tax_rates')
+      div class="inf"
+        = t('.tax_rates_information')
+
+    div class="col-xs-9"
+      table class="table table-bordered"
+        thead
+          tr
+            th = t('.destination')
+            th = t('.country_tax_rate')
+            th = t('.overrides')
+
+        - @shop.shipping_countries.each do |country|
+          - @country = MagazCore::ShippingCountry.find_by_id(country.id)
+          - @country_name = @country.country_info['name']
+          tbody
+            tr
+              td = link_to @country_name, admin_tax_override_path(@country.id)
+              td = country.tax + '%'
+              td = @country.tax_overrides.count

@@ -2,7 +2,13 @@ class ActionDispatch::IntegrationTest
 
   setup do
     @shop = create(:shop, name: 'example', subdomain: 'example')
-    @user = create(:user, shop: @shop, first_name: 'First', last_name: 'Last', email: 'email@mail.com', password: 'password')
+    @user = create(:user,
+                   shop: @shop,
+                   first_name: 'First',
+                   last_name: 'Last',
+                   email: 'email@mail.com',
+                   password: 'password',
+                   account_owner: true)
   end
 
   teardown do

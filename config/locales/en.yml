@@ -21,10 +21,6 @@
 
 en:
   layouts:
-    admin:
-      admin_title: "Magaz Administration"
-      shop: "Magaz"
-      sign_out: "Sign out"
     application:
       shop: "Magaz"
       sign_in: "Sign in"
@@ -33,10 +29,19 @@ en:
       shop_cart: "Cart"
     theme_store:
       theme_store_title: "Theme Store"
-    admin_settings:
-      admin_title: "Magaz Administration"
-      shop: "Magaz"
-      sign_out: "Sign out"
+
+    admin:
+      admin:
+        admin_title: "Magaz Administration"
+        shop: "Magaz"
+        sign_out: "Sign out"
+      admin_settings:
+        admin_title: "Magaz Administration"
+        shop: "Magaz"
+        sign_out: "Sign out"
+      application:
+        shop: "Magaz"
+        sign_in: "Sign in"
 
   welcome:
     sell:
@@ -57,7 +62,7 @@ en:
       email_address: "Email address"
       sign_in: "Sign in"
 
-  magaz_store_admin:
+  admin:
     articles:
       create:
         notice_success: "Article was successfully created."
