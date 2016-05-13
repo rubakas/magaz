@@ -5,11 +5,11 @@ class ArticlesStoriesTest < ActionDispatch::IntegrationTest
     login
     @blog = create(:blog, shop: @shop)
     @article = create(:article, blog: @blog)
-    click_link 'Blog Posts'
+    click_link 'Blogs'
   end
 
   test "blog posts list" do
-    assert page.has_content? 'Blog Posts'
+    assert page.has_content? 'Blogs'
   end
 
   test "create blog post" do
