@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Shop::ChangeShopTest < ActiveSupport::TestCase
+class AdminServices::Shop::ChangeShopTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -29,7 +29,7 @@ class MagazCore::AdminServices::Shop::ChangeShopTest < ActiveSupport::TestCase
   end
 
   test 'should update shop with valid params' do
-    service = MagazCore::AdminServices::Shop::ChangeShop.run(@success_params)
+    service = AdminServices::Shop::ChangeShop.run(@success_params)
     assert service.valid?
     assert_equal 'Name', service.result.name
     assert_equal 'USD', service.result.currency
@@ -42,14 +42,14 @@ class MagazCore::AdminServices::Shop::ChangeShopTest < ActiveSupport::TestCase
   test 'should not update shop with blank name' do
     params = @success_params
     params[:name] = ''
-    service = MagazCore::AdminServices::Shop::ChangeShop.run(params)
+    service = AdminServices::Shop::ChangeShop.run(params)
     refute service.valid?
     assert_equal 1, service.shop.errors.count
     assert_equal "Name can't be blank", service.shop.errors.full_messages.last
   end
 
   test 'should not update shop with wrong params' do
-    service = MagazCore::AdminServices::Shop::ChangeShop.run(@wrong_params)
+    service = AdminServices::Shop::ChangeShop.run(@wrong_params)
     refute service.valid?
     assert_equal 5, service.shop.errors.count
     assert_equal "Country is not included in the list",

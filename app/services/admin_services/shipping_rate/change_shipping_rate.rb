@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInteraction::Base
+class AdminServices::ShippingRate::ChangeShippingRate < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {shipping_rate}
 
@@ -11,14 +11,14 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInterac
              :price_comparison_check, :weight_comparison_check
 
   def shipping_rate
-    shipping_country = MagazCore::ShippingCountry.find(shipping_country_id)
+    shipping_country = ShippingCountry.find(shipping_country_id)
     @shipping_rate = shipping_country.shipping_rates.find(id)
     add_errors if errors.any?
     @shipping_rate
   end
 
-  def execute 
-    @shipping_rate.update_attributes(@inputs.slice!(:id, :shipping_country_id)) || 
+  def execute
+    @shipping_rate.update_attributes(@inputs.slice!(:id, :shipping_country_id)) ||
       errors.add(:base, I18n.t('services.change_shipping_rate.wrong_params'))
     @shipping_rate
   end
@@ -36,9 +36,9 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInterac
     @inputs.slice!(:id, :shipping_country_id, :name, :criteria).each do |key, value|
       if value =~ /^(?:[1-9]\d*|0)+(?:\.\d+)?$/m
         @inputs[key] = value.to_f
-      elsif value =~ /^$/ 
+      elsif value =~ /^$/
         @inputs[key] = nil
-      elsif value.nil? 
+      elsif value.nil?
         next
       else
         errors.add(key, I18n.t('services.change_shipping_rate.wrong_param'))
@@ -47,7 +47,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRate < ActiveInterac
   end
 
   def price_criteria_check
-    if @inputs[:price_from].present? && @inputs[:price_to].present? && 
+    if @inputs[:price_from].present? && @inputs[:price_to].present? &&
          criteria == "weight" && @inputs[:weight_from].nil? && @inputs[:weight_to].nil?
       errors.add(:base, I18n.t('services.change_shipping_rate.not_correct'))
     else

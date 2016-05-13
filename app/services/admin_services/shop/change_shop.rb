@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
+class AdminServices::Shop::ChangeShop < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {shop}
 
@@ -13,7 +13,7 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   integer :id
 
   validates :id, :name, presence: true
-  validates :country, inclusion: YAML.load_file("#{MagazCore::Engine.root}/config/countries.yml")['countries'].keys
+  validates :country, inclusion: YAML.load_file("#{Engine.root}/config/countries.yml")['countries'].keys
   validates :unit_system, inclusion: %w[ metric imperial]
   validates :currency, inclusion: %w[ USD EURO HRN]
   validates :timezone, inclusion: ActiveSupport::TimeZone.zones_map.values.collect{|z| z.name}
@@ -22,7 +22,7 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   validate :name_uniqueness, if: :name_changed?
 
   def shop
-    @shop = MagazCore::Shop.find(id)
+    @shop = Shop.find(id)
     add_errors if errors.any?
     @shop
   end
@@ -43,7 +43,7 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   def email_valid?
     if customer_email.present?
       customer_email =~
-      MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
+      Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
     else
       true
     end
@@ -56,7 +56,7 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   end
 
   def name_changed?
-    MagazCore::Shop.find(id).name != name
+    Shop.find(id).name != name
   end
 
   def name_uniqueness
@@ -64,7 +64,7 @@ class MagazCore::AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   end
 
   def name_unique?
-    MagazCore::Shop.where(id: id, name: name).count == 0
+    Shop.where(id: id, name: name).count == 0
   end
 
 end

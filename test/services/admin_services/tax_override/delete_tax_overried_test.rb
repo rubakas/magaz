@@ -1,5 +1,5 @@
 require 'test_helper'
-class MagazCore::AdminServices::TaxOverride::DeleteTaxOverrideTest < ActiveSupport::TestCase
+class AdminServices::TaxOverride::DeleteTaxOverrideTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop)
@@ -9,21 +9,21 @@ class MagazCore::AdminServices::TaxOverride::DeleteTaxOverrideTest < ActiveSuppo
   end
 
   test "should destroy tax override with valid ids" do
-    assert_equal 1, MagazCore::TaxOverride.count
-    service = MagazCore::AdminServices::TaxOverride::DeleteTaxOverride
+    assert_equal 1, TaxOverride.count
+    service = AdminServices::TaxOverride::DeleteTaxOverride
                 .run(id: @tax_override.id)
-    refute MagazCore::TaxOverride.find_by_id(@tax_override.id)
-    assert_equal 0, MagazCore::TaxOverride.count
+    refute TaxOverride.find_by_id(@tax_override.id)
+    assert_equal 0, TaxOverride.count
   end
 
   test "should not destroy tax override with blank ids" do
-    assert_equal 1, MagazCore::TaxOverride.count
-    service = MagazCore::AdminServices::TaxOverride::DeleteTaxOverride
+    assert_equal 1, TaxOverride.count
+    service = AdminServices::TaxOverride::DeleteTaxOverride
                 .run(id: '')
-    assert MagazCore::TaxOverride.find_by_id(@tax_override.id)
+    assert TaxOverride.find_by_id(@tax_override.id)
     assert_equal 1, service.errors.count
     assert_equal "Id is not a valid integer", service.errors.full_messages.first
-    assert_equal 1, MagazCore::TaxOverride.count
+    assert_equal 1, TaxOverride.count
   end
 
 end

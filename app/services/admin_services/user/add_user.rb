@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::User::AddUser < ActiveInteraction::Base
+class AdminServices::User::AddUser < ActiveInteraction::Base
 
   integer :shop_id
   string :first_name, :last_name, :email, :password
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::User::AddUser < ActiveInteraction::Base
   validate :check_email
 
   def execute
-    user = MagazCore::User.new
+    user = User.new
     user.update_attributes!(inputs) ||
       errors.add(:base, I18n.t('services.add_user.wrong_params'))
 
@@ -24,11 +24,11 @@ class MagazCore::AdminServices::User::AddUser < ActiveInteraction::Base
   end
 
   def email_unique?
-    MagazCore::Shop.find_by_id(shop_id).users.find_by(email: email).nil?
+    Shop.find_by_id(shop_id).users.find_by(email: email).nil?
   end
 
   def email_valid?
-    email && email =~ MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
+    email && email =~ Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
   end
 
 end

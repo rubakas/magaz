@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::ShippingCountry::AddShippingCountry < ActiveInteraction::Base
+class AdminServices::ShippingCountry::AddShippingCountry < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {shipping_country}
 
@@ -8,10 +8,10 @@ class MagazCore::AdminServices::ShippingCountry::AddShippingCountry < ActiveInte
   validate  :name_uniqueness
   validates :tax, numericality: true
   validates :tax, :name, :shop_id, presence: true
-  validates :name, inclusion: MagazCore::ShippingCountry::COUNTRY_LIST['countries'].keys
+  validates :name, inclusion: ShippingCountry::COUNTRY_LIST['countries'].keys
 
   def shipping_country
-    @shipping_country = MagazCore::ShippingCountry.new    
+    @shipping_country = ShippingCountry.new    
     add_errors if errors.any?
     @shipping_country
   end
@@ -36,6 +36,6 @@ class MagazCore::AdminServices::ShippingCountry::AddShippingCountry < ActiveInte
   end
 
   def name_unique?
-    MagazCore::ShippingCountry.where(shop_id: shop_id, name: name).count == 0
+    ShippingCountry.where(shop_id: shop_id, name: name).count == 0
   end
 end

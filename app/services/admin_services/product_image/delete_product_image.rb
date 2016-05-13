@@ -1,12 +1,12 @@
-class MagazCore::AdminServices::ProductImage::DeleteProductImage < ActiveInteraction::Base
+class AdminServices::ProductImage::DeleteProductImage < ActiveInteraction::Base
 
   integer :id
   string :product_id
-  
+
   validates :id, :product_id, presence: true
 
   def execute
-    MagazCore::Product.friendly.find(product_id).product_images.find(id).destroy
+    Product.friendly.find(product_id).product_images.find(id).destroy
   end
 
 end

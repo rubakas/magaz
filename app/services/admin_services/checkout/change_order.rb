@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Checkout::ChangeOrder < ActiveInteraction::Base
+class AdminServices::Checkout::ChangeOrder < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {order}
 
@@ -8,7 +8,7 @@ class MagazCore::AdminServices::Checkout::ChangeOrder < ActiveInteraction::Base
   validates :id, :status, presence: true
 
   def order
-    @order = MagazCore::Checkout.find(id)
+    @order = Checkout.find(id)
     add_errors if errors.any?
     @order
   end

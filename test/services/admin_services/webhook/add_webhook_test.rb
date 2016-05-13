@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Webhook::AddWebhookTest < ActiveSupport::TestCase
+class AdminServices::Webhook::AddWebhookTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop)
@@ -15,30 +15,30 @@ class MagazCore::AdminServices::Webhook::AddWebhookTest < ActiveSupport::TestCas
   end
 
   test "should create webhook with valid params" do
-    assert_equal 0, MagazCore::Webhook.count
-    service = MagazCore::AdminServices::Webhook::AddWebhook.run(@success_params)
+    assert_equal 0, Webhook.count
+    service = AdminServices::Webhook::AddWebhook.run(@success_params)
     assert service.valid?
-    assert MagazCore::Webhook.find_by_id(service.result.id)
-    assert_equal @success_params[:address], MagazCore::Webhook.find_by_id(service.result.id).address
-    assert_equal 1, MagazCore::Webhook.count
+    assert Webhook.find_by_id(service.result.id)
+    assert_equal @success_params[:address], Webhook.find_by_id(service.result.id).address
+    assert_equal 1, Webhook.count
   end
 
   test "should not create webhook with blank params" do
-    assert_equal 0, MagazCore::Webhook.count
-    service = MagazCore::AdminServices::Webhook::AddWebhook.run(@blank_params)
+    assert_equal 0, Webhook.count
+    service = AdminServices::Webhook::AddWebhook.run(@blank_params)
     refute service.valid?
     assert_equal 1, service.webhook.errors.count
     assert_equal "Shop is not a valid integer", service.webhook.errors.full_messages.first
-    assert_equal 0, MagazCore::Webhook.count
+    assert_equal 0, Webhook.count
   end
 
   test "should not create webhook with invalid address" do
-    assert_equal 0, MagazCore::Webhook.count
+    assert_equal 0, Webhook.count
     @success_params[:address] = "invalid_adress"
-    service = MagazCore::AdminServices::Webhook::AddWebhook.run(@success_params)
+    service = AdminServices::Webhook::AddWebhook.run(@success_params)
     refute service.valid?
     assert_equal 1, service.webhook.errors.count
     assert_equal "Address is invalid", service.webhook.errors.full_messages.first
-    assert_equal 0, MagazCore::Webhook.count
+    assert_equal 0, Webhook.count
   end
 end

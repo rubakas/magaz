@@ -26,31 +26,29 @@
 #  meta_description :string
 #
 
-module MagazCore
-  class Shop < ActiveRecord::Base
-    self.table_name = 'shops'
-    include Concerns::SubdomainOwner
-    has_many :articles, through: :blogs
-    has_many :blogs
-    has_many :collections
-    has_many :comments, through: :articles
-    has_many :checkouts, through: :customers
-    has_many :countries
-    has_many :customers
-    has_many :files
-    has_many :links, through: :link_lists
-    has_many :link_lists
-    has_many :pages
-    has_many :product_images
-    has_many :products
-    has_many :shipping_countries
-    has_many :shipping_rates, through: :shipping_countries
-    has_many :themes
-    has_many :users, class_name: 'MagazCore::User', :dependent => :destroy
-    has_many :subscriber_notifications
-    has_many :email_templates, class_name: 'MagazCore::EmailTemplate', :dependent => :destroy
-    belongs_to :eu_digital_goods_collection, class_name: 'MagazCore::Collection' , foreign_key: "eu_digital_goods_collection_id"
-    has_many :events
-    has_many :webhooks
-  end
+class Shop < ActiveRecord::Base
+  self.table_name = 'shops'
+  include Concerns::SubdomainOwner
+  has_many :articles, through: :blogs
+  has_many :blogs
+  has_many :collections
+  has_many :comments, through: :articles
+  has_many :checkouts, through: :customers
+  has_many :countries
+  has_many :customers
+  has_many :files
+  has_many :links, through: :link_lists
+  has_many :link_lists
+  has_many :pages
+  has_many :product_images
+  has_many :products
+  has_many :shipping_countries
+  has_many :shipping_rates, through: :shipping_countries
+  has_many :themes
+  has_many :users, class_name: 'User', :dependent => :destroy
+  has_many :subscriber_notifications
+  has_many :email_templates, class_name: 'EmailTemplate', :dependent => :destroy
+  belongs_to :eu_digital_goods_collection, class_name: 'Collection' , foreign_key: "eu_digital_goods_collection_id"
+  has_many :events
+  has_many :webhooks
 end

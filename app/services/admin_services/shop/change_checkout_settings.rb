@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Shop::ChangeCheckoutSettings < ActiveInteraction::Base
+class AdminServices::Shop::ChangeCheckoutSettings < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {shop}
 
@@ -37,7 +37,7 @@ class MagazCore::AdminServices::Shop::ChangeCheckoutSettings < ActiveInteraction
   validates :after_order_paid, inclusion: AFTER_ORDER_PAID
 
   def shop
-    @shop = MagazCore::Shop.find(id)
+    @shop = Shop.find(id)
     add_errors if errors.any?
     @shop
   end

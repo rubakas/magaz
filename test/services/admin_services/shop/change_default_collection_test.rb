@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Shop::ChangeDefaultCollectionTest < ActiveSupport::TestCase
+class AdminServices::Shop::ChangeDefaultCollectionTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -9,13 +9,13 @@ class MagazCore::AdminServices::Shop::ChangeDefaultCollectionTest < ActiveSuppor
   end
 
   test 'should update shop with valid params' do
-    service = MagazCore::AdminServices::Shop::ChangeDefaultCollection.run(@success_params)
+    service = AdminServices::Shop::ChangeDefaultCollection.run(@success_params)
     assert service.valid?
     assert_equal @collection.id, service.result.eu_digital_goods_collection_id
   end
 
   test 'should not update shop with blank params' do
-    service = MagazCore::AdminServices::Shop::ChangeDefaultCollection
+    service = AdminServices::Shop::ChangeDefaultCollection
                 .run(id: '', collection_id: '')
     refute service.valid?
     assert_equal 2, service.errors.full_messages.count

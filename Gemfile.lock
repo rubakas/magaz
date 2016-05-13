@@ -80,19 +80,6 @@ GIT
       sort_alphabetical (~> 1.0)
 
 PATH
-  remote: gems/magaz_core
-  specs:
-    magaz_core (0.0.3)
-      bcrypt
-      carrierwave
-      friendly_id (= 5.0.4)
-      liquid
-      rails (~> 4.2.0)
-      rmagick
-      rubyzip
-      sidekiq
-
-PATH
   remote: gems/magaz_store
   specs:
     magaz_store (0.0.1)
@@ -324,13 +311,13 @@ DEPENDENCIES
   flay
   flog
   font-awesome-sass-rails
+  friendly_id (= 5.0.4)
   inherited_resources
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
   launchy
   liquid
-  magaz_core!
   magaz_store!
   magaz_style!
   magaz_theme_store!
@@ -341,8 +328,10 @@ DEPENDENCIES
   rails!
   rmagick
   rubocop
+  rubyzip
   sass-rails
   sdoc
+  sidekiq
   skylight
   slim
   spring

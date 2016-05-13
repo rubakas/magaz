@@ -1,5 +1,5 @@
 require 'test_helper'
-class MagazCore::AdminServices::ProductImage::DeleteProductImageTest < ActiveSupport::TestCase
+class AdminServices::ProductImage::DeleteProductImageTest < ActiveSupport::TestCase
 
  setup do
     @shop = create(:shop, name: "shop name")
@@ -13,11 +13,11 @@ class MagazCore::AdminServices::ProductImage::DeleteProductImageTest < ActiveSup
   end
 
   test "should delete image with valid params" do
-    assert_equal 1, MagazCore::ProductImage.count
-    service = MagazCore::AdminServices::ProductImage::DeleteProductImage
+    assert_equal 1, ProductImage.count
+    service = AdminServices::ProductImage::DeleteProductImage
                 .run(id: @product_image.id, product_id: "#{@product_image.id}")
     assert service.valid?
-    assert_equal 0, MagazCore::ProductImage.count
+    assert_equal 0, ProductImage.count
   end
 
 end

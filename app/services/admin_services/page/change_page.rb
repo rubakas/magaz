@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Page::ChangePage < ActiveInteraction::Base
+class AdminServices::Page::ChangePage < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {page}
 
@@ -10,7 +10,7 @@ class MagazCore::AdminServices::Page::ChangePage < ActiveInteraction::Base
   validate :handle_uniqueness, if: :handle_changed?
 
   def page
-    @page = MagazCore::Shop.find(shop_id).pages.friendly.find(id)
+    @page = Shop.find(shop_id).pages.friendly.find(id)
     add_errors if errors.any?
     @page
   end
@@ -18,7 +18,7 @@ class MagazCore::AdminServices::Page::ChangePage < ActiveInteraction::Base
   def execute
     @page.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('services.change_page.wrong_params'))
-    @page
+    @pag
   end
 
   private
@@ -30,7 +30,7 @@ class MagazCore::AdminServices::Page::ChangePage < ActiveInteraction::Base
   end
 
   def title_changed?
-    MagazCore::Page.friendly.find(id).title != title
+    Page.friendly.find(id).title != title
   end
 
   def title_uniqueness
@@ -38,11 +38,11 @@ class MagazCore::AdminServices::Page::ChangePage < ActiveInteraction::Base
   end
 
   def title_unique?
-    MagazCore::Page.where(shop_id: shop_id, title: title).count == 0
+    Page.where(shop_id: shop_id, title: title).count == 0
   end
 
   def handle_changed?
-    MagazCore::Shop.find(shop_id).pages.friendly.find(id).handle != handle
+    Shop.find(shop_id).pages.friendly.find(id).handle != handle
   end
 
   def handle_uniqueness
@@ -52,7 +52,7 @@ class MagazCore::AdminServices::Page::ChangePage < ActiveInteraction::Base
   end
 
   def handle_unique?
-    MagazCore::Page.where(shop_id: shop_id, handle: handle).count == 0
+    Page.where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end

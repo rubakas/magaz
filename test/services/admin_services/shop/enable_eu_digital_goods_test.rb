@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Shop::EnableEuDigitalGoodsTest < ActiveSupport::TestCase
+class AdminServices::Shop::EnableEuDigitalGoodsTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -10,23 +10,23 @@ class MagazCore::AdminServices::Shop::EnableEuDigitalGoodsTest < ActiveSupport::
   end
 
   test 'should update shop default collection with valid params' do
-    service = MagazCore::AdminServices::Shop::EnableEuDigitalGoods.run(@success_params)
+    service = AdminServices::Shop::EnableEuDigitalGoods.run(@success_params)
     assert service.valid?
     assert_equal @collection.id, service.result.eu_digital_goods_collection_id
   end
 
   test 'should create new default collection for shop' do
-    service = MagazCore::AdminServices::Shop::EnableEuDigitalGoods.run(collection_name: 'New name',
+    service = AdminServices::Shop::EnableEuDigitalGoods.run(collection_name: 'New name',
                                                                        id: @shop.id)
     assert service.valid?
     assert_not_equal @collection.id, service.result.eu_digital_goods_collection_id
     assert_not_equal @collection2.id, service.result.eu_digital_goods_collection_id
     assert_equal 'New name',
-                 MagazCore::Collection.find(service.result.eu_digital_goods_collection_id).name
+                 Collection.find(service.result.eu_digital_goods_collection_id).name
   end
 
   test 'should not update shop default collection with blank name' do
-    service = MagazCore::AdminServices::Shop::EnableEuDigitalGoods
+    service = AdminServices::Shop::EnableEuDigitalGoods
                 .run(id: @shop.id, collection_name: '')
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count

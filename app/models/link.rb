@@ -12,11 +12,10 @@
 #  link_list_id   :integer
 #
 
-module MagazCore
-  class Link < ActiveRecord::Base
-    self.table_name = 'links'
 
-    belongs_to :link_list
+class Link < ActiveRecord::Base
+  self.table_name = 'links'
 
-  end
+  belongs_to :link_list
+
 end

@@ -18,12 +18,11 @@
 
 require 'test_helper'
 
-module MagazCore
   class CollectionTest < ActiveSupport::TestCase
-    include MagazCore::Shared::VisibilityExamples
-    
+    include Shared::VisibilityExamples
+
     setup do
-      setup_visibility_examples(model_class: MagazCore::Collection, factory_name: :collection)
+      setup_visibility_examples(model_class: Collection, factory_name: :collection)
     end
 
     test 'validation scenarios' do
@@ -53,4 +52,3 @@ module MagazCore
       refute @collection1.slug == @collection2.slug
     end
   end
-end

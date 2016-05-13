@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport::TestCase
+class AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, subdomain: 'example')
@@ -26,14 +26,14 @@ class MagazCore::AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport:
   end
 
   test 'create override with valid params and already existing one' do
-    service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
+    service = AdminServices::TaxOverride::AddTaxOverride
                 .run(@success_params1)
     assert service.valid?
     assert_equal @collection.id, service.result.collection_id
     assert_equal @shipping_country.id, service.result.shipping_country_id
     assert_equal 48.0, service.result.rate
 
-    service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
+    service = AdminServices::TaxOverride::AddTaxOverride
                 .run(@success_params1)
     assert_not service.valid?
     assert_equal 1, service.errors.count
@@ -41,7 +41,7 @@ class MagazCore::AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport:
   end
 
   test 'create override with second valid params' do
-    service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
+    service = AdminServices::TaxOverride::AddTaxOverride
                 .run(@success_params2)
     assert service.valid?
     assert_equal nil, service.result.collection_id
@@ -50,7 +50,7 @@ class MagazCore::AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport:
   end
 
   test 'fails to create tax_override with wrong params' do
-    service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
+    service = AdminServices::TaxOverride::AddTaxOverride
                 .run(@wrong_params)
     refute service.valid?
     assert_equal 2, service.tax_override.errors.count
@@ -59,7 +59,7 @@ class MagazCore::AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport:
   end
 
   test 'fails to create tax_override with blank_params params' do
-    service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
+    service = AdminServices::TaxOverride::AddTaxOverride
                 .run(@blank_params)
     refute service.valid?
     assert_equal 3, service.tax_override.errors.count

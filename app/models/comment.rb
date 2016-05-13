@@ -12,13 +12,12 @@
 #  article_id :integer
 #
 
-module MagazCore
-  class Comment < ActiveRecord::Base
-    self.table_name = 'comments'
 
-    belongs_to :article
-    belongs_to :blog
-    has_many :events, as: :subject
+class Comment < ActiveRecord::Base
+  self.table_name = 'comments'
 
-  end
+  belongs_to :article
+  belongs_to :blog
+  has_many :events, as: :subject
+
 end

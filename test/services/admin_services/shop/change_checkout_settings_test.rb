@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Shop::ChangeCheckoutSettingsTest < ActiveSupport::TestCase
+class AdminServices::Shop::ChangeCheckoutSettingsTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -20,7 +20,7 @@ class MagazCore::AdminServices::Shop::ChangeCheckoutSettingsTest < ActiveSupport
   end
 
   test 'should update shop with valid success_params' do
-    service = MagazCore::AdminServices::Shop::ChangeCheckoutSettings.run(@success_params)
+    service = AdminServices::Shop::ChangeCheckoutSettings.run(@success_params)
     assert service.valid?
     refute service.result.enable_multipass_login
     refute service.result.billing_address_is_shipping_too
@@ -37,7 +37,7 @@ class MagazCore::AdminServices::Shop::ChangeCheckoutSettingsTest < ActiveSupport
   end
 
   test 'should update shop with valid blank params' do
-    service = MagazCore::AdminServices::Shop::ChangeCheckoutSettings
+    service = AdminServices::Shop::ChangeCheckoutSettings
                 .run(id: @shop.id,
                      account_type_choice: '',
                      enable_multipass_login: '',

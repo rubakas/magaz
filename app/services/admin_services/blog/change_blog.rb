@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
+class AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {blog}
 
@@ -10,7 +10,7 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   validate :handle_uniqueness, if: :handle_changed?
 
   def blog
-    @blog = MagazCore::Shop.find(shop_id).blogs.friendly.find(id)
+    @blog = Shop.find(shop_id).blogs.friendly.find(id)
     add_errors if errors.any?
     @blog
   end
@@ -30,7 +30,7 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   end
 
   def title_changed?
-    MagazCore::Shop.find(shop_id).blogs.friendly.find(id).title != title
+    Shop.find(shop_id).blogs.friendly.find(id).title != title
   end
 
   def title_uniqueness
@@ -38,11 +38,11 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   end
 
   def title_unique?
-    MagazCore::Blog.where(shop_id: shop_id, title: title).count == 0
+    Blog.where(shop_id: shop_id, title: title).count == 0
   end
 
   def handle_changed?
-    MagazCore::Shop.find(shop_id).blogs.friendly.find(id).handle != handle
+    Shop.find(shop_id).blogs.friendly.find(id).handle != handle
   end
 
   def handle_uniqueness
@@ -52,7 +52,7 @@ class MagazCore::AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   end
 
   def handle_unique?
-    MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
+    Blog.where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end

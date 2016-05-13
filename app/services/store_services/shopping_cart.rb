@@ -1,8 +1,8 @@
-class MagazCore::StoreServices::ShoppingCart
+class StoreServices::ShoppingCart
   attr_reader :checkout, :customer, :shop
 
   def initialize(shop_id:, checkout_id:, customer_id:)
-    @shop     = MagazCore::Shop.find(shop_id)
+    @shop     = Shop.find(shop_id)
     @customer = @shop.customers.find_by_id(customer_id) || @shop.customers.create
     @checkout = @customer.checkouts.not_orders.find_by_id(checkout_id) || @customer.checkouts.create
   end
@@ -30,7 +30,7 @@ class MagazCore::StoreServices::ShoppingCart
       existing_line_item.inspect
       existing_line_item.quantity += quantity
     else
-      new_li_attrs = MagazCore::LineItem.attribute_names.map(&:to_sym) - [:id, :shop_id]
+      new_li_attrs = LineItem.attribute_names.map(&:to_sym) - [:id, :shop_id]
       copied_attrs = product
         .attributes
         .merge({ product: product, product_id: product.id, quantity: quantity })
@@ -49,7 +49,7 @@ class MagazCore::StoreServices::ShoppingCart
     @checkout.update(attrs)
     email_template = @shop.email_templates.find_by(template_type: 'new_order_notification')
     @shop.subscriber_notifications.each do |s|
-      MagazCore::UserMailer.notification(s, email_template).deliver_now
+      UserMailer.notification(s, email_template).deliver_now
     end
   end
 

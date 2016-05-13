@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::TaxOverride::ChangeTaxOverride < ActiveInteraction::Base
+class AdminServices::TaxOverride::ChangeTaxOverride < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {tax_override}
 
@@ -14,7 +14,7 @@ class MagazCore::AdminServices::TaxOverride::ChangeTaxOverride < ActiveInteracti
   validate :check_collection_id
 
   def tax_override
-    shipping_country = MagazCore::ShippingCountry.find_by_id(shipping_country_id)
+    shipping_country = ShippingCountry.find_by_id(shipping_country_id)
     @tax_override = shipping_country.tax_overrides.find_by_id(id)
     add_errors if errors.any?
     @tax_override
@@ -49,7 +49,7 @@ class MagazCore::AdminServices::TaxOverride::ChangeTaxOverride < ActiveInteracti
   end
 
   def check_for_uniqueness
-    shipping_country = MagazCore::ShippingCountry.find_by_id(shipping_country_id)
+    shipping_country = ShippingCountry.find_by_id(shipping_country_id)
     if is_shipping == false
       override = shipping_country.tax_overrides.find_by(collection_id: collection_id)
     else

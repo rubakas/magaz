@@ -8,14 +8,6 @@ gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
 
 
 
-gem "rails", "~> 4.2.0"
-gem "carrierwave"
-gem "rmagick"
-gem "rubyzip"
-gem "friendly_id", "5.0.4"
-gem "liquid"
-gem "bcrypt"
-gem "sidekiq"
 # gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
 
 # gem 'arel',             github: 'rails/arel'

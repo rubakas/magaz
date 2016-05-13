@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Page::ChangePageTest < ActiveSupport::TestCase
+class AdminServices::Page::ChangePageTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -12,15 +12,15 @@ class MagazCore::AdminServices::Page::ChangePageTest < ActiveSupport::TestCase
   end
 
   test 'should update page with valid params' do
-    service = MagazCore::AdminServices::Page::ChangePage.run(@success_params)
+    service = AdminServices::Page::ChangePage.run(@success_params)
     assert service.valid?
-    assert_equal "Changed page_title", MagazCore::Page.find(@page.id).page_title
-    assert_equal 'Changed title', MagazCore::Page.find(@page.id).title
-    assert_equal "Changed handle", MagazCore::Page.find(@page.id).handle
+    assert_equal "Changed page_title", Page.find(@page.id).page_title
+    assert_equal 'Changed title', Page.find(@page.id).title
+    assert_equal "Changed handle", Page.find(@page.id).handle
   end
 
   test 'should not update page with existing title' do
-    service = MagazCore::AdminServices::Page::ChangePage.
+    service = AdminServices::Page::ChangePage.
                 run(id: "#{@page.id}", title: @page2.title, shop_id: @shop.id,
                     page_title: "Changed page_title", handle: "ChangedC handle",
                     meta_description: "Changed meta_description", content: "Changed content")
@@ -30,7 +30,7 @@ class MagazCore::AdminServices::Page::ChangePageTest < ActiveSupport::TestCase
   end
 
   test 'should not update page with existing handle' do
-    service = MagazCore::AdminServices::Page::ChangePage.
+    service = AdminServices::Page::ChangePage.
                 run(id: "#{@page.id}", title: "ChangedTitle", shop_id: @shop.id,
                     page_title: "Changed page_title", handle: @page2.handle,
                     meta_description: "Changed meta_description", content: "Changed content")
@@ -40,7 +40,7 @@ class MagazCore::AdminServices::Page::ChangePageTest < ActiveSupport::TestCase
   end
 
   test 'should update page with some blank params' do
-    service = MagazCore::AdminServices::Page::ChangePage.
+    service = AdminServices::Page::ChangePage.
                 run(id: "#{@page2.id}", title: @page2.title, shop_id: @shop.id,
                     page_title: '', handle: '', meta_description: '',
                     content: '')

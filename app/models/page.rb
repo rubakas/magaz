@@ -16,19 +16,17 @@
 #  published_at     :datetime
 #
 
-module MagazCore
-  class Page < ActiveRecord::Base
-    self.table_name = 'pages'
-    extend FriendlyId
-    include Concerns::Visibility
+class Page < ActiveRecord::Base
+  self.table_name = 'pages'
+  extend FriendlyId
+  include Concerns::Visibility
 
-    belongs_to :shop
-    has_many :events, as: :subject
+  belongs_to :shop
+  has_many :events, as: :subject
 
-    friendly_id :handle, use: [:slugged, :scoped], scope: :shop
+  friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 
-    def should_generate_new_friendly_id?
-      handle_changed?
-    end
+  def should_generate_new_friendly_id?
+    handle_changed?
   end
 end

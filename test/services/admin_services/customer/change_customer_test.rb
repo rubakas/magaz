@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Customer::ChangeCustomerTest < ActiveSupport::TestCase
+class AdminServices::Customer::ChangeCustomerTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -13,20 +13,20 @@ class MagazCore::AdminServices::Customer::ChangeCustomerTest < ActiveSupport::Te
   end
 
   test 'should update customer with valid params' do
-    service = MagazCore::AdminServices::Customer::ChangeCustomer.run(@success_params)
+    service = AdminServices::Customer::ChangeCustomer.run(@success_params)
     assert service.valid?
-    assert_equal "Changedtest@test.com", MagazCore::Customer.find(@customer.id).email
-    assert_equal 'Changed first name', MagazCore::Customer.find(@customer.id).first_name
+    assert_equal "Changedtest@test.com", Customer.find(@customer.id).email
+    assert_equal 'Changed first name', Customer.find(@customer.id).first_name
   end
 
   test 'should not update customer with blank_params' do
-    service = MagazCore::AdminServices::Customer::ChangeCustomer.run(@blank_params)
+    service = AdminServices::Customer::ChangeCustomer.run(@blank_params)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
   end
 
   test 'should not update customer with existing email' do
-    service = MagazCore::AdminServices::Customer::ChangeCustomer
+    service = AdminServices::Customer::ChangeCustomer
                                                 .run( id: @customer.id,
                                                       first_name: "Changed first name",
                                                       last_name: "CHanged last name",
@@ -39,7 +39,7 @@ class MagazCore::AdminServices::Customer::ChangeCustomerTest < ActiveSupport::Te
   end
 
   test 'should update customer with some blank params' do
-    service = MagazCore::AdminServices::Customer::ChangeCustomer
+    service = AdminServices::Customer::ChangeCustomer
                                               .run( id: @customer.id,
                                                     first_name: "Changed first name",
                                                     last_name: '', email: @customer.email,

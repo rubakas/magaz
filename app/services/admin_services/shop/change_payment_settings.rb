@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Shop::ChangePaymentSettings < ActiveInteraction::Base
+class AdminServices::Shop::ChangePaymentSettings < ActiveInteraction::Base
 
   string :authorization_settings
   integer :id
@@ -6,7 +6,7 @@ class MagazCore::AdminServices::Shop::ChangePaymentSettings < ActiveInteraction:
   validates :id, :authorization_settings, presence: true
 
   def execute
-    shop = MagazCore::Shop.find(id)
+    shop = Shop.find(id)
     shop.update_attributes!(shop_params) ||
       errors.add(:base, I18n.t('services.shop_services.wrong_params'))
 

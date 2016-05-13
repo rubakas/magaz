@@ -18,39 +18,37 @@
 
 require 'test_helper'
 
-module MagazCore
-  class ArticleTest < ActiveSupport::TestCase
-    include MagazCore::Shared::VisibilityExamples
-    
-    setup do
-      setup_visibility_examples(model_class: MagazCore::Article, factory_name: :article)
-    end
+class ArticleTest < ActiveSupport::TestCase
+  include Shared::VisibilityExamples
 
-    test 'two articles with same handle and different shops' do
-      @shop1 = create(:shop, name: "shop1")
-      @shop2 = create(:shop, name: "shop2")
+  setup do
+    setup_visibility_examples(model_class: Article, factory_name: :article)
+  end
 
-      @blog1 = create(:blog, title: "blog", shop: @shop1)
-      @blog2 = create(:blog, title: "blog", shop: @shop2)
+  test 'two articles with same handle and different shops' do
+    @shop1 = create(:shop, name: "shop1")
+    @shop2 = create(:shop, name: "shop2")
 
-      @article1 = create(:article, title: "article", handle: "article-handle", blog: @blog1)
-      @article2 = @blog2.articles.new(title: "article", handle: "article-handle")
+    @blog1 = create(:blog, title: "blog", shop: @shop1)
+    @blog2 = create(:blog, title: "blog", shop: @shop2)
 
-      assert @article2.save
-      assert @article1.slug == @article2.slug
-    end
+    @article1 = create(:article, title: "article", handle: "article-handle", blog: @blog1)
+    @article2 = @blog2.articles.new(title: "article", handle: "article-handle")
 
-    test 'two articles with same handle and same shop' do
-      @shop1 = create(:shop, name: "shop1")
-      @blog1 = create(:blog, title: "blog1")
+    assert @article2.save
+    assert @article1.slug == @article2.slug
+  end
 
-      @article1 = create(:article, title: "article1", handle: "article-handle", blog: @blog1)
+  test 'two articles with same handle and same shop' do
+    @shop1 = create(:shop, name: "shop1")
+    @blog1 = create(:blog, title: "blog1")
 
-      @article2 = @blog1.articles.new(title: "article2", handle: "article-handle")
-      @article2.save
+    @article1 = create(:article, title: "article1", handle: "article-handle", blog: @blog1)
 
-      assert @article2.save
-      refute @article1.slug == @article2.slug
-    end
+    @article2 = @blog1.articles.new(title: "article2", handle: "article-handle")
+    @article2.save
+
+    assert @article2.save
+    refute @article1.slug == @article2.slug
   end
 end

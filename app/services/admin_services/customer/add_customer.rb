@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Customer::AddCustomer < ActiveInteraction::Base
+class AdminServices::Customer::AddCustomer < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {customer}
 
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Customer::AddCustomer < ActiveInteraction::Base
   validate :customer_uniquness
 
   def customer
-    @customer = MagazCore::Shop.find(shop_id).customers.new
+    @customer = Shop.find(shop_id).customers.new
     add_errors if errors.any?
     @customer
   end
@@ -28,14 +28,14 @@ class MagazCore::AdminServices::Customer::AddCustomer < ActiveInteraction::Base
       @customer.errors.add(:base, msg)
     end
   end
-  
+
   def customer_uniquness
     errors.add(:base, I18n
                 .t('services.add_customer.customer_exist')) unless customer_unique?
   end
 
   def customer_unique?
-    MagazCore::Customer.where(shop_id: shop_id, email: email).count == 0
+    Customer.where(shop_id: shop_id, email: email).count == 0
   end
 
 end

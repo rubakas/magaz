@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::StoreServices::ShoppingCartTest < ActiveSupport::TestCase
+class StoreServices::ShoppingCartTest < ActiveSupport::TestCase
 
   setup do
     @existing_shop      = create(:shop)
@@ -10,7 +10,7 @@ class MagazCore::StoreServices::ShoppingCartTest < ActiveSupport::TestCase
   end
 
   test "initialization with existing stuff" do
-    @service = MagazCore::StoreServices::ShoppingCart
+    @service = StoreServices::ShoppingCart
                 .new(shop_id: @existing_shop.id,
                      checkout_id: @existing_checkout.id,
                      customer_id: @existing_customer.id)
@@ -22,7 +22,7 @@ class MagazCore::StoreServices::ShoppingCartTest < ActiveSupport::TestCase
 
   test "initialization with missing stuff" do
     @missing_checkout_service =
-      MagazCore::StoreServices::ShoppingCart
+      StoreServices::ShoppingCart
         .new(shop_id: @existing_shop.id,
              checkout_id: 'dont exist',
              customer_id: @existing_customer.id)
@@ -32,7 +32,7 @@ class MagazCore::StoreServices::ShoppingCartTest < ActiveSupport::TestCase
     assert_equal @missing_checkout_service.customer, @existing_customer
 
     @missing_checkout_and_customer_service =
-      MagazCore::StoreServices::ShoppingCart
+      StoreServices::ShoppingCart
         .new(shop_id: @existing_shop.id,
              checkout_id: 'do not exist',
              customer_id: 'do not exist')
@@ -46,7 +46,7 @@ class MagazCore::StoreServices::ShoppingCartTest < ActiveSupport::TestCase
 
   test 'add_product and item_count' do
     @service =
-      MagazCore::StoreServices::ShoppingCart
+      StoreServices::ShoppingCart
         .new(shop_id: @existing_shop.id,
              checkout_id: nil,
              customer_id: nil)

@@ -10,22 +10,21 @@
 #  shop_id           :integer
 #
 
-module MagazCore
-  class Customer < ActiveRecord::Base
-    self.table_name = 'customers'
 
-    has_many :checkouts
-    has_many :events, as: :subject
-    belongs_to :shop
+class Customer < ActiveRecord::Base
+  self.table_name = 'customers'
 
-    def self.to_csv
-      CSV.generate do |csv|
-        csv << column_names
-        all.each do |customer|
-          csv << customer.attributes.values_at(*column_names)
-        end
+  has_many :checkouts
+  has_many :events, as: :subject
+  belongs_to :shop
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |customer|
+        csv << customer.attributes.values_at(*column_names)
       end
     end
-    
   end
+
 end

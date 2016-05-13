@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Product::AddProduct < ActiveInteraction::Base
+class AdminServices::Product::AddProduct < ActiveInteraction::Base
 
   string  :name
   integer :shop_id
@@ -11,10 +11,10 @@ class MagazCore::AdminServices::Product::AddProduct < ActiveInteraction::Base
   validate :name_uniqueness
 
   def execute
-    @product = MagazCore::Product.new
+    @product = Product.new
     should_rollback = true
 
-    MagazCore::Product.connection.transaction do
+    Product.connection.transaction do
       begin
 
         @product.attributes = inputs.slice!(:product_images_attributes)
@@ -24,7 +24,7 @@ class MagazCore::AdminServices::Product::AddProduct < ActiveInteraction::Base
         end
 
         catch(:interrupt) do
-          compose(MagazCore::AdminServices::ProductImage::AddProductImage,
+          compose(AdminServices::ProductImage::AddProductImage,
                   image: product_images_attributes["0"][:image],
                   product_id: "#{@product.id}") if product_images_attributes["0"]
           should_rollback = false
@@ -46,7 +46,7 @@ class MagazCore::AdminServices::Product::AddProduct < ActiveInteraction::Base
   end
 
   def name_unique?
-    MagazCore::Product.where(shop_id: shop_id, name: name).count == 0
+    Product.where(shop_id: shop_id, name: name).count == 0
   end
 
 end

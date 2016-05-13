@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
+class AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::T
   end
 
   test 'should update shop with valid params' do
-    service = MagazCore::AdminServices::Shop::ChangeTaxesSettings
+    service = AdminServices::Shop::ChangeTaxesSettings
                 .run(id: @shop.id,
                      all_taxes_are_included: '0',
                      charge_taxes_on_shipping_rates: '1',
@@ -24,7 +24,7 @@ class MagazCore::AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::T
   end
 
   test 'should not update shop with blank params' do
-    service = MagazCore::AdminServices::Shop::ChangeTaxesSettings
+    service = AdminServices::Shop::ChangeTaxesSettings
                 .run(id: @shop.id,
                      all_taxes_are_included: '',
                      charge_taxes_on_shipping_rates: '',
@@ -42,7 +42,7 @@ class MagazCore::AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::T
   test 'should update eu_digital_goods_collection_id to nil with blank charge_vat_taxes' do
     assert_equal @collection.id,
                  @shop.eu_digital_goods_collection_id
-    service = MagazCore::AdminServices::Shop::ChangeTaxesSettings
+    service = AdminServices::Shop::ChangeTaxesSettings
                 .run(id: @shop.id,
                      all_taxes_are_included: '1',
                      charge_taxes_on_shipping_rates: '0',
@@ -54,7 +54,7 @@ class MagazCore::AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::T
   test 'should not update eu_digital_goods_collection_id with charge_vat_taxes' do
     assert_equal @collection.id,
                  @shop.eu_digital_goods_collection_id
-    service = MagazCore::AdminServices::Shop::ChangeTaxesSettings
+    service = AdminServices::Shop::ChangeTaxesSettings
                 .run(id: @shop.id,
                      all_taxes_are_included: '1',
                      charge_taxes_on_shipping_rates: '0',

@@ -14,11 +14,9 @@
 #  updated_at   :datetime
 #
 
-module MagazCore
-  class Asset < ActiveRecord::Base
-    self.table_name = 'assets'
+class Asset < ActiveRecord::Base
+  self.table_name = 'assets'
 
-    belongs_to :theme
-    
-  end
+  belongs_to :theme
+
 end

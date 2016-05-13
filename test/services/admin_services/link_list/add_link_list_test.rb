@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::LinkList::AddLinkListTest < ActiveSupport::TestCase
+class AdminServices::LinkList::AddLinkListTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -9,17 +9,17 @@ class MagazCore::AdminServices::LinkList::AddLinkListTest < ActiveSupport::TestC
   end
 
   test 'should create link_list with valid params' do
-    service = MagazCore::AdminServices::LinkList::AddLinkList.run(@success_params)
+    service = AdminServices::LinkList::AddLinkList.run(@success_params)
     assert service.valid?
-    assert MagazCore::LinkList.find_by_id(service.result.id)
+    assert LinkList.find_by_id(service.result.id)
     assert_equal 'Test name', service.result.name
     assert_equal 1, @shop.link_lists.count
   end
 
   test 'should not create link_list with same params' do
-    service = MagazCore::AdminServices::LinkList::AddLinkList.run(@success_params)
+    service = AdminServices::LinkList::AddLinkList.run(@success_params)
     assert service.valid?
-    service2 = MagazCore::AdminServices::LinkList::AddLinkList.run(@success_params)
+    service2 = AdminServices::LinkList::AddLinkList.run(@success_params)
     refute service2.valid?
     assert_equal 1, @shop.link_lists.count
     assert_equal 2, service2.link_list.errors.full_messages.count
@@ -28,7 +28,7 @@ class MagazCore::AdminServices::LinkList::AddLinkListTest < ActiveSupport::TestC
   end
 
   test 'should not create link_list with blank params' do
-    service = MagazCore::AdminServices::LinkList::AddLinkList.run(@blank_params)
+    service = AdminServices::LinkList::AddLinkList.run(@blank_params)
     refute service.valid?
     assert_equal 1, service.link_list.errors.full_messages.count
     assert_equal 0, @shop.link_lists.count

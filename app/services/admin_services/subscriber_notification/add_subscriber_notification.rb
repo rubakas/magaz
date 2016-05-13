@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification < ActiveInteraction::Base
+class AdminServices::SubscriberNotification::AddSubscriberNotification < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {subscriber_notification}
 
@@ -14,7 +14,7 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
   validate :email_uniqueness, if: :select_email_address_method?
 
   def subscriber_notification
-    @subscriber_notification = MagazCore::SubscriberNotification.new
+    @subscriber_notification = SubscriberNotification.new
     add_errors if errors.any?
     @subscriber_notification
   end
@@ -54,7 +54,7 @@ class MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotificatio
   end
 
   def email_unique?
-    MagazCore::SubscriberNotification
+    SubscriberNotification
       .where(shop_id: shop_id, subscription_address: subscription_address).count == 0
   end
 

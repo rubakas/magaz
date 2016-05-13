@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Checkout::DeleteCheckoutTest < ActiveSupport::TestCase
+class AdminServices::Checkout::DeleteCheckoutTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -10,15 +10,15 @@ class MagazCore::AdminServices::Checkout::DeleteCheckoutTest < ActiveSupport::Te
 
   test 'should delete checkout with valid id' do
     assert_equal 1, @shop.checkouts.count
-    service = MagazCore::AdminServices::Checkout::DeleteCheckout.run(id: @abandoned_checkout.id)
+    service = AdminServices::Checkout::DeleteCheckout.run(id: @abandoned_checkout.id)
     assert service.valid?
-    refute MagazCore::Checkout.find_by_id(@abandoned_checkout.id)
+    refute Checkout.find_by_id(@abandoned_checkout.id)
     assert_equal 0, @shop.checkouts.count
   end
 
   test 'should not checkout blog with blank id' do
     assert_equal 1, @shop.checkouts.count
-    service = MagazCore::AdminServices::Checkout::DeleteCheckout.run(id: "")
+    service = AdminServices::Checkout::DeleteCheckout.run(id: "")
     refute service.valid?
     assert_equal 1, @shop.checkouts.count
   end

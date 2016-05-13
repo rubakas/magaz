@@ -1,6 +1,6 @@
-class MagazCore::AdminServices::File::ChangeFile < ActiveInteraction::Base
+class AdminServices::File::ChangeFile < ActiveInteraction::Base
 
-  set_callback :validate, :after, -> {datafile} 
+  set_callback :validate, :after, -> {datafile}
 
   file :file
   integer :id, :shop_id
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::File::ChangeFile < ActiveInteraction::Base
   validates :id, :file, :shop_id, :name, presence: true
 
   def datafile
-    @datafile = MagazCore::Shop.find(shop_id).files.find(id)
+    @datafile = Shop.find(shop_id).files.find(id)
     add_errors if errors.any?
     @datafile
   end

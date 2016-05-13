@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::ProductImage::ChangeProductImage < ActiveInteraction::Base
+class AdminServices::ProductImage::ChangeProductImage < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {product_image}
 
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::ProductImage::ChangeProductImage < ActiveInterac
   validates :id, :image, :product_id, presence: true
 
   def product_image
-    product = MagazCore::Product.friendly.find(product_id)
+    product = Product.friendly.find(product_id)
     @product_image = product.product_images.find(id)
     add_errors if errors.any?
     @product_image
@@ -19,7 +19,7 @@ class MagazCore::AdminServices::ProductImage::ChangeProductImage < ActiveInterac
     unless @product_image.update_attributes(inputs.slice!(:id))
       errors.merge!(@product_image.errors)
     end
-    @product_image      
+    @product_image
   end
 
   private

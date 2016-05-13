@@ -1,10 +1,10 @@
-class MagazCore::ThemeServices::Activate
-  include MagazCore::Concerns::Service
+class ThemeServices::Activate
+  include Concerns::Service
   attr_reader :shop, :installed_theme
 
   def call(shop_id:, installed_theme_id: nil)
-    @shop          = MagazCore::Shop.find(shop_id)
-    @installed_theme = MagazCore::Theme.find(installed_theme_id)
+    @shop          = Shop.find(shop_id)
+    @installed_theme = Theme.find(installed_theme_id)
 
     @shop.transaction do
       @shop.themes.each do |current_theme|

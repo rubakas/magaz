@@ -1,5 +1,5 @@
 require 'test_helper'
-class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSupport::TestCase
+class AdminServices::ShippingRate::AddShippingRateTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: "New shop")
@@ -23,22 +23,22 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
   end
 
   test "should add shipping rate with valid params" do
-    assert_equal 0, MagazCore::ShippingRate.count
-    service = MagazCore::AdminServices::ShippingRate::AddShippingRate.run(@succsess_params)
+    assert_equal 0, ShippingRate.count
+    service = AdminServices::ShippingRate::AddShippingRate.run(@succsess_params)
     assert service.valid?
-    assert MagazCore::ShippingRate.find(service.result.id)
-    assert_equal 1, MagazCore::ShippingRate.count
-    assert_equal @succsess_params[:name], MagazCore::ShippingRate.find(service.result.id).name
+    assert ShippingRate.find(service.result.id)
+    assert_equal 1, ShippingRate.count
+    assert_equal @succsess_params[:name], ShippingRate.find(service.result.id).name
   end
 
   test "should not add shipping rate with blank params" do
-    assert_equal 0, MagazCore::ShippingRate.count
-    service = MagazCore::AdminServices::ShippingRate::AddShippingRate.run(@blank_params)
+    assert_equal 0, ShippingRate.count
+    service = AdminServices::ShippingRate::AddShippingRate.run(@blank_params)
     refute service.valid?
     assert_equal 3, service.errors.full_messages.count
     assert_equal "Name can't be blank", service.errors.full_messages.first
     assert_equal "Criteria can't be blank", service.errors.full_messages.last
-    assert_equal 0, MagazCore::ShippingRate.count
+    assert_equal 0, ShippingRate.count
   end
 
   test "shoul add shipping rate with some blank params" do
@@ -46,18 +46,18 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
     @succsess_params[:weight_to] = ""
     @succsess_params[:price_from] = ""
     @succsess_params[:price_to] = ""
-    assert_equal 0, MagazCore::ShippingRate.count
-    service = MagazCore::AdminServices::ShippingRate::AddShippingRate.run(@succsess_params)
+    assert_equal 0, ShippingRate.count
+    service = AdminServices::ShippingRate::AddShippingRate.run(@succsess_params)
     assert service.valid?
-    assert MagazCore::ShippingRate.find(service.result.id)
-    assert_equal 1, MagazCore::ShippingRate.count
-    assert_equal @succsess_params[:name], MagazCore::ShippingRate.find(service.result.id).name
-    assert_equal nil, MagazCore::ShippingRate.find(service.result.id).price_from
+    assert ShippingRate.find(service.result.id)
+    assert_equal 1, ShippingRate.count
+    assert_equal @succsess_params[:name], ShippingRate.find(service.result.id).name
+    assert_equal nil, ShippingRate.find(service.result.id).price_from
   end
 
   test "should not add shipping rate with wrong criteria" do
-    assert_equal 0, MagazCore::ShippingRate.count
-    service = MagazCore::AdminServices::ShippingRate::AddShippingRate
+    assert_equal 0, ShippingRate.count
+    service = AdminServices::ShippingRate::AddShippingRate
                 .run(name: "Test name",
                      price_to: "20.5",
                      weight_to: "",
@@ -69,12 +69,12 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "Criteria is not correct", service.errors.full_messages.first
-    assert_equal 0, MagazCore::ShippingRate.count
+    assert_equal 0, ShippingRate.count
   end
 
   test "should not add shipping rate with wrong comparison" do
-    assert_equal 0, MagazCore::ShippingRate.count
-    service = MagazCore::AdminServices::ShippingRate::AddShippingRate
+    assert_equal 0, ShippingRate.count
+    service = AdminServices::ShippingRate::AddShippingRate
                 .run(name: "Test name",
                      price_to: "",
                      weight_to: "5.5",
@@ -86,12 +86,12 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "weight to must be greater than weight from", service.errors.full_messages.first
-    assert_equal 0, MagazCore::ShippingRate.count
+    assert_equal 0, ShippingRate.count
   end
 
   test "should not add shipping rate with wrong weight" do
-    assert_equal 0, MagazCore::ShippingRate.count
-    service = MagazCore::AdminServices::ShippingRate::AddShippingRate
+    assert_equal 0, ShippingRate.count
+    service = AdminServices::ShippingRate::AddShippingRate
                 .run(name: "Test name",
                      price_to: "",
                      weight_to: "some",
@@ -104,7 +104,7 @@ class MagazCore::AdminServices::ShippingRate::AddShippingRateTest < ActiveSuppor
     assert_equal 2, service.errors.full_messages.count
     assert_equal "Weight from is not correct", service.errors.full_messages.first
     assert_equal "Weight to is not correct", service.errors.full_messages.last
-    assert_equal 0, MagazCore::ShippingRate.count
+    assert_equal 0, ShippingRate.count
   end
-  
+
 end

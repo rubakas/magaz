@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
+class AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -13,14 +13,14 @@ class MagazCore::AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
   end
 
   test 'should update link with valid params' do
-    service = MagazCore::AdminServices::Link::ChangeLink.run(@success_params)
+    service = AdminServices::Link::ChangeLink.run(@success_params)
     assert service.valid?
-    assert_equal 'Test name', MagazCore::Link.find(@link_list.id).name
-    assert_equal "Test type", MagazCore::Link.find(@link_list.id).link_type
+    assert_equal 'Test name', Link.find(@link_list.id).name
+    assert_equal "Test type", Link.find(@link_list.id).link_type
   end
 
   test 'should not update link with existing name' do
-    service = MagazCore::AdminServices::Link::ChangeLink.
+    service = AdminServices::Link::ChangeLink.
                 run(id: @link.id, name: @link2.name,
                     link_list_id: "#{@link_list.id}", link_type: "Changed type",
                     position: "1111")
@@ -30,7 +30,7 @@ class MagazCore::AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
   end
 
   test 'should update link with some blank params' do
-    service = MagazCore::AdminServices::Link::ChangeLink.
+    service = AdminServices::Link::ChangeLink.
                 run(id: @link_list.id, name: "Changed name",
                     link_list_id: "#{@link_list.id}", position: '123', link_type: '')
     assert service.valid?

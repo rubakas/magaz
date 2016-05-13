@@ -5,21 +5,21 @@ module MagazCore
     setup do
       @theme = build(:theme)
       archive_path = ::File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
-      MagazCore::ThemeServices::ImportFromArchive
-        .call(archive_path: archive_path, 
+      ThemeServices::ImportFromArchive
+        .call(archive_path: archive_path,
               theme: @theme,
               theme_attributes: @theme.attributes)
 
       @erb_body = "<%= 'Hi from theme template asset!' %>"
       @template_asset = create(:asset, key: 'prefix/template.liquid', theme: @theme, value: @erb_body)
 
-      @resolver = MagazCore::ThemeServices::Resolver.instance
+      @resolver = ThemeServices::Resolver.instance
       @details  = { formats: [:html], locale: [:en], handlers: [:liquid], themes: [@theme] }
     end
 
     test 'initialize' do
       refute_nil @resolver
-      assert_kind_of MagazCore::ThemeServices::Resolver, @resolver
+      assert_kind_of ThemeServices::Resolver, @resolver
       assert @resolver.respond_to? :find_all
     end
 

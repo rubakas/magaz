@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Collection::AddCollection < ActiveInteraction::Base
+class AdminServices::Collection::AddCollection < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {collection}
 
@@ -11,7 +11,7 @@ class MagazCore::AdminServices::Collection::AddCollection < ActiveInteraction::B
   validate :handle_uniqueness
 
   def collection
-    @collection = MagazCore::Shop.find(shop_id).collections.new
+    @collection = Shop.find(shop_id).collections.new
     add_errors if errors.any?
     @collection
   end
@@ -34,7 +34,7 @@ class MagazCore::AdminServices::Collection::AddCollection < ActiveInteraction::B
   end
 
   def handle_unique?
-    MagazCore::Collection.where(shop_id: shop_id, handle: handle).count == 0
+    Collection.where(shop_id: shop_id, handle: handle).count == 0
   end
 
   def add_errors
@@ -48,6 +48,6 @@ class MagazCore::AdminServices::Collection::AddCollection < ActiveInteraction::B
   end
 
   def name_unique?
-    MagazCore::Collection.where(shop_id: shop_id, name: name).count == 0
+    Collection.where(shop_id: shop_id, name: name).count == 0
   end
 end

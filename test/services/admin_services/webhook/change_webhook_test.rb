@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
+class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop)
@@ -18,16 +18,16 @@ class MagazCore::AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::Test
   end
 
   test "should create webhook with valid params" do
-    assert_equal 1, MagazCore::Webhook.count
-    service = MagazCore::AdminServices::Webhook::ChangeWebhook.run(@success_params)
+    assert_equal 1, Webhook.count
+    service = AdminServices::Webhook::ChangeWebhook.run(@success_params)
     assert service.valid?
-    assert_equal @success_params[:address], MagazCore::Webhook.find_by_id(@webhook.id).address
-    assert_equal @success_params[:topic], MagazCore::Webhook.find_by_id(@webhook.id).topic
+    assert_equal @success_params[:address], Webhook.find_by_id(@webhook.id).address
+    assert_equal @success_params[:topic], Webhook.find_by_id(@webhook.id).topic
   end
 
   test "should not create webhook with blank params" do
-    assert_equal 1, MagazCore::Webhook.count
-    service = MagazCore::AdminServices::Webhook::ChangeWebhook.run(@blank_params)
+    assert_equal 1, Webhook.count
+    service = AdminServices::Webhook::ChangeWebhook.run(@blank_params)
     refute service.valid?
     assert_equal 4, service.webhook.errors.count
     assert_equal "Topic is not included in the list",
@@ -41,9 +41,9 @@ class MagazCore::AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::Test
   end
 
   test "should not create webhook with invalid address" do
-    assert_equal 1, MagazCore::Webhook.count
+    assert_equal 1, Webhook.count
     @success_params[:address] = "invalid_adress"
-    service = MagazCore::AdminServices::Webhook::ChangeWebhook.run(@success_params)
+    service = AdminServices::Webhook::ChangeWebhook.run(@success_params)
     refute service.valid?
     assert_equal 1, service.webhook.errors.count
     assert_equal "Address is invalid", service.webhook.errors.full_messages.first

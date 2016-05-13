@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Link::DeleteLink < ActiveInteraction::Base
+class AdminServices::Link::DeleteLink < ActiveInteraction::Base
 
   integer :id
   string :link_list_id
@@ -6,11 +6,11 @@ class MagazCore::AdminServices::Link::DeleteLink < ActiveInteraction::Base
   validates :id, :link_list_id, presence: true
 
   def link_list
-    MagazCore::LinkList.friendly.find(link_list_id)    
+    LinkList.friendly.find(link_list_id)    
   end
 
   def execute
-    MagazCore::LinkList.friendly.find(link_list_id).links.find(id).destroy
+    LinkList.friendly.find(link_list_id).links.find(id).destroy
   end
 
 end

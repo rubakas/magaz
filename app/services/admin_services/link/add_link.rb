@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Link::AddLink < ActiveInteraction::Base
+class AdminServices::Link::AddLink < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {link}
 
@@ -8,7 +8,7 @@ class MagazCore::AdminServices::Link::AddLink < ActiveInteraction::Base
   validate :name_uniqueness
 
   def link
-    link_list = MagazCore::LinkList.friendly.find(link_list_id)
+    link_list = LinkList.friendly.find(link_list_id)
     @link = link_list.links.new
     add_errors if errors.any?
     @link
@@ -34,7 +34,7 @@ class MagazCore::AdminServices::Link::AddLink < ActiveInteraction::Base
   end
 
   def name_unique?
-    MagazCore::Link.where(link_list_id: link_list_id, name: name).count == 0
+    Link.where(link_list_id: link_list_id, name: name).count == 0
   end
 
 end

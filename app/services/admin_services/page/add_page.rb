@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Page::AddPage < ActiveInteraction::Base
+class AdminServices::Page::AddPage < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {page}
 
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Page::AddPage < ActiveInteraction::Base
   validate :title_uniqueness, :handle_uniqueness
 
   def page
-    @page = MagazCore::Shop.find(shop_id).pages.new
+    @page = Shop.find(shop_id).pages.new
     add_errors if errors.any?
     @page
   end
@@ -34,7 +34,7 @@ class MagazCore::AdminServices::Page::AddPage < ActiveInteraction::Base
   end
 
   def title_unique?
-    MagazCore::Page.where(shop_id: shop_id, title: title).count == 0
+    Page.where(shop_id: shop_id, title: title).count == 0
   end
 
   def handle_uniqueness
@@ -44,7 +44,7 @@ class MagazCore::AdminServices::Page::AddPage < ActiveInteraction::Base
   end
 
   def handle_unique?
-    MagazCore::Page.where(shop_id: shop_id, handle: handle).count == 0
+    Page.where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MagazCore::AdminServices::Link::DeleteLinkTest < ActiveSupport::TestCase
+class AdminServices::Link::DeleteLinkTest < ActiveSupport::TestCase
 
   def setup
     @shop = create(:shop, name: "shop name")
@@ -9,19 +9,19 @@ class MagazCore::AdminServices::Link::DeleteLinkTest < ActiveSupport::TestCase
   end
 
   test 'should delete link with valid id' do
-    assert_equal 1, MagazCore::Link.count
-    service = MagazCore::AdminServices::Link::DeleteLink.run(id: @link.id,
+    assert_equal 1, Link.count
+    service = AdminServices::Link::DeleteLink.run(id: @link.id,
                                                              link_list_id: "#{@link_list.id}")
     assert service.valid?
-    assert_equal 0, MagazCore::Link.count
+    assert_equal 0, Link.count
   end
 
   test 'should not delete link with blank id' do
-    assert_equal 1, MagazCore::Link.count
-    service = MagazCore::AdminServices::Link::DeleteLink.run(id: '', link_list_id: "#{@link_list.id}")
+    assert_equal 1, Link.count
+    service = AdminServices::Link::DeleteLink.run(id: '', link_list_id: "#{@link_list.id}")
     refute service.valid?
     assert_equal 1, service.errors.count
     assert_equal "Id is not a valid integer", service.errors.full_messages.first
-    assert_equal 1, MagazCore::Link.count
+    assert_equal 1, Link.count
   end
 end

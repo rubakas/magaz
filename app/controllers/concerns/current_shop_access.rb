@@ -1,17 +1,15 @@
-module MagazCore
-  module Concerns
-    module CurrentShopAccess
-      extend ActiveSupport::Concern
+module Concerns
+  module CurrentShopAccess
+    extend ActiveSupport::Concern
 
-      included do
-        helper_method :current_shop
-      end
+    included do
+      helper_method :current_shop
+    end
 
-      protected
+    protected
 
-      def current_shop
-        MagazCore::Shop.find_by_subdomain(request.subdomain)
-      end
+    def current_shop
+      Shop.find_by_subdomain(request.subdomain)
     end
   end
 end

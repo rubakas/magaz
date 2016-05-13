@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Shop::ChangeTaxesSettings < ActiveInteraction::Base
+class AdminServices::Shop::ChangeTaxesSettings < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {shop}
 
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Shop::ChangeTaxesSettings < ActiveInteraction::B
   validates :id, presence: true
 
   def shop
-    @shop = MagazCore::Shop.find(id)
+    @shop = Shop.find(id)
     add_errors if errors.any?
     @shop
   end

@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Link::ChangeLink < ActiveInteraction::Base
+class AdminServices::Link::ChangeLink < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {link}
 
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Link::ChangeLink < ActiveInteraction::Base
   validate :name_uniqueness, if: :name_changed?
 
   def link
-    link_list = MagazCore::LinkList.friendly.find(link_list_id)
+    link_list = LinkList.friendly.find(link_list_id)
     @link = link_list.links.find(id)
     add_errors if errors.any?
     @link
@@ -30,7 +30,7 @@ class MagazCore::AdminServices::Link::ChangeLink < ActiveInteraction::Base
   end
 
   def name_changed?
-    MagazCore::LinkList.friendly.find(link_list_id).links.find(id).name != name
+    LinkList.friendly.find(link_list_id).links.find(id).name != name
   end
 
   def name_uniqueness
@@ -38,7 +38,7 @@ class MagazCore::AdminServices::Link::ChangeLink < ActiveInteraction::Base
   end
 
   def name_unique?
-    MagazCore::Link.where(link_list_id: link_list_id, name: name).count == 0
+    Link.where(link_list_id: link_list_id, name: name).count == 0
   end
 
 end

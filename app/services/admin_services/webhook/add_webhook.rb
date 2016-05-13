@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Webhook::AddWebhook < ActiveInteraction::Base
+class AdminServices::Webhook::AddWebhook < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {webhook}
 
@@ -6,13 +6,13 @@ class MagazCore::AdminServices::Webhook::AddWebhook < ActiveInteraction::Base
   string :topic, :address, :format
   array :metafield_namespaces, :fields, default: nil
 
-  validates :topic, inclusion: MagazCore::Webhook::Topics::WEBHOOKS_TOPICS_LIST
-  validates :format, inclusion: MagazCore::Webhook::FORMAT_CHOICE
+  validates :topic, inclusion: Webhook::Topics::WEBHOOKS_TOPICS_LIST
+  validates :format, inclusion: Webhook::FORMAT_CHOICE
   validates :address, presence: true,
                       format: { with: /https?:\/\/[\S]+/ }
 
   def webhook
-    @webhook = MagazCore::Webhook.new
+    @webhook = Webhook.new
     add_errors if errors.any?
     @webhook
   end

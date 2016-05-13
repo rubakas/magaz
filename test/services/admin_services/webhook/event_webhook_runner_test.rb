@@ -2,7 +2,7 @@ require 'test_helper'
 require 'sidekiq/testing'
 Sidekiq::Testing.fake!
 
-class MagazCore::AdminServices::Webhook::EventWebhookRunnerTest < ActiveSupport::TestCase
+class AdminServices::Webhook::EventWebhookRunnerTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop, subdomain: 'example')
     @user = create(:user, shop: @shop)
@@ -10,7 +10,7 @@ class MagazCore::AdminServices::Webhook::EventWebhookRunnerTest < ActiveSupport:
     @webhook2 = create(:webhook, shop: @shop)
 
     @webhook3 = create(:webhook, shop: @shop)
-    @webhook3.update_attributes!(topic: MagazCore::Webhook::Topics::CREATE_PRODUCT_EVENT)
+    @webhook3.update_attributes!(topic: Webhook::Topics::CREATE_PRODUCT_EVENT)
 
     @product = create(:product, shop: @shop)
     @event = create(:event, shop: @shop, subject: @product)
@@ -18,15 +18,15 @@ class MagazCore::AdminServices::Webhook::EventWebhookRunnerTest < ActiveSupport:
 
   test 'should not throw error and schedule 2 webhooks' do
     assert_nothing_raised do
-      service = MagazCore::AdminServices::Webhook::EventWebhookRunner
+      service = AdminServices::Webhook::EventWebhookRunner
                   .call(event: @event, topic: @webhook1.topic)
-      assert_equal 2, MagazCore::WebhookWorker.jobs.size
+      assert_equal 2, WebhookWorker.jobs.size
     end
   end
 
   test 'should schedule webhook' do
     Sidekiq::Worker.clear_all
-    MagazCore::WebhookWorker.perform_async(@webhook1.id, @event.id)
-    assert_equal 1, MagazCore::WebhookWorker.jobs.size
+    WebhookWorker.perform_async(@webhook1.id, @event.id)
+    assert_equal 1, WebhookWorker.jobs.size
   end
 end

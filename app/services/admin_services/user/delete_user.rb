@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::User::DeleteUser < ActiveInteraction::Base
+class AdminServices::User::DeleteUser < ActiveInteraction::Base
 
   integer :id, :shop_id
 
@@ -16,8 +16,8 @@ class MagazCore::AdminServices::User::DeleteUser < ActiveInteraction::Base
   end
 
   def account_owner?
-    @user = MagazCore::User.find(id)
-    @user.account_owner == true || MagazCore::Shop.find(shop_id).users.count == 1
+    @user = User.find(id)
+    @user.account_owner == true || Shop.find(shop_id).users.count == 1
   end
 
 end

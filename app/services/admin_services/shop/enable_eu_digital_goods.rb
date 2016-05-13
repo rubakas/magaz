@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Shop::EnableEuDigitalGoods < ActiveInteraction::Base
+class AdminServices::Shop::EnableEuDigitalGoods < ActiveInteraction::Base
 
   string :collection_name
   integer :id
@@ -6,7 +6,7 @@ class MagazCore::AdminServices::Shop::EnableEuDigitalGoods < ActiveInteraction::
   validates :id, :collection_name, presence: true
 
   def execute
-    @shop = MagazCore::Shop.find(id)
+    @shop = Shop.find(id)
 
     check_default_collection
 

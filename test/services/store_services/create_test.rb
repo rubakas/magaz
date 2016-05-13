@@ -1,11 +1,11 @@
 require 'test_helper'
 
-class MagazCore::StoreServices::CreateTest < ActiveSupport::TestCase
+class StoreServices::CreateTest < ActiveSupport::TestCase
   setup do
     @default_theme = build(:theme)
     archive_path = ::File.expand_path('./../../../../fixtures/files/valid_theme.zip', __FILE__)
 
-    MagazCore::ThemeServices::ImportFromArchive
+    ThemeServices::ImportFromArchive
       .call(archive_path: archive_path,
             theme: @default_theme,
             theme_attributes: { name: 'Default' })
@@ -16,7 +16,7 @@ class MagazCore::StoreServices::CreateTest < ActiveSupport::TestCase
   end
 
   test 'create shop with valid params' do
-    service = MagazCore::StoreServices::Create.run(@success_params)
+    service = StoreServices::Create.run(@success_params)
 
     assert service.valid?
     assert service.result[:user]
@@ -28,13 +28,13 @@ class MagazCore::StoreServices::CreateTest < ActiveSupport::TestCase
 
   test 'fail shop creation when no default theme in system' do
     @default_theme.delete
-    service = MagazCore::StoreServices::Create.run(@success_params)
+    service = StoreServices::Create.run(@success_params)
     refute service.valid?
     assert_equal "No default theme in system", service.errors.full_messages.last
   end
 
   test 'fail shop creation when no user params' do
-    service = MagazCore::StoreServices::Create.run(shop_name: 'example42',
+    service = StoreServices::Create.run(shop_name: 'example42',
                                                    first_name: '' ,
                                                    last_name: '',
                                                    email: '',
@@ -43,7 +43,7 @@ class MagazCore::StoreServices::CreateTest < ActiveSupport::TestCase
   end
 
   test 'fail shop creation when no shop params' do
-    service = MagazCore::StoreServices::Create.run(shop_name: '',
+    service = StoreServices::Create.run(shop_name: '',
                                                    first_name: 'First' ,
                                                    last_name: 'Last',
                                                    email: 'email@mail.com',
@@ -52,7 +52,7 @@ class MagazCore::StoreServices::CreateTest < ActiveSupport::TestCase
   end
 
   test "shop and user should have association" do
-    service = MagazCore::StoreServices::Create.run(@success_params)
+    service = StoreServices::Create.run(@success_params)
 
     assert service.valid?
     assert service.result[:shop]
@@ -64,7 +64,7 @@ class MagazCore::StoreServices::CreateTest < ActiveSupport::TestCase
   end
 
   test 'default content created' do
-    service = MagazCore::StoreServices::Create.run(@success_params)
+    service = StoreServices::Create.run(@success_params)
     assert service.valid?
     assert service.result[:shop]
 

@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Article::AddArticle < ActiveInteraction::Base
+class AdminServices::Article::AddArticle < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {article}
 
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Article::AddArticle < ActiveInteraction::Base
   validate :title_uniqueness, :handle_uniqueness
 
   def article
-    @article = MagazCore::Article.new
+    @article = Article.new
     add_errors if errors.any?
     @article
   end
@@ -34,7 +34,7 @@ class MagazCore::AdminServices::Article::AddArticle < ActiveInteraction::Base
   end
 
   def title_unique?
-    MagazCore::Article.where(blog_id: blog_id, title: title).count == 0
+    Article.where(blog_id: blog_id, title: title).count == 0
   end
 
   def handle_uniqueness
@@ -44,7 +44,7 @@ class MagazCore::AdminServices::Article::AddArticle < ActiveInteraction::Base
   end
 
   def handle_unique?
-    MagazCore::Article.where(blog_id: blog_id, handle: handle).count == 0
+    Article.where(blog_id: blog_id, handle: handle).count == 0
   end
 
 end

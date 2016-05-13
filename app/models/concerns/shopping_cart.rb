@@ -1,7 +1,7 @@
 #TODO:  looks like decorator to me
-module MagazCore::Concerns::ShoppingCart
+module Concerns::ShoppingCart
   extend ActiveSupport::Concern
-  
+
   included do
     delegate :each, :empty?, to: :line_items
   end

@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
+class AdminServices::User::ChangeUser < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {user}
 
@@ -10,7 +10,7 @@ class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
   validate :email_uniqueness, if: :email_changed?
 
   def user
-    @user = MagazCore::Shop.find(shop_id).users.find(id)
+    @user = Shop.find(shop_id).users.find(id)
     add_errors if errors.any?
     @user
   end
@@ -30,7 +30,7 @@ class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
   end
 
   def email_changed?
-    MagazCore::User.find(id).email != email
+    User.find(id).email != email
   end
 
   def email_uniqueness
@@ -39,8 +39,8 @@ class MagazCore::AdminServices::User::ChangeUser < ActiveInteraction::Base
 
   def valid_email?
     email.present? &&
-      (email =~ MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX) &&
-        MagazCore::User.where(shop_id: shop_id, email: email).count == 0
+      (email =~ Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX) &&
+        User.where(shop_id: shop_id, email: email).count == 0
   end
 
 end

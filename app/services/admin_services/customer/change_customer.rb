@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Customer::ChangeCustomer < ActiveInteraction::Base
+class AdminServices::Customer::ChangeCustomer < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {customer}
 
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Customer::ChangeCustomer < ActiveInteraction::Ba
   validate :customer_uniqueness, if: :email_changed?
 
   def customer
-    @customer = MagazCore::Shop.find(shop_id).customers.find(id)
+    @customer = Shop.find(shop_id).customers.find(id)
     add_errors if errors.any?
     @customer
   end
@@ -29,7 +29,7 @@ class MagazCore::AdminServices::Customer::ChangeCustomer < ActiveInteraction::Ba
   end
 
   def email_changed?
-    MagazCore::Shop.find(shop_id).customers.find(id).email != email
+    Shop.find(shop_id).customers.find(id).email != email
   end
 
   def customer_uniqueness
@@ -38,6 +38,6 @@ class MagazCore::AdminServices::Customer::ChangeCustomer < ActiveInteraction::Ba
   end
 
   def customer_unique?
-    MagazCore::Customer.where(shop_id: shop_id, email: email).count == 0
+    Customer.where(shop_id: shop_id, email: email).count == 0
   end
 end

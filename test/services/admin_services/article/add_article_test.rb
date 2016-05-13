@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Article::AddArticleTest < ActiveSupport::TestCase
+class AdminServices::Article::AddArticleTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -12,17 +12,17 @@ class MagazCore::AdminServices::Article::AddArticleTest < ActiveSupport::TestCas
   end
 
   test 'should create article with valid params' do
-    service = MagazCore::AdminServices::Article::AddArticle.run(@success_params)
+    service = AdminServices::Article::AddArticle.run(@success_params)
     assert service.valid?
-    assert MagazCore::Article.find_by_id(service.result.id)
+    assert Article.find_by_id(service.result.id)
     assert_equal 'Test title', service.result.title
     assert_equal 1, @blog.articles.count
   end
 
   test 'should not create article with same params' do
-    service = MagazCore::AdminServices::Article::AddArticle.run(@success_params)
+    service = AdminServices::Article::AddArticle.run(@success_params)
     assert service.valid?
-    service2 = MagazCore::AdminServices::Article::AddArticle.run(@success_params)
+    service2 = AdminServices::Article::AddArticle.run(@success_params)
     refute service2.valid?
     assert_equal 1, @blog.articles.count
     assert_equal 2, service2.article.errors.full_messages.count
@@ -30,10 +30,10 @@ class MagazCore::AdminServices::Article::AddArticleTest < ActiveSupport::TestCas
   end
 
   test 'should not create article with existing handle' do
-    service = MagazCore::AdminServices::Article::AddArticle.run(@success_params)
+    service = AdminServices::Article::AddArticle.run(@success_params)
     assert service.valid?
-    @success_params[:title] = "Second title" 
-    service2 = MagazCore::AdminServices::Article::AddArticle.run(@success_params)
+    @success_params[:title] = "Second title"
+    service2 = AdminServices::Article::AddArticle.run(@success_params)
     refute service2.valid?
     assert_equal 1, @blog.articles.count
     assert_equal 1, service2.article.errors.full_messages.count
@@ -41,7 +41,7 @@ class MagazCore::AdminServices::Article::AddArticleTest < ActiveSupport::TestCas
   end
 
   test 'should not create article with blank params' do
-    service = MagazCore::AdminServices::Article::AddArticle.run(@blank_params)
+    service = AdminServices::Article::AddArticle.run(@blank_params)
     refute service.valid?
     assert_equal 1, service.article.errors.full_messages.count
     assert_equal 0, @blog.articles.count

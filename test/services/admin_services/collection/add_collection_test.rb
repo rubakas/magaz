@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Collection::AddCollectionTest < ActiveSupport::TestCase
+class AdminServices::Collection::AddCollectionTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -13,19 +13,19 @@ class MagazCore::AdminServices::Collection::AddCollectionTest < ActiveSupport::T
 
   test 'should create collection with valid params' do
     assert_equal 1, @shop.collections.count
-    service = MagazCore::AdminServices::Collection::AddCollection.run(@success_params)
+    service = AdminServices::Collection::AddCollection.run(@success_params)
     assert service.valid?
-    assert MagazCore::Collection.find_by_id(service.result.id)
+    assert Collection.find_by_id(service.result.id)
     assert_equal 'Test name', service.result.name
     assert_equal 2, @shop.collections.count
   end
 
   test 'should not create collection with same params' do
-    service = MagazCore::AdminServices::Collection::AddCollection.run(@success_params)
+    service = AdminServices::Collection::AddCollection.run(@success_params)
     assert service.valid?
     assert_equal 2, @shop.collections.count
 
-    service2 = MagazCore::AdminServices::Collection::AddCollection.run(@success_params)
+    service2 = AdminServices::Collection::AddCollection.run(@success_params)
     refute service2.valid?
     assert_equal 2, @shop.collections.count
     assert_equal 2, service2.collection.errors.full_messages.count
@@ -37,7 +37,7 @@ class MagazCore::AdminServices::Collection::AddCollectionTest < ActiveSupport::T
 
   test 'should not create collection with blank params' do
     assert_equal 1, @shop.collections.count
-    service = MagazCore::AdminServices::Collection::AddCollection.run(@blank_params)
+    service = AdminServices::Collection::AddCollection.run(@blank_params)
     refute service.valid?
     assert_equal 1, service.collection.errors.full_messages.count
     assert_equal 1, @shop.collections.count

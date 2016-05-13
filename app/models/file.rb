@@ -1,9 +1,7 @@
-module MagazCore
-  class File < ActiveRecord::Base
-    self.table_name = 'files'
+class File < ActiveRecord::Base
+  self.table_name = 'files'
 
-    belongs_to :shop
+  belongs_to :shop
 
-    mount_uploader :file, MagazCore::FileUploader
-  end
+  mount_uploader :file, FileUploader
 end

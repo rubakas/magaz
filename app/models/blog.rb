@@ -13,20 +13,18 @@
 #  slug             :string
 #
 
-module MagazCore
-  class Blog < ActiveRecord::Base
-    self.table_name = 'blogs'
-    extend FriendlyId
+class Blog < ActiveRecord::Base
+  self.table_name = 'blogs'
+  extend FriendlyId
 
-    has_many :articles
-    has_many :comments, through: :articles
-    has_many :events, as: :subject
-    belongs_to :shop
+  has_many :articles
+  has_many :comments, through: :articles
+  has_many :events, as: :subject
+  belongs_to :shop
 
-    friendly_id :handle, use: [:slugged, :scoped], scope: :shop
+  friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 
-    def should_generate_new_friendly_id?
-      handle_changed?
-    end
+  def should_generate_new_friendly_id?
+    handle_changed?
   end
 end

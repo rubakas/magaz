@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
+class AdminServices::Blog::AddBlog < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {blog}
 
@@ -9,7 +9,7 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
   validate :title_uniqueness, :handle_uniqueness
 
   def blog
-    @blog = MagazCore::Shop.find(shop_id).blogs.new
+    @blog = Shop.find(shop_id).blogs.new
     add_errors if errors.any?
     @blog
   end
@@ -34,7 +34,7 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
   end
 
   def title_unique?
-    MagazCore::Blog.where(shop_id: shop_id, title: title).count == 0
+    Blog.where(shop_id: shop_id, title: title).count == 0
   end
 
   def handle_uniqueness
@@ -44,7 +44,7 @@ class MagazCore::AdminServices::Blog::AddBlog < ActiveInteraction::Base
   end
 
   def handle_unique?
-    MagazCore::Blog.where(shop_id: shop_id, handle: handle).count == 0
+    Blog.where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end

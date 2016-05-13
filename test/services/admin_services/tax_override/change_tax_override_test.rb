@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSupport::TestCase
+class AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, subdomain: 'example')
@@ -21,7 +21,7 @@ class MagazCore::AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSuppo
   end
 
   test 'should change override with valid params' do
-    service = MagazCore::AdminServices::TaxOverride::ChangeTaxOverride
+    service = AdminServices::TaxOverride::ChangeTaxOverride
                 .run(@success_params)
     assert service.valid?
     assert_equal false, service.result.is_shipping
@@ -31,7 +31,7 @@ class MagazCore::AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSuppo
   end
 
   test 'should not change override with blank params' do
-    service = MagazCore::AdminServices::TaxOverride::ChangeTaxOverride
+    service = AdminServices::TaxOverride::ChangeTaxOverride
                 .run(@blank_params)
     refute service.valid?
     assert_equal 3, service.tax_override.errors.count

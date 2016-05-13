@@ -18,35 +18,33 @@
 
 require 'test_helper'
 
-module MagazCore
-  class PageTest < ActiveSupport::TestCase
-    include MagazCore::Shared::VisibilityExamples
-    
-    setup do
-      setup_visibility_examples(model_class: MagazCore::Page, factory_name: :page)
-    end
+class PageTest < ActiveSupport::TestCase
+  include Shared::VisibilityExamples
 
-    test 'two pages with same handle and different shops' do
-      @shop1 = create(:shop, name: "shop1")
-      @shop2 = create(:shop, name: "shop2")
-      @page1 = create(:page, title: "page", handle: "page-handle", shop: @shop1)
+  setup do
+    setup_visibility_examples(model_class: Page, factory_name: :page)
+  end
 
-      @page2 = @shop2.pages.new(title: "page", handle: "page-handle")
+  test 'two pages with same handle and different shops' do
+    @shop1 = create(:shop, name: "shop1")
+    @shop2 = create(:shop, name: "shop2")
+    @page1 = create(:page, title: "page", handle: "page-handle", shop: @shop1)
 
-      assert @page2.save
-      assert @page1.slug == @page2.slug
-    end
+    @page2 = @shop2.pages.new(title: "page", handle: "page-handle")
 
-    test 'two pages with same handle and same shop' do
-      @shop1 = create(:shop, name: "shop1")
+    assert @page2.save
+    assert @page1.slug == @page2.slug
+  end
 
-      @page1 = create(:page, title: "page1", handle: "page-handle", shop: @shop1)
+  test 'two pages with same handle and same shop' do
+    @shop1 = create(:shop, name: "shop1")
 
-      @page2 = @shop1.pages.new(title: "page2", handle: "page-handle")
-      @page2.save
+    @page1 = create(:page, title: "page1", handle: "page-handle", shop: @shop1)
 
-      assert @page2.save
-      refute @page1.slug == @page2.slug
-    end
+    @page2 = @shop1.pages.new(title: "page2", handle: "page-handle")
+    @page2.save
+
+    assert @page2.save
+    refute @page1.slug == @page2.slug
   end
 end

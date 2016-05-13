@@ -1,5 +1,5 @@
 require 'test_helper'
-class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSupport::TestCase
+class AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: "New shop")
@@ -26,17 +26,17 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
   end
 
   test "should update shipping rate with valid params" do
-    assert_equal 1, MagazCore::ShippingRate.count
-    service = MagazCore::AdminServices::ShippingRate::ChangeShippingRate.run(@succsess_params)
+    assert_equal 1, ShippingRate.count
+    service = AdminServices::ShippingRate::ChangeShippingRate.run(@succsess_params)
     assert service.valid?
-    assert_equal @succsess_params[:name], MagazCore::ShippingRate.find(service.result.id).name
-    assert_equal @succsess_params[:criteria], MagazCore::ShippingRate.find(service.result.id).criteria
-    assert_equal @succsess_params[:shipping_price].to_f, MagazCore::ShippingRate.find(service.result.id).shipping_price
+    assert_equal @succsess_params[:name], ShippingRate.find(service.result.id).name
+    assert_equal @succsess_params[:criteria], ShippingRate.find(service.result.id).criteria
+    assert_equal @succsess_params[:shipping_price].to_f, ShippingRate.find(service.result.id).shipping_price
   end
 
   test "should not update shipping rate with blank params" do
-    assert_equal 1, MagazCore::ShippingRate.count
-    service = MagazCore::AdminServices::ShippingRate::ChangeShippingRate.run(@blank_params)
+    assert_equal 1, ShippingRate.count
+    service = AdminServices::ShippingRate::ChangeShippingRate.run(@blank_params)
     refute service.valid?
     assert_equal 3, service.errors.full_messages.count
     assert_equal "Name can't be blank", service.errors.full_messages.first
@@ -48,16 +48,16 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
     @succsess_params[:weight_to] = ""
     @succsess_params[:price_from] = ""
     @succsess_params[:price_to] = ""
-    assert_equal 1, MagazCore::ShippingRate.count
-    service = MagazCore::AdminServices::ShippingRate::ChangeShippingRate.run(@succsess_params)
+    assert_equal 1, ShippingRate.count
+    service = AdminServices::ShippingRate::ChangeShippingRate.run(@succsess_params)
     assert service.valid?
-    assert_equal @succsess_params[:name], MagazCore::ShippingRate.find(service.result.id).name
-    assert_equal nil, MagazCore::ShippingRate.find(service.result.id).price_from
-    assert_equal "weight", MagazCore::ShippingRate.find(service.result.id).criteria
+    assert_equal @succsess_params[:name], ShippingRate.find(service.result.id).name
+    assert_equal nil, ShippingRate.find(service.result.id).price_from
+    assert_equal "weight", ShippingRate.find(service.result.id).criteria
   end
 
   test "should not update shipping rate with wrong criteria" do
-    service = MagazCore::AdminServices::ShippingRate::ChangeShippingRate
+    service = AdminServices::ShippingRate::ChangeShippingRate
                 .run(name: "Updated name",
                      price_to: "20.5",
                      weight_to: "",
@@ -73,7 +73,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
   end
 
   test "should not update shipping rate with wrong comparison" do
-    service = MagazCore::AdminServices::ShippingRate::ChangeShippingRate
+    service = AdminServices::ShippingRate::ChangeShippingRate
                 .run(name: "Updated name",
                      price_to: "",
                      weight_to: "5.5",
@@ -89,7 +89,7 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
   end
 
   test "should not update shipping rate with wrong weight" do
-    service = MagazCore::AdminServices::ShippingRate::ChangeShippingRate
+    service = AdminServices::ShippingRate::ChangeShippingRate
                 .run(name: "Updated name",
                      price_to: "",
                      weight_to: "some",
@@ -104,5 +104,5 @@ class MagazCore::AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSup
     assert_equal "Weight from is not correct", service.errors.full_messages.first
     assert_equal "Weight to is not correct", service.errors.full_messages.last
   end
-  
+
 end

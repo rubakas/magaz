@@ -1,4 +1,4 @@
-class MagazCore::StoreServices::Create < ActiveInteraction::Base
+class StoreServices::Create < ActiveInteraction::Base
 
   string :shop_name, :first_name, :last_name, :email, :password
 
@@ -7,20 +7,20 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
   validate :shop_name_uniqueness
 
   def to_model
-    MagazCore::Shop.new
+    Shop.new
   end
 
 
   def execute
-    @shop = MagazCore::Shop.new
-    @user = MagazCore::User.new
+    @shop = Shop.new
+    @user = User.new
 
-    MagazCore::Shop.connection.transaction do
+    Shop.connection.transaction do
       begin
         @shop.attributes = {name: shop_name}
         @shop.save!
 
-        @user = compose(MagazCore::AdminServices::User::AddUser,
+        @user = compose(AdminServices::User::AddUser,
                         email: email,
                         password: password,
                         account_owner: true,
@@ -33,7 +33,7 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
         _create_default_blogs_and_posts!(shop_id: @shop.id)
 
         # create default collection
-        compose(MagazCore::AdminServices::Collection::AddCollection,
+        compose(AdminServices::Collection::AddCollection,
                 handle: '',
                 name: I18n.t('default.models.collection.collection_title'),
                 page_title: '',
@@ -42,7 +42,7 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
                 meta_description: '')
 
         # create default pages
-        compose(MagazCore::AdminServices::Page::AddPage,
+        compose(AdminServices::Page::AddPage,
                 shop_id: @shop.id,
                 title: I18n.t('default.models.page.about_title'),
                 page_title: '',
@@ -52,7 +52,7 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
                 publish_on: nil,
                 published_at: nil)
 
-        compose(MagazCore::AdminServices::Page::AddPage,
+        compose(AdminServices::Page::AddPage,
                 shop_id: @shop.id,
                 title: I18n.t('default.models.page.welcome_title'),
                 page_title: '',
@@ -82,15 +82,15 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
   end
 
   def shop_name_unique?
-    MagazCore::Shop.where(name: shop_name).count == 0
+    Shop.where(name: shop_name).count == 0
   end
 
   def _install_default_theme(shop_id:)
     # Default theme, fail unless found
-    if MagazCore::Theme.sources.first
-      compose(MagazCore::ThemeServices::InstallTheme,
+    if Theme.sources.first
+      compose(ThemeServices::InstallTheme,
               shop_id: shop_id,
-              source_theme_id: MagazCore::Theme.sources.first.id)
+              source_theme_id: Theme.sources.first.id)
     else
       errors.add(:base, I18n.t('services.create.no_default_theme'))
       fail 'No default theme in system'
@@ -98,7 +98,7 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
   end
 
   def _create_default_blogs_and_posts!(shop_id:)
-    default_blog = compose(MagazCore::AdminServices::Blog::AddBlog,
+    default_blog = compose(AdminServices::Blog::AddBlog,
                            meta_description: '',
                            title: I18n.t('default.models.blog.blog_title'),
                            handle: '',
@@ -106,7 +106,7 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
                            page_title: '')
 
 
-    compose(MagazCore::AdminServices::Article::AddArticle,
+    compose(AdminServices::Article::AddArticle,
             handle: '',
             title: I18n.t('default.models.article.article_title'),
             page_title: '',
@@ -117,38 +117,38 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
 
   def _create_default_link_lists!(shop_id:)
     #Main Menu link list
-    default_menu_link_list = compose(MagazCore::AdminServices::LinkList::AddLinkList,
+    default_menu_link_list = compose(AdminServices::LinkList::AddLinkList,
                                      shop_id: shop_id,
                                      name: I18n.t('default.models.link_list.menu_link_list_name'),
                                      handle: '')
 
     #Links for Main Menu
-    compose(MagazCore::AdminServices::Link::AddLink,
+    compose(AdminServices::Link::AddLink,
             position: '',
             name: I18n.t('default.models.link.home_link_name'),
             link_type: '',
             link_list_id: "#{default_menu_link_list.id}")
 
-    compose(MagazCore::AdminServices::Link::AddLink,
+    compose(AdminServices::Link::AddLink,
             position: '',
             name: I18n.t('default.models.link.blog_link_name'),
             link_type: '',
             link_list_id: "#{default_menu_link_list.id}")
 
     #Footer link list
-    default_footer_link_list = compose(MagazCore::AdminServices::LinkList::AddLinkList,
+    default_footer_link_list = compose(AdminServices::LinkList::AddLinkList,
                                        shop_id: shop_id,
                                        name: I18n.t('default.models.link_list.footer_link_list_name'),
                                        handle: '')
 
     #Links for Footer
-    compose(MagazCore::AdminServices::Link::AddLink,
+    compose(AdminServices::Link::AddLink,
             position: '',
             name: I18n.t('default.models.link.search_link_name'),
             link_type: '',
             link_list_id: "#{default_footer_link_list.id}")
 
-    compose(MagazCore::AdminServices::Link::AddLink,
+    compose(AdminServices::Link::AddLink,
             position: '',
             name: I18n.t('default.models.link.about_link_name'),
             link_type: '',
@@ -156,7 +156,7 @@ class MagazCore::StoreServices::Create < ActiveInteraction::Base
   end
 
   def _create_default_emails!(shop:)
-    MagazCore::EmailTemplate::EMAIL_TEMPLATES.each do |template_type|
+    EmailTemplate::EMAIL_TEMPLATES.each do |template_type|
       @shop.email_templates.create(template_type: template_type,
                                    name:          I18n.t("email_templates.#{template_type}.name"),
                                    title:         I18n.t("email_templates.#{template_type}.title"),

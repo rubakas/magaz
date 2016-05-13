@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Article::ChangeArticle < ActiveInteraction::Base
+class AdminServices::Article::ChangeArticle < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {article}
 
@@ -7,10 +7,10 @@ class MagazCore::AdminServices::Article::ChangeArticle < ActiveInteraction::Base
 
   validates :id, :blog_id, :title, presence: true
   validate :title_uniqueness, if: :title_changed?
-  validate :handle_uniqueness, if: :handle_changed? 
+  validate :handle_uniqueness, if: :handle_changed?
 
   def article
-    @article = MagazCore::Article.friendly.find(id)
+    @article = Article.friendly.find(id)
     add_errors if errors.any?
     @article
   end
@@ -30,8 +30,8 @@ class MagazCore::AdminServices::Article::ChangeArticle < ActiveInteraction::Base
   end
 
   def title_changed?
-    MagazCore::Article.friendly.find(id).blog_id != blog_id ||
-                                      MagazCore::Article.friendly.find(id).title != title
+    Article.friendly.find(id).blog_id != blog_id ||
+                                      Article.friendly.find(id).title != title
   end
 
   def title_uniqueness
@@ -39,12 +39,12 @@ class MagazCore::AdminServices::Article::ChangeArticle < ActiveInteraction::Base
   end
 
   def title_unique?
-    MagazCore::Article.where(blog_id: blog_id, title: title).count == 0
+    Article.where(blog_id: blog_id, title: title).count == 0
   end
 
   def handle_changed?
-    MagazCore::Article.friendly.find(id).blog_id != blog_id ||
-                                    MagazCore::Article.friendly.find(id).handle != handle
+    Article.friendly.find(id).blog_id != blog_id ||
+                                    Article.friendly.find(id).handle != handle
   end
 
   def handle_uniqueness
@@ -54,7 +54,7 @@ class MagazCore::AdminServices::Article::ChangeArticle < ActiveInteraction::Base
   end
 
   def handle_unique?
-    MagazCore::Article.where(blog_id: blog_id, handle: handle).count == 0
+    Article.where(blog_id: blog_id, handle: handle).count == 0
   end
 
 end

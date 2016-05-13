@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
+class AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -12,15 +12,15 @@ class MagazCore::AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
   end
 
   test 'should update blog with valid params' do
-    service = MagazCore::AdminServices::Blog::ChangeBlog.run(@success_params)
+    service = AdminServices::Blog::ChangeBlog.run(@success_params)
     assert service.valid?
-    assert_equal "Changed page_title", MagazCore::Blog.find(@blog.id).page_title
-    assert_equal 'Changed title', MagazCore::Blog.find(@blog.id).title
-    assert_equal "Changed handle", MagazCore::Blog.find(@blog.id).handle
+    assert_equal "Changed page_title", Blog.find(@blog.id).page_title
+    assert_equal 'Changed title', Blog.find(@blog.id).title
+    assert_equal "Changed handle", Blog.find(@blog.id).handle
   end
 
   test 'should not update blog with existing title' do
-    service = MagazCore::AdminServices::Blog::ChangeBlog.
+    service = AdminServices::Blog::ChangeBlog.
                 run(id: @blog.id.to_s, title: @blog2.title, shop_id: @shop.id,
                     page_title: "Changed page_title", handle: "ChangedC handle",
                     meta_description: "Changed meta_description")
@@ -30,7 +30,7 @@ class MagazCore::AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
   end
 
   test 'should not update blog with existing handle' do
-    service = MagazCore::AdminServices::Blog::ChangeBlog.
+    service = AdminServices::Blog::ChangeBlog.
                 run(id: @blog.id.to_s, title: "some title", shop_id: @shop.id,
                     page_title: "Changed page_title", handle: @blog2.handle,
                     meta_description: "Changed meta_description")
@@ -40,7 +40,7 @@ class MagazCore::AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
   end
 
   test 'should update blog with some blank params' do
-    service = MagazCore::AdminServices::Blog::ChangeBlog.
+    service = AdminServices::Blog::ChangeBlog.
                 run(id: @blog2.id.to_s, title: @blog2.title, shop_id: @shop.id,
                     page_title: "", handle: "", meta_description: "")
     assert service.valid?

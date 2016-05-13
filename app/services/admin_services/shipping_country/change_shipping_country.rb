@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry < ActiveInteraction::Base
+classAdminServices::ShippingCountry::ChangeShippingCountry < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {shipping_country}
 
@@ -8,10 +8,10 @@ class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry < ActiveI
   validate  :name_uniqueness, if: :name_changed
   validates :tax, numericality: true
   validates :shop_id, :id, :name, :tax, presence: true
-  validates :name, inclusion: MagazCore::ShippingCountry::COUNTRY_LIST['countries'].keys
+  validates :name, inclusion:ShippingCountry::COUNTRY_LIST['countries'].keys
 
   def shipping_country
-    @shipping_country = MagazCore::Shop.find(shop_id).shipping_countries.find(id)    
+    @shipping_country = Shop.find(shop_id).shipping_countries.find(id)    
     add_errors if errors.any?
     @shipping_country
   end
@@ -31,7 +31,7 @@ class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry < ActiveI
   end
 
   def name_changed
-    MagazCore::Shop.find(shop_id).shipping_countries.find(id).name != name
+    Shop.find(shop_id).shipping_countries.find(id).name != name
   end
 
   def name_uniqueness
@@ -39,6 +39,6 @@ class MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry < ActiveI
   end
 
   def name_unique?
-    MagazCore::ShippingCountry.where(shop_id: shop_id, name: name).count == 0
+    ShippingCountry.where(shop_id: shop_id, name: name).count == 0
   end
 end

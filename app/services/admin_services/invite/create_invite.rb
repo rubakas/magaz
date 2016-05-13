@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::Invite::CreateInvite < ActiveInteraction::Base
+class AdminServices::Invite::CreateInvite < ActiveInteraction::Base
 
   string :email
   string :link, default: nil
@@ -9,9 +9,9 @@ class MagazCore::AdminServices::Invite::CreateInvite < ActiveInteraction::Base
   validate :check_email
 
   def execute
-    @user = MagazCore::User.new
+    @user = User.new
 
-    MagazCore::User.connection.transaction do
+    User.connection.transaction do
       begin
         create_user_with_email_and_token
         generate_link_for_user
@@ -40,14 +40,14 @@ class MagazCore::AdminServices::Invite::CreateInvite < ActiveInteraction::Base
   end
 
   def email_unique?
-    MagazCore::Shop.find_by_id(shop_id).users.find_by(email: email).nil?
+    Shop.find_by_id(shop_id).users.find_by(email: email).nil?
   end
 
   def email_valid?
-    email && email =~ MagazCore::Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
+    email && email =~ Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
   end
 
   def send_mail_invite
-    MagazCore::UserMailer.invite_new_user(@user, link).deliver_now || fail
+    UserMailer.invite_new_user(@user, link).deliver_now || fail
   end
 end

@@ -1,4 +1,4 @@
-class MagazCore::AdminServices::ProductImage::AddProductImage < ActiveInteraction::Base
+class AdminServices::ProductImage::AddProductImage < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {product_image}
 
@@ -8,7 +8,7 @@ class MagazCore::AdminServices::ProductImage::AddProductImage < ActiveInteractio
   validates :product_id, :image, presence: true
 
   def product_image
-    product = MagazCore::Product.friendly.find(product_id)
+    product = Product.friendly.find(product_id)
     @product_image = product.product_images.new
     add_errors if errors.any?
     @product_image

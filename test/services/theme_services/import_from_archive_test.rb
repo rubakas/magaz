@@ -8,7 +8,7 @@ module MagazCore
       theme = Theme.new
       theme_attributes = {}
       archive_importer =
-        MagazCore::ThemeServices::ImportFromArchive.call archive_path: archive_path,
+        ThemeServices::ImportFromArchive.call archive_path: archive_path,
                                                          theme: theme,
                                                          theme_attributes: theme_attributes
       assert_kind_of Theme, archive_importer.theme

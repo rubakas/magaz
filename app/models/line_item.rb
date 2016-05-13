@@ -13,23 +13,22 @@
 #  updated_at  :datetime
 #
 
-module MagazCore
-  class LineItem < ActiveRecord::Base
-    self.table_name = 'line_items'
-    
-    belongs_to :checkout
-    belongs_to :product
 
-    def line_price
-      if price.nil?
-        0
-      else
-        price * quantity
-      end
-    end
+class LineItem < ActiveRecord::Base
+  self.table_name = 'line_items'
 
-    def line_weight
-      grams * quantity
+  belongs_to :checkout
+  belongs_to :product
+
+  def line_price
+    if price.nil?
+      0
+    else
+      price * quantity
     end
+  end
+
+  def line_weight
+    grams * quantity
   end
 end

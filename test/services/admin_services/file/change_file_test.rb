@@ -1,5 +1,5 @@
 require 'test_helper'
-class MagazCore::AdminServices::File::ChangeFileTest < ActiveSupport::TestCase
+class AdminServices::File::ChangeFileTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: "shop name")
@@ -13,7 +13,7 @@ class MagazCore::AdminServices::File::ChangeFileTest < ActiveSupport::TestCase
   end
 
   test "should update file with valid params" do
-    service = MagazCore::AdminServices::File::ChangeFile
+    service = AdminServices::File::ChangeFile
                 .run(id: @created_file.id,
                      file: @file2,
                      name: 'New name',
@@ -23,7 +23,7 @@ class MagazCore::AdminServices::File::ChangeFileTest < ActiveSupport::TestCase
   end
 
   test "should not update file with blank params" do
-    service = MagazCore::AdminServices::File::ChangeFile
+    service = AdminServices::File::ChangeFile
                 .run(id: '',
                      file: '',
                      name: '',

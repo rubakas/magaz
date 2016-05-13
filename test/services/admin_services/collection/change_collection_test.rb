@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::Collection::ChangeCollectionTest < ActiveSupport::TestCase
+class AdminServices::Collection::ChangeCollectionTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: 'shop_name')
@@ -12,16 +12,16 @@ class MagazCore::AdminServices::Collection::ChangeCollectionTest < ActiveSupport
   end
 
   test 'should update collection with valid params' do
-    service = MagazCore::AdminServices::Collection::ChangeCollection.run(@success_params)
+    service = AdminServices::Collection::ChangeCollection.run(@success_params)
     assert service.valid?
     assert service.collection
-    assert_equal "Changed page_title", MagazCore::Collection.find(@collection.id).page_title
-    assert_equal 'Changed name', MagazCore::Collection.find(@collection.id).name
-    assert_equal "Changed handle", MagazCore::Collection.find(@collection.id).handle
+    assert_equal "Changed page_title", Collection.find(@collection.id).page_title
+    assert_equal 'Changed name', Collection.find(@collection.id).name
+    assert_equal "Changed handle", Collection.find(@collection.id).handle
   end
 
   test 'should not update collection with existing name' do
-    service = MagazCore::AdminServices::Collection::ChangeCollection.
+    service = AdminServices::Collection::ChangeCollection.
                 run(id: "#{@collection.id}", name: @collection2.name, shop_id: @shop.id,
                     page_title: "Changed page_title", handle: "Changed handle",
                     meta_description: "Changed meta_description", description: "description")
@@ -31,7 +31,7 @@ class MagazCore::AdminServices::Collection::ChangeCollectionTest < ActiveSupport
   end
 
   test 'should update collection with some blank params' do
-    service = MagazCore::AdminServices::Collection::ChangeCollection.
+    service = AdminServices::Collection::ChangeCollection.
                 run(id: "#{@collection2.id}", name: @collection2.name, shop_id: @shop.id,
                     page_title: '', handle: '', meta_description: '', description: '')
     assert service.valid?

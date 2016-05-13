@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MagazCore::AdminServices::User::AddUserTest < ActiveSupport::TestCase
+class AdminServices::User::AddUserTest < ActiveSupport::TestCase
 
   setup do
     @shop = create(:shop, name: "Shop name")
@@ -22,16 +22,16 @@ class MagazCore::AdminServices::User::AddUserTest < ActiveSupport::TestCase
   end
 
   test "should create user with valid params" do
-    service = MagazCore::AdminServices::User::AddUser.run(@success_params)
+    service = AdminServices::User::AddUser.run(@success_params)
     assert service.valid?
-    assert_equal 2, MagazCore::User.count
+    assert_equal 2, User.count
     assert_equal "New first_name", service.result.first_name
     assert_equal "New last_name", service.result.last_name
     assert_equal "new@email.com", service.result.email
   end
 
   test "should not create user with blank params" do
-    service = MagazCore::AdminServices::User::AddUser.run(@blank_params)
+    service = AdminServices::User::AddUser.run(@blank_params)
     refute service.valid?
     assert_equal 3, service.errors.full_messages.count
     assert_equal "Shop is not a valid integer", service.errors.full_messages.first
@@ -41,7 +41,7 @@ class MagazCore::AdminServices::User::AddUserTest < ActiveSupport::TestCase
 
   test "should create user with some blank params" do
     @success_params[:permissions] = nil
-    service = MagazCore::AdminServices::User::AddUser.run(@success_params)
+    service = AdminServices::User::AddUser.run(@success_params)
     assert service.valid?
     assert_equal @success_params[:first_name], service.result.first_name
     assert_equal @success_params[:email], service.result.email
@@ -49,7 +49,7 @@ class MagazCore::AdminServices::User::AddUserTest < ActiveSupport::TestCase
 
   test "should not create user with existing email" do
     @success_params[:email] = @user.email
-    service = MagazCore::AdminServices::User::AddUser.run(@success_params)
+    service = AdminServices::User::AddUser.run(@success_params)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "Email is already been taken", service.errors.full_messages.first
@@ -57,7 +57,7 @@ class MagazCore::AdminServices::User::AddUserTest < ActiveSupport::TestCase
 
   test "should not create user with invalid email" do
     @success_params[:email] = "email"
-    service = MagazCore::AdminServices::User::AddUser.run(@success_params)
+    service = AdminServices::User::AddUser.run(@success_params)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "Email is not valid", service.errors.full_messages.first

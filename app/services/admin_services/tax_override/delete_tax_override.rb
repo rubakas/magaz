@@ -1,11 +1,11 @@
-class MagazCore::AdminServices::TaxOverride::DeleteTaxOverride < ActiveInteraction::Base
+class AdminServices::TaxOverride::DeleteTaxOverride < ActiveInteraction::Base
 
   integer :id
 
   validates :id, presence: true
 
-  def execute 
-    MagazCore::TaxOverride.find(id).destroy
+  def execute
+    TaxOverride.find(id).destroy
   end
 
 end
