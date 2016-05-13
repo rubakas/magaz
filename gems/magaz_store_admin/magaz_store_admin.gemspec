@@ -5,7 +5,7 @@ require "magaz_store_admin/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "magaz_store_admin"
+  #s.name        = "magaz_store_admin"
   s.version     = MagazStoreAdmin::VERSION
   s.authors     = ["Andriy Tyurnikov"]
   s.email       = ["Andriy.Tyurnikov@gmail.com"]

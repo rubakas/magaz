@@ -4,7 +4,7 @@ module Admin
   class UsersStoriesTest < ActionDispatch::IntegrationTest
     setup do
       login
-      @user2 = create(:user, shop: @shop, account_owner: true)
+      @user2 = create(:user, shop: @shop, account_owner: false)
 
       click_link 'Settings'
       click_link 'Users'
@@ -54,13 +54,13 @@ module Admin
 
     test 'should delete user' do
       assert page.has_content? 'Users'
-      click_link('Delete', match: :first)
+      click_link('Delete', href: "/admin/users/#{@user2.id}")
       assert page.has_content? "User was successfully deleted."
     end
 
     test "should not delete user" do
       assert page.has_content? 'Users'
-      click_link('Delete', href: "/admin/users/#{@user2.id}")
+      click_link('Delete', href: "/admin/users/#{@user.id}")
       assert page.has_content? "Can't delete shop owner."
     end
   end
