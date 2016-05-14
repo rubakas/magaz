@@ -1,5 +1,5 @@
 class Admin::OrdersController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
   before_action :set_order, only: [:show, :update]
 
 
@@ -12,12 +12,12 @@ class Admin::OrdersController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::Checkout::ChangeOrder
+    service = AdminServices::Checkout::ChangeOrder
                 .run(id: @order.id,
                      status: params[:order][:status])
     if service.valid?
-      # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
-      #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_ORDER_EVENT)
+      # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
+      #                                                                     topic: Webhook::Topics::UPDATE_ORDER_EVENT)
       @order = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_order_path(@order)

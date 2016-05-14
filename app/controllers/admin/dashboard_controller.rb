@@ -1,5 +1,5 @@
 class Admin::DashboardController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
     @events = current_shop.events.all

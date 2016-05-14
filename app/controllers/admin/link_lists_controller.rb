@@ -1,5 +1,5 @@
 class Admin::LinkListsController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
     @link_lists = current_shop.link_lists.page(params[:page])
@@ -14,7 +14,7 @@ class Admin::LinkListsController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::LinkList::AddLinkList
+    service = AdminServices::LinkList::AddLinkList
                 .run(name: params[:link_list][:name],
                      handle: params[:link_list][:handle],
                      shop_id: current_shop.id)
@@ -30,7 +30,7 @@ class Admin::LinkListsController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::LinkList::ChangeLinkList
+    service = AdminServices::LinkList::ChangeLinkList
                 .run(id: params[:id],
                      name: params[:link_list][:name],
                      handle: params[:link_list][:handle],
@@ -48,7 +48,7 @@ class Admin::LinkListsController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::LinkList::DeleteLinkList
+    service = AdminServices::LinkList::DeleteLinkList
                 .run(shop_id: current_shop.id,
                      id: params[:id])
     flash[:notice] = t('.notice_success')

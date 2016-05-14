@@ -1,8 +1,8 @@
 class Admin::LinksController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
-    @link_list = MagazCore::LinkList.friendly.find(params[:link_list_id])
+    @link_list = LinkList.friendly.find(params[:link_list_id])
     @links = @link_list.links.page(params[:page])
   end
 
@@ -17,7 +17,7 @@ class Admin::LinksController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::Link::AddLink
+    service = AdminServices::Link::AddLink
                 .run(name: params[:link][:name],
                      link_type: params[:link][:link_type],
                      position: params[:link][:position],
@@ -34,7 +34,7 @@ class Admin::LinksController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::Link::ChangeLink
+    service = AdminServices::Link::ChangeLink
                 .run(id: params[:id],
                      link_list_id: params[:link_list_id],
                      name: params[:link][:name],
@@ -52,7 +52,7 @@ class Admin::LinksController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::Link::DeleteLink
+    service = AdminServices::Link::DeleteLink
                 .run(id: params[:id], link_list_id: params[:link_list_id])
     flash[:notice] = t('.notice_success')
     redirect_to admin_link_list_path(service.link_list)

@@ -1,5 +1,5 @@
 class Admin::FilesController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
   layout 'admin/admin_settings'
 
   def index
@@ -15,7 +15,7 @@ class Admin::FilesController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::File::AddFile
+    service = AdminServices::File::AddFile
                 .run(shop_id: current_shop.id,
                      name: params[:file][:name],
                      file: params[:file][:file])
@@ -30,7 +30,7 @@ class Admin::FilesController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::File::ChangeFile
+    service = AdminServices::File::ChangeFile
                 .run(id: params[:id],
                      name: params[:file][:name],
                      file: params[:file][:file],
@@ -46,7 +46,7 @@ class Admin::FilesController < Admin::ApplicationController
   end
 
   def destroy
-    MagazCore::AdminServices::File::DeleteFile
+    AdminServices::File::DeleteFile
       .run(id: params[:id],
            shop_id: current_shop.id)
     flash[:notice] = t('.notice_success')

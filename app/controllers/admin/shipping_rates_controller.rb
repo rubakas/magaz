@@ -1,5 +1,5 @@
 class Admin::ShippingRatesController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
   layout 'admin/admin_settings'
 
   def index
@@ -18,7 +18,7 @@ class Admin::ShippingRatesController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::ShippingRate::AddShippingRate
+    service = AdminServices::ShippingRate::AddShippingRate
                 .run(name: params[:shipping_rate][:name],
                      criteria: params[:shipping_rate][:criteria],
                      price_to: params[:shipping_rate][:price_to],
@@ -40,7 +40,7 @@ class Admin::ShippingRatesController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::ShippingRate::ChangeShippingRate
+    service = AdminServices::ShippingRate::ChangeShippingRate
                 .run(id: params[:id],
                      name: params[:shipping_rate][:name],
                      criteria: params[:shipping_rate][:criteria],
@@ -63,7 +63,7 @@ class Admin::ShippingRatesController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::ShippingRate::DeleteShippingRate
+    service = AdminServices::ShippingRate::DeleteShippingRate
                 .run(id: params[:id],
                      shipping_country_id: params[:shipping_country_id])
     flash[:notice] = t('.notice_success')

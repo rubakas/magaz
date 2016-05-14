@@ -1,5 +1,5 @@
 class Admin::ShippingCountriesController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
   layout 'admin/admin_settings'
 
   def index
@@ -15,7 +15,7 @@ class Admin::ShippingCountriesController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::ShippingCountry::AddShippingCountry
+    service = AdminServices::ShippingCountry::AddShippingCountry
                 .run(shop_id: current_shop.id,
                      tax: params[:shipping_country][:tax],
                      name: params[:shipping_country][:name])
@@ -31,7 +31,7 @@ class Admin::ShippingCountriesController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::ShippingCountry::ChangeShippingCountry
+    service = AdminServices::ShippingCountry::ChangeShippingCountry
                 .run(id: params[:id],
                      shop_id: current_shop.id,
                      tax: params[:shipping_country][:tax],
@@ -48,7 +48,7 @@ class Admin::ShippingCountriesController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::ShippingCountry::DeleteShippingCountry
+    service = AdminServices::ShippingCountry::DeleteShippingCountry
                 .run(id: params[:id],
                      shop_id: current_shop.id)
     flash[:notice] = t('.notice_success')

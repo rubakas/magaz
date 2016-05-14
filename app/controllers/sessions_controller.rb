@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
   #TODO:  test user not found case
   def create
-    @shop = MagazCore::Shop.find_by(subdomain: params[:session][:subdomain])
+    @shop = Shop.find_by(subdomain: params[:session][:subdomain])
     @user = @shop.users.find_by_email(params[:session][:email].downcase)
 
     if @shop && @user && @user.authentic_password?(params[:session][:password])

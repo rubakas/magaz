@@ -1,5 +1,5 @@
 class Admin::EmailTemplatesController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def show
     @email_template = current_shop.email_templates.find(params[:id])
@@ -11,7 +11,7 @@ class Admin::EmailTemplatesController < Admin::ApplicationController
 
   def update
     @email_template = current_shop.email_templates.find(params[:id])
-    service = MagazCore::AdminServices::EmailTemplate::ChangeEmailTemplate
+    service = AdminServices::EmailTemplate::ChangeEmailTemplate
                 .run(id: @email_template.id, title: params[:email_template][:title],
                      shop_id: current_shop.id, name: params[:email_template][:name],
                      body: params[:email_template][:body],

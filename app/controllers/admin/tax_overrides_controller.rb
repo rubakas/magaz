@@ -13,7 +13,7 @@ class Admin::TaxOverridesController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::TaxOverride::AddTaxOverride
+    service = AdminServices::TaxOverride::AddTaxOverride
                 .run(rate: params[:tax_override][:rate],
                      collection_id: params[:tax_override][:collection_id].to_i,
                      is_shipping: params[:tax_override][:is_shipping],
@@ -33,13 +33,13 @@ class Admin::TaxOverridesController < Admin::ApplicationController
   end
 
   def edit
-    @tax_override = MagazCore::TaxOverride.find(params[:id])
+    @tax_override = TaxOverride.find(params[:id])
     @shipping_country = @tax_override.shipping_country
     @collections = current_shop.collections.all
   end
 
   def update
-    service = MagazCore::AdminServices::TaxOverride::ChangeTaxOverride
+    service = AdminServices::TaxOverride::ChangeTaxOverride
                 .run(id: params[:id],
                      shipping_country_id: params[:shipping_country_id],
                      collection_id: params[:tax_override][:collection_id].to_i,
@@ -59,7 +59,7 @@ class Admin::TaxOverridesController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::TaxOverride::DeleteTaxOverride
+    service = AdminServices::TaxOverride::DeleteTaxOverride
                 .run(id: params[:id])
     flash[:notice] = t('.notice_success')
     redirect_to admin_tax_override_path(service.result.shipping_country)
