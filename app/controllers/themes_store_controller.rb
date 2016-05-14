@@ -1,9 +1,16 @@
 class ThemesStoreController < ApplicationController
-	layout 'themes_store'
+
+	layout 'theme_store'
+	def learn_more
+  end
+
 	def homepage
 	end
-	def theme_page
-	end
+
 	def template_page
 	end
+	
+	def theme_page
+	end
+
 end
