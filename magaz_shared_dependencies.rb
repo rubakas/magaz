@@ -87,7 +87,6 @@ gem 'factory_girl', group: :test
 gem 'launchy', group: :test # save_and_open_page need this
 gem 'database_cleaner', group: :test
 
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.9', require: 'bcrypt'
 

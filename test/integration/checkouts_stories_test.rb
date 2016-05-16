@@ -19,6 +19,6 @@ class CheckoutsStoriesTest < ActionDispatch::IntegrationTest
     login
     click_link 'Orders'
     click_link 'Abandoned Checkouts'
-    assert page.has_content? "##{@abandoned_checkout.id}"
+    assert page.has_content? "#{@abandoned_checkout.id}"
   end
 end

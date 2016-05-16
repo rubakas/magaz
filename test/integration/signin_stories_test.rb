@@ -22,8 +22,6 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     fill_in 'Email address', with: @user2.email
     fill_in 'Password', with: 'password2'
 
-    use_subdomain @shop.subdomain
-
     click_button 'Sign in'
 
     assert page.has_content?('Sign in')
@@ -38,6 +36,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     visit '/admin'
     assert page.has_content?('Sign in')
 
+    fill_in 'Your shop name', with: @shop.name
     fill_in 'Email address', with: @user2.email
     fill_in 'Password', with: 'password2'
 
@@ -89,6 +88,7 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
     visit '/admin'
     assert page.has_content?('Sign in')
 
+    fill_in 'Your shop name', with: @shop.name
     fill_in 'Email address', with: @user.email
     fill_in 'Password', with: 'password'
 
