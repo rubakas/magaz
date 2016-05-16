@@ -1,0 +1,17 @@
+= paginate @users
+
+table class="table table-striped"
+  thead
+    tr
+      th = t('.user_email')
+      th
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = link_to user.email, [:admin, user]
+        td = link_to t('.delete'), [:admin, user], method: :delete, data: { confirm: t('.confirmation') }
+
+br
+
+= paginate @users
