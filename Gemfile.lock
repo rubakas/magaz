@@ -93,11 +93,6 @@ PATH
       sidekiq
 
 PATH
-  remote: gems/magaz_store_admin
-  specs:
-    magaz_store_admin (0.0.1)
-
-PATH
   remote: gems/magaz_store
   specs:
     magaz_store (0.0.1)
@@ -337,7 +332,6 @@ DEPENDENCIES
   liquid
   magaz_core!
   magaz_store!
-  magaz_store_admin!
   magaz_style!
   magaz_theme_store!
   memcachier
@@ -359,4 +353,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.11.2
+   1.12.3
