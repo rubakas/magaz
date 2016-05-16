@@ -78,6 +78,7 @@ Rails.application.routes.draw do
     end
   end
   get 'learn_more' => 'themes_store#learn_more'
+  get 'login' => 'themes_store#login'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
