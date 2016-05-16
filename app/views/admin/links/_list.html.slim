@@ -1,0 +1,22 @@
+= paginate @links
+
+table class="table table-striped"
+  thead
+    tr
+      th = t('.name')
+      th = t('.position')
+      th = t('.id')
+      th
+
+  tbody
+  - @links.each do |link|
+    tr
+      td = link.name
+      td = link.position
+      td = link.link_list_id
+      td = link_to t('.delete'), [:admin, @link_list, link], method: :delete, data: { confirm: t(".confirmation") }
+  tbody
+
+br
+
+= paginate @links
