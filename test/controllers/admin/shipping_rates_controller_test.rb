@@ -15,7 +15,7 @@ class Admin::ShippingRatesControllerTest < ActionController::TestCase
   end
 
   test "should create shipping_rate" do
-    assert_difference('MagazCore::ShippingRate.count') do
+    assert_difference('ShippingRate.count') do
       post :create, { :shipping_country_id => @shipping_country.id,
                        shipping_rate: { name: 'Very Unique Name', shipping_price: "12", criteria: "weight"} }
     end
@@ -43,7 +43,7 @@ class Admin::ShippingRatesControllerTest < ActionController::TestCase
   end
 
   test "should destroy shipping_rate" do
-    assert_difference('MagazCore::ShippingRate.count', -1) do
+    assert_difference('ShippingRate.count', -1) do
       delete :destroy, :shipping_country_id => @shipping_country.id, id: @shipping_rate.id
     end
 

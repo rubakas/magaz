@@ -20,7 +20,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
   end
 
   test "should create product" do
-    assert_difference('MagazCore::Product.count') do
+    assert_difference('Product.count') do
       post :create, { product: { name: 'Very Unique Name' } }
     end
 
@@ -49,7 +49,7 @@ class Admin::ProductsControllerTest < ActionController::TestCase
   end
 
   test "should destroy product" do
-    assert_difference('MagazCore::Product.count', -1) do
+    assert_difference('Product.count', -1) do
       delete :destroy, id: @product.id
     end
 

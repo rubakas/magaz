@@ -22,7 +22,7 @@ class Admin::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should create article" do
-    assert_difference('MagazCore::Article.count', +1) do
+    assert_difference('Article.count', +1) do
       post :create, { article: { title: "Changed title", blog_id: @blog.id,
                                  content: "Changed content", page_title: "Changed page_title",
                                  handle: "Changed handle", meta_description: "Changed meta_description" } }
@@ -52,7 +52,7 @@ class Admin::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should destroy article" do
-    assert_difference('MagazCore::Article.count', -1) do
+    assert_difference('Article.count', -1) do
       delete :destroy, id: @article.id.to_s
     end
 
