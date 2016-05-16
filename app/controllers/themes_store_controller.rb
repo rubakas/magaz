@@ -4,9 +4,6 @@ class ThemesStoreController < ApplicationController
   def learn_more
   end
   
-  def login
-  end
-
   def installing
   end
   
