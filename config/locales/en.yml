@@ -658,32 +658,40 @@ en:
         enter_mobile: "Mobile phone"
         prohibit: "prohibited this email from being saved:"
         error: "error"
-    shared:
-      sidebar_nav:
-        title: "Shop"
-        dashboard: "Dashboard"
-        orders: "Orders"
-        customers: "Customers"
-        products: "Products"
-        collections: "Collections"
-        your_site: "Your Website"
-        pages: "Pages"
-        blogs: "Blog Posts"
-        config: "Configuration"
-        settings: "Settings"
-        themes: "Themes"
 
-      settings_sidebar_nav:
-        back: "Back"
-        settings: "Settings"
-        files: "Files"
-        users: "Users"
-        shipping: "Shipping"
-        notifications: "Notifications"
-        checkouts: "Checkouts"
-        payments: "Payments"
-        taxes: "Taxes"
-        webhooks: "Webhooks"
+  shared:
+    get_started:
+      button: "Create your store"
+      email_address: "Email address"
+      heading: "Start your free 14-day trial today!"
+      password: "Password"
+      shop_name: "Your store name"
+
+    sidebar_nav:
+      title: "Shop"
+      dashboard: "Dashboard"
+      orders: "Orders"
+      customers: "Customers"
+      products: "Products"
+      collections: "Collections"
+      your_site: "Your Website"
+      pages: "Pages"
+      blogs: "Blog Posts"
+      config: "Configuration"
+      settings: "Settings"
+      themes: "Themes"
+
+    settings_sidebar_nav:
+      back: "Back"
+      settings: "Settings"
+      files: "Files"
+      users: "Users"
+      shipping: "Shipping"
+      notifications: "Notifications"
+      checkouts: "Checkouts"
+      payments: "Payments"
+      taxes: "Taxes"
+      webhooks: "Webhooks"
 
     shipping_countries:
       create:
