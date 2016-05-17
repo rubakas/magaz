@@ -99,6 +99,13 @@ en:
       toys_and_games: "Toys & Games"
       website_builder: "Website builder"      
 
+  header:
+    header:
+      get_started_button: "Get Started"
+      log_in_button: "Log In"
+      shop: "Magaz"
+      themes_store_button: "Themes Store"
+
   welcome:
     sell:
       shop_name: "Your shop name"
