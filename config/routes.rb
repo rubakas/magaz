@@ -79,6 +79,7 @@ Rails.application.routes.draw do
   end
 
   get 'homepage'      => 'themes_store#homepage'
+  get 'login'         => 'themes_store#login'
   get 'theme_page'    => 'themes_store#theme_page'
   get 'template_page' => 'themes_store#template_page'
   get 'learn_more'    => 'themes_store#learn_more'

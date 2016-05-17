@@ -9,6 +9,9 @@ class ThemesStoreController < ApplicationController
     render layout: "demo_page"
   end
 
+  def login
+  end
+
 	def homepage
 	end
 
