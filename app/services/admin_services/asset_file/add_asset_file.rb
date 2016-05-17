@@ -9,7 +9,7 @@ class AdminServices::AssetFile::AddFile < ActiveInteraction::Base
   validates :name, :shop_id, :file, presence: true
 
   def datafile
-    @datafile = Shop.find(shop_id).files.new
+    @datafile = Shop.find(shop_id).asset_files.new
     add_errors if errors.any?
     @datafile
   end

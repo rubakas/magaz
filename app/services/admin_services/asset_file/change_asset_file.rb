@@ -9,7 +9,7 @@ class AdminServices::AssetFile::ChangeFile < ActiveInteraction::Base
   validates :id, :file, :shop_id, :name, presence: true
 
   def datafile
-    @datafile = Shop.find(shop_id).files.find(id)
+    @datafile = Shop.find(shop_id).asset_files.find(id)
     add_errors if errors.any?
     @datafile
   end

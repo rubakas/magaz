@@ -3,15 +3,15 @@ class Admin::AssetFilesController < Admin::ApplicationController
   layout 'admin/admin_settings'
 
   def index
-    @files = current_shop.files.page(params[:page])
+    @files = current_shop.asset_files.page(params[:page])
   end
 
   def show
-    @file = current_shop.files.find(params[:id])
+    @file = current_shop.asset_files.find(params[:id])
   end
 
   def new
-    @file = current_shop.files.new
+    @file = current_shop.asset_files.new
   end
 
   def create
@@ -22,7 +22,7 @@ class Admin::AssetFilesController < Admin::ApplicationController
     if service.valid?
       @file = service.result
       flash[:notice] = t('.notice_success')
-      redirect_to admin_file_path(@file)
+      redirect_to admin_asset_file_path(@file)
     else
       @file = service.datafile
       render 'new'
@@ -38,7 +38,7 @@ class Admin::AssetFilesController < Admin::ApplicationController
     if service.valid?
       @file = service.result
       flash[:notice] = t('.notice_success')
-      redirect_to admin_files_path
+      redirect_to admin_asset_files_path
     else
       @file = service.datafile
       render 'show'

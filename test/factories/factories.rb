@@ -45,7 +45,7 @@ FactoryGirl.define do
     sequence(:arguments) {|n| "Product_Name"}
   end
 
-  factory :file, class: File do
+  factory :file, class: AssetFile do
     sequence(:name) {|n| "File #{n}"}
   end
 

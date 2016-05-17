@@ -1,5 +1,5 @@
 require 'test_helper'
-class AdminServices::File::DeleteFileTest < ActiveSupport::TestCase
+class AdminServices::AssetFile::DeleteAssetFileTest < ActiveSupport::TestCase
 
  setup do
     @shop = create(:shop, name: "shop name")
@@ -12,24 +12,24 @@ class AdminServices::File::DeleteFileTest < ActiveSupport::TestCase
   end
 
   test "should delete file with valid params" do
-    assert_equal 1, File.count
-    service = AdminServices::File::DeleteFile
+    assert_equal 1, AssetFile.count
+    service = AdminServices::AssetFile::DeleteFile
                 .run(id: @created_file.id,
                      shop_id: @shop.id)
     assert service.valid?
-    assert_equal 0, File.count
+    assert_equal 0, AssetFile.count
   end
 
   test "should not delete file with blank params" do
-    assert_equal 1, File.count
-    service = AdminServices::File::DeleteFile
+    assert_equal 1, AssetFile.count
+    service = AdminServices::AssetFile::DeleteFile
                 .run(id: '',
                      shop_id: '')
-    assert_equal 1, File.count
+    assert_equal 1, AssetFile.count
     refute service.valid?
-    assert_equal 2, service.errors.count
-    assert_equal "Id is not a valid integer", service.errors.full_messages.first
-    assert_equal "Shop is not a valid integer", service.errors.full_messages.last
-    assert_equal 1, File.count
+    assert_equal 2, service.datafile.errors.count
+    assert_equal "Id is not a valid integer", service.datafile.errors.full_messages.first
+    assert_equal "Shop is not a valid integer", service.datafile.errors.full_messages.last
+    assert_equal 1, AssetFile.count
   end
 end
