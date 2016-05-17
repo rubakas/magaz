@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   get 'theme_page'    => 'themes_store#theme_page'
   get 'template_page' => 'themes_store#template_page'
   get 'learn_more'    => 'themes_store#learn_more'
+  get 'demo'          => 'themes_store#demo'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
