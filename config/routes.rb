@@ -13,10 +13,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy, :new, :show]
   end
 
-  constraints(ThemeStoreSubdomainConstraint) do
-    mount MagazThemeStore::Engine => "/"
-  end
-
   constraints(ShopSubdomainConstraint) do
     mount MagazStore::Engine => "/"
   #
