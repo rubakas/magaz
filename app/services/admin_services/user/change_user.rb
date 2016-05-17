@@ -30,7 +30,7 @@ class AdminServices::User::ChangeUser < ActiveInteraction::Base
   end
 
   def email_changed?
-    User.find(id).email != email
+    ::User.find(id).email != email
   end
 
   def email_uniqueness
@@ -40,7 +40,7 @@ class AdminServices::User::ChangeUser < ActiveInteraction::Base
   def valid_email?
     email.present? &&
       (email =~ Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX) &&
-        User.where(shop_id: shop_id, email: email).count == 0
+        ::User.where(shop_id: shop_id, email: email).count == 0
   end
 
 end

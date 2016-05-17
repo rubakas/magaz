@@ -6,7 +6,7 @@ class AdminServices::Blog::DeleteBlog < ActiveInteraction::Base
   validates :id, :shop_id, presence: true
 
   def execute
-    Shop.find(shop_id).blogs.friendly.find(id).destroy
+    ::Shop.find(shop_id).blogs.friendly.find(id).destroy
   end
 
 end

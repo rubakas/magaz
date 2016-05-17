@@ -1,4 +1,4 @@
-classAdminServices::ShippingCountry::ChangeShippingCountry < ActiveInteraction::Base
+class AdminServices::ShippingCountry::ChangeShippingCountry < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {shipping_country}
 
@@ -11,7 +11,7 @@ classAdminServices::ShippingCountry::ChangeShippingCountry < ActiveInteraction::
   validates :name, inclusion:ShippingCountry::COUNTRY_LIST['countries'].keys
 
   def shipping_country
-    @shipping_country = Shop.find(shop_id).shipping_countries.find(id)    
+    @shipping_country = Shop.find(shop_id).shipping_countries.find(id)
     add_errors if errors.any?
     @shipping_country
   end
@@ -39,6 +39,6 @@ classAdminServices::ShippingCountry::ChangeShippingCountry < ActiveInteraction::
   end
 
   def name_unique?
-    ShippingCountry.where(shop_id: shop_id, name: name).count == 0
+    ::ShippingCountry.where(shop_id: shop_id, name: name).count == 0
   end
 end

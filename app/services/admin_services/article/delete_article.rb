@@ -5,7 +5,7 @@ class AdminServices::Article::DeleteArticle < ActiveInteraction::Base
   validates :id, presence: true
 
   def execute
-    Article.friendly.find(id).destroy
+    ::Article.friendly.find(id).destroy
   end
 
 end

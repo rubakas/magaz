@@ -11,7 +11,7 @@ class AdminServices::ShippingCountry::AddShippingCountry < ActiveInteraction::Ba
   validates :name, inclusion: ShippingCountry::COUNTRY_LIST['countries'].keys
 
   def shipping_country
-    @shipping_country = ShippingCountry.new    
+    @shipping_country = ShippingCountry.new
     add_errors if errors.any?
     @shipping_country
   end
@@ -36,6 +36,6 @@ class AdminServices::ShippingCountry::AddShippingCountry < ActiveInteraction::Ba
   end
 
   def name_unique?
-    ShippingCountry.where(shop_id: shop_id, name: name).count == 0
+    ::ShippingCountry.where(shop_id: shop_id, name: name).count == 0
   end
 end

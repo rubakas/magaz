@@ -30,8 +30,8 @@ class AdminServices::Article::ChangeArticle < ActiveInteraction::Base
   end
 
   def title_changed?
-    Article.friendly.find(id).blog_id != blog_id ||
-                                      Article.friendly.find(id).title != title
+    ::Article.friendly.find(id).blog_id != blog_id ||
+                                      ::Article.friendly.find(id).title != title
   end
 
   def title_uniqueness
@@ -39,12 +39,12 @@ class AdminServices::Article::ChangeArticle < ActiveInteraction::Base
   end
 
   def title_unique?
-    Article.where(blog_id: blog_id, title: title).count == 0
+    ::Article.where(blog_id: blog_id, title: title).count == 0
   end
 
   def handle_changed?
-    Article.friendly.find(id).blog_id != blog_id ||
-                                    Article.friendly.find(id).handle != handle
+    ::Article.friendly.find(id).blog_id != blog_id ||
+                                    ::Article.friendly.find(id).handle != handle
   end
 
   def handle_uniqueness
@@ -54,7 +54,7 @@ class AdminServices::Article::ChangeArticle < ActiveInteraction::Base
   end
 
   def handle_unique?
-    Article.where(blog_id: blog_id, handle: handle).count == 0
+    ::Article.where(blog_id: blog_id, handle: handle).count == 0
   end
 
 end

@@ -20,6 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  topics:
+    create_product_event: "Product creation"
+    update_product_event: "Product update"
+    delete_product_event: "Product deletion"
+    create_collection_event: "Collection creation"
+    update_collection_event: "Collection update"
+    delete_collection_event: "Collection deletion"
+    create_customer_event: "Customer creation"
+    update_customer_event: "Customer update"
+    delete_customer_event: "Customer deletion"
+    update_order_event: "Order update"
+    update_shop_event: "Shop update"
+
   default:
     models:
       article:

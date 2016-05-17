@@ -36,7 +36,7 @@ class Shop < ActiveRecord::Base
   has_many :checkouts, through: :customers
   has_many :countries
   has_many :customers
-  has_many :files
+  has_many :files, class_name: 'File'
   has_many :links, through: :link_lists
   has_many :link_lists
   has_many :pages

@@ -34,7 +34,7 @@ class AdminServices::Blog::AddBlog < ActiveInteraction::Base
   end
 
   def title_unique?
-    Blog.where(shop_id: shop_id, title: title).count == 0
+    ::Blog.where(shop_id: shop_id, title: title).count == 0
   end
 
   def handle_uniqueness
@@ -44,7 +44,7 @@ class AdminServices::Blog::AddBlog < ActiveInteraction::Base
   end
 
   def handle_unique?
-    Blog.where(shop_id: shop_id, handle: handle).count == 0
+    ::Blog.where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end

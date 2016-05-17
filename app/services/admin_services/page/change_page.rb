@@ -18,7 +18,7 @@ class AdminServices::Page::ChangePage < ActiveInteraction::Base
   def execute
     @page.update_attributes!(inputs.slice!(:id)) ||
       errors.add(:base, I18n.t('services.change_page.wrong_params'))
-    @pag
+    @page
   end
 
   private
@@ -30,7 +30,7 @@ class AdminServices::Page::ChangePage < ActiveInteraction::Base
   end
 
   def title_changed?
-    Page.friendly.find(id).title != title
+    ::Page.friendly.find(id).title != title
   end
 
   def title_uniqueness
@@ -38,7 +38,7 @@ class AdminServices::Page::ChangePage < ActiveInteraction::Base
   end
 
   def title_unique?
-    Page.where(shop_id: shop_id, title: title).count == 0
+    ::Page.where(shop_id: shop_id, title: title).count == 0
   end
 
   def handle_changed?
@@ -52,7 +52,7 @@ class AdminServices::Page::ChangePage < ActiveInteraction::Base
   end
 
   def handle_unique?
-    Page.where(shop_id: shop_id, handle: handle).count == 0
+    ::Page.where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end

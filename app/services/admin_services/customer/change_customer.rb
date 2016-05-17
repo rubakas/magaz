@@ -38,6 +38,6 @@ class AdminServices::Customer::ChangeCustomer < ActiveInteraction::Base
   end
 
   def customer_unique?
-    Customer.where(shop_id: shop_id, email: email).count == 0
+    ::Customer.where(shop_id: shop_id, email: email).count == 0
   end
 end

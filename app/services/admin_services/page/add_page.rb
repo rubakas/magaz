@@ -34,7 +34,7 @@ class AdminServices::Page::AddPage < ActiveInteraction::Base
   end
 
   def title_unique?
-    Page.where(shop_id: shop_id, title: title).count == 0
+    ::Page.where(shop_id: shop_id, title: title).count == 0
   end
 
   def handle_uniqueness
@@ -44,7 +44,7 @@ class AdminServices::Page::AddPage < ActiveInteraction::Base
   end
 
   def handle_unique?
-    Page.where(shop_id: shop_id, handle: handle).count == 0
+    ::Page.where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end

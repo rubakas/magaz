@@ -16,7 +16,7 @@ class AdminServices::User::DeleteUser < ActiveInteraction::Base
   end
 
   def account_owner?
-    @user = User.find(id)
+    @user = ::User.find(id)
     @user.account_owner == true || Shop.find(shop_id).users.count == 1
   end
 

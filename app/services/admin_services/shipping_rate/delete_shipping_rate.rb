@@ -9,7 +9,7 @@ class AdminServices::ShippingRate::DeleteShippingRate < ActiveInteraction::Base
   end
 
   def execute
-    ShippingCountry.find(shipping_country_id).shipping_rates.find(id).destroy
+    ::ShippingCountry.find(shipping_country_id).shipping_rates.find(id).destroy
   end
 
 end

@@ -34,7 +34,7 @@ class AdminServices::Collection::AddCollection < ActiveInteraction::Base
   end
 
   def handle_unique?
-    Collection.where(shop_id: shop_id, handle: handle).count == 0
+    ::Collection.where(shop_id: shop_id, handle: handle).count == 0
   end
 
   def add_errors
@@ -48,6 +48,6 @@ class AdminServices::Collection::AddCollection < ActiveInteraction::Base
   end
 
   def name_unique?
-    Collection.where(shop_id: shop_id, name: name).count == 0
+    ::Collection.where(shop_id: shop_id, name: name).count == 0
   end
 end

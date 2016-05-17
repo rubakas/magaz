@@ -1,4 +1,4 @@
-class File < ActiveRecord::Base
+class AssetFile < ActiveRecord::Base
   self.table_name = 'files'
 
   belongs_to :shop

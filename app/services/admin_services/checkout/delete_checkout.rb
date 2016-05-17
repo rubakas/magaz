@@ -5,7 +5,7 @@ class AdminServices::Checkout::DeleteCheckout < ActiveInteraction::Base
   validates :id, presence: true
 
   def execute
-    Checkout.find(id).destroy
+    ::Checkout.find(id).destroy
   end
 
 end

@@ -1,8 +1,8 @@
 class UserMailer < ApplicationMailer
   include Rails.application.routes.url_helpers
 
-  SMTP_SETTINGS = YAML.load_file("#{Engine.root}/config/mailer_settings.yml")[Rails.env]["smtp_settings"]
-  MAILER_SETTINGS = YAML.load_file("#{Engine.root}/config/mailer_settings.yml")[Rails.env]["default"]
+  SMTP_SETTINGS = YAML.load_file("#{Rails.root}/config/mailer_settings.yml")[Rails.env]["smtp_settings"]
+  MAILER_SETTINGS = YAML.load_file("#{Rails.root}/config/mailer_settings.yml")[Rails.env]["default"]
 
   ActionMailer::Base.smtp_settings = SMTP_SETTINGS
 

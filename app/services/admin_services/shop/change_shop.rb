@@ -13,7 +13,7 @@ class AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   integer :id
 
   validates :id, :name, presence: true
-  validates :country, inclusion: YAML.load_file("#{Engine.root}/config/countries.yml")['countries'].keys
+  validates :country, inclusion: YAML.load_file("#{Rails.root}/config/countries.yml")['countries'].keys
   validates :unit_system, inclusion: %w[ metric imperial]
   validates :currency, inclusion: %w[ USD EURO HRN]
   validates :timezone, inclusion: ActiveSupport::TimeZone.zones_map.values.collect{|z| z.name}
@@ -56,7 +56,7 @@ class AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   end
 
   def name_changed?
-    Shop.find(id).name != name
+    ::Shop.find(id).name != name
   end
 
   def name_uniqueness
@@ -64,7 +64,7 @@ class AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   end
 
   def name_unique?
-    Shop.where(id: id, name: name).count == 0
+    ::Shop.where(id: id, name: name).count == 0
   end
 
 end

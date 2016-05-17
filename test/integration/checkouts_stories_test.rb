@@ -8,7 +8,7 @@ class CheckoutsStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "checkouts list none" do
-    MagazCore::Checkout.delete_all
+    Checkout.delete_all
     login
     click_link 'Orders'
     click_link 'Abandoned Checkouts'

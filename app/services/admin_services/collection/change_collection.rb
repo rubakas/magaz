@@ -39,16 +39,16 @@ class AdminServices::Collection::ChangeCollection < ActiveInteraction::Base
   end
 
   def handle_changed?
-    Collection.friendly.find(id).handle != handle
+    ::Collection.friendly.find(id).handle != handle
   end
 
 
   def handle_unique?
-    Collection.where(shop_id: shop_id, handle: handle).count == 0
+    ::Collection.where(shop_id: shop_id, handle: handle).count == 0
   end
 
   def name_changed?
-    Collection.friendly.find(id).name != name
+    ::Collection.friendly.find(id).name != name
   end
 
   def name_uniqueness
@@ -56,7 +56,7 @@ class AdminServices::Collection::ChangeCollection < ActiveInteraction::Base
   end
 
   def name_unique?
-    Collection.where(shop_id: shop_id, name: name).count == 0
+    ::Collection.where(shop_id: shop_id, name: name).count == 0
   end
 
 end

@@ -46,7 +46,7 @@ class AdminServices::Product::AddProduct < ActiveInteraction::Base
   end
 
   def name_unique?
-    Product.where(shop_id: shop_id, name: name).count == 0
+    ::Product.where(shop_id: shop_id, name: name).count == 0
   end
 
 end
