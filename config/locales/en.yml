@@ -44,6 +44,12 @@ en:
       application:
         shop: "Magaz"
         sign_in: "Sign in"
+  
+  themes_store:
+    homepage:
+      heading: "Choose a theme for your online store"
+      info: "Responsive themes, easily customized to fit your brand"
+      button_more_themes: "More themes"
 
   welcome:
     sell:
