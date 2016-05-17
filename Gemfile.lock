@@ -102,11 +102,6 @@ PATH
   specs:
     magaz_style (0.0.1)
 
-PATH
-  remote: gems/magaz_theme_store
-  specs:
-    magaz_theme_store (0.0.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -333,7 +328,6 @@ DEPENDENCIES
   magaz_core!
   magaz_store!
   magaz_style!
-  magaz_theme_store!
   memcachier
   parallel_tests
   pg
