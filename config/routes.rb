@@ -13,10 +13,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy, :new, :show]
   end
 
-  constraints(ThemeStoreSubdomainConstraint) do
-    mount MagazThemeStore::Engine => "/"
-  end
-
   constraints(ShopSubdomainConstraint) do
     mount MagazStore::Engine => "/"
   #
@@ -78,11 +74,15 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'homepage'      => 'themes_store#homepage'
-  get 'theme_page'    => 'themes_store#theme_page'
-  get 'template_page' => 'themes_store#template_page'
-  get 'learn_more'    => 'themes_store#learn_more'
-  get 'authors_themes' => 'themes_store#authors_themes'
+  get 'authors_themes'    => 'themes_store#authors_themes'
+  get 'demo'              => 'themes_store#demo'
+  get 'homepage'          => 'themes_store#homepage'
+  get 'installing'        => 'themes_store#installing'
+  get 'learn_more'        => 'themes_store#learn_more'
+  get 'login'             => 'themes_store#login'
+  get 'preview_in_store'  => 'themes_store#preview_in_store'
+  get 'template_page'     => 'themes_store#template_page'
+  get 'theme_page'        => 'themes_store#theme_page'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
