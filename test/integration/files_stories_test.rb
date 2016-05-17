@@ -1,7 +1,7 @@
 require 'test_helper'
 
 module Admin
-  class FilesStoriesTest < ActionDispatch::IntegrationTest
+  class AssetFilesStoriesTest < ActionDispatch::IntegrationTest
      setup do
       login
       @file = create(:file, shop: @shop)
@@ -18,7 +18,7 @@ module Admin
     test 'create file' do
       click_link 'Add File'
       fill_in 'Name', with: 'Some Uniq Product'
-      attach_file('file_file', File.join(Rails.root, '/test/fixtures/files/image.jpg'))
+      attach_file('file_file', File.join(Rails.root, '/test/fixtures/asset_files/image.jpg'))
       click_button 'Create File'
       assert page.has_content? 'File was successfully created.'
     end

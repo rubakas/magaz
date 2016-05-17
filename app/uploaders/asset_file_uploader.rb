@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class FileUploader < CarrierWave::Uploader::Base
+class AssetFileUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   include CarrierWave::MimeTypes
 

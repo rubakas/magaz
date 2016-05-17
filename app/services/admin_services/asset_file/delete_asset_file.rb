@@ -1,4 +1,4 @@
-class AdminServices::File::DeleteFile < ActiveInteraction::Base
+class AdminServices::AssetFile::DeleteFile < ActiveInteraction::Base
 
   integer :id, :shop_id
   validates :id, :shop_id, presence: true

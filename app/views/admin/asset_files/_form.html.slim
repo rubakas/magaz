@@ -21,6 +21,6 @@
       = link_to 'Download file', @file.file.url, class: 'btn btn-success' if @file.file?
   hr
   div class="form-group"
-    = link_to t('.back'), admin_files_path, class: 'button-secondary'
+    = link_to t('.back'), admin_asset_files_path, class: 'button-secondary'
     |
     = f.submit(class: 'button')

@@ -1,4 +1,4 @@
-class Admin::FilesController < Admin::ApplicationController
+class Admin::AssetFilesController < Admin::ApplicationController
   include Concerns::Authenticable
   layout 'admin/admin_settings'
 
@@ -15,7 +15,7 @@ class Admin::FilesController < Admin::ApplicationController
   end
 
   def create
-    service = AdminServices::File::AddFile
+    service = AdminServices::AssetFile::AddAssetFile
                 .run(shop_id: current_shop.id,
                      name: params[:file][:name],
                      file: params[:file][:file])
@@ -30,7 +30,7 @@ class Admin::FilesController < Admin::ApplicationController
   end
 
   def update
-    service = AdminServices::File::ChangeFile
+    service = AdminServices::AssetFile::ChangeAssetFile
                 .run(id: params[:id],
                      name: params[:file][:name],
                      file: params[:file][:file],
@@ -46,11 +46,11 @@ class Admin::FilesController < Admin::ApplicationController
   end
 
   def destroy
-    AdminServices::File::DeleteFile
+    AdminServices::AssetFile::DeleteAssetFile
       .run(id: params[:id],
            shop_id: current_shop.id)
     flash[:notice] = t('.notice_success')
-    redirect_to admin_files_path
+    redirect_to admin_asset_files_path
   end
 
 end

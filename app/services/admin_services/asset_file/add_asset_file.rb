@@ -1,21 +1,21 @@
-class AdminServices::File::ChangeFile < ActiveInteraction::Base
+class AdminServices::AssetFile::AddFile < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {datafile}
 
   file :file
-  integer :id, :shop_id
+  integer :shop_id
   string :name
 
-  validates :id, :file, :shop_id, :name, presence: true
+  validates :name, :shop_id, :file, presence: true
 
   def datafile
-    @datafile = Shop.find(shop_id).files.find(id)
+    @datafile = Shop.find(shop_id).files.new
     add_errors if errors.any?
     @datafile
   end
 
   def execute
-    unless @datafile.update_attributes(inputs.slice!(:id))
+    unless @datafile.update_attributes(inputs)
       errors.merge!(@datafile.errors)
     end
     @datafile
