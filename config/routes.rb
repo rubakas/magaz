@@ -77,8 +77,13 @@ Rails.application.routes.draw do
       resources :webhooks, except: [:edit]
     end
   end
-  get 'learn_more' => 'themes_store#learn_more'
+
+  get 'homepage'      => 'themes_store#homepage'
+  get 'theme_page'    => 'themes_store#theme_page'
+  get 'template_page' => 'themes_store#template_page'
+  get 'learn_more'    => 'themes_store#learn_more'
   get 'preview_in_store' => 'themes_store#preview_in_store'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
