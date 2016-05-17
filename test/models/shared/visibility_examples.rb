@@ -1,4 +1,3 @@
-
 module Shared
   module VisibilityExamples
     def setup_visibility_examples(model_class:, factory_name:)

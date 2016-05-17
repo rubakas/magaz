@@ -19,7 +19,7 @@ module MagazCore
     end
 
     protected
-    
+
     def save_size_in_model
       model.file_size = file.size
     end

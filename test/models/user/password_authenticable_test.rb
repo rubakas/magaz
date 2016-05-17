@@ -1,6 +1,5 @@
 require 'test_helper'
 
-
 class User::PasswordAuthenticableTest < ActiveSupport::TestCase
   test 'authentic_password?' do
     @shop = create(:shop)
