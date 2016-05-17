@@ -5,6 +5,9 @@ class ThemesStoreController < ApplicationController
 	def learn_more
   end
   
+  def preview_in_store
+  end
+  
   def demo
     render layout: "demo_page"
   end

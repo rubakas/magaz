@@ -74,12 +74,13 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'homepage'      => 'themes_store#homepage'
-  get 'login'         => 'themes_store#login'
-  get 'theme_page'    => 'themes_store#theme_page'
-  get 'template_page' => 'themes_store#template_page'
-  get 'learn_more'    => 'themes_store#learn_more'
-  get 'demo'          => 'themes_store#demo'
+  get 'homepage'          => 'themes_store#homepage'
+  get 'login'             => 'themes_store#login'
+  get 'theme_page'        => 'themes_store#theme_page'
+  get 'template_page'     => 'themes_store#template_page'
+  get 'learn_more'        => 'themes_store#learn_more'
+  get 'preview_in_store'  => 'themes_store#preview_in_store'
+  get 'demo'              => 'themes_store#demo'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
