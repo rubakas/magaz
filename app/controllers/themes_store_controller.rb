@@ -8,6 +8,16 @@ class ThemesStoreController < ApplicationController
   def installing
   end
   
+  def preview_in_store
+  end
+  
+  def demo
+    render layout: "demo_page"
+  end
+
+  def login
+  end
+
 	def homepage
 	end
 
