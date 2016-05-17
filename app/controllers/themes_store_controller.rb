@@ -1,6 +1,6 @@
 class ThemesStoreController < ApplicationController
 
-	layout 'theme_store'
+  layout 'theme_store'
 
   def authors_themes
   end
@@ -9,8 +9,8 @@ class ThemesStoreController < ApplicationController
     render layout: "demo_page"
   end
 
-	def homepage
-	end
+  def homepage
+  end
 
   def installing
   end
@@ -24,10 +24,10 @@ class ThemesStoreController < ApplicationController
   def preview_in_store
   end
 
-	def template_page
-	end
-	
-	def theme_page
-	end
+  def template_page
+  end
+
+  def theme_page
+  end
 
 end
