@@ -106,6 +106,12 @@ en:
       shop: "Magaz"
       themes_store_button: "Themes Store"
 
+  themes_store:
+    authors_themes:
+      heading: "All Author's Themes"
+      go_to_website: "Go to their website ›"
+      button: "More themes"
+
   welcome:
     sell:
       shop_name: "Your shop name"
