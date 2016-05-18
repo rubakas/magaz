@@ -116,6 +116,11 @@ en:
       desktop: "desktop"
       mobile: "phone"
       preview: "Preview in your Store"
+    installing:
+      heading: "You're about to install Jumpstart to store-name.magaz.com"
+      publish: "Publish as my shop's theme"
+      unpublish: " install as an unpublished theme"
+      or: "or"
 
   welcome:
     sell:
