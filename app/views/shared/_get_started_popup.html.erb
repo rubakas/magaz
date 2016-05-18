@@ -6,20 +6,20 @@
       </a>
     </div>
   </div>
-  <h4 class="text-center">Start your free 14-day trial of Shopify</h4>
+  <h4 class="text-center"><%= t('.heading') %></h4>
   <div class="col-md-4 col-md-offset-4">
     <form>
       <div class="row">
-        <input type="email" name="email-address" placeholder="Email address">
+        <input type="email" name="email-address" placeholder="<%= t('.email') %>">
       </div>
       <div class="row">
-        <input type="passwrod" name="password" placeholder="Password">
+        <input type="passwrod" name="password" placeholder=<%= t('.password') %>>
       </div>
       <div class="row">
-        <input type="text" name="store-name" placeholder="Your store name">
+        <input type="text" name="store-name" placeholder="<%= t('.store') %>">
       </div>
       <div class="row">
-        <button type="button" class="btn btn-success pull-right">Create your store</button>
+        <button type="button" class="btn btn-success pull-right"><%= t('.button') %></button>
       </div>
     </form>
   </div>

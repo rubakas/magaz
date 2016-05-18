@@ -739,6 +739,13 @@ en:
       password: "Password"
       shop_name: "Your store name"
 
+    get_started_popup:
+      button: "Create your store"
+      email: "Email address"
+      heading: "Start your free 14-day trial of Shopify"
+      password: "Password"
+      store: "Your store name"
+
     sidebar_nav:
       title: "Shop"
       dashboard: "Dashboard"
