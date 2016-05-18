@@ -174,7 +174,11 @@ en:
       get_started_heading: "Start your free 14 day trial today"
       text: "Use Magaz to impress your customers with a beautiful online store and start accepting orders today."
       button_signup: "Sign up now"
-      
+    preview_in_store:
+      heading: "You can now preview the theme"
+      button: "Preview Palo Alto on your Storefront"
+    
+
 
 
   welcome:
