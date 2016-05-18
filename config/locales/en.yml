@@ -111,6 +111,11 @@ en:
       heading: "All Author's Themes"
       go_to_website: "Go to their website ›"
       button: "More themes"
+    demo:
+      back: "To the Theme"
+      desktop: "desktop"
+      mobile: "phone"
+      preview: "Preview in your Store"
 
   welcome:
     sell:
