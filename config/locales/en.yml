@@ -167,6 +167,14 @@ en:
       review_progress_navlink: "The theme review process"
       support_navlink: "Theme support"
       checklist_navlink: "Theme Review Checklists"
+    login:
+      main_heading: "Log in to your store"
+      placeholder: "your-shop-url.magaz.com"
+      button_login: "Log In"
+      get_started_heading: "Start your free 14 day trial today"
+      text: "Use Magaz to impress your customers with a beautiful online store and start accepting orders today."
+      button_signup: "Sign up now"
+      
 
 
   welcome:
