@@ -13,6 +13,7 @@ class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Taxes'
   end
 
+# score=1
   test "should add new override for country" do
     assert page.has_content? @shipping_country.country_info['name']
     click_link @shipping_country.country_info['name']
@@ -27,6 +28,7 @@ class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Override was successfully created.'
   end
 
+# score=1
   test "should not add new override" do
     assert page.has_content? @shipping_country.country_info['name']
     click_link @shipping_country.country_info['name']
@@ -39,6 +41,7 @@ class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Creating of override was failed.'
   end
 
+# score=1
   test "should not add new override too" do
     assert page.has_content? @shipping_country.country_info['name']
     click_link @shipping_country.country_info['name']
@@ -51,6 +54,7 @@ class TaxOverridesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Creating of override was failed.'
   end
 
+# score=1
   test "should add new override for country too" do
     assert page.has_content? @shipping_country.country_info['name']
     click_link @shipping_country.country_info['name']

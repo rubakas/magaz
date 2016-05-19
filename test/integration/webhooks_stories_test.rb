@@ -15,7 +15,8 @@ module Admin
       assert page.has_content? @webhook.address
       assert page.has_content? @webhook.format
     end
-
+    
+# score=1
     test 'should create webhook' do
       click_link 'Create Webhook'
       fill_in 'webhook_address', with: 'https://www.google.com.ua/'
@@ -25,6 +26,7 @@ module Admin
       assert page.has_content? 'Webhook was successfully created.'
     end
 
+# score=1
     test 'should update webhook' do
       click_link(@webhook.topic, match: :first)
       fill_in 'webhook_address', with: 'https://www.google.com.ua/'
@@ -34,6 +36,7 @@ module Admin
       assert page.has_content? 'Webhook was successfully updated.'
     end
 
+# score=1
     test 'should not update webhook' do
       click_link(@webhook.topic, match: :first)
       fill_in 'webhook_address', with: ''
@@ -43,6 +46,7 @@ module Admin
       assert page.has_content? "2 errors"
     end
 
+# score=1
     test 'should delete webhook' do
       assert page.has_content? 'Webhooks'
       click_link('Delete', match: :first)

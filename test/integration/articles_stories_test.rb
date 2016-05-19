@@ -5,7 +5,7 @@ class ArticlesStoriesTest < ActionDispatch::IntegrationTest
     login
     @blog = create(:blog, shop: @shop)
     @article = create(:article, blog: @blog)
-    click_link 'Blogs'
+    click_link 'Blog Posts'
   end
 
   test "blog posts list" do
