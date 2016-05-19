@@ -394,6 +394,10 @@ en:
       desktop: "desktop"
       mobile: "phone"
       preview: "Preview in your Store"
+    homepage:
+      heading: "Choose a theme for your online store"
+      info: "Responsive themes, easily customized to fit your brand"
+      button_more_themes: "More themes"
     installing:
       heading: "You're about to install Jumpstart to store-name.magaz.com"
       or: "or"
@@ -455,6 +459,31 @@ en:
     preview_in_store:
       button: "Preview Palo Alto on your Storefront"
       heading: "You can now preview the theme"
+    template_page:
+      heading: "Find the Perfect Website Template for Your Home and Garden Business"
+      info: "You don’t want just any old website template. Your business deserves much better than that. You need clean, sharp professionally designed themes specifically created for your industry. At Shopify, this is exactly what we offer. Browse through a wide selection of free and premium home and garden web templates to find exactly what you’re looking for."
+      button_more_themes: "More themes"
+    theme_page:
+      name: "Name"
+      price: "Free"
+      info: "Pipeline is a clean and powerful theme – carefully tuned for mobile, tablet, and retina devices. Simplify your navigation with a powerful multi-level dropdown and build a beautiful homepage with full-bleed photos. Pipeline allows your products to shine with a clean minimal design, while giving your customers a great experience on any device."
+      preview_button: "Preview in your store"
+      buy_theme: "Buy theme"
+      view_demo: "View Demo"
+      who_supports: "Who supports this theme?"
+      support_info: "This theme was made and supported by Corknine."
+      support: "Support"
+      documentation: "Documentation"
+      terms_of_service: "Terms of Service"
+      includes_styles: "Includes 2 styles"
+      store_using_theme: "Stores using this theme"
+      review_heading: "Reviews"
+      review_button: "Write a review"
+      more_themes: "More themes by "
+      author: "Author"
+      more: "More "
+      templates: "Health & Beaty templates"
+      button_more_themes: "More themes"
 
   welcome:
     sell:
@@ -1027,47 +1056,6 @@ en:
         prohibit: "prohibited this email from being saved:"
         error: "error"
 
-  shared:
-    get_started:
-      button: "Create your store"
-      email_address: "Email address"
-      heading: "Start your free 14-day trial today!"
-      password: "Password"
-      shop_name: "Your store name"
-
-    get_started_popup:
-      button: "Create your store"
-      email: "Email address"
-      heading: "Start your free 14-day trial of Shopify"
-      password: "Password"
-      store: "Your store name"
-
-    sidebar_nav:
-      title: "Shop"
-      dashboard: "Dashboard"
-      orders: "Orders"
-      customers: "Customers"
-      products: "Products"
-      collections: "Collections"
-      your_site: "Your Website"
-      pages: "Pages"
-      blogs: "Blog Posts"
-      config: "Configuration"
-      settings: "Settings"
-      themes: "Themes"
-
-    settings_sidebar_nav:
-      back: "Back"
-      settings: "Settings"
-      files: "Files"
-      users: "Users"
-      shipping: "Shipping"
-      notifications: "Notifications"
-      checkouts: "Checkouts"
-      payments: "Payments"
-      taxes: "Taxes"
-      webhooks: "Webhooks"
-
     shipping_countries:
       create:
         notice_success: "Shipping Country was successfully created."
@@ -1262,6 +1250,48 @@ en:
         prohibit: "prohibited this webhook from being saved:"
       show:
         title: "Editing webhook"
+        
+  shared:
+    get_started:
+      button: "Create your store"
+      email_address: "Email address"
+      heading: "Start your free 14-day trial today!"
+      password: "Password"
+      shop_name: "Your store name"
+    get_started_popup:
+      button: "Create your store"
+      email: "Email address"
+      heading: "Start your free 14-day trial of Shopify"
+      password: "Password"
+      store: "Your store name"
+    sell_theme:
+      heading: "Sell your own theme"
+      info: "Every month thousands of merchants look for new themes to apply to their shop. The Theme Store is a great place for theme designers to showcase and monetize their design skills."
+      learn_more: "Learn more"
+    sidebar_nav:
+      title: "Shop"
+      dashboard: "Dashboard"
+      orders: "Orders"
+      customers: "Customers"
+      products: "Products"
+      collections: "Collections"
+      your_site: "Your Website"
+      pages: "Pages"
+      blogs: "Blog Posts"
+      config: "Configuration"
+      settings: "Settings"
+      themes: "Themes"
+    settings_sidebar_nav:
+      back: "Back"
+      settings: "Settings"
+      files: "Files"
+      users: "Users"
+      shipping: "Shipping"
+      notifications: "Notifications"
+      checkouts: "Checkouts"
+      payments: "Payments"
+      taxes: "Taxes"
+      webhooks: "Webhooks"
 
   user_mailer:
     notification:

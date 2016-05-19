@@ -16,6 +16,7 @@ module Admin
       assert page.has_content? @user2.email
     end
 
+# score=1
     test 'should invite user' do
       click_link 'Invite User'
       fill_in 'Email', with: 'user@email.com'
@@ -23,6 +24,7 @@ module Admin
       assert page.has_content? 'User was successfully created.'
     end
 
+# score=1
     test 'slould not invite user' do
       click_link 'Invite User'
       fill_in 'Email', with: 'boobies'
@@ -40,6 +42,7 @@ module Admin
       assert page.has_content? 'Email is invalid.'
     end
 
+# score=1
     test 'should edit user' do
       click_link(@user2.email, match: :first)
       fill_in 'First name', with: 'Some Uniq Firt Name'
@@ -52,12 +55,14 @@ module Admin
       assert page.has_content? 'User was successfully updated.'
     end
 
+# score=1
     test 'should delete user' do
       assert page.has_content? 'Users'
       click_link('Delete', href: "/admin/users/#{@user2.id}")
       assert page.has_content? "User was successfully deleted."
     end
 
+# score=1
     test "should not delete user" do
       assert page.has_content? 'Users'
       click_link('Delete', href: "/admin/users/#{@user.id}")

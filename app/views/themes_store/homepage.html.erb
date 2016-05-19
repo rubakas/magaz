@@ -1,12 +1,11 @@
 <%= render 'shared/sort_search_header' %>
 <div class="container">
 	<div>
-	  <h1 class="text-center">Choose a theme for your online store</h1>
+	  <h1 class="text-center"><%= t('.heading') %></h1>
 	  <div class="row">
 	    <div class="col-md-2 col-md-offset-5"><hr></div>
 	  </div>
-	  <h3 class="text-center">Responsive themes, easily customized to fit your brand
-	  </h3>
+	  <h3 class="text-center"><%= t('.info') %></h3>
 	</div>
   <div class="row">
     <div class="col-md-4">
@@ -44,7 +43,7 @@
   </div>
   <div class="row">
     <div class="col-md-2 col-md-offset-5">
-    	<button class="btn btn-success">More themes</button>
+    	<button class="btn btn-success"><%= t('.button_more_themes') %></button>
     </div>
   </div>
   <div class="row">
