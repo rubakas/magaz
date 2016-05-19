@@ -185,6 +185,27 @@ en:
       heading: "Find the Perfect Website Template for Your Home and Garden Business"
       info: "You don’t want just any old website template. Your business deserves much better than that. You need clean, sharp professionally designed themes specifically created for your industry. At Shopify, this is exactly what we offer. Browse through a wide selection of free and premium home and garden web templates to find exactly what you’re looking for."
       button_more_themes: "More themes"
+    theme_page:
+      name: "Name"
+      price: "Free"
+      info: "Pipeline is a clean and powerful theme – carefully tuned for mobile, tablet, and retina devices. Simplify your navigation with a powerful multi-level dropdown and build a beautiful homepage with full-bleed photos. Pipeline allows your products to shine with a clean minimal design, while giving your customers a great experience on any device."
+      preview_button: "Preview in your store"
+      buy_theme: "Buy theme"
+      view_demo: "View Demo"
+      who_supports: "Who supports this theme?"
+      support_info: "This theme was made and supported by Corknine."
+      support: "Support"
+      documentation: "Documentation"
+      terms_of_service: "Terms of Service"
+      includes_styles: "Includes 2 styles"
+      store_using_theme: "Stores using this theme"
+      review_heading: "Reviews"
+      review_button: "Write a review"
+      more_themes: "More themes by "
+      author: "Author"
+      more: "More "
+      templates: "Health & Beaty templates"
+      button_more_themes: "More themes"
 
   welcome:
     sell:
