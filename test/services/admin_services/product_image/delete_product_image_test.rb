@@ -8,14 +8,10 @@ class AdminServices::ProductImage::DeleteProductImageTest < ActiveSupport::TestC
     @product_image = create(:product_image, product: @product, image: @image)
   end
 
-  teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/uploads"])
-  end
-
   test "should delete image with valid params" do
     assert_equal 1, ProductImage.count
     service = AdminServices::ProductImage::DeleteProductImage
-                .run(id: @product_image.id, product_id: "#{@product_image.id}")
+                .run(id: @product_image.id, product_id: "#{@product.id}")
     assert service.valid?
     assert_equal 0, ProductImage.count
   end

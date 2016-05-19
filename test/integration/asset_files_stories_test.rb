@@ -18,8 +18,8 @@ module Admin
     test 'create file' do
       click_link 'Add File'
       fill_in 'Name', with: 'Some Uniq Product'
-      attach_file('file_file', File.join(Rails.root, '/test/fixtures/asset_files/image.jpg'))
-      click_button 'Create File'
+      attach_file('asset_file_file', File.join(Rails.root, '/test/fixtures/files/image.jpg'))
+      click_button 'Create Asset file'
       assert page.has_content? 'File was successfully created.'
     end
 

@@ -6,10 +6,6 @@ class FileUploader < CarrierWave::Uploader::Base
 
   process :save_size_in_model
 
-  def root
-    "#{Rails.root}/public"
-  end
-
   version :thumb, :if => :image? do
     process :resize_to_fill => [200, 200]
   end

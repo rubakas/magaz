@@ -538,7 +538,7 @@ en:
       user: "user"
       webhook: "webhook"
 
-    files:
+    asset_files:
       create:
         notice_success: "File was successfully created."
       update:
@@ -1113,21 +1113,20 @@ en:
       show:
         title: "Editing webhook"
 
-  magaz_core:
-    user_mailer:
-      notification:
-        notification_to: "Test notification to:"
-        notification_text: "Hello, you have a new order"
-      test_notification:
-        subject: "Test Notification"
-        test_notification_text: "Some text"
-        test_notification_to: "Test notification to :"
-      registration_confirmation:
-        subject: "Registration Confirmation"
-      invite_new_user:
-        subject: "You are invited"
-        text: "Hi , You are invited to shop %{shop_name} "
-        link: "Confirmation"
+  user_mailer:
+    notification:
+      notification_to: "Test notification to:"
+      notification_text: "Hello, you have a new order"
+    test_notification:
+      subject: "Test Notification"
+      test_notification_text: "Some text"
+      test_notification_to: "Test notification to :"
+    registration_confirmation:
+      subject: "Registration Confirmation"
+    invite_new_user:
+      subject: "You are invited"
+      text: "Hi , You are invited to shop %{shop_name} "
+      link: "Confirmation"
 
   theme_store:
     themes:

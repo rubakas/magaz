@@ -7,7 +7,7 @@ class AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
     @link_list = create(:link_list, shop: @shop)
     @link = create(:link, link_list: @link_list)
     @link2 = create(:link, link_list: @link_list)
-    @success_params = { id: @link_list.id, name: "Test name",
+    @success_params = { id: @link.id, name: "Test name",
                         link_list_id: "#{@link_list.id}", link_type: "Test type",
                         position: "2" }
   end
@@ -15,8 +15,8 @@ class AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
   test 'should update link with valid params' do
     service = AdminServices::Link::ChangeLink.run(@success_params)
     assert service.valid?
-    assert_equal 'Test name', Link.find(@link_list.id).name
-    assert_equal "Test type", Link.find(@link_list.id).link_type
+    assert_equal 'Test name', Link.find(@link.id).name
+    assert_equal "Test type", Link.find(@link.id).link_type
   end
 
   test 'should not update link with existing name' do
@@ -31,7 +31,7 @@ class AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
 
   test 'should update link with some blank params' do
     service = AdminServices::Link::ChangeLink.
-                run(id: @link_list.id, name: "Changed name",
+                run(id: @link.id, name: "Changed name",
                     link_list_id: "#{@link_list.id}", position: '123', link_type: '')
     assert service.valid?
     assert_equal 123, service.result.position

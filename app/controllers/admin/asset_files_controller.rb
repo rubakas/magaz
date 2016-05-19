@@ -17,8 +17,8 @@ class Admin::AssetFilesController < Admin::ApplicationController
   def create
     service = AdminServices::AssetFile::AddAssetFile
                 .run(shop_id: current_shop.id,
-                     name: params[:file][:name],
-                     file: params[:file][:file])
+                     name: params[:asset_file][:name],
+                     file: params[:asset_file][:file])
     if service.valid?
       @file = service.result
       flash[:notice] = t('.notice_success')
@@ -32,8 +32,8 @@ class Admin::AssetFilesController < Admin::ApplicationController
   def update
     service = AdminServices::AssetFile::ChangeAssetFile
                 .run(id: params[:id],
-                     name: params[:file][:name],
-                     file: params[:file][:file],
+                     name: params[:asset_file][:name],
+                     file: params[:asset_file][:file],
                      shop_id: current_shop.id)
     if service.valid?
       @file = service.result
