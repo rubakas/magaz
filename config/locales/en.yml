@@ -181,6 +181,10 @@ en:
     preview_in_store:
       button: "Preview Palo Alto on your Storefront"
       heading: "You can now preview the theme"
+    template_page:
+      heading: "Find the Perfect Website Template for Your Home and Garden Business"
+      info: "You don’t want just any old website template. Your business deserves much better than that. You need clean, sharp professionally designed themes specifically created for your industry. At Shopify, this is exactly what we offer. Browse through a wide selection of free and premium home and garden web templates to find exactly what you’re looking for."
+      button_more_themes: "More themes"
 
   welcome:
     sell:
