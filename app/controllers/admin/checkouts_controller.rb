@@ -1,5 +1,5 @@
 class Admin::CheckoutsController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
   before_action :set_abandoned_checkout, only: [:show, :destroy]
 
   def index
@@ -10,7 +10,7 @@ class Admin::CheckoutsController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::Checkout::DeleteCheckout
+    service = AdminServices::Checkout::DeleteCheckout
                 .run(id: @abandoned_checkout.id)
     redirect_to admin_checkouts_url
   end

@@ -22,7 +22,7 @@ class Admin::LinksControllerTest < ActionController::TestCase
   end
 
   test "should create link" do
-    assert_difference('MagazCore::Link.count', +1) do
+    assert_difference('Link.count', +1) do
       post :create, { link: { name: "Test name", position: "position", link_type: "link_type" },
                       link_list_id: @link_list.id }
     end
@@ -52,7 +52,7 @@ class Admin::LinksControllerTest < ActionController::TestCase
   end
 
   test "should destroy link" do
-    assert_difference('MagazCore::Link.count', -1) do
+    assert_difference('Link.count', -1) do
       delete :destroy, id: @link.id, link_list_id: @link_list.id
     end
     assert_redirected_to admin_link_list_path(@link_list)

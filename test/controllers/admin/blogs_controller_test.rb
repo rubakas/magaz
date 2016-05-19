@@ -20,7 +20,7 @@ class Admin::BlogsControllerTest < ActionController::TestCase
   end
 
   test "should create blog" do
-    assert_difference('MagazCore::Blog.count') do
+    assert_difference('Blog.count') do
       post :create, blog: { title: "Test title", shop_id: @shop.id, page_title: "Test page_title",
                             handle: "Test handle", meta_description: "Test meta_description" }
     end
@@ -45,7 +45,7 @@ class Admin::BlogsControllerTest < ActionController::TestCase
   end
 
   test "should destroy blog" do
-    assert_difference('MagazCore::Blog.count', -1) do
+    assert_difference('Blog.count', -1) do
       delete :destroy, id: @blog.id
     end
 

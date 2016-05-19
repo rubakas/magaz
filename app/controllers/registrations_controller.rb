@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    service = MagazCore::StoreServices::Create
+    service = StoreServices::Create
                 .run(shop_name: params[:registration][:name],
                      first_name: params[:registration][:first_name],
                      last_name: params[:registration][:last_name],
@@ -24,7 +24,7 @@ class RegistrationsController < ApplicationController
   end
 
   def validate
-    @shop = MagazCore::Shop.new permitted_params_for_shop[:shop]
+    @shop = Shop.new permitted_params_for_shop[:shop]
     @shop.valid?
     render json: @shop.errors.to_json
   end

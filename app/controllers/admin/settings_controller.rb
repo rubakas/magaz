@@ -1,5 +1,5 @@
 class Admin::SettingsController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
   layout 'admin/admin_settings'
 
   #Settings
@@ -9,7 +9,7 @@ class Admin::SettingsController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::Shop::ChangeShop
+    service = AdminServices::Shop::ChangeShop
                 .run(id: current_shop.id,
                      name: params[:shop][:name],
                      business_name: params[:shop][:business_name],
@@ -26,8 +26,8 @@ class Admin::SettingsController < Admin::ApplicationController
                      address: params[:shop][:address])
     if service.valid?
       @shop = service.result
-      # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
-      #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_SHOP_EVENT)
+      # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
+      #                                                                     topic: Webhook::Topics::UPDATE_SHOP_EVENT)
       flash.now[:notice] = I18n.t('admin.settings.notice_success')
       render 'edit'
     else
@@ -43,7 +43,7 @@ class Admin::SettingsController < Admin::ApplicationController
   end
 
   def payments_settings_update
-    service = MagazCore::AdminServices::Shop::ChangePaymentSettings
+    service = AdminServices::Shop::ChangePaymentSettings
                 .run(id: current_shop.id,
                      authorization_settings: params[:shop][:authorization_settings])
     @shop = service.result
@@ -62,7 +62,7 @@ class Admin::SettingsController < Admin::ApplicationController
   end
 
   def checkouts_settings_update
-    service = MagazCore::AdminServices::Shop::ChangeCheckoutSettings
+    service = AdminServices::Shop::ChangeCheckoutSettings
                 .run(id: current_shop.id,
                      account_type_choice: params[:shop][:account_type_choice],
                      enable_multipass_login: params[:shop][:enable_multipass_login],
@@ -107,7 +107,7 @@ class Admin::SettingsController < Admin::ApplicationController
   end
 
   def taxes_settings_update
-    service = MagazCore::AdminServices::Shop::ChangeTaxesSettings
+    service = AdminServices::Shop::ChangeTaxesSettings
                 .run(id: current_shop.id,
                      all_taxes_are_included: params[:shop][:all_taxes_are_included],
                      charge_taxes_on_shipping_rates: params[:shop][:charge_taxes_on_shipping_rates],
@@ -123,7 +123,7 @@ class Admin::SettingsController < Admin::ApplicationController
   end
 
   def enable_eu_digital_goods_vat_taxes
-    service = MagazCore::AdminServices::Shop::EnableEuDigitalGoods
+    service = AdminServices::Shop::EnableEuDigitalGoods
                 .run(id: current_shop.id,
                      collection_name: DIGITAL_GOODS_VAT_TAX)
     if service.valid?
@@ -142,7 +142,7 @@ class Admin::SettingsController < Admin::ApplicationController
   end
 
   def save_default_collection
-    service = MagazCore::AdminServices::Shop::ChangeDefaultCollection
+    service = AdminServices::Shop::ChangeDefaultCollection
                 .run(id: current_shop.id, collection_id: params[:default_collection])
     unless service.valid?
       flash.now[:notice] = service.errors.full_messages.first

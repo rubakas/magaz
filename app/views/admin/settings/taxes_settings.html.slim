@@ -69,7 +69,7 @@ p id="notice"
             th = t('.overrides')
 
         - @shop.shipping_countries.each do |country|
-          - @country = MagazCore::ShippingCountry.find_by_id(country.id)
+          - @country = ShippingCountry.find_by_id(country.id)
           - @country_name = @country.country_info['name']
           tbody
             tr

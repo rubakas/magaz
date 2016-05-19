@@ -1,5 +1,5 @@
 class Admin::CustomersController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
   respond_to :csv
 
   def index
@@ -15,15 +15,15 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::Customer::AddCustomer
+    service = AdminServices::Customer::AddCustomer
                 .run(first_name: params[:customer][:first_name],
                      last_name: params[:customer][:last_name],
                      email: params[:customer][:email],
                      shop_id: current_shop.id)
 
     if service.valid?
-      # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
-      #                         topic: MagazCore::Webhook::Topics::CREATE_CUSTOMER_EVENT)
+      # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
+      #                         topic: Webhook::Topics::CREATE_CUSTOMER_EVENT)
       @customer = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_customer_path(@customer)
@@ -35,15 +35,15 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::Customer::ChangeCustomer
+    service = AdminServices::Customer::ChangeCustomer
                 .run(id: params[:id],
                      first_name: params[:customer][:first_name],
                      last_name: params[:customer][:last_name],
                      email: params[:customer][:email],
                      shop_id: current_shop.id)
     if service.valid?
-      # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
-      #                         topic: MagazCore::Webhook::Topics::UPDATE_CUSTOMER_EVENT)
+      # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
+      #                         topic: Webhook::Topics::UPDATE_CUSTOMER_EVENT)
       @customer = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_customer_path(@customer)
@@ -55,7 +55,7 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   def import
-    MagazCore::AdminServices::Customer::ImportCustomersFromCsv
+    AdminServices::Customer::ImportCustomersFromCsv
       .call(shop_id: current_shop.id, csv_file: params[:csv_file])
 
     redirect_to admin_customers_path, notice: t('.notice_success')
@@ -71,10 +71,10 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::Customer::DeleteCustomer
+    service = AdminServices::Customer::DeleteCustomer
                 .run(id: params[:id], shop_id: current_shop.id)
-    # @webhook_service = MagazCore::AdminServices::EventWebhookRunner
-      #.call(event: @event_service.event, topic: MagazCore::Webhook::Topics::DELETE_CUSTOMER_EVENT)
+    # @webhook_service = AdminServices::EventWebhookRunner
+      #.call(event: @event_service.event, topic: Webhook::Topics::DELETE_CUSTOMER_EVENT)
     flash[:notice] = t('.notice_success')
     redirect_to admin_customers_path
   end

@@ -4,7 +4,9 @@ class SigninStoriesTest < ActionDispatch::IntegrationTest
   setup do
     use_host HOSTNAME
     @shop2 = create(:shop, name: 'example2', subdomain: 'example2')
-    @user2 = create(:user, shop: @shop2, first_name: 'First2', last_name: 'Last2', email: 'email2@mail.com', password: 'password2')
+    @user2 = create(:user, shop: @shop2,
+                    first_name: 'First2', last_name: 'Last2',
+                    email: 'email2@mail.com', password: 'password2')
   end
 
   test "sign in redirect" do

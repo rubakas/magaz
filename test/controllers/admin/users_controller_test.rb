@@ -20,7 +20,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   end
 
   test "should invite user" do
-    assert_difference('MagazCore::User.count') do
+    assert_difference('User.count') do
       post :create, { user: { email: "staff_user@example.com"} }
     end
     assert_redirected_to admin_users_path
@@ -50,7 +50,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   end
 
   test "should not destroy user" do
-    assert_no_difference('MagazCore::User.count', -1) do
+    assert_no_difference('User.count', -1) do
       delete :destroy, id: @user.id
     end
 
@@ -58,7 +58,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   end
 
   test "should destroy user" do
-    assert_difference('MagazCore::User.count', -1) do
+    assert_difference('User.count', -1) do
       delete :destroy, id: @user2.id
     end
 

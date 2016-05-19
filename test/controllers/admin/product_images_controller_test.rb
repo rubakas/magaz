@@ -45,7 +45,7 @@ class Admin::ProductImagesControllerTest < ActionController::TestCase
   end
 
   test 'should create image' do
-    assert_difference('MagazCore::ProductImage.count') do
+    assert_difference('ProductImage.count') do
       post :create, product_id: @product , id: @product_image,
       product_image: {image: fixture_file_upload('/files/tapir.jpg', 'image/jpg')}
     end
@@ -53,7 +53,7 @@ class Admin::ProductImagesControllerTest < ActionController::TestCase
 
 
   test 'should destroy image' do
-    assert_difference('MagazCore::ProductImage.count', -1) do
+    assert_difference('ProductImage.count', -1) do
       delete :destroy, product_id: @product.id , id: @product_image.id
     end
     assert_redirected_to admin_product_product_images_path

@@ -19,7 +19,7 @@ class Admin::ShippingCountriesControllerTest < ActionController::TestCase
   end
 
   test "should create shipping country" do
-    assert_difference('MagazCore::ShippingCountry.count') do
+    assert_difference('ShippingCountry.count') do
       post :create, { shipping_country: { name: 'FI', tax: 10 } }
     end
     assert_redirected_to admin_shipping_country_path(assigns(:shipping_country))
@@ -46,7 +46,7 @@ class Admin::ShippingCountriesControllerTest < ActionController::TestCase
   end
 
   test "should destroy shipping country" do
-    assert_difference('MagazCore::ShippingCountry.count', -1) do
+    assert_difference('ShippingCountry.count', -1) do
       delete :destroy, id: @shipping_country.id
     end
 

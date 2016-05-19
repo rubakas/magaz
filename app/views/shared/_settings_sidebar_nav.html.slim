@@ -11,10 +11,10 @@ section class='sidebar-section'
         active_conditions: { controller: 'admin/settings',  action: 'edit' }
 
     = render 'shared/li_link_to',
-        path: admin_files_path,
+        path: admin_asset_files_path,
         icon_class: 'icon-hdd',
         label: t('.files'),
-        active_conditions: { controller: 'admin/files' }
+        active_conditions: { controller: 'admin/asset_files' }
 
     = render 'shared/li_link_to',
         path: admin_users_path,

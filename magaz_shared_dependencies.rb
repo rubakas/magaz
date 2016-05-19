@@ -12,6 +12,10 @@ gem 'active_interaction'
 
 gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
 
+gem 'rubyzip'
+gem 'friendly_id', '5.0.4'
+gem 'sidekiq'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use sqlite3 as the database for Active Record
@@ -112,4 +116,3 @@ gem 'liquid'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
 gem 'spring',           group: :development
-

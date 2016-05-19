@@ -21,7 +21,7 @@ class Admin::LinkListsControllerTest < ActionController::TestCase
   end
 
   test "should create link_list" do
-    assert_difference('MagazCore::LinkList.count', +1) do
+    assert_difference('LinkList.count', +1) do
       post :create, { link_list: { name: "title", handle: "handle", shop_id: @shop.id} }
     end
 
@@ -47,7 +47,7 @@ class Admin::LinkListsControllerTest < ActionController::TestCase
   end
 
   test "should destroy link_list" do
-    assert_difference('MagazCore::LinkList.count', -1) do
+    assert_difference('LinkList.count', -1) do
       delete :destroy, id: "#{@link_list.id}", shop_id: @shop.id
     end
 

@@ -1,5 +1,5 @@
 class Admin::CollectionsController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
     @collections = current_shop.collections.page(params[:page])
@@ -14,7 +14,7 @@ class Admin::CollectionsController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::Collection::AddCollection
+    service = AdminServices::Collection::AddCollection
                 .run(name: params[:collection][:name],
                      shop_id: current_shop.id,
                      page_title: params[:collection][:page_title],
@@ -23,8 +23,8 @@ class Admin::CollectionsController < Admin::ApplicationController
                      description: params[:collection][:description])
     if service.valid?
       @collection = service.result
-      #@webhook_service = MagazCore::AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
-      #                                                                    topic: MagazCore::Webhook::Topics::CREATE_COLLECTION_EVENT)
+      #@webhook_service = AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
+      #                                                                    topic: Webhook::Topics::CREATE_COLLECTION_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to admin_collection_url(@collection)
     else
@@ -35,7 +35,7 @@ class Admin::CollectionsController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::Collection::ChangeCollection
+    service = AdminServices::Collection::ChangeCollection
                 .run(id: params[:id],
                      name: params[:collection][:name],
                      shop_id: current_shop.id,
@@ -45,8 +45,8 @@ class Admin::CollectionsController < Admin::ApplicationController
                      description: params[:collection][:description])
 
     if service.valid?
-      #@webhook_service = MagazCore::AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
-      #                                                                    topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
+      #@webhook_service = AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
+      #                                                                    topic: Webhook::Topics::UPDATE_COLLECTION_EVENT)
       @collection = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_collection_url(@collection)
@@ -57,10 +57,10 @@ class Admin::CollectionsController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::Collection::DeleteCollection
+    service = AdminServices::Collection::DeleteCollection
                 .run(id: params[:id], shop_id: current_shop.id)
-    # @webhook_service = MagazCore::AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
-    #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_COLLECTION_EVENT)
+    # @webhook_service = AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
+    #                                                                     topic: Webhook::Topics::UPDATE_COLLECTION_EVENT)
     flash[:notice] = t('.notice_success')
     redirect_to admin_collections_path
   end

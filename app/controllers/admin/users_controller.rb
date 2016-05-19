@@ -22,7 +22,7 @@ class Admin::UsersController < Admin::ApplicationController
                                 admin_user_url(user_object,
                                                invite_token: user_object.invite_token)}
 
-    service = MagazCore::AdminServices::Invite::CreateInvite
+    service = AdminServices::Invite::CreateInvite
                 .run(url_building_proc: url_building_proc,
                      email: params[:user][:email],
                      shop_id: current_shop.id)
@@ -36,7 +36,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def update
     @current_user = current_shop.users.find(session[:user_id])
-    service = MagazCore::AdminServices::User::ChangeUser
+    service = AdminServices::User::ChangeUser
                .run(id: params[:id],
                     shop_id: current_shop.id,
                     first_name: params[:user][:first_name],
@@ -56,7 +56,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::User::DeleteUser.run(id: params[:id],
+    service = AdminServices::User::DeleteUser.run(id: params[:id],
                                                              shop_id: current_shop.id)
     if service.valid?
       flash[:notice] = t('.notice_success')
