@@ -3,7 +3,6 @@ eval(File.read(File.dirname(__FILE__) + '/magaz_shared_dependencies.rb'))
 # Use local gems with engines
 gem 'magaz_style',        path: 'gems/magaz_style'
 gem 'magaz_store',        path: 'gems/magaz_store'
-gem 'magaz_theme_store',  path: 'gems/magaz_theme_store'
 
 # gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
 

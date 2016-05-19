@@ -1,0 +1,68 @@
+<main class="container ">
+  <div class="row">
+    <div class="text-area">
+      <div class="col-md-7">
+        <div>
+          <h1><%= t('.main_heading') %></h1>
+          <p>
+            <img src="https://themes.shopify.com/assets/graphics/theme_examples_update_2016-9d9bdc12d67a6d79e2e9546aa8504d44.png" alt="Image">
+          </p>
+          <h4 id="selling"><%= t('.selling_heading') %></h4>
+          <p><%= t('.selling_text') %></p>
+          <h4 id="payout"><%= t('.payout_heading') %></h4>
+          <p><%= t('.payout_text') %></p>
+          <ol>
+            <li>
+              <h5><%= t('.70/30_heading') %></h5>
+              <p><%= t('.70/30_text') %></p>
+            </li>
+            <li>
+              <h5 id="50split"><%= t('.50/50_heading') %></h5>
+              <p><%= t('.50/50_text') %></p>
+            </li>
+            <p><%= t('.50/50_footnote') %></p>
+          </ol>
+          <h4 id="what-kind"><%= t('.what_kind_heading') %></h4>
+          <p><%= t('.what_kind_intro') %></p>
+          <p><%= t('.what_kind_text') %></p>
+          <h4 id="review-process"><%= t('.review_progress_heading') %></h4>
+          <p><%= t('.review_progress_intro_pt1') %><a href="mailto:themes@magaz.com">themes@magaz.com</a>.<%= t('.review_progress_intro_pt2') %></p>
+          <ol class="numbered-list">
+            <li><%= t('.review_progress_list_item_1_pt1') %><strong><%= t('.review_progress_list_item_1_bold') %></strong> <%= t('.review_progress_list_item_1_pt2') %></li>
+            <li><%= t('.review_progress_list_item_2') %></li>
+            <li><p><a href="#"><%= t('.review_progress_list_item_3') %></a>.</p></li>
+            <li><%= t('.review_progress_list_item_4') %></li>
+          </ol>
+          <p><%= t('.review_progress_text_pt1') %></p>
+          <p><%= t('.review_progress_text_pt2') %></p>
+          <p><%= t('.review_progress_text_pt3_1') %><a href="#checklist"><%= t('.checklist_heading') %></a><%= t('.review_progress_text_pt3_2') %></p>
+          <p><%= t('.review_progress_text_pt4_1') %><a href="#50split"><%= t('.50/50_heading') %></a><%= t('.review_progress_text_pt4_2') %></p>
+          <h4 id="support"><%= t('.support_heading') %></h4>
+          <p><%= t('.support_text_pt1') %></p>
+          <p><%= t('.support_text_pt2') %></p>
+        </div>
+        <div>
+          <h2 id="checklist"><%= t('.checklist_heading') %></h2>
+          <p><%= t('.checklist_text_pt1') %><a href="#"><%= t('.checklist_link_1') %></a>.<%= t('.checklist_text_pt2') %></p>
+          <ul>
+            <li><p><a href="#"><%= t('.checklist_link_2') %></a><%= t('.checklist_list_item_1') %></p></li>
+            <li><p><a href="#"><%= t('.checklist_link_3') %></a><%= t('.checklist_list_item_2') %></p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class=nav-side-bar>
+      <div class="col-md-5">
+        <ul class="list-group">
+          <a class="list-group-item" href="#selling"><%= t('.selling_navlink') %></a>
+          <a class="list-group-item"  href="#payout"><%= t('.payout_navlink') %></a>
+          <a class="list-group-item"  href="#what-kind"><%= t('.what_kind_navlink') %></a>
+          <a class="list-group-item"  href="#review-process"><%= t('.review_progress_navlink') %></a>
+          <a class="list-group-item"  href="#support"><%= t('.support_navlink') %></a>
+          <a class="list-group-item"  href="#checklist"><%= t('.checklist_navlink') %></a>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <%= render "shared/get_started" %>
+</main>
