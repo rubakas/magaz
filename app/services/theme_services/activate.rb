@@ -1,9 +1,12 @@
-class ThemeServices::Activate
-  include Concerns::Service
-  attr_reader :shop, :installed_theme
+class ThemeServices::Activate< ActiveInteraction::Base
 
-  def call(shop_id:, installed_theme_id: nil)
-    @shop          = Shop.find(shop_id)
+  integer :shop_id
+  integer :installed_theme_id, default: nil
+
+  validates :shop_id, :installed_theme_id, presence: true
+
+  def execute
+    @shop           = Shop.find(shop_id)
     @installed_theme = Theme.find(installed_theme_id)
 
     @shop.transaction do

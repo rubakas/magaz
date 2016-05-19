@@ -1,0 +1,973 @@
+[SKYLIGHT] [0.9.4] authentication token required; disabling Skylight agent
+[SKYLIGHT] [0.9.4] Running Skylight in development mode. No data will be reported until you deploy your app.
+(To disable this message for all local apps, run `skylight disable_dev_warning`.)
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateShops (20130718032357)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20130718032357_create_shops.rb:8)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "shops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "password_digest" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130718032357"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddPasswordSaltToShop (20130730203558)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "shops" ADD "password_salt" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130730203558"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateProducts (20130817093137)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20130817093137_create_products.rb:7)
+  [1m[35m (0.2ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130817093137"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddShopIdToProduct (20130817124105)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" ADD "shop_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130817124105"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateCollections (20130826114821)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20130826114821_create_collections.rb:8)
+  [1m[35m (0.2ms)[0m  CREATE TABLE "collections" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "shop_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130826114821"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateCollectionsProductsTable (20130826143517)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "collections_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "collection_id" integer, "product_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130826143517"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to AddSubdomainToShop (20130910113625)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "shops" ADD "subdomain" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20130910113625"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddFieldsToProducts (20131024105917)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "products" ADD "product_type" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "products" ADD "sku" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "products" ADD "price" decimal(38,2)
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131024105917"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to RemoveFieldsFromProducts (20131101032033)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TEMPORARY TABLE "aproducts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "created_at" datetime, "updated_at" datetime, "shop_id" integer, "product_type" varchar, "sku" varchar, "price" decimal(38,2)) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "products"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "products"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "created_at" datetime, "updated_at" datetime, "shop_id" integer, "product_type" varchar, "price" decimal(38,2)) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "aproducts"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "aproducts"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "aproducts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "created_at" datetime, "updated_at" datetime, "shop_id" integer, "product_type" varchar, "price" decimal(38,2)) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "products"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "products"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "created_at" datetime, "updated_at" datetime, "shop_id" integer, "price" decimal(38,2)) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "aproducts"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "aproducts"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20131101032033"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePages (20131107193139)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20131107193139_create_pages.rb:8)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20131107193139"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateBlogs (20131109231213)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20131109231213_create_blogs.rb:7)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20131109231213"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateArticles (20131110003619)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20131110003619_create_articles.rb:8)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" text, "blog_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20131110003619"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20131112013250)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20131112013250_create_comments.rb:10)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "author" varchar, "body" text, "email" varchar, "blog_id" integer, "articles_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20131112013250"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to FixPagesColumnNames (20131206104529)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "apages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "pages"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "pages"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "apages"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "apages"
+  [1m[36m (0.1ms)[0m  [1mCREATE TEMPORARY TABLE "apages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "pages"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "pages"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "apages"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "apages"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131206104529"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to FixCommentArticleReferences (20131217022948)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "acomments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "author" varchar, "body" text, "email" varchar, "blog_id" integer, "articles_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "comments"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "comments"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "author" varchar, "body" text, "email" varchar, "blog_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "acomments"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "acomments"[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "comments" ADD "article_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131217022948"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateOrders (20131229191029)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20131229191029_create_orders.rb:12)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shop_id" integer, "note" text, "status" varchar, "financial_status" varchar, "fulfillment_status" varchar, "currency" varchar, "email" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131229191029"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateLineItems (20131229193117)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20131229193117_create_line_items.rb:11)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "order_id" integer, "product_id" integer, "name" varchar, "description" text, "price" decimal(38,2), "quantity" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131229193117"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreatePictures (20140121145515)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20140121145515_create_pictures.rb:5)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "pictures" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140121145515"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddImageToPictures (20140121145602)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "pictures" ADD "image" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140121145602"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateProductsPicturesTable (20140121151109)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "products_pictures" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "picture_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140121151109"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to RenamePicturesToProductImages (20140204172441)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "pictures" RENAME TO "product_images"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140204172441"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to RemoveProductsPicturesTable (20140205115646)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "products_pictures"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140205115646"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to AddReferencesToProductImages (20140205121139)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "product_images" ADD "product_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140205121139"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddSeoFieldsToProducts (20140228003322)
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "products" ADD "handle" varchar
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "products" ADD "page_title" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "products" ADD "meta_description" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140228003322"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to AddSeoFieldsToCollection (20140228005513)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "collections" ADD "handle" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "collections" ADD "page_title" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "collections" ADD "meta_description" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140228005513"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddSeoFieldsToPagesBlogsArticles (20140228010254)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "pages" ADD "handle" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "pages" ADD "page_title" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "pages" ADD "meta_description" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "blogs" ADD "handle" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "blogs" ADD "page_title" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "blogs" ADD "meta_description" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "articles" ADD "handle" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "articles" ADD "page_title" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "articles" ADD "meta_description" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140228010254"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to CreateFriendlyIdSlugs (20140317162247)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "friendly_id_slugs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "slug" varchar NOT NULL, "sluggable_id" integer NOT NULL, "sluggable_type" varchar(50), "scope" varchar, "created_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_friendly_id_slugs_on_sluggable_id" ON "friendly_id_slugs" ("sluggable_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_friendly_id_slugs_on_slug_and_sluggable_type" ON "friendly_id_slugs" ("slug", "sluggable_type")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope" ON "friendly_id_slugs" ("slug", "sluggable_type", "scope")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_friendly_id_slugs_on_sluggable_type" ON "friendly_id_slugs" ("sluggable_type")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140317162247"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to AddIndexesToProducts (20140324105433)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" ADD "slug" varchar
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "index_products_on_slug" ON "products" ("slug")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140324105433"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexesToPages (20140324233312)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "pages" ADD "slug" varchar[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_pages_on_slug" ON "pages" ("slug")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140324233312"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddIndexesToBlogs (20140324233327)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "blogs" ADD "slug" varchar
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_blogs_on_slug" ON "blogs" ("slug")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140324233327"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexesToArticles (20140324233339)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "articles" ADD "slug" varchar[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_articles_on_slug" ON "articles" ("slug")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140324233339"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddIndexesToCollections (20140324233430)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "collections" ADD "slug" varchar
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "index_collections_on_slug" ON "collections" ("slug")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140324233430"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to RenameOrdersToCheckouts (20140407142157)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "orders" RENAME TO "checkouts"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "aline_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "checkout_id" integer, "product_id" integer, "name" varchar, "description" text, "price" decimal(38,2), "quantity" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "line_items"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "line_items"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "checkout_id" integer, "product_id" integer, "name" varchar, "description" text, "price" decimal(38,2), "quantity" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "aline_items"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "aline_items"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140407142157"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveIndexesFromProducts (20140411152202)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_products_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_products_on_slug' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  DROP INDEX "index_products_on_slug"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140411152202"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to CreateCustomers (20140412124729)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "accepts_marketing" boolean, "email" varchar, "first_name" varchar, "last_name" varchar, "shop_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140412124729"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddCustomerToCheckouts (20140412131300)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "acheckouts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shop_id" integer, "note" text, "status" varchar, "financial_status" varchar, "fulfillment_status" varchar, "currency" varchar, "email" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "checkouts"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "checkouts"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "checkouts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "note" text, "status" varchar, "financial_status" varchar, "fulfillment_status" varchar, "currency" varchar, "email" varchar, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "acheckouts"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "acheckouts"[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "checkouts" ADD "customer_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140412131300"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to RemoveSlugIndexes (20140412230645)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_pages_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_pages_on_slug' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mDROP INDEX "index_pages_on_slug"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_blogs_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_blogs_on_slug' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mDROP INDEX "index_blogs_on_slug"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_articles_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_articles_on_slug' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mDROP INDEX "index_articles_on_slug"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_collections_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_collections_on_slug' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mDROP INDEX "index_collections_on_slug"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140412230645"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateThemes (20140415133234)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20140415133234_create_themes.rb:6)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "themes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140415133234"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddFieldsToThemes (20140415151706)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "themes" ADD "shop_id" integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "themes" ADD "source_theme_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140415151706"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to AddRoleToThemes (20140416115243)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "themes" ADD "role" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140416115243"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateAssets (20140416153636)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20140416153636_create_assets.rb:12)
+  [1m[35m (9.7ms)[0m  CREATE TABLE "assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "theme_id" integer, "content_type" varchar, "key" varchar, "public_url" varchar, "size" integer, "src" varchar, "value" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140416153636"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to AddVisibilityFieldsToArticleCollectionPageProduct (20140527160314)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "articles" ADD "publish_on" datetime
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "articles" ADD "published_at" datetime[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "collections" ADD "publish_on" datetime
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "collections" ADD "published_at" datetime[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "pages" ADD "publish_on" datetime
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "pages" ADD "published_at" datetime[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "products" ADD "publish_on" datetime
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "products" ADD "published_at" datetime[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140527160314"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddFieldsToShops (20140610115405)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "shops" ADD "address" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "shops" ADD "business_name" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "shops" ADD "city" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "shops" ADD "country" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "shops" ADD "currency" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "shops" ADD "customer_email" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "shops" ADD "phone" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "shops" ADD "province" varchar
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "shops" ADD "timezone" varchar[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "shops" ADD "unit_system" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "shops" ADD "zip" integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "shops" ADD "handle" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "shops" ADD "page_title" varchar[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "shops" ADD "meta_description" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140610115405"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateLinkLists (20140715001745)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "link_lists" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "shop_id" integer, "handle" varchar) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140715001745"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateLinks (20140715153558)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "links" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "link_type" varchar, "position" integer, "subject" varchar, "subject_params" varchar, "subject_id" integer, "link_list_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140715153558"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddIndexesToLinkLists (20140801222550)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "link_lists" ADD "slug" varchar
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_link_lists_on_slug" ON "link_lists" ("slug")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140801222550"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateFiles (20140907235144)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20140907235144_create_files.rb:8)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "files" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "file" varchar, "name" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140907235144"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateUsers (20140915223009)
+  [1m[35m (0.0ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20140915223009_create_users.rb:13)
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "password_digest" varchar, "phone" varchar, "homepage" varchar, "bio" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140915223009"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to EditUsers (20141002230806)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "permissions" text DEFAULT '--- []
+'[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "users" ADD "user_type" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141002230806"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddFile (20141213120723)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "files" ADD "file_size" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141213120723"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddCostumerAccountsChoice (20141215221200)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "shops" ADD "account_type_choice" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141215221200"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddToSettingsCheckoutsOrderProcessing (20141215223522)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "shops" ADD "bulling_adress_is_shipping_too" boolean
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "shops" ADD "abandoned_checkout_time_delay" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "shops" ADD "email_marketing_choice" varchar
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "shops" ADD "after_order_paid" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "shops" ADD "after_order_fulfilled_and_paid" boolean
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141215223522"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddToSettingsCheckoutsLanguage (20141215223926)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "shops" ADD "checkout_language" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141215223926"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddToSettingsCheckoutsPolicyAndTos (20141215224058)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "shops" ADD "checkout_refound_policy" text
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "shops" ADD "checkout_privacy_policy" text[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "shops" ADD "checkout_term_of_service" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141215224058"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddHiddenFieldsToCheckoutsSettings (20141219123957)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "shops" ADD "enable_multipass_login" boolean
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "shops" ADD "notify_customers_of_their_shipment" boolean[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "shops" ADD "automatically_fulfill_all_orders" boolean
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141219123957"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddPaymentsAuthorizationSettings (20141225152826)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "shops" ADD "authoriz_settings" varchar
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141225152826"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to RenamePaymentsAuthorizationSettings (20150108215147)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "ashops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "password_digest" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "bulling_adress_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refound_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "shops"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "shops"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "shops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "password_digest" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "bulling_adress_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refound_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "ashops"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "ashops"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150108215147"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to RenameSettingsCheckoutsOrderProcessing (20150112100948)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "ashops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "password_digest" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "billing_address_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refound_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "shops"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "shops"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "shops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "password_digest" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "billing_address_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refound_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "ashops"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "ashops"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150112100948"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CountriesDataMigration (20150112132214)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50), "code" varchar(2)) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "AF"], ["name", "AFGHANISTAN"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "AL"], ["name", "ALBANIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "DZ"], ["name", "ALGERIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "AS"], ["name", "AMERICAN SAMOA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "AD"], ["name", "ANDORRA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "AO"], ["name", "ANGOLA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "AI"], ["name", "ANGUILLA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "AG"], ["name", "ANTIGUA AND BARBUDA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "AR"], ["name", "ARGENTINA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "AM"], ["name", "ARMENIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "AW"], ["name", "ARUBA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "AU"], ["name", "AUSTRALIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "AT"], ["name", "AUSTRIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "AZ"], ["name", "AZERBAIJAN"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "BS"], ["name", "BAHAMAS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "BH"], ["name", "BAHRAIN"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "BD"], ["name", "BANGLADESH"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "BB"], ["name", "BARBADOS"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "BY"], ["name", "BELARUS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "BE"], ["name", "BELGIUM"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "BZ"], ["name", "BELIZE"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "BJ"], ["name", "BENIN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "BM"], ["name", "BERMUDA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "BT"], ["name", "BHUTAN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "BO"], ["name", "BOLIVIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "BA"], ["name", "BOSNIA AND HERZEGOVINA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "BW"], ["name", "BOTSWANA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "BR"], ["name", "BRAZIL"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "BN"], ["name", "BRUNEI DARUSSALAM"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "BG"], ["name", "BULGARIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "BF"], ["name", "BURKINA FASO"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "BI"], ["name", "BURUNDI"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "KH"], ["name", "CAMBODIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CM"], ["name", "CAMEROON"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "CA"], ["name", "CANADA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CV"], ["name", "CAPE VERDE"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "KY"], ["name", "CAYMAN ISLANDS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CF"], ["name", "CENTRAL AFRICAN REPUBLIC"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "TD"], ["name", "CHAD"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CL"], ["name", "CHILE"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "CN"], ["name", "CHINA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CO"], ["name", "COLOMBIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "KM"], ["name", "COMOROS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CG"], ["name", "CONGO"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "CD"], ["name", "CONGO, THE DEMOCRATIC REPUBLIC OF THE"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CK"], ["name", "COOK ISLANDS"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "CR"], ["name", "COSTA RICA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CI"], ["name", "COTE D'IVOIRE"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "HR"], ["name", "CROATIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CU"], ["name", "CUBA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "CY"], ["name", "CYPRUS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "CZ"], ["name", "CZECH REPUBLIC"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "DK"], ["name", "DENMARK"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "DJ"], ["name", "DJIBOUTI"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "DM"], ["name", "DOMINICA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "DO"], ["name", "DOMINICAN REPUBLIC"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "EC"], ["name", "ECUADOR"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "EG"], ["name", "EGYPT"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "SV"], ["name", "EL SALVADOR"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "GQ"], ["name", "EQUATORIAL GUINEA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "ER"], ["name", "ERITREA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "EE"], ["name", "ESTONIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "ET"], ["name", "ETHIOPIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "FK"], ["name", "FALKLAND ISLANDS (MALVINAS)"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "FO"], ["name", "FAROE ISLANDS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "FJ"], ["name", "FIJI"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "FI"], ["name", "FINLAND"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "FR"], ["name", "FRANCE"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GF"], ["name", "FRENCH GUIANA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "PF"], ["name", "FRENCH POLYNESIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GA"], ["name", "GABON"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "GM"], ["name", "GAMBIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GE"], ["name", "GEORGIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "DE"], ["name", "GERMANY"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GH"], ["name", "GHANA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "GI"], ["name", "GIBRALTAR"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GR"], ["name", "GREECE"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "GL"], ["name", "GREENLAND"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GD"], ["name", "GRENADA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "GP"], ["name", "GUADELOUPE"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GU"], ["name", "GUAM"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "GT"], ["name", "GUATEMALA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GN"], ["name", "GUINEA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "GW"], ["name", "GUINEA-BISSAU"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GY"], ["name", "GUYANA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "HT"], ["name", "HAITI"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "VA"], ["name", "HOLY SEE (VATICAN CITY STATE)"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "HN"], ["name", "HONDURAS"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "HK"], ["name", "HONG KONG"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "HU"], ["name", "HUNGARY"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "IS"], ["name", "ICELAND"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "IN"], ["name", "INDIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "ID"], ["name", "INDONESIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "IR"], ["name", "IRAN, ISLAMIC REPUBLIC OF"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "IQ"], ["name", "IRAQ"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "IE"], ["name", "IRELAND"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "IL"], ["name", "ISRAEL"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "IT"], ["name", "ITALY"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "JM"], ["name", "JAMAICA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "JP"], ["name", "JAPAN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "JO"], ["name", "JORDAN"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "KZ"], ["name", "KAZAKHSTAN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "KE"], ["name", "KENYA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "KI"], ["name", "KIRIBATI"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "KP"], ["name", "KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "KR"], ["name", "KOREA, REPUBLIC OF"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "KW"], ["name", "KUWAIT"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "KG"], ["name", "KYRGYZSTAN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "LA"], ["name", "LAO PEOPLE'S DEMOCRATIC REPUBLIC"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "LV"], ["name", "LATVIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "LB"], ["name", "LEBANON"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "LS"], ["name", "LESOTHO"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "LR"], ["name", "LIBERIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "LY"], ["name", "LIBYAN ARAB JAMAHIRIYA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "LI"], ["name", "LIECHTENSTEIN"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "LT"], ["name", "LITHUANIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "LU"], ["name", "LUXEMBOURG"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MO"], ["name", "MACAO"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MK"], ["name", "MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MG"], ["name", "MADAGASCAR"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MW"], ["name", "MALAWI"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MY"], ["name", "MALAYSIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MV"], ["name", "MALDIVES"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "ML"], ["name", "MALI"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MT"], ["name", "MALTA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MH"], ["name", "MARSHALL ISLANDS"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MQ"], ["name", "MARTINIQUE"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MR"], ["name", "MAURITANIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MU"], ["name", "MAURITIUS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MX"], ["name", "MEXICO"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "FM"], ["name", "MICRONESIA, FEDERATED STATES OF"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MD"], ["name", "MOLDOVA, REPUBLIC OF"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MC"], ["name", "MONACO"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MN"], ["name", "MONGOLIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MS"], ["name", "MONTSERRAT"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MA"], ["name", "MOROCCO"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MZ"], ["name", "MOZAMBIQUE"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "MM"], ["name", "MYANMAR"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "NA"], ["name", "NAMIBIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "NR"], ["name", "NAURU"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "NP"], ["name", "NEPAL"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "NL"], ["name", "NETHERLANDS"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "AN"], ["name", "NETHERLANDS ANTILLES"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "NC"], ["name", "NEW CALEDONIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "NZ"], ["name", "NEW ZEALAND"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "NI"], ["name", "NICARAGUA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "NE"], ["name", "NIGER"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "NG"], ["name", "NIGERIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "NU"], ["name", "NIUE"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "NF"], ["name", "NORFOLK ISLAND"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "MP"], ["name", "NORTHERN MARIANA ISLANDS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "NO"], ["name", "NORWAY"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "OM"], ["name", "OMAN"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "PK"], ["name", "PAKISTAN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "PW"], ["name", "PALAU"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "PA"], ["name", "PANAMA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "PG"], ["name", "PAPUA NEW GUINEA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "PY"], ["name", "PARAGUAY"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "PE"], ["name", "PERU"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "PH"], ["name", "PHILIPPINES"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "PN"], ["name", "PITCAIRN"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "PL"], ["name", "POLAND"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "PT"], ["name", "PORTUGAL"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "PR"], ["name", "PUERTO RICO"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "QA"], ["name", "QATAR"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "RE"], ["name", "REUNION"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "RO"], ["name", "ROMANIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "RU"], ["name", "RUSSIAN FEDERATION"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "RW"], ["name", "RWANDA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SH"], ["name", "SAINT HELENA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "KN"], ["name", "SAINT KITTS AND NEVIS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "LC"], ["name", "SAINT LUCIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "PM"], ["name", "SAINT PIERRE AND MIQUELON"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "VC"], ["name", "SAINT VINCENT AND THE GRENADINES"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "WS"], ["name", "SAMOA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SM"], ["name", "SAN MARINO"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "ST"], ["name", "SAO TOME AND PRINCIPE"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SA"], ["name", "SAUDI ARABIA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "SN"], ["name", "SENEGAL"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SC"], ["name", "SEYCHELLES"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "SL"], ["name", "SIERRA LEONE"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SG"], ["name", "SINGAPORE"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "SK"], ["name", "SLOVAKIA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SI"], ["name", "SLOVENIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "SB"], ["name", "SOLOMON ISLANDS"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SO"], ["name", "SOMALIA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "ZA"], ["name", "SOUTH AFRICA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "ES"], ["name", "SPAIN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "LK"], ["name", "SRI LANKA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SD"], ["name", "SUDAN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "SR"], ["name", "SURINAME"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SJ"], ["name", "SVALBARD AND JAN MAYEN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "SZ"], ["name", "SWAZILAND"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SE"], ["name", "SWEDEN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "CH"], ["name", "SWITZERLAND"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "SY"], ["name", "SYRIAN ARAB REPUBLIC"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "TW"], ["name", "TAIWAN, PROVINCE OF CHINA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "TJ"], ["name", "TAJIKISTAN"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "TZ"], ["name", "TANZANIA, UNITED REPUBLIC OF"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "TH"], ["name", "THAILAND"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "TG"], ["name", "TOGO"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "TK"], ["name", "TOKELAU"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "TO"], ["name", "TONGA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "TT"], ["name", "TRINIDAD AND TOBAGO"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "TN"], ["name", "TUNISIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "TR"], ["name", "TURKEY"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "TM"], ["name", "TURKMENISTAN"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "TC"], ["name", "TURKS AND CAICOS ISLANDS"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "TV"], ["name", "TUVALU"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "UG"], ["name", "UGANDA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "UA"], ["name", "UKRAINE"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "AE"], ["name", "UNITED ARAB EMIRATES"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "GB"], ["name", "UNITED KINGDOM"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "US"], ["name", "UNITED STATES"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "UY"], ["name", "URUGUAY"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "UZ"], ["name", "UZBEKISTAN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "VU"], ["name", "VANUATU"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "VE"], ["name", "VENEZUELA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "VN"], ["name", "VIET NAM"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "VG"], ["name", "VIRGIN ISLANDS, BRITISH"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "VI"], ["name", "VIRGIN ISLANDS, U.S."]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "WF"], ["name", "WALLIS AND FUTUNA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "EH"], ["name", "WESTERN SAHARA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "YE"], ["name", "YEMEN"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "countries" ("code", "name") VALUES (?, ?)[0m  [["code", "ZM"], ["name", "ZAMBIA"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "countries" ("code", "name") VALUES (?, ?)  [["code", "ZW"], ["name", "ZIMBABWE"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150112132214"]]
+  [1m[35m (2.7ms)[0m  commit transaction
+Migrating to CreateTableOrderSubscription (20150113092847)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20150113092847_create_table_order_subscription.rb:8)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "order_subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "notification_method" varchar, "subscription_address" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150113092847"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to CreateShippingCountries (20150113110650)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "shipping_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "tax" varchar, "shop_id" integer, "country_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150113110650"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateShippingRates (20150113161645)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20150113161645_create_shipping_rates.rb:13)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "shipping_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "criteria" varchar, "price_from" float, "price_to" float, "weight_from" float, "weight_to" float, "shipping_price" float, "shipping_country_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150113161645"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to AddAttributessToEmailTemplates (20150123141743)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20150123141743_add_attributess_to_email_templates.rb:9)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "email_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "title" varchar, "body" text, "subscriber_notification_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150123141743"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to ChangeReferencesInEmailTemplates (20150123161113)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "aemail_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "title" varchar, "body" text, "subscriber_notification_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "email_templates"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "email_templates"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "email_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "title" varchar, "body" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "aemail_templates"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "aemail_templates"[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "email_templates" ADD "shop_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150123161113"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddTypeColumnToEmailTemplates (20150126143829)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "email_templates" ADD "type" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150126143829"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to RenameTypeColumnInEmailTemplates (20150126150935)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "aemail_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "title" varchar, "body" text, "created_at" datetime, "updated_at" datetime, "shop_id" integer, "template_type" varchar) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "email_templates"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "email_templates"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "email_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "title" varchar, "body" text, "created_at" datetime, "updated_at" datetime, "shop_id" integer, "template_type" varchar) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "aemail_templates"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "aemail_templates"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150126150935"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddPasswordSaltToUsers (20150130120917)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "password_salt" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150130120917"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveColumnsEmailPasswordFromShop (20150205162431)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "ashops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "password_digest" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "billing_address_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refound_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "shops"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "shops"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "shops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "billing_address_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refound_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "ashops"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "ashops"
+  [1m[36m (0.3ms)[0m  [1mCREATE TEMPORARY TABLE "ashops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "billing_address_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refound_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "shops"
+  [1m[36m (0.6ms)[0m  [1mDROP TABLE "shops"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "shops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "billing_address_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refound_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "ashops"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "ashops"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150205162431"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to AddColumnAccountOwnerToUser (20150206120320)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "account_owner" boolean DEFAULT 'f'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150206120320"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to FixUsersPermissionsStore (20150206135840)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "password_digest" varchar, "phone" varchar, "homepage" varchar, "bio" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime, "permissions" text DEFAULT '--- []
+', "user_type" varchar, "password_salt" varchar, "account_owner" boolean DEFAULT 'f') 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "users"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "users"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "password_digest" varchar, "phone" varchar, "homepage" varchar, "bio" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime, "user_type" varchar, "password_salt" varchar, "account_owner" boolean DEFAULT 'f') [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "ausers"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "ausers"[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "users" ADD "permissions" varchar DEFAULT '--- []
+'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150206135840"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to AddEmailConfirmationToUsers (20150209144902)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "email_confirmed" boolean DEFAULT 'f'
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "confirm_token" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150209144902"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddInviteTokenColumnToUsers (20150220152437)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "invite_token" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150220152437"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveEmailConfirmationFromUsers (20150220155922)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "password_digest" varchar, "phone" varchar, "homepage" varchar, "bio" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime, "user_type" varchar, "password_salt" varchar, "account_owner" boolean DEFAULT 'f', "permissions" varchar DEFAULT '--- []
+', "email_confirmed" boolean DEFAULT 'f', "confirm_token" varchar, "invite_token" varchar) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "users"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "password_digest" varchar, "phone" varchar, "homepage" varchar, "bio" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime, "user_type" varchar, "password_salt" varchar, "account_owner" boolean DEFAULT 'f', "permissions" varchar DEFAULT '--- []
+', "confirm_token" varchar, "invite_token" varchar) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "ausers"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "ausers"
+  [1m[36m (0.1ms)[0m  [1mCREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "password_digest" varchar, "phone" varchar, "homepage" varchar, "bio" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime, "user_type" varchar, "password_salt" varchar, "account_owner" boolean DEFAULT 'f', "permissions" varchar DEFAULT '--- []
+', "confirm_token" varchar, "invite_token" varchar) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "users"
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "password_digest" varchar, "phone" varchar, "homepage" varchar, "bio" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime, "user_type" varchar, "password_salt" varchar, "account_owner" boolean DEFAULT 'f', "permissions" varchar DEFAULT '--- []
+', "invite_token" varchar) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "ausers"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "ausers"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150220155922"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to AddDescriptionColumnToEmailTemplates (20150227114922)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "email_templates" ADD "description" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150227114922"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to AddColumnsFromTaxesToShop (20150303132914)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "shops" ADD "all_taxes_are_included" boolean
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "shops" ADD "charge_taxes_on_shipping_rates" boolean[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150303132914"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateTableTaxesOverrides (20150305152216)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "taxes_overrides" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "rate" float, "is_shipping" boolean DEFAULT 'f', "collection_id" integer, "shipping_country_id" integer) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150305152216"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddColumnEuDigitalGoodsCollectionIdToShop (20150305153745)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "shops" ADD "eu_digital_goods_collection_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150305153745"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to RenamaTableTaxesOverridesToTaxOverrides (20150305165027)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "taxes_overrides" RENAME TO "tax_overrides"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150305165027"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to RenameColumnCheckoutRefoundPolicyInSettings (20150324140737)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "ashops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "billing_address_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refund_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar, "all_taxes_are_included" boolean, "charge_taxes_on_shipping_rates" boolean, "eu_digital_goods_collection_id" integer) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "shops"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "shops"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "shops" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime, "updated_at" datetime, "password_salt" varchar, "subdomain" varchar, "address" varchar, "business_name" varchar, "city" varchar, "country" varchar, "currency" varchar, "customer_email" varchar, "phone" varchar, "province" varchar, "timezone" varchar, "unit_system" varchar, "zip" integer, "handle" varchar, "page_title" varchar, "meta_description" varchar, "account_type_choice" varchar, "billing_address_is_shipping_too" boolean, "abandoned_checkout_time_delay" varchar, "email_marketing_choice" varchar, "after_order_paid" varchar, "after_order_fulfilled_and_paid" boolean, "checkout_language" varchar, "checkout_refund_policy" text, "checkout_privacy_policy" text, "checkout_term_of_service" text, "enable_multipass_login" boolean, "notify_customers_of_their_shipment" boolean, "automatically_fulfill_all_orders" boolean, "authorization_settings" varchar, "all_taxes_are_included" boolean, "charge_taxes_on_shipping_rates" boolean, "eu_digital_goods_collection_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "ashops"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "ashops"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150324140737"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to CreateEvents (20150428143516)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20150428143516_create_events.rb:12)
+  [1m[35m (0.4ms)[0m  CREATE TABLE "events" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "arguments" varchar DEFAULT '--- []
+', "body" varchar, "message" varchar, "subject_id" integer, "subject_type" varchar, "verb" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_events_on_subject_id" ON "events" ("subject_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150428143516"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWebhooksTable (20150501113306)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/espozito89/projects/magaz/gems/magaz_core/db/migrate/20150501113306_create_webhooks_table.rb:11)
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "webhooks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar, "fields" varchar DEFAULT '--- []
+', "format" varchar, "metafield_namespaces" varchar DEFAULT '--- []
+', "topic" varchar, "shop_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150501113306"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to DeleteCountriesTable (20150528131117)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "countries"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150528131117"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to DeleteCountryId (20150603104850)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mCREATE TEMPORARY TABLE "ashipping_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "tax" varchar, "shop_id" integer, "country_id" integer) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "shipping_countries"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "shipping_countries"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "shipping_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "tax" varchar, "shop_id" integer) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "ashipping_countries"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "ashipping_countries"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150603104850"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_events_on_subject_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_events_on_subject_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_type' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_link_lists_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_link_lists_on_slug' AND type='index'
+[0m
