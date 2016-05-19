@@ -1,5 +1,5 @@
 class Admin::BlogsController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
     @blogs = current_shop.blogs.page(params[:page])
@@ -14,7 +14,7 @@ class Admin::BlogsController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::Blog::AddBlog
+    service = AdminServices::Blog::AddBlog
               .run(shop_id: current_shop.id,
                    title: params[:blog][:title],
                    handle: params[:blog][:handle],
@@ -32,7 +32,7 @@ class Admin::BlogsController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::Blog::ChangeBlog
+    service = AdminServices::Blog::ChangeBlog
                 .run(id: params[:id],
                      shop_id: current_shop.id,
                      title: params[:blog][:title],
@@ -50,7 +50,7 @@ class Admin::BlogsController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::Blog::DeleteBlog.run(id: params[:id],
+    service = AdminServices::Blog::DeleteBlog.run(id: params[:id],
                                                              shop_id: current_shop.id)
     flash[:notice] = t('.notice_success')
     redirect_to admin_blogs_path

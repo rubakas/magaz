@@ -24,14 +24,14 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test "test notification to email" do
-    mail = MagazCore::UserMailer.test_notification(@subscriber)
+    mail = UserMailer.test_notification(@subscriber)
     assert_equal 'Test Notification', mail.subject
     assert_equal [@subscriber.subscription_address], mail.to
     assert_equal ["magazmailer@gmail.com"], mail.from
   end
 
   test "test new order notification" do
-    mail = MagazCore::UserMailer.notification(@subscriber, @email_template)
+    mail = UserMailer.notification(@subscriber, @email_template)
     assert_equal [@subscriber.subscription_address], mail.to
     assert_equal ["magazmailer@gmail.com"], mail.from
     assert_equal @email_template.title, mail.subject
@@ -43,7 +43,7 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test "invite new user" do
-    mail = MagazCore::UserMailer.invite_new_user(@user, @link)
+    mail = UserMailer.invite_new_user(@user, @link)
     assert_equal [@user.email], mail.to
     assert_equal ["magazmailer@gmail.com"], mail.from
     assert_equal "You are invited", mail.subject

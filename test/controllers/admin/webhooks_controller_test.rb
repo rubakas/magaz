@@ -42,7 +42,7 @@ class Admin::WebhooksControllerTest < ActionController::TestCase
   end
 
   test "should destroy webhook" do
-    assert_difference('MagazCore::Webhook.count', -1) do
+    assert_difference('Webhook.count', -1) do
       delete :destroy, id: @webhook.id
     end
 

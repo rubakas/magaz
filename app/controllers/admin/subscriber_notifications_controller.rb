@@ -1,12 +1,12 @@
 class Admin::SubscriberNotificationsController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def new
     @subscriber_notification = current_shop.subscriber_notifications.new
   end
 
   def create
-    service = MagazCore::AdminServices::SubscriberNotification::AddSubscriberNotification
+    service = AdminServices::SubscriberNotification::AddSubscriberNotification
                 .run(shop_id: current_shop.id,
                      notification_method: params[:subscriber_notification][:notification_method],
                      subscription_address: params[:subscriber_notification][:subscription_address])
@@ -22,7 +22,7 @@ class Admin::SubscriberNotificationsController < Admin::ApplicationController
   end
 
   def destroy
-    MagazCore::AdminServices::SubscriberNotification::DeleteSubscriberNotification
+    AdminServices::SubscriberNotification::DeleteSubscriberNotification
       .run(id: params[:id],
            shop_id: current_shop.id)
     flash.now[:notice] = t('.notice_success')
@@ -33,7 +33,7 @@ class Admin::SubscriberNotificationsController < Admin::ApplicationController
     @shop = current_shop
     @subscriber_notification = @shop.subscriber_notifications.find(params[:id])
     if(@subscriber_notification.notification_method == "email")
-      MagazCore::UserMailer.test_notification(@subscriber_notification).deliver_now
+      UserMailer.test_notification(@subscriber_notification).deliver_now
       flash[:notice] = t('.notice_success')
       redirect_to admin_notifications_settings_settings_path
     else

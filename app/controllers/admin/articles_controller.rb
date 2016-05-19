@@ -1,5 +1,5 @@
 class Admin::ArticlesController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
     @articles = current_shop.articles.page(params[:page])
@@ -14,7 +14,7 @@ class Admin::ArticlesController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::Article::AddArticle
+    service = AdminServices::Article::AddArticle
                 .run(title: params[:article][:title],
                      handle: params[:article][:handle],
                      content: params[:article][:content],
@@ -33,7 +33,7 @@ class Admin::ArticlesController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::Article::ChangeArticle
+    service = AdminServices::Article::ChangeArticle
                 .run(id: params[:id],
                      title: params[:article][:title],
                      handle: params[:article][:handle],
@@ -53,7 +53,7 @@ class Admin::ArticlesController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::Article::DeleteArticle.run(id: params[:id])
+    service = AdminServices::Article::DeleteArticle.run(id: params[:id])
     flash[:notice] = t('.notice_success')
     redirect_to admin_articles_url
   end

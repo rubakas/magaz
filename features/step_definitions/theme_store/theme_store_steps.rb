@@ -1,6 +1,6 @@
 Given(/^themes exist$/) do
   @existing_source_themes = build_list(:theme, 20)
-  archive_path = File.expand_path('gems/magaz_core/test/fixtures/files/valid_theme.zip', Rails.root)
+  archive_path = File.expand_path('/test/fixtures/files/valid_theme.zip', Rails.root)
 
   @existing_source_themes.each do |theme|
     MagazCore::ThemeServices::ImportFromArchive

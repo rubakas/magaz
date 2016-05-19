@@ -14,14 +14,14 @@ class Admin::SubscriberNotificationsControllerTest < ActionController::TestCase
   end
 
   test 'should create subscriber_notification' do
-    assert_difference('MagazCore::SubscriberNotification.count') do
+    assert_difference('SubscriberNotification.count') do
       post :create, subscriber_notification: { notification_method: 'email', subscription_address: 'some1@here.run' }
     end
     assert_redirected_to notifications_settings_admin_settings_path
   end
 
   test 'should destroy subscriber_notification' do
-    assert_difference('MagazCore::SubscriberNotification.count', -1) do
+    assert_difference('SubscriberNotification.count', -1) do
       delete :destroy, id: @subscriber_notification
     end
     assert_redirected_to notifications_settings_admin_settings_path

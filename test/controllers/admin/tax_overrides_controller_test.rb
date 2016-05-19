@@ -23,7 +23,7 @@ class Admin::TaxOverridesControllerTest < ActionController::TestCase
   end
 
   test "should destroy tax override" do
-    assert_difference('MagazCore::TaxOverride.count', -1) do
+    assert_difference('TaxOverride.count', -1) do
       delete :destroy, id: @tax_override.id
     end
 

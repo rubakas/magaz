@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
     @products = current_shop.products.page(params[:page])
@@ -14,7 +14,7 @@ class Admin::ProductsController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::Product::AddProduct
+    service = AdminServices::Product::AddProduct
                 .run(shop_id: current_shop.id,
                      name: params[:product][:name],
                      handle: params[:product][:handle],
@@ -29,22 +29,22 @@ class Admin::ProductsController < Admin::ApplicationController
       flash[:notice] = t('.notice_success')
       redirect_to admin_product_path(@product)
     else
-      @product = MagazCore::Product.new
+      @product = Product.new
       service.errors.full_messages.each do |msg|
         @product.errors.add(:base, msg)
       end
       flash.now[:notice] = t('.notice_fail')
       render 'new'
-       # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
-       #                                                                     topic: MagazCore::Webhook::Topics::CREATE_PRODUCT_EVENT)
+       # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
+       #                                                                     topic: Webhook::Topics::CREATE_PRODUCT_EVENT)
     end
   end
 
   def update
     @product = current_shop.products.friendly.find(params[:id])
     if @product.update_attributes(permitted_params[:product])
-      # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
-      #                                                                     topic: MagazCore::Webhook::Topics::UPDATE_PRODUCT_EVENT)
+      # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
+      #                                                                     topic: Webhook::Topics::UPDATE_PRODUCT_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to admin_product_path(@product)
     else
@@ -55,8 +55,8 @@ class Admin::ProductsController < Admin::ApplicationController
   def destroy
     @product = current_shop.products.friendly.find(params[:id])
     @product.destroy
-    # @webhook_service = MagazCore::AdminServices::EventWebhookRunner.call(event: @event_service.event,
-    #                                                                     topic: MagazCore::Webhook::Topics::DELETE_PRODUCT_EVENT)
+    # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
+    #                                                                     topic: Webhook::Topics::DELETE_PRODUCT_EVENT)
     flash[:notice] = t('.notice_success')
     redirect_to admin_products_path
   end

@@ -1,5 +1,5 @@
 class Admin::PagesController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
     @pages = current_shop.pages.page(params[:page])
@@ -14,7 +14,7 @@ class Admin::PagesController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::Page::AddPage
+    service = AdminServices::Page::AddPage
                 .run(title: params[:page][:title],
                      content: params[:page][:content],
                      page_title: params[:page][:page_title],
@@ -33,7 +33,7 @@ class Admin::PagesController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::Page::ChangePage
+    service = AdminServices::Page::ChangePage
                 .run(id: params[:id],
                      title: params[:page][:title],
                      shop_id: current_shop.id,
@@ -53,7 +53,7 @@ class Admin::PagesController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::Page::DeletePage
+    service = AdminServices::Page::DeletePage
                 .run(id: params[:id], shop_id: current_shop.id)
     flash[:notice] = t('.notice_success')
     redirect_to admin_pages_path

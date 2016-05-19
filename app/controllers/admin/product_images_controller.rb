@@ -1,5 +1,5 @@
 class Admin::ProductImagesController < Admin::ApplicationController
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
     @product = current_shop.products.friendly.find(params[:product_id])
@@ -17,7 +17,7 @@ class Admin::ProductImagesController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::ProductImage::AddProductImage
+    service = AdminServices::ProductImage::AddProductImage
                 .run(product_id: params[:product_id],
                      image: set_image(params[:product_image]))
     @product = service.product_image.product
@@ -33,7 +33,7 @@ class Admin::ProductImagesController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::ProductImage::ChangeProductImage
+    service = AdminServices::ProductImage::ChangeProductImage
                 .run(product_id: params[:product_id],
                      image: set_image(params[:product_image]), id: params[:id])
     @product = service.product_image.product
@@ -49,7 +49,7 @@ class Admin::ProductImagesController < Admin::ApplicationController
   end
 
   def destroy
-    service = MagazCore::AdminServices::ProductImage::DeleteProductImage
+    service = AdminServices::ProductImage::DeleteProductImage
                 .run(id: params[:id],
                      product_id: params[:product_id])
     flash[:notice] = t('.notice_success')

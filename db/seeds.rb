@@ -5,9 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-if MagazCore::Theme.count == 0
-  archive_path = ::File.expand_path('../../gems/magaz_core/test/fixtures/files/valid_theme.zip', __FILE__)
-  MagazCore::ThemeServices::ImportFromArchive.call(archive_path: archive_path,
-                                                   theme: MagazCore::Theme.new,
-                                                   theme_attributes: { name: 'Default' })
+if Theme.count == 0
+  archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
+  ThemeServices::ImportFromArchive.call(archive_path: archive_path,
+                                        theme: Theme.new,
+                                        theme_attributes: { name: 'Default' })
 end

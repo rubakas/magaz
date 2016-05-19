@@ -1,6 +1,6 @@
 class Admin::WebhooksController < Admin::ApplicationController
   layout 'admin/admin_settings'
-  include MagazCore::Concerns::Authenticable
+  include Concerns::Authenticable
 
   def index
     @webhooks = current_shop.webhooks.page(params[:page])
@@ -15,7 +15,7 @@ class Admin::WebhooksController < Admin::ApplicationController
   end
 
   def create
-    service = MagazCore::AdminServices::Webhook::AddWebhook
+    service = AdminServices::Webhook::AddWebhook
                 .run(shop_id: current_shop.id,
                      topic: params[:webhook][:topic],
                      format: params[:webhook][:format],
@@ -34,7 +34,7 @@ class Admin::WebhooksController < Admin::ApplicationController
   end
 
   def update
-    service = MagazCore::AdminServices::Webhook::ChangeWebhook
+    service = AdminServices::Webhook::ChangeWebhook
                 .run(id: params[:id],
                      shop_id: current_shop.id,
                      topic: params[:webhook][:topic],
@@ -54,7 +54,7 @@ class Admin::WebhooksController < Admin::ApplicationController
   end
 
   def destroy
-    MagazCore::AdminServices::Webhook::DeleteWebhook
+    AdminServices::Webhook::DeleteWebhook
                 .run(id: params[:id], shop_id: current_shop.id)
     flash[:notice] = t('.notice_success')
     redirect_to admin_webhooks_url
