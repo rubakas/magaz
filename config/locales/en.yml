@@ -996,6 +996,22 @@ en:
       payments: "Payments"
       taxes: "Taxes"
       webhooks: "Webhooks"
+    sort_search_header:
+      all: "All"
+      free: "Free"
+      premium: "Premium"
+      all_industrues: "All Industrues"
+      art_photography: "Art & Photography"
+      clothing_fashion: "Clothing & Fashion"
+      jewelry_accessories: "Jewelry & Accessories"
+      electronics: "Electronics"
+      sort_by: "Sort by"
+      randomly: "Randomly Sorted"
+      recent: "Most Recent"
+      price_low_to_high: "Price (low to high)"
+      price_high_to_low: "Price (high to low)"
+      popular: "Most Popular"
+      search_by: "Search by theme name..."
 
   magaz_core:
     user_mailer:
