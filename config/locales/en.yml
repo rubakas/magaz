@@ -44,12 +44,6 @@ en:
       application:
         shop: "Magaz"
         sign_in: "Sign in"
-  
-  themes_store:
-    homepage:
-      heading: "Choose a theme for your online store"
-      info: "Responsive themes, easily customized to fit your brand"
-      button_more_themes: "More themes"
 
   footer:
     footer_links:
@@ -122,6 +116,10 @@ en:
       desktop: "desktop"
       mobile: "phone"
       preview: "Preview in your Store"
+    homepage:
+      heading: "Choose a theme for your online store"
+      info: "Responsive themes, easily customized to fit your brand"
+      button_more_themes: "More themes"
     installing:
       heading: "You're about to install Jumpstart to store-name.magaz.com"
       or: "or"
@@ -744,14 +742,16 @@ en:
       heading: "Start your free 14-day trial today!"
       password: "Password"
       shop_name: "Your store name"
-
     get_started_popup:
       button: "Create your store"
       email: "Email address"
       heading: "Start your free 14-day trial of Shopify"
       password: "Password"
       store: "Your store name"
-
+    sell_theme:
+      heading: "Sell your own theme"
+      info: "Every month thousands of merchants look for new themes to apply to their shop. The Theme Store is a great place for theme designers to showcase and monetize their design skills."
+      learn_more: "Learn more"
     sidebar_nav:
       title: "Shop"
       dashboard: "Dashboard"
@@ -765,7 +765,6 @@ en:
       config: "Configuration"
       settings: "Settings"
       themes: "Themes"
-
     settings_sidebar_nav:
       back: "Back"
       settings: "Settings"
