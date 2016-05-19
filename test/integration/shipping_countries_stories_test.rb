@@ -9,10 +9,12 @@ class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
     click_link 'Shipping'
   end
 
+# score=1
   test "shipping countries list" do
     assert page.has_content? 'Shipping Countries'
   end
 
+# score=1
   test "create shipping country" do
     click_link 'Add Shipping Country'
     select('Finland', :from => 'shipping_country_name')
@@ -22,6 +24,7 @@ class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Add Shipping Rates'
   end
 
+# score=1
   test "create shipping country failure" do
     click_link 'Add Shipping Country'
     select('Finland', :from => 'shipping_country_name')
@@ -30,6 +33,7 @@ class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? '2 errors prohibited this shipping country from being saved'
   end
 
+# score=1
   test "edit country" do
     click_link(@shipping_country.country_info['name'], match: :first)
     select('Poland', :from => 'shipping_country_name')
@@ -42,6 +46,7 @@ class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? @shipping_rate.name
   end
 
+# score=1
   test 'add shipping rate to shipping country' do
     click_link(@shipping_country.country_info['name'], match: :first)
     click_link 'Add Shipping Rates'
@@ -55,12 +60,14 @@ class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Editing Shipping Rate'
   end
 
+# score=1
   test 'delete shipping rate from shipping country' do
     click_link(@shipping_country.country_info['name'], match: :first)
     click_link "Delete"
     assert page.has_no_content? @shipping_country.country_info['name']
   end
 
+# score=1
   test 'update shipping rate' do
     click_link(@shipping_country.country_info['name'], match: :first)
     click_link(@shipping_rate.name, match: :first)
@@ -72,6 +79,7 @@ class ShippingCountriesStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Editing Shipping Rate'
   end
 
+# score=1
   test "delete shipping country" do
     assert page.has_content? @shipping_country.country_info['name']
     click_link('Delete', match: :first)

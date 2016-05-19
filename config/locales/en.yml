@@ -731,47 +731,6 @@ en:
         prohibit: "prohibited this email from being saved:"
         error: "error"
 
-  shared:
-    get_started:
-      button: "Create your store"
-      email_address: "Email address"
-      heading: "Start your free 14-day trial today!"
-      password: "Password"
-      shop_name: "Your store name"
-
-    get_started_popup:
-      button: "Create your store"
-      email: "Email address"
-      heading: "Start your free 14-day trial of Shopify"
-      password: "Password"
-      store: "Your store name"
-
-    sidebar_nav:
-      title: "Shop"
-      dashboard: "Dashboard"
-      orders: "Orders"
-      customers: "Customers"
-      products: "Products"
-      collections: "Collections"
-      your_site: "Your Website"
-      pages: "Pages"
-      blogs: "Blog Posts"
-      config: "Configuration"
-      settings: "Settings"
-      themes: "Themes"
-
-    settings_sidebar_nav:
-      back: "Back"
-      settings: "Settings"
-      files: "Files"
-      users: "Users"
-      shipping: "Shipping"
-      notifications: "Notifications"
-      checkouts: "Checkouts"
-      payments: "Payments"
-      taxes: "Taxes"
-      webhooks: "Webhooks"
-
     shipping_countries:
       create:
         notice_success: "Shipping Country was successfully created."
@@ -966,6 +925,47 @@ en:
         prohibit: "prohibited this webhook from being saved:"
       show:
         title: "Editing webhook"
+        
+  shared:
+    get_started:
+      button: "Create your store"
+      email_address: "Email address"
+      heading: "Start your free 14-day trial today!"
+      password: "Password"
+      shop_name: "Your store name"
+
+    get_started_popup:
+      button: "Create your store"
+      email: "Email address"
+      heading: "Start your free 14-day trial of Shopify"
+      password: "Password"
+      store: "Your store name"
+
+    sidebar_nav:
+      title: "Shop"
+      dashboard: "Dashboard"
+      orders: "Orders"
+      customers: "Customers"
+      products: "Products"
+      collections: "Collections"
+      your_site: "Your Website"
+      pages: "Pages"
+      blogs: "Blog Posts"
+      config: "Configuration"
+      settings: "Settings"
+      themes: "Themes"
+
+    settings_sidebar_nav:
+      back: "Back"
+      settings: "Settings"
+      files: "Files"
+      users: "Users"
+      shipping: "Shipping"
+      notifications: "Notifications"
+      checkouts: "Checkouts"
+      payments: "Payments"
+      taxes: "Taxes"
+      webhooks: "Webhooks"
 
   magaz_core:
     user_mailer:
