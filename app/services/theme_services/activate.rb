@@ -16,6 +16,7 @@ class ThemeServices::Activate< ActiveInteraction::Base
       @installed_theme.activate!
       @shop.reload
     end
+    @installed_theme
   end
 
 end
