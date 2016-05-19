@@ -1,15 +1,15 @@
 <div class="row">
-  <h2 class="text-center">Start your free 14-day trial today!</h2>
+  <h2 class="text-center"><%= t('.heading') %></h2>
   <form class="form-inline">
     <div class="form-group col-xs-3">
-      <input type="email" class="form-control" id="email_address" placeholder="Email address">
+      <input type="email" class="form-control" id="email_address" placeholder="<%= t('.email_address') %>">
     </div>
     <div class="form-group col-xs-3">
-      <input type="password" class="form-control" id="password" placeholder="Password">
+      <input type="password" class="form-control" id="password" placeholder=<%= t('.password') %>>
     </div>
     <div class="form-group col-xs-3">
-      <input type="text" class="form-control" id="store_name" placeholder="Your store name">
+      <input type="text" class="form-control" id="store_name" placeholder="<%= t('.shop_name') %>">
     </div>
-    <button type="submit" class="btn btn-success col-xs-3">Create your store</button>
+    <button type="submit" class="btn btn-success col-xs-3"><%= t('.button') %></button>
   </form>
 </div>

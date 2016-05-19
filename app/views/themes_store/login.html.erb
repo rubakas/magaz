@@ -1,19 +1,19 @@
 <main class="container">
   <div class="row text-center">
     <div class="col-md-6 col-md-offset-3">
-      <h1>Log in to your store</h1>
+      <h1><%= t('.main_heading') %></h1>
         <form class="form-inline">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="your-shop-url.magaz.com">
+            <input type="text" class="form-control" placeholder=<%= t('.placeholder') %>>
           </div>
-          <button type="submit" class="btn btn-success">Log In</button>
+          <button type="submit" class="btn btn-success"><%= t('.button_login') %></button>
         </form>
       <div class="row text-center">
         <hr>
         <a href="#"><img src="https://themes.shopify.com/assets/graphics/tri-device-signup-f4d0b21383912239e9c80056a313628c.jpg"></a>
-        <h4>Start your free 14 day trial today</h4>
-        <p>Use Magaz to impress your customers with a beautiful online store and start accepting orders today.</p>
-        <button class="btn btn-success center-block">Sign up now</button>
+        <h4><%= t('.get_started_heading') %></h4>
+        <p><%= t('.text') %></p>
+        <button class="btn btn-success center-block"><%= t('.button_signup') %></button>
       </div>
     </div>
   </div>
