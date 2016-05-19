@@ -6,7 +6,7 @@ class AdminServices::ImportCustomersFromCsvTest < ActiveSupport::TestCase
   end
 
   test 'import customers' do
-    file = ::File.expand_path('./../../../../../fixtures/files/customers.csv', __FILE__)
+    file = ::File.expand_path("#{Rails.root}/test/fixtures/files/customers.csv", __FILE__)
     assert_difference "Customer.count", 2 do
       AdminServices::Customer::ImportCustomersFromCsv
         .call(shop_id: @shop.id,

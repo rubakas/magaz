@@ -40,14 +40,4 @@ class AdminServices::AssetFile::AddAssetFileTest < ActiveSupport::TestCase
     assert_equal 'File is not a valid file', service.datafile.errors.full_messages.first
     assert_equal 0, AssetFile.count
   end
-
-  test "should not add file with blank shop_id" do
-    assert_equal 0, AssetFile.count
-    service = AdminServices::AssetFile::AddAssetFile
-                .run(file: @file, shop_id: '', name: 'New file')
-    refute service.valid?
-    assert_equal 1, service.datafile.errors.count
-    assert_equal 'Shop is not a valid integer', service.datafile.errors.full_messages.first
-    assert_equal 0, AssetFile.count
-  end
 end

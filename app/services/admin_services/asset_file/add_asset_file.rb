@@ -1,4 +1,4 @@
-class AdminServices::AssetFile::AddFile < ActiveInteraction::Base
+class AdminServices::AssetFile::AddAssetFile < ActiveInteraction::Base
 
   set_callback :validate, :after, -> {datafile}
 
