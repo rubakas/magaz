@@ -4,8 +4,6 @@ class Event < ActiveRecord::Base
   belongs_to :shop
   belongs_to :subject, polymorphic: true
 
-  # validates_presence_of :verb, :message, :subject_id, :subject_type
-
   def description
     case self.verb
     when 'destroy'

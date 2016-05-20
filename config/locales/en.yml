@@ -301,7 +301,6 @@ en:
     create_event:
       user_not_exist: "This user is not exist in database"
       subject_not_exist: "This subject is not exist in database"
-      topic_not_exist: "Topic is not included in the list"
 
   layouts:
     application:
