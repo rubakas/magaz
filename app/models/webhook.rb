@@ -54,5 +54,6 @@ class Webhook < ActiveRecord::Base
                             CREATE_COLLECTION_EVENT, UPDATE_COLLECTION_EVENT, DELETE_COLLECTION_EVENT,
                             CREATE_CUSTOMER_EVENT, UPDATE_CUSTOMER_EVENT, DELETE_CUSTOMER_EVENT,
                             UPDATE_ORDER_EVENT, UPDATE_SHOP_EVENT]
+
   end
 end
