@@ -298,6 +298,10 @@ en:
     install_theme:
       invalid_shop_id: "Can't find shop with such id"
 
+    create_event:
+      user_not_exist: "This user is not exist in database"
+      subject_not_exist: "This subject is not exist in database"
+
   layouts:
     application:
       shop: "Magaz"
