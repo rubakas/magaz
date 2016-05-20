@@ -1269,6 +1269,15 @@ en:
       heading: "Start your free 14-day trial of Shopify"
       password: "Password"
       store: "Your store name"
+    review_form:
+      heading: "Write a review"
+      info_pt1: "Please make sure you"
+      contact_author: "contact the theme author"
+      info_pt2: "before posting a negative review so they can try to resolve your issue."
+      how_this_theme: "HOW DOES THIS THEME MAKE YOU FEEL?"
+      what_you_think: "WHAT DO YOU THINK OF THIS THEME?"
+      number_characters: "Max 400 characters. Min 30 characters."
+      submit_button: "Submit review"
     sell_theme:
       heading: "Sell your own theme"
       info: "Every month thousands of merchants look for new themes to apply to their shop. The Theme Store is a great place for theme designers to showcase and monetize their design skills."
@@ -1297,6 +1306,22 @@ en:
       payments: "Payments"
       taxes: "Taxes"
       webhooks: "Webhooks"
+    sort_search_header:
+      all: "All"
+      free: "Free"
+      premium: "Premium"
+      all_industrues: "All Industrues"
+      art_photography: "Art & Photography"
+      clothing_fashion: "Clothing & Fashion"
+      jewelry_accessories: "Jewelry & Accessories"
+      electronics: "Electronics"
+      sort_by: "Sort by"
+      randomly: "Randomly Sorted"
+      recent: "Most Recent"
+      price_low_to_high: "Price (low to high)"
+      price_high_to_low: "Price (high to low)"
+      popular: "Most Popular"
+      search_by: "Search by theme name..."
 
   user_mailer:
     notification:
