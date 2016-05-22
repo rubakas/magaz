@@ -2,9 +2,11 @@ require 'test_helper'
 
 class ShippingCountryTest < ActiveSupport::TestCase
 
-  should belong_to(:shop)
+  should have_many  :shipping_rates
+  should belong_to  :shop
+  should have_many  :tax_overrides
   
-   setup do
+  setup do
     @shop = create(:shop)
     @shipping_country = create(:shipping_country, shop: @shop)
   end

@@ -3,7 +3,10 @@ require 'test_helper'
 class ProductTest < ActiveSupport::TestCase
   include Shared::VisibilityExamples
 
-  should belong_to(:shop)
+  should have_and_belong_to_many  :collections
+  should have_many                :events
+  should have_many                :product_images
+  should belong_to                :shop
 
   setup do
     setup_visibility_examples(model_class: Product, factory_name: :product)

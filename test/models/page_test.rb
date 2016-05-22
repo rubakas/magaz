@@ -3,7 +3,8 @@ require 'test_helper'
 class PageTest < ActiveSupport::TestCase
   include Shared::VisibilityExamples
 
-  should belong_to(:shop)
+  should have_many  :events
+  should belong_to  :shop
 
   setup do
     setup_visibility_examples(model_class: Page, factory_name: :page)
