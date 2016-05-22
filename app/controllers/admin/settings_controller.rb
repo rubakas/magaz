@@ -26,8 +26,6 @@ class Admin::SettingsController < Admin::ApplicationController
                      address: params[:shop][:address])
     if service.valid?
       @shop = service.result
-      # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
-      #                                                                     topic: Webhook::Topics::UPDATE_SHOP_EVENT)
       flash.now[:notice] = I18n.t('admin.settings.notice_success')
       render 'edit'
     else

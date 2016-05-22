@@ -23,8 +23,6 @@ class Admin::CollectionsController < Admin::ApplicationController
                      description: params[:collection][:description])
     if service.valid?
       @collection = service.result
-      #@webhook_service = AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
-      #                                                                    topic: Webhook::Topics::CREATE_COLLECTION_EVENT)
       flash[:notice] = t('.notice_success')
       redirect_to admin_collection_url(@collection)
     else
@@ -45,8 +43,6 @@ class Admin::CollectionsController < Admin::ApplicationController
                      description: params[:collection][:description])
 
     if service.valid?
-      #@webhook_service = AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
-      #                                                                    topic: Webhook::Topics::UPDATE_COLLECTION_EVENT)
       @collection = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_collection_url(@collection)
@@ -59,8 +55,6 @@ class Admin::CollectionsController < Admin::ApplicationController
   def destroy
     service = AdminServices::Collection::DeleteCollection
                 .run(id: params[:id], shop_id: current_shop.id)
-    # @webhook_service = AdminServices::Webhook::EventWebhookRunner.call(event: @event_service.event,
-    #                                                                     topic: Webhook::Topics::UPDATE_COLLECTION_EVENT)
     flash[:notice] = t('.notice_success')
     redirect_to admin_collections_path
   end

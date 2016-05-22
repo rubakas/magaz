@@ -16,8 +16,6 @@ class Admin::OrdersController < Admin::ApplicationController
                 .run(id: @order.id,
                      status: params[:order][:status])
     if service.valid?
-      # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
-      #                                                                     topic: Webhook::Topics::UPDATE_ORDER_EVENT)
       @order = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_order_path(@order)

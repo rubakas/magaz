@@ -14,7 +14,6 @@
 #
 
 class Blog < ActiveRecord::Base
-  self.table_name = 'blogs'
   extend FriendlyId
 
   has_many    :articles

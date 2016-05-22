@@ -18,7 +18,6 @@
 #
 
 class Product < ActiveRecord::Base
-  self.table_name = 'products'
   extend FriendlyId
   include Concerns::Visibility
 

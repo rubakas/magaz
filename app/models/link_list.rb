@@ -12,7 +12,6 @@
 
 class LinkList < ActiveRecord::Base
   extend FriendlyId
-  self.table_name = 'link_lists'
 
   has_many   :links, dependent: :destroy
   belongs_to :shop

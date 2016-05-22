@@ -16,7 +16,6 @@
 
 
 class Checkout < ActiveRecord::Base
-  self.table_name = 'checkouts'
   STATUSES = %w[open cancelled]
   # FINANCIAL_STATUSES = %w[authorized
   #                         paid pending partially_paid

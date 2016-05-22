@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class BlogTest < ActiveSupport::TestCase
+  should have_many(:articles)
+  should have_many(:comments)
+  should have_many(:events)
   should belong_to(:shop)
   
   test 'two blogs with same handle and different shops' do

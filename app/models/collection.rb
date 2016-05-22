@@ -17,7 +17,6 @@
 #
 
 class Collection < ActiveRecord::Base
-  self.table_name = 'collections'
   extend FriendlyId
   include Concerns::Visibility
 

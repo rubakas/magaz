@@ -3,6 +3,8 @@ require 'test_helper'
 class ArticleTest < ActiveSupport::TestCase
   
   should belong_to(:blog)
+  should have_many(:comments)
+  should have_many(:events)
 
   include Shared::VisibilityExamples
 

@@ -17,7 +17,6 @@
 #
 
 class Page < ActiveRecord::Base
-  self.table_name = 'pages'
   extend FriendlyId
   include Concerns::Visibility
 

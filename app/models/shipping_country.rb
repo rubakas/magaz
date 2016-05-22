@@ -1,5 +1,4 @@
 class ShippingCountry < ActiveRecord::Base
-  self.table_name = 'shipping_countries'
 
   COUNTRY_LIST = YAML.load_file("#{Rails.root}/config/countries.yml")
 

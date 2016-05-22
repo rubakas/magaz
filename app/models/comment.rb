@@ -14,7 +14,6 @@
 
 
 class Comment < ActiveRecord::Base
-  self.table_name = 'comments'
 
   belongs_to  :article
   belongs_to  :blog

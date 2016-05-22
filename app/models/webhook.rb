@@ -1,8 +1,6 @@
 class Webhook < ActiveRecord::Base
-  self.table_name = 'webhooks'
-
-  belongs_to :shop
   has_many :events, as: :subject
+  belongs_to :shop
 
   FORMAT_CHOICE = ["JSON", "XML"]
 

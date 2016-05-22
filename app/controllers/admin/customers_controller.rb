@@ -22,8 +22,6 @@ class Admin::CustomersController < Admin::ApplicationController
                      shop_id: current_shop.id)
 
     if service.valid?
-      # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
-      #                         topic: Webhook::Topics::CREATE_CUSTOMER_EVENT)
       @customer = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_customer_path(@customer)
@@ -42,8 +40,6 @@ class Admin::CustomersController < Admin::ApplicationController
                      email: params[:customer][:email],
                      shop_id: current_shop.id)
     if service.valid?
-      # @webhook_service = AdminServices::EventWebhookRunner.call(event: @event_service.event,
-      #                         topic: Webhook::Topics::UPDATE_CUSTOMER_EVENT)
       @customer = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_customer_path(@customer)
@@ -73,8 +69,6 @@ class Admin::CustomersController < Admin::ApplicationController
   def destroy
     service = AdminServices::Customer::DeleteCustomer
                 .run(id: params[:id], shop_id: current_shop.id)
-    # @webhook_service = AdminServices::EventWebhookRunner
-      #.call(event: @event_service.event, topic: Webhook::Topics::DELETE_CUSTOMER_EVENT)
     flash[:notice] = t('.notice_success')
     redirect_to admin_customers_path
   end

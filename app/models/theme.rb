@@ -27,8 +27,6 @@ class Theme < ActiveRecord::Base
     templates/product.liquid
   ].freeze
 
-  self.table_name = 'themes'
-
   has_many   :assets
   has_many   :installed_themes, class_name: 'Theme', foreign_key: :source_theme_id
   belongs_to :shop

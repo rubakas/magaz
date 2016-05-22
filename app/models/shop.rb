@@ -27,7 +27,6 @@
 #
 
 class Shop < ActiveRecord::Base
-  self.table_name = 'shops'
   include Concerns::SubdomainOwner
 
   has_many :articles, through: :blogs

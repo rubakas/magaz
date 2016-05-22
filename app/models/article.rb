@@ -17,7 +17,6 @@
 #
 
 class Article < ActiveRecord::Base
-  self.table_name = 'articles'
   extend FriendlyId
   include Concerns::Visibility
 
