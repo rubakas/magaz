@@ -2,6 +2,8 @@ require 'test_helper'
 
 class CheckoutTest < ActiveSupport::TestCase
   should belong_to(:customer)
+  should have_many(:events)
+  should have_many(:line_items)
   
   setup do
     @shop = create(:shop)

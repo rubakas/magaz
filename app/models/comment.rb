@@ -14,9 +14,7 @@
 
 
 class Comment < ActiveRecord::Base
-
   belongs_to  :article
   belongs_to  :blog
   has_many    :events, as: :subject
-
 end

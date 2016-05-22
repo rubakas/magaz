@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EmailTemplateTest < ActiveSupport::TestCase
-
   should belong_to(:shop)
 
   setup do

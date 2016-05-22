@@ -3,7 +3,10 @@ require 'test_helper'
 class CollectionTest < ActiveSupport::TestCase
   include Shared::VisibilityExamples
 
+  should have_many(:events)
+  should have_and_belong_to_many(:products)
   should belong_to(:shop)
+  should have_many(:tax_overrides)
 
   setup do
     setup_visibility_examples(model_class: Collection, factory_name: :collection)
