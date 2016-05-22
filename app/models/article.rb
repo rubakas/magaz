@@ -21,9 +21,9 @@ class Article < ActiveRecord::Base
   extend FriendlyId
   include Concerns::Visibility
 
-  belongs_to :blog
-  has_many :comments
-  has_many :events, as: :subject
+  belongs_to  :blog
+  has_many    :comments
+  has_many    :events, as: :subject
 
   friendly_id :handle, use: [:slugged, :scoped], scope: :blog
 

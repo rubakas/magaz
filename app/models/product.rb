@@ -22,10 +22,10 @@ class Product < ActiveRecord::Base
   extend FriendlyId
   include Concerns::Visibility
 
-  has_and_belongs_to_many :collections, class_name: 'Collection'
-  has_many :product_images, class_name: 'ProductImage', :dependent => :destroy
-  belongs_to :shop
-  has_many :events, as: :subject
+  has_and_belongs_to_many :collections
+  has_many                :events, as: :subject
+  has_many                :product_images, :dependent => :destroy
+  belongs_to              :shop
 
   friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 

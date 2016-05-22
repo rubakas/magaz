@@ -14,8 +14,8 @@ class LinkList < ActiveRecord::Base
   extend FriendlyId
   self.table_name = 'link_lists'
 
-  belongs_to :shop
   has_many   :links, dependent: :destroy
+  belongs_to :shop
 
   accepts_nested_attributes_for :links
   friendly_id :handle, use: [:slugged, :scoped], scope: :shop

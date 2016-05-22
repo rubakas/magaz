@@ -17,10 +17,10 @@ class Blog < ActiveRecord::Base
   self.table_name = 'blogs'
   extend FriendlyId
 
-  has_many :articles
-  has_many :comments, through: :articles
-  has_many :events, as: :subject
-  belongs_to :shop
+  has_many    :articles
+  has_many    :comments, through: :articles
+  has_many    :events, as: :subject
+  belongs_to  :shop
 
   friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 

@@ -16,8 +16,8 @@
 class Comment < ActiveRecord::Base
   self.table_name = 'comments'
 
-  belongs_to :article
-  belongs_to :blog
-  has_many :events, as: :subject
+  belongs_to  :article
+  belongs_to  :blog
+  has_many    :events, as: :subject
 
 end

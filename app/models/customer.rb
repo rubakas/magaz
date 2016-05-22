@@ -14,9 +14,9 @@
 class Customer < ActiveRecord::Base
   self.table_name = 'customers'
 
-  has_many :checkouts
-  has_many :events, as: :subject
-  belongs_to :shop
+  has_many    :checkouts
+  has_many    :events, as: :subject
+  belongs_to  :shop
 
   def self.to_csv
     CSV.generate do |csv|

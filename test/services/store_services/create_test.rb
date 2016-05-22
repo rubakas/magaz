@@ -68,13 +68,13 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
     assert service.valid?
     assert service.result[:shop]
 
-    assert_equal 11, service.result[:shop].email_templates.length
-    assert_equal 1, service.result[:shop].collections.length
-    assert_equal 1, service.result[:shop].blogs.length
-    assert_equal 1, service.result[:shop].articles.length
-    assert_equal 2, service.result[:shop].pages.length
-    assert_equal 2, service.result[:shop].link_lists.length
-    assert_equal 4, service.result[:shop].links.length
+    assert_equal 11,  service.result[:shop].email_templates.length
+    assert_equal 1,   service.result[:shop].collections.length
+    assert_equal 1,   service.result[:shop].blogs.length
+    assert_equal 1,   service.result[:shop].articles.length
+    assert_equal 2,   service.result[:shop].pages.length
+    assert_equal 2,   service.result[:shop].link_lists.length
+    assert_equal 4,   service.result[:shop].links.length
   end
 
 end
