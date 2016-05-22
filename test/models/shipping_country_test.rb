@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class ShippingCountryTest < ActiveSupport::TestCase
+
+  should belong_to(:shop)
+  
    setup do
     @shop = create(:shop)
     @shipping_country = create(:shipping_country, shop: @shop)

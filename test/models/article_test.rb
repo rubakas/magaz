@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
+  
+  should belong_to(:blog)
+
   include Shared::VisibilityExamples
 
   setup do

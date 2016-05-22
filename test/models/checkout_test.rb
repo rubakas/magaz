@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class CheckoutTest < ActiveSupport::TestCase
+  should belong_to(:customer)
+  
   setup do
     @shop = create(:shop)
     @customer = create(:customer, shop: @shop)

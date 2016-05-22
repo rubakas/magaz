@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class ThemeTest < ActiveSupport::TestCase
+  should belong_to(:shop)
 
   setup do
     @shop = create(:shop)

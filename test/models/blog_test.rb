@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class BlogTest < ActiveSupport::TestCase
+  should belong_to(:shop)
+  
   test 'two blogs with same handle and different shops' do
     @shop1 = create(:shop, name: "shop1")
     @shop2 = create(:shop, name: "shop2")

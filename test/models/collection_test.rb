@@ -3,6 +3,8 @@ require 'test_helper'
 class CollectionTest < ActiveSupport::TestCase
   include Shared::VisibilityExamples
 
+  should belong_to(:shop)
+
   setup do
     setup_visibility_examples(model_class: Collection, factory_name: :collection)
   end

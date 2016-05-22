@@ -2,6 +2,8 @@ require 'test_helper'
 
 class EmailTemplateTest < ActiveSupport::TestCase
 
+  should belong_to(:shop)
+
   setup do
     @shop = create(:shop)
     @email_template = create(:email_template, shop: @shop)
