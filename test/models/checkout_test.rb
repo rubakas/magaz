@@ -1,19 +1,3 @@
-# == Schema Information
-#
-# Table name: checkouts
-#
-#  id                 :integer          not null, primary key
-#  note               :text
-#  status             :string
-#  financial_status   :string
-#  fulfillment_status :string
-#  currency           :string
-#  email              :string
-#  created_at         :datetime
-#  updated_at         :datetime
-#  customer_id        :integer
-#
-
 require 'test_helper'
 
 class CheckoutTest < ActiveSupport::TestCase

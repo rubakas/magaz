@@ -1,22 +1,3 @@
-# == Schema Information
-#
-# Table name: products
-#
-#  id               :integer          not null, primary key
-#  name             :string
-#  description      :text
-#  created_at       :datetime
-#  updated_at       :datetime
-#  shop_id          :integer
-#  price            :decimal(38, 2)
-#  handle           :string
-#  page_title       :string
-#  meta_description :string
-#  slug             :string
-#  publish_on       :datetime
-#  published_at     :datetime
-#
-
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase

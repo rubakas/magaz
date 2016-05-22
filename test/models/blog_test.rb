@@ -1,19 +1,5 @@
-# == Schema Information
-#
-# Table name: blogs
-#
-#  id               :integer          not null, primary key
-#  title            :string
-#  shop_id          :integer
-#  created_at       :datetime
-#  updated_at       :datetime
-#  handle           :string
-#  page_title       :string
-#  meta_description :string
-#  slug             :string
-#
-
 require 'test_helper'
+
 class BlogTest < ActiveSupport::TestCase
   test 'two blogs with same handle and different shops' do
     @shop1 = create(:shop, name: "shop1")
