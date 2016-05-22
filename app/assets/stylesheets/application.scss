@@ -1,2 +1,44 @@
-@import "magaz_style/application.scss";
+// $baseFontSize: 18px;
+// $baseLineHeight: 30px;
 
+// $sansFontFamily: "Open Sans", "Trebuchet MS", sans-serif;
+
+// $baseFontFamily: $sansFontFamily;
+// $headingFontFamily: $sansFontFamily;
+// $headingsFontFamily: $sansFontFamily;
+
+// $footerHeight: 60px;
+
+
+$container-desktop: 1008px;
+
+$font-family-sans: "Whitney SSm A", "Whitney SSm B", "Open Sans", "Trebuchet MS", sans-serif;
+$font-family-base: $font-family-sans;
+$font-size-base: 18px;
+
+$line-height-base: 1.667;
+
+$global-color-dark: #2c3e50;
+$global-color-light: #ecf0f1;
+$global-color-primary: #3498db;
+$global-color-highlight: #f1c40f;
+
+
+@import "base.scss";
+
+@import "twitter/bootstrap";
+
+
+@import "font-awesome"; //import order is important here
+// [class^="icon-"],[class*=" icon-"] {
+//   &:after {
+//   }
+// }
+
+@import "layout.scss";
+@import "modules/*";
+// @import "modules/section_sell";
+// @import "modules/button";
+// @import "modules/form";
+// @import "modules/navbar_public";
+// @import "modules/settings";
