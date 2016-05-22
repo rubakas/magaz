@@ -35,14 +35,14 @@ class Shop < ActiveRecord::Base
   has_many :checkouts, through: :customers
   has_many :collections
   has_many :comments, through: :articles
-  has_many :countries
+  has_many :countries, class_name: 'ShippingCountry'
   has_many :customers
   has_many :email_templates, :dependent => :destroy
   has_many :events
   has_many :links, through: :link_lists
   has_many :link_lists
   has_many :pages
-  has_many :product_images
+  has_many :product_images, through: :products
   has_many :products
   has_many :shipping_countries
   has_many :shipping_rates, through: :shipping_countries
