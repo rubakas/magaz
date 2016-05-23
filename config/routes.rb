@@ -21,7 +21,6 @@ Rails.application.routes.draw do
 
   constraints(ShopSubdomainConstraint) do
     include_routes :admin
-    
     include_routes :store
   end
 
