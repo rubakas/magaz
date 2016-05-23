@@ -1,3 +1,11 @@
+# custom method to break routes apart
+class ActionDispatch::Routing::Mapper
+  def include_routes(routes_name)
+    instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
+  end
+end
+
+
 Rails.application.routes.draw do
 
   constraints host: HOSTNAME do
@@ -12,92 +20,14 @@ Rails.application.routes.draw do
   end
 
   constraints(ShopSubdomainConstraint) do
-    namespace :store do
-      root 'welcome#index'
-
-      resource :cart do
-        collection do
-          post :add
-        end
-      end
-
-      resources :checkouts, only: [:show] do
-        member do
-          put :update_address
-          get :enter_payment
-          put :pay
-        end
-      end
-
-      resources :orders, only: [:show]
-      resources :products, only: [:show]
-    end
-
-    namespace :admin do
-      root 'dashboard#index'
-      resources :articles, except: [:edit]
-      resources :blogs, except: [:edit]
-      resources :checkouts, except: [:create, :edit, :new]
-      resources :collections, except: [:edit]
-      resources :shipping_countries, except: [:edit] do
-        resources :shipping_rates
-      end
-      resources :customers, except: [:edit] do
-        collection { post :import }
-        collection { get  :export }
-      end
-      resources :asset_files, except: [:edit]
-      resources :tax_overrides, except: [:index]
-      resources :link_lists, except: [:edit] do
-        resources :links
-      end
-      resources :orders, except: [:create, :edit, :new]
-      resources :pages, except: [:edit]
-      resources :products, except: [:edit] do
-        resources :product_images, except: [:edit]
-      end
-      resource  :session, only: [:create, :destroy, :new, :show]
-      resource  :settings, only: [:edit, :update] do
-        resources :email_templates, only: [:show, :edit, :update, :create]
-        resources :subscriber_notifications, except: [:index, :show, :update] do
-          member do
-            get :send_test_notification
-          end
-        end
-        put :checkouts_settings_update, :collection do
-        end
-        put :payments_settings_update, :collection do
-        end
-        put :notifications_settings_update, :collection do
-        end
-        put :taxes_settings_update, :collection do
-        end
-        get :enable_eu_digital_goods_vat_taxes, :collection do
-        end
-        put :save_default_collection, :collection do
-        end
-        member do
-          get 'taxes_settings'
-          get 'set_default_collection'
-          get 'payments_settings'
-          get 'checkouts_settings'
-          get 'notifications_settings'
-        end
-      end
-      resources :users, except: [:edit]
-      resources :webhooks, except: [:edit]
-    end
+    include_routes :admin
+    
+    include_routes :store
   end
 
-  get 'authors_themes'    => 'themes_store#authors_themes'
-  get 'demo'              => 'themes_store#demo'
-  get 'homepage'          => 'themes_store#homepage'
-  get 'installing'        => 'themes_store#installing'
-  get 'learn_more'        => 'themes_store#learn_more'
-  get 'login'             => 'themes_store#login'
-  get 'preview_in_store'  => 'themes_store#preview_in_store'
-  get 'template_page'     => 'themes_store#template_page'
-  get 'theme_page'        => 'themes_store#theme_page'
+  constraints(ThemeStoreSubdomainConstraint) do
+    include_routes :theme_store
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
