@@ -13,14 +13,9 @@ require "minitest/pride"
 Rails.backtrace_cleaner.remove_silencers!
 
 
-class CarrierWave::Mount::Mounter
-  def store!
-  end
-end
-
 class ActiveSupport::TestCase
   include ActionDispatch::TestProcess
 
   fixtures :all
-  CarrierWave.root = Rails.root
+  CarrierWave::Mount::Mounter
 end
