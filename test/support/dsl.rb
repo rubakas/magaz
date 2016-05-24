@@ -59,6 +59,10 @@ class ActionController::TestCase
       controller_with_subdomain(user.shop.subdomain)
     end
 
+    def session_for_shop(shop)
+      controller_with_subdomain(shop.subdomain)
+    end
+
     def controller_with_subdomain(subdomain)
       request.host = subdomain + '.' + HOSTNAME
     end
