@@ -4,7 +4,6 @@ class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
   setup do
     use_host THEME_STORE_HOSTNAME
   end
-    
   
   test "should get homepage" do
     visit theme_store_homepage_path
