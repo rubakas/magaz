@@ -13,7 +13,7 @@ class ThemeStore::WelcomeController < ApplicationController
   end
 
   def homepage
-    @all_themes = Theme.all.to_a*10
+    @themes = Theme.all.to_a*10
   end
 
   def installing

@@ -29,7 +29,7 @@ class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
     visit theme_store_theme_page_path
     assert page.has_content? 'Themes Store'
     assert page.has_content? 'All'
-    assert page.has_content? 'Name'
+    assert page.has_content? 'Free'
     assert page.has_content? 'Start your free 14-day trial today!'
     assert page.has_content? 'Template categories'
   end
@@ -52,7 +52,7 @@ class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
   test "should get demo" do
     visit theme_store_demo_path
     assert page.has_content? 'To the Theme'
-    assert page.has_content? 'Area for preview Theme'
+    assert page.has_selector? 'iframe'
   end
 
   test "should get installing" do
