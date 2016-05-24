@@ -8,7 +8,7 @@
   Your shopping cart is NOT empty.
   <%= form_for shopping_cart, 
         as: :cart, 
-        url: cart_path, 
+        url: store_cart_path, 
         method: :patch,
         html: {class: 'cart-form'} do |f| %>
     <table class="table">

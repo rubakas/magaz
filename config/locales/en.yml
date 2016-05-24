@@ -389,6 +389,9 @@ en:
       themes_store_button: "Themes Store"
 
   theme_store:
+    themes:
+      show:
+        install: "Install theme"
     welcome:
       authors_themes:
         button: "More themes"
@@ -474,6 +477,9 @@ en:
       theme_page:
         name: "Name"
         free_price: "Free"
+      theme_page:
+        name: "Name"
+        price: "Free"
         info: "Pipeline is a clean and powerful theme – carefully tuned for mobile, tablet, and retina devices. Simplify your navigation with a powerful multi-level dropdown and build a beautiful homepage with full-bleed photos. Pipeline allows your products to shine with a clean minimal design, while giving your customers a great experience on any device."
         preview_button: "Preview in your store"
         buy_theme: "Buy theme"
@@ -1340,11 +1346,6 @@ en:
       subject: "You are invited"
       text: "Hi , You are invited to shop %{shop_name} "
       link: "Confirmation"
-
-  # theme_store:
-  #   themes:
-  #     show:
-  #       install: "Install theme"
 
   helpers:
     label:

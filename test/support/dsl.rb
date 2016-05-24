@@ -13,7 +13,7 @@ class ActionDispatch::IntegrationTest
 
   teardown do
     FileUtils.rm_rf(Dir["#{Rails.root}/tmp/capybara/"])
-    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp"])
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
   end
 
   # private
@@ -57,6 +57,10 @@ class ActionController::TestCase
     def session_for_user(user)
       session[:user_id] = user.id
       controller_with_subdomain(user.shop.subdomain)
+    end
+
+    def session_for_shop(shop)
+      controller_with_subdomain(shop.subdomain)
     end
 
     def controller_with_subdomain(subdomain)
