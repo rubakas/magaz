@@ -1,7 +1,7 @@
 module Store
   class ApplicationController < ActionController::Base
-    include MagazCore::Concerns::CurrentShopAccess
-    include MagazCore::Concerns::Themed
+    include Concerns::CurrentShopAccess
+    include Concerns::Themed
 
     layout 'store'
 
@@ -10,7 +10,7 @@ module Store
 
     def shopping_cart_service
       @shopping_cart_service ||=
-        MagazCore::StoreServices::ShoppingCart
+        StoreServices::ShoppingCart
           .new(shop_id: current_shop.id,
                checkout_id: session[:checkout_id],
                customer_id: session[:customer_id])

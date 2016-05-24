@@ -3,7 +3,7 @@ Given(/^themes exist$/) do
   archive_path = File.expand_path('/test/fixtures/files/valid_theme.zip', Rails.root)
 
   @existing_source_themes.each do |theme|
-    MagazCore::ThemeServices::ImportFromArchive
+    ThemeServices::ImportFromArchive
       .call(archive_path: archive_path,
             theme: theme,
             theme_attributes: theme.attributes)
@@ -21,13 +21,13 @@ Given(/^visit themestore index page$/) do
 end
 
 Given(/^must see themes$/) do
-  MagazCore::Theme.sources.limit(9).each do |theme_on_page|
+  Theme.sources.limit(9).each do |theme_on_page|
     assert page.has_content? theme_on_page.name
   end
 end
 
 Given(/^clicks theme name$/) do
-  # click_link MagazCore::Theme.sources.first.name
+  # click_link Theme.sources.first.name
 end
 
 Given(/^choose to install theme$/) do
@@ -35,5 +35,5 @@ Given(/^choose to install theme$/) do
 end
 
 Given(/^theme must be installed$/) do
-  assert_equal MagazCore::Theme.sources.first, @shop.themes.installed.last.source_theme
+  assert_equal Theme.sources.first, @shop.themes.installed.last.source_theme
 end

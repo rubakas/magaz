@@ -19,13 +19,13 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy, :new, :show]
   end
 
+  constraints(ThemeStoreSubdomainConstraint) do
+    include_routes :theme_store
+  end
+
   constraints(ShopSubdomainConstraint) do
     include_routes :admin
     include_routes :store
-  end
-
-  constraints(ThemeStoreSubdomainConstraint) do
-    include_routes :theme_store
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
