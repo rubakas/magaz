@@ -44,7 +44,7 @@ class AdminServices::Collection::ChangeCollection < ActiveInteraction::Base
 
 
   def handle_unique?
-    ::Collection.where(shop_id: shop_id, handle: handle).count == 0
+    ::Collection.where.not(id: id).where(shop_id: shop_id, handle: handle).count == 0
   end
 
   def name_changed?
@@ -56,7 +56,7 @@ class AdminServices::Collection::ChangeCollection < ActiveInteraction::Base
   end
 
   def name_unique?
-    ::Collection.where(shop_id: shop_id, name: name).count == 0
+    ::Collection.where.not(id: id).where(shop_id: shop_id, name: name).count == 0
   end
 
 end

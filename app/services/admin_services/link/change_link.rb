@@ -38,7 +38,7 @@ class AdminServices::Link::ChangeLink < ActiveInteraction::Base
   end
 
   def name_unique?
-    ::Link.where(link_list_id: link_list_id, name: name).count == 0
+    ::Link.where.not(id: id).where(link_list_id: link_list_id, name: name).count == 0
   end
 
 end

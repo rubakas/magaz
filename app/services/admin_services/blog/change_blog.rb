@@ -38,7 +38,7 @@ class AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   end
 
   def title_unique?
-    ::Blog.where(shop_id: shop_id, title: title).count == 0
+    ::Blog.where.not(id: id).where(shop_id: shop_id, title: title).count == 0
   end
 
   def handle_changed?
@@ -52,7 +52,7 @@ class AdminServices::Blog::ChangeBlog < ActiveInteraction::Base
   end
 
   def handle_unique?
-    ::Blog.where(shop_id: shop_id, handle: handle).count == 0
+    ::Blog.where.not(id: id).where(shop_id: shop_id, handle: handle).count == 0
   end
 
 end
