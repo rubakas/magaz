@@ -1,4 +1,5 @@
 namespace :theme_store, path: '/' do
+  root 'welcome#homepage'
   get 'authors_themes'    => 'welcome#authors_themes'
   get 'demo'              => 'welcome#demo'
   get 'homepage'          => 'welcome#homepage'
