@@ -7,7 +7,7 @@ module Store
     def update
       if params[:update] == 'update'
         if shopping_cart_service.update_with_hash(params.permit![:cart][:updates])
-          redirect_to cart_path, notice: "Cart was successfully updated"
+          redirect_to store_cart_path, notice: "Cart was successfully updated"
         else
           render action: "show"
         end
@@ -31,7 +31,7 @@ module Store
                     permitted_params_for_add[:quantity].to_i
                   end
       shopping_cart_service.add_product(product: product_to_add, quantity: quantity)
-      redirect_to cart_path
+      redirect_to store_cart_path
     end
 
     def permitted_params_for_add
