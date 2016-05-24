@@ -5,9 +5,9 @@
       <h1><%= t('.name') %></h1>
       <h4><%= t('.price') %></h4>
       <p><%= t('.info') %></p>
-      <button class="btn btn-success"><%= t('.preview_button') %></button><br>
+      <%= link_to t('.preview_button'), theme_store_preview_in_store_path, class: "btn btn-success" %><br>
       <a href="#"><%= t('.buy_theme') %></a>
-      <a href="#"><%= t('.view_demo') %></a>
+      <%= link_to t('.view_demo'), theme_store_demo_path %>
       <hr>
       <h4><%= t('.who_supports') %></h4>
       <p><%= t('.support_info') %></p>
@@ -90,7 +90,7 @@
   <hr>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
-      <h4><%= t('.more_themes') %><a><%= t('.author') %></a></h4>
+      <h4><%= t('.more_themes') %><%= link_to t('.author'), theme_store_authors_themes_path %></h4>
     </div>  
   </div>
   <div class="row">
@@ -108,7 +108,10 @@
   <hr>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
-      <h4><%= t('.more') %><a><%= t('.templates') %></a></h4>
+      <h4>
+        <%= t('.more') %>
+        <%= link_to t('.templates'), theme_store_template_page_path %>
+      </h4>
     </div>  
   </div>
 
