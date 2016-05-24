@@ -64,7 +64,7 @@ class AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   end
 
   def name_unique?
-    ::Shop.where(id: id, name: name).count == 0
+    ::Shop.where.not(id: id).where(name: name).count == 0
   end
 
 end
