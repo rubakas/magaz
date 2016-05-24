@@ -35,8 +35,7 @@ p id="notice"
               td
                 - if @shop.eu_digital_goods_collection_id == nil
                   = link_to t('.enable'), {controller: 'settings',
-                                           action: 'enable_eu_digital_goods_vat_taxes'
-                                           ,
+                                           action: 'enable_eu_digital_goods_vat_taxes',
                                            method: :put}
                   = f.label t('.enable_vat_taxes')
                 - else

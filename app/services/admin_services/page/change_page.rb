@@ -52,7 +52,7 @@ class AdminServices::Page::ChangePage < ActiveInteraction::Base
   end
 
   def handle_unique?
-    ::Page.where(shop_id: shop_id, handle: handle).count == 0
+    ::Page.where(shop_id: shop_id).where.not(id: id).where(handle: handle).count == 0
   end
 
 end
