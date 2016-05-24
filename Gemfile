@@ -1,4 +1,4 @@
-ruby "2.3.0"
+ruby "2.3.1"
 source "https://rubygems.org"
 
 # Your gem is dependent on dev or edge Rails. Once you can lock this
@@ -10,7 +10,7 @@ source "https://rubygems.org"
 
 gem 'active_interaction'
 
-gem 'rails',            github: 'rails/rails', branch: '4-2-stable'
+gem 'rails',            github: 'rails/rails', branch: '5-0-stable'
 
 gem 'rubyzip'
 gem 'friendly_id', '5.0.4'
