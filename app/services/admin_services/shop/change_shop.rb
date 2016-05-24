@@ -16,7 +16,8 @@ class AdminServices::Shop::ChangeShop < ActiveInteraction::Base
   validates :country, inclusion: YAML.load_file("#{Rails.root}/config/countries.yml")['countries'].keys
   validates :unit_system, inclusion: %w[ metric imperial]
   validates :currency, inclusion: %w[ USD EURO HRN]
-  validates :timezone, inclusion: ActiveSupport::TimeZone.zones_map.values.collect{|z| z.name}
+  #TODO .zones_map method is private now
+  validates :timezone, inclusion: ActiveSupport::TimeZone.send(:zones_map).values.collect{|z| z.name}
 
   validate :check_customer_email
   validate :name_uniqueness, if: :name_changed?
