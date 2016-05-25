@@ -16,7 +16,7 @@ class RegistrationsController < ApplicationController
       @shop = service.result[:shop]
       @user = service.result[:user]
       session[:user_id] = @user.id
-      redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
+      redirect_to admin_index_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
       @shop = service
       render template: 'welcome/index'

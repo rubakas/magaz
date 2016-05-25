@@ -68,13 +68,13 @@ class Admin::UsersController < Admin::ApplicationController
 
   def authenticate?
     unless current_shop.users.exists?(id: session[:user_id])
-      redirect_to admin_root_path
+      redirect_to admin_index_path
     end
   end
 
   def token_valid?
     if !current_shop.users.exists?(invite_token: params[:invite_token])
-      redirect_to admin_root_path, notice: t('.invalid_token')
+      redirect_to admin_index_path, notice: t('.invalid_token')
     end
    end
 
