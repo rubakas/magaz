@@ -18,6 +18,8 @@
 
 # Ignore temporary uploaded image files
 public/uploads
+pkg/
+uploads/
 
 
 # Ignore Byebug command history file.
