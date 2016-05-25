@@ -397,6 +397,7 @@ en:
         button: "More themes"
         go_to_website: "Go to their website ›"
         heading: "All Author's Themes"
+        free_price: "Free"
       demo:
         back: "To the Theme"
         desktop: "desktop"
@@ -406,6 +407,7 @@ en:
         heading: "Choose a theme for your online store"
         info: "Responsive themes, easily customized to fit your brand"
         button_more_themes: "More themes"
+        free_price: "Free"
       installing:
         heading: "You're about to install Jumpstart to store-name.magaz.com"
         or: "or"
@@ -471,9 +473,13 @@ en:
         heading: "Find the Perfect Website Template for Your Home and Garden Business"
         info: "You don’t want just any old website template. Your business deserves much better than that. You need clean, sharp professionally designed themes specifically created for your industry. At Shopify, this is exactly what we offer. Browse through a wide selection of free and premium home and garden web templates to find exactly what you’re looking for."
         button_more_themes: "More themes"
+        free_price: "Free"
       theme_page:
         name: "Name"
-        price: "Free"
+        free_price: "Free"
+      theme_page:
+        name: "Name"
+        free_price: "Free"
         info: "Pipeline is a clean and powerful theme – carefully tuned for mobile, tablet, and retina devices. Simplify your navigation with a powerful multi-level dropdown and build a beautiful homepage with full-bleed photos. Pipeline allows your products to shine with a clean minimal design, while giving your customers a great experience on any device."
         preview_button: "Preview in your store"
         buy_theme: "Buy theme"
