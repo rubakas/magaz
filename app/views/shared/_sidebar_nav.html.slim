@@ -6,7 +6,7 @@ section class='sidebar-section'
     / this is a short notation for
     / render partial: partial_name, locals: {...}
     = render 'shared/li_link_to',
-        path: admin_root_path,
+        path: admin_index_path,
         icon_class: 'icon-dashboard',
         label: t('.dashboard'),
         active_conditions: { controller: 'admin/dashboard' }
@@ -73,7 +73,7 @@ section class='sidebar-section'
         active_conditions: { controller: 'admin/settings',  action: 'edit' }
 
     = render 'shared/li_link_to',
-        path: admin_root_path,
+        path: admin_index_path,
         icon_class: 'icon-picture',
         label: t('.themes'),
         active_conditions: { controller: 'admin/dashboard' }

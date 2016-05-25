@@ -17,20 +17,24 @@ require 'capybara/webkit'
 #   Capybara::Webkit::Driver.new(app, :stderr => filtered_io)
 # end
 # Capybara.javascript_driver = :webkit_silent
-Capybara.register_driver :webkit_allowed do |app|
-  driver = Capybara::Webkit::Driver.new(app)
-  driver.allow_url('*')
-  # driver.allow_unknown_urls
-  driver
-end
-Capybara.javascript_driver = :webkit_allowed
-Capybara.default_driver = :webkit_allowed
+# Capybara.register_driver :webkit_allowed do |app|
+#   driver = Capybara::Webkit::Driver.new(app)
+#   # driver.allow_url('*')
+#   # driver.allow_unknown_urls
+#   driver
+# end
+# Capybara.javascript_driver = :webkit_allowed
+# Capybara.default_driver = :webkit_allowed
 
-# Capybara.javascript_driver = :webkit
-
+Capybara.javascript_driver = :webkit
+Capybara.default_driver = :webkit
 # Capybara.javascript_driver = :poltergeist
 
 Capybara.run_server = true
+
+Capybara::Webkit.configure do |config|
+  config.allow_url("*")
+end
 
 Capybara.configure do |config|
   config.match = :one
