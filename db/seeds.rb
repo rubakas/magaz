@@ -7,7 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 if Theme.count == 0
   archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
-  ThemeServices::ImportFromArchive.call(archive_path: archive_path,
-                                        theme: Theme.new,
-                                        theme_attributes: { name: 'Default' })
+  10.times do |n|
+    ThemeServices::ImportFromArchive.call(archive_path: archive_path,
+                                          theme: Theme.new,
+                                          theme_attributes: { name: "Default#{n}", price: 10.5*n, industry: "Industry#{n}" })
+  end
 end

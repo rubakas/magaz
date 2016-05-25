@@ -28,7 +28,7 @@ class Theme < ActiveRecord::Base
   ].freeze
 
   has_many   :assets
-  has_many   :theme_styles
+  has_many   :theme_styles, dependent: :destroy
   has_many   :installed_themes, class_name: 'Theme', foreign_key: :source_theme_id
   belongs_to :shop
   belongs_to :partner
