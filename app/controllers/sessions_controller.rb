@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
     if @shop && @user && @user.authentic_password?(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to admin_root_url(host: HOSTNAME, subdomain: @shop.subdomain)
+      redirect_to admin_index_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
       render :new
     end
