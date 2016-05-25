@@ -97,6 +97,8 @@ FactoryGirl.define do
 
   factory :theme, class: Theme do
     sequence(:name)      { |n| "Theme#{n}" }
+    sequence(:price)      { |n| 1.5*n }
+    sequence(:industry)      { |n| "Industry#{n}" }
   end
 
   factory :user, class: User do

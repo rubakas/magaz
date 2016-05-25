@@ -16,7 +16,11 @@ module ThemeServices
         root_path = _resolve_root_path(tmp_path)
 
         _build_associated_assets_from_path(theme: theme, path: root_path)
+
+        set_attributes(theme, theme_attributes)
         theme.save # run validations
+        create_style(theme)
+
       ensure
         # remove the directory.
         _delete_tmp_path(tmp_path)
@@ -24,6 +28,22 @@ module ThemeServices
     end
 
     private
+
+    def set_attributes(theme, theme_attributes)
+      theme.name = theme_attributes[:name]
+      theme.price = theme_attributes[:price]
+      theme.industry = theme_attributes[:industry]
+      theme.partner = create_partner(theme.name)
+      theme
+    end
+
+    def create_partner(name)
+      Partner.create(name: "Partner of"+name)
+    end
+
+    def create_style(theme)
+      ThemeStyle.create(name: theme.name+"style", theme_id: theme.id)
+    end
 
     def _build_associated_assets_from_path(theme:, path:)
       Dir.glob("#{path}/**/*") do |current_path|
