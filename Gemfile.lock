@@ -1,23 +1,13 @@
 GIT
-  remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 54b165183fdccc4feb451416d1a46ecae496d6be
+  remote: git://github.com/ctran/annotate_models.git
+  revision: c952306966c9bae4438e4d40351561af3d8005c0
   specs:
-    anjlab-bootstrap-rails (3.0.3.0)
-      railties (>= 3.0)
-      sass (>= 3.2)
+    annotate (2.7.0)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 12.0)
 
-GIT
-  remote: git://github.com/rails/coffee-rails.git
-  revision: 54de8caa5df87de66dea75a8b423696cf23ca1e6
-  specs:
-    coffee-rails (4.1.1)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.2.x)
-
-GIT
-  remote: git://github.com/rails/rails.git
-  revision: 3f68565029fa20bdd7c60923e08ee74b20d3d111
-  branch: 5-0-stable
+GEM
+  remote: https://rubygems.org/
   specs:
     actioncable (5.0.0.rc1)
       actionpack (= 5.0.0.rc1)
@@ -42,6 +32,8 @@ GIT
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_interaction (3.1.0)
+      activemodel (>= 4, < 6)
     activejob (5.0.0.rc1)
       activesupport (= 5.0.0.rc1)
       globalid (>= 0.3.6)
@@ -56,51 +48,21 @@ GIT
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    rails (5.0.0.rc1)
-      actioncable (= 5.0.0.rc1)
-      actionmailer (= 5.0.0.rc1)
-      actionpack (= 5.0.0.rc1)
-      actionview (= 5.0.0.rc1)
-      activejob (= 5.0.0.rc1)
-      activemodel (= 5.0.0.rc1)
-      activerecord (= 5.0.0.rc1)
-      activesupport (= 5.0.0.rc1)
-      bundler (>= 1.3.0, < 2.0)
-      railties (= 5.0.0.rc1)
-      sprockets-rails (>= 2.0.0)
-    railties (5.0.0.rc1)
-      actionpack (= 5.0.0.rc1)
-      activesupport (= 5.0.0.rc1)
-      method_source
-      rake (>= 0.8.7)
-      thor (>= 0.18.1, < 2.0)
-
-GIT
-  remote: git://github.com/stefanpenner/country_select.git
-  revision: 46548db15844f987b9ea0d248f9c27cf6db9dd8e
-  specs:
-    country_select (2.5.2)
-      countries (~> 1.2.0)
-      sort_alphabetical (~> 1.0)
-
-GEM
-  remote: https://rubygems.org/
-  specs:
-    active_interaction (3.1.0)
-      activemodel (>= 4, < 6)
     addressable (2.4.0)
     arel (7.0.0)
     ast (2.2.0)
     bcrypt (3.1.11)
     builder (3.2.2)
-    capybara (2.4.4)
+    byebug (9.0.4)
+    capybara (2.7.1)
+      addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.5.2)
-      capybara (>= 2.3.0, < 2.5.0)
+    capybara-webkit (1.11.1)
+      capybara (>= 2.3.0, < 2.8.0)
       json
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
@@ -108,15 +70,15 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
+    coffee-rails (4.1.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.1.x)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
-    countries (1.2.5)
-      currencies (~> 0.4.2)
-      i18n_data (~> 0.7.0)
     cucumber (2.3.3)
       builder (>= 2.1.2)
       cucumber-core (~> 1.4.0)
@@ -134,7 +96,6 @@ GEM
       nokogiri (~> 1.5)
       railties (>= 3, < 5)
     cucumber-wire (0.0.1)
-    currencies (0.4.2)
     dalli (2.7.6)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
@@ -143,18 +104,7 @@ GEM
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
-    flay (2.8.0)
-      erubis (~> 2.7.0)
-      path_expander (~> 1.0)
-      ruby_parser (~> 3.0)
-      sexp_processor (~> 4.0)
-    flog (4.4.0)
-      path_expander (~> 1.0)
-      ruby_parser (~> 3.1, > 3.1.0)
-      sexp_processor (~> 4.4)
-    font-awesome-sass-rails (3.0.2.2)
-      railties (>= 3.1.1)
-      sass-rails (>= 3.1.1)
+    ffi (1.9.10)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
     gherkin (3.2.0)
@@ -164,7 +114,6 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     i18n (0.7.0)
-    i18n_data (0.7.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
       has_scope (~> 0.6.0.rc)
@@ -173,10 +122,6 @@ GEM
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
-    jquery-rails (4.1.1)
-      rails-dom-testing (>= 1, < 3)
-      railties (>= 4.2.0)
-      thor (>= 0.14, < 2.0)
     json (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -184,6 +129,9 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     liquid (3.0.6)
+    listen (3.0.8)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -201,12 +149,8 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
-    parallel (1.8.0)
-    parallel_tests (2.5.0)
-      parallel
     parser (2.3.1.0)
       ast (~> 2.2)
-    path_expander (1.0.0)
     pg (0.18.4)
     powerpack (0.1.1)
     puma (3.4.0)
@@ -214,6 +158,18 @@ GEM
       json
     rack-test (0.6.3)
       rack (>= 1.0)
+    rails (5.0.0.rc1)
+      actioncable (= 5.0.0.rc1)
+      actionmailer (= 5.0.0.rc1)
+      actionpack (= 5.0.0.rc1)
+      actionview (= 5.0.0.rc1)
+      activejob (= 5.0.0.rc1)
+      activemodel (= 5.0.0.rc1)
+      activerecord (= 5.0.0.rc1)
+      activesupport (= 5.0.0.rc1)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 5.0.0.rc1)
+      sprockets-rails (>= 2.0.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -222,10 +178,17 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    railties (5.0.0.rc1)
+      actionpack (= 5.0.0.rc1)
+      activesupport (= 5.0.0.rc1)
+      method_source
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
     rake (11.1.2)
-    rdoc (4.2.2)
-      json (~> 1.4)
+    rb-fsevent (0.9.7)
+    rb-inotify (0.9.7)
+      ffi (>= 0.5.0)
     redis (3.3.0)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
@@ -237,8 +200,6 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
-    ruby_parser (3.8.2)
-      sexp_processor (~> 4.1)
     rubyzip (1.2.0)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -247,10 +208,6 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sdoc (0.4.1)
-      json (~> 1.7, >= 1.7.7)
-      rdoc (~> 4.0)
-    sexp_processor (4.7.0)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (>= 1.4.1, < 3.0)
@@ -266,9 +223,10 @@ GEM
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
-    sort_alphabetical (1.0.2)
-      unicode_utils (>= 1.2.2)
     spring (1.7.1)
+    spring-watcher-listen (2.0.0)
+      listen (>= 2.7, < 4.0)
+      spring (~> 1.2)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -276,19 +234,18 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.11)
     temple (0.7.7)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.4)
-    turbolinks (2.5.3)
-      coffee-rails
+    turbolinks (5.0.0.beta2)
+      turbolinks-source
+    turbolinks-source (5.0.0.beta5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.0.5)
-    unicode_utils (1.4.0)
     web-console (3.1.1)
       activemodel (>= 4.2)
       debug_inspector
@@ -304,47 +261,46 @@ PLATFORMS
 
 DEPENDENCIES
   active_interaction
-  anjlab-bootstrap-rails!
-  bcrypt (~> 3.1.9)
-  capybara-webkit (~> 1.5.2)
+  annotate!
+  bcrypt (~> 3.1.7)
+  byebug
+  capybara-webkit
   carrierwave
-  coffee-rails!
-  country_select!
+  coffee-rails (~> 4.1.0)
   cucumber-rails
   dalli
   database_cleaner
   factory_girl
-  flay
-  flog
-  font-awesome-sass-rails
   friendly_id (= 5.0.4)
   inherited_resources
   jbuilder (~> 2.0)
-  jquery-rails
   kaminari
   launchy
   liquid
+  listen (~> 3.0.5)
   memcachier
-  parallel_tests
-  pg
-  puma
-  rails!
+  pg (~> 0.18)
+  puma (~> 3.0)
+  rails (>= 5.0.0.rc1, < 5.1)
+  redis (~> 3.0)
   rmagick
   rubocop
   rubyzip
-  sass-rails
-  sdoc
-  shoulda (~> 3.5)
-  shoulda-matchers (~> 2.0)
+  sass-rails (~> 5.0)
+  shoulda
+  shoulda-matchers
   sidekiq
   skylight
   slim
   spring
-  sprockets-rails
-  sqlite3
-  turbolinks
+  spring-watcher-listen (~> 2.0.0)
+  turbolinks (~> 5.x)
+  tzinfo-data
   uglifier (>= 1.3.0)
   web-console
+
+RUBY VERSION
+   ruby 2.3.1p112
 
 BUNDLED WITH
    1.12.3

@@ -7,24 +7,18 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
 
 # Ignore database config.
 /config/database.yml
 
-#ignore temporary uploaded image files
+# Ignore temporary uploaded image files
 public/uploads
 
-pkg/
-test/dummy/db/*.sqlite3
-test/dummy/db/*.sqlite3-journal
-test/dummy/log/*.log
-test/dummy/tmp/
-test/dummy/.sass-cache
-uploads/
+
+# Ignore Byebug command history file.
+.byebug_history
