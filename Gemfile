@@ -3,14 +3,16 @@ source 'https://rubygems.org'
 
 gem 'active_interaction'
 gem 'annotate', github: 'ctran/annotate_models'
+gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails', github: 'anjlab/bootstrap-rails'
 gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
 gem 'dalli'
+gem 'font-awesome-sass-rails'
 gem 'friendly_id', '5.0.4'
 gem 'inherited_resources'
 gem 'jbuilder', '~> 2.0'
-# gem 'jquery-rails' # Use jquery as the JavaScript library
+gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'kaminari'
 gem 'liquid'
 gem 'puma', '~> 3.0' # Use Puma as the app server
