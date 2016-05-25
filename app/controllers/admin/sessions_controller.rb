@@ -18,7 +18,7 @@ class Admin::SessionsController < Admin::ApplicationController
        @user.authentic_password?(params[:session][:password])
       # valid login
       session[:user_id] = @user.id
-      redirect_to admin_root_path(host: HOSTNAME, subdomain: current_shop.subdomain)
+      redirect_to admin_index_path(host: HOSTNAME, subdomain: current_shop.subdomain)
     else
       flash.now[:notice] = t('.notice_fail')
       render :new
@@ -27,6 +27,6 @@ class Admin::SessionsController < Admin::ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to admin_root_url
+    redirect_to admin_index_url
   end
 end

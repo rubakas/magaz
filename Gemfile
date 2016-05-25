@@ -7,6 +7,7 @@ gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails', github: 'anjlab/bootst
 gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
+gem 'country_select'
 gem 'dalli'
 gem 'font-awesome-sass-rails'
 gem 'friendly_id', '5.0.4'

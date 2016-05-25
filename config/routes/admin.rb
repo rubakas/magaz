@@ -1,5 +1,5 @@
 namespace :admin do
-  root 'dashboard#index'
+  get '/', to: 'dashboard#index', as: :index
   resources :articles, except: [:edit]
   resources :asset_files, except: [:edit]
   resources :blogs, except: [:edit]
@@ -37,7 +37,8 @@ namespace :admin do
 
     collection do
       put :checkouts_settings_update
-      put :enable_eu_digital_goods_vat_taxes
+      #TODO: WTF?
+      get :enable_eu_digital_goods_vat_taxes
       put :notifications_settings_update
       put :payments_settings_update
       put :save_default_collection
