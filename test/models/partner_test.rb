@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class PartnerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  should have_many(:themes)
+  should validate_presence_of(:name)
+  should validate_uniqueness_of(:name)
+  
 end
