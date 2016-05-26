@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603104850) do
+ActiveRecord::Schema.define(version: 20160526124317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,9 +123,8 @@ ActiveRecord::Schema.define(version: 20150603104850) do
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["subject_id"], name: "index_events_on_subject_id", using: :btree
   end
-
-  add_index "events", ["subject_id"], name: "index_events_on_subject_id", using: :btree
 
   create_table "files", force: :cascade do |t|
     t.string   "file"
@@ -142,12 +141,11 @@ ActiveRecord::Schema.define(version: 20150603104850) do
     t.string   "sluggable_type", limit: 50
     t.string   "scope"
     t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "checkout_id"
@@ -165,9 +163,8 @@ ActiveRecord::Schema.define(version: 20150603104850) do
     t.integer "shop_id"
     t.string  "handle"
     t.string  "slug"
+    t.index ["slug"], name: "index_link_lists_on_slug", unique: true, using: :btree
   end
-
-  add_index "link_lists", ["slug"], name: "index_link_lists_on_slug", unique: true, using: :btree
 
   create_table "links", force: :cascade do |t|
     t.string  "name"
@@ -199,6 +196,15 @@ ActiveRecord::Schema.define(version: 20150603104850) do
     t.string   "slug"
     t.datetime "publish_on"
     t.datetime "published_at"
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string   "name"
+    t.string   "website_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["name"], name: "index_partners_on_name", unique: true, using: :btree
+    t.index ["website_url"], name: "index_partners_on_website_url", unique: true, using: :btree
   end
 
   create_table "product_images", force: :cascade do |t|
@@ -288,6 +294,15 @@ ActiveRecord::Schema.define(version: 20150603104850) do
     t.integer "shipping_country_id"
   end
 
+  create_table "theme_styles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theme_id"], name: "index_theme_styles_on_theme_id", using: :btree
+  end
+
   create_table "themes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -295,6 +310,10 @@ ActiveRecord::Schema.define(version: 20150603104850) do
     t.integer  "shop_id"
     t.integer  "source_theme_id"
     t.string   "role"
+    t.decimal  "price"
+    t.string   "industry"
+    t.integer  "partner_id"
+    t.index ["partner_id"], name: "index_themes_on_partner_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -326,4 +345,6 @@ ActiveRecord::Schema.define(version: 20150603104850) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "theme_styles", "themes"
+  add_foreign_key "themes", "partners"
 end
