@@ -44,5 +44,4 @@ class ThemeServices::CreatePartnerTest < ActiveSupport::TestCase
     assert_equal 0, Partner.count
   end
 
-
 end
