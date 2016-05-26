@@ -57,6 +57,11 @@ FactoryGirl.define do
     sequence(:name)   { |n| "Link #{n}" }
   end
 
+  factory :partner, class: Partner do
+    sequence(:name)   { |n| "Name#{n}" }
+    sequence(:website_url) { |n| "www.site#{n}.com" }
+  end
+
   factory :page, class: Page do
     sequence(:title)   { |n| "Title #{n}" }
     sequence(:content) { |n| "Content #{n}" }

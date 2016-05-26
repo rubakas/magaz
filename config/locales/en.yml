@@ -295,6 +295,9 @@ en:
       name_not_unique: "Name has already been taken"
       no_default_theme: "No default theme in system"
 
+    create_theme_style:
+      name_not_unique: "Name has already been taken"
+    
     install_theme:
       invalid_shop_id: "Can't find shop with such id"
 
