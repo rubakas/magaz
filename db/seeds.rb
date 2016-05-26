@@ -11,11 +11,12 @@ if Theme.count == 0
 
   archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
   10.times do |n|
-    ThemeServices::ImportFromArchive.call(archive_path: archive_path,
-                                          theme: Theme.new,
-                                          theme_attributes: { name: "Theme_#{n}",
-                                                              style_name: "Style_#{n}",
-                                                              price: 1.5*n, industry: "Deafult",
-                                                              partner_id: partner.result.id})
+    ThemeServices::ImportFromArchive
+      .call(archive_path: archive_path,
+            theme: Theme.new,
+            theme_attributes: {name: "Theme_#{n}",
+                               style_name: "Style_#{n}",
+                               price: 1.5*n, industry: "Deafult",
+                               partner_id: partner.result.id})
   end
 end

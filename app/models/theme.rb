@@ -36,13 +36,9 @@ class Theme < ActiveRecord::Base
 
   scope :sources,   -> { where(source_theme: nil) }
   scope :installed, -> { where('source_theme_id IS NOT NULL') }
-
   scope :main,     -> { where(role: Roles::MAIN).first }
   scope :unpublished, -> { where(role: Roles::UNPUBLISHED) }
 
-  validates  :partner_id, :industry, presence: true
-  validates :name, presence: true, uniqueness: true
-  
   validate  :default_directories_present,
             :default_layout_present,
             :default_templates_present,
