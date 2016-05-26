@@ -62,6 +62,10 @@ FactoryGirl.define do
     sequence(:content) { |n| "Content #{n}" }
   end
 
+  factory :partner, class: Partner do
+    sequence(:name)   { |n| "Name #{n}" }
+  end
+
   factory :product, class: Product do
     sequence(:name)        { |n| "Example #{n}" }
     sequence(:description) { |n| "Example #{n} description" }
@@ -97,6 +101,10 @@ FactoryGirl.define do
 
   factory :theme, class: Theme do
     sequence(:name)      { |n| "Theme#{n}" }
+  end
+
+  factory :theme_style, class: ThemeStyle do
+    sequence(:name) {|n| "StyleName#{n}"}
   end
 
   factory :user, class: User do
