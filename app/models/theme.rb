@@ -40,6 +40,9 @@ class Theme < ActiveRecord::Base
   scope :main,     -> { where(role: Roles::MAIN).first }
   scope :unpublished, -> { where(role: Roles::UNPUBLISHED) }
 
+  validates  :partner_id, :industry, presence: true
+  validates :name, presence: true, uniqueness: true
+  
   validate  :default_directories_present,
             :default_layout_present,
             :default_templates_present,

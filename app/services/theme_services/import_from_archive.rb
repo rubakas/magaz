@@ -34,6 +34,7 @@ module ThemeServices
       theme.name = attributes[:name]
       theme.price = attributes[:price]
       theme.industry = attributes[:industry]
+      theme.partner_id = attributes[:partner_id]
     end
 
     def _build_associated_assets_from_path(theme:, path:)
