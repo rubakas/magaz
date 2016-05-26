@@ -28,8 +28,10 @@ class Theme < ActiveRecord::Base
   ].freeze
 
   has_many   :assets
+  has_many   :theme_styles, dependent: :destroy
   has_many   :installed_themes, class_name: 'Theme', foreign_key: :source_theme_id
   belongs_to :shop
+  belongs_to :partner
   belongs_to :source_theme, class_name: 'Theme', foreign_key: :source_theme_id
 
   scope :sources,   -> { where(source_theme: nil) }
