@@ -17,11 +17,12 @@ module ThemeServices
 
         _build_associated_assets_from_path(theme: theme, path: root_path)
 
+        create_style(theme: theme, path: root_path) 
         set_attributes(theme, theme_attributes)
+        
         theme.save # run validations
-        ThemeServices::CreateThemeStyle.run(name: theme_attributes[:style_name],
-                                            theme_id: theme.id, image: '')
-
+      rescue RuntimeError
+        @theme.errors.add(:base, I18n.t('services.import_from_archive.no_styles'))
       ensure
         # remove the directory.
         _delete_tmp_path(tmp_path)
@@ -37,6 +38,23 @@ module ThemeServices
       theme.partner_id = attributes[:partner_id]
     end
 
+    def create_style(theme:, path:)
+
+      path_to_settings_data = "#{path}/config/settings_data.json"
+      json_file = File.read(path_to_settings_data)
+      settings = JSON.parse(json_file)
+      key = settings.keys.last # key = "presets"
+      theme_styles = settings[key]
+      unless theme_styles.empty?
+        theme_styles.each_key do |style_name|
+          theme.theme_styles.build(name: style_name)
+        end
+      else
+        raise RuntimeError.new()
+      end
+
+    end
+
     def _build_associated_assets_from_path(theme:, path:)
       Dir.glob("#{path}/**/*") do |current_path|
         unless ::File.directory?(current_path)
@@ -46,6 +64,7 @@ module ThemeServices
           theme.assets.build asset_attributes
         end
       end
+
     end
 
     def _create_tmp_path

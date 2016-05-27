@@ -301,7 +301,10 @@ en:
     create_partner:
       name_not_unique: "Name has already been taken"
       website_not_unique: "Website has already been taken"
-    
+
+    import_from_archive:
+      no_styles: "Theme hasn't any style"
+
     install_theme:
       invalid_shop_id: "Can't find shop with such id"
 
