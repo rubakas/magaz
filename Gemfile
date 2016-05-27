@@ -16,7 +16,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'kaminari'
 gem 'liquid'
-gem 'puma', '~> 3.0' # Use Puma as the app server
+gem 'puma' # Use Puma as the app server
 gem 'memcachier'
 gem 'pg', '~> 0.18' # Use postgresql as the database for Active Record
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
