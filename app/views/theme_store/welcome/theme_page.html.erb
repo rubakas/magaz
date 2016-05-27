@@ -2,12 +2,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 col-md-offset-1">
-      <h1><%= t('.name') %></h1>
-      <h4><%= t('.price') %></h4>
+      <h1><%= @theme.name if @theme%></h1>
+      <h4><%= t('.free_price') %></h4>
       <p><%= t('.info') %></p>
-      <button class="btn btn-success"><%= t('.preview_button') %></button><br>
+      <%= link_to t('.preview_button'), theme_store_preview_in_store_path, class: "btn btn-success" %><br>
       <a href="#"><%= t('.buy_theme') %></a>
-      <a href="#"><%= t('.view_demo') %></a>
+      <%= link_to t('.view_demo'), theme_store_demo_path %>
       <hr>
       <h4><%= t('.who_supports') %></h4>
       <p><%= t('.support_info') %></p>
@@ -27,11 +27,11 @@
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
       <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/955/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <p>Name</p>
+      <p><%= @styles[0].name if @styles[0]%></p>
     </div>
     <div class="col-md-3">
       <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/988/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <p>Name</p>  
+      <p><%= @styles[1].name if @styles[1]%></p>  
     </div>
   </div>
   <div class="row">
@@ -90,14 +90,14 @@
   <hr>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
-      <h4><%= t('.more_themes') %><a><%= t('.author') %></a></h4>
+      <h4><%= t('.more_themes') %><%= link_to t('.author'), theme_store_authors_themes_path %></h4>
     </div>  
   </div>
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
       <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/955/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <span>Name</span>
-      <span class="pull-right">price</span>
+      <span><%= @authors_themes[0].name if @authors_themes[0]%></span>
+      <span class="pull-right"><%= t('.free_price') %></span>
     </div>
   </div>
   <div class="row">
@@ -108,7 +108,10 @@
   <hr>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
-      <h4><%= t('.more') %><a><%= t('.templates') %></a></h4>
+      <h4>
+        <%= t('.more') %>
+        <%= link_to t('.templates'), theme_store_template_page_path %>
+      </h4>
     </div>  
   </div>
 
@@ -117,18 +120,18 @@
       <div class="row">
         <div class="col-md-4">
           <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/900/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-          <span>Name</span>
-          <span class="pull-right">price</span>
+          <span><%= @template_themes[0].name if @template_themes[0]%></span>
+          <span class="pull-right"><%= t('.free_price') %></span>
         </div>
         <div class="col-md-4">
           <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/806/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-          <span>Name</span>
-          <span class="pull-right">price</span>
+          <span><%= @template_themes[1].name if @template_themes[1]%></span>
+          <span class="pull-right"><%= t('.free_price') %></span>
         </div>
         <div class="col-md-4">
           <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/695/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-          <span>Name</span>
-          <span class="pull-right">price</span>
+          <span><%= @template_themes[2].name if @template_themes[2]%></span>
+          <span class="pull-right"><%= t('.free_price') %></span>
         </div>
       </div>
     </div>
