@@ -15,7 +15,6 @@ if Theme.count == 0
       .call(archive_path: archive_path,
             theme: Theme.new,
             theme_attributes: {name: "Theme_#{n}",
-                               style_name: "Style_#{n}",
                                price: 1.5*n, industry: "Deafult",
                                partner_id: partner.result.id})
   end
