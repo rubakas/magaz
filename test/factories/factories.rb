@@ -57,6 +57,11 @@ FactoryGirl.define do
     sequence(:name)   { |n| "Link #{n}" }
   end
 
+  factory :partner, class: Partner do
+    sequence(:name)   { |n| "Name#{n}" }
+    sequence(:website_url) { |n| "https://site#{n}.com" }
+  end
+
   factory :page, class: Page do
     sequence(:title)   { |n| "Title #{n}" }
     sequence(:content) { |n| "Content #{n}" }
@@ -97,6 +102,11 @@ FactoryGirl.define do
 
   factory :theme, class: Theme do
     sequence(:name)      { |n| "Theme#{n}" }
+  end
+
+  factory :theme_style, class: ThemeStyle do
+    sequence(:name)      { |n| "Theme#{n}" }
+    sequence(:theme_id)      { |n| n }
   end
 
   factory :user, class: User do

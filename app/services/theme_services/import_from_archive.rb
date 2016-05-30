@@ -11,19 +11,36 @@ module ThemeServices
       @theme = theme
 
       tmp_path = _create_tmp_path
-      begin
-        _unpack_archive(archive_path: archive_path, unpack_path: tmp_path)
-        root_path = _resolve_root_path(tmp_path)
+      Theme.transaction do
+        begin
+          _unpack_archive(archive_path: archive_path, unpack_path: tmp_path)
+          root_path = _resolve_root_path(tmp_path)
 
-        _build_associated_assets_from_path(theme: theme, path: root_path)
-        theme.save # run validations
-      ensure
-        # remove the directory.
-        _delete_tmp_path(tmp_path)
+          _build_associated_assets_from_path(theme: theme, path: root_path)
+
+          set_attributes(theme, theme_attributes)
+          
+          theme.save # run validations
+
+          service = ThemeServices::CreateThemeStyles.run(theme_id: theme.id, archive_path: root_path)
+          raise ActiveRecord::RecordInvalid if service.invalid?
+        rescue ActiveRecord::RecordInvalid
+          raise ActiveRecord::Rollback
+        ensure
+          # remove the directory.
+          _delete_tmp_path(tmp_path)
+        end
       end
     end
 
     private
+
+    def set_attributes(theme, attributes)
+      theme.name = attributes[:name]
+      theme.price = attributes[:price]
+      theme.industry = attributes[:industry]
+      theme.partner_id = attributes[:partner_id]
+    end
 
     def _build_associated_assets_from_path(theme:, path:)
       Dir.glob("#{path}/**/*") do |current_path|

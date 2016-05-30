@@ -3,6 +3,15 @@ require 'test_helper'
 class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
   setup do
     use_host THEME_STORE_HOSTNAME
+    @partner = create(:partner)
+    6.times do |n|
+      archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
+      theme = Theme.new
+      theme_attributes = { name: "New theme#{n}", price: 7.5*n , industry: "Other", partner_id: @partner.id}    
+      ThemeServices::ImportFromArchive.call archive_path: archive_path,
+                                                         theme: theme,
+                                                         theme_attributes: theme_attributes
+     end
   end
   
   test "should get homepage" do
