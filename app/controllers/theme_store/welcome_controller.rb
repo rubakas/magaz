@@ -2,7 +2,7 @@ class ThemeStore::WelcomeController < ApplicationController
   layout 'theme_store'
   
   def authors_themes
-    @authors_themes = Theme.all.to_a*10
+    @authors_themes = Partner.first.themes
   end
 
   def demo
@@ -10,7 +10,7 @@ class ThemeStore::WelcomeController < ApplicationController
   end
 
   def homepage
-    @themes = Theme.all.to_a*10
+    @themes = Theme.all
   end
 
   def installing
@@ -26,14 +26,14 @@ class ThemeStore::WelcomeController < ApplicationController
   end
 
   def template_page
-    @template_themes = Theme.all.to_a*10
+    @template_themes = Theme.all
   end
 
   def theme_page
     @theme = Theme.first
-    @authors_themes = Theme.all.to_a*10
-    @styles = Theme.all.to_a*10
-    @template_themes = Theme.all.to_a*10
+    @authors_themes = Theme.first.partner.themes.all
+    @styles = Theme.first.theme_styles.all
+    @template_themes = Theme.all
   end
 
 end

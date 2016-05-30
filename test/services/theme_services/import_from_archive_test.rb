@@ -35,10 +35,20 @@ class ThemeServices::ImportFromArchiveTest < ActiveSupport::TestCase
       ThemeServices::ImportFromArchive.call archive_path: @invalid_archive_path,
                                                        theme: @theme,
                                                        theme_attributes: @theme_attributes
-    assert_equal 1, archive_importer.theme.errors.count
-    assert_equal "Theme hasn't any style", archive_importer.theme.errors.full_messages.first
     assert_equal 0, Theme.count
     assert_equal 0, ThemeStyle.count
   end
+
+  test "should not create theme and style when theme hasn't any theme"  do
+    assert_equal 0, Theme.count
+    assert_equal 0, ThemeStyle.count
+    archive_importer =
+      ThemeServices::ImportFromArchive.call archive_path: @invalid_archive_path,
+                                                       theme: @theme,
+                                                       theme_attributes: @theme_attributes
+    assert_equal 0, Theme.count
+    assert_equal 0, ThemeStyle.count
+  end
+  
 end
 
