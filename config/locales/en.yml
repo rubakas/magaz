@@ -496,14 +496,14 @@ en:
         support: "Support"
         documentation: "Documentation"
         terms_of_service: "Terms of Service"
-        includes_styles: "Includes 2 styles"
+        includes_styles: "Includes %{value} style"
         store_using_theme: "Stores using this theme"
         review_heading: "Reviews"
         review_button: "Write a review"
         more_themes: "More themes by "
         author: "Author"
         more: "More "
-        templates: "Health & Beaty templates"
+        templates: "%{template} templates"
         button_more_themes: "More themes"
 
   welcome:
