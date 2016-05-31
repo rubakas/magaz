@@ -7,7 +7,7 @@
       <p><%= t('.info') %></p>
       <%= link_to t('.preview_button'), theme_store_preview_in_store_path, class: "btn btn-success" %><br>
       <a href="#"><%= t('.buy_theme') %></a>
-      <%= link_to t('.view_demo'), theme_store_demo_path %>
+      <%= link_to t('.view_demo'), theme_store_demo_path(@author) %>
       <hr>
       <h4><%= t('.who_supports') %></h4>
       <p><%= t('.support_info') %></p>
@@ -21,22 +21,20 @@
   </div>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
-      <h3><%= t('.includes_styles') %></h3>
+      <h3><%= t('.includes_styles', value: @styles.count) %></h3>
     </div>  
   </div>
   <div class="row">
-    <div class="col-md-3 col-md-offset-1">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/955/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <p><%= @styles[0].name%></p>
-    </div>
-    <div class="col-md-3">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/988/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <p><%= @styles[0].name%></p>  
-    </div>
+    <% @styles.each do |style| %>
+      <div class="col-md-3 col-md-offset-1">
+        <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/955/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+        <p><%= style.name%></p>
+      </div>
+    <% end %>
   </div>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
-      <h3><%= t('.store_using_theme') %></h3>
+      <h3><%= t('.store_using_theme')%></h3>
     </div>  
   </div>
   <div class="row">
@@ -90,15 +88,17 @@
   <hr>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
-      <h4><%= t('.more_themes') %><%= link_to t('.author'), theme_store_authors_themes_path %></h4>
+      <h4><%= t('.more_themes') %><%= link_to @author.name, theme_store_authors_themes_path(@author) %></h4>
     </div>  
   </div>
   <div class="row">
-    <div class="col-md-3 col-md-offset-1">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/955/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <span><%= @authors_themes[0].name%></span>
-      <span class="pull-right"><%= @authors_themes[0].price %></span>
-    </div>
+    <% @authors_themes.each do |author_theme| %>
+      <div class="col-md-3 col-md-offset-1">
+        <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/955/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+        <span><%= link_to author_theme.name, theme_store_theme_page_path(author_theme) %></span>
+        <span class="pull-right"><%= author_theme.price %></span>
+      </div>
+    <% end %>
   </div>
   <div class="row">
     <div class="col-md-2 col-md-offset-5">
@@ -110,7 +110,7 @@
     <div class="col-md-5 col-md-offset-1">
       <h4>
         <%= t('.more') %>
-        <%= link_to t('.templates'), theme_store_template_page_path %>
+        <%= link_to t('.templates', template: @theme.industry), theme_store_template_page_path(industry: @theme.industry) %>
       </h4>
     </div>  
   </div>
@@ -118,21 +118,13 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="row">
-        <div class="col-md-4">
-          <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/900/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-          <span><%= @template_themes[0].name%></span>
-          <span class="pull-right"><%= @template_themes[0].price %></span>
-        </div>
-        <div class="col-md-4">
-          <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/806/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-          <span><%= @template_themes[1].name%></span>
-          <span class="pull-right"><%= @template_themes[1].price %></span>
-        </div>
-        <div class="col-md-4">
-          <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/695/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-          <span><%= @template_themes[2].name%></span>
-          <span class="pull-right"><%= @template_themes[2].price %></span>
-        </div>
+        <% @template_themes.each do |template_theme| %>
+          <div class="col-md-4">
+            <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/900/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+            <span><%= link_to template_theme.name, theme_store_theme_page_path(template_theme) %></span>
+            <span class="pull-right"><%= template_theme.price %></span>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

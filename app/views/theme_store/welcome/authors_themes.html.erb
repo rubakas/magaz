@@ -3,42 +3,17 @@
     <h1><%= t('.heading') %></h1>
     <div class="col-md-2 col-md-offset-5"><hr/></div>
     <div class="col-md-4 col-md-offset-4 text">
-      <a href="#"><h4><%= t('.go_to_website') %></h4></a>
+      <h4><%= link_to t('.go_to_website'), @author.website_url%></h4>
     </div>
   </div>
   <div class="row">
+    <% @authors_themes.each do |theme| %>
     <div class="col-md-4">
       <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/1034/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <span><%= @authors_themes[0].name%></span>
-      <span class="pull-right"><%= @authors_themes[0].price %></span>
+      <span><%= link_to theme.name, theme_store_theme_page_path(theme)%></span>
+      <span class="pull-right"><%= theme.price %></span>
     </div>
-    <div class="col-md-4">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/1036/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <span><%= @authors_themes[1].name%></span>
-      <span class="pull-right"><%= @authors_themes[1].name%></span> 
-    </div>
-    <div class="col-md-4">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/737/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <span><%= @authors_themes[2].name%></span>
-      <span class="pull-right"><%= @authors_themes[2].price%></span>  
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/647/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <span><%= @authors_themes[3].name%></span>
-      <span class="pull-right"><%= @authors_themes[3].price%></span>
-    </div>
-    <div class="col-md-4">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/634/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <span><%= @authors_themes[4].name%></span>
-      <span class="pull-right"><%= @authors_themes[4].price%></span> 
-    </div>
-    <div class="col-md-4">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/636/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
-      <span><%= @authors_themes[5].name%></span>
-      <span class="pull-right"><%= @authors_themes[5].price%></span> 
-    </div>
+    <% end %>
   </div>
 
 <nav class="col-md-4 col-md-offset-5">
