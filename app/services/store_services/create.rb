@@ -158,10 +158,10 @@ class StoreServices::Create < ActiveInteraction::Base
   def _create_default_emails!(shop:)
     EmailTemplate::EMAIL_TEMPLATES.each do |template_type|
       @shop.email_templates.create(template_type: template_type,
-                                   name:          I18n.t("email_templates.#{template_type}.name"),
-                                   title:         I18n.t("email_templates.#{template_type}.title"),
-                                   body:          I18n.t("email_templates.#{template_type}.body"),
-                                   description:   I18n.t("email_templates.#{template_type}.description"))
+                                   name:          I18n.t("default.models.email_templates.#{template_type}.name"),
+                                   title:         I18n.t("default.models.email_templates.#{template_type}.title"),
+                                   body:          I18n.t("default.models.email_templates.#{template_type}.body"),
+                                   description:   I18n.t("default.models.email_templates.#{template_type}.description"))
     end
   end
 end
