@@ -1,0 +1,31 @@
+<%= render 'shared/sort_search_header', industries: @industries %>
+<div class="container">
+  <div>
+    <h1 class="text-center"><%= t('.heading') %></h1>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-5"><hr></div>
+    </div>
+    <h3 class="text-center"><%= t('.info') %></h3>
+  </div>
+  <div class="row">
+    <% if @themes %>
+    <%@themes.each do |theme| %>
+      <div class="col-md-4">
+        <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/1034/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+        <span><%= link_to theme.name, theme_store_theme_page_path(theme)%></span>
+        <span class="pull-right"><%= theme.price %></span>
+      </div>
+    <%end %>
+    <%end %>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <button class="btn btn-success"><%= t('.button_more_themes') %></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1"><hr></div>
+  </div>
+  <%= render 'shared/sell_theme' %>
+  <%= render "shared/get_started" %>
+</div>

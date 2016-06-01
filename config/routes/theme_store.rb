@@ -9,4 +9,5 @@ namespace :theme_store, path: '/' do
   get 'preview_in_store'      => 'welcome#preview_in_store'
   get "template_page/:id"     => 'welcome#template_page', as: "template_page"
   get "theme_page/:id"        => 'welcome#theme_page', as: "theme_page"
+  get 'themes'                => 'themes#index'
 end
