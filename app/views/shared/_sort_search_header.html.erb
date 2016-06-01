@@ -3,15 +3,15 @@
   	<div class="row">
       <div class="col-md-9">
       	<ul class="nav navbar-nav">
-        	<li><%= link_to t('.all'), request.query_parameters.merge(price: '')%></li>
-        	<li><%= link_to t('.free'), request.query_parameters.merge(price: "free") %></li>
-        	<li><%= link_to t('.premium'), request.query_parameters.merge(price: "paid") %></li>
+        	<li><%= link_to t('.all'), request.params.merge(price: '')%></li>
+        	<li><%= link_to t('.free'), request.params.merge(price: "free") %></li>
+        	<li><%= link_to t('.premium'), request.params.merge(price: "paid") %></li>
         	<li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= t('.all_industrues') %><span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to t('.all_industrues'), request.query_parameters.merge(industry: '') %></li>
-              <% industries.each do |industry| %>
-                <li><%= link_to industry, request.query_parameters.merge(industry: industry) %></li>
+              <li><%= link_to t('.all_industrues'), request.params.merge(industry: '') %></li>
+              <% Theme::IndustryCategories::INDUSTRIES_LIST.each do |industry| %>
+                <li><%= link_to industry, request.params.merge(industry: industry) %></li>
               <% end %>
             </ul>
           </li>
@@ -20,8 +20,8 @@
             <ul class="dropdown-menu">
               <li><a href="#"><%= t('.randomly') %></a></li>
               <li><a href="#"><%= t('.recent') %></a></li>
-              <li><%= link_to t('.price_low_to_high'), request.query_parameters.merge(order: "price") %></li>
-              <li><%= link_to t('.price_high_to_low'), request.query_parameters.merge(order: "price DESC") %></li>
+              <li><%= link_to t('.price_low_to_high'), request.params.merge(order: "price") %></li>
+              <li><%= link_to t('.price_high_to_low'), request.params.merge(order: "price DESC") %></li>
               <li><a href="#"><%= t('.popular') %></a></li>
             </ul>
           </li>

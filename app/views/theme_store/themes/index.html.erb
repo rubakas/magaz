@@ -12,7 +12,11 @@
       <div class="col-md-4">
         <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/1034/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
         <span><%= link_to theme.name, theme_store_theme_page_path(theme)%></span>
-        <span class="pull-right"><%= theme.price %></span>
+        <% if theme.price == 0 %>
+        <span class="pull-right"><%= t('.free_price') %></span>
+        <% else %>
+        <span class="pull-right"><%= theme.price %>$</span>
+        <% end %>
       </div>
     <%end %>
   </div>

@@ -399,6 +399,11 @@ en:
     themes:
       show:
         install: "Install theme"
+      index:
+        heading: "Choose a theme for your online store"
+        info: "Responsive themes, easily customized to fit your brand"
+        button_more_themes: "More themes"
+        free_price: "Free"
     welcome:
       authors_themes:
         button: "More themes"
@@ -410,11 +415,6 @@ en:
         desktop: "desktop"
         mobile: "phone"
         preview: "Preview in your Store"
-      homepage:
-        heading: "Choose a theme for your online store"
-        info: "Responsive themes, easily customized to fit your brand"
-        button_more_themes: "More themes"
-        free_price: "Free"
       installing:
         heading: "You're about to install Jumpstart to store-name.magaz.com"
         or: "or"
