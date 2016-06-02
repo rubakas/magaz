@@ -38,7 +38,6 @@ module ThemeServices
     def set_attributes(theme, attributes)
       theme.name = attributes[:name]
       theme.price = attributes[:price]
-      theme.industry = attributes[:industry]
       theme.partner_id = attributes[:partner_id]
     end
 
