@@ -17,5 +17,7 @@ class ThemeStyle < ApplicationRecord
         where(industry: industry_name) if IndustryCategories::INDUSTRIES_LIST.include?(industry_name)
       end 
     end
+
+  scope :themes_price_category, -> (price_category_name) {joins(:theme).merge(Theme.price_category(price_category_name))}
   
 end
