@@ -10,7 +10,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= t('.all_industrues') %><span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%= link_to t('.all_industrues'), request.params.merge(industry: '') %></li>
-              <% Theme::IndustryCategories::INDUSTRIES_LIST.each do |industry| %>
+              <% ThemeStyle::IndustryCategories::INDUSTRIES_LIST.each do |industry| %>
                 <li><%= link_to industry, request.params.merge(industry: industry) %></li>
               <% end %>
             </ul>

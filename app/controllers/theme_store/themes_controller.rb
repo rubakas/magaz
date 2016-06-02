@@ -3,9 +3,9 @@ class ThemeStore::ThemesController < ApplicationController
 
 
   def index
-    @themes = Theme.price_category(permitted_params[:price]).
-                industry_category(permitted_params[:industry]).
-                  order(permitted_params[:order])
+    @styles = ThemeStyle.industry_category(permitted_params[:industry])
+                .joins(:theme).merge(Theme.price_category(permitted_params[:price]))
+                  .order(permitted_params[:order])
   end
 
   private
