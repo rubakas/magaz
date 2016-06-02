@@ -3,14 +3,14 @@ class ThemeStore::ThemesController < ApplicationController
 
 
   def index
-    @themes = Theme.price_category(premitted_params[:price]).
-                industry_category(premitted_params[:industry]).
-                  order(premitted_params[:order])
+    @themes = Theme.price_category(permitted_params[:price]).
+                industry_category(permitted_params[:industry]).
+                  order(permitted_params[:order])
   end
 
   private
 
-  def premitted_params
+  def permitted_params
     params.permit(:price, :industry, :order)
   end
 
