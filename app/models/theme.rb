@@ -22,30 +22,17 @@ class Theme < ActiveRecord::Base
     PREMIUM = "premium".freeze
   end
 
-  module IndustryCategories
-    INDUSTRIES_LIST = ["Art & Photography", "Clothing & Fashion",
-                       "Electronics", "Food & Drink",
-                       "Health & Beauty", "Home & Garden",
-                       "Jewelry & Accessories", "Other",
-                       "Responsive", "Sports & Recreation", "Toys & Games" ].freeze
-  end
 
-scope :price_category, -> (price_category_name) do
-    unless price_category_name.blank?
-      if price_category_name == PriceCategories::FREE
-        where(price: 0) 
-      elsif price_category_name == PriceCategories::PREMIUM 
-        where.not(price: 0)
+  scope :price_category, -> (price_category_name) do
+      unless price_category_name.blank?
+        if price_category_name == PriceCategories::FREE
+          where(price: 0) 
+        elsif price_category_name == PriceCategories::PREMIUM 
+          where.not(price: 0)
+        end
       end
     end
-  end
-                                                
 
-scope :industry_category, -> (industry_name) do
-    unless industry_name.blank?
-      where(industry: industry_name) if IndustryCategories::INDUSTRIES_LIST.include?(industry_name)
-    end 
-  end
 
   REQUIRED_DIRECTORIES = %w[assets config layout snippets templates].freeze
   REQUIRED_TEMPLATES = %w[
