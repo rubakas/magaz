@@ -8,6 +8,21 @@ class ThemeStore::ThemesController < ApplicationController
                   .order(permitted_params[:order])
   end
 
+  def show_style
+    @authors_styles = []
+    @style = ThemeStyle.find_by_id(params[:id])
+    @template_styles = ThemeStyle.where.not(id: params[:id]).where(industry: @style.industry)
+    @theme = @style.theme
+    @theme_styles = @theme.theme_styles
+    @author = Partner.find_by_id(@theme.partner.id)
+    @author.themes.each do |theme|
+      theme.theme_styles.each do |style|
+        @authors_styles << style
+      end
+    end
+    @authors_styles = @authors_styles.take(3)
+  end
+
   private
 
   def permitted_params

@@ -10,4 +10,5 @@ namespace :theme_store, path: '/' do
   get "template_page/:id"     => 'welcome#template_page', as: "template_page"
   get "theme_page/:id"        => 'welcome#theme_page', as: "theme_page"
   get 'themes'                => 'themes#index'
+  get "style/:id"             => 'themes#show_style', as: "style"
 end

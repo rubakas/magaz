@@ -1,0 +1,146 @@
+<%= render 'shared/sort_search_header' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-1">
+      <h1><%= @theme.name%></h1>
+      <% if @theme.price != 0 %>
+        <h4><%= @theme.price%>$</h4>
+      <% else %>
+        <h4><%= t('.free_price')%></h4>
+      <% end %>
+      <p><%= t('.info') %></p>
+      <%= link_to t('.preview_button'), class: "btn btn-success" %><br>
+      <%= link_to t('.buy_theme') %>
+      <%= link_to t('.view_demo')%>
+      <hr>
+      <h4><%= t('.who_supports') %></h4>
+      <p><%= t('.support_info') %></p>
+      <%= link_to t('.support') %>
+      <%= link_to t('.documentation') %>
+      <%= link_to t('.terms_of_service') %>
+    </div>
+    <div class="col-md-6">
+      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/911/main/original.jpg" class="img-thumbnail" alt="Image">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <h3><%= t('.includes_styles', value: @theme_styles.count) %></h3>
+    </div>  
+  </div>
+  <div class="row">
+    <% @theme_styles.each do |style| %>
+      <div class="col-md-3 col-md-offset-1">
+        <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/1042/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+        <p><%= link_to style.name, theme_store_style_path(style)%></p>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <h3><%= t('.store_using_theme')%></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1">
+      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/225/theme_example/original.png" class="img-thumbnail" alt="Image">
+    </div>
+    <div class="col-md-2">
+      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/240/theme_example/original.png" class="img-thumbnail" alt="Image"> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <h4><%= t('.review_heading') %></h4>
+    </div>
+    <div class="col-md-5">
+      <button class="btn btn-success pull-right"><%= t('.review_button') %></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1 col-md-offset-1">
+      <span class="glyphicon glyphicon-thumbs-up center-block" aria-hidden="true"></span>
+    </div>
+    <div class="col-md-4">
+      <p>Simply Kickass! This is a great theme with all the elements you need to get started. The support has also been prompt and helpful. Look forward to seeing what this team dreams up next.</p>
+      <p>— CHA CHA TEA</p>
+    </div>
+    <div class="col-md-1">
+      <span class="glyphicon glyphicon-thumbs-up center-block" aria-hidden="true"></span>
+    </div>
+    <div class="col-md-4">
+      <p>Great clean theme with quick and friendly support! Highly recommended.</p>
+      <p>— best_shopper</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1 col-md-offset-1">
+      <span class="glyphicon glyphicon-thumbs-up center-block" aria-hidden="true"></span>
+    </div>
+    <div class="col-md-4">
+      <p>Simply Kickass! This is a great theme with all the elements you need to get started. The support has also been prompt and helpful. Look forward to seeing what this team dreams up next.</p>
+      <p>— CHA CHA TEA</p>
+    </div>
+    <div class="col-md-1">
+      <span class="glyphicon glyphicon-thumbs-down center-block" aria-hidden="true"></span>
+    </div>
+    <div class="col-md-4">
+      <p>Great clean theme with quick and friendly support! Highly recommended.</p>
+      <p>— worth_shopper</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <h4><%= t('.more_themes') %><%= link_to @author.name %></h4>
+    </div>  
+  </div>
+  <div class="row">
+    <% @authors_styles.each do |author_style| %>
+      <div class="col-md-3 col-md-offset-1">
+        <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/1044/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+        <span><%= link_to "#{author_style.theme.name} — #{author_style.name}", theme_store_style_path(author_style) %></span>
+        <% if author_style.theme.price != 0 %>
+          <span class="pull-right"><%= author_style.theme.price %>$</span>
+        <% else %>
+          <span class="pull-right"><%= t('.free_price') %></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <button class="btn btn-success"><%= t('.button_more_themes') %></button>
+    </div>
+  </div>
+  <hr>
+
+  <% unless  @template_styles.empty? %>
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1">
+        <h4>
+          <%= t('.more') %>
+          <%= link_to t('.templates', template: @style.industry) %>
+        </h4>
+      </div>  
+    </div>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+          <% @template_styles.each do |template_style| %>
+            <div class="col-md-4">
+              <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/900/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+              <span><%= link_to "#{template_style.theme.name} — #{template_style.name}", theme_store_style_path(template_style) %></span>
+              <% if template_style.theme.price != 0 %>
+                <span class="pull-right"><%= template_style.theme.price %>$</span>
+              <% else %>
+                <span class="pull-right"><%= t('.free_price') %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= render "shared/get_started" %>
+</div>
