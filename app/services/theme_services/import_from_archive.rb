@@ -23,7 +23,6 @@ module ThemeServices
           theme.save # run validations
 
           service = ThemeServices::CreateThemeStyles.run(theme_id: theme.id, archive_path: root_path)
-          raise ActiveRecord::RecordInvalid if service.invalid?
         rescue ActiveRecord::RecordInvalid
           raise ActiveRecord::Rollback
         ensure
