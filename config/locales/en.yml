@@ -420,7 +420,7 @@ en:
         store_using_theme: "Stores using this theme"
         review_heading: "Reviews"
         review_button: "Write a review"
-        more_themes: "More themes by "
+        more_themes_by: "More themes by "
         author: "Author"
         more: "More "
         templates: "%{template} templates"

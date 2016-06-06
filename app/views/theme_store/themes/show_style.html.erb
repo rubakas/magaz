@@ -9,15 +9,15 @@
         <h4><%= t('.free_price')%></h4>
       <% end %>
       <p><%= t('.info') %></p>
-      <%= link_to t('.preview_button'), class: "btn btn-success" %><br>
-      <%= link_to t('.buy_theme') %>
-      <%= link_to t('.view_demo')%>
+      <%= link_to t('.preview_button'), theme_store_preview_in_your_store_path, class: "btn btn-success" %><br>
+      <%= link_to t('.buy_theme'), theme_store_buy_theme_path %>
+      <%= link_to t('.view_demo'), theme_store_view_demo_path %>
       <hr>
       <h4><%= t('.who_supports') %></h4>
       <p><%= t('.support_info') %></p>
-      <%= link_to t('.support') %>
-      <%= link_to t('.documentation') %>
-      <%= link_to t('.terms_of_service') %>
+      <%= link_to t('.support'), theme_store_support_path %>
+      <%= link_to t('.documentation'), theme_store_documentation_path %>
+      <%= link_to t('.terms_of_service'), theme_store_terms_of_service_path %>
     </div>
     <div class="col-md-6">
       <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/911/main/original.jpg" class="img-thumbnail" alt="Image">
@@ -92,7 +92,7 @@
   <hr>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
-      <h4><%= t('.more_themes') %><%= link_to @author.name %></h4>
+      <h4><%= t('.more_themes_by') %><%= link_to @author.name %></h4>
     </div>  
   </div>
   <div class="row">
@@ -107,11 +107,6 @@
         <% end %>
       </div>
     <% end %>
-  </div>
-  <div class="row">
-    <div class="col-md-2 col-md-offset-5">
-      <button class="btn btn-success"><%= t('.button_more_themes') %></button>
-    </div>
   </div>
   <hr>
 

@@ -23,6 +23,24 @@ class ThemeStore::ThemesController < ApplicationController
     @authors_styles = @authors_styles.take(3)
   end
 
+  def preview_in_your_store
+  end
+  
+  def buy_theme
+  end
+  
+  def view_demo
+  end
+  
+  def support
+  end
+    
+  def documentation
+  end
+  
+  def terms_of_service
+  end
+
   private
 
   def permitted_params

@@ -11,4 +11,11 @@ namespace :theme_store, path: '/' do
   get "theme_page/:id"        => 'welcome#theme_page', as: "theme_page"
   get 'themes'                => 'themes#index'
   get "style/:id"             => 'themes#show_style', as: "style"
+  get 'preview_in_your_store' => 'themes#preview_in_your_store'
+  get 'buy_theme'             => 'themes#buy_theme'
+  get 'view_demo'             => 'themes#view_demo'
+  get 'support'               => 'themes#support'
+  get 'documentation'         => 'themes#documentation'
+  get 'terms_of_service'      => 'themes#terms_of_service'
+  
 end
