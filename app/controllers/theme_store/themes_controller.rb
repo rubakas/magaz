@@ -1,6 +1,6 @@
 class ThemeStore::ThemesController < ApplicationController
   layout 'theme_store'
-
+  helper_method :sort_by
 
   def index
     @styles = ThemeStyle.industry_category(permitted_params[:industry])
@@ -9,19 +9,15 @@ class ThemeStore::ThemesController < ApplicationController
   end
 
   def show_style
-    @authors_styles = []
     @style = ThemeStyle.find_by_id(params[:id])
-    @template_styles = ThemeStyle.where.not(id: params[:id]).where(industry: @style.industry)
+    @industry_styles = ThemeStyle.get_industry_styles(@style)
     @theme = @style.theme
-    @theme_styles = @theme.theme_styles
-    @author = Partner.find_by_id(@theme.partner.id)
-    @author.themes.each do |theme|
-      theme.theme_styles.each do |style|
-        @authors_styles << style
-      end
-    end
-    @authors_styles = @authors_styles.take(3)
+    @author = @theme.partner
+    @authors_styles = ThemeStyle.get_partner_styles(@author)
   end
+
+  def show_author
+  end  
 
   def preview_in_your_store
   end
@@ -43,8 +39,12 @@ class ThemeStore::ThemesController < ApplicationController
 
   private
 
-  def permitted_params
-    params.permit(:price, :industry, :order)
-  end
+    def permitted_params
+      params.permit(:price, :industry, :order)
+    end
+
+    def sort_by(key, value)
+      request.params.merge(key.to_sym => value).slice!(:id, :action, :controller)
+    end
 
 end

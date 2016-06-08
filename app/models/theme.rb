@@ -33,7 +33,6 @@ class Theme < ActiveRecord::Base
       end
     end
 
-
   REQUIRED_DIRECTORIES = %w[assets config layout snippets templates].freeze
   REQUIRED_TEMPLATES = %w[
     templates/blog.liquid

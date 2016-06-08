@@ -1,5 +1,5 @@
 namespace :theme_store, path: '/' do
-  root 'welcome#homepage'
+  root 'themes#index'
   get "authors_themes/:id"    => 'welcome#authors_themes', as: "authors_themes"
   get "demo/:id"              => 'welcome#demo', as: "demo"
   get 'homepage'              => 'welcome#homepage'
@@ -17,5 +17,6 @@ namespace :theme_store, path: '/' do
   get 'support'               => 'themes#support'
   get 'documentation'         => 'themes#documentation'
   get 'terms_of_service'      => 'themes#terms_of_service'
+  get "author/:id"            => 'themes#show_author', as: "author"
   
 end

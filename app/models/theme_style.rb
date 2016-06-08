@@ -20,4 +20,7 @@ class ThemeStyle < ApplicationRecord
 
   scope :themes_price_category, -> (price_category_name) {joins(:theme).merge(Theme.price_category(price_category_name))}
   
+  scope :get_industry_styles, -> (style) {self.where.not(id: style.id).where(industry: style.industry).limit(3)}
+
+  scope :get_partner_styles, -> (partner) {joins(:theme).merge(Theme.where(partner_id: partner.id)).limit(3)}  
 end

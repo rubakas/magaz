@@ -1319,7 +1319,7 @@ en:
       payments: "Payments"
       taxes: "Taxes"
       webhooks: "Webhooks"
-    sort_search_header:
+    sort_search_panel:
       all: "All"
       free: "Free"
       premium: "Premium"
