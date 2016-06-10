@@ -422,8 +422,7 @@ en:
         review_button: "Write a review"
         more_themes_by: "More themes by "
         author: "Author"
-        more: "More "
-        templates: "%{template} templates"
+        more_templates_html: "More %{industry} templates"
         button_more_themes: "More themes"
     welcome:
       authors_themes:

@@ -24,14 +24,14 @@ class Theme < ActiveRecord::Base
 
 
   scope :price_category, -> (price_category_name) do
-      unless price_category_name.blank?
-        if price_category_name == PriceCategories::FREE
-          where(price: 0) 
-        elsif price_category_name == PriceCategories::PREMIUM 
-          where.not(price: 0)
-        end
+    unless price_category_name.blank?
+      if price_category_name == PriceCategories::FREE
+        where(price: 0) 
+      elsif price_category_name == PriceCategories::PREMIUM 
+        where.not(price: 0)
       end
     end
+  end
 
   REQUIRED_DIRECTORIES = %w[assets config layout snippets templates].freeze
   REQUIRED_TEMPLATES = %w[
