@@ -26,6 +26,7 @@ if Theme.count == 0
             theme_attributes: {name: attributes[:names][n],
                                price: attributes[:prices][n],
                                partner_id: partner.result.id})
+    theme.update_attributes(rating: rand(1..50))
     theme.theme_styles.each do |style|
       File.open(Rails.root+"test/fixtures/files/screenshots/#{attributes[:names][n]}-#{attributes[:styles][n]}.jpg") do |file|
         style.image = file

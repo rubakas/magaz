@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602151432) do
+ActiveRecord::Schema.define(version: 20160613162357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -314,6 +314,7 @@ ActiveRecord::Schema.define(version: 20160602151432) do
     t.string   "role"
     t.decimal  "price"
     t.integer  "partner_id"
+    t.float    "rating"
     t.index ["partner_id"], name: "index_themes_on_partner_id", using: :btree
   end
 

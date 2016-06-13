@@ -22,7 +22,7 @@
               <li><%= link_to t('.recent'), theme_store_path(set_sorting_params('order', "created_at DESC")) %></li>
               <li><%= link_to t('.price_low_to_high'), theme_store_path(set_sorting_params('order', "price")) %></li>
               <li><%= link_to t('.price_high_to_low'), theme_store_path(set_sorting_params('order', "price DESC")) %></li>
-              <li><a href="#"><%= t('.popular') %></a></li>
+              <li><%= link_to t('.popular'), theme_store_path(set_sorting_params('order', "rating DESC")) %></li>
             </ul>
           </li>
     		</ul>
