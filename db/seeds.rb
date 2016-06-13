@@ -14,7 +14,8 @@ if Theme.count == 0
                              "Health & Beauty", "Art & Photography", "Jewelry & Accessories" ],
                 prices: [ 140, 140, 160, 0, 150, 160, 120, 180, 180, 0 ],
                 styles: ["Cool", "Dark", "Warm", "Bold", "Coffee", "Classic", "Travel",
-                         "Spring", "Standfort", "Outdoors"] }
+                         "Spring", "Standfort", "Outdoors"],
+                comment: "This is example of review which created by backend team"}
   partner = ThemeServices::CreatePartner.run(name: "Magaz.com", website_url: "https://magaz.com")
   archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
 
@@ -32,7 +33,8 @@ if Theme.count == 0
         style.image = file
       end  
       style.update_attributes(industry: attributes[:industries][n], name: attributes[:styles][n])
-    end  
+    end
+    Review.create(body: attributes[:comment], mark: rand(-1..1), theme_id: theme.id, user: User.last)
   end
 end
 

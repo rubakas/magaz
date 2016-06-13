@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include Concerns::PasswordAuthenticable
 
   has_many    :events, as: :subject
+  has_many    :reviews
   belongs_to  :shop
 
   def full_name

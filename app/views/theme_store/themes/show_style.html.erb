@@ -54,41 +54,29 @@
       <h4><%= t('.review_heading') %></h4>
     </div>
     <div class="col-md-5">
-      <button class="btn btn-success pull-right"><%= t('.review_button') %></button>
+      <%= link_to t('.review_button'), theme_store_create_review_path, class: "btn btn-success pull-right" %>
     </div>
   </div>
+  
   <div class="row">
-    <div class="col-md-1 col-md-offset-1">
-      <span class="glyphicon glyphicon-thumbs-up center-block" aria-hidden="true"></span>
-    </div>
-    <div class="col-md-4">
-      <p>Simply Kickass! This is a great theme with all the elements you need to get started. The support has also been prompt and helpful. Look forward to seeing what this team dreams up next.</p>
-      <p>— CHA CHA TEA</p>
-    </div>
-    <div class="col-md-1">
-      <span class="glyphicon glyphicon-thumbs-up center-block" aria-hidden="true"></span>
-    </div>
-    <div class="col-md-4">
-      <p>Great clean theme with quick and friendly support! Highly recommended.</p>
-      <p>— best_shopper</p>
-    </div>
+    <% @style.theme.reviews.each do |review| %>
+      <div class="col-md-1">
+        <% case review.mark %>
+          <% when -1 %>
+            <span class="glyphicon glyphicon-thumbs-down center-block" aria-hidden="true"></span>
+          <% when 0 %>
+            <span class="glyphicon glyphicon-hand-right center-block" aria-hidden="true"></span>
+          <% when 1 %>
+            <span class="glyphicon glyphicon-thumbs-up center-block" aria-hidden="true"></span>    
+        <% end %>  
+      </div>
+      <div class="col-md-5">
+        <p><%= review.body %></p>
+        <p>— <%= review.user.full_name %></p>
+      </div>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="col-md-1 col-md-offset-1">
-      <span class="glyphicon glyphicon-thumbs-up center-block" aria-hidden="true"></span>
-    </div>
-    <div class="col-md-4">
-      <p>Simply Kickass! This is a great theme with all the elements you need to get started. The support has also been prompt and helpful. Look forward to seeing what this team dreams up next.</p>
-      <p>— CHA CHA TEA</p>
-    </div>
-    <div class="col-md-1">
-      <span class="glyphicon glyphicon-thumbs-down center-block" aria-hidden="true"></span>
-    </div>
-    <div class="col-md-4">
-      <p>Great clean theme with quick and friendly support! Highly recommended.</p>
-      <p>— worth_shopper</p>
-    </div>
-  </div>
+
   <hr>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">

@@ -2,6 +2,15 @@ class ThemeStore::ThemesController < ApplicationController
   layout 'theme_store'
   helper_method :set_sorting_params
 
+  def buy_theme
+  end 
+
+  def create_review
+  end
+
+  def documentation
+  end
+  
   def index
     @styles = ThemeStyle
               .industry_category(permitted_params[:industry])
@@ -9,32 +18,26 @@ class ThemeStore::ThemesController < ApplicationController
               .order(permitted_params[:order])
   end
 
+  def preview_in_your_store
+  end
+  
+  def show_author
+  end
+
+  def show_industry_styles
+  end
+  
   def show_style
     @style = Theme.find(params[:id]).theme_styles.find(params[:style_id])
   end
 
-  def show_author
-  end  
-
-  def show_industry_styles
-  end
-
-  def preview_in_your_store
-  end
-  
-  def buy_theme
-  end
-  
-  def view_demo
-  end
-  
   def support
   end
     
-  def documentation
+  def terms_of_service
   end
   
-  def terms_of_service
+  def view_demo
   end
 
   private
@@ -44,7 +47,7 @@ class ThemeStore::ThemesController < ApplicationController
     end
 
     def set_sorting_params(key, value)
-      request.params.merge(key.to_sym => value).slice!(:id, :action, :controller)
+      request.params.merge(key.to_sym => value).slice!(:id, :action, :controller, :style_id)
     end
 
 end
