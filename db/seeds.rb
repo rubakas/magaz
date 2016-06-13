@@ -26,7 +26,12 @@ if Theme.count == 0
             theme_attributes: {name: attributes[:names][n],
                                price: attributes[:prices][n],
                                partner_id: partner.result.id})
-    theme.theme_styles.first.update_attributes(industry: attributes[:industries][n], name: attributes[:styles][n])
+    theme.theme_styles.each do |style|
+      File.open(Rails.root+"test/fixtures/files/screenshots/#{attributes[:names][n]}-#{attributes[:styles][n]}.jpg") do |file|
+        style.image = file
+      end  
+      style.update_attributes(industry: attributes[:industries][n], name: attributes[:styles][n])
+    end  
   end
-
 end
+

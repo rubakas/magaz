@@ -10,7 +10,7 @@
   <div class="row">
     <%@styles.each do |style| %>
       <div class="col-md-4">
-        <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/1034/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+        <%= image_tag style.image %>
         <span><%= link_to "#{style.theme.name} — #{style.name}", theme_store_style_path(id: style.theme.id, style_id: style.id)%></span>
         <% if style.theme.price == 0 %>
         <span class="pull-right"><%= t('.free_price') %></span>

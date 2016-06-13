@@ -20,7 +20,7 @@
       <%= link_to t('.terms_of_service'), theme_store_terms_of_service_path %>
     </div>
     <div class="col-md-6">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/911/main/original.jpg" class="img-thumbnail" alt="Image">
+      <%= image_tag @style.image %>
     </div>
   </div>
   <div class="row">
@@ -31,7 +31,7 @@
   <div class="row">
     <% @style.theme.theme_styles.each do |style| %>
       <div class="col-md-3 col-md-offset-1">
-        <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/1042/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+        <%= image_tag style.image.url %>
         <p><%= link_to style.name, theme_store_style_path(id: style.theme.id, style_id: style.id)%></p>
       </div>
     <% end %>
@@ -98,7 +98,7 @@
   <div class="row">
     <% @style.theme.partner.theme_styles.with_exception_of(@style).take(3).each do |partner_style| %>
       <div class="col-md-3 col-md-offset-1">
-        <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/1044/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+        <%= image_tag partner_style.image.url %>
         <span><%= link_to "#{partner_style.theme.name} — #{partner_style.name}", theme_store_style_path(id: partner_style.theme.id, style_id: partner_style.id) %></span>
         <% if partner_style.theme.price != 0 %>
           <span class="pull-right"><%= partner_style.theme.price %>$</span>
@@ -123,7 +123,7 @@
         <div class="row">
           <% @style.industry_styles.with_exception_of(@style).take(3).each do |industry_style| %>
             <div class="col-md-4">
-              <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/900/main/optimized_large.jpg" class="img-thumbnail" alt="Image">
+              <%= image_tag industry_style.image.url %>
               <span><%= link_to "#{industry_style.theme.name} — #{industry_style.name}", theme_store_style_path(id: industry_style.theme.id, style_id: industry_style.id) %></span>
               <% if industry_style.theme.price != 0 %>
                 <span class="pull-right"><%= industry_style.theme.price %>$</span>

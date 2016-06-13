@@ -4,6 +4,8 @@ class ThemeStyle < ApplicationRecord
 
   validates :name, uniqueness: { scope: :theme_id }
 
+  mount_uploader :image, ImageUploader
+  
   module IndustryCategories
     INDUSTRIES_LIST = ["Art & Photography", "Clothing & Fashion",
                        "Electronics", "Food & Drink",
