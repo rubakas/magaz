@@ -31,7 +31,7 @@
   <div class="row">
     <% @style.theme.theme_styles.each do |style| %>
       <div class="col-md-3 col-md-offset-1">
-        <%= image_tag style.image.url %>
+        <%= image_tag style.image %>
         <p><%= link_to style.name, theme_store_style_path(id: style.theme.id, style_id: style.id)%></p>
       </div>
     <% end %>
@@ -86,7 +86,7 @@
   <div class="row">
     <% @style.theme.partner.theme_styles.with_exception_of(@style).take(3).each do |partner_style| %>
       <div class="col-md-3 col-md-offset-1">
-        <%= image_tag partner_style.image.url %>
+        <%= image_tag partner_style.image %>
         <span><%= link_to "#{partner_style.theme.name} — #{partner_style.name}", theme_store_style_path(id: partner_style.theme.id, style_id: partner_style.id) %></span>
         <% if partner_style.theme.price != 0 %>
           <span class="pull-right"><%= partner_style.theme.price %>$</span>
@@ -111,7 +111,7 @@
         <div class="row">
           <% @style.industry_styles.with_exception_of(@style).take(3).each do |industry_style| %>
             <div class="col-md-4">
-              <%= image_tag industry_style.image.url %>
+              <%= image_tag industry_style.image %>
               <span><%= link_to "#{industry_style.theme.name} — #{industry_style.name}", theme_store_style_path(id: industry_style.theme.id, style_id: industry_style.id) %></span>
               <% if industry_style.theme.price != 0 %>
                 <span class="pull-right"><%= industry_style.theme.price %>$</span>
