@@ -9,6 +9,7 @@ class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
     @free_styles = ThemeStyle.themes_price_category("free")
     @premium_styles = ThemeStyle.themes_price_category("premium")
     @industry_styles = ThemeStyle.industry_category("Food & Drink")
+    @partner_style = @style.theme.partner.theme_styles.with_exception_of(@style).take(3).first
   end
 
   test "should get index" do
@@ -23,6 +24,14 @@ class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content? 'Template categories'
     click_link "#{@style.theme.name} — #{@style.name}"
     assert current_path == "/theme/#{@style.theme.id}/style/#{@style.id}"
+  end
+
+  test "images should be clickable" do
+    visit theme_store_themes_path
+    find("img[alt='#{@style.theme.name} #{@style.name.downcase}']").click
+    assert current_path == "/theme/#{@style.theme.id}/style/#{@style.id}"
+    find("img[alt='#{@partner_style.theme.name} #{@partner_style.name.downcase}']").click
+    assert current_path == "/theme/#{@partner_style.theme.id}/style/#{@partner_style.id}"
   end
 
   test "should get style" do
