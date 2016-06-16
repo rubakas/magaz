@@ -10,10 +10,6 @@ class AdminServices::ProductImage::ChangeProductImageTest < ActiveSupport::TestC
     @product_image = create(:product_image, product: @product, image: @image)
   end
 
-  teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/uploads"])
-  end
-
   test "should update image with valid params" do
     assert_equal 1, ProductImage.count
     service = AdminServices::ProductImage::ChangeProductImage

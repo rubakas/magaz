@@ -8,10 +8,6 @@ class AdminServices::AssetFile::ChangeAssetFileTest < ActiveSupport::TestCase
     @created_file = create(:file, shop: @shop, file: @file)
   end
 
-  teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
-  end
-
   test "should update file with valid params" do
     service = AdminServices::AssetFile::ChangeAssetFile
                 .run(id: @created_file.id,
