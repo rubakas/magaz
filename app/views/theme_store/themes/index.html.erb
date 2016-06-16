@@ -5,7 +5,11 @@
     <div class="row">
       <div class="col-md-2 col-md-offset-5"><hr></div>
     </div>
-    <h3 class="text-center"><%= t('.info') %></h3>
+    <% if params[:industry] %>
+      <h3 class="text-center"><%= t('.browse_industries_themes', industry: params[:industry]) %></h3>
+    <% else %>
+      <h3 class="text-center"><%= t('.info') %></h3>
+    <% end %>
   </div>
   <div class="row">
     <%@styles.each do |style| %>

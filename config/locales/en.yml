@@ -402,6 +402,7 @@ en:
       index:
         heading: "Choose a theme for your online store"
         info: "Responsive themes, easily customized to fit your brand"
+        browse_industries_themes: "Browse all %{industry} themes"
         button_more_themes: "More themes"
         free_price: "Free"
       show_style:
