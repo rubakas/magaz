@@ -75,4 +75,11 @@ class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should get author styles" do
+    visit theme_store_author_path(@style.theme.partner)
+    assert current_path == "/authors/#{@style.theme.partner.id}"
+    assert page.has_content? "All of #{@style.theme.partner.name}'s Themes"
+    assert page.has_content? "Go to their website"
+    assert page.has_css?('ul.pagination')
+  end
 end

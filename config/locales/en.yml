@@ -416,7 +416,8 @@ en:
         support: "Support"
         documentation: "Documentation"
         terms_of_service: "Terms of Service"
-        includes_styles: "Includes %{value} style"
+        includes_styles: "Includes %{number_of_styles}"
+        style: "style"
         store_using_theme: "Stores using this theme"
         review_heading: "Reviews"
         review_button: "Write a review"
@@ -424,6 +425,10 @@ en:
         author: "Author"
         more_templates_html: "More %{industry} templates"
         button_more_themes: "More themes"
+      show_author: 
+        heading: "All of %{author}'s Themes"
+        go_to_website: "Go to their website ›"
+        free_price: "Free"
     welcome:
       authors_themes:
         button: "More themes"

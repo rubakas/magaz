@@ -25,7 +25,7 @@
   </div>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
-      <h3><%= t('.includes_styles', value: @style.theme.theme_styles.count) %></h3>
+      <h3><%= t('.includes_styles', number_of_styles: pluralize(@style.theme.theme_styles.count, t('.style'))) %></h3>
     </div>  
   </div>
   <div class="row">

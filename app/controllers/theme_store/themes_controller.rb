@@ -22,6 +22,7 @@ class ThemeStore::ThemesController < ApplicationController
   end
   
   def show_author
+    @author = Partner.find(params[:id])
   end
 
   def show_industry_styles

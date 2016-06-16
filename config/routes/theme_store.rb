@@ -16,7 +16,7 @@ namespace :theme_store, path: '/' do
   get 'support'               => 'themes#support'
   get 'documentation'         => 'themes#documentation'
   get 'terms_of_service'      => 'themes#terms_of_service'
-  get "author/:id"            => 'themes#show_author', as: "author"
+  get "authors/:id"            => 'themes#show_author', as: "author"
   get "industry"              => 'themes#show_industry_styles'
   get "create_review"         => 'themes#create_review'
   get "/"                     => 'themes#index'
