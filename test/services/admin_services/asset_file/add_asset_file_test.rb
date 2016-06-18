@@ -7,10 +7,6 @@ class AdminServices::AssetFile::AddAssetFileTest < ActiveSupport::TestCase
     @file = fixture_file_upload('/files/test.txt')
   end
 
-  teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
-  end
-
   test "should add file with valid params" do
     assert_equal 0, AssetFile.count
     service = AdminServices::AssetFile::AddAssetFile

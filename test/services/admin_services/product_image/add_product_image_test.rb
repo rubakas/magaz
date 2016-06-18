@@ -9,10 +9,6 @@ class AdminServices::ProductImage::AddProductImageTest < ActiveSupport::TestCase
     @not_image = fixture_file_upload('/files/test.txt', 'image/jpg')
   end
 
-  teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/uploads"])
-  end
-
   test "should add image with valid params" do
     assert_equal 0, ProductImage.count
     service = AdminServices::ProductImage::AddProductImage

@@ -24,3 +24,7 @@ uploads/
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore .env files
+.env.test
+.env.development
