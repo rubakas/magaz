@@ -20,9 +20,12 @@ class AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
   end
 
   test 'should not update blog with existing title' do
-    service = AdminServices::Blog::ChangeBlog.
-                run(id: @blog.id.to_s, title: @blog2.title, shop_id: @shop.id,
-                    page_title: "Changed page_title", handle: "ChangedC handle",
+    service = AdminServices::Blog::ChangeBlog
+              .run( id:       @blog.id.to_s,
+                    title:    @blog2.title,
+                    shop_id:  @shop.id,
+                    page_title: "Changed page_title",
+                    handle:     "ChangedC handle",
                     meta_description: "Changed meta_description")
     refute service.valid?
     assert_equal 1, service.blog.errors.full_messages.count
@@ -30,9 +33,12 @@ class AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
   end
 
   test 'should not update blog with existing handle' do
-    service = AdminServices::Blog::ChangeBlog.
-                run(id: @blog.id.to_s, title: "some title", shop_id: @shop.id,
-                    page_title: "Changed page_title", handle: @blog2.handle,
+    service = AdminServices::Blog::ChangeBlog
+              .run( id:         @blog.id.to_s,
+                    title:      "some title",
+                    shop_id:    @shop.id,
+                    page_title: "Changed page_title",
+                    handle:     @blog2.handle,
                     meta_description: "Changed meta_description")
     refute service.valid?
     assert_equal 1, service.blog.errors.full_messages.count
@@ -40,9 +46,13 @@ class AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
   end
 
   test 'should update blog with some blank params' do
-    service = AdminServices::Blog::ChangeBlog.
-                run(id: @blog2.id.to_s, title: @blog2.title, shop_id: @shop.id,
-                    page_title: "", handle: "", meta_description: "")
+    service = AdminServices::Blog::ChangeBlog
+              .run( id:    @blog2.id.to_s,
+                    title: @blog2.title,
+                    shop_id: @shop.id,
+                    page_title: "",
+                    handle: "",
+                    meta_description: "")
     assert service.valid?
     assert_equal '', service.blog.handle
     assert_equal '', service.blog.page_title

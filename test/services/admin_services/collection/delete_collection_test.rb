@@ -10,7 +10,8 @@ class AdminServices::Collection::DeleteCollectionTest < ActiveSupport::TestCase
   test 'should delete collection with valid id' do
     assert Collection.find_by_id(@collection.id)
     service = AdminServices::Collection::DeleteCollection
-                .run(id: @collection.id.to_s, shop_id: @shop.id)
+                .run( id: @collection.id.to_s, 
+                      shop_id: @shop.id)
     assert service.valid?
     refute Collection.find_by_id(@collection.id)
     assert_equal 0, Collection.count

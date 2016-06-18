@@ -10,8 +10,9 @@ class AdminServices::Webhook::DeleteWebhookTest < ActiveSupport::TestCase
 
   test "should delete webhook with valid ids" do
     assert_equal 2, Webhook.count
-    service = AdminServices::Webhook::DeleteWebhook.run(id: @webhook.id,
-                                                                   shop_id: @shop.id)
+    service = AdminServices::Webhook::DeleteWebhook
+              .run( id: @webhook.id,
+                    shop_id: @shop.id)
     assert service.valid?
     refute Webhook.find_by_id(@webhook.id)
     assert Webhook.find_by_id(@webhook2.id)

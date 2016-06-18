@@ -19,14 +19,14 @@ class Admin::ShippingRatesController < Admin::ApplicationController
 
   def create
     service = AdminServices::ShippingRate::AddShippingRate
-                .run(name: params[:shipping_rate][:name],
-                     criteria: params[:shipping_rate][:criteria],
-                     price_to: params[:shipping_rate][:price_to],
-                     weight_to: params[:shipping_rate][:weight_to],
-                     price_from: params[:shipping_rate][:price_from],
-                     weight_from: params[:shipping_rate][:weight_from],
-                     shipping_country_id: params[:shipping_country_id],
-                     shipping_price: params[:shipping_rate][:shipping_price])
+              .run(name: params[:shipping_rate][:name],
+                   criteria: params[:shipping_rate][:criteria],
+                   price_to: params[:shipping_rate][:price_to],
+                   weight_to: params[:shipping_rate][:weight_to],
+                   price_from: params[:shipping_rate][:price_from],
+                   weight_from: params[:shipping_rate][:weight_from],
+                   shipping_country_id: params[:shipping_country_id],
+                   shipping_price: params[:shipping_rate][:shipping_price])
     @shipping_country = service.shipping_rate.shipping_country
     if service.valid?
       @shipping_rate = service.result

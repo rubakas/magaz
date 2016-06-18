@@ -27,11 +27,11 @@ class AdminServices::Customer::ChangeCustomerTest < ActiveSupport::TestCase
 
   test 'should not update customer with existing email' do
     service = AdminServices::Customer::ChangeCustomer
-                                                .run( id: @customer.id,
-                                                      first_name: "Changed first name",
-                                                      last_name: "CHanged last name",
-                                                      email: @customer2.email,
-                                                      shop_id: @shop.id )
+              .run( id: @customer.id,
+                    first_name: "Changed first name",
+                    last_name: "CHanged last name",
+                    email: @customer2.email,
+                    shop_id: @shop.id )
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "This customer is already exist in this shop", service.errors
@@ -40,10 +40,10 @@ class AdminServices::Customer::ChangeCustomerTest < ActiveSupport::TestCase
 
   test 'should update customer with some blank params' do
     service = AdminServices::Customer::ChangeCustomer
-                                              .run( id: @customer.id,
-                                                    first_name: "Changed first name",
-                                                    last_name: '', email: @customer.email,
-                                                    shop_id: @shop.id )
+              .run( id: @customer.id,
+                    first_name: "Changed first name",
+                    last_name: '', email: @customer.email,
+                    shop_id: @shop.id )
     assert service.valid?
     assert_equal '', service.result.last_name
   end

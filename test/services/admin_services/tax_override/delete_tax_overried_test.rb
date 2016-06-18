@@ -11,7 +11,7 @@ class AdminServices::TaxOverride::DeleteTaxOverrideTest < ActiveSupport::TestCas
   test "should destroy tax override with valid ids" do
     assert_equal 1, TaxOverride.count
     service = AdminServices::TaxOverride::DeleteTaxOverride
-                .run(id: @tax_override.id)
+              .run(id: @tax_override.id)
     refute TaxOverride.find_by_id(@tax_override.id)
     assert_equal 0, TaxOverride.count
   end
@@ -19,7 +19,7 @@ class AdminServices::TaxOverride::DeleteTaxOverrideTest < ActiveSupport::TestCas
   test "should not destroy tax override with blank ids" do
     assert_equal 1, TaxOverride.count
     service = AdminServices::TaxOverride::DeleteTaxOverride
-                .run(id: '')
+              .run(id: '')
     assert TaxOverride.find_by_id(@tax_override.id)
     assert_equal 1, service.errors.count
     assert_equal "Id is not a valid integer", service.errors.full_messages.first

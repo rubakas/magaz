@@ -15,12 +15,12 @@ class Admin::CollectionsController < Admin::ApplicationController
 
   def create
     service = AdminServices::Collection::AddCollection
-                .run(name: params[:collection][:name],
-                     shop_id: current_shop.id,
-                     page_title: params[:collection][:page_title],
-                     handle: params[:collection][:handle],
-                     meta_description: params[:collection][:meta_description],
-                     description: params[:collection][:description])
+              .run(name: params[:collection][:name],
+                   shop_id: current_shop.id,
+                   page_title: params[:collection][:page_title],
+                   handle: params[:collection][:handle],
+                   meta_description: params[:collection][:meta_description],
+                   description: params[:collection][:description])
     if service.valid?
       @collection = service.result
       flash[:notice] = t('.notice_success')
@@ -34,13 +34,13 @@ class Admin::CollectionsController < Admin::ApplicationController
 
   def update
     service = AdminServices::Collection::ChangeCollection
-                .run(id: params[:id],
-                     name: params[:collection][:name],
-                     shop_id: current_shop.id,
-                     page_title: params[:collection][:page_title],
-                     meta_description: params[:collection][:meta_description],
-                     handle: params[:collection][:handle],
-                     description: params[:collection][:description])
+              .run(id: params[:id],
+                   name: params[:collection][:name],
+                   shop_id: current_shop.id,
+                   page_title: params[:collection][:page_title],
+                   meta_description: params[:collection][:meta_description],
+                   handle: params[:collection][:handle],
+                   description: params[:collection][:description])
 
     if service.valid?
       @collection = service.result

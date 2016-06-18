@@ -16,12 +16,12 @@ class Admin::WebhooksController < Admin::ApplicationController
 
   def create
     service = AdminServices::Webhook::AddWebhook
-                .run(shop_id: current_shop.id,
-                     topic: params[:webhook][:topic],
-                     format: params[:webhook][:format],
-                     fields: params[:webhook][:fields],
-                     address: params[:webhook][:address],
-                     metafield_namespaces: params[:webhook][:metafield_namespaces])
+              .run(shop_id: current_shop.id,
+                   topic: params[:webhook][:topic],
+                   format: params[:webhook][:format],
+                   fields: params[:webhook][:fields],
+                   address: params[:webhook][:address],
+                   metafield_namespaces: params[:webhook][:metafield_namespaces])
     if service.valid?
       @webhook = service.result
       flash[:notice] = t('.notice_success')
@@ -35,13 +35,13 @@ class Admin::WebhooksController < Admin::ApplicationController
 
   def update
     service = AdminServices::Webhook::ChangeWebhook
-                .run(id: params[:id],
-                     shop_id: current_shop.id,
-                     topic: params[:webhook][:topic],
-                     format: params[:webhook][:format],
-                     fields: params[:webhook][:fields],
-                     address: params[:webhook][:address],
-                     metafield_namespaces: params[:webhook][:metafield_namespaces])
+              .run(id: params[:id],
+                   shop_id: current_shop.id,
+                   topic: params[:webhook][:topic],
+                   format: params[:webhook][:format],
+                   fields: params[:webhook][:fields],
+                   address: params[:webhook][:address],
+                   metafield_namespaces: params[:webhook][:metafield_namespaces])
     if service.valid?
       @webhook = service.result
       flash[:notice] = t('.notice_success')
@@ -55,7 +55,7 @@ class Admin::WebhooksController < Admin::ApplicationController
 
   def destroy
     AdminServices::Webhook::DeleteWebhook
-                .run(id: params[:id], shop_id: current_shop.id)
+    .run(id: params[:id], shop_id: current_shop.id)
     flash[:notice] = t('.notice_success')
     redirect_to admin_webhooks_url
   end

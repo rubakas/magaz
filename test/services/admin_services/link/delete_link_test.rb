@@ -10,8 +10,9 @@ class AdminServices::Link::DeleteLinkTest < ActiveSupport::TestCase
 
   test 'should delete link with valid id' do
     assert_equal 1, Link.count
-    service = AdminServices::Link::DeleteLink.run(id: @link.id,
-                                                             link_list_id: "#{@link_list.id}")
+    service = AdminServices::Link::DeleteLink
+              .run( id: @link.id,
+                    link_list_id: "#{@link_list.id}")
     assert service.valid?
     assert_equal 0, Link.count
   end

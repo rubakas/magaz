@@ -27,7 +27,7 @@ class AdminServices::Shop::EnableEuDigitalGoodsTest < ActiveSupport::TestCase
 
   test 'should not update shop default collection with blank name' do
     service = AdminServices::Shop::EnableEuDigitalGoods
-                .run(id: @shop.id, collection_name: '')
+              .run(id: @shop.id, collection_name: '')
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "Collection name can't be blank",

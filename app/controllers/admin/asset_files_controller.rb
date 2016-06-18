@@ -16,9 +16,9 @@ class Admin::AssetFilesController < Admin::ApplicationController
 
   def create
     service = AdminServices::AssetFile::AddAssetFile
-                .run(shop_id: current_shop.id,
-                     name: params[:asset_file][:name],
-                     file: params[:asset_file][:file])
+              .run(shop_id: current_shop.id,
+                   name: params[:asset_file][:name],
+                   file: params[:asset_file][:file])
     if service.valid?
       @file = service.result
       flash[:notice] = t('.notice_success')

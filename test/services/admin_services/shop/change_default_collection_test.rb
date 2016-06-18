@@ -16,7 +16,7 @@ class AdminServices::Shop::ChangeDefaultCollectionTest < ActiveSupport::TestCase
 
   test 'should not update shop with blank params' do
     service = AdminServices::Shop::ChangeDefaultCollection
-                .run(id: '', collection_id: '')
+              .run(id: '', collection_id: '')
     refute service.valid?
     assert_equal 2, service.errors.full_messages.count
     assert_equal 'Id is not a valid integer', service.errors.full_messages.first

@@ -7,11 +7,11 @@ class RegistrationsController < ApplicationController
 
   def create
     service = StoreServices::Create
-                .run(shop_name: params[:registration][:name],
-                     first_name: params[:registration][:first_name],
-                     last_name: params[:registration][:last_name],
-                     email: params[:registration][:email],
-                     password: params[:registration][:password])
+              .run(shop_name: params[:registration][:name],
+                   first_name: params[:registration][:first_name],
+                   last_name: params[:registration][:last_name],
+                   email: params[:registration][:email],
+                   password: params[:registration][:password])
     if service.valid?
       @shop = service.result[:shop]
       @user = service.result[:user]

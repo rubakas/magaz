@@ -10,10 +10,10 @@ class AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
 
   test 'should update shop with valid params' do
     service = AdminServices::Shop::ChangeTaxesSettings
-                .run(id: @shop.id,
-                     all_taxes_are_included: '0',
-                     charge_taxes_on_shipping_rates: '1',
-                     charge_vat_taxes: 'charge_vat_taxes')
+              .run(id: @shop.id,
+                   all_taxes_are_included: '0',
+                   charge_taxes_on_shipping_rates: '1',
+                   charge_vat_taxes: 'charge_vat_taxes')
 
     assert service.valid?
     assert service.result
@@ -25,10 +25,10 @@ class AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
 
   test 'should not update shop with blank params' do
     service = AdminServices::Shop::ChangeTaxesSettings
-                .run(id: @shop.id,
-                     all_taxes_are_included: '',
-                     charge_taxes_on_shipping_rates: '',
-                     charge_vat_taxes: '')
+              .run(id: @shop.id,
+                   all_taxes_are_included: '',
+                   charge_taxes_on_shipping_rates: '',
+                   charge_vat_taxes: '')
 
     refute service.valid?
     assert_equal 2, service.shop.errors.count
@@ -43,10 +43,10 @@ class AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
     assert_equal @collection.id,
                  @shop.eu_digital_goods_collection_id
     service = AdminServices::Shop::ChangeTaxesSettings
-                .run(id: @shop.id,
-                     all_taxes_are_included: '1',
-                     charge_taxes_on_shipping_rates: '0',
-                     charge_vat_taxes: '')
+              .run(id: @shop.id,
+                   all_taxes_are_included: '1',
+                   charge_taxes_on_shipping_rates: '0',
+                   charge_vat_taxes: '')
     assert_equal nil,
                  service.shop.eu_digital_goods_collection_id
   end
@@ -55,10 +55,10 @@ class AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
     assert_equal @collection.id,
                  @shop.eu_digital_goods_collection_id
     service = AdminServices::Shop::ChangeTaxesSettings
-                .run(id: @shop.id,
-                     all_taxes_are_included: '1',
-                     charge_taxes_on_shipping_rates: '0',
-                     charge_vat_taxes: 'charge_vat_taxes')
+              .run(id: @shop.id,
+                   all_taxes_are_included: '1',
+                   charge_taxes_on_shipping_rates: '0',
+                   charge_vat_taxes: 'charge_vat_taxes')
     assert_equal @collection.id,
                  service.shop.eu_digital_goods_collection_id
   end

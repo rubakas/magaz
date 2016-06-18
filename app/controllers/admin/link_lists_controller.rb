@@ -15,9 +15,9 @@ class Admin::LinkListsController < Admin::ApplicationController
 
   def create
     service = AdminServices::LinkList::AddLinkList
-                .run(name: params[:link_list][:name],
-                     handle: params[:link_list][:handle],
-                     shop_id: current_shop.id)
+              .run( name: params[:link_list][:name],
+                    handle: params[:link_list][:handle],
+                    shop_id: current_shop.id)
     if service.valid?
       @link_list = service.result
       flash[:notice] = t('.notice_success')
@@ -31,10 +31,10 @@ class Admin::LinkListsController < Admin::ApplicationController
 
   def update
     service = AdminServices::LinkList::ChangeLinkList
-                .run(id: params[:id],
-                     name: params[:link_list][:name],
-                     handle: params[:link_list][:handle],
-                     shop_id: current_shop.id)
+              .run(id: params[:id],
+                   name: params[:link_list][:name],
+                   handle: params[:link_list][:handle],
+                   shop_id: current_shop.id)
 
     if service.valid?
       @link_list = service.result

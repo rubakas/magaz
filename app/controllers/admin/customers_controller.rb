@@ -16,10 +16,10 @@ class Admin::CustomersController < Admin::ApplicationController
 
   def create
     service = AdminServices::Customer::AddCustomer
-                .run(first_name: params[:customer][:first_name],
-                     last_name: params[:customer][:last_name],
-                     email: params[:customer][:email],
-                     shop_id: current_shop.id)
+              .run(first_name: params[:customer][:first_name],
+                   last_name: params[:customer][:last_name],
+                   email: params[:customer][:email],
+                   shop_id: current_shop.id)
 
     if service.valid?
       @customer = service.result
@@ -34,11 +34,11 @@ class Admin::CustomersController < Admin::ApplicationController
 
   def update
     service = AdminServices::Customer::ChangeCustomer
-                .run(id: params[:id],
-                     first_name: params[:customer][:first_name],
-                     last_name: params[:customer][:last_name],
-                     email: params[:customer][:email],
-                     shop_id: current_shop.id)
+              .run(id: params[:id],
+                   first_name: params[:customer][:first_name],
+                   last_name: params[:customer][:last_name],
+                   email: params[:customer][:email],
+                   shop_id: current_shop.id)
     if service.valid?
       @customer = service.result
       flash[:notice] = t('.notice_success')

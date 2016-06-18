@@ -16,9 +16,9 @@ class Admin::ShippingCountriesController < Admin::ApplicationController
 
   def create
     service = AdminServices::ShippingCountry::AddShippingCountry
-                .run(shop_id: current_shop.id,
-                     tax: params[:shipping_country][:tax],
-                     name: params[:shipping_country][:name])
+              .run(shop_id: current_shop.id,
+                   tax: params[:shipping_country][:tax],
+                   name: params[:shipping_country][:name])
     if service.valid?
       @shipping_country = service.result
       flash[:notice] = t('.notice_success')
@@ -32,10 +32,10 @@ class Admin::ShippingCountriesController < Admin::ApplicationController
 
   def update
     service = AdminServices::ShippingCountry::ChangeShippingCountry
-                .run(id: params[:id],
-                     shop_id: current_shop.id,
-                     tax: params[:shipping_country][:tax],
-                     name: params[:shipping_country][:name])
+              .run(id: params[:id],
+                   shop_id: current_shop.id,
+                   tax: params[:shipping_country][:tax],
+                   name: params[:shipping_country][:name])
     if service.valid?
       @shipping_country = service.result
       flash[:notice] = t('.notice_success')

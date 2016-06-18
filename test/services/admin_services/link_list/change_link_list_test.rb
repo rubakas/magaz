@@ -27,18 +27,22 @@ class AdminServices::ChangeLinkListTest < ActiveSupport::TestCase
   end
 
   test 'should not update link_list with existing handle' do
-    service = AdminServices::LinkList::ChangeLinkList.
-                run(id: "#{@link_list.id}", name: "New name",
-                    shop_id: @shop.id, handle: @link_list2.handle)
+    service = AdminServices::LinkList::ChangeLinkList
+              .run( id: "#{@link_list.id}",
+                    name: "New name",
+                    shop_id: @shop.id,
+                    handle: @link_list2.handle)
     refute service.valid?
     assert_equal 1, service.link_list.errors.full_messages.count
     assert_equal "Handle has already been taken", service.link_list.errors.full_messages.first
   end
 
   test 'should update link_list with blank handle' do
-    service = AdminServices::LinkList::ChangeLinkList.
-                run(id: "#{@link_list.id}", name: "Changed name",
-                    shop_id: @shop.id, handle: "")
+    service = AdminServices::LinkList::ChangeLinkList
+              .run( id: "#{@link_list.id}",
+                    name: "Changed name",
+                    shop_id: @shop.id,
+                    handle: "")
     assert service.valid?
     assert_equal '', service.result.handle
     assert_equal "Changed name", service.result.name

@@ -18,10 +18,10 @@ class Admin::LinksController < Admin::ApplicationController
 
   def create
     service = AdminServices::Link::AddLink
-                .run(name: params[:link][:name],
-                     link_type: params[:link][:link_type],
-                     position: params[:link][:position],
-                     link_list_id: params[:link_list_id])
+              .run(name: params[:link][:name],
+                   link_type: params[:link][:link_type],
+                   position: params[:link][:position],
+                   link_list_id: params[:link_list_id])
     @link_list = service.link.link_list
     if service.valid?
       @link = service.result

@@ -39,7 +39,7 @@ class AdminServices::SubscriberNotification::AddSubscriberNotificationTest < Act
   test "should not add subscriber notification with blank params" do
     assert_equal 1, SubscriberNotification.count
     service = AdminServices::SubscriberNotification::AddSubscriberNotification
-                .run(@blank_params)
+              .run(@blank_params)
     refute service.valid?
     assert_equal 2, service.subscriber_notification.errors.full_messages.count
     assert_equal "Subscription address can't be blank",

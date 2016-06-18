@@ -58,14 +58,14 @@ class AdminServices::ShippingRate::AddShippingRateTest < ActiveSupport::TestCase
   test "should not add shipping rate with wrong criteria" do
     assert_equal 0, ShippingRate.count
     service = AdminServices::ShippingRate::AddShippingRate
-                .run(name: "Test name",
-                     price_to: "20.5",
-                     weight_to: "",
-                     shipping_price: "5",
-                     criteria: "weight",
-                     price_from: "0.15",
-                     weight_from: "",
-                     shipping_country_id: @shipping_country.id)
+              .run(name: "Test name",
+                   price_to: "20.5",
+                   weight_to: "",
+                   shipping_price: "5",
+                   criteria: "weight",
+                   price_from: "0.15",
+                   weight_from: "",
+                   shipping_country_id: @shipping_country.id)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "Criteria is not correct", service.errors.full_messages.first
@@ -75,14 +75,14 @@ class AdminServices::ShippingRate::AddShippingRateTest < ActiveSupport::TestCase
   test "should not add shipping rate with wrong comparison" do
     assert_equal 0, ShippingRate.count
     service = AdminServices::ShippingRate::AddShippingRate
-                .run(name: "Test name",
-                     price_to: "",
-                     weight_to: "5.5",
-                     shipping_price: "5",
-                     criteria: "weight",
-                     price_from: "",
-                     weight_from: "10.7",
-                     shipping_country_id: @shipping_country.id)
+              .run(name: "Test name",
+                   price_to: "",
+                   weight_to: "5.5",
+                   shipping_price: "5",
+                   criteria: "weight",
+                   price_from: "",
+                   weight_from: "10.7",
+                   shipping_country_id: @shipping_country.id)
     refute service.valid?
     assert_equal 1, service.errors.full_messages.count
     assert_equal "weight to must be greater than weight from", service.errors.full_messages.first
