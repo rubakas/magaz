@@ -23,10 +23,6 @@ class AdminServices::Product::AddProductTest < ActiveSupport::TestCase
                      collection_ids: [] }
   end
 
-  teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/uploads"])
-  end
-
   test "should create product with valid params" do
     assert_equal 0, Product.count
     service = AdminServices::Product::AddProduct.run(@success_params)

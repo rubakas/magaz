@@ -7,10 +7,6 @@ class AdminServices::AssetFile::DeleteAssetFileTest < ActiveSupport::TestCase
     @created_file = create(:file, shop: @shop, file: @file)
   end
 
-  teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
-  end
-
   test "should delete file with valid params" do
     assert_equal 1, AssetFile.count
     service = AdminServices::AssetFile::DeleteAssetFile
