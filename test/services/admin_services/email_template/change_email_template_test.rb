@@ -29,8 +29,10 @@ class AdminServices::EmailTemplate::ChangeEmailTemplateTest < ActiveSupport::Tes
 
   test 'should update update email with some blank params' do
     service = AdminServices::EmailTemplate::ChangeEmailTemplate
-                                        .run(id: @email_template.id, body: "", title: "",
-                                             shop_id: @email_template.id )
+              .run( id: @email_template.id, 
+                    body: "",
+                    title: "",
+                    shop_id: @email_template.id )
     assert service.valid?
     assert_equal '', service.result.body
     assert_equal '', service.result.title

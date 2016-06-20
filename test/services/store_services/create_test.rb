@@ -6,9 +6,9 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
     archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
 
     ThemeServices::ImportFromArchive
-      .call(archive_path: archive_path,
-            theme: @default_theme,
-            theme_attributes: { name: 'Default' })
+    .call(archive_path:     archive_path,
+          theme:            @default_theme,
+          theme_attributes: { name: 'Default' })
 
     @success_params = { shop_name: 'example42', first_name: 'First' ,
                         last_name: 'Last', email: 'email@mail.com',
@@ -35,20 +35,20 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
   end
 
   test 'fail shop creation when no user params' do
-    service = StoreServices::Create.run(shop_name: 'example42',
-                                                   first_name: '' ,
-                                                   last_name: '',
-                                                   email: '',
-                                                   password: '')
+    service = StoreServices::Create.run( shop_name:   'example42',
+                                         first_name:  '' ,
+                                         last_name:   '',
+                                         email:       '',
+                                         password:    '')
     refute service.valid?
   end
 
   test 'fail shop creation when no shop params' do
-    service = StoreServices::Create.run(shop_name: '',
-                                                   first_name: 'First' ,
-                                                   last_name: 'Last',
-                                                   email: 'email@mail.com',
-                                                   password: 'password')
+    service = StoreServices::Create.run( shop_name:   '',
+                                         first_name:  'First' ,
+                                         last_name:   'Last',
+                                         email:       'email@mail.com',
+                                         password:    'password')
     refute service.valid?
   end
 

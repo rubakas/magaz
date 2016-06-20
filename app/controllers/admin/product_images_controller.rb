@@ -18,8 +18,8 @@ class Admin::ProductImagesController < Admin::ApplicationController
 
   def create
     service = AdminServices::ProductImage::AddProductImage
-                .run(product_id: params[:product_id],
-                     image: set_image(params[:product_image]))
+              .run(product_id: params[:product_id],
+                   image: set_image(params[:product_image]))
     @product = service.product_image.product
     if service.valid?
       @product_image = service.result
@@ -34,8 +34,8 @@ class Admin::ProductImagesController < Admin::ApplicationController
 
   def update
     service = AdminServices::ProductImage::ChangeProductImage
-                .run(product_id: params[:product_id],
-                     image: set_image(params[:product_image]), id: params[:id])
+              .run(product_id: params[:product_id],
+                   image: set_image(params[:product_image]), id: params[:id])
     @product = service.product_image.product
     if service.valid?
       @product_image = service.result
@@ -50,8 +50,8 @@ class Admin::ProductImagesController < Admin::ApplicationController
 
   def destroy
     service = AdminServices::ProductImage::DeleteProductImage
-                .run(id: params[:id],
-                     product_id: params[:product_id])
+              .run(id: params[:id],
+                   product_id: params[:product_id])
     flash[:notice] = t('.notice_success')
     redirect_to admin_product_product_images_path
   end

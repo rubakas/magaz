@@ -10,10 +10,6 @@ class AdminServices::ProductImage::ChangeProductImageTest < ActiveSupport::TestC
     @product_image = create(:product_image, product: @product, image: @image)
   end
 
-  teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/uploads"])
-  end
-
   test "should update image with valid params" do
     assert_equal 1, ProductImage.count
     service = AdminServices::ProductImage::ChangeProductImage
@@ -26,7 +22,7 @@ class AdminServices::ProductImage::ChangeProductImageTest < ActiveSupport::TestC
   test "should not update image without image" do
     assert_equal 1, ProductImage.count
     service = AdminServices::ProductImage::ChangeProductImage
-                .run(id: @product_image.id, image: nil, product_id: "#{@product.id}")
+              .run(id: @product_image.id, image: nil, product_id: "#{@product.id}")
     refute service.valid?
     assert_equal 1, service.product_image.errors.full_messages.count
     assert_equal "Image is required", service.product_image.errors.full_messages.first
@@ -36,7 +32,7 @@ class AdminServices::ProductImage::ChangeProductImageTest < ActiveSupport::TestC
   test "should not update image with wrong extension" do
     assert_equal 1, ProductImage.count
     service = AdminServices::ProductImage::ChangeProductImage
-                .run(id: @product_image.id, image: @not_image, product_id: "#{@product.id}")
+              .run(id: @product_image.id, image: @not_image, product_id: "#{@product.id}")
     refute service.valid?
     assert_equal 1, service.product_image.errors.full_messages.count
     assert_equal "Image You are not allowed to upload \"txt\" files, allowed types: jpg, jpeg, gif, png", service.product_image.errors.full_messages.last

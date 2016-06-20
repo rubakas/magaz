@@ -11,10 +11,9 @@ class ActionDispatch::IntegrationTest
                    account_owner: true)
   end
 
-  # teardown do
-  #   FileUtils.rm_rf(Dir["#{Rails.root}/tmp/capybara/"])
-  #   FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
-  # end
+  teardown do
+    FileUtils.rm_rf(Dir["#{Rails.root}/test/uploads"])
+  end
 
   # private
   module CustomIntegrationDsl

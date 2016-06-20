@@ -8,8 +8,8 @@ class AdminServices::Shop::ChangePaymentSettingsTest < ActiveSupport::TestCase
 
   test 'should update shop with valid params' do
     service = AdminServices::Shop::ChangePaymentSettings
-                .run(id: @shop.id,
-                     authorization_settings: 'authorize_and_charge')
+              .run(id: @shop.id,
+                   authorization_settings: 'authorize_and_charge')
 
     assert service.valid?
     assert service.result
@@ -18,8 +18,8 @@ class AdminServices::Shop::ChangePaymentSettingsTest < ActiveSupport::TestCase
 
   test 'should update authorization_settings to nil with wrong value' do
     service = AdminServices::Shop::ChangePaymentSettings
-                .run(id: @shop.id,
-                     authorization_settings: "wrong")
+              .run(id: @shop.id,
+                   authorization_settings: "wrong")
 
     assert service.valid?
     assert service.result

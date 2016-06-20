@@ -23,7 +23,7 @@ class AdminServices::ShippingRate::DeleteShippingRateTest < ActiveSupport::TestC
   test 'should not delete shipping rate with blank id' do
     assert_equal 2, @shipping_country.shipping_rates.count
     service = AdminServices::ShippingRate::DeleteShippingRate
-                .run(id: "", shipping_country_id: "")
+              .run(id: "", shipping_country_id: "")
     refute service.valid?
     assert_equal 2, service.errors.full_messages.count
     assert_equal "Id is not a valid integer", service.errors.full_messages.first

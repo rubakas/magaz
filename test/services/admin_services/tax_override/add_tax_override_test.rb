@@ -42,7 +42,7 @@ class AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport::TestCase
 
   test 'create override with second valid params' do
     service = AdminServices::TaxOverride::AddTaxOverride
-                .run(@success_params2)
+              .run(@success_params2)
     assert service.valid?
     assert_equal nil, service.result.collection_id
     assert_equal @shipping_country.id, service.result.shipping_country_id
@@ -51,7 +51,7 @@ class AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport::TestCase
 
   test 'fails to create tax_override with wrong params' do
     service = AdminServices::TaxOverride::AddTaxOverride
-                .run(@wrong_params)
+              .run(@wrong_params)
     refute service.valid?
     assert_equal 2, service.tax_override.errors.count
     assert_equal 'Wrong params for tax override',
@@ -60,7 +60,7 @@ class AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport::TestCase
 
   test 'fails to create tax_override with blank_params params' do
     service = AdminServices::TaxOverride::AddTaxOverride
-                .run(@blank_params)
+              .run(@blank_params)
     refute service.valid?
     assert_equal 3, service.tax_override.errors.count
     assert_equal "Rate is not a valid float",

@@ -23,9 +23,9 @@ class Admin::UsersController < Admin::ApplicationController
                                                invite_token: user_object.invite_token)}
 
     service = AdminServices::Invite::CreateInvite
-                .run(url_building_proc: url_building_proc,
-                     email: params[:user][:email],
-                     shop_id: current_shop.id)
+              .run(url_building_proc: url_building_proc,
+                   email: params[:user][:email],
+                   shop_id: current_shop.id)
 
     if service.valid?
       redirect_to admin_users_path, notice: t('.notice_success')
@@ -36,7 +36,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def update
     @current_user = current_shop.users.find(session[:user_id])
-    service = AdminServices::User::ChangeUser
+    service =  AdminServices::User::ChangeUser
                .run(id: params[:id],
                     shop_id: current_shop.id,
                     first_name: params[:user][:first_name],

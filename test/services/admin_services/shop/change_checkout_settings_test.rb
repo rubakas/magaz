@@ -38,19 +38,19 @@ class AdminServices::Shop::ChangeCheckoutSettingsTest < ActiveSupport::TestCase
 
   test 'should update shop with valid blank params' do
     service = AdminServices::Shop::ChangeCheckoutSettings
-                .run(id: @shop.id,
-                     account_type_choice: '',
-                     enable_multipass_login: '',
-                     billing_address_is_shipping_too: '',
-                     abandoned_checkout_time_delay: '',
-                     email_marketing_choice: '',
-                     after_order_paid: '',
-                     notify_customers_of_their_shipment: '',
-                     automatically_fulfill_all_orders: '',
-                     after_order_fulfilled_and_paid: '',
-                     checkout_refund_policy: '',
-                     checkout_privacy_policy: '',
-                     checkout_term_of_service: '')
+              .run(id: @shop.id,
+                   account_type_choice: '',
+                   enable_multipass_login: '',
+                   billing_address_is_shipping_too: '',
+                   abandoned_checkout_time_delay: '',
+                   email_marketing_choice: '',
+                   after_order_paid: '',
+                   notify_customers_of_their_shipment: '',
+                   automatically_fulfill_all_orders: '',
+                   after_order_fulfilled_and_paid: '',
+                   checkout_refund_policy: '',
+                   checkout_privacy_policy: '',
+                   checkout_term_of_service: '')
     refute service.valid?
     assert_equal 5, service.shop.errors.count
     assert_equal 'Billing address is shipping too is not a valid boolean',

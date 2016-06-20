@@ -11,7 +11,7 @@ class AdminServices::ShippingCountry::AddShippingCountryTest < ActiveSupport::Te
   test "should create shipping country with valid params" do
     assert_equal 1, ShippingCountry.count
     service = AdminServices::ShippingCountry::AddShippingCountry
-                .run(@success_params)
+              .run(@success_params)
     assert service.valid?
     assert ShippingCountry.find_by_id(service.result.id)
     assert_equal @success_params[:tax], service.result.tax

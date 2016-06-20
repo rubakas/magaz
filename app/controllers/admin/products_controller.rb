@@ -15,15 +15,15 @@ class Admin::ProductsController < Admin::ApplicationController
 
   def create
     service = AdminServices::Product::AddProduct
-                .run(shop_id: current_shop.id,
-                     name: params[:product][:name],
-                     handle: params[:product][:handle],
-                     price: params[:product][:price].to_f,
-                     page_title: params[:product][:page_title],
-                     description: params[:product][:description],
-                     collection_ids: params[:product][:collection_ids],
-                     meta_description:params[:product][:meta_description],
-                     product_images_attributes: params[:product][:product_images_attributes])
+              .run(shop_id: current_shop.id,
+                   name: params[:product][:name],
+                   handle: params[:product][:handle],
+                   price: params[:product][:price].to_f,
+                   page_title: params[:product][:page_title],
+                   description: params[:product][:description],
+                   collection_ids: params[:product][:collection_ids],
+                   meta_description:params[:product][:meta_description],
+                   product_images_attributes: params[:product][:product_images_attributes])
     if service.valid?
       @product = service.result
       flash[:notice] = t('.notice_success')

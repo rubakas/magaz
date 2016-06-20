@@ -11,8 +11,8 @@ class AdminServices::SubscriberNotification::DeleteSubscriberNotificationTest < 
   test 'should delete subscriber notification with valid ids' do
     assert_equal 2, @shop.subscriber_notifications.count
     service = AdminServices::SubscriberNotification::DeleteSubscriberNotification
-                .run(id: @first_subscriber_notification.id,
-                     shop_id: @shop.id)
+              .run(id: @first_subscriber_notification.id,
+                   shop_id: @shop.id)
     assert service.valid?
     refute SubscriberNotification.find_by_id(@first_subscriber_notification.id)
     assert SubscriberNotification.find_by_id(@second_subscriber_notification.id)
@@ -22,7 +22,7 @@ class AdminServices::SubscriberNotification::DeleteSubscriberNotificationTest < 
   test 'should not delete subscriber notification with blank ids' do
     assert_equal 2, @shop.subscriber_notifications.count
     service = AdminServices::SubscriberNotification::DeleteSubscriberNotification
-                .run(id: "", shop_id: "")
+              .run(id: "", shop_id: "")
     refute service.valid?
     assert_equal 2, service.errors.full_messages.count
     assert_equal "Id is not a valid integer", service.errors.full_messages.first

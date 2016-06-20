@@ -15,12 +15,12 @@ class Admin::PagesController < Admin::ApplicationController
 
   def create
     service = AdminServices::Page::AddPage
-                .run(title: params[:page][:title],
-                     content: params[:page][:content],
-                     page_title: params[:page][:page_title],
-                     meta_description: params[:page][:meta_description],
-                     handle: params[:page][:handle],
-                     shop_id: current_shop.id)
+              .run(title: params[:page][:title],
+                   content: params[:page][:content],
+                   page_title: params[:page][:page_title],
+                   meta_description: params[:page][:meta_description],
+                   handle: params[:page][:handle],
+                   shop_id: current_shop.id)
     if service.valid?
       @page = service.result
       flash[:notice] = t('.notice_success')
@@ -34,13 +34,13 @@ class Admin::PagesController < Admin::ApplicationController
 
   def update
     service = AdminServices::Page::ChangePage
-                .run(id: params[:id],
-                     title: params[:page][:title],
-                     shop_id: current_shop.id,
-                     page_title: params[:page][:page_title],
-                     meta_description: params[:page][:meta_description],
-                     handle: params[:page][:handle],
-                     content: params[:page][:content])
+              .run(id: params[:id],
+                   title: params[:page][:title],
+                   shop_id: current_shop.id,
+                   page_title: params[:page][:page_title],
+                   meta_description: params[:page][:meta_description],
+                   handle: params[:page][:handle],
+                   content: params[:page][:content])
     if service.valid?
       @page = service.result
       flash[:notice] = t('.notice_success')

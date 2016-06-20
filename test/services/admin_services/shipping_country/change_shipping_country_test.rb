@@ -15,7 +15,7 @@ class AdminServices::ShippingCountry::ChangeShippingCountryTest < ActiveSupport:
   test "should update shipping country with valid params" do
     assert_equal 2, ShippingCountry.count
     service = AdminServices::ShippingCountry::ChangeShippingCountry
-                .run(@success_params)
+              .run(@success_params)
     assert service.valid?
     assert_equal @success_params[:tax], ShippingCountry.find(service.result.id).tax
     assert_equal @success_params[:name], ShippingCountry.find(service.result.id).name

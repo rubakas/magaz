@@ -23,10 +23,6 @@ class AdminServices::Product::AddProductTest < ActiveSupport::TestCase
                      collection_ids: [] }
   end
 
-  teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/uploads"])
-  end
-
   test "should create product with valid params" do
     assert_equal 0, Product.count
     service = AdminServices::Product::AddProduct.run(@success_params)
@@ -58,10 +54,15 @@ class AdminServices::Product::AddProductTest < ActiveSupport::TestCase
   test "should create product with some blank params" do
     assert_equal 0, Product.count
     service = AdminServices::Product::AddProduct
-                .run(name: "T-shirt", shop_id: @shop.id, description: "",
-                        price: nil, page_title: "", meta_description: "",
-                        handle: "", product_images_attributes: nil,
-                        collection_ids: nil)
+              .run( name: "T-shirt",
+                    shop_id: @shop.id,
+                    description: "",
+                    price: nil,
+                    page_title: "",
+                    meta_description: "",
+                    handle: "",
+                    product_images_attributes: nil,
+                    collection_ids: nil)
     assert service.valid?
     assert Product.find(service.result.id)
     assert_equal 1, Product.count

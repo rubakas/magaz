@@ -14,10 +14,10 @@ class Admin::TaxOverridesController < Admin::ApplicationController
 
   def create
     service = AdminServices::TaxOverride::AddTaxOverride
-                .run(rate: params[:tax_override][:rate],
-                     collection_id: params[:tax_override][:collection_id].to_i,
-                     is_shipping: params[:tax_override][:is_shipping],
-                     shipping_country_id: params[:shipping_country_id])
+              .run(rate: params[:tax_override][:rate],
+                   collection_id: params[:tax_override][:collection_id].to_i,
+                   is_shipping: params[:tax_override][:is_shipping],
+                   shipping_country_id: params[:shipping_country_id])
 
     if service.valid?
       @tax_override = service.result
@@ -40,11 +40,11 @@ class Admin::TaxOverridesController < Admin::ApplicationController
 
   def update
     service = AdminServices::TaxOverride::ChangeTaxOverride
-                .run(id: params[:id],
-                     shipping_country_id: params[:shipping_country_id],
-                     collection_id: params[:tax_override][:collection_id].to_i,
-                     rate: params[:tax_override][:rate],
-                     is_shipping: params[:tax_override][:is_shipping])
+              .run(id: params[:id],
+                   shipping_country_id: params[:shipping_country_id],
+                   collection_id: params[:tax_override][:collection_id].to_i,
+                   rate: params[:tax_override][:rate],
+                   is_shipping: params[:tax_override][:is_shipping])
     if service.valid?
       @tax_override = service.result
       @shipping_country = @tax_override.shipping_country
@@ -60,7 +60,7 @@ class Admin::TaxOverridesController < Admin::ApplicationController
 
   def destroy
     service = AdminServices::TaxOverride::DeleteTaxOverride
-                .run(id: params[:id])
+              .run(id: params[:id])
     flash[:notice] = t('.notice_success')
     redirect_to admin_tax_override_path(service.result.shipping_country)
   end

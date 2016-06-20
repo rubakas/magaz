@@ -20,9 +20,11 @@ class AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
   end
 
   test 'should not update link with existing name' do
-    service = AdminServices::Link::ChangeLink.
-                run(id: @link.id, name: @link2.name,
-                    link_list_id: "#{@link_list.id}", link_type: "Changed type",
+    service = AdminServices::Link::ChangeLink
+              .run( id: @link.id,
+                    name: @link2.name,
+                    link_list_id: "#{@link_list.id}",
+                    link_type: "Changed type",
                     position: "1111")
     refute service.valid?
     assert_equal 1, service.link.errors.full_messages.count
@@ -30,9 +32,12 @@ class AdminServices::Link::ChangeLinkTest < ActiveSupport::TestCase
   end
 
   test 'should update link with some blank params' do
-    service = AdminServices::Link::ChangeLink.
-                run(id: @link.id, name: "Changed name",
-                    link_list_id: "#{@link_list.id}", position: '123', link_type: '')
+    service = AdminServices::Link::ChangeLink
+              .run( id: @link.id,
+                    name: "Changed name",
+                    link_list_id: "#{@link_list.id}",
+                    position: '123',
+                    link_type: '')
     assert service.valid?
     assert_equal 123, service.result.position
     assert_equal '', service.result.link_type

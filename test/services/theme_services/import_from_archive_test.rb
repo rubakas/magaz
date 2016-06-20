@@ -7,16 +7,16 @@ class ThemeServices::ImportFromArchiveTest < ActiveSupport::TestCase
     @archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
     @invalid_archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/invalid_theme.zip", __FILE__)
     @theme = Theme.new
-    @theme_attributes = { name: "New thmee", price: 70}    
+    @theme_attributes = { name: "New thmee", price: 70, industry: "Other"}
   end
 
   test 'imports from valid archive' do
     assert_equal 0, Theme.count
     assert_equal 0, ThemeStyle.count
     archive_importer =
-      ThemeServices::ImportFromArchive.call archive_path: @archive_path,
-                                                       theme: @theme,
-                                                       theme_attributes: @theme_attributes
+      ThemeServices::ImportFromArchive.call archive_path:     @archive_path,
+                                            theme:            @theme,
+                                            theme_attributes: @theme_attributes
     assert_kind_of Theme, archive_importer.theme
     assert archive_importer.theme.valid?
     assert archive_importer.theme.persisted?
@@ -27,16 +27,15 @@ class ThemeServices::ImportFromArchiveTest < ActiveSupport::TestCase
     assert_equal "Default", archive_importer.theme.theme_styles.first.name
   end
 
-  test "should not create theme and style when theme hasn't any style"  do
+  test "should not create theme and style when theme hasn't any theme"  do
     assert_equal 0, Theme.count
     assert_equal 0, ThemeStyle.count
     archive_importer =
-      ThemeServices::ImportFromArchive.call archive_path: @invalid_archive_path,
-                                                       theme: @theme,
-                                                       theme_attributes: @theme_attributes
+      ThemeServices::ImportFromArchive.call   archive_path:     @invalid_archive_path,
+                                              theme:            @theme,
+                                              theme_attributes: @theme_attributes
     assert_equal 0, Theme.count
     assert_equal 0, ThemeStyle.count
   end
-  
-end
 
+end

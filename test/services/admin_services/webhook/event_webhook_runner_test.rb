@@ -19,7 +19,7 @@ class AdminServices::Webhook::EventWebhookRunnerTest < ActiveSupport::TestCase
   test 'should not throw error and schedule 2 webhooks' do
     assert_nothing_raised do
       service = AdminServices::Webhook::EventWebhookRunner
-                  .call(event: @event, topic: @webhook1.topic)
+                .call(event: @event, topic: @webhook1.topic)
       assert_equal 2, WebhookWorker.jobs.size
     end
   end

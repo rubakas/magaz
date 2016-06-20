@@ -11,7 +11,7 @@ class Admin::CheckoutsController < Admin::ApplicationController
 
   def destroy
     service = AdminServices::Checkout::DeleteCheckout
-                .run(id: @abandoned_checkout.id)
+              .run(id: @abandoned_checkout.id)
     redirect_to admin_checkouts_url
   end
 

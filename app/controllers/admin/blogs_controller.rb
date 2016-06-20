@@ -33,12 +33,12 @@ class Admin::BlogsController < Admin::ApplicationController
 
   def update
     service = AdminServices::Blog::ChangeBlog
-                .run(id: params[:id],
-                     shop_id: current_shop.id,
-                     title: params[:blog][:title],
-                     handle: params[:blog][:handle],
-                     page_title: params[:blog][:page_title],
-                     meta_description: params[:blog][:meta_description])
+              .run(id: params[:id],
+                   shop_id: current_shop.id,
+                   title: params[:blog][:title],
+                   handle: params[:blog][:handle],
+                   page_title: params[:blog][:page_title],
+                   meta_description: params[:blog][:meta_description])
     if service.valid?
       @blog = service.result
       flash[:notice] = t('.notice_success')

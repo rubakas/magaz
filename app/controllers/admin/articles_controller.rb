@@ -15,12 +15,12 @@ class Admin::ArticlesController < Admin::ApplicationController
 
   def create
     service = AdminServices::Article::AddArticle
-                .run(title: params[:article][:title],
-                     handle: params[:article][:handle],
-                     content: params[:article][:content],
-                     blog_id: params[:article][:blog_id],
-                     page_title: params[:article][:page_title],
-                     meta_description: params[:article][:meta_description])
+              .run(title: params[:article][:title],
+                   handle: params[:article][:handle],
+                   content: params[:article][:content],
+                   blog_id: params[:article][:blog_id],
+                   page_title: params[:article][:page_title],
+                   meta_description: params[:article][:meta_description])
     if service.valid?
       @article = service.result
       flash[:notice] = t('.notice_success')
@@ -34,13 +34,13 @@ class Admin::ArticlesController < Admin::ApplicationController
 
   def update
     service = AdminServices::Article::ChangeArticle
-                .run(id: params[:id],
-                     title: params[:article][:title],
-                     handle: params[:article][:handle],
-                     blog_id: params[:article][:blog_id],
-                     content: params[:article][:content],
-                     page_title: params[:article][:page_title],
-                     meta_description: params[:article][:meta_description])
+              .run(id: params[:id],
+                   title: params[:article][:title],
+                   handle: params[:article][:handle],
+                   blog_id: params[:article][:blog_id],
+                   content: params[:article][:content],
+                   page_title: params[:article][:page_title],
+                   meta_description: params[:article][:meta_description])
     if service.valid?
       @article = service.result
       flash[:notice] = t('.notice_success')

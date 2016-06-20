@@ -13,8 +13,7 @@ class Admin::OrdersController < Admin::ApplicationController
 
   def update
     service = AdminServices::Checkout::ChangeOrder
-                .run(id: @order.id,
-                     status: params[:order][:status])
+              .run(id: @order.id, status: params[:order][:status])
     if service.valid?
       @order = service.result
       flash[:notice] = t('.notice_success')

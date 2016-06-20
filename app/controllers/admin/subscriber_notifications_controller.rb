@@ -7,9 +7,9 @@ class Admin::SubscriberNotificationsController < Admin::ApplicationController
 
   def create
     service = AdminServices::SubscriberNotification::AddSubscriberNotification
-                .run(shop_id: current_shop.id,
-                     notification_method: params[:subscriber_notification][:notification_method],
-                     subscription_address: params[:subscriber_notification][:subscription_address])
+              .run(shop_id: current_shop.id,
+                   notification_method: params[:subscriber_notification][:notification_method],
+                   subscription_address: params[:subscriber_notification][:subscription_address])
     if service.valid?
       @subscriber_notification = service.result
       flash[:notice] = t('.notice_success')
@@ -23,8 +23,8 @@ class Admin::SubscriberNotificationsController < Admin::ApplicationController
 
   def destroy
     AdminServices::SubscriberNotification::DeleteSubscriberNotification
-      .run(id: params[:id],
-           shop_id: current_shop.id)
+    .run(id: params[:id],
+         shop_id: current_shop.id)
     flash.now[:notice] = t('.notice_success')
     redirect_to notifications_settings_admin_settings_path
   end

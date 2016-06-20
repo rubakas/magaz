@@ -10,20 +10,20 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def update
     service = AdminServices::Shop::ChangeShop
-                .run(id: current_shop.id,
-                     name: params[:shop][:name],
-                     business_name: params[:shop][:business_name],
-                     city: params[:shop][:city],
-                     country: params[:shop][:country],
-                     currency: params[:shop][:currency],
-                     customer_email: params[:shop][:customer_email],
-                     phone: params[:shop][:phone],
-                     timezone: params[:shop][:timezone] ,
-                     unit_system: params[:shop][:unit_system],
-                     zip: params[:shop][:zip],
-                     page_title: params[:shop][:page_title],
-                     meta_description: params[:shop][:meta_description],
-                     address: params[:shop][:address])
+              .run(id: current_shop.id,
+                   name: params[:shop][:name],
+                   business_name: params[:shop][:business_name],
+                   city: params[:shop][:city],
+                   country: params[:shop][:country],
+                   currency: params[:shop][:currency],
+                   customer_email: params[:shop][:customer_email],
+                   phone: params[:shop][:phone],
+                   timezone: params[:shop][:timezone] ,
+                   unit_system: params[:shop][:unit_system],
+                   zip: params[:shop][:zip],
+                   page_title: params[:shop][:page_title],
+                   meta_description: params[:shop][:meta_description],
+                   address: params[:shop][:address])
     if service.valid?
       @shop = service.result
       flash.now[:notice] = I18n.t('admin.settings.notice_success')

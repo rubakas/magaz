@@ -22,7 +22,7 @@ class AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSupport::TestCas
 
   test 'should change override with valid params' do
     service = AdminServices::TaxOverride::ChangeTaxOverride
-                .run(@success_params)
+              .run(@success_params)
     assert service.valid?
     assert_equal false, service.result.is_shipping
     assert_equal 48.0, service.result.rate
@@ -32,7 +32,7 @@ class AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSupport::TestCas
 
   test 'should not change override with blank params' do
     service = AdminServices::TaxOverride::ChangeTaxOverride
-                .run(@blank_params)
+              .run(@blank_params)
     refute service.valid?
     assert_equal 3, service.tax_override.errors.count
     assert_equal "Collection is not a valid integer",
