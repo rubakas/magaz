@@ -22,7 +22,6 @@ class ThemeServices::ImportFromArchiveTest < ActiveSupport::TestCase
     assert archive_importer.theme.persisted?
     assert_equal @theme_attributes[:name], archive_importer.theme.name
     assert_equal @theme_attributes[:price], archive_importer.theme.price
-    assert_equal @theme_attributes[:industry], archive_importer.theme.industry
     assert_equal 1, Theme.count
     assert_equal 1, archive_importer.theme.theme_styles.count
     assert_equal "Default", archive_importer.theme.theme_styles.first.name

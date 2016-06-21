@@ -399,6 +399,37 @@ en:
     themes:
       show:
         install: "Install theme"
+      index:
+        heading: "Choose a theme for your online store"
+        info: "Responsive themes, easily customized to fit your brand"
+        browse_industries_themes: "Browse all %{industry} themes"
+        button_more_themes: "More themes"
+        free_price: "Free"
+      show_style:
+        name: "Name"
+        free_price: "Free"
+        info: "Pipeline is a clean and powerful theme – carefully tuned for mobile, tablet, and retina devices. Simplify your navigation with a powerful multi-level dropdown and build a beautiful homepage with full-bleed photos. Pipeline allows your products to shine with a clean minimal design, while giving your customers a great experience on any device."
+        preview_button: "Preview in your store"
+        buy_theme: "Buy theme"
+        view_demo: "View Demo"
+        who_supports: "Who supports this theme?"
+        support_info: "This theme was made and supported by Corknine."
+        support: "Support"
+        documentation: "Documentation"
+        terms_of_service: "Terms of Service"
+        includes_styles: "Includes %{number_of_styles}"
+        style: "style"
+        store_using_theme: "Stores using this theme"
+        review_heading: "Reviews"
+        review_button: "Write a review"
+        more_themes_by: "More themes by "
+        author: "Author"
+        more_templates_html: "More %{industry} templates"
+        button_more_themes: "More themes"
+      show_author: 
+        heading: "All of %{author}'s Themes"
+        go_to_website: "Go to their website ›"
+        free_price: "Free"
     welcome:
       authors_themes:
         button: "More themes"
@@ -410,11 +441,6 @@ en:
         desktop: "desktop"
         mobile: "phone"
         preview: "Preview in your Store"
-      homepage:
-        heading: "Choose a theme for your online store"
-        info: "Responsive themes, easily customized to fit your brand"
-        button_more_themes: "More themes"
-        free_price: "Free"
       installing:
         heading: "You're about to install Jumpstart to store-name.magaz.com"
         or: "or"
@@ -481,30 +507,6 @@ en:
         info: "You don’t want just any old website template. Your business deserves much better than that. You need clean, sharp professionally designed themes specifically created for your industry. At Shopify, this is exactly what we offer. Browse through a wide selection of free and premium home and garden web templates to find exactly what you’re looking for."
         button_more_themes: "More themes"
         free_price: "Free"
-      theme_page:
-        name: "Name"
-        free_price: "Free"
-      theme_page:
-        name: "Name"
-        free_price: "Free"
-        info: "Pipeline is a clean and powerful theme – carefully tuned for mobile, tablet, and retina devices. Simplify your navigation with a powerful multi-level dropdown and build a beautiful homepage with full-bleed photos. Pipeline allows your products to shine with a clean minimal design, while giving your customers a great experience on any device."
-        preview_button: "Preview in your store"
-        buy_theme: "Buy theme"
-        view_demo: "View Demo"
-        who_supports: "Who supports this theme?"
-        support_info: "This theme was made and supported by Corknine."
-        support: "Support"
-        documentation: "Documentation"
-        terms_of_service: "Terms of Service"
-        includes_styles: "Includes %{value} style"
-        store_using_theme: "Stores using this theme"
-        review_heading: "Reviews"
-        review_button: "Write a review"
-        more_themes: "More themes by "
-        author: "Author"
-        more: "More "
-        templates: "%{template} templates"
-        button_more_themes: "More themes"
 
   welcome:
     sell:
@@ -1322,11 +1324,11 @@ en:
       payments: "Payments"
       taxes: "Taxes"
       webhooks: "Webhooks"
-    sort_search_header:
+    sort_search_panel:
       all: "All"
       free: "Free"
       premium: "Premium"
-      all_industrues: "All Industrues"
+      all_industries: "All Industries"
       art_photography: "Art & Photography"
       clothing_fashion: "Clothing & Fashion"
       jewelry_accessories: "Jewelry & Accessories"

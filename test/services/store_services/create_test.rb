@@ -26,8 +26,9 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
     assert_equal @default_theme, service.result[:shop].themes.main.first.source_theme
   end
 
+  #score: 1
   test 'fail shop creation when no default theme in system' do
-    @default_theme.delete
+    @default_theme.destroy
     service = StoreServices::Create.run(@success_params)
     refute service.valid?
     assert_equal "No default theme in system", service.errors.full_messages.last

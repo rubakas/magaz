@@ -17,6 +17,22 @@ class Theme < ActiveRecord::Base
     UNPUBLISHED = 'unpublished'.freeze
   end
 
+  module PriceCategories
+    FREE = "free".freeze
+    PREMIUM = "premium".freeze
+  end
+
+
+  scope :price_category, -> (price_category_name) do
+    unless price_category_name.blank?
+      if price_category_name == PriceCategories::FREE
+        where(price: 0) 
+      elsif price_category_name == PriceCategories::PREMIUM 
+        where.not(price: 0)
+      end
+    end
+  end
+
   REQUIRED_DIRECTORIES = %w[assets config layout snippets templates].freeze
   REQUIRED_TEMPLATES = %w[
     templates/blog.liquid
@@ -30,6 +46,7 @@ class Theme < ActiveRecord::Base
   has_many   :assets
   has_many   :theme_styles, dependent: :destroy
   has_many   :installed_themes, class_name: 'Theme', foreign_key: :source_theme_id
+  has_many   :reviews, dependent: :destroy
   belongs_to :partner
   belongs_to :shop
   belongs_to :source_theme, class_name: 'Theme', foreign_key: :source_theme_id

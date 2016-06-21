@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526124317) do
+ActiveRecord::Schema.define(version: 20160613175323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -229,6 +229,17 @@ ActiveRecord::Schema.define(version: 20160526124317) do
     t.datetime "published_at"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "mark"
+    t.integer  "user_id"
+    t.integer  "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theme_id"], name: "index_reviews_on_theme_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
+
   create_table "shipping_countries", force: :cascade do |t|
     t.string  "name"
     t.string  "tax"
@@ -298,8 +309,10 @@ ActiveRecord::Schema.define(version: 20160526124317) do
     t.string   "name"
     t.string   "image"
     t.integer  "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "industry"
+    t.string   "example_site_url"
     t.index ["theme_id"], name: "index_theme_styles_on_theme_id", using: :btree
   end
 
@@ -311,8 +324,8 @@ ActiveRecord::Schema.define(version: 20160526124317) do
     t.integer  "source_theme_id"
     t.string   "role"
     t.decimal  "price"
-    t.string   "industry"
     t.integer  "partner_id"
+    t.float    "rating"
     t.index ["partner_id"], name: "index_themes_on_partner_id", using: :btree
   end
 
@@ -345,6 +358,8 @@ ActiveRecord::Schema.define(version: 20160526124317) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "reviews", "themes"
+  add_foreign_key "reviews", "users"
   add_foreign_key "theme_styles", "themes"
   add_foreign_key "themes", "partners"
 end
