@@ -6,7 +6,7 @@
   install git-flow
   https://github.com/nvie/gitflow
 
-* Ruby version: 2.2.2
+* Ruby version: 2.3.1
   just use rvm or rbenv
 
 * Postgresql database

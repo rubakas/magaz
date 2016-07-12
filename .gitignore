@@ -28,3 +28,6 @@ uploads/
 # Ignore .env files
 .env.test
 .env.development
+
+# Ignore IDE files
+.idea
