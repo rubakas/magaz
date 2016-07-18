@@ -10,7 +10,6 @@ class StoreServices::Create < ActiveInteraction::Base
     Shop.new
   end
 
-
   def execute
     @shop = Shop.new
     @user = User.new
@@ -19,16 +18,7 @@ class StoreServices::Create < ActiveInteraction::Base
       begin
         @shop.attributes = {name: shop_name}
         @shop.save!
-
-        @user = compose(AdminServices::User::AddUser,
-                        email: email,
-                        password: password,
-                        account_owner: true,
-                        shop_id: @shop.id,
-                        first_name: first_name,
-                        last_name: last_name,
-                        permissions: nil)
-
+        AdminServices::User::AddUser.new(@shop.id, user_params, @user).run
         _install_default_theme(shop_id: @shop.id)
         _create_default_blogs_and_posts!(shop_id: @shop.id)
 
@@ -163,5 +153,15 @@ class StoreServices::Create < ActiveInteraction::Base
                                    body:          I18n.t("default.models.email_templates.#{template_type}.body"),
                                    description:   I18n.t("default.models.email_templates.#{template_type}.description"))
     end
+  end
+
+  def user_params
+    { email: email,
+        password: password,
+        account_owner: true,
+        first_name: first_name,
+        last_name: last_name,
+        permissions: nil
+    }
   end
 end
