@@ -1,34 +1,32 @@
-class AdminServices::User::AddUser < ActiveInteraction::Base
+class AdminServices::User::AddUser
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  integer :shop_id
-  string :first_name, :last_name, :email, :password
-  array :permissions, default: nil
-  boolean :account_owner, default: false
+  def initialize(shop_id, params, user = User.new)
+    @shop_id = shop_id
+    @result = user
+    @params = params
+    @success = false
+  end
 
-  validates :shop_id, :email, :first_name, :last_name, presence: true
-  validate :check_email
-
-  def execute
-    user = User.new
-    user.update_attributes!(inputs) ||
-      errors.add(:base, I18n.t('services.add_user.wrong_params'))
-
-    user
+  def run
+    @result.attributes = user_params
+    @success = true if @result.save!
+    self
   end
 
   private
 
-  def check_email
-    errors.add(:base, I18n.t('services.add_user.email_not_valid')) unless email_valid?
-    errors.add(:base, I18n.t('services.add_user.email_not_unique')) unless email_unique?
+  def user_params
+    permitted_params.merge(default_params) { |_key,v1,_v2| v1 }
   end
 
-  def email_unique?
-    Shop.find_by_id(shop_id).users.find_by(email: email).nil?
+  def default_params
+    { permissions: nil, account_owner: false , shop_id: @shop_id}
   end
 
-  def email_valid?
-    email && email =~ Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
+  def permitted_params
+    @params.slice(:first_name, :last_name, :email, :password, :permissions, :account_owner)
   end
-
 end
