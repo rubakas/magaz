@@ -21,7 +21,7 @@ class AdminServices::User::AddUserTest < ActiveSupport::TestCase
   end
 
   test "should create user with valid params" do
-    service = AdminServices::User::AddUser.new(@shop.id, @success_params).run
+    service = AdminServices::User::AddUser.new(shop_id: @shop.id, params: @success_params).run
     assert service.success?
     assert_equal 2, User.count
     assert_equal "New first_name", service.result.first_name
@@ -30,7 +30,7 @@ class AdminServices::User::AddUserTest < ActiveSupport::TestCase
   end
 
   test "should not create user with blank params" do
-    service = AdminServices::User::AddUser.new(nil, @blank_params)
+    service = AdminServices::User::AddUser.new(shop_id: nil, params: @blank_params)
     assert_raises ActiveRecord::RecordInvalid do
       service.run
     end
@@ -38,7 +38,7 @@ class AdminServices::User::AddUserTest < ActiveSupport::TestCase
 
   test "should create user with some blank params" do
     @success_params[:permissions] = nil
-    service = AdminServices::User::AddUser.new(@shop.id, @success_params).run
+    service = AdminServices::User::AddUser.new(shop_id: @shop.id, params: @success_params).run
     assert service.success?
     assert_equal @success_params[:first_name], service.result.first_name
     assert_equal @success_params[:email], service.result.email
