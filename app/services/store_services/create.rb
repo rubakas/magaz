@@ -12,13 +12,12 @@ class StoreServices::Create < ActiveInteraction::Base
 
   def execute
     @shop = Shop.new
-    @user = User.new
 
     Shop.connection.transaction do
       begin
         @shop.attributes = {name: shop_name}
         @shop.save!
-        AdminServices::User::AddUser.new(@shop.id, user_params, @user).run
+        @user = AdminServices::User::AddUser.new(@shop.id, user_params).run.result
         _install_default_theme(shop_id: @shop.id)
         _create_default_blogs_and_posts!(shop_id: @shop.id)
 
