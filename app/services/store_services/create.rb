@@ -22,13 +22,7 @@ class StoreServices::Create < ActiveInteraction::Base
         _create_default_blogs_and_posts!(shop_id: @shop.id)
 
         # create default collection
-        compose(AdminServices::Collection::AddCollection,
-                handle: '',
-                name: I18n.t('default.models.collection.collection_title'),
-                page_title: '',
-                description: I18n.t('default.models.collection.collection_description'),
-                shop_id: @shop.id,
-                meta_description: '')
+        AdminServices::Collection::AddCollection.new(shop_id: @shop.id, params: collection_params).run
 
         # create default pages
         AdminServices::Page::AddPage.new(shop_id: @shop.id, params: about_page_params).run
@@ -159,6 +153,15 @@ class StoreServices::Create < ActiveInteraction::Base
     {
       title: I18n.t('default.models.page.welcome_title'),
       content: I18n.t('default.models.page.welcome_content')
+    }
+  end
+
+  def collection_params
+    { handle: '',
+      name: I18n.t('default.models.collection.collection_title'),
+      page_title: '',
+      description: I18n.t('default.models.collection.collection_description'),
+      meta_description: ''
     }
   end
 end
