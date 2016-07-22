@@ -31,25 +31,8 @@ class StoreServices::Create < ActiveInteraction::Base
                 meta_description: '')
 
         # create default pages
-        compose(AdminServices::Page::AddPage,
-                shop_id: @shop.id,
-                title: I18n.t('default.models.page.about_title'),
-                page_title: '',
-                content: I18n.t('default.models.page.about_content'),
-                handle: '',
-                meta_description: '',
-                publish_on: nil,
-                published_at: nil)
-
-        compose(AdminServices::Page::AddPage,
-                shop_id: @shop.id,
-                title: I18n.t('default.models.page.welcome_title'),
-                page_title: '',
-                content: I18n.t('default.models.page.welcome_content'),
-                handle: '',
-                meta_description: '',
-                publish_on: nil,
-                published_at: nil)
+        AdminServices::Page::AddPage.new(shop_id: @shop.id, params: about_page_params).run
+        AdminServices::Page::AddPage.new(shop_id: @shop.id, params: welcome_page_params).run
 
         # links created after linked content, right? :)
         _create_default_link_lists!(shop_id: @shop.id)
@@ -155,12 +138,27 @@ class StoreServices::Create < ActiveInteraction::Base
   end
 
   def user_params
-    { email: email,
-        password: password,
-        account_owner: true,
-        first_name: first_name,
-        last_name: last_name,
-        permissions: nil
+    {
+      email: email,
+      password: password,
+      account_owner: true,
+      first_name: first_name,
+      last_name: last_name,
+      permissions: nil
+    }
+  end
+
+  def about_page_params
+    {
+      title: I18n.t('default.models.page.about_title'),
+      content: I18n.t('default.models.page.about_content'),
+    }
+  end
+
+  def welcome_page_params
+    {
+      title: I18n.t('default.models.page.welcome_title'),
+      content: I18n.t('default.models.page.welcome_content')
     }
   end
 end
