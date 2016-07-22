@@ -5,6 +5,10 @@ class PageTest < ActiveSupport::TestCase
 
   should have_many  :events
   should belong_to  :shop
+  should validate_presence_of(:shop_id)
+  should validate_presence_of(:title)
+  should validate_uniqueness_of(:title).scoped_to(:shop_id)
+  should validate_uniqueness_of(:handle).scoped_to(:shop_id)
 
   setup do
     setup_visibility_examples(model_class: Page, factory_name: :page)
@@ -29,7 +33,6 @@ class PageTest < ActiveSupport::TestCase
     @page2 = @shop1.pages.new(title: "page2", handle: "page-handle")
     @page2.save
 
-    assert @page2.save
-    refute @page1.slug == @page2.slug
+    refute @page2.save
   end
 end

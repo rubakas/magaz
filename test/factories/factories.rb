@@ -65,6 +65,7 @@ FactoryGirl.define do
   factory :page, class: Page do
     sequence(:title)   { |n| "Title #{n}" }
     sequence(:content) { |n| "Content #{n}" }
+    shop
   end
 
   factory :product, class: Product do

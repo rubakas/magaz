@@ -14,14 +14,8 @@ class Admin::PagesController < Admin::ApplicationController
   end
 
   def create
-    service = AdminServices::Page::AddPage
-              .run(title: params[:page][:title],
-                   content: params[:page][:content],
-                   page_title: params[:page][:page_title],
-                   meta_description: params[:page][:meta_description],
-                   handle: params[:page][:handle],
-                   shop_id: current_shop.id)
-    if service.valid?
+    service = AdminServices::Page::AddPage.new(shop_id: current_shop.id, params: params[:page]).run
+    if service.success?
       @page = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_page_path(@page)
