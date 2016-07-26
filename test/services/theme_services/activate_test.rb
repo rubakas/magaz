@@ -14,8 +14,9 @@ class ThemeServices::ActivateTest < ActiveSupport::TestCase
 
   test 'activate_theme' do
     install_service = ThemeServices::InstallTheme
-                      .run(shop_id:          @shop.id,
+                      .new(shop_id:          @shop.id,
                            source_theme_id:  @theme.id)
+                      .run
 
     activate_service =  ThemeServices::Activate
                         .run( shop_id:            @shop.id,
