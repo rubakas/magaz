@@ -18,7 +18,7 @@ class StoreServices::Create < ActiveInteraction::Base
         @shop.attributes = {name: shop_name}
         @shop.save!
         @user = AdminServices::User::AddUser.new(shop_id: @shop.id, params: user_params).run.result
-        _install_default_theme(shop_id: @shop.id)
+        _install_default_theme(@shop.id)
         _create_default_blogs_and_posts!(shop_id: @shop.id)
 
         # create default collection
@@ -51,12 +51,10 @@ class StoreServices::Create < ActiveInteraction::Base
     Shop.where(name: shop_name).count == 0
   end
 
-  def _install_default_theme(shop_id:)
+  def _install_default_theme(shop_id)
     # Default theme, fail unless found
     if Theme.sources.first
-      compose(ThemeServices::InstallTheme,
-              shop_id: shop_id,
-              source_theme_id: Theme.sources.first.id)
+      ThemeServices::InstallTheme.new(shop_id: shop_id, source_theme_id: Theme.sources.first.id).run
     else
       errors.add(:base, I18n.t('services.create.no_default_theme'))
       fail 'No default theme in system'
