@@ -5,6 +5,9 @@ class ArticleTest < ActiveSupport::TestCase
   should belong_to(:blog)
   should have_many(:comments)
   should have_many(:events)
+  should validate_presence_of(:title)
+  should validate_presence_of(:blog_id)
+  should validate_uniqueness_of(:title).scoped_to(:blog_id)
 
   include Shared::VisibilityExamples
 
@@ -33,9 +36,7 @@ class ArticleTest < ActiveSupport::TestCase
     @article1 = create(:article, title: "article1", handle: "article-handle", blog: @blog1)
 
     @article2 = @blog1.articles.new(title: "article2", handle: "article-handle")
-    @article2.save
 
-    assert @article2.save
-    refute @article1.slug == @article2.slug
+    refute @article2.save
   end
 end

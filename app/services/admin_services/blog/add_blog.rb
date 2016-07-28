@@ -1,50 +1,27 @@
-class AdminServices::Blog::AddBlog < ActiveInteraction::Base
+class AdminServices::Blog::AddBlog
 
-  set_callback :validate, :after, -> {blog}
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  string :title, :page_title, :meta_description, :handle
-  integer :shop_id
-
-  validates :title, :shop_id, presence: true
-  validate :title_uniqueness, :handle_uniqueness
-
-  def blog
-    @blog = Shop.find(shop_id).blogs.new
-    add_errors if errors.any?
-    @blog
+  def initialize(shop_id:, params:)
+    @result = Shop.find(shop_id).blogs.new(default_params)
+    @params = params
   end
 
-  def execute
-    unless @blog.update_attributes(inputs)
-      errors.merge!(@blog.errors)
-    end
-    @blog
+  def run
+    @result.attributes = blog_params
+    @success = @result.save
+    self
   end
 
   private
 
-  def add_errors
-    errors.full_messages.each do |msg|
-      @blog.errors.add(:base, msg)
-    end
+  def default_params
+    { meta_description: '', handle: '', page_title: '' }
   end
 
-  def title_uniqueness
-    errors.add(:base, I18n.t('services.add_blog.title_not_unique')) unless title_unique?
+  def blog_params
+    @params.slice(:meta_description, :handle, :page_title, :title)
   end
-
-  def title_unique?
-    ::Blog.where(shop_id: shop_id, title: title).count == 0
-  end
-
-  def handle_uniqueness
-    unless handle.empty?
-      errors.add(:base, I18n.t('services.add_blog.handle_not_unique')) unless handle_unique?
-    end
-  end
-
-  def handle_unique?
-    ::Blog.where(shop_id: shop_id, handle: handle).count == 0
-  end
-
 end

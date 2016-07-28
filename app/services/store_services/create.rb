@@ -62,21 +62,19 @@ class StoreServices::Create < ActiveInteraction::Base
   end
 
   def _create_default_blogs_and_posts!(shop_id:)
-    default_blog = compose(AdminServices::Blog::AddBlog,
-                           meta_description: '',
-                           title: I18n.t('default.models.blog.blog_title'),
-                           handle: '',
-                           shop_id: shop_id,
-                           page_title: '')
+    default_blog = AdminServices::Blog::AddBlog
+                     .new(shop_id: shop_id, params: { title: I18n.t('default.models.blog.blog_title') })
+                     .result
 
 
-    compose(AdminServices::Article::AddArticle,
-            handle: '',
-            title: I18n.t('default.models.article.article_title'),
-            page_title: '',
-            content: I18n.t('default.models.article.article_content'),
-            meta_description: '',
-            blog_id: default_blog.id)
+    AdminServices::Article::AddArticle
+    .new(blog_id: default_blog.id,
+         params: {
+                   title: I18n.t('default.models.article.article_title'),
+                   content: I18n.t('default.models.article.article_content')
+                 }
+        )
+    .run
   end
 
   def _create_default_link_lists!(shop_id:)
