@@ -67,13 +67,14 @@ class StoreServices::Create < ActiveInteraction::Base
                      .result
 
 
-    compose(AdminServices::Article::AddArticle,
-            handle: '',
-            title: I18n.t('default.models.article.article_title'),
-            page_title: '',
-            content: I18n.t('default.models.article.article_content'),
-            meta_description: '',
-            blog_id: default_blog.id)
+    AdminServices::Article::AddArticle
+    .new(blog_id: default_blog.id,
+         params: {
+                   title: I18n.t('default.models.article.article_title'),
+                   content: I18n.t('default.models.article.article_content')
+                 }
+        )
+    .run
   end
 
   def _create_default_link_lists!(shop_id:)

@@ -55,5 +55,4 @@ class Admin::BlogsController < Admin::ApplicationController
   def blog_params
     params.require(:blog).permit(:title, :handle, :page_title, :meta_description)
   end
-
 end

@@ -15,18 +15,13 @@ class Admin::ArticlesController < Admin::ApplicationController
 
   def create
     service = AdminServices::Article::AddArticle
-              .run(title: params[:article][:title],
-                   handle: params[:article][:handle],
-                   content: params[:article][:content],
-                   blog_id: params[:article][:blog_id],
-                   page_title: params[:article][:page_title],
-                   meta_description: params[:article][:meta_description])
-    if service.valid?
-      @article = service.result
+              .new(blog_id: params[:article][:blog_id], params: article_params)
+              .run
+    @article = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_article_url(@article)
     else
-      @article = service.article
       flash[:notice] = t('.notice_fail')
       render 'new'
     end
@@ -58,4 +53,9 @@ class Admin::ArticlesController < Admin::ApplicationController
     redirect_to admin_articles_url
   end
 
+  private
+
+  def article_params
+    params.require(:article).permit(:title, :handle, :content, :page_title, :meta_description)
+  end
 end

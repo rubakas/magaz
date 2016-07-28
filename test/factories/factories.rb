@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :article, class: Article do
     sequence(:title)   { |n| "Article #{n}" }
     sequence(:content) { |n| "Article #{n} content" }
+    blog
   end
 
   factory :asset, class: Asset do
@@ -9,6 +10,7 @@ FactoryGirl.define do
 
   factory :blog, class: Blog do
     sequence(:title) { |n| "Blog #{n}" }
+    shop
   end
 
   factory :collection, class: Collection do
