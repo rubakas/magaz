@@ -5,6 +5,10 @@ class BlogTest < ActiveSupport::TestCase
   should have_many(:comments)
   should have_many(:events)
   should belong_to(:shop)
+  should validate_presence_of(:title)
+  should validate_presence_of(:shop_id)
+  should validate_uniqueness_of(:title).scoped_to(:shop_id)
+  should validate_uniqueness_of(:handle).scoped_to(:shop_id).allow_blank
   
   test 'two blogs with same handle and different shops' do
     @shop1 = create(:shop, name: "shop1")
@@ -25,7 +29,6 @@ class BlogTest < ActiveSupport::TestCase
     @blog2 = @shop1.blogs.new(title: "blog2", handle: "blog-handle")
     @blog2.save
 
-    assert @blog2.save
-    refute @blog1.slug == @blog2.slug
+    refute @blog2.save
   end
 end

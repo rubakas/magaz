@@ -14,18 +14,12 @@ class Admin::BlogsController < Admin::ApplicationController
   end
 
   def create
-    service = AdminServices::Blog::AddBlog
-              .run(shop_id: current_shop.id,
-                   title: params[:blog][:title],
-                   handle: params[:blog][:handle],
-                   page_title: params[:blog][:page_title],
-                   meta_description: params[:blog][:meta_description])
-    if service.valid?
-      @blog = service.result
+    service = AdminServices::Blog::AddBlog.new(shop_id: current_shop.id, params: blog_params).run
+    @blog = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_blog_path(@blog)
     else
-      @blog = service.blog
       flash[:notice] = t('.notice_fail')
       render 'new'
     end
@@ -54,6 +48,12 @@ class Admin::BlogsController < Admin::ApplicationController
                                                              shop_id: current_shop.id)
     flash[:notice] = t('.notice_success')
     redirect_to admin_blogs_path
+  end
+
+  private
+
+  def blog_params
+    params.require(:blog).permit(:title, :handle, :page_title, :meta_description)
   end
 
 end
