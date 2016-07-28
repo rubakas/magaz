@@ -77,44 +77,36 @@ class StoreServices::Create < ActiveInteraction::Base
     .run
   end
 
-  def _create_default_link_lists!(shop_id:)
+  def _create_default_link_lists!(shop_id)
     #Main Menu link list
-    default_menu_link_list = compose(AdminServices::LinkList::AddLinkList,
-                                     shop_id: shop_id,
-                                     name: I18n.t('default.models.link_list.menu_link_list_name'),
-                                     handle: '')
+    default_menu_link_list = AdminServices::LinkList::AddLinkList
+                               .new(shop_id: shop_id, params: { name: I18n.t('default.models.link_list.menu_link_list_name') })
+                               .run
+                               .result
 
     #Links for Main Menu
-    compose(AdminServices::Link::AddLink,
-            position: '',
-            name: I18n.t('default.models.link.home_link_name'),
-            link_type: '',
-            link_list_id: "#{default_menu_link_list.id}")
+    AdminServices::Link::AddLink
+      .new(link_list_id: default_menu_link_list.id, params: { name: I18n.t('default.models.link.home_link_name') })
+      .run
 
-    compose(AdminServices::Link::AddLink,
-            position: '',
-            name: I18n.t('default.models.link.blog_link_name'),
-            link_type: '',
-            link_list_id: "#{default_menu_link_list.id}")
+    AdminServices::Link::AddLink
+      .new(link_list_id: default_menu_link_list.id, params: { name: I18n.t('default.models.link.blog_link_name') })
+      .run
 
     #Footer link list
-    default_footer_link_list = compose(AdminServices::LinkList::AddLinkList,
-                                       shop_id: shop_id,
-                                       name: I18n.t('default.models.link_list.footer_link_list_name'),
-                                       handle: '')
+    default_footer_link_list = AdminServices::LinkList::AddLinkList
+                                 .new(shop_id: shop_id, params: { name: I18n.t('default.models.link_list.footer_link_list_name') })
+                                 .run
+                                 .result
 
     #Links for Footer
-    compose(AdminServices::Link::AddLink,
-            position: '',
-            name: I18n.t('default.models.link.search_link_name'),
-            link_type: '',
-            link_list_id: "#{default_footer_link_list.id}")
+    AdminServices::Link::AddLink
+      .new(link_list_id: default_footer_link_list.id, params: { name: I18n.t('default.models.link.search_link_name') })
+      .run
 
-    compose(AdminServices::Link::AddLink,
-            position: '',
-            name: I18n.t('default.models.link.about_link_name'),
-            link_type: '',
-            link_list_id: "#{default_footer_link_list.id}")
+    AdminServices::Link::AddLink
+        .new(link_list_id: default_footer_link_list.id, params: { name: I18n.t('default.models.link.about_link_name') })
+        .run
   end
 
   def _create_default_emails!(shop:)

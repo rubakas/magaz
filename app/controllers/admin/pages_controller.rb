@@ -15,12 +15,11 @@ class Admin::PagesController < Admin::ApplicationController
 
   def create
     service = AdminServices::Page::AddPage.new(shop_id: current_shop.id, params: params[:page]).run
+    @page = service.result
     if service.success?
-      @page = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_page_path(@page)
     else
-      @page = service.page
       flash.now[:notice] = t('.notice_fail')
       render 'show'
     end

@@ -17,18 +17,13 @@ class Admin::LinksController < Admin::ApplicationController
   end
 
   def create
-    service = AdminServices::Link::AddLink
-              .run(name: params[:link][:name],
-                   link_type: params[:link][:link_type],
-                   position: params[:link][:position],
-                   link_list_id: params[:link_list_id])
-    @link_list = service.link.link_list
-    if service.valid?
-      @link = service.result
+    service = AdminServices::Link::AddLink.new(link_list_id: params[:link_list_id], params: link_params).run
+    @link_list = service.result.link_list
+    @link = service.result
+    if service.success?
       flash.now[:notice] = t('.notice_success')
       render 'show'
     else
-      @link = service.link
       render 'new'
     end
   end
@@ -58,4 +53,9 @@ class Admin::LinksController < Admin::ApplicationController
     redirect_to admin_link_list_path(service.link_list)
   end
 
+  private
+
+  def link_params
+    params.require(:link).permit(:name, :link_type, :position)
+  end
 end
