@@ -15,4 +15,7 @@
 
 class Link < ActiveRecord::Base
   belongs_to :link_list
+
+  validates :name, :link_list_id, presence: true
+  validates :name, uniqueness: { scope: :link_list_id }
 end

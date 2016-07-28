@@ -19,6 +19,10 @@ class LinkList < ActiveRecord::Base
   accepts_nested_attributes_for :links
   friendly_id :handle, use: [:slugged, :scoped], scope: :shop
 
+  validates :name, :shop_id, presence: true
+  validates :name, uniqueness: { scope: :shop_id }
+  validates :handle, uniqueness: { scope: :shop_id }, allow_blank: true
+
   def should_generate_new_friendly_id?
     handle_changed?
   end
