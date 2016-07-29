@@ -12,38 +12,50 @@ class AdminServices::Article::AddArticleTest < ActiveSupport::TestCase
   end
 
   test 'should create article with valid params' do
-    service = AdminServices::Article::AddArticle.run(@success_params)
-    assert service.valid?
+    service = AdminServices::Article::AddArticle
+              .new(blog_id: @blog.id, params: @success_params)
+              .run()
+    assert service.success?
     assert Article.find_by_id(service.result.id)
     assert_equal 'Test title', service.result.title
     assert_equal 1, @blog.articles.count
   end
 
   test 'should not create article with same params' do
-    service = AdminServices::Article::AddArticle.run(@success_params)
-    assert service.valid?
-    service2 = AdminServices::Article::AddArticle.run(@success_params)
-    refute service2.valid?
+    service = AdminServices::Article::AddArticle
+              .new(blog_id: @blog.id, params: @success_params)
+              .run()
+    assert service.success?
+    service2 = AdminServices::Article::AddArticle
+                .new(blog_id: @blog.id, params: @success_params)
+                .run()
+    refute service2.success?
     assert_equal 1, @blog.articles.count
-    assert_equal 2, service2.article.errors.full_messages.count
-    assert_equal "Title has already been taken", service2.article.errors.full_messages.first
+    assert_equal 2, service2.result.errors.full_messages.count
+    assert_equal "Title has already been taken", service2.result.errors.full_messages.first
   end
 
   test 'should not create article with existing handle' do
-    service = AdminServices::Article::AddArticle.run(@success_params)
-    assert service.valid?
+    service = AdminServices::Article::AddArticle
+              .new(blog_id: @blog.id, params: @success_params)
+              .run()
+    assert service.success?
     @success_params[:title] = "Second title"
-    service2 = AdminServices::Article::AddArticle.run(@success_params)
-    refute service2.valid?
+    service2 = AdminServices::Article::AddArticle
+              .new(blog_id: @blog.id, params: @success_params)
+              .run()
+    refute service2.success?
     assert_equal 1, @blog.articles.count
-    assert_equal 1, service2.article.errors.full_messages.count
-    assert_equal "Handle has already been taken", service2.article.errors.full_messages.first
+    assert_equal 1, service2.result.errors.full_messages.count
+    assert_equal "Handle has already been taken", service2.result.errors.full_messages.first
   end
 
   test 'should not create article with blank params' do
-    service = AdminServices::Article::AddArticle.run(@blank_params)
-    refute service.valid?
-    assert_equal 1, service.article.errors.full_messages.count
+    service = AdminServices::Article::AddArticle
+              .new(blog_id: @blog.id, params: @blank_params)
+              .run()
+    refute service.success?
+    assert_equal 1, service.result.errors.full_messages.count
     assert_equal 0, @blog.articles.count
   end
 

@@ -18,7 +18,7 @@ class StoreServices::Create < ActiveInteraction::Base
         @shop.attributes = {name: shop_name}
         @shop.save!
         @user = AdminServices::User::AddUser.new(shop_id: @shop.id, params: user_params).run.result
-        _install_default_theme(@shop.id)
+        _install_default_theme(shop_id: @shop.id)
         _create_default_blogs_and_posts!(shop_id: @shop.id)
 
         # create default collection
@@ -51,7 +51,7 @@ class StoreServices::Create < ActiveInteraction::Base
     Shop.where(name: shop_name).count == 0
   end
 
-  def _install_default_theme(shop_id)
+  def _install_default_theme(shop_id:)
     # Default theme, fail unless found
     if Theme.sources.first
       ThemeServices::InstallTheme.new(shop_id: shop_id, source_theme_id: Theme.sources.first.id).run
@@ -64,6 +64,7 @@ class StoreServices::Create < ActiveInteraction::Base
   def _create_default_blogs_and_posts!(shop_id:)
     default_blog = AdminServices::Blog::AddBlog
                      .new(shop_id: shop_id, params: { title: I18n.t('default.models.blog.blog_title') })
+                     .run
                      .result
 
 
@@ -77,7 +78,7 @@ class StoreServices::Create < ActiveInteraction::Base
     .run
   end
 
-  def _create_default_link_lists!(shop_id)
+  def _create_default_link_lists!(shop_id:)
     #Main Menu link list
     default_menu_link_list = AdminServices::LinkList::AddLinkList
                                .new(shop_id: shop_id, params: { name: I18n.t('default.models.link_list.menu_link_list_name') })
