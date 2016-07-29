@@ -8,27 +8,4 @@ class BlogTest < ActiveSupport::TestCase
   should validate_presence_of(:title)
   should validate_presence_of(:shop_id)
   should validate_uniqueness_of(:title).scoped_to(:shop_id)
-  should validate_uniqueness_of(:handle).scoped_to(:shop_id).allow_blank
-  
-  test 'two blogs with same handle and different shops' do
-    @shop1 = create(:shop, name: "shop1")
-    @shop2 = create(:shop, name: "shop2")
-    @blog1 = create(:blog, title: "blog", handle: "blog-handle", shop: @shop1)
-
-    @blog2 = @shop2.blogs.new(title: "blog", handle: "blog-handle")
-
-    assert @blog2.save
-    assert @blog1.slug == @blog2.slug
-  end
-
-  test 'two blogs with same handle and same shop' do
-    @shop1 = create(:shop, name: "shop1")
-
-    @blog1 = create(:blog, title: "blog1", handle: "blog-handle", shop: @shop1)
-
-    @blog2 = @shop1.blogs.new(title: "blog2", handle: "blog-handle")
-    @blog2.save
-
-    refute @blog2.save
-  end
 end

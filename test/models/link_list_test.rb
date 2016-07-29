@@ -6,6 +6,4 @@ class LinkListTest < ActiveSupport::TestCase
   should validate_presence_of(:name)
   should validate_presence_of(:shop_id)
   should validate_uniqueness_of(:name).scoped_to(:shop_id)
-  should validate_uniqueness_of(:handle).scoped_to(:shop_id).allow_blank
 end
-

@@ -1,11 +1,15 @@
-class AdminServices::Article::DeleteArticle < ActiveInteraction::Base
+class AdminServices::Article::DeleteArticle
 
-  string :id
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  validates :id, presence: true
-
-  def execute
-    ::Article.friendly.find(id).destroy
+  def initialize(id:)
+    @result = ::Article.friendly.find(id)
   end
 
+  def run
+    @success = @result.destroy
+    self
+  end
 end

@@ -17,15 +17,18 @@ class User::PasswordAuthenticableTest < ActiveSupport::TestCase
   end
 
   test 'validation email uniqueness' do
+    @shop = create(:shop)
     uniq_user = User.create first_name: 'New user',
                             last_name: 'number One',
                             email: 'example@example.com',
-                            password: '1234q'
+                            password: '1234q',
+                            shop_id: @shop.id
     assert uniq_user.valid?
     not_uniq_user = User.create first_name: 'New user',
                                 last_name: 'number Two',
                                 email: 'example@example.com',
-                                password: '1234q'
+                                password: '1234q',
+                                shop_id: @shop.id
     assert not_uniq_user.invalid?
   end
 

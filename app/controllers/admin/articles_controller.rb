@@ -29,26 +29,25 @@ class Admin::ArticlesController < Admin::ApplicationController
 
   def update
     service = AdminServices::Article::ChangeArticle
-              .run(id: params[:id],
-                   title: params[:article][:title],
-                   handle: params[:article][:handle],
-                   blog_id: params[:article][:blog_id],
-                   content: params[:article][:content],
-                   page_title: params[:article][:page_title],
-                   meta_description: params[:article][:meta_description])
-    if service.valid?
+              .new( blog_id: params[:article][:blog_id],
+                    article_id: params[:id],
+                    params: params[:article].permit!)
+              .run
+    if service.success?
       @article = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_article_url(@article)
     else
-      @article = service.article
+      @article = service.result
       flash[:notice] = t('.notice_fail')
       render 'show'
     end
   end
 
   def destroy
-    service = AdminServices::Article::DeleteArticle.run(id: params[:id])
+    service = AdminServices::Article::DeleteArticle
+              .new(id: params[:id])
+              .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_articles_url
   end

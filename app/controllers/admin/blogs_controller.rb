@@ -44,8 +44,9 @@ class Admin::BlogsController < Admin::ApplicationController
   end
 
   def destroy
-    service = AdminServices::Blog::DeleteBlog.run(id: params[:id],
-                                                             shop_id: current_shop.id)
+    service = AdminServices::Blog::DeleteBlog
+              .new(id: params[:id], shop_id: current_shop.id)
+              .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_blogs_path
   end

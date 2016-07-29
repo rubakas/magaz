@@ -39,21 +39,6 @@ module Admin
       assert current_path == "/admin/collections/test-url"
     end
 
-    test "edit handle url" do
-      click_link 'Add Collection', match: :first
-      fill_in 'Name', with: 'Some Collection'
-      fill_in 'Description', with: ''
-      fill_in 'Handle', with: 'test-url'
-      click_button 'Create Collection'
-      assert page.has_content? 'Collection was successfully created.'
-      assert current_path == "/admin/collections/test-url"
-      fill_in 'Handle', with: 'edit-test-url'
-      click_button 'Update Collection'
-      assert page.has_content? 'Collection was successfully updated.'
-      assert current_path == "/admin/collections/edit-test-url"
-    end
-
-
     test 'create collection failure' do
       click_link 'Add Collection', match: :first
       fill_in 'Name', with: ''

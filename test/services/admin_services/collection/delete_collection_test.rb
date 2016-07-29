@@ -10,18 +10,19 @@ class AdminServices::Collection::DeleteCollectionTest < ActiveSupport::TestCase
   test 'should delete collection with valid id' do
     assert Collection.find_by_id(@collection.id)
     service = AdminServices::Collection::DeleteCollection
-                .run( id: @collection.id.to_s, 
-                      shop_id: @shop.id)
-    assert service.valid?
+                .new( id: @collection.id.to_s, shop_id: @shop.id)
+                .run
+    assert service.success?
     refute Collection.find_by_id(@collection.id)
     assert_equal 0, Collection.count
   end
 
-  test 'should not delet collection with blank id' do
-    service = AdminServices::Collection::DeleteCollection.run(id: '', shop_id: '')
-    refute service.valid?
-    assert_equal 1, service.errors.count
-    assert_equal 1, Collection.count
+  test 'should not delete collection with blank id' do
+    assert_raises ActiveRecord::RecordNotFound do
+      service = AdminServices::Collection::DeleteCollection
+                .new(id: '', shop_id: '')
+                .run
+    end
   end
 
 end
