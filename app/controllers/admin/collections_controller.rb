@@ -50,7 +50,8 @@ class Admin::CollectionsController < Admin::ApplicationController
 
   def destroy
     service = AdminServices::Collection::DeleteCollection
-                .run(id: params[:id], shop_id: current_shop.id)
+              .new(id: params[:id], shop_id: current_shop.id)
+              .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_collections_path
   end

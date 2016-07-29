@@ -1,11 +1,31 @@
 module Shared
   module VisibilityExamples
     def setup_visibility_examples(model_class:, factory_name:)
+      @shop = create(:shop)
       @model_class = model_class
-      @model_instance = create(factory_name)
-      @published_models = create_list(factory_name, 10, publish_on: nil, published_at: 1.minute.ago)
-      @not_published_models = create_list(factory_name, 10, publish_on: 1.day.from_now, published_at: nil)
-      @pending_publishing_models = create_list(factory_name, 10, publish_on: 1.minute.ago, published_at: nil)
+      @model_instance = if model_class.new.respond_to? :shop
+        create(factory_name, shop: @shop)
+      else
+        create(factory_name)
+      end
+
+      @published_models = if model_class.new.respond_to? :shop
+        create_list(factory_name, 10, publish_on: nil, published_at: 1.minute.ago, shop: @shop)
+      else
+        create_list(factory_name, 10, publish_on: nil, published_at: 1.minute.ago)
+      end
+
+      @not_published_models = if model_class.new.respond_to? :shop
+        create_list(factory_name, 10, publish_on: 1.day.from_now, published_at: nil, shop: @shop)
+      else
+        create_list(factory_name, 10, publish_on: 1.day.from_now, published_at: nil)
+      end
+      
+      @pending_publishing_models = if model_class.new.respond_to? :shop
+        create_list(factory_name, 10, publish_on: 1.minute.ago, published_at: nil, shop: @shop)
+      else
+        create_list(factory_name, 10, publish_on: 1.minute.ago, published_at: nil)
+      end
     end
 
     def test_basic_visibility_functionality

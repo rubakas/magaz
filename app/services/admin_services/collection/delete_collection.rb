@@ -1,11 +1,15 @@
-class AdminServices::Collection::DeleteCollection < ActiveInteraction::Base
+class AdminServices::Collection::DeleteCollection
 
-  integer :shop_id
-  string :id
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  validates :id, :shop_id, presence: true
+  def initialize(shop_id:, id:)
+    @result = ::Shop.find(shop_id).collections.friendly.find(id)
+  end
 
-  def execute
-    Shop.find(shop_id).collections.friendly.find(id).destroy
+  def run
+    @success = @result.destroy
+    self
   end
 end
