@@ -15,14 +15,14 @@ class Admin::LinkListsController < Admin::ApplicationController
 
   def create
     service = AdminServices::LinkList::AddLinkList
-              .new(shop_id: current_shop.id, params: params[:link_list])
+              .new(shop_id: current_shop.id, params: params[:link_list].permit!)
               .run()
-    if service.valid?
+    if service.success?
       @link_list = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_link_list_path(@link_list)
     else
-      @link_list = service.link_list
+      @link_list = service.result
       flash.now[:notice] = t('.notice_fail')
       render 'new'
     end

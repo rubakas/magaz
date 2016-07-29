@@ -14,7 +14,9 @@ class Admin::PagesController < Admin::ApplicationController
   end
 
   def create
-    service = AdminServices::Page::AddPage.new(shop_id: current_shop.id, params: params[:page]).run
+    service = AdminServices::Page::AddPage
+              .new(shop_id: current_shop.id, params: params[:page].permit!)
+              .run
     @page = service.result
     if service.success?
       flash[:notice] = t('.notice_success')

@@ -5,7 +5,7 @@ class ThemeTest < ActiveSupport::TestCase
   should belong_to(:partner)
   should belong_to(:shop)
   should have_many(:theme_styles).dependent(:destroy)
-  
+
   setup do
     @shop = create(:shop)
     @source_theme = build(:theme)
@@ -17,8 +17,8 @@ class ThemeTest < ActiveSupport::TestCase
             theme_attributes: { name: 'Default' })
 
     service = ThemeServices::InstallTheme
-                .run(shop_id: @shop.id,
-                     source_theme_id: @source_theme.id)
+                .new(shop_id: @shop.id, source_theme_id: @source_theme.id)
+                .run()
 
     @installed_theme = service.result
   end

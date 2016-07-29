@@ -14,13 +14,15 @@ class Admin::CollectionsController < Admin::ApplicationController
   end
 
   def create
-    service = AdminServices::Collection::AddCollection.new(shop_id: current_shop.id, params: params[:collection]).run
+    service = AdminServices::Collection::AddCollection
+              .new(shop_id: current_shop.id, params: params[:collection].permit!)
+              .run
     if service.success?
       @collection = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_collection_url(@collection)
     else
-      @collection = service.collection
+      @collection = service.result
       flash[:error] = t('.notice_fail')
       render 'new'
     end

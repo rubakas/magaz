@@ -54,7 +54,9 @@ class StoreServices::Create < ActiveInteraction::Base
   def _install_default_theme(shop_id:)
     # Default theme, fail unless found
     if Theme.sources.first
-      ThemeServices::InstallTheme.new(shop_id: shop_id, source_theme_id: Theme.sources.first.id).run
+      ThemeServices::InstallTheme
+      .new(shop_id: shop_id, source_theme_id: Theme.sources.first.id)
+      .run
     else
       errors.add(:base, I18n.t('services.create.no_default_theme'))
       fail 'No default theme in system'
