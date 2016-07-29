@@ -21,7 +21,6 @@ class LinkList < ActiveRecord::Base
 
   validates :name, :shop_id, presence: true
   validates :name, uniqueness: { scope: :shop_id }
-  validates :handle, uniqueness: { scope: :shop_id }, allow_blank: true
 
   def should_generate_new_friendly_id?
     handle_changed?

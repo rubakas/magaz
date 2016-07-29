@@ -30,10 +30,9 @@ class CollectionTest < ActiveSupport::TestCase
   test 'two collections with same handle and same shop' do
     @shop1 = create(:shop, name: "shop1")
 
-    @collection1 = create(:collection, name: "collection1", handle: "collection-handle", shop: @shop1)
+    @collection1 = Collection.create(name: "collection1", handle: "collection-handle", shop: @shop1)
 
-    @collection2 = @shop1.collections.new(name: "collection2", handle: "collection-handle")
-    @collection2.save
+    @collection2 = Collection.create(name: "collection2", handle: "collection-handle", shop: @shop1)
 
     assert @collection2.save
     refute @collection1.slug == @collection2.slug

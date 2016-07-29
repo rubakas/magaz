@@ -25,13 +25,12 @@ class Collection < ActiveRecord::Base
   belongs_to              :shop
   has_many                :tax_overrides
 
-  friendly_id :handle, use: [:slugged, :scoped], scope: :shop
+  friendly_id :handle, use: [:slugged, :scoped], scope: [:shop]
 
   validates :name, :shop_id, presence: true
-  validates :name, uniqueness: { scope: :shop_id }
-  validates :handle, uniqueness: { scope: :shop_id }, allow_blank: true
+  validates :name, uniqueness: { scope: :shop }
 
-  def should_generate_new_friendly_id?
-    handle_changed?
-  end
+  # def should_generate_new_friendly_id?
+  #   handle_changed?
+  # end
 end
