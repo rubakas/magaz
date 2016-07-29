@@ -33,9 +33,6 @@ class AdminServices::Page::AddPageTest < ActiveSupport::TestCase
                 .run
     refute service2.success?
     assert_equal 2, @shop.pages.count
-    assert_equal 2, service2.result.errors.full_messages.count
-    assert_equal "Title has already been taken", service2.result.errors.full_messages.first
-    assert_equal "Handle has already been taken", service2.result.errors.full_messages.last
   end
 
   test 'should not create page with blank params' do

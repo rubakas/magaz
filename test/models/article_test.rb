@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
-  
+
   should belong_to(:blog)
   should have_many(:comments)
   should have_many(:events)
@@ -27,16 +27,5 @@ class ArticleTest < ActiveSupport::TestCase
 
     assert @article2.save
     assert @article1.slug == @article2.slug
-  end
-
-  test 'two articles with same handle and same shop' do
-    @shop1 = create(:shop, name: "shop1")
-    @blog1 = create(:blog, title: "blog1")
-
-    @article1 = create(:article, title: "article1", handle: "article-handle", blog: @blog1)
-
-    @article2 = @blog1.articles.new(title: "article2", handle: "article-handle")
-
-    refute @article2.save
   end
 end

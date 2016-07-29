@@ -28,7 +28,4 @@ class Page < ActiveRecord::Base
   validates :title, :shop_id, presence: true
   validates :title, uniqueness: { scope: :shop_id }
 
-  def should_generate_new_friendly_id?
-    handle_changed?
-  end
 end

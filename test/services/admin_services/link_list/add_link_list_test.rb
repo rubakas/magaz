@@ -22,9 +22,6 @@ class AdminServices::LinkList::AddLinkListTest < ActiveSupport::TestCase
     service2 = AdminServices::LinkList::AddLinkList.new(shop_id: @shop.id, params: @success_params).run
     refute service2.success?
     assert_equal 1, @shop.link_lists.count
-    assert_equal 2, service2.result.errors.full_messages.count
-    assert_equal "Name has already been taken", service2.result.errors.full_messages.first
-    assert_equal "Handle has already been taken", service2.result.errors.full_messages.last
   end
 
   test 'should not create link_list with blank params' do

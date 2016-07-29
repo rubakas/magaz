@@ -31,23 +31,7 @@ class AdminServices::Article::AddArticleTest < ActiveSupport::TestCase
                 .run()
     refute service2.success?
     assert_equal 1, @blog.articles.count
-    assert_equal 2, service2.result.errors.full_messages.count
     assert_equal "Title has already been taken", service2.result.errors.full_messages.first
-  end
-
-  test 'should not create article with existing handle' do
-    service = AdminServices::Article::AddArticle
-              .new(blog_id: @blog.id, params: @success_params)
-              .run()
-    assert service.success?
-    @success_params[:title] = "Second title"
-    service2 = AdminServices::Article::AddArticle
-              .new(blog_id: @blog.id, params: @success_params)
-              .run()
-    refute service2.success?
-    assert_equal 1, @blog.articles.count
-    assert_equal 1, service2.result.errors.full_messages.count
-    assert_equal "Handle has already been taken", service2.result.errors.full_messages.first
   end
 
   test 'should not create article with blank params' do

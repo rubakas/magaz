@@ -27,18 +27,6 @@ class AdminServices::Blog::AddBlogTest < ActiveSupport::TestCase
     service2 = AdminServices::Blog::AddBlog.new(shop_id: @shop.id, params: @success_params).run
     refute service2.success?
     assert_equal 2, @shop.blogs.count
-    assert_equal 2, service2.result.errors.full_messages.count
-    assert_equal "Title has already been taken", service2.result.errors.full_messages.first
-  end
-
-  test 'should not create blog with existing handle' do
-    @success_params[:handle] = @blog.handle
-    assert_equal 1, @shop.blogs.count
-    service = AdminServices::Blog::AddBlog.new(shop_id: @shop.id, params: @success_params).run
-    refute service.success?
-    assert_equal 1, @shop.blogs.count
-    assert_equal 1, service.result.errors.full_messages.count
-    assert_equal "Handle has already been taken", service.result.errors.full_messages.first
   end
 
   test 'should not create blog with blank params' do

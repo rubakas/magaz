@@ -43,26 +43,6 @@ class AdminServices::Article::ChangeArticleTest < ActiveSupport::TestCase
     assert_equal "Title has already been taken", service.result.errors.full_messages.first
   end
 
-  test 'should not update article with existing handle' do
-    invalid_params = @success_params.merge({handle: @article2.handle})
-    service = AdminServices::Article::ChangeArticle
-              .new(blog_id: @blog.id, article_id: @article.id, params: invalid_params)
-              .run
-    refute service.success?
-    assert_equal 1, service.result.errors.full_messages.count
-    assert_equal "Handle has already been taken", service.result.errors.full_messages.first
-  end
-
-  test 'should not update article with existing handle when blog is changed' do
-    invalid_params = @success_params.merge({handle: @another_article.handle})
-    service = AdminServices::Article::ChangeArticle
-              .new(blog_id: @second_blog.id, article_id: @article.id, params: invalid_params)
-              .run
-    refute service.success?
-    assert_equal 1, service.result.errors.full_messages.count
-    assert_equal "Handle has already been taken", service.result.errors.full_messages.first
-  end
-
   test 'should not update article with existing title when blog is changed' do
     invalid_params = @success_params.merge({title: @another_article.title})
     service = AdminServices::Article::ChangeArticle

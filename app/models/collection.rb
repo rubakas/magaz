@@ -29,8 +29,4 @@ class Collection < ActiveRecord::Base
 
   validates :name, :shop_id, presence: true
   validates :name, uniqueness: { scope: :shop }
-
-  # def should_generate_new_friendly_id?
-  #   handle_changed?
-  # end
 end
