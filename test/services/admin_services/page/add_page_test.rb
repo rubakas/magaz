@@ -13,7 +13,9 @@ class AdminServices::Page::AddPageTest < ActiveSupport::TestCase
 
   test 'should create page with valid params' do
     assert_equal 1, @shop.pages.count
-    service = AdminServices::Page::AddPage.new(shop_id: @shop.id, params: @success_params).run
+    service = AdminServices::Page::AddPage
+              .new(shop_id: @shop.id, params: @success_params)
+              .run
     assert service.success?
     assert Page.find_by_id(service.result.id)
     assert_equal 'Test title', service.result.title
@@ -22,9 +24,13 @@ class AdminServices::Page::AddPageTest < ActiveSupport::TestCase
 
   test 'should not create page with same params' do
     assert_equal 1, @shop.pages.count
-    service = AdminServices::Page::AddPage.new(shop_id: @shop.id, params: @success_params).run
+    service = AdminServices::Page::AddPage
+              .new(shop_id: @shop.id, params: @success_params)
+              .run
     assert service.success?
-    service2 = AdminServices::Page::AddPage.new(shop_id: @shop.id, params: @success_params).run
+    service2 = AdminServices::Page::AddPage
+                .new(shop_id: @shop.id, params: @success_params)
+                .run
     refute service2.success?
     assert_equal 2, @shop.pages.count
     assert_equal 2, service2.result.errors.full_messages.count
@@ -34,7 +40,9 @@ class AdminServices::Page::AddPageTest < ActiveSupport::TestCase
 
   test 'should not create page with blank params' do
     assert_equal 1, @shop.pages.count
-    service = AdminServices::Page::AddPage.new(shop_id: @shop.id, params: @blank_params).run
+    service = AdminServices::Page::AddPage
+              .new(shop_id: @shop.id, params: @blank_params)
+              .run
     refute service.success?
     assert_equal 1, service.result.errors.full_messages.count
     assert_equal "Title can't be blank", service.result.errors.full_messages.first
