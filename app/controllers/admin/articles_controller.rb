@@ -45,7 +45,9 @@ class Admin::ArticlesController < Admin::ApplicationController
   end
 
   def destroy
-    service = AdminServices::Article::DeleteArticle.run(id: params[:id])
+    service = AdminServices::Article::DeleteArticle
+              .new(id: params[:id])
+              .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_articles_url
   end

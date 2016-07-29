@@ -29,7 +29,7 @@ class AdminServices::Article::ChangeArticleTest < ActiveSupport::TestCase
   test 'should not update article with blank_params' do
     service = AdminServices::Article::ChangeArticle
               .new(blog_id: @blog.id, article_id: @article.id, params: @blank_params)
-              .run()
+              .run
     refute service.success?
   end
 

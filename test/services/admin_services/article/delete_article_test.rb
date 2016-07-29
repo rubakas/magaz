@@ -11,8 +11,8 @@ class AdminServices::DeleteArticleTest < ActiveSupport::TestCase
 
   test 'should delete article with valid id' do
     assert_equal 2, @blog.articles.count
-    service = AdminServices::Article::DeleteArticle.run(id: @article.id.to_s)
-    assert service.valid?
+    service = AdminServices::Article::DeleteArticle.new(id: @article.id.to_s).run
+    assert service.success?
     refute Article.find_by_id(@article.id)
     assert Article.find_by_id(@article2.id)
     assert_equal 1, @blog.articles.count
@@ -20,10 +20,8 @@ class AdminServices::DeleteArticleTest < ActiveSupport::TestCase
 
   test 'should not delete article with valid blank id' do
     assert_equal 2, @blog.articles.count
-    service = AdminServices::Article::DeleteArticle.run(id: "")
-    refute service.valid?
-    assert_equal 1, service.errors.count
-    assert_equal "Id can't be blank", service.errors.full_messages.last
-    assert_equal 2, @blog.articles.count
+    assert_raises ActiveRecord::RecordNotFound do
+      service = AdminServices::Article::DeleteArticle.new(id: "").run
+    end
   end
 end
