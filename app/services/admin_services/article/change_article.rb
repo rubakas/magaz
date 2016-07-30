@@ -18,10 +18,6 @@ class AdminServices::Article::ChangeArticle
 
   private
 
-  def default_params
-    { handle: '', page_title: '', meta_description: '' }
-  end
-
   def article_params
     @params.slice(:title, :content, :page_title, :handle, :meta_description)
   end

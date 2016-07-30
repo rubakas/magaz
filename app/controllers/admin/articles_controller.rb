@@ -15,7 +15,7 @@ class Admin::ArticlesController < Admin::ApplicationController
 
   def create
     service = AdminServices::Article::AddArticle
-              .new(blog_id: params[:article][:blog_id], params: article_params)
+              .new(blog_id: params[:article][:blog_id], params: params[:article].permit!)
               .run
     @article = service.result
     if service.success?
@@ -33,28 +33,21 @@ class Admin::ArticlesController < Admin::ApplicationController
                     article_id: params[:id],
                     params: params[:article].permit!)
               .run
+    @article = service.result
     if service.success?
-      @article = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_article_url(@article)
     else
-      @article = service.result
       flash[:notice] = t('.notice_fail')
       render 'show'
     end
   end
 
   def destroy
-    service = AdminServices::Article::DeleteArticle
-              .new(id: params[:id])
-              .run
+    AdminServices::Article::DeleteArticle
+    .new(id: params[:id])
+    .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_articles_url
-  end
-
-  private
-
-  def article_params
-    params.require(:article).permit(:title, :handle, :content, :page_title, :meta_description)
   end
 end

@@ -9,11 +9,10 @@ class AdminServices::Article::ChangeArticleTest < ActiveSupport::TestCase
     @another_article = create(:article, blog: @second_blog, handle: "myhandle", title: "mytitle")
     @article = create(:article, blog: @blog)
     @article2 = create(:article, blog: @blog, handle: "Unique handle")
-    @success_params = { id: @article.id.to_s, title: "Changed title", blog_id: @blog.id,
-                        content: "Changed content", page_title: "Changed page_title", handle: "ChangedC handle",
+    @success_params = { title: "Changed title", content: "Changed content",
+                        page_title: "Changed page_title", handle: "ChangedC handle",
                         meta_description: "Changed meta_description" }
-    @blank_params =   { id: @article2.id.to_s, title: "", blog_id: "",
-                        page_title: "", handle: "", content: "",
+    @blank_params =   { title: "", page_title: "", handle: "", content: "",
                         meta_description: "" }
   end
 
