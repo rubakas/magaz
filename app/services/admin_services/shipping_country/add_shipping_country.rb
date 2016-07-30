@@ -1,41 +1,23 @@
-class AdminServices::ShippingCountry::AddShippingCountry < ActiveInteraction::Base
+class AdminServices::ShippingCountry::AddShippingCountry
 
-  set_callback :validate, :after, -> {shipping_country}
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  integer :shop_id
-  string :tax, :name
-
-  validate  :name_uniqueness
-  validates :tax, numericality: true
-  validates :tax, :name, :shop_id, presence: true
-  validates :name, inclusion: ShippingCountry::COUNTRY_LIST['countries'].keys
-
-  def shipping_country
-    @shipping_country = ShippingCountry.new
-    add_errors if errors.any?
-    @shipping_country
+  def initialize(shop_id:, params:)
+    @result = ::Shop.find(shop_id).shipping_countries.new
+    @params = params
   end
 
-  def execute
-    unless @shipping_country.update_attributes(inputs)
-      errors.merge!(@shipping_country.errors)
-    end
-    @shipping_country
+  def run
+    @result.attributes = shipping_country_params
+    @success = @result.save
+    self
   end
 
   private
 
-  def add_errors
-    errors.full_messages.each do |msg|
-      @shipping_country.errors.add(:base, msg)
-    end
-  end
-
-  def name_uniqueness
-    errors.add(:base, I18n.t('services.add_shipping_country.name_not_unique')) unless name_unique?
-  end
-
-  def name_unique?
-    ::ShippingCountry.where(shop_id: shop_id, name: name).count == 0
+  def shipping_country_params
+    @params.slice(:tax, :name)
   end
 end

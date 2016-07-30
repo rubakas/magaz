@@ -16,15 +16,13 @@ class Admin::ShippingCountriesController < Admin::ApplicationController
 
   def create
     service = AdminServices::ShippingCountry::AddShippingCountry
-              .run(shop_id: current_shop.id,
-                   tax: params[:shipping_country][:tax],
-                   name: params[:shipping_country][:name])
-    if service.valid?
-      @shipping_country = service.result
+              .new(shop_id: current_shop.id, params: params[:shipping_country].permit!)
+              .run
+    @shipping_country = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_shipping_country_path(@shipping_country)
     else
-      @shipping_country = service.shipping_country
       flash.now[:notice] = t('.notice_fail')
       render 'new'
     end
@@ -32,25 +30,22 @@ class Admin::ShippingCountriesController < Admin::ApplicationController
 
   def update
     service = AdminServices::ShippingCountry::ChangeShippingCountry
-              .run(id: params[:id],
-                   shop_id: current_shop.id,
-                   tax: params[:shipping_country][:tax],
-                   name: params[:shipping_country][:name])
+              .new(id: params[:id], shop_id: current_shop.id, params: params[:shipping_country].permit!)
+              .run
+    @shipping_country = service.result
     if service.valid?
-      @shipping_country = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_shipping_country_path(@shipping_country)
     else
-      @shipping_country = service.shipping_country
       flash.now[:notice] = t('.notice_fail')
       render 'show'
     end
   end
 
   def destroy
-    service = AdminServices::ShippingCountry::DeleteShippingCountry
-                .run(id: params[:id],
-                     shop_id: current_shop.id)
+    AdminServices::ShippingCountry::DeleteShippingCountry
+    .new(id: params[:id], shop_id: current_shop.id)
+    .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_shipping_countries_path
   end

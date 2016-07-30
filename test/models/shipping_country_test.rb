@@ -5,7 +5,11 @@ class ShippingCountryTest < ActiveSupport::TestCase
   should have_many  :shipping_rates
   should belong_to  :shop
   should have_many  :tax_overrides
-  
+  should validate_presence_of(:tax)
+  should validate_presence_of(:tax)
+  should validate_presence_of(:name)
+  should validate_presence_of(:shop_id)
+  should validate_uniqueness_of(:name).scoped_to(:shop_id)
   setup do
     @shop = create(:shop)
     @shipping_country = create(:shipping_country, shop: @shop)
