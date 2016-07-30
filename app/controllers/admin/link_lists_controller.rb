@@ -30,26 +30,22 @@ class Admin::LinkListsController < Admin::ApplicationController
 
   def update
     service = AdminServices::LinkList::ChangeLinkList
-              .run(id: params[:id],
-                   name: params[:link_list][:name],
-                   handle: params[:link_list][:handle],
-                   shop_id: current_shop.id)
-
-    if service.valid?
-      @link_list = service.result
+              .new(id: params[:id], shop_id: current_shop.id, params: params[:link_list].permit!)
+              .run
+    @link_list = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_link_list_path(@link_list)
     else
-      @link_list = service.link_list
       flash.now[:notice] = t('.notice_fail')
       render 'show'
     end
   end
 
   def destroy
-    service = AdminServices::LinkList::DeleteLinkList
-                .run(shop_id: current_shop.id,
-                     id: params[:id])
+    AdminServices::LinkList::DeleteLinkList
+    .new(id: params[:id], shop_id: current_shop.id)
+    .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_link_lists_path
   end

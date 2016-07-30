@@ -1,44 +1,23 @@
-class AdminServices::Link::ChangeLink < ActiveInteraction::Base
+class AdminServices::Link::ChangeLink
 
-  set_callback :validate, :after, -> {link}
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  string :name, :link_list_id, :link_type, :position
-  integer :id
-
-  validates :id, :link_list_id, :name, presence: true
-  validate :name_uniqueness, if: :name_changed?
-
-  def link
+  def initialize(link_list_id:, id:, params:)
     link_list = LinkList.friendly.find(link_list_id)
-    @link = link_list.links.find(id)
-    add_errors if errors.any?
-    @link
+    @result = link_list.links.find(id)
+    @params = params
   end
 
-  def execute
-    @link.update_attributes!(inputs.slice!(:id, :link_list_id)) ||
-      errors.add(:base, I18n.t('services.change_link.wrong_params'))
-    @link
+  def run
+    @success = @result.update_attributes(link_params)
+    self
   end
 
   private
 
-  def add_errors
-    errors.full_messages.each do |msg|
-      @link.errors.add(:base, msg)
-    end
+  def link_params
+    @params.slice(:name, :link_type, :position)
   end
-
-  def name_changed?
-    LinkList.friendly.find(link_list_id).links.find(id).name != name
-  end
-
-  def name_uniqueness
-    errors.add(:base, I18n.t('services.change_link.name_not_unique')) unless name_unique?
-  end
-
-  def name_unique?
-    ::Link.where.not(id: id).where(link_list_id: link_list_id, name: name).count == 0
-  end
-
 end

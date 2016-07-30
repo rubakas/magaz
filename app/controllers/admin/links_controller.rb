@@ -17,7 +17,9 @@ class Admin::LinksController < Admin::ApplicationController
   end
 
   def create
-    service = AdminServices::Link::AddLink.new(link_list_id: params[:link_list_id], params: link_params).run
+    service = AdminServices::Link::AddLink
+              .new(link_list_id: params[:link_list_id], params: params[:link].permit!)
+              .run
     @link_list = service.result.link_list
     @link = service.result
     if service.success?
@@ -30,32 +32,23 @@ class Admin::LinksController < Admin::ApplicationController
 
   def update
     service = AdminServices::Link::ChangeLink
-                .run(id: params[:id],
-                     link_list_id: params[:link_list_id],
-                     name: params[:link][:name],
-                     link_type: params[:link][:link_type],
-                     position: params[:link][:position])
+              .new(id: params[:id], link_list_id: params[:link_list_id], params: params[:link].permit!)
+              .run
     @link_list = service.link.link_list
-    if service.valid?
-      @link = service.result
+    @link = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_link_list_path(@link_list)
     else
-      @link = service.link
       render 'show'
     end
   end
 
   def destroy
     service = AdminServices::Link::DeleteLink
-                .run(id: params[:id], link_list_id: params[:link_list_id])
+              .new(id: params[:id], link_list_id: params[:link_list_id])
+              .run
     flash[:notice] = t('.notice_success')
-    redirect_to admin_link_list_path(service.link_list)
-  end
-
-  private
-
-  def link_params
-    params.require(:link).permit(:name, :link_type, :position)
+    redirect_to admin_link_list_path(service.result.link_list)
   end
 end
