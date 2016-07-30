@@ -1,11 +1,15 @@
 class AdminServices::LinkList::DeleteLinkList < ActiveInteraction::Base
 
-  integer :shop_id
-  string :id
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  validates :id, :shop_id, presence: true
+  def initialize(id:, shop_id:)
+    @result = Shop.find(shop_id).link_lists.friendly.find(id)
+  end
 
-  def execute
-    Shop.find(shop_id).link_lists.friendly.find(id).destroy
+  def run
+    @success = @result.destroy
+    self
   end
 end
