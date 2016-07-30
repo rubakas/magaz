@@ -37,31 +37,28 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     @current_user = current_shop.users.find(session[:user_id])
     service =  AdminServices::User::ChangeUser
-               .run(id: params[:id],
+               .new(id: params[:id],
                     shop_id: current_shop.id,
-                    first_name: params[:user][:first_name],
-                    last_name: params[:user][:last_name],
-                    email: params[:user][:email],
-                    password: params[:user][:password],
-                    permissions: params[:user][:permissions])
-    if service.valid?
-      @user = service.result
+                    params: params[:user].permit!)
+               .run
+    @user = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_user_path(@user)
     else
-      @user = service.user
       flash[:notice] = t('.notice_fail')
       render 'show'
     end
   end
 
   def destroy
-    service = AdminServices::User::DeleteUser.run(id: params[:id],
-                                                             shop_id: current_shop.id)
-    if service.valid?
+    service = AdminServices::User::DeleteUser
+              .new(id: params[:id])
+              .run
+    if service.success?
       flash[:notice] = t('.notice_success')
     else
-      flash[:notice] = service.errors.full_messages.first
+      flash[:notice] = service.result.errors.full_messages.first
     end
     redirect_to admin_users_path
   end
