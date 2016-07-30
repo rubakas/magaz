@@ -14,7 +14,9 @@ class Admin::BlogsController < Admin::ApplicationController
   end
 
   def create
-    service = AdminServices::Blog::AddBlog.new(shop_id: current_shop.id, params: blog_params).run
+    service = AdminServices::Blog::AddBlog
+              .new(shop_id: current_shop.id, params: params[:blog].permit!)
+              .run
     @blog = service.result
     if service.success?
       flash[:notice] = t('.notice_success')
@@ -27,33 +29,24 @@ class Admin::BlogsController < Admin::ApplicationController
 
   def update
     service = AdminServices::Blog::ChangeBlog
-              .run(id: params[:id],
-                   shop_id: current_shop.id,
-                   title: params[:blog][:title],
-                   handle: params[:blog][:handle],
-                   page_title: params[:blog][:page_title],
-                   meta_description: params[:blog][:meta_description])
-    if service.valid?
-      @blog = service.result
+              .new( shop_id: current_shop.id,
+                    blog_id: params[:id],
+                    params: params[:blog].permit!)
+              .run
+    @blog = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_blog_path(@blog)
     else
-      @blog = service.blog
       render 'show'
     end
   end
 
   def destroy
-    service = AdminServices::Blog::DeleteBlog
-              .new(id: params[:id], shop_id: current_shop.id)
-              .run
+    AdminServices::Blog::DeleteBlog
+    .new(id: params[:id], shop_id: current_shop.id)
+    .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_blogs_path
-  end
-
-  private
-
-  def blog_params
-    params.require(:blog).permit(:title, :handle, :page_title, :meta_description)
   end
 end
