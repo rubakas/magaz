@@ -30,28 +30,21 @@ class Admin::CollectionsController < Admin::ApplicationController
 
   def update
     service = AdminServices::Collection::ChangeCollection
-              .run(id: params[:id],
-                   name: params[:collection][:name],
-                   shop_id: current_shop.id,
-                   page_title: params[:collection][:page_title],
-                   meta_description: params[:collection][:meta_description],
-                   handle: params[:collection][:handle],
-                   description: params[:collection][:description])
-
-    if service.valid?
-      @collection = service.result
+              .new(id: params[:id], shop_id: current_shop.id, params: params[:collection].permit!)
+              .run
+    @collection = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_collection_url(@collection)
     else
-      @collection = service.collection
       render 'show'
     end
   end
 
   def destroy
-    service = AdminServices::Collection::DeleteCollection
-              .new(id: params[:id], shop_id: current_shop.id)
-              .run
+    AdminServices::Collection::DeleteCollection
+    .new(id: params[:id], shop_id: current_shop.id)
+    .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_collections_path
   end
