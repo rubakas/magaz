@@ -24,7 +24,7 @@ class AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
   end
 
   test 'should not update blog with existing title' do
-    invalid_params = @success_params.merge({title: @blog2.title})
+    invalid_params = @success_params.merge({ title: @blog2.title })
     service = AdminServices::Blog::ChangeBlog
               .new(blog_id: @blog.id, shop_id: @shop.id, params: invalid_params)
               .run

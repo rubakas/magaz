@@ -1,11 +1,14 @@
-class AdminServices::Page::DeletePage < ActiveInteraction::Base
+class AdminServices::Page::DeletePage
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  string :id
-  integer :shop_id
-  validates :id, :shop_id, presence: true
-
-  def execute
-    Shop.find(shop_id).pages.friendly.find(id).destroy
+  def initialize(shop_id:, id:)
+    @result = ::Shop.find(shop_id).pages.friendly.find(id)
   end
 
+  def run
+    @success = @result.destroy
+    self
+  end
 end
