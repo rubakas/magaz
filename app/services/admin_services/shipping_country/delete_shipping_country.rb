@@ -1,11 +1,15 @@
 class AdminServices::ShippingCountry::DeleteShippingCountry < ActiveInteraction::Base
 
-  integer :id, :shop_id
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  validates :id, :shop_id, presence: true
-
-  def execute
-    Shop.find(shop_id).shipping_countries.find(id).destroy
+  def initialize(id:, shop_id:)
+    @result = Shop.find(shop_id).shipping_countries.find(id)
   end
 
+  def run
+    @success = @result.destroy
+    self
+  end
 end
