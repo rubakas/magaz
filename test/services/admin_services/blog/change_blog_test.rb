@@ -6,56 +6,40 @@ class AdminServices::Blog::ChangeBlogTest < ActiveSupport::TestCase
     @shop = create(:shop, name: 'shop_name')
     @blog = create(:blog, shop: @shop)
     @blog2 = create(:blog, shop: @shop, handle: "handle")
-    @success_params = { id: @blog.id.to_s, title: "Changed title", shop_id: @shop.id,
+    @success_params = { title: "Changed title",
                         page_title: "Changed page_title", handle: "Changed handle",
                         meta_description: "Changed meta_description" }
+    @blank_params =   { title: 'New Title', page_title: "",
+                        handle: "", meta_description: "" }
   end
 
   test 'should update blog with valid params' do
-    service = AdminServices::Blog::ChangeBlog.run(@success_params)
-    assert service.valid?
+    service = AdminServices::Blog::ChangeBlog
+                .new(blog_id: @blog.id, shop_id: @shop.id, params: @success_params)
+                .run
+    assert service.success?
     assert_equal "Changed page_title", Blog.find(@blog.id).page_title
     assert_equal 'Changed title', Blog.find(@blog.id).title
     assert_equal "Changed handle", Blog.find(@blog.id).handle
   end
 
   test 'should not update blog with existing title' do
+    invalid_params = @success_params.merge({title: @blog2.title})
     service = AdminServices::Blog::ChangeBlog
-              .run( id:       @blog.id.to_s,
-                    title:    @blog2.title,
-                    shop_id:  @shop.id,
-                    page_title: "Changed page_title",
-                    handle:     "ChangedC handle",
-                    meta_description: "Changed meta_description")
-    refute service.valid?
-    assert_equal 1, service.blog.errors.full_messages.count
-    assert_equal "Title has already been taken", service.blog.errors.full_messages.first
-  end
-
-  test 'should not update blog with existing handle' do
-    service = AdminServices::Blog::ChangeBlog
-              .run( id:         @blog.id.to_s,
-                    title:      "some title",
-                    shop_id:    @shop.id,
-                    page_title: "Changed page_title",
-                    handle:     @blog2.handle,
-                    meta_description: "Changed meta_description")
-    refute service.valid?
-    assert_equal 1, service.blog.errors.full_messages.count
-    assert_equal "Handle has already been taken", service.blog.errors.full_messages.first
+              .new(blog_id: @blog.id, shop_id: @shop.id, params: invalid_params)
+              .run
+    refute service.success?
+    assert_equal 1, service.result.errors.full_messages.count
+    assert_equal "Title has already been taken", service.result.errors.full_messages.first
   end
 
   test 'should update blog with some blank params' do
     service = AdminServices::Blog::ChangeBlog
-              .run( id:    @blog2.id.to_s,
-                    title: @blog2.title,
-                    shop_id: @shop.id,
-                    page_title: "",
-                    handle: "",
-                    meta_description: "")
-    assert service.valid?
-    assert_equal '', service.blog.handle
-    assert_equal '', service.blog.page_title
+                .new(blog_id: @blog.id, shop_id: @shop.id, params: @blank_params)
+                .run
+    assert service.success?
+    assert_equal '', service.result.handle
+    assert_equal '', service.result.page_title
   end
 
 end
