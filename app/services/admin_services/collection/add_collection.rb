@@ -4,7 +4,7 @@ class AdminServices::Collection::AddCollection
   alias_method :success?, :success
 
   def initialize(shop_id:, params:)
-    @result = Shop.find(shop_id).collections.new(default_params)
+    @result = ::Shop.find(shop_id).collections.new(default_params)
     @params = params
   end
 

@@ -5,8 +5,8 @@ module ThemeServices
     alias_method :success?, :success
 
     def initialize(shop_id:, source_theme_id:)
-      @shop          = Shop.find(shop_id)
-      @source_theme  = Theme.find(source_theme_id)
+      @shop          = ::Shop.find(shop_id)
+      @source_theme  = ::Theme.find(source_theme_id)
       @success       = false
     end
 

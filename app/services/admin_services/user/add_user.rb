@@ -4,14 +4,14 @@ class AdminServices::User::AddUser
   alias_method :success?, :success
 
   def initialize(shop_id:, params:)
-    @result = User.new(default_params(shop_id))
+    @result = ::User.new(default_params(shop_id))
     @params = params
     @success = false
   end
 
   def run
     @result.attributes = user_params
-    @success = true if @result.save!
+    @success = true if @result.save
     self
   end
 

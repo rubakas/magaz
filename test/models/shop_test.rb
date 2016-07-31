@@ -23,4 +23,6 @@ class ShopTest < ActiveSupport::TestCase
   should have_many :users
   should belong_to :eu_digital_goods_collection
   should have_many :webhooks
+  should validate_presence_of(:name)
+  should validate_presence_of(:subdomain)
 end

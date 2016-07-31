@@ -48,7 +48,10 @@ class Shop < ActiveRecord::Base
   has_many :shipping_rates, through: :shipping_countries
   has_many :subscriber_notifications
   has_many :themes
-  has_many :users, :dependent => :destroy
+  has_many :users, dependent: :destroy
   belongs_to :eu_digital_goods_collection, class_name: 'Collection' , foreign_key: "eu_digital_goods_collection_id"
   has_many :webhooks
+
+  validates :name, presence: true
+  validates :name, uniqueness: true
 end

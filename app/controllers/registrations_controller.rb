@@ -6,19 +6,15 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    service = StoreServices::Create
-              .run(shop_name: params[:registration][:name],
-                   first_name: params[:registration][:first_name],
-                   last_name: params[:registration][:last_name],
-                   email: params[:registration][:email],
-                   password: params[:registration][:password])
-    if service.valid?
-      @shop = service.result[:shop]
-      @user = service.result[:user]
+    @create_service = StoreServices::Create
+              .new(params: params[:registration].permit!)
+              .run
+    @shop = @create_service.result[:shop]
+    if @create_service.success?
+      @user = @create_service.result[:user]
       session[:user_id] = @user.id
       redirect_to admin_index_url(host: HOSTNAME, subdomain: @shop.subdomain)
     else
-      @shop = service
       render template: 'welcome/index'
     end
   end
