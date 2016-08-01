@@ -10,16 +10,11 @@ class AdminServices::Checkout::DeleteCheckoutTest < ActiveSupport::TestCase
 
   test 'should delete checkout with valid id' do
     assert_equal 1, @shop.checkouts.count
-    service = AdminServices::Checkout::DeleteCheckout.run(id: @abandoned_checkout.id)
-    assert service.valid?
+    service = AdminServices::Checkout::DeleteCheckout
+              .new(id: @abandoned_checkout.id)
+              .run
+    assert service.success?
     refute Checkout.find_by_id(@abandoned_checkout.id)
     assert_equal 0, @shop.checkouts.count
-  end
-
-  test 'should not checkout blog with blank id' do
-    assert_equal 1, @shop.checkouts.count
-    service = AdminServices::Checkout::DeleteCheckout.run(id: "")
-    refute service.valid?
-    assert_equal 1, @shop.checkouts.count
   end
 end

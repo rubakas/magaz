@@ -13,13 +13,13 @@ class Admin::OrdersController < Admin::ApplicationController
 
   def update
     service = AdminServices::Checkout::ChangeOrder
-              .run(id: @order.id, status: params[:order][:status])
-    if service.valid?
-      @order = service.result
+              .new(id: @order.id, params: params[:order].permit!)
+              .run
+    @order = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_order_path(@order)
     else
-      @order = service.order
       render 'show'
     end
   end

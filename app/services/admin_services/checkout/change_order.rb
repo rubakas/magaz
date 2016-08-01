@@ -1,30 +1,21 @@
-class AdminServices::Checkout::ChangeOrder < ActiveInteraction::Base
+class AdminServices::Checkout::ChangeOrder
 
-  set_callback :validate, :after, -> {order}
+  attr_reader :success, :result
+  alias_method :success?, :success
 
-  string :status
-  integer :id
-
-  validates :id, :status, presence: true
-
-  def order
-    @order = Checkout.find(id)
-    add_errors if errors.any?
-    @order
+  def initialize(id:, params:)
+    @result = Checkout.find(id)
+    @params = params
   end
 
-  def execute
-    @order.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('services.change_order.wrong_params'))
-
-    @order
+  def run
+    @success = @result.update_attributes(order_params)
+    self
   end
 
   private
 
-  def add_errors
-    errors.full_messages.each do |msg|
-      @order.errors.add(:base, msg)
-    end
+  def order_params
+    @params.slice(:status)
   end
 end

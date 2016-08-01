@@ -1,11 +1,14 @@
-class AdminServices::Checkout::DeleteCheckout < ActiveInteraction::Base
+class AdminServices::Checkout::DeleteCheckout
 
-  integer :id
+  attr_reader :success, :result
+  alias_method :success?, :success
 
-  validates :id, presence: true
-
-  def execute
-    ::Checkout.find(id).destroy
+  def initialize(id:)
+    @result = ::Checkout.find(id)
   end
 
+  def run
+    @success = @result.destroy
+    self
+  end
 end
