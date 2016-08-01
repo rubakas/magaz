@@ -34,4 +34,5 @@ class Checkout < ActiveRecord::Base
   scope :abandoned_checkouts, -> { where("checkouts.email IS NOT NULL") }
 
   include Concerns::ShoppingCart
+  validates :status, presence: true, if: ->(u) { u.status.in?(STATUSES) || u.status_was.in?(STATUSES) }
 end
