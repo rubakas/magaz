@@ -16,39 +16,34 @@ class Admin::AssetFilesController < Admin::ApplicationController
 
   def create
     service = AdminServices::AssetFile::AddAssetFile
-              .run(shop_id: current_shop.id,
-                   name: params[:asset_file][:name],
-                   file: params[:asset_file][:file])
-    if service.valid?
-      @file = service.result
+              .new(shop_id: current_shop.id, params: params[:asset_file].permit!)
+              .run
+    @file = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_asset_file_path(@file)
     else
-      @file = service.datafile
       render 'new'
     end
   end
 
   def update
     service = AdminServices::AssetFile::ChangeAssetFile
-                .run(id: params[:id],
-                     name: params[:asset_file][:name],
-                     file: params[:asset_file][:file],
-                     shop_id: current_shop.id)
-    if service.valid?
-      @file = service.result
+              .new(id: params[:id], shop_id: current_shop.id, params: params[:asset_file].permit!)
+              .run
+    @file = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_asset_files_path
     else
-      @file = service.datafile
       render 'show'
     end
   end
 
   def destroy
     AdminServices::AssetFile::DeleteAssetFile
-      .run(id: params[:id],
-           shop_id: current_shop.id)
+    .new(id: params[:id], shop_id: current_shop.id)
+    .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_asset_files_path
   end

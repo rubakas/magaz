@@ -1,9 +1,15 @@
-class AdminServices::AssetFile::DeleteAssetFile < ActiveInteraction::Base
+class AdminServices::AssetFile::DeleteAssetFile
 
-  integer :id, :shop_id
-  validates :id, :shop_id, presence: true
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  def execute
-    Shop.find(shop_id).asset_files.find(id).destroy
+  def initialize(id:, shop_id:)
+    @result = ::Shop.find(shop_id).asset_files.find(id).destroy
+  end
+
+  def run
+    @success = @result.destroy
+    self
   end
 end

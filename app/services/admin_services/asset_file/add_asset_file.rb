@@ -1,32 +1,23 @@
-class AdminServices::AssetFile::AddAssetFile < ActiveInteraction::Base
+class AdminServices::AssetFile::AddAssetFile
 
-  set_callback :validate, :after, -> {datafile}
+  attr_reader :success
+  attr_reader :result
+  alias_method :success?, :success
 
-  file :file
-  integer :shop_id
-  string :name
-
-  validates :name, :shop_id, :file, presence: true
-
-  def datafile
-    @datafile = Shop.find(shop_id).asset_files.new
-    add_errors if errors.any?
-    @datafile
+  def initialize(shop_id:, params:)
+    @result = Shop.find(shop_id).asset_files.new
+    @params = params
   end
 
-  def execute
-    unless @datafile.update_attributes(inputs)
-      errors.merge!(@datafile.errors)
-    end
-    @datafile
+  def run
+    @result.attributes = asset_params
+    @success = @result.save
+    self
   end
 
   private
 
-  def add_errors
-    errors.full_messages.each do |msg|
-      @datafile.errors.add(:base, msg)
-    end
+  def asset_params
+    @params.slice(:file, :name)
   end
-
 end

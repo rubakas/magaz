@@ -10,9 +10,9 @@ class AdminServices::AssetFile::DeleteAssetFileTest < ActiveSupport::TestCase
   test "should delete file with valid params" do
     assert_equal 1, AssetFile.count
     service = AdminServices::AssetFile::DeleteAssetFile
-              .run( id: @created_file.id,
-                    shop_id: @shop.id)
-    assert service.valid?
+              .new(id: @created_file.id, shop_id: @shop.id)
+              .run
+    assert service.success?
     assert_equal 0, AssetFile.count
   end
 end
