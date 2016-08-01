@@ -15,5 +15,6 @@ module Magaz
     # TODO: move to files
     config.i18n.enforce_available_locales = false
     config.cache_store = :dalli_store
+    config.autoload_paths += Dir[Rails.root.join('app', 'validators', '{**}')]
   end
 end

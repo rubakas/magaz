@@ -85,7 +85,8 @@ FactoryGirl.define do
 
   factory :shipping_rate, class: ShippingRate do
     sequence(:name)   { |n| "Shipping Rate #{n}" }
-    sequence(:shipping_price) {123}
+    sequence(:shipping_price) { 123 }
+    criteria "test"
   end
 
   factory :shop, class: Shop do
