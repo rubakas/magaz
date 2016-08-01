@@ -1,69 +1,32 @@
-class AdminServices::TaxOverride::ChangeTaxOverride < ActiveInteraction::Base
+class AdminServices::TaxOverride::ChangeTaxOverride
 
-  set_callback :validate, :after, -> {tax_override}
+  attr_reader :success, :result
+  alias_method :success?, :success
 
-  integer :id, :collection_id, :shipping_country_id
-  float :rate
-  boolean :is_shipping, default: false
-
-  validates :id, :rate, :shipping_country_id, presence: true
-
-  validate :if_shipping
-  validate :check_for_uniqueness
-  validate :check_method
-  validate :check_collection_id
-
-  def tax_override
-    shipping_country = ShippingCountry.find_by_id(shipping_country_id)
-    @tax_override = shipping_country.tax_overrides.find_by_id(id)
-    add_errors if errors.any?
-    @tax_override
+  def initialize(id:, shipping_country_id:, params:)
+    shipping_country = ::ShippingCountry.find_by_id(shipping_country_id)
+    @result = shipping_country.tax_overrides.find_by_id(id)
+    @params = params
   end
 
-  def execute
-    @tax_override.update_attributes(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('services.change_tax_override.wrong_params'))
-
-    @tax_override
+  def run
+    @result.attributes = shipping_country_params
+    check_collection_id!
+    if_shipping!
+    @success = @result.save
+    self
   end
 
   private
-
-  def add_errors
-    errors.full_messages.each do |msg|
-      @tax_override.errors.add(:base, msg)
-    end
+  def shipping_country_params
+    @params.slice(:rate, :collection_id, :is_shipping)
   end
 
-  def check_collection_id
-    @params[:collection_id] = nil if collection_id == 0
-
-    errors.add(:base,
-               I18n.t('services.add_tax_override.wrong_params')) if is_shipping == false &&
-                                                                    @params[:collection_id] == nil
+  def check_collection_id!
+    @result.collection_id = nil if @result.collection_id == 0
   end
 
-  def if_shipping
-    @params = inputs
-    @params[:collection_id] = nil if is_shipping == true
+  def if_shipping!
+    @result.collection_id = nil if @result.is_shipping
   end
-
-  def check_for_uniqueness
-    shipping_country = ShippingCountry.find_by_id(shipping_country_id)
-    if is_shipping == false
-      override = shipping_country.tax_overrides.find_by(collection_id: collection_id)
-    else
-      override = shipping_country.tax_overrides.find_by(is_shipping: true)
-    end
-    unless override == nil
-      errors.add(:base, I18n.t('services.add_tax_override.already_exists'))
-    end
-  end
-
-  def check_method
-    errors.add(:base,
-               I18n.t('services.add_tax_override.wrong_params')) if is_shipping == false &&
-                                                                    collection_id == nil
-  end
-
 end
