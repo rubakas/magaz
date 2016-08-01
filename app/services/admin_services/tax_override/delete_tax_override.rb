@@ -1,11 +1,14 @@
-class AdminServices::TaxOverride::DeleteTaxOverride < ActiveInteraction::Base
+class AdminServices::TaxOverride::DeleteTaxOverride
 
-  integer :id
+  attr_reader :success, :result
+  alias_method :success?, :success
 
-  validates :id, presence: true
+  def initialize(id:)
+    @result = ::TaxOverride.find(id)
+  end
 
-  def execute
-    TaxOverride.find(id).destroy
+  def run
+     @success = @result.destroy
   end
 
 end

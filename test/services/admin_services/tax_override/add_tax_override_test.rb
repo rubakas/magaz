@@ -7,43 +7,50 @@ class AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport::TestCase
     @user = create(:user, shop: @shop)
     @collection = create(:collection, shop: @shop, handle: "handle1")
     @shipping_country = create(:shipping_country, shop: @shop)
-    @success_params1 = { is_shipping: 'false',
-                        collection_id: @collection.id,
-                        rate: '48',
-                        shipping_country_id: @shipping_country.id}
-    @success_params2 = { is_shipping: 'true',
+    @success_params1 = {
+                         is_shipping: false,
+                         collection_id: @collection.id,
+                         rate: '48',
+                       }
+    @success_params2 = {
+                         is_shipping: true,
                          collection_id: nil,
                          rate: '5.4',
-                         shipping_country_id: @shipping_country.id}
-    @blank_params = { is_shipping: '',
+                       }
+    @blank_params = {
+                      is_shipping: '',
                       collection_id: '',
                       rate: '',
-                      shipping_country_id: @shipping_country.id }
-    @wrong_params = { is_shipping: 'false',
+                    }
+    @wrong_params = {
+                      is_shipping: 'false',
                       collection_id: nil,
                       rate: '4',
-                      shipping_country_id: @shipping_country.id }
+                    }
   end
 
   test 'create override with valid params and already existing one' do
     service = AdminServices::TaxOverride::AddTaxOverride
-                .run(@success_params1)
-    assert service.valid?
+              .new(shipping_country_id: @shipping_country.id, params: @success_params1)
+              .run
+    assert service.success?
     assert_equal @collection.id, service.result.collection_id
     assert_equal @shipping_country.id, service.result.shipping_country_id
     assert_equal 48.0, service.result.rate
 
     service = AdminServices::TaxOverride::AddTaxOverride
-                .run(@success_params1)
-    assert_not service.valid?
-    assert_equal 1, service.errors.count
-    assert_equal "Tax override already exists", service.errors.full_messages.first
+              .new(shipping_country_id: @shipping_country.id, params: @success_params1)
+              .run
+    refute service.success?
+    assert_equal 1, service.result.errors.count
+    assert_equal "Collection has already been taken", service.result.errors.full_messages.first
   end
 
   test 'create override with second valid params' do
     service = AdminServices::TaxOverride::AddTaxOverride
-              .run(@success_params2)
-    assert service.valid?
+              .new(shipping_country_id: @shipping_country.id, params: @success_params2)
+              .run
+    assert service.success?
     assert_equal nil, service.result.collection_id
     assert_equal @shipping_country.id, service.result.shipping_country_id
     assert_equal 5.4, service.result.rate
@@ -51,23 +58,23 @@ class AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport::TestCase
 
   test 'fails to create tax_override with wrong params' do
     service = AdminServices::TaxOverride::AddTaxOverride
-              .run(@wrong_params)
-    refute service.valid?
-    assert_equal 2, service.tax_override.errors.count
+              .new(shipping_country_id: @shipping_country.id, params: @wrong_params)
+              .run
+    refute service.success?
+    assert_equal 1, service.result.errors.count
     assert_equal 'Wrong params for tax override',
-                 service.tax_override.errors.full_messages.first
+                 service.result.errors.full_messages.first
   end
 
   test 'fails to create tax_override with blank_params params' do
     service = AdminServices::TaxOverride::AddTaxOverride
-              .run(@blank_params)
-    refute service.valid?
-    assert_equal 3, service.tax_override.errors.count
-    assert_equal "Rate is not a valid float",
-                 service.tax_override.errors.full_messages.first
-    assert_equal "Collection is not a valid integer",
-                 service.tax_override.errors.full_messages[1]
-    assert_equal "Is shipping is not a valid boolean",
-                 service.tax_override.errors.full_messages.last
+              .new(shipping_country_id: @shipping_country.id, params: @blank_params)
+              .run
+    refute service.success?
+    assert_equal 2, service.result.errors.count
+    assert_equal "Rate can't be blank",
+                 service.result.errors.full_messages.first
+    assert_equal "Wrong params for tax override",
+                 service.result.errors.full_messages.last
   end
 end
