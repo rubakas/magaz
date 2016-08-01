@@ -10,15 +10,19 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
           theme:            @default_theme,
           theme_attributes: { name: 'Default' })
 
-    @success_params = { shop_name: 'example42', first_name: 'First' ,
+    @success_params = { name: 'example42', first_name: 'First' ,
                         last_name: 'Last', email: 'email@mail.com',
                         password: 'password' }
+    @blank_params =   { name: 'example42', first_name: '',
+                        last_name: '', email: '',
+                        password: '' }
   end
 
   test 'create shop with valid params' do
-    service = StoreServices::Create.run(@success_params)
-
-    assert service.valid?
+    service = StoreServices::Create
+              .new(params: @success_params)
+              .run
+    assert service.success?
     assert service.result[:user]
     assert service.result[:shop]
 
@@ -29,33 +33,34 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
   #score: 1
   test 'fail shop creation when no default theme in system' do
     @default_theme.destroy
-    service = StoreServices::Create.run(@success_params)
-    refute service.valid?
-    assert_equal "No default theme in system", service.errors.full_messages.last
+    service = StoreServices::Create
+              .new(params: @success_params)
+              .run
+    refute service.success?
+    assert_includes service.errors, "No default theme in system"
   end
 
   test 'fail shop creation when no user params' do
-    service = StoreServices::Create.run( shop_name:   'example42',
-                                         first_name:  '' ,
-                                         last_name:   '',
-                                         email:       '',
-                                         password:    '')
-    refute service.valid?
+    service = StoreServices::Create
+              .new(params: @blank_params)
+              .run
+    refute service.success?
   end
 
   test 'fail shop creation when no shop params' do
-    service = StoreServices::Create.run( shop_name:   '',
-                                         first_name:  'First' ,
-                                         last_name:   'Last',
-                                         email:       'email@mail.com',
-                                         password:    'password')
-    refute service.valid?
+    invalid_params = @success_params.merge({name: ''})
+    service = StoreServices::Create
+              .new(params: invalid_params)
+              .run
+    refute service.success?
   end
 
   test "shop and user should have association" do
-    service = StoreServices::Create.run(@success_params)
+    service = StoreServices::Create
+              .new(params: @success_params)
+              .run
 
-    assert service.valid?
+    assert service.success?
     assert service.result[:shop]
     refute service.result[:user].shop.blank?
 
@@ -65,8 +70,11 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
   end
 
   test 'default content created' do
-    service = StoreServices::Create.run(@success_params)
-    assert service.valid?
+    service = StoreServices::Create
+              .new(params: @success_params)
+              .run
+
+    assert service.success?
     assert service.result[:shop]
 
     assert_equal 11,  service.result[:shop].email_templates.length
