@@ -49,6 +49,7 @@ FactoryGirl.define do
 
   factory :file, class: AssetFile do
     sequence(:name) {|n| "File #{n}"}
+    file { Rack::Test::UploadedFile.new(File.join(Rails.root, '/test/fixtures/files/image.jpg')) }
   end
 
   factory :link_list, class: LinkList do

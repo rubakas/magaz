@@ -33,7 +33,7 @@ class Admin::ShippingCountriesController < Admin::ApplicationController
               .new(id: params[:id], shop_id: current_shop.id, params: params[:shipping_country].permit!)
               .run
     @shipping_country = service.result
-    if service.valid?
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_shipping_country_path(@shipping_country)
     else

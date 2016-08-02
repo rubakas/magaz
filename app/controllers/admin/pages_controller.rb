@@ -31,7 +31,7 @@ class Admin::PagesController < Admin::ApplicationController
     service = AdminServices::Page::ChangePage
               .new(id: params[:id],
                    shop_id: current_shop.id,
-                   params: params[page].permit!)
+                   params: params[:page].permit!)
               .run
     @page = service.result
     if service.success?

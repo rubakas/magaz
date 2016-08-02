@@ -29,13 +29,6 @@ class AdminServices::User::AddUserTest < ActiveSupport::TestCase
     assert_equal "new@email.com", service.result.email
   end
 
-  test "should not create user with blank params" do
-    service = AdminServices::User::AddUser.new(shop_id: nil, params: @blank_params)
-    assert_raises ActiveRecord::RecordInvalid do
-      service.run
-    end
-  end
-
   test "should create user with some blank params" do
     @success_params[:permissions] = nil
     service = AdminServices::User::AddUser.new(shop_id: @shop.id, params: @success_params).run

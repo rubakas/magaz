@@ -37,8 +37,8 @@ class Admin::ShippingRatesController < Admin::ApplicationController
               .new(id: params[:id], shipping_country_id: params[:shipping_country_id], params: params[:shipping_rate].permit!)
               .run
 
-    @shipping_country = service.shipping_rate.shipping_country
     @shipping_rate = service.result
+    @shipping_country = @shipping_rate.shipping_country
     if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_shipping_country_shipping_rate_path
