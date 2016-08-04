@@ -1,52 +1,62 @@
-class AdminServices::Product::AddProduct < ActiveInteraction::Base
+class AdminServices::Product::AddProduct
 
-  string  :name
-  integer :shop_id
-  string  :description, :handle, :page_title, :meta_description, default: nil
-  array   :collection_ids, default: nil
-  decimal :price, default: nil
-  hash    :product_images_attributes, strip: false, default: {}
+  attr_reader :success, :result, :errors
+  alias_method :success?, :success
 
-  validates :name, :shop_id, presence: true
-  validate :name_uniqueness
+  def initialize(shop_id:, params:)
+    @result = Shop.find(shop_id).products.new(default_params)
+    @params = params
+    @success = true
+    @errors = []
+  end
 
-  def execute
-    @product = Product.new
-    should_rollback = true
-
+  def run
     Product.connection.transaction do
-      begin
-
-        @product.attributes = inputs.slice!(:product_images_attributes)
-
-        unless @product.save
-          errors.merge!(@product.errors)
-        end
-
-        catch(:interrupt) do
-          compose(AdminServices::ProductImage::AddProductImage,
-                  image: product_images_attributes["0"][:image],
-                  product_id: "#{@product.id}") if product_images_attributes["0"]
-          should_rollback = false
-        end
-        raise RuntimeError.new if should_rollback
-
-      rescue RuntimeError
-        raise ActiveRecord::Rollback
-      end
+      _create_product
+      _create_product_image
+      check_errors
     end
-    throw :interrupt if should_rollback
-    @product
+    self
   end
 
   private
-
-  def name_uniqueness
-    errors.add(:base, I18n.t('services.add_product.name_not_unique')) unless name_unique?
+  def _create_product
+    @result.attributes = product_params
+    @result.save
+    collect_errors(@result)
+    check_errors
   end
 
-  def name_unique?
-    ::Product.where(shop_id: shop_id, name: name).count == 0
+  def _create_product_image
+    if product_image_params.present?
+      product_image = AdminServices::ProductImage::AddProductImage
+                          .new(product_id: @result.id, params: product_image_params)
+                          .run
+                          .result
+      collect_errors(product_image)
+    end
   end
 
+  def check_errors
+    if @errors.present?
+      @success = false
+      raise ActiveRecord::Rollback
+    end
+  end
+
+  def default_params
+    { price: nil, product_images_attributes: {}, collection_ids: nil }
+  end
+
+  def product_params
+    @params.slice(:name, :price, :collection_ids, :description, :handle, :page_title, :meta_description)
+  end
+
+  def product_image_params
+    @params.dig(:product_images_attributes, "0")
+  end
+
+  def collect_errors(object)
+    @errors += object.errors.full_messages if object.errors.present?
+  end
 end

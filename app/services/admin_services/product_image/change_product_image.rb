@@ -1,33 +1,21 @@
-class AdminServices::ProductImage::ChangeProductImage < ActiveInteraction::Base
+class AdminServices::ProductImage::ChangeProductImage
 
-  set_callback :validate, :after, -> {product_image}
+  attr_reader :success, :result
+  alias_method :success?, :success
 
-  file    :image
-  string :product_id
-  integer :id
-
-  validates :id, :image, :product_id, presence: true
-
-  def product_image
-    product = Product.friendly.find(product_id)
-    @product_image = product.product_images.find(id)
-    add_errors if errors.any?
-    @product_image
+  def initialize(id:, product_id:, params:)
+    @result = Product.friendly.find(product_id).product_images.find(id)
+    @params = params
   end
 
-  def execute
-    unless @product_image.update_attributes(inputs.slice!(:id))
-      errors.merge!(@product_image.errors)
-    end
-    @product_image
+  def run
+    @success = @result.update_attributes(product_image_params)
+    self
   end
 
   private
 
-  def add_errors
-    errors.full_messages.each do |msg|
-      @product_image.errors.add(:base, msg)
-    end
+  def product_image_params
+    @params.slice(:image)
   end
-
 end
