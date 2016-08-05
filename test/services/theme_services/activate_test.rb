@@ -19,9 +19,11 @@ class ThemeServices::ActivateTest < ActiveSupport::TestCase
                       .run
 
     activate_service =  ThemeServices::Activate
-                        .run( shop_id:            @shop.id,
-                              installed_theme_id: install_service.result.id)
+                        .new(shop_id:            @shop.id,
+                             installed_theme_id: install_service.result.id)
+                        .run
 
+    assert activate_service.success?
     assert_equal @shop.themes.main, install_service.result
   end
 

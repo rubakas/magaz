@@ -16,7 +16,9 @@ if Theme.count == 0
                 styles: ["Cool", "Dark", "Warm", "Bold", "Coffee", "Classic", "Travel",
                          "Spring", "Standfort", "Outdoors"],
                 comment: "This is example of review which created by backend team"}
-  partner = ThemeServices::CreatePartner.run(name: "Magaz.com", website_url: "https://magaz.com")
+  partner = ThemeServices::CreatePartner
+            .new(params: { name: "Magaz.com", website_url: "https://magaz.com" })
+            .run
   archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
 
   10.times do |n|
