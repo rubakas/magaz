@@ -15,24 +15,18 @@ class Admin::ProductsController < Admin::ApplicationController
 
   def create
     service = AdminServices::Product::AddProduct
-              .run(shop_id: current_shop.id,
-                   name: params[:product][:name],
-                   handle: params[:product][:handle],
-                   price: params[:product][:price].to_f,
-                   page_title: params[:product][:page_title],
-                   description: params[:product][:description],
-                   collection_ids: params[:product][:collection_ids],
-                   meta_description:params[:product][:meta_description],
-                   product_images_attributes: params[:product][:product_images_attributes])
-    if service.valid?
-      @product = service.result
+              .new(shop_id: current_shop.id, params: params[:product].permit!)
+              .run
+    @product = service.result
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_product_path(@product)
     else
-      @product = Product.new
-      service.errors.full_messages.each do |msg|
-        @product.errors.add(:base, msg)
-      end
+      # TODO : ASK ABOUT THIS
+      # @product = Product.new
+      # service.errors.full_messages.each do |msg|
+      #   @product.errors.add(:base, msg)
+      # end
       flash.now[:notice] = t('.notice_fail')
       render 'new'
     end

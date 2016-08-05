@@ -1,12 +1,14 @@
-class AdminServices::ProductImage::DeleteProductImage < ActiveInteraction::Base
+class AdminServices::ProductImage::DeleteProductImage
 
-  integer :id
-  string :product_id
+  attr_reader :success, :result
+  alias_method :success?, :success
 
-  validates :id, :product_id, presence: true
-
-  def execute
-    Product.friendly.find(product_id).product_images.find(id).destroy
+  def initialize(id:, product_id:)
+    @result = Product.friendly.find(product_id).product_images.find(id)
   end
 
+  def run
+    @success = @result.destroy
+    self
+  end
 end

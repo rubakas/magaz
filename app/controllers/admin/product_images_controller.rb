@@ -18,15 +18,15 @@ class Admin::ProductImagesController < Admin::ApplicationController
 
   def create
     service = AdminServices::ProductImage::AddProductImage
-              .run(product_id: params[:product_id],
-                   image: set_image(params[:product_image]))
-    @product = service.product_image.product
-    if service.valid?
-      @product_image = service.result
+              .new(product_id: params[:product_id],
+                   params: { image: set_image(params[:product_image]) })
+              .run
+    @product_image = service.result
+    @product = @product_image.product
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_product_product_images_path
     else
-      @product_image = service.product_image
       flash.now[:notice] = t('.notice_fail')
       render 'new'
     end
@@ -34,24 +34,25 @@ class Admin::ProductImagesController < Admin::ApplicationController
 
   def update
     service = AdminServices::ProductImage::ChangeProductImage
-              .run(product_id: params[:product_id],
-                   image: set_image(params[:product_image]), id: params[:id])
-    @product = service.product_image.product
-    if service.valid?
-      @product_image = service.result
+              .new(id: params[:id],
+                   product_id: params[:product_id],
+                   params: { image: set_image(params[:product_image]) })
+              .run
+    @product_image = service.result
+    @product = @product_image.product
+    if service.success?
       flash.now[:notice] = t('.notice_success')
       render 'show'
     else
-      @product_image = service.product_image
       flash.now[:notice] = t('.notice_fail')
       render 'show'
     end
   end
 
   def destroy
-    service = AdminServices::ProductImage::DeleteProductImage
-              .run(id: params[:id],
-                   product_id: params[:product_id])
+    AdminServices::ProductImage::DeleteProductImage
+    .new(id: params[:id], product_id: params[:product_id])
+    .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_product_product_images_path
   end
