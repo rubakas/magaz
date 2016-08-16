@@ -8,6 +8,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :extra_small do
+    puts "********************************"
+    puts "extra_small"
     process :resize_to_fill => [50, 50]
   end
 
