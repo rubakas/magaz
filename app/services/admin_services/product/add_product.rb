@@ -28,7 +28,7 @@ class AdminServices::Product::AddProduct
   end
 
   def _create_product_image
-    if product_image_params[:image].present?
+    if product_image_params.present?
       product_image = AdminServices::ProductImage::AddProductImage
                           .new(product_id: @result.id, params: product_image_params)
                           .run

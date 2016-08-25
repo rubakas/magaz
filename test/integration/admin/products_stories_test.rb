@@ -40,8 +40,11 @@ module Admin
       click_link 'Add Product'
       fill_in 'Name', with: 'Some Uniq Product'
       fill_in 'Description', with: ''
+      sleep(5)
       attach_file('product_product_images_attributes_0_image', File.join(Rails.root, '/test/fixtures/files/image.jpg'))
+      sleep(5)
       click_button 'Create Product'
+      sleep(15)
       assert page.has_css?('.product_image')
       assert page.has_content? 'Product was successfully created.'
     end
@@ -64,6 +67,7 @@ module Admin
       fill_in 'Description', with: ''
       attach_file('product_product_images_attributes_0_image', File.join(Rails.root, '/test/fixtures/files/image.jpg'))
       click_button 'Create Product'
+      sleep(5)
       page.has_css?('img', text: "thumb_image.jpg")
       assert page.has_content? 'Product was successfully created.'
       check "product_product_images_attributes_0__destroy"

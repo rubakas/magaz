@@ -37,9 +37,7 @@ class Admin::ProductsController < Admin::ApplicationController
     if @product.update_attributes(permitted_params[:product])
       flash[:notice] = t('.notice_success')
       redirect_to admin_product_path(@product)
-      puts "ONE"
     else
-      puts "TWO"
       render 'show'
     end
   end
