@@ -13,15 +13,15 @@ FileUploader
 ImageUploader
 
 # use different dirs when testing
-CarrierWave::Uploader::Base.descendants.map do |klass|
+CarrierWave::Uploader::Base.descendants.each do |klass|
   next if klass.anonymous?
   klass.class_eval do
+    def cache_dir
+      "#{Rails.root}/uploads"
+    end
+    
     def store_dir
-      if Rails.env.test?
-        "#{Rails.root}/test/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-      else
-        "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-      end
+      "#{Rails.root}/public/uploads/tmp/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
   end
 end
