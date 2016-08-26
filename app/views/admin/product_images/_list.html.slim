@@ -7,7 +7,7 @@ table class="table table-striped"
   tbody
     - @product_images.each do |product_image|
       tr
-        td = image_tag product_image.image_url(:thumb)
+        td = image_tag product_image.image_url(:extra_small)
         td = link_to product_image.image , product_image.image.url
         td = link_to t('.show'), [:admin, @product, product_image]
         td = link_to t('.delete'), [:admin, @product, product_image], method: :delete, data: { confirm: t('.confirmation') }

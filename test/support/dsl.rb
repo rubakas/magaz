@@ -12,7 +12,7 @@ class ActionDispatch::IntegrationTest
   end
 
   teardown do
-    FileUtils.rm_rf(Dir["#{Rails.root}/test/uploads"])
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp"])
   end
 
   # private

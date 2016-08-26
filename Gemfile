@@ -1,7 +1,7 @@
 ruby '2.3.1'
 source 'https://rubygems.org'
 
-gem 'active_interaction'
+gem 'active_interaction', '3.2.0'
 gem 'annotate', github: 'ctran/annotate_models'
 gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails', github: 'anjlab/bootstrap-rails'
 gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
@@ -9,10 +9,8 @@ gem 'carrierwave'
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
 gem 'country_select'
 gem 'dalli'
-gem 'fog-aws'
 gem 'font-awesome-sass-rails'
 gem 'friendly_id', '5.0.4'
-gem 'inherited_resources'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'kaminari'
@@ -20,8 +18,9 @@ gem 'liquid'
 gem 'puma' # Use Puma as the app server
 gem 'memcachier'
 gem 'pg', '~> 0.18' # Use postgresql as the database for Active Record
-gem 'rails', '>= 5.0.0.rc1', '< 5.1'
+gem 'rails', '>= 5.0.0', '< 5.1'
 gem 'redis', '~> 3.0' # Use Redis adapter to run Action Cable in production
+gem 'responders'
 gem 'rmagick',  require: false
 gem 'rubocop',  require: false
 gem 'rubyzip'
@@ -51,10 +50,10 @@ group :test do
   gem 'launchy'
   gem 'shoulda'
   gem 'shoulda-matchers'
+  gem 'selenium-webdriver'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'dotenv-rails'
 end
