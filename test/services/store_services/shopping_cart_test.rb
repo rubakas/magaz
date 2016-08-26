@@ -52,8 +52,8 @@ class StoreServices::ShoppingCartTest < ActiveSupport::TestCase
 
     @checkout = @service.checkout
 
-    @product_1 = create(:product, shop: @shop)
-    @product_2 = create(:product, shop: @shop)
+    @product_1 = create(:product, shop: @existing_shop)
+    @product_2 = create(:product, shop: @existing_shop)
 
     assert_equal 0, @checkout.item_count
 
