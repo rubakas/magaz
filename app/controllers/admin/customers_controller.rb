@@ -68,7 +68,8 @@ class Admin::CustomersController < Admin::ApplicationController
 
   def destroy
     service = AdminServices::Customer::DeleteCustomer
-                .run(id: params[:id], shop_id: current_shop.id)
+    .new(id: params[:id], shop_id: current_shop.id)
+    .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_customers_path
   end
