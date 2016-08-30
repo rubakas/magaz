@@ -9,17 +9,20 @@ class AdminServices::Shop::ChangeDefaultCollectionTest < ActiveSupport::TestCase
   end
 
   test 'should update shop with valid params' do
-    service = AdminServices::Shop::ChangeDefaultCollection.run(@success_params)
-    assert service.valid?
+    service = AdminServices::Shop::ChangeDefaultCollection
+              .new(@success_params)
+              .run
+    assert service.success?
     assert_equal @collection.id, service.result.eu_digital_goods_collection_id
   end
 
   test 'should not update shop with blank params' do
     service = AdminServices::Shop::ChangeDefaultCollection
-              .run(id: '', collection_id: '')
-    refute service.valid?
-    assert_equal 2, service.errors.full_messages.count
-    assert_equal 'Id is not a valid integer', service.errors.full_messages.first
-    assert_equal 'Collection is not a valid integer', service.errors.full_messages.last
+              .new(id: '', collection_id: '')
+              .run
+    refute service.success?
+    assert_equal 2, service.errors.count
+    assert_equal 'Wrong params for shop', service.errors[:params]
+    assert_equal 'Collection does not exist in this shop', service.errors[:collection]
   end
 end
