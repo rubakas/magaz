@@ -8,10 +8,6 @@ if Rails.env.test? || Rails.env.cucumber?
   end
 end
 
-# make sure our uploader is auto-loaded
-FileUploader
-ImageUploader
-
 # use different dirs when testing
 CarrierWave::Uploader::Base.descendants.each do |klass|
   next if klass.anonymous?
@@ -19,7 +15,7 @@ CarrierWave::Uploader::Base.descendants.each do |klass|
     def cache_dir
       "#{Rails.root}/uploads"
     end
-    
+
     def store_dir
       "#{Rails.root}/public/uploads/tmp/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end

@@ -43,14 +43,14 @@ group :development do
 end
 
 group :test do
-  gem 'cucumber-rails', require: false
   gem 'capybara-webkit'
+  gem 'minitest-ci', git: 'git@github.com:circleci/minitest-ci.git'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'launchy'
   gem 'shoulda'
   gem 'shoulda-matchers'
-  gem 'selenium-webdriver'
 end
 
 group :development, :test do
