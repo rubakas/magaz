@@ -12,3 +12,6 @@ machine:
     - memcached
     - postgresql
     - redis
+test:
+  override:
+    - bundle exec rake test
