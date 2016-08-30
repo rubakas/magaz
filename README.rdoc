@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/rubakas/magaz/tree/develop.svg?style=svg)](https://circleci.com/gh/rubakas/magaz/tree/develop)
+{<img src="https://circleci.com/gh/rubakas/magaz/tree/develop.svg?style=svg" alt="CircleCI" />}[https://circleci.com/gh/rubakas/magaz/tree/develop]
 
 == README
 
