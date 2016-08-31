@@ -8,15 +8,17 @@ gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
 gem 'country_select'
+gem 'chainable_methods' # experimental chaninable methods
 gem 'dalli'
 gem 'font-awesome-sass-rails'
 gem 'friendly_id', '5.0.4'
-gem 'jbuilder', '~> 2.0'
+gem 'jb' # experimental replacement of jbuilder
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'kaminari'
 gem 'liquid'
 gem 'puma' # Use Puma as the app server
 gem 'memcachier'
+gem 'oj' # Optimized JSON
 gem 'pg', '~> 0.18' # Use postgresql as the database for Active Record
 gem 'rails', '>= 5.0.0', '< 5.1'
 gem 'redis', '~> 3.0' # Use Redis adapter to run Action Cable in production
