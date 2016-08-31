@@ -1,33 +1,42 @@
-class AdminServices::Shop::EnableEuDigitalGoods < ActiveInteraction::Base
+class AdminServices::Shop::EnableEuDigitalGoods
+  
+  attr_reader :success, :result, :errors
+  alias_method :success?, :success
 
-  string :collection_name
-  integer :id
+  def initialize(id:, collection_name:)
+    @errors = {}
+    @id = id
+    @collection_name = collection_name
+    params_validation
+    @result = Shop.find(@id) unless @errors[:params].present?    
+  end
 
-  validates :id, :collection_name, presence: true
-
-  def execute
-    @shop = Shop.find(id)
-
-    check_default_collection
-
-    @shop.update_attributes(eu_digital_goods_collection_id: @default_collection.id) ||
-      errors.add(:base, I18n.t('services.shop_services.wrong_params'))
-
-    @shop
+  def run
+    check_default_collection 
+    @success = @result.update_attributes(eu_digital_goods_collection_id: @default_collection.id)  
+    self
   end
 
   private
 
+  def params_validation      
+    @errors[:params] = (I18n.t('services.shop_services.wrong_params')) unless params_valid?(@id, @collection_name)
+  end
+
+  def params_valid?(id, collection_name)
+    return true if id.is_a?(Integer) && collection_name.is_a?(String) && !collection_name.empty?
+  end
+
   def check_default_collection
     if default_collection_exists?
-      @default_collection = @shop.collections.find_by(name: collection_name)
+      @default_collection = @result.collections.find_by(name: @collection_name)
     else
-      @default_collection = @shop.collections.create(name: collection_name)
+      @default_collection = @result.collections.create(name: @collection_name)
     end
   end
 
   def default_collection_exists?
-    @shop.collections.find_by(name: collection_name).present?
+    ::Collection.where(shop_id: @id, name: @collection_name).present?
   end
 
 end
