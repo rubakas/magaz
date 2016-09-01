@@ -1,3 +1,13 @@
 SAINT DOCTRINE:
 
-• TDD, start with integrations tests • Use Service Objects for interaction between several models • all texts to i18n (in multilingual projects) • all bootstrap elements to own CSS classes (grids & utilities are exeptions) • use BEM methodology for naming CSS classes • no CSS in HTML • no JavaScript in HTML • no new gems/libraries without agreement • it's forbidden to edit migrations • no "if", methods, logic in migrations • no objects in service params
+• TDD, start with integrations tests
+• Use Service Objects for interaction between several models
+• all texts to i18n (in multilingual projects)
+• all bootstrap elements to own CSS classes (grids & utilities are exeptions)
+• use BEM methodology for naming CSS classes
+• no CSS in HTML
+• no JavaScript in HTML
+• no new gems/libraries without agreement
+• it's forbidden to edit migrations
+• no "if", methods, logic in migrations
+• no objects in service params
