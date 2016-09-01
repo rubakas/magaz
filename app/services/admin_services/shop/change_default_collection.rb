@@ -13,7 +13,7 @@ class AdminServices::Shop::ChangeDefaultCollection
   end
 
   def run
-    collection_existence
+    check_collection_existence
     if @errors[:collection].present?
       @succes = false
     else  
@@ -24,7 +24,7 @@ class AdminServices::Shop::ChangeDefaultCollection
 
   private
 
-  def collection_existence
+  def check_collection_existence
     @errors[:collection] = (I18n.t('services.shop_services.wrong_collection')) unless collection_exists?
   end
 
