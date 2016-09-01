@@ -42,10 +42,11 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def payments_settings_update
     service = AdminServices::Shop::ChangePaymentSettings
-                .run(id: current_shop.id,
-                     authorization_settings: params[:shop][:authorization_settings])
-    @shop = service.result
-    if service.valid?
+                .new(id: current_shop.id,
+                     authorization_settings: params[:shop][:authorization_settings], params: params)
+                .run
+    @shop = service.success
+    if service.success?
       flash[:notice] = I18n.t('admin.settings.notice_success')
       redirect_to payments_settings_admin_settings_path
     else

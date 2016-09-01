@@ -8,10 +8,10 @@ class AdminServices::Shop::ChangePaymentSettingsTest < ActiveSupport::TestCase
 
   test 'should update shop with valid params' do
     service = AdminServices::Shop::ChangePaymentSettings
-              .run(id: @shop.id,
+              .new(id: @shop.id,
                    authorization_settings: 'authorize_and_charge')
-
-    assert service.valid?
+              .run
+    assert service.success?
     assert service.result
     assert_equal "authorize_and_charge", service.result.authorization_settings
   end
