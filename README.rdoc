@@ -1,3 +1,5 @@
+{<img src="https://circleci.com/gh/rubakas/magaz/tree/develop.svg?style=svg&circle-token=db374f1ac92f3a351e12fec6774422d96e62f032" alt="CircleCI" />}[https://circleci.com/gh/rubakas/magaz/tree/develop]
+
 == README
 
 * Branching policy just use git-flow
@@ -18,7 +20,7 @@
 * QT4 for capybara-webkit
 
 * Database creation:
-  
+
     cp config/database.yml.example config/database.yml
     bundle exec rake db:create
     bundle exec rake db:migrate
@@ -49,7 +51,7 @@
     bundle exec rake cucumber
 
 
-* Services 
+* Services
   * postgresql as database
   * memcache for session storage
   * redis for background jobs queue
@@ -63,5 +65,3 @@
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
-
-

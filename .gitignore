@@ -11,7 +11,7 @@
 /log/*
 /tmp/*
 !/log/.keep
-!/tmp/.keep
+/test/reports/*
 
 # Ignore database config.
 /config/database.yml
