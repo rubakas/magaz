@@ -19,7 +19,7 @@ class Admin::CustomersController < Admin::ApplicationController
               .new(shop_id: current_shop.id, params: customer_params)
               .run
               @customer = service.result
- +            if service.success?
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_customer_path(@customer)
     else

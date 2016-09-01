@@ -30,10 +30,16 @@ class AdminServices::Customer::AddCustomer
   def customer_uniquness
     @result.errors.add(:base, I18n
                 .t('services.add_customer.customer_exist')) unless customer_unique?
+    @result.errors.add(:base, I18n
+                .t('services.add_customer.email_not_be_blank')) unless email_presence?
   end
 
   def customer_unique?
     Customer.where(shop_id: @shop_id, email: customer_params[:email]).count == 0
+  end
+
+  def email_presence?
+    @params[:email] != ""
   end
 
 end

@@ -28,12 +28,10 @@ class AdminServices::Customer::AddCustomeromerTest < ActiveSupport::TestCase
   end
 
   test 'should not create customer with blank params' do
-    service = AdminServices::Customer::AddCustomer.new(shop_id: @shop.id, params: @blank_params)
+    service = AdminServices::Customer::AddCustomer.new(shop_id: @shop.id, params: @blank_params).run
     refute service.success?
-    p "!!!!!!1111"
-    p service.errors
-    assert_equal 1, service.errors.count
-    assert_equal "Name can't be blank", service.errors.first
+    assert_equal 1, service.result.errors.count
+    assert_equal "Email can't be blank", service.result.errors.full_messages[0]
     assert_equal 0, @shop.customers.count
   end
 end
