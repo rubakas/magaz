@@ -18,10 +18,10 @@ class AdminServices::Shop::ChangePaymentSettingsTest < ActiveSupport::TestCase
 
   test 'should update authorization_settings to nil with wrong value' do
     service = AdminServices::Shop::ChangePaymentSettings
-              .run(id: @shop.id,
+              .new(id: @shop.id,
                    authorization_settings: "wrong")
-
-    assert service.valid?
+              .run
+    assert service.success?
     assert service.result
     refute service.result.authorization_settings
   end

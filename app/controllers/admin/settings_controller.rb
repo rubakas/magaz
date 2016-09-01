@@ -43,7 +43,7 @@ class Admin::SettingsController < Admin::ApplicationController
   def payments_settings_update
     service = AdminServices::Shop::ChangePaymentSettings
                 .new(id: current_shop.id,
-                     authorization_settings: params[:shop][:authorization_settings], params: params)
+                     authorization_settings: params[:shop][:authorization_settings])
                 .run
     @shop = service.success
     if service.success?

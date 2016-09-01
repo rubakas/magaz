@@ -5,6 +5,7 @@ class AdminServices::Shop::ChangePaymentSettings
 
   def initialize(id:, authorization_settings:)
     @errors = {}
+    @params = {}
     @id = id
     @authorization_settings = authorization_settings
     params_validation
@@ -27,9 +28,9 @@ class AdminServices::Shop::ChangePaymentSettings
   end
 
   def shop_params
-    params = inputs.slice!(:id)
-    params[:authorization_settings] = nil unless authorization_method_included?
-    params
+    @params[:authorization_settings] = @authorization_settings
+    @params[:authorization_settings] = nil unless authorization_method_included?
+    @params
   end
 
   def authorization_method_included?
