@@ -30,11 +30,10 @@ class AdminServices::Shop::EnableEuDigitalGoodsTest < ActiveSupport::TestCase
 
   test 'should not update shop default collection with blank name' do
     service = AdminServices::Shop::EnableEuDigitalGoods
-              .new(id: @shop.id, collection_name: '')
+              .new(collection_name: '', id: @shop.id)
               .run
     refute service.success?
     assert_equal 1, service.errors.count
-    assert_equal "Wrong params for shop",
-                 service.errors[:params]
+    assert_equal "Wrong params for shop", service.errors[:params]
   end
 end

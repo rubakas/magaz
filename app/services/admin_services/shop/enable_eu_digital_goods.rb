@@ -12,8 +12,12 @@ class AdminServices::Shop::EnableEuDigitalGoods
   end
 
   def run
-    check_default_collection 
-    @success = @result.update_attributes(eu_digital_goods_collection_id: @default_collection.id)  
+    if @result
+      check_default_collection 
+      @success = @result.update_attributes(eu_digital_goods_collection_id: @default_collection.id)  
+    else
+      @success = false  
+    end  
     self
   end
 
