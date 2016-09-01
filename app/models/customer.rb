@@ -17,6 +17,8 @@ class Customer < ActiveRecord::Base
   has_many    :events, as: :subject
   belongs_to  :shop
 
+  validates :first_name, :last_name, :email, presence: true 
+
   def self.to_csv
     CSV.generate do |csv|
       csv << column_names

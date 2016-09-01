@@ -1,41 +1,39 @@
-class AdminServices::Customer::AddCustomer < ActiveInteraction::Base
+class AdminServices::Customer::AddCustomer
 
-  set_callback :validate, :after, -> {customer}
+  attr_reader :success, :result, :errors
+  alias_method :success?, :success
 
-  string :first_name, :last_name, :email
-  integer :shop_id
-
-  validates :email, :shop_id, presence: true
-  validate :customer_uniquness
-
-  def customer
-    @customer = Shop.find(shop_id).customers.new
-    add_errors if errors.any?
-    @customer
+  def initialize(shop_id:, params:)
+    @shop_id = shop_id
+    @result = Shop.find(shop_id).customers.new
+    @params = params
+    @errors = []
   end
 
-  def execute
-    unless @customer.update_attributes(inputs)
-      errors.merge!(@customer.errors)
+  def run
+    @result.attributes = customer_params
+    customer_uniquness
+    if @result.errors.present?
+      @succes = false
+    else
+      @success = @result.save
     end
-    @customer
+    self
   end
 
   private
 
-  def add_errors
-    errors.full_messages.each do |msg|
-      @customer.errors.add(:base, msg)
-    end
+  def customer_params
+    @params.slice(:first_name, :last_name, :email)
   end
 
   def customer_uniquness
-    errors.add(:base, I18n
+    @result.errors.add(:base, I18n
                 .t('services.add_customer.customer_exist')) unless customer_unique?
   end
 
   def customer_unique?
-    ::Customer.where(shop_id: shop_id, email: email).count == 0
+    Customer.where(shop_id: @shop_id, email: customer_params[:email]).count == 0
   end
 
 end
