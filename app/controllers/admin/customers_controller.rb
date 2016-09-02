@@ -70,7 +70,9 @@ class Admin::CustomersController < Admin::ApplicationController
     service = AdminServices::Customer::DeleteCustomer
     .new(id: params[:id], shop_id: current_shop.id)
     .run
-    flash[:notice] = t('.notice_success')
-    redirect_to admin_customers_path
+    if service.success?
+      flash[:notice] = t('.notice_success')
+      redirect_to admin_customers_path
+    end
   end
 end

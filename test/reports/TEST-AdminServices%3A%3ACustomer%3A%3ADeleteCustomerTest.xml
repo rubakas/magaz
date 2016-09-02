@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite time='0.380648' skipped='0' failures='0' errors='2' name="AdminServices::Customer::DeleteCustomerTest" assertions='2' tests='2'>
+  <testcase time='0.363036' file="test/services/admin_services/customer/delete_customer_test.rb" name="test_should_delete_customer_with_valid_id" assertions='1'>
+    <error type='NoMethodError' message="undefined method `run&#39; for AdminServices::Customer::DeleteCustomer:Class">test/services/admin_services/customer/delete_customer_test.rb:14:in `block in &lt;class:DeleteCustomerTest&gt;&#39;
+    </error>
+  </testcase>
+  <testcase time='0.017612' file="test/services/admin_services/customer/delete_customer_test.rb" name="test_should_not_delete_customer_with_valid_blank_id" assertions='1'>
+    <error type='NoMethodError' message="undefined method `run&#39; for AdminServices::Customer::DeleteCustomer:Class">test/services/admin_services/customer/delete_customer_test.rb:23:in `block in &lt;class:DeleteCustomerTest&gt;&#39;
+    </error>
+  </testcase>
+</testsuite>
