@@ -122,9 +122,10 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def enable_eu_digital_goods_vat_taxes
     service = AdminServices::Shop::EnableEuDigitalGoods
-                .run(id: current_shop.id,
-                     collection_name: DIGITAL_GOODS_VAT_TAX)
-    if service.valid?
+              .new(id: current_shop.id,
+                   collection_name: DIGITAL_GOODS_VAT_TAX)
+              .run
+    if service.success?
       flash.now[:notice] = I18n.t('admin.settings.notice_success')
       redirect_to taxes_settings_admin_settings_path
     else
@@ -146,7 +147,7 @@ class Admin::SettingsController < Admin::ApplicationController
     unless service.success?
       service.errors.each do |key, value|
         flash.now[:notice] = value
-      end  
+      end
     end
     redirect_to taxes_settings_admin_settings_path
   end
