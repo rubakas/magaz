@@ -54,4 +54,7 @@ class Shop < ActiveRecord::Base
 
   validates :name, presence: true
   validates :name, uniqueness: true
+
+  validates :authorization_settings, inclusion: { in: %w[ authorize_and_charge authorize ] }, allow_blank: true
+
 end

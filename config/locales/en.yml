@@ -20,6 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    errors:
+      models:
+        shop:
+          attributes:
+            authorization_settings:
+              inclusion: "type is undefined"
   topics:
     create_product_event: "Product creation"
     update_product_event: "Product update"
@@ -386,7 +393,7 @@ en:
       support: "24/7 Support"
       terms_of_service: "Terms of Service"
       toys_and_games: "Toys & Games"
-      website_builder: "Website builder"      
+      website_builder: "Website builder"
 
   header:
     header:
@@ -426,7 +433,7 @@ en:
         author: "Author"
         more_templates_html: "More %{industry} templates"
         button_more_themes: "More themes"
-      show_author: 
+      show_author:
         heading: "All of %{author}'s Themes"
         go_to_website: "Go to their website ›"
         free_price: "Free"
@@ -1273,7 +1280,7 @@ en:
         prohibit: "prohibited this webhook from being saved:"
       show:
         title: "Editing webhook"
-        
+
   shared:
     get_started:
       button: "Create your store"
