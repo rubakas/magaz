@@ -12,8 +12,8 @@ class AdminServices::Shop::ChangePaymentSettingsTest < ActiveSupport::TestCase
                    authorization_settings: 'authorize_and_charge')
               .run
     assert service.success?
-    assert service.result
-    assert_equal "authorize_and_charge", service.result.authorization_settings
+    assert service.shop
+    assert_equal "authorize_and_charge", service.shop.authorization_settings
   end
 
   test 'should update authorization_settings to nil with wrong value' do
@@ -21,8 +21,17 @@ class AdminServices::Shop::ChangePaymentSettingsTest < ActiveSupport::TestCase
               .new(id: @shop.id,
                    authorization_settings: "wrong")
               .run
-    assert service.success?
-    assert service.result
-    refute service.result.authorization_settings
+    refute service.success?
+    assert_equal "Authorization settings type is undefined", service.errors.full_messages[0]
+    assert service.shop.authorization_settings, nil
+  end
+
+  test 'should raise exeption if shop not found' do
+    assert_raises ActiveRecord::RecordNotFound do
+      service = AdminServices::Shop::ChangePaymentSettings
+                .new(id: '',
+                     authorization_settings: '')
+                .run
+      end
   end
 end

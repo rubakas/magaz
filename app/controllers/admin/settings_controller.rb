@@ -45,7 +45,7 @@ class Admin::SettingsController < Admin::ApplicationController
                 .new(id: current_shop.id,
                      authorization_settings: params[:shop][:authorization_settings])
                 .run
-    @shop = service.success
+    @shop = service.shop
     if service.success?
       flash[:notice] = I18n.t('admin.settings.notice_success')
       redirect_to payments_settings_admin_settings_path
