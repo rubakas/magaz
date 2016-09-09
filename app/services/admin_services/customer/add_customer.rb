@@ -7,7 +7,6 @@ class AdminServices::Customer::AddCustomer
     @shop_id = shop_id
     @customer = Shop.find(shop_id).customers.new
     @params = params
-    @errors = []
   end
 
   def run

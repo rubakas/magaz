@@ -42,4 +42,10 @@ class AdminServices::Customer::AddCustomeromerTest < ActiveSupport::TestCase
     assert_includes service.customer.errors.full_messages, "At least one of these fields must be filled: First name, Last name, Email"
     assert_equal 0, @shop.customers.count
   end
+
+  test "should rise exeption if shop not found" do
+    assert_raises ActiveRecord::RecordNotFound do
+      service = AdminServices::Customer::AddCustomer.new(shop_id: "", params: "").run
+    end
+  end
 end
