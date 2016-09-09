@@ -26,8 +26,8 @@ class Theme < ActiveRecord::Base
   scope :price_category, -> (price_category_name) do
     unless price_category_name.blank?
       if price_category_name == PriceCategories::FREE
-        where(price: 0) 
-      elsif price_category_name == PriceCategories::PREMIUM 
+        where(price: 0)
+      elsif price_category_name == PriceCategories::PREMIUM
         where.not(price: 0)
       end
     end
@@ -44,12 +44,12 @@ class Theme < ActiveRecord::Base
   ].freeze
 
   has_many   :assets
-  has_many   :theme_styles, dependent: :destroy
   has_many   :installed_themes, class_name: 'Theme', foreign_key: :source_theme_id
-  has_many   :reviews, dependent: :destroy
   belongs_to :partner
+  has_many   :reviews, dependent: :destroy
   belongs_to :shop
   belongs_to :source_theme, class_name: 'Theme', foreign_key: :source_theme_id
+  has_many   :theme_styles, dependent: :destroy
 
   scope :sources,   -> { where(source_theme: nil) }
   scope :installed, -> { where('source_theme_id IS NOT NULL') }

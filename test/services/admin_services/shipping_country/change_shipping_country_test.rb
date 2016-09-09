@@ -26,8 +26,8 @@ class AdminServices::ShippingCountry::ChangeShippingCountryTest < ActiveSupport:
                   .run
     refute service.success?
     assert_equal 4, service.result.errors.full_messages.count
-    assert_equal "Tax is not a number", service.result.errors.full_messages.first
-    assert_equal "Name is not included in the list", service.result.errors.full_messages.last
+    assert_includes service.result.errors.full_messages, "Tax is not a number"
+    assert_includes service.result.errors.full_messages, "Name is not included in the list"
   end
 
   test "should not update shipping country with same country title" do

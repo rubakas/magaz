@@ -26,8 +26,8 @@ class AdminServices::ShippingCountry::AddShippingCountryTest < ActiveSupport::Te
               .run
     refute service.success?
     assert_equal 4, service.result.errors.full_messages.count
-    assert_equal "Tax is not a number", service.result.errors.full_messages.first
-    assert_equal "Name is not included in the list", service.result.errors.full_messages.last
+    assert_includes service.result.errors.full_messages, "Tax is not a number"
+    assert_includes service.result.errors.full_messages, "Name is not included in the list"
     assert_equal 1, ShippingCountry.count
   end
 
@@ -39,7 +39,7 @@ class AdminServices::ShippingCountry::AddShippingCountryTest < ActiveSupport::Te
               .run
     refute service.success?
     assert_equal 1, service.result.errors.full_messages.count
-    assert_equal "Name has already been taken", service.result.errors.full_messages.first
+    assert_includes service.result.errors.full_messages, "Name has already been taken"
     assert_equal 1, ShippingCountry.count
   end
 
@@ -51,7 +51,7 @@ class AdminServices::ShippingCountry::AddShippingCountryTest < ActiveSupport::Te
               .run
     refute service.success?
     assert_equal 1, service.result.errors.full_messages.count
-    assert_equal "Tax is not a number", service.result.errors.full_messages.first
+    assert_includes service.result.errors.full_messages, "Tax is not a number"
     assert_equal 1, ShippingCountry.count
   end
 
@@ -63,7 +63,7 @@ class AdminServices::ShippingCountry::AddShippingCountryTest < ActiveSupport::Te
               .run
     refute service.success?
     assert_equal 1, service.result.errors.full_messages.count
-    assert_equal "Name is not included in the list", service.result.errors.full_messages.first
+    assert_includes service.result.errors.full_messages, "Name is not included in the list"
     assert_equal 1, ShippingCountry.count
   end
 end
