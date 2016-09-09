@@ -1,28 +1,22 @@
-class AdminServices::Shop::ChangePaymentSettings < ActiveInteraction::Base
+class AdminServices::Shop::ChangePaymentSettings
 
-  string :authorization_settings
-  integer :id
+  attr_reader :success, :shop, :errors
+  alias_method :success?, :success
 
-  validates :id, :authorization_settings, presence: true
-
-  def execute
-    shop = Shop.find(id)
-    shop.update_attributes!(shop_params) ||
-      errors.add(:base, I18n.t('services.shop_services.wrong_params'))
-
-    shop
+  def initialize(id:, authorization_settings:)
+    @authorization_settings = authorization_settings
+    @shop = Shop.find(id)
   end
 
-  private
-
-  def shop_params
-    params = inputs.slice!(:id)
-    params[:authorization_settings] = nil unless authorization_method_included?
-    params
+  def run
+    @shop.assign_attributes(authorization_settings: @authorization_settings)
+    if @shop.valid?
+      @shop.save
+      @success = true
+    else
+      @errors = @shop.errors
+      @success = false
+    end
+    self
   end
-
-  def authorization_method_included?
-    %w[ authorize_and_charge authorize ].include?(authorization_settings)
-  end
-
 end
