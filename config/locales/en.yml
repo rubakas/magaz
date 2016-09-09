@@ -25,6 +25,10 @@ en:
       models:
         customer:
           email_or_name: "At least one of these fields must be filled: First name, Last name, Email"
+        shop:
+          attributes:
+            authorization_settings:
+              inclusion: "type is undefined"
   topics:
     create_product_event: "Product creation"
     update_product_event: "Product update"

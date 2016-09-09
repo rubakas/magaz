@@ -3,14 +3,21 @@ require 'test_helper'
 class CollectionTest < ActiveSupport::TestCase
   include Shared::VisibilityExamples
 
+  setup do
+    setup_visibility_examples(model_class: Collection, factory_name: :collection)
+  end
+
+  # associations
   should have_many(:events)
   should have_and_belong_to_many(:products)
   should belong_to(:shop)
   should have_many(:tax_overrides)
 
-  setup do
-    setup_visibility_examples(model_class: Collection, factory_name: :collection)
-  end
+  # validations
+  should validate_presence_of(:name)
+  should validate_uniqueness_of(:name).scoped_to(:shop_id)
+  should validate_presence_of(:shop_id)
+
 
   test 'validation scenarios' do
     skip # include uniquness scope tests

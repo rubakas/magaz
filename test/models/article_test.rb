@@ -1,19 +1,21 @@
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
-
-  should belong_to(:blog)
-  should have_many(:comments)
-  should have_many(:events)
-  should validate_presence_of(:title)
-  should validate_presence_of(:blog_id)
-  should validate_uniqueness_of(:title).scoped_to(:blog_id)
-
   include Shared::VisibilityExamples
 
   setup do
     setup_visibility_examples(model_class: Article, factory_name: :article)
   end
+
+  # associations
+  should belong_to(:blog)
+  should have_many(:comments)
+  should have_many(:events)
+
+  # validations
+  should validate_presence_of(:title)
+  should validate_presence_of(:blog_id)
+  should validate_uniqueness_of(:title).scoped_to(:blog_id)
 
   test 'two articles with same handle and different shops' do
     @shop1 = create(:shop, name: "shop1")

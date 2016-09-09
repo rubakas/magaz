@@ -36,5 +36,5 @@ class Product < ActiveRecord::Base
 
   validates :name, :shop_id, presence: true
   validates :name, uniqueness: { scope: :shop }
-  validates :price, number: true, allow_blank: true
+  validates :price, numericality: true, allow_blank: true
 end
