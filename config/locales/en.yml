@@ -20,6 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    errors:
+      models:
+        customer:
+          email_or_name: "At least one of these fields must be filled: First name, Last name, Email"
   topics:
     create_product_event: "Product creation"
     update_product_event: "Product update"

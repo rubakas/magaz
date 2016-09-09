@@ -3,7 +3,8 @@ class StoreServices::ShoppingCart
 
   def initialize(shop_id:, checkout_id:, customer_id:)
     @shop     = Shop.find(shop_id)
-    @customer = @shop.customers.find_by_id(customer_id) || @shop.customers.create
+    @customer = @shop.customers.find_by_id(customer_id) || @shop.customers.new
+    @customer.save!(validate: false)
     @checkout = @customer.checkouts.not_orders.find_by_id(checkout_id) || @customer.checkouts.create
   end
 

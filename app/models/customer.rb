@@ -17,6 +17,15 @@ class Customer < ActiveRecord::Base
   has_many    :events, as: :subject
   belongs_to  :shop
 
+  validates :email, uniqueness: true, allow_blank: true
+  validate :first_name_or_last_name_or_email
+
+  def first_name_or_last_name_or_email
+    if first_name.blank? && last_name.blank? && email.blank?
+      errors[:base] << I18n.t('activerecord.errors.models.customer.email_or_name')
+    end
+  end
+
   def self.to_csv
     CSV.generate do |csv|
       csv << column_names

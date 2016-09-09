@@ -18,12 +18,11 @@ class Admin::CustomersController < Admin::ApplicationController
     service = AdminServices::Customer::AddCustomer
               .new(shop_id: current_shop.id, params: customer_params)
               .run
-              @customer = service.result
+    @customer = service.customer
     if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_customer_path(@customer)
     else
-      @customer = service.result
       flash.now[:notice] = t('.notice_fail')
       render 'new'
     end
