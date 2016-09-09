@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class EmailTemplateTest < ActiveSupport::TestCase
+  # associations
   should belong_to(:shop)
 
   setup do

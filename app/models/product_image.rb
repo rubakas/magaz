@@ -11,7 +11,6 @@
 
 class ProductImage < ActiveRecord::Base
   belongs_to :product
-  belongs_to :shop
 
   mount_uploader :image, ImageUploader
   validates :product_id, :image, presence: true
