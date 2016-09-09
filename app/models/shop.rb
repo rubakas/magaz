@@ -56,5 +56,13 @@ class Shop < ActiveRecord::Base
   validates :name, uniqueness: true
 
   validates :authorization_settings, inclusion: { in: %w[ authorize_and_charge authorize ] }, allow_blank: true
+  validates :eu_digital_goods_collection_id, numericality: { only_integer: true }, allow_blank: true
+  validate :validate_default_collection_id
 
+  def validate_default_collection_id
+    if self.eu_digital_goods_collection_id != nil
+      collection = Collection.where(shop_id: self.id, id: self.eu_digital_goods_collection_id)
+      errors.add(:base, I18n.t('services.shop_services.wrong_collection')) unless collection.present?
+    end
+  end
 end

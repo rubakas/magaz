@@ -123,8 +123,8 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def enable_eu_digital_goods_vat_taxes
     service = AdminServices::Shop::EnableEuDigitalGoods
-                .run(id: current_shop.id,
-                     collection_name: DIGITAL_GOODS_VAT_TAX)
+              .run(id: current_shop.id,
+                   collection_name: DIGITAL_GOODS_VAT_TAX)
     if service.valid?
       flash.now[:notice] = I18n.t('admin.settings.notice_success')
       redirect_to taxes_settings_admin_settings_path
@@ -142,9 +142,12 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def save_default_collection
     service = AdminServices::Shop::ChangeDefaultCollection
-                .run(id: current_shop.id, collection_id: params[:default_collection])
-    unless service.valid?
-      flash.now[:notice] = service.errors.full_messages.first
+              .new(id: current_shop.id, collection_id: params[:default_collection])
+              .run
+    unless service.success?
+      service.errors.each do |key, value|
+        flash.now[:notice] = value
+      end
     end
     redirect_to taxes_settings_admin_settings_path
   end
