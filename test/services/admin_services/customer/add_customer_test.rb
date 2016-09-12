@@ -34,8 +34,7 @@ class AdminServices::Customer::AddCustomeromerTest < ActiveSupport::TestCase
   end
 
   test 'should not create customer with blank params' do
-    service = AdminServices::Customer::AddCustomer.new(shop_id: @shop.id,
-                                                       params: @blank_params)
+    service = AdminServices::Customer::AddCustomer.new(shop_id: @shop.id)
                                                   .run
     refute service.success?
     assert_equal 1, service.customer.errors.count
@@ -45,7 +44,7 @@ class AdminServices::Customer::AddCustomeromerTest < ActiveSupport::TestCase
 
   test "should rise exeption if shop not found" do
     assert_raises ActiveRecord::RecordNotFound do
-      service = AdminServices::Customer::AddCustomer.new(shop_id: "", params: "").run
+      service = AdminServices::Customer::AddCustomer.new(shop_id: "").run
     end
   end
 end
