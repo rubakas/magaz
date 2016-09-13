@@ -11,19 +11,18 @@ class AdminServices::Customer::DeleteCustomerTest < ActiveSupport::TestCase
   test 'should delete customer with valid id' do
     assert_equal 2, @shop.customers.count
     service = AdminServices::Customer::DeleteCustomer
-                .new(id: @customer.id, shop_id: @shop.id).run
+                .new(id: @customer.id, shop_id: @shop.id)
+                .run
     assert service.success?
     refute Customer.find_by_id(@customer.id)
     assert Customer.find_by_id(@customer2.id)
     assert_equal 1, @shop.customers.count
   end
 
-  test 'should not delete customer with valid blank id' do
+  test 'should raise exeption with blank params' do
     assert_equal 2, Customer.count
-    service = AdminServices::Customer::DeleteCustomer.new(id: "", shop_id: "").run
-    refute service.success?
-    assert_equal 1, service.errors.count
-    assert_equal "Record not found", service.errors.first
-    assert_equal 2, Customer.count
+    assert_raises ActiveRecord::RecordNotFound do
+      service = AdminServices::Customer::DeleteCustomer.new.run
+    end
   end
 end
