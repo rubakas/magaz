@@ -2,10 +2,6 @@ require 'test_helper'
 
 class ThemeTest < ActiveSupport::TestCase
 
-  should belong_to(:partner)
-  should belong_to(:shop)
-  should have_many(:theme_styles).dependent(:destroy)
-
   setup do
     @shop = create(:shop)
     @source_theme = build(:theme)
@@ -22,6 +18,15 @@ class ThemeTest < ActiveSupport::TestCase
 
     @installed_theme = service.result
   end
+
+  # associations
+  should have_many(:assets)
+  should have_many(:installed_themes)
+  should belong_to(:partner)
+  should have_many(:reviews)
+  should belong_to(:shop)
+  should belong_to(:source_theme)
+  should have_many(:theme_styles).dependent(:destroy)
 
   test '#activate!' do
     @source_theme.activate!

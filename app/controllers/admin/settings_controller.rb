@@ -42,10 +42,11 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def payments_settings_update
     service = AdminServices::Shop::ChangePaymentSettings
-                .run(id: current_shop.id,
+                .new(id: current_shop.id,
                      authorization_settings: params[:shop][:authorization_settings])
-    @shop = service.result
-    if service.valid?
+                .run
+    @shop = service.shop
+    if service.success?
       flash[:notice] = I18n.t('admin.settings.notice_success')
       redirect_to payments_settings_admin_settings_path
     else
@@ -141,9 +142,12 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def save_default_collection
     service = AdminServices::Shop::ChangeDefaultCollection
-                .run(id: current_shop.id, collection_id: params[:default_collection])
-    unless service.valid?
-      flash.now[:notice] = service.errors.full_messages.first
+              .new(id: current_shop.id, collection_id: params[:default_collection])
+              .run
+    unless service.success?
+      service.errors.each do |key, value|
+        flash.now[:notice] = value
+      end
     end
     redirect_to taxes_settings_admin_settings_path
   end
