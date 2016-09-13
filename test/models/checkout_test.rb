@@ -1,10 +1,7 @@
 require 'test_helper'
 
 class CheckoutTest < ActiveSupport::TestCase
-  should belong_to(:customer)
-  should have_many(:events)
-  should have_many(:line_items)
-  
+
   setup do
     @shop = create(:shop)
     @customer = create(:customer, shop: @shop)
@@ -12,6 +9,11 @@ class CheckoutTest < ActiveSupport::TestCase
     @product_1 = create(:product, shop: @shop)
     @product_2 = create(:product, shop: @shop)
   end
+
+  # associations
+  should belong_to(:customer)
+  should have_many(:events)
+  should have_many(:line_items)
 
   test 'attributes' do
     skip

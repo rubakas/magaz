@@ -20,6 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    errors:
+      models:
+        shop:
+          attributes:
+            authorization_settings:
+              inclusion: "type is undefined"
   topics:
     create_product_event: "Product creation"
     update_product_event: "Product update"

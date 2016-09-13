@@ -6,10 +6,12 @@ class ShippingCountry < ActiveRecord::Base
   has_many    :shipping_rates, dependent: :destroy
   has_many    :tax_overrides
 
-  validates :tax, numericality: true
-  validates :tax, :name, :shop_id, presence: true
-  validates :name, inclusion: ShippingCountry::COUNTRY_LIST['countries'].keys
-  validates :name, uniqueness: { scope: :shop }
+  validates :name,
+            presence: true,
+            inclusion: ShippingCountry::COUNTRY_LIST['countries'].keys,
+            uniqueness: { scope: :shop }
+  validates :shop_id, presence: true
+  validates :tax, numericality: true, presence: true
 
   def country_info
     COUNTRY_LIST['countries'][self.name]

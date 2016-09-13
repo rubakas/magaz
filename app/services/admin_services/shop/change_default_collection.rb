@@ -1,28 +1,24 @@
-class AdminServices::Shop::ChangeDefaultCollection < ActiveInteraction::Base
+class AdminServices::Shop::ChangeDefaultCollection
+  NUMBER_REGEX = /\A[-+]?\d*\.?\d+\z/
 
-  integer :id, :collection_id
+  attr_reader :success, :shop, :errors
+  alias_method :success?, :success
 
-  validates :id, :collection_id, presence: true
-
-  validate :collection_existence
-
-  def execute
-    shop = Shop.find(id)
-
-    shop.update_attributes(eu_digital_goods_collection_id: collection_id) ||
-      errors.add(:base, I18n.t('services.shop_services.wrong_params'))
-
-    shop
+  def initialize(id:, collection_id:)
+    @id = id
+    @collection_id = collection_id
+    @shop = Shop.find(@id)
   end
 
-  private
-
-  def collection_existence
-    errors.add(:base, I18n.t('services.shop_services.wrong_collection')) unless collection_exists?
+  def run
+    @shop.assign_attributes(eu_digital_goods_collection_id: @collection_id)
+    if @shop.valid?
+      @shop.save
+      @success = true
+    else
+      @errors = @shop.errors
+      @success = false
+    end
+    self
   end
-
-  def collection_exists?
-    Collection.where(shop_id: id, id: collection_id).present?
-  end
-
 end
