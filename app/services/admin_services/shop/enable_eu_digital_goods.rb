@@ -1,33 +1,39 @@
-class AdminServices::Shop::EnableEuDigitalGoods < ActiveInteraction::Base
+class AdminServices::Shop::EnableEuDigitalGoods
 
-  string :collection_name
-  integer :id
+  attr_reader :success, :shop, :errors
+  alias_method :success?, :success
 
-  validates :id, :collection_name, presence: true
-
-  def execute
+  def initialize(id: nil, collection_name: nil)
+    @shop_id = id
+    @collection_name = collection_name
     @shop = Shop.find(id)
+  end
 
-    check_default_collection
-
-    @shop.update_attributes(eu_digital_goods_collection_id: @default_collection.id) ||
-      errors.add(:base, I18n.t('services.shop_services.wrong_params'))
-
-    @shop
+  def run
+    _check_default_collection
+    @shop.assign_attributes(eu_digital_goods_collection_id: @default_collection.id)
+    if @shop.valid?
+      @success = true
+      @shop.save
+    else
+      @success = false
+      @errors = @shop.errors
+    end
+    self
   end
 
   private
 
-  def check_default_collection
+  def _check_default_collection
     if default_collection_exists?
-      @default_collection = @shop.collections.find_by(name: collection_name)
+      @default_collection = @shop.collections.find_by(name: @collection_name)
     else
-      @default_collection = @shop.collections.create(name: collection_name)
+      @default_collection = @shop.collections.create(name: @collection_name)
     end
   end
 
   def default_collection_exists?
-    @shop.collections.find_by(name: collection_name).present?
+    ::Collection.where(shop_id: @shop_id, name: @collection_name).present?
   end
 
 end
