@@ -14,7 +14,7 @@ class AdminServices::Shop::EnableEuDigitalGoodsTest < ActiveSupport::TestCase
               .new(@success_params)
               .run
     assert service.success?
-    assert_equal @collection.id, service.result.eu_digital_goods_collection_id
+    assert_equal @collection.id, service.shop.eu_digital_goods_collection_id
   end
 
   test 'should create new default collection for shop' do
@@ -22,18 +22,18 @@ class AdminServices::Shop::EnableEuDigitalGoodsTest < ActiveSupport::TestCase
               .new(collection_name: 'New name', id: @shop.id)
               .run
     assert service.success?
-    assert_not_equal @collection.id, service.result.eu_digital_goods_collection_id
-    assert_not_equal @collection2.id, service.result.eu_digital_goods_collection_id
+    assert_not_equal @collection.id, service.shop.eu_digital_goods_collection_id
+    assert_not_equal @collection2.id, service.shop.eu_digital_goods_collection_id
     assert_equal 'New name',
-                 Collection.find(service.result.eu_digital_goods_collection_id).name
+                 Collection.find(service.shop.eu_digital_goods_collection_id).name
   end
 
-  test 'should not update shop default collection with blank name' do
+  test 'should not change eu_digital_goods_collection_id with blank collection name' do
     service = AdminServices::Shop::EnableEuDigitalGoods
               .new(collection_name: '', id: @shop.id)
               .run
     refute service.success?
     assert_equal 1, service.errors.count
-    assert_equal "Wrong params for shop", service.errors[:params]
+    assert_includes service.errors.full_messages, "Collections is invalid"
   end
 end
