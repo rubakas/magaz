@@ -1,10 +1,15 @@
-class AdminServices::Customer::DeleteCustomer < ActiveInteraction::Base
+class AdminServices::Customer::DeleteCustomer
 
-  integer :id, :shop_id
+  attr_reader :success, :customer, :errors
+  alias_method :success?, :success
 
-  validates :id, :shop_id, presence: true
+  def initialize(shop_id: nil, id: nil)
+    @customer = ::Shop.find(shop_id).customers.find(id)
+  end
 
-  def execute
-    Shop.find(shop_id).customers.find(id).destroy
+  def run
+    @success = @customer.destroy
+    @errors = @customer.errors
+    self
   end
 end

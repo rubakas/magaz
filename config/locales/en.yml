@@ -209,6 +209,8 @@ en:
     change_customer:
       customer_exist: "This customer is already exist in this shop"
       wrong_params: "Wrong params for customer"
+    delete_customer:
+      record_not_found: "Record not found"
 
     add_comment:
       article_not_belongs: "This article is not belongs to this blog"
