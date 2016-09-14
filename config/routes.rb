@@ -19,11 +19,15 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy, :new, :show]
   end
 
-  constraints(ThemeStoreSubdomainConstraint) do
+  constraints(host: THEME_STORE_HOSTNAME) do
     include_routes :theme_store
   end
 
-  constraints(ShopSubdomainConstraint) do
+  constraints (->(request) {
+                request.subdomain.present? &&
+                request.subdomain != "www" &&
+                request.domain == HOSTNAME
+              }) do
     include_routes :admin
     include_routes :store
   end

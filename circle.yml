@@ -12,6 +12,11 @@ machine:
     - memcached
     - postgresql
     - redis
+
+checkout:
+  post:
+    - cp .env.ci .env.test
+
 test:
   override:
     - bundle exec rake test

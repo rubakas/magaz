@@ -1,7 +1,7 @@
 module Store
   class CheckoutsController < Store::ApplicationController
-    inherit_resources
-    actions :show, :update
+    # inherit_resources
+    # actions :show, :update
 
     def update_address
       if shopping_cart_service.update_address(permitted_params_update_address[:checkout])

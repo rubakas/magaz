@@ -1,2 +1,2 @@
-Magaz::Application.config.skylight.environments << 'staging'
-Magaz::Application.config.skylight.environments << 'development'
+Rails.application.config.skylight.environments << 'staging'
+Rails.application.config.skylight.environments << 'development'
