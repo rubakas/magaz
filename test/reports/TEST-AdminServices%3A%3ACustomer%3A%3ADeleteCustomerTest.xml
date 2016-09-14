@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite time='0.051123' skipped='0' failures='0' errors='0' name="AdminServices::Customer::DeleteCustomerTest" assertions='7' tests='2'>
-  <testcase time='0.023071' file="test/services/admin_services/customer/delete_customer_test.rb" name="test_should_raise_exeption_with_blank_params" assertions='2'>
-  </testcase>
-  <testcase time='0.028052' file="test/services/admin_services/customer/delete_customer_test.rb" name="test_should_delete_customer_with_valid_id" assertions='5'>
-  </testcase>
-</testsuite>
