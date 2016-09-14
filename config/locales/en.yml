@@ -23,6 +23,8 @@ en:
   activerecord:
     errors:
       models:
+        customer:
+          email_or_name: "At least one of these fields must be filled: First name, Last name, Email"
         shop:
           attributes:
             authorization_settings:
@@ -203,9 +205,12 @@ en:
 
     add_customer:
       customer_exist: "This customer is already exist in this shop"
+      email_not_be_blank: "Email can't be blank"
     change_customer:
       customer_exist: "This customer is already exist in this shop"
       wrong_params: "Wrong params for customer"
+    delete_customer:
+      record_not_found: "Record not found"
 
     add_comment:
       article_not_belongs: "This article is not belongs to this blog"

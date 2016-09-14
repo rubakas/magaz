@@ -16,17 +16,13 @@ class Admin::CustomersController < Admin::ApplicationController
 
   def create
     service = AdminServices::Customer::AddCustomer
-              .run(first_name: params[:customer][:first_name],
-                   last_name: params[:customer][:last_name],
-                   email: params[:customer][:email],
-                   shop_id: current_shop.id)
-
-    if service.valid?
-      @customer = service.result
+              .new(shop_id: current_shop.id, params: customer_params)
+              .run
+    @customer = service.customer
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_customer_path(@customer)
     else
-      @customer = service.customer
       flash.now[:notice] = t('.notice_fail')
       render 'new'
     end
@@ -68,8 +64,16 @@ class Admin::CustomersController < Admin::ApplicationController
 
   def destroy
     service = AdminServices::Customer::DeleteCustomer
-                .run(id: params[:id], shop_id: current_shop.id)
-    flash[:notice] = t('.notice_success')
-    redirect_to admin_customers_path
+              .new(id: params[:id], shop_id: current_shop.id)
+              .run
+    if service.success?
+      flash[:notice] = t('.notice_success')
+      redirect_to admin_customers_path
+    end
+  end
+
+  private
+  def customer_params
+    params.require(:customer).permit(:first_name, :last_name, :email)
   end
 end
