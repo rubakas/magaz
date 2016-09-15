@@ -1,7 +1,7 @@
 module Store
   class OrdersController < Store::ApplicationController
-    inherit_resources
-    actions :show
+    # inherit_resources
+    # actions :show
 
     protected
 

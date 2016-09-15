@@ -1,0 +1,5 @@
+REDIS_URL             = ENV.fetch('REDIS_URL')      {nil}
+MEMCACHE_URL          = ENV.fetch('MEMCACHE_URL')   {nil}
+HOSTNAME              = ENV.fetch('MAGAZ_HOSTNAME')
+THEME_STORE_HOSTNAME  = ENV.fetch('MAGAZ_THEME_STORE_HOSTNAME')
+RAILS_SECRET_KEY_BASE = ENV.fetch('SECRET_KEY_BASE')

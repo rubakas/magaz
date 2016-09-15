@@ -38,5 +38,6 @@ class ActionView::Template::Handlers::Liquid
 end
 
 # register LiquidView as a handler for liquid templates
-ActionView::Template.register_template_handler :liquid,
-                                               ActionView::Template::Handlers::Liquid
+ActionView::Template
+.register_template_handler  :liquid,
+                            ActionView::Template::Handlers::Liquid
