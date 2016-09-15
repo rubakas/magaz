@@ -20,6 +20,10 @@
 
 * QT4 for capybara-webkit
 
+* Environment variables emulated via .env.development and .env.production files:
+    cp .env.example .env.development
+    cp .env.example .env.test
+
 * Database creation:
 
     cp config/database.yml.example config/database.yml
