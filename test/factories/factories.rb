@@ -93,6 +93,8 @@ FactoryGirl.define do
   factory :shop, class: Shop do
     sequence(:name)      { |n| "Example#{n}" }
     sequence(:subdomain) { |n| "example#{n}" }
+    all_taxes_are_included true
+    charge_taxes_on_shipping_rates false
   end
 
   factory :subscriber_notification, class: SubscriberNotification do

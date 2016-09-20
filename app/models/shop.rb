@@ -55,6 +55,8 @@ class Shop < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  validates :all_taxes_are_included, :charge_taxes_on_shipping_rates, inclusion: { in: [true, false] }
+
   validates :authorization_settings, inclusion: { in: %w[ authorize_and_charge authorize ] }, allow_blank: true
   validates :eu_digital_goods_collection_id, numericality: { only_integer: true }, allow_blank: true
   validate :validate_default_collection_id

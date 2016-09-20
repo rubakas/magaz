@@ -107,16 +107,14 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def taxes_settings_update
     service = AdminServices::Shop::ChangeTaxesSettings
-                .run(id: current_shop.id,
-                     all_taxes_are_included: params[:shop][:all_taxes_are_included],
-                     charge_taxes_on_shipping_rates: params[:shop][:charge_taxes_on_shipping_rates],
-                     charge_vat_taxes: params[:charge_vat_taxes])
-    if service.valid?
-      @shop = service.result
+                .new(shop_id: current_shop.id,
+                     params:  taxes_settings_params)
+                .run
+    @shop = service.shop
+    if service.success?
       flash[:notice] = I18n.t('admin.settings.notice_success')
       redirect_to taxes_settings_admin_settings_path
     else
-      @shop = service.shop
       render "taxes_settings"
     end
   end
@@ -150,6 +148,12 @@ class Admin::SettingsController < Admin::ApplicationController
       end
     end
     redirect_to taxes_settings_admin_settings_path
+  end
+
+  private
+
+  def taxes_settings_params
+    params.require(:shop).permit(:all_taxes_are_included, :charge_taxes_on_shipping_rates, :charge_vat_taxes)
   end
 
 end
