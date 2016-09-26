@@ -24,7 +24,7 @@ module Admin
     test "should enable Digital Goods VAT taxes" do
       click_link "Enable"
       assert page.has_content? 'Charge eu digital goods vat taxes'
-      assert find('#charge_vat_taxes').checked?
+      assert find('#shop_charge_vat_taxes').checked?
       assert page.has_content? 'Digital Goods VAT Tax'
       click_link "Digital Goods VAT Tax"
       assert page.has_content? 'Editing collection'
@@ -42,8 +42,8 @@ module Admin
 
     test "should disble Digital VAT Taxes" do
       click_link "Enable"
-      assert find('#charge_vat_taxes').checked?
-      find('#charge_vat_taxes').set('false')
+      assert find('#shop_charge_vat_taxes').checked?
+      find('#shop_charge_vat_taxes').set('false')
       click_button 'Save'
       assert page.has_content? 'Enable eu digital goods vat taxes'
     end

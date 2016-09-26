@@ -39,7 +39,7 @@ p id="notice"
                                            method: :put}
                   = f.label t('.enable_vat_taxes')
                 - else
-                  = check_box_tag :charge_vat_taxes, :charge_vat_taxes, true
+                  = check_box_tag 'shop[charge_vat_taxes]', 'charge_vat_taxes', true
                   = f.label t('.charge_vat_taxes')
                   div class="inf"
                     = t('.vat_taxes_information_first')

@@ -108,7 +108,7 @@ class Admin::SettingsController < Admin::ApplicationController
   def taxes_settings_update
     service = AdminServices::Shop::ChangeTaxesSettings
                 .new(shop_id: current_shop.id,
-                     params:  taxes_settings_params)
+                     params: taxes_settings_params)
                 .run
     @shop = service.shop
     if service.success?

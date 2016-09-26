@@ -11,7 +11,7 @@ class AdminServices::Shop::ChangeTaxesSettings
   end
 
   def run
-    @shop.assign_attributes(shop_params)
+    @shop.assign_attributes(taxes_settings_params)
     if @shop.valid?
       @success = true
       @shop.save
@@ -24,9 +24,9 @@ class AdminServices::Shop::ChangeTaxesSettings
 
   private
 
-  def shop_params
+  def taxes_settings_params
     @params[:eu_digital_goods_collection_id] = nil unless @params[:charge_vat_taxes] == 'charge_vat_taxes'
-    @params = @params.slice!(:charge_vat_taxes)
+    @params = @params.except(:charge_vat_taxes)
 
     @params
   end
