@@ -1,4 +1,4 @@
-class AdminServices::ShippingCountry::DeleteShippingCountry < ActiveInteraction::Base
+class AdminServices::ShippingCountry::DeleteShippingCountry
 
   attr_reader :success
   attr_reader :result

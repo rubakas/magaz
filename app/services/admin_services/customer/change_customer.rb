@@ -1,43 +1,23 @@
-class AdminServices::Customer::ChangeCustomer < ActiveInteraction::Base
+class AdminServices::Customer::ChangeCustomer
 
-  set_callback :validate, :after, -> {customer}
+  attr_reader :success, :customer, :errors
+  alias_method :success?, :success
 
-  string :first_name, :last_name, :email
-  integer :id, :shop_id
-
-  validates :id, :shop_id, :email, presence: true
-  validate :customer_uniqueness, if: :email_changed?
-
-  def customer
+  def initialize(id: nil, shop_id: nil, params: {email: nil, first_name: nil, last_name: nil})
+    @shop_id = shop_id
     @customer = Shop.find(shop_id).customers.find(id)
-    add_errors if errors.any?
-    @customer
+    @params = params
   end
 
-  def execute
-    @customer.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('services.change_customer.wrong_params'))
-    @customer
-  end
-
-  private
-
-  def add_errors
-    errors.full_messages.each do |msg|
-      @customer.errors.add(:base, msg)
+  def run
+    @customer.assign_attributes(@params)
+    if @customer.valid?
+      @customer.save
+      @success = true
+    else
+      @errors = @customer.errors
+      @success = false
     end
-  end
-
-  def email_changed?
-    Shop.find(shop_id).customers.find(id).email != email
-  end
-
-  def customer_uniqueness
-    errors.add(:base, I18n
-                .t('services.change_customer.customer_exist')) unless customer_unique?
-  end
-
-  def customer_unique?
-    ::Customer.where.not(id: id).where(shop_id: shop_id, email: email).count == 0
+    self
   end
 end

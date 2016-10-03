@@ -1,13 +1,22 @@
-class AdminServices::EmailTemplate::ChangeEmailTemplate < ActiveInteraction::Base
+class AdminServices::EmailTemplate::ChangeEmailTemplate
+  attr_reader :success, :email_template, :errors
+  alias_method :success?, :success
 
-  integer :id, :shop_id
-  string :title, :body
+  def initialize(id: nil, shop_id: nil, params: {title: nil, body: nil})
+    @email_template = Shop.find(shop_id).email_templates.find(id)
+    @params = params
+  end
 
-  def execute
-    email_template = EmailTemplate.find(id)
-    email_template.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('services.change_email_template.wrong_params'))
+  def run
+    @email_template.assign_attributes(@params)
 
-    email_template
+    if @email_template.valid?
+      @success = true
+      @email_template.save
+    else
+      @success = false
+      @errors = @email_template.errors
+    end
+    self
   end
 end

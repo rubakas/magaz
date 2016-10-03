@@ -1,39 +1,33 @@
-class AdminServices::Shop::ChangeTaxesSettings < ActiveInteraction::Base
+class AdminServices::Shop::ChangeTaxesSettings
 
-  set_callback :validate, :after, -> {shop}
+  attr_reader :success, :shop, :errors
+  alias_method :success?, :success
 
-  boolean :all_taxes_are_included, :charge_taxes_on_shipping_rates, default: false
-  integer :id
-  string :charge_vat_taxes, default: nil
-
-  validates :id, presence: true
-
-  def shop
-    @shop = Shop.find(id)
-    add_errors if errors.any?
-    @shop
+  def initialize(shop_id: nil, params: { all_taxes_are_included: nil,
+                                         charge_taxes_on_shipping_rates: nil,
+                                         charge_vat_taxes: nil })
+    @shop = Shop.find(shop_id)
+    @params = params
   end
 
-  def execute
-    @shop.update_attributes!(shop_params) ||
-      errors.add(:base, I18n.t('services.shop_services.wrong_params'))
-
-    @shop
+  def run
+    @shop.assign_attributes(taxes_settings_params)
+    if @shop.valid?
+      @success = true
+      @shop.save
+    else
+      @success = false
+      @errors = @shop.errors
+    end
+    self
   end
 
   private
 
-  def shop_params
-    params = inputs.slice!(:id, :charge_vat_taxes)
-    params[:eu_digital_goods_collection_id] = nil unless charge_vat_taxes == 'charge_vat_taxes'
+  def taxes_settings_params
+    @params[:eu_digital_goods_collection_id] = nil unless @params[:charge_vat_taxes] == 'charge_vat_taxes'
+    @params = @params.except(:charge_vat_taxes)
 
-    params
+    @params
   end
-
-  def add_errors
-    errors.full_messages.each do |msg|
-      @shop.errors.add(:base, msg)
-    end
-  end
-
 end

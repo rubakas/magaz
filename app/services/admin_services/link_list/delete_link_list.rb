@@ -1,4 +1,4 @@
-class AdminServices::LinkList::DeleteLinkList < ActiveInteraction::Base
+class AdminServices::LinkList::DeleteLinkList
 
   attr_reader :success
   attr_reader :result

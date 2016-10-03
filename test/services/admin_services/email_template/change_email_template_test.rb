@@ -5,14 +5,20 @@ class AdminServices::EmailTemplate::ChangeEmailTemplateTest < ActiveSupport::Tes
   setup do
     @shop = create(:shop, name: 'shop_name')
     @email_template = create(:email_template, shop: @shop)
-    @success_params = {id: @email_template.id, title: "Changed title",
-                       shop_id: @shop.id, body: "Changed body" }
-    @blank_params = { id: "", title: "", shop_id: "", body: "", }
-  end
+    @success_params = { title: "Changed title",
+                        body: "Changed body"
+                      }
+    @partially_blank_params = { title: "Cnged title",
+                                body: ""
+                              }
+end
 
   test 'should update email template with valid params' do
-    service = AdminServices::EmailTemplate::ChangeEmailTemplate.run(@success_params)
-    assert service.valid?
+    service = AdminServices::EmailTemplate::ChangeEmailTemplate.new(id: @email_template.id,
+                                                                    shop_id: @shop.id,
+                                                                    params: @success_params)
+                                                                .run
+    assert service.success?
     assert_equal @success_params[:body], EmailTemplate
                                           .find(@email_template.id).body
     assert_equal @success_params[:title], EmailTemplate
@@ -20,21 +26,18 @@ class AdminServices::EmailTemplate::ChangeEmailTemplateTest < ActiveSupport::Tes
   end
 
   test 'should not update email template with blank_params' do
-    service = AdminServices::EmailTemplate::ChangeEmailTemplate.run(@blank_params)
-    refute service.valid?
+    service = AdminServices::EmailTemplate::ChangeEmailTemplate.new(id: @email_template.id,
+                                                                    shop_id: @shop.id)
+                                                                .run
+    refute service.success?
     assert_equal 2, service.errors.full_messages.count
-    assert_equal "Id is not a valid integer", service.errors.full_messages.first
-    assert_equal "Shop is not a valid integer", service.errors.full_messages.last
+    assert_includes service.errors.full_messages, "Title can't be blank"
+    assert_includes service.errors.full_messages, "Body can't be blank"
   end
 
-  test 'should update update email with some blank params' do
-    service = AdminServices::EmailTemplate::ChangeEmailTemplate
-              .run( id: @email_template.id, 
-                    body: "",
-                    title: "",
-                    shop_id: @email_template.id )
-    assert service.valid?
-    assert_equal '', service.result.body
-    assert_equal '', service.result.title
+  test "should rise exeption if shop/email_template not found" do
+    assert_raises ActiveRecord::RecordNotFound do
+      service = AdminServices::EmailTemplate::ChangeEmailTemplate.new.run
+    end
   end
 end

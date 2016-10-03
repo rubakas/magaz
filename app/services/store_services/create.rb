@@ -153,7 +153,11 @@ class StoreServices::Create
   end
 
   def shop_params
-    { name: @params[:name] }
+    {
+      name: @params[:name], 
+      all_taxes_are_included: true,
+      charge_taxes_on_shipping_rates: false
+    }
   end
 
   def user_params

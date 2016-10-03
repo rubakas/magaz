@@ -10,21 +10,24 @@ class Admin::EmailTemplatesController < Admin::ApplicationController
   end
 
   def update
-    @email_template = current_shop.email_templates.find(params[:id])
     service = AdminServices::EmailTemplate::ChangeEmailTemplate
-              .run( id: @email_template.id,
-                    title: params[:email_template][:title],
-                    shop_id: current_shop.id, name: params[:email_template][:name],
-                    body: params[:email_template][:body],
-                    template_type: params[:email_template][:template_type] )
-    if service.valid?
-      @email_template = service.result
+              .new( id: params[:id],
+                    shop_id: current_shop.id,
+                    params: email_template_params)
+              .run
+    @email_template = service.email_template
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to notifications_settings_admin_settings_path
     else
-      @email_template = service
       flash[:notice] = t('.notice_fail')
       render 'edit'
     end
+  end
+
+  private
+  
+  def email_template_params
+    params.require(:email_template).permit(:title, :body)
   end
 end
