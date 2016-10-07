@@ -23,11 +23,12 @@ class Admin::UsersController < Admin::ApplicationController
                                                invite_token: user_object.invite_token)}
 
     service = AdminServices::Invite::CreateInvite
-              .run(url_building_proc: url_building_proc,
+              .new(url_building_proc: url_building_proc,
                    email: params[:user][:email],
                    shop_id: current_shop.id)
+              .run
 
-    if service.valid?
+    if service.success?
       redirect_to admin_users_path, notice: t('.notice_success')
     else
       redirect_to admin_users_path, notice: t('.invalid_email')

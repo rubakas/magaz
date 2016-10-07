@@ -4,11 +4,16 @@ class User < ActiveRecord::Base
   has_many    :events, as: :subject
   has_many    :reviews
   belongs_to  :shop
-  validates :shop_id, :email, :first_name, :last_name, presence: true
+  validates :shop_id, :email, :first_name, :last_name, presence: true, on: :create_shop
   validates :email,
             uniqueness: { scope: :shop_id },
-            format: { with: Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX }
+            format: { with: Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX },
+            on: :invite
   validate :can_destroy?, on: :destroy
+
+  with_options({on: :invite2}) do |for_invite|
+    for_invite.validates :email, uniqueness: { scope: :shop_id }
+  end
 
   def full_name
     [self.first_name, self.last_name].map(&:capitalize).join(" ")

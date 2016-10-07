@@ -9,8 +9,9 @@ module Concerns
 
       validates :email, presence: true,
                         uniqueness: true,
-                        format: { with: EMAIL_VALID_REGEX }
-      validates :password, presence: { on: :create }
+                        format: { with: EMAIL_VALID_REGEX },
+                        on: :create_shop
+      validates :password, presence: { on: :create_shop }
 
       before_save :update_encrypted_password
     end

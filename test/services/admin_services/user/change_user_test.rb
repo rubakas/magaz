@@ -27,12 +27,12 @@ class AdminServices::User::ChangeUserTest < ActiveSupport::TestCase
               .new(id: @user.id, shop_id: @shop.id, params: @blank_params)
               .run
     refute service.success?
-    assert_equal 4, service.result.errors.full_messages.count
+    assert_equal 5, service.result.errors.full_messages.count
   end
 
   test "should update user with some blank params" do
     assert User.find(@user.id)
-    some_blank_params = @success_params.merge({ password: "", permissions: nil })
+    some_blank_params = @success_params.merge({ permissions: nil })
     service = AdminServices::User::ChangeUser
               .new(id: @user.id, shop_id: @shop.id, params: some_blank_params)
               .run

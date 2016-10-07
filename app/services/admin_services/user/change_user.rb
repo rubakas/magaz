@@ -1,6 +1,5 @@
 class AdminServices::User::ChangeUser
-  attr_reader :success
-  attr_reader :result
+  attr_reader :success, :result, :errors
   alias_method :success?, :success
 
   def initialize(id:, shop_id:, params:)
@@ -9,7 +8,14 @@ class AdminServices::User::ChangeUser
   end
 
   def run
-    @success = @result.update_attributes(user_params)
+    @result.assign_attributes(user_params)
+    if @result.valid?(:create_shop) && @result.valid?(:invite)
+      @success = true
+      @result.save
+    else
+      @success = false
+      @errors = @result.errors
+    end
     self
   end
 

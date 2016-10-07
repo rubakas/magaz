@@ -1,17 +1,21 @@
 class AdminServices::User::AddUser
-  attr_reader :success
-  attr_reader :result
+  attr_reader :success, :result, :errors
   alias_method :success?, :success
 
   def initialize(shop_id:, params:)
     @result = ::User.new(default_params(shop_id))
     @params = params
-    @success = false
   end
 
   def run
-    @result.attributes = user_params
-    @success = true if @result.save
+    @result.assign_attributes(user_params)
+    if @result.valid?(:create_shop)
+      @result.save
+      @success = true
+    else
+      @success = false
+      @errors = @result.errors
+    end
     self
   end
 
