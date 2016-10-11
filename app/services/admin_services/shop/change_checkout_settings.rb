@@ -1,60 +1,39 @@
-class AdminServices::Shop::ChangeCheckoutSettings < ActiveInteraction::Base
+class AdminServices::Shop::ChangeCheckoutSettings
 
-  set_callback :validate, :after, -> {shop}
+  attr_reader :success, :shop, :errors
+  alias_method :success?, :success
 
-  ACCOUNT_TYPE_CHOISE = %w[ disabled required optional]
-
-  AFTER_ORDER_PAID = %w[ automatically_fulfill
-                         automatically_fulfill_gift_cards
-                         not_automatically_fulfill]
-
-  ABANDONED_CHECKOUT_TIME_DELAY = %w[ never six_hours day]
-
-  EMAIL_MARKETING_CHOICE = %w[ customer_agrees customer_does_not_agree disable ]
-
-  boolean :billing_address_is_shipping_too, :enable_multipass_login,
-          :notify_customers_of_their_shipment, :automatically_fulfill_all_orders,
-          :after_order_fulfilled_and_paid, default: false
-
-  string :account_type_choice,
-         default: ACCOUNT_TYPE_CHOISE[ACCOUNT_TYPE_CHOISE.index('disabled')]
-  string :abandoned_checkout_time_delay,
-         default: ABANDONED_CHECKOUT_TIME_DELAY[ABANDONED_CHECKOUT_TIME_DELAY.index('never')]
-  string :email_marketing_choice,
-         default: EMAIL_MARKETING_CHOICE[EMAIL_MARKETING_CHOICE.index('customer_agrees')]
-  string :after_order_paid,
-         default: AFTER_ORDER_PAID[AFTER_ORDER_PAID.index('automatically_fulfill')]
-  string :checkout_refund_policy, :checkout_privacy_policy, :checkout_term_of_service,
-         default: nil
-
-  integer :id
-
-  validates :id, presence: true
-
-  validates :account_type_choice, inclusion: ACCOUNT_TYPE_CHOISE
-  validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY
-  validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE
-  validates :after_order_paid, inclusion: AFTER_ORDER_PAID
-
-  def shop
+  def initialize(id: nil, checkouts_settings_params: {
+                 account_type_choice: ::Shop::ACCOUNT_TYPE_CHOISE[::Shop::ACCOUNT_TYPE_CHOISE.index('disabled')],
+                 enable_multipass_login: false,
+                 billing_address_is_shipping_too: false,
+                 abandoned_checkout_time_delay: ::Shop::ABANDONED_CHECKOUT_TIME_DELAY[::Shop::ABANDONED_CHECKOUT_TIME_DELAY.index('never')],
+                 email_marketing_choice: ::Shop::EMAIL_MARKETING_CHOICE[::Shop::EMAIL_MARKETING_CHOICE.index('customer_agrees')],
+                 after_order_paid: ::Shop::AFTER_ORDER_PAID[::Shop::AFTER_ORDER_PAID.index('automatically_fulfill')],
+                 notify_customers_of_their_shipment: false,
+                 automatically_fulfill_all_orders: false,
+                 after_order_fulfilled_and_paid: false,
+                 checkout_refund_policy: nil,
+                 checkout_privacy_policy: nil,
+                 checkout_term_of_service: nil
+                 })
     @shop = Shop.find(id)
-    add_errors if errors.any?
-    @shop
+    @checkouts_settings_params = checkouts_settings_params
+    # @checkouts_settings_params = {}
+    # method(__method__).parameters.map do |_, name|
+    #   p Hash[name, binding.local_variable_get(name)]
+    # end
   end
 
-  def execute
-    @shop.update_attributes!(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('services.shop_services.wrong_params'))
-
-    @shop
-  end
-
-  private
-
-  def add_errors
-    errors.full_messages.each do |msg|
-      @shop.errors.add(:base, msg)
+  def run
+    @shop.assign_attributes(@checkouts_settings_params)
+    if @shop.valid?
+      @success = true
+      @shop.save
+    else
+      @errors = @shop.errors
+      @success = false
     end
+    self
   end
-
 end
