@@ -41,12 +41,6 @@ FactoryGirl.define do
     sequence(:description) { |n| "some description"}
   end
 
-  factory :event, class: Event do
-    sequence(:message) { |n| "User created a product: "}
-    sequence(:verb) { |n| "create"}
-    sequence(:arguments) {|n| "Product_Name"}
-  end
-
   factory :file, class: AssetFile do
     sequence(:name) {|n| "File #{n}"}
     file { Rack::Test::UploadedFile.new(File.join(Rails.root, '/test/fixtures/files/image.jpg')) }

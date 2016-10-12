@@ -4,7 +4,6 @@ class BlogTest < ActiveSupport::TestCase
   # associations
   should have_many(:articles)
   should have_many(:comments)
-  should have_many(:events)
   should belong_to(:shop)
 
   # validations

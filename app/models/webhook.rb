@@ -1,5 +1,4 @@
 class Webhook < ActiveRecord::Base
-  has_many :events, as: :subject
   belongs_to :shop
 
   module Topics

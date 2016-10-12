@@ -10,7 +10,6 @@ class ShopTest < ActiveSupport::TestCase
   should have_many :countries
   should have_many :customers
   should have_many :email_templates
-  should have_many :events
   should have_many :links
   should have_many :link_lists
   should have_many :pages

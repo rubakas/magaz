@@ -14,7 +14,6 @@
 class Customer < ActiveRecord::Base
 
   has_many    :checkouts
-  has_many    :events, as: :subject
   belongs_to  :shop
 
   validates :email, uniqueness: true, allow_blank: true

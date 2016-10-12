@@ -22,7 +22,6 @@ class Product < ActiveRecord::Base
   include Concerns::Visibility
 
   has_and_belongs_to_many :collections
-  has_many                :events, as: :subject
   has_many                :product_images, :dependent => :destroy
   belongs_to              :shop
 

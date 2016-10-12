@@ -9,17 +9,4 @@ table class="table table-striped"
     tr
       th = t('.activity')
       th
-
-  tbody
-  - @events.reverse.each do |event|
-      tr
-        td
-          = event.message
-          - unless event.verb == 'destroy' || event.subject_type == "Shop"
-            = link_to event.arguments.first, [:admin, event.subject]
-          - else
-            = event.arguments.first
-        td = event.created_at
-  tbody
-
 br

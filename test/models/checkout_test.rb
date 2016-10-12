@@ -12,7 +12,6 @@ class CheckoutTest < ActiveSupport::TestCase
 
   # associations
   should belong_to(:customer)
-  should have_many(:events)
   should have_many(:line_items)
 
   test 'attributes' do

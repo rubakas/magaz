@@ -20,7 +20,6 @@ class Page < ActiveRecord::Base
   extend FriendlyId
   include Concerns::Visibility
 
-  has_many    :events, as: :subject
   belongs_to  :shop
 
   friendly_id :handle, use: [:slugged, :scoped], scope: :shop

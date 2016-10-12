@@ -48,7 +48,6 @@ class Shop < ActiveRecord::Base
   has_many :countries, class_name: 'ShippingCountry'
   has_many :customers
   has_many :email_templates, :dependent => :destroy
-  has_many :events
   has_many :links, through: :link_lists
   has_many :link_lists
   has_many :pages
