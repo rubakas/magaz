@@ -13,7 +13,7 @@ class User::PasswordAuthenticableTest < ActiveSupport::TestCase
     user = User.new first_name: 'New User',
                     last_name: 'Last',
                     password: '1234q'
-    assert user.invalid?
+    assert user.invalid?(:invite)
   end
 
   test 'validation email uniqueness' do
@@ -23,20 +23,21 @@ class User::PasswordAuthenticableTest < ActiveSupport::TestCase
                             email: 'example@example.com',
                             password: '1234q',
                             shop_id: @shop.id
-    assert uniq_user.valid?
+    assert uniq_user.valid?(:create_shop)
+    assert uniq_user.valid?(:invite)
     not_uniq_user = User.create first_name: 'New user',
                                 last_name: 'number Two',
                                 email: 'example@example.com',
                                 password: '1234q',
                                 shop_id: @shop.id
-    assert not_uniq_user.invalid?
+    assert not_uniq_user.invalid?(:invite)
   end
 
   test 'validation password presence' do
     user = User.new first_name: 'New user',
                     last_name: 'number One',
                     email: 'example@example.com'
-    assert user.invalid?
+    assert user.invalid?(:create_shop)
   end
 
 end

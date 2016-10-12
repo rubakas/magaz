@@ -29,6 +29,7 @@ en:
           attributes:
             authorization_settings:
               inclusion: "type is undefined"
+
   topics:
     create_product_event: "Product creation"
     update_product_event: "Product update"
@@ -280,7 +281,8 @@ en:
       weight_to_must_be_greater: "weight to must be greater than weight from"
 
     add_subscriber_notification:
-      email_not_unique: "Email has already been taken"
+      email_not_unique: "- Email has already been taken"
+      mobile_phone_not_unique: "- Mobile phone has already been taken"
 
     change_shop:
       name_not_unique: "Name has already been taken"

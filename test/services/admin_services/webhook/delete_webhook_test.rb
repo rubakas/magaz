@@ -11,23 +11,19 @@ class AdminServices::Webhook::DeleteWebhookTest < ActiveSupport::TestCase
   test "should delete webhook with valid ids" do
     assert_equal 2, Webhook.count
     service = AdminServices::Webhook::DeleteWebhook
-              .run( id: @webhook.id,
+              .new( id: @webhook.id,
                     shop_id: @shop.id)
-    assert service.valid?
+              .run
+    assert service.success?
     refute Webhook.find_by_id(@webhook.id)
     assert Webhook.find_by_id(@webhook2.id)
     assert_equal 1, Webhook.count
   end
 
-  test "should not delete webhook with blank ids" do
-    assert_equal 2, Webhook.count
-    service = AdminServices::Webhook::DeleteWebhook.run(id: "",
-                                                                   shop_id: "")
-    refute service.valid?
-    assert_equal 2, service.errors.full_messages.count
-    assert_equal "Id is not a valid integer", service.errors.full_messages.first
-    assert_equal "Shop is not a valid integer", service.errors.full_messages.last
-    assert_equal 2, Webhook.count
+  test 'should rise exeption with blank ids' do
+    assert_raises ActiveRecord::RecordNotFound do
+      AdminServices::Webhook::DeleteWebhook.new.run
+    end
   end
 
 end

@@ -1,35 +1,28 @@
-class AdminServices::Webhook::AddWebhook < ActiveInteraction::Base
+class AdminServices::Webhook::AddWebhook
 
-  set_callback :validate, :after, -> {webhook}
+  attr_reader :success, :webhook, :errors
+  alias_method :success?, :success
 
-  integer :shop_id
-  string :topic, :address, :format
-  array :metafield_namespaces, :fields, default: nil
+  def initialize(shop_id: nil, webhook_params: {
+                 topic: nil,
+                 format: nil,
+                 fields: nil,
+                 address: nil,
+                 metafield_namespaces: nil })
 
-  validates :topic, inclusion: Webhook::Topics::WEBHOOKS_TOPICS_LIST
-  validates :format, inclusion: Webhook::FORMAT_CHOICE
-  validates :address, presence: true,
-                      format: { with: /https?:\/\/[\S]+/ }
-
-  def webhook
-    @webhook = Webhook.new
-    add_errors if errors.any?
-    @webhook
+    @webhook = ::Shop.find(shop_id).webhooks.new
+    @webhook_params = webhook_params
   end
 
-  def execute
-    unless @webhook.update_attributes(inputs)
-      errors.merge!(@webhook.errors)
+  def run
+    @webhook.assign_attributes(@webhook_params)
+    if @webhook.valid?
+      @success = true
+      @webhook.save
+    else
+      @success = false
+      @errors = @webhook.errors
     end
-    @webhook
+    self
   end
-
-  private
-
-  def add_errors
-    errors.full_messages.each do |msg|
-      @webhook.errors.add(:base, msg)
-    end
-  end
-
 end

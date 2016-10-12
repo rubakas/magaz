@@ -2,8 +2,6 @@ class Webhook < ActiveRecord::Base
   has_many :events, as: :subject
   belongs_to :shop
 
-  FORMAT_CHOICE = ["JSON", "XML"]
-
   module Topics
 
     CREATE_PRODUCT_EVENT = "create_product_event".freeze
@@ -54,4 +52,12 @@ class Webhook < ActiveRecord::Base
                             UPDATE_ORDER_EVENT, UPDATE_SHOP_EVENT]
 
   end
+
+  FORMAT_CHOICE = ["JSON", "XML"]
+
+  validates :topic, inclusion: Topics::WEBHOOKS_TOPICS_LIST
+  validates :format, inclusion: FORMAT_CHOICE
+  validates :address, presence: true,
+                      format: { with: /https?:\/\/[\S]+/ }
+
 end

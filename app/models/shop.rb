@@ -29,6 +29,16 @@
 class Shop < ActiveRecord::Base
   include Concerns::SubdomainOwner
 
+  ACCOUNT_TYPE_CHOISE = %w[ disabled required optional]
+
+  AFTER_ORDER_PAID = %w[ automatically_fulfill
+                         automatically_fulfill_gift_cards
+                         not_automatically_fulfill]
+
+  ABANDONED_CHECKOUT_TIME_DELAY = %w[ never six_hours day]
+
+  EMAIL_MARKETING_CHOICE = %w[ customer_agrees customer_does_not_agree disable ]
+
   has_many :articles, through: :blogs
   has_many :asset_files
   has_many :blogs
@@ -60,6 +70,18 @@ class Shop < ActiveRecord::Base
   validates :authorization_settings, inclusion: { in: %w[ authorize_and_charge authorize ] }, allow_blank: true
   validates :eu_digital_goods_collection_id, numericality: { only_integer: true }, allow_blank: true
   validate :validate_default_collection_id
+
+  validates :account_type_choice, inclusion: ACCOUNT_TYPE_CHOISE, allow_nil: true
+  validates :abandoned_checkout_time_delay, inclusion: ABANDONED_CHECKOUT_TIME_DELAY, allow_nil: true
+  validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE, allow_nil: true
+  validates :after_order_paid, inclusion: AFTER_ORDER_PAID, allow_nil: true
+
+  validates :country, inclusion: YAML.load_file("#{Rails.root}/config/countries.yml")['countries'].keys, allow_nil: true
+  validates :unit_system, inclusion: %w[ metric imperial], allow_nil: true
+  validates :currency, inclusion: %w[ USD EURO HRN], allow_nil: true
+  #TODO .zones_map method is private now
+  validates :timezone, inclusion: ActiveSupport::TimeZone.send(:zones_map).values.collect{|z| z.name}, allow_nil: true
+  validates :customer_email, format: { with: Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX }, allow_nil: true
 
   def validate_default_collection_id
     if self.eu_digital_goods_collection_id != nil

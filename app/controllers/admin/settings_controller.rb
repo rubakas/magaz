@@ -10,7 +10,7 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def update
     service = AdminServices::Shop::ChangeShop
-              .run(id: current_shop.id,
+              .new(id: current_shop.id, shop_params: {
                    name: params[:shop][:name],
                    business_name: params[:shop][:business_name],
                    city: params[:shop][:city],
@@ -23,13 +23,13 @@ class Admin::SettingsController < Admin::ApplicationController
                    zip: params[:shop][:zip],
                    page_title: params[:shop][:page_title],
                    meta_description: params[:shop][:meta_description],
-                   address: params[:shop][:address])
-    if service.valid?
-      @shop = service.result
+                   address: params[:shop][:address]})
+                .run
+    @shop = service.shop
+    if service.success?
       flash.now[:notice] = I18n.t('admin.settings.notice_success')
       render 'edit'
     else
-      @shop = service.shop
       render 'edit'
     end
   end
@@ -62,7 +62,7 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def checkouts_settings_update
     service = AdminServices::Shop::ChangeCheckoutSettings
-                .run(id: current_shop.id,
+                .new(id: current_shop.id, checkouts_settings_params: {
                      account_type_choice: params[:shop][:account_type_choice],
                      enable_multipass_login: params[:shop][:enable_multipass_login],
                      billing_address_is_shipping_too: params[:shop][:billing_address_is_shipping_too],
@@ -74,14 +74,14 @@ class Admin::SettingsController < Admin::ApplicationController
                      after_order_fulfilled_and_paid: params[:shop][:after_order_fulfilled_and_paid],
                      checkout_refund_policy: params[:shop][:checkout_refund_policy],
                      checkout_privacy_policy: params[:shop][:checkout_privacy_policy],
-                     checkout_term_of_service: params[:shop][:checkout_term_of_service])
-
-    if service.valid?
-      @shop = service.result
+                     checkout_term_of_service: params[:shop][:checkout_term_of_service]
+                     })
+                 .run
+    @shop = service.shop
+    if service.success?
       flash[:notice] = I18n.t('admin.settings.notice_success')
       redirect_to checkouts_settings_admin_settings_path
     else
-      @shop = service.shop
       render "checkouts_settings"
     end
   end

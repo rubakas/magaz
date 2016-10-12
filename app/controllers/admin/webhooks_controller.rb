@@ -16,18 +16,19 @@ class Admin::WebhooksController < Admin::ApplicationController
 
   def create
     service = AdminServices::Webhook::AddWebhook
-              .run(shop_id: current_shop.id,
+              .new(shop_id: current_shop.id, webhook_params: {
                    topic: params[:webhook][:topic],
                    format: params[:webhook][:format],
                    fields: params[:webhook][:fields],
                    address: params[:webhook][:address],
-                   metafield_namespaces: params[:webhook][:metafield_namespaces])
-    if service.valid?
-      @webhook = service.result
+                   metafield_namespaces: params[:webhook][:metafield_namespaces] }
+                  )
+              .run
+    @webhook = service.webhook
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_webhook_url(@webhook)
     else
-      @webhook = service.webhook
       flash[:error] = t('.notice_fail')
       render 'new'
     end
@@ -35,27 +36,28 @@ class Admin::WebhooksController < Admin::ApplicationController
 
   def update
     service = AdminServices::Webhook::ChangeWebhook
-              .run(id: params[:id],
-                   shop_id: current_shop.id,
-                   topic: params[:webhook][:topic],
-                   format: params[:webhook][:format],
-                   fields: params[:webhook][:fields],
-                   address: params[:webhook][:address],
-                   metafield_namespaces: params[:webhook][:metafield_namespaces])
-    if service.valid?
-      @webhook = service.result
+              .new(shop_id: current_shop.id, webhook_params: {
+                    id: params[:id],
+                    topic: params[:webhook][:topic],
+                    format: params[:webhook][:format],
+                    fields: params[:webhook][:fields],
+                    address: params[:webhook][:address],
+                    metafield_namespaces: params[:webhook][:metafield_namespaces]})
+              .run
+    @webhook = service.webhook
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to admin_webhook_url(@webhook)
     else
-      @webhook = service.webhook
       flash[:notice] = t('.notice_fail')
       render 'show'
     end
   end
 
   def destroy
-    AdminServices::Webhook::DeleteWebhook
-    .run(id: params[:id], shop_id: current_shop.id)
+    AdminServices::Webhook::DeleteWebhook.new(id: params[:id],
+                                              shop_id: current_shop.id)
+                                         .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_webhooks_url
   end

@@ -1,71 +1,37 @@
-class AdminServices::Shop::ChangeShop < ActiveInteraction::Base
+class AdminServices::Shop::ChangeShop
 
-  set_callback :validate, :after, -> {shop}
+  attr_reader :success, :shop, :errors
+  alias_method :success?, :success
 
-  string :name
-
-  string :address, :business_name, :city, :country,
-         :meta_description, :currency, :phone, :timezone,
-         :unit_system, :zip, :page_title, default: nil
-
-  string :customer_email, default: nil
-
-  integer :id
-
-  validates :id, :name, presence: true
-  validates :country, inclusion: YAML.load_file("#{Rails.root}/config/countries.yml")['countries'].keys
-  validates :unit_system, inclusion: %w[ metric imperial]
-  validates :currency, inclusion: %w[ USD EURO HRN]
-  #TODO .zones_map method is private now
-  validates :timezone, inclusion: ActiveSupport::TimeZone.send(:zones_map).values.collect{|z| z.name}
-
-  validate :check_customer_email
-  validate :name_uniqueness, if: :name_changed?
-
-  def shop
+  def initialize(id: current_shop.id, shop_params: {
+                 name: nil,
+                 business_name: nil,
+                 city: nil,
+                 country: nil,
+                 currency: nil,
+                 customer_email: nil,
+                 phone: nil,
+                 timezone: nil,
+                 unit_system: nil,
+                 zip: nil,
+                 page_title: nil,
+                 meta_description: nil,
+                 address: nil }
+                )
     @shop = Shop.find(id)
-    add_errors if errors.any?
-    @shop
+    @shop_params = shop_params
   end
 
-  def execute
-    @shop.update_attributes(inputs.slice!(:id)) ||
-      errors.add(:base, I18n.t('services.shop_services.wrong_params'))
-
-    @shop
-  end
-
-  private
-
-  def check_customer_email
-    errors.add(:base, I18n.t('services.change_shop.email_not_valid')) unless email_valid?
-  end
-
-  def email_valid?
-    if customer_email.present?
-      customer_email =~
-      Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX
+  def run
+    @shop.assign_attributes(@shop_params)
+    if @shop.valid?
+      @shop.save
+      @success = true
     else
-      true
+      @success = false
+      @errors = @shop.errors
     end
-  end
-
-  def add_errors
-    errors.full_messages.each do |msg|
-      @shop.errors.add(:base, msg)
-    end
-  end
-
-  def name_changed?
-    ::Shop.find(id).name != name
-  end
-
-  def name_uniqueness
-    errors.add(:base, I18n.t('services.change_shop.name_not_unique')) unless name_unique?
-  end
-
-  def name_unique?
-    ::Shop.where.not(id: id).where(name: name).count == 0
+    self
   end
 
 end
