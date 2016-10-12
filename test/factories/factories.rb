@@ -107,6 +107,18 @@ FactoryGirl.define do
     checkout_refund_policy nil
     checkout_privacy_policy nil
     checkout_term_of_service nil
+    business_name 'business_name' 
+    city 'city'
+    country 'US'
+    currency 'USD'
+    customer_email 'some@email.com'
+    phone 'phone'
+    timezone 'American Samoa'
+    unit_system 'metric'
+    zip 'zip'
+    page_title 'page_title'
+    meta_description 'meta_description'
+    address 'address'
   end
 
   factory :subscriber_notification, class: SubscriberNotification do

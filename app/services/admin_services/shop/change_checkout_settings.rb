@@ -19,10 +19,6 @@ class AdminServices::Shop::ChangeCheckoutSettings
                  })
     @shop = Shop.find(id)
     @checkouts_settings_params = checkouts_settings_params
-    # @checkouts_settings_params = {}
-    # method(__method__).parameters.map do |_, name|
-    #   p Hash[name, binding.local_variable_get(name)]
-    # end
   end
 
   def run

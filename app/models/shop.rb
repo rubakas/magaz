@@ -76,6 +76,13 @@ class Shop < ActiveRecord::Base
   validates :email_marketing_choice, inclusion: EMAIL_MARKETING_CHOICE, allow_nil: true
   validates :after_order_paid, inclusion: AFTER_ORDER_PAID, allow_nil: true
 
+  validates :country, inclusion: YAML.load_file("#{Rails.root}/config/countries.yml")['countries'].keys, allow_nil: true
+  validates :unit_system, inclusion: %w[ metric imperial], allow_nil: true
+  validates :currency, inclusion: %w[ USD EURO HRN], allow_nil: true
+  #TODO .zones_map method is private now
+  validates :timezone, inclusion: ActiveSupport::TimeZone.send(:zones_map).values.collect{|z| z.name}, allow_nil: true
+  validates :customer_email, format: { with: Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX }, allow_nil: true
+
   def validate_default_collection_id
     if self.eu_digital_goods_collection_id != nil
       collection = Collection.where(shop_id: self.id, id: self.eu_digital_goods_collection_id)
