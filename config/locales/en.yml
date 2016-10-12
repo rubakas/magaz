@@ -52,11 +52,6 @@ en:
       collection:
         collection_title: "Frontpage"
         collection_description: "Frontpage content "
-      events:
-        description: "The %{subject_class_name} was %{action}"
-        created: "created"
-        updated: "updated"
-        destroyed: "destroyed"
       link:
         home_link_name: "Home"
         blog_link_name: "Blog"
@@ -718,24 +713,6 @@ en:
         title: "Dashboard"
         activity: "Activity"
         welcome: "Welcome to dashboard"
-
-    events:
-      message: "%{user_name} %{action} a %{subject}: "
-      placed: "placed"
-      created: "created"
-      updated: "updated"
-      deleted: "deleted"
-      article: "article"
-      blog: "blog"
-      order: "order"
-      page: "page"
-      product: "product"
-      collection: "collection"
-      customer: "customer"
-      shop: "shop"
-      comment: "comment"
-      user: "user"
-      webhook: "webhook"
 
     asset_files:
       create:

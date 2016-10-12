@@ -26,9 +26,8 @@ class Checkout < ActiveRecord::Base
   #                           unfulfilled ]
 
   belongs_to  :customer
-  has_many    :events, as: :subject
   has_many    :line_items
-  
+
   scope :orders, -> { where(status: STATUSES) }
   scope :not_orders, -> { where(status: nil) }
   scope :abandoned_checkouts, -> { where("checkouts.email IS NOT NULL") }

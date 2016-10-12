@@ -9,7 +9,6 @@ class ProductTest < ActiveSupport::TestCase
 
   # associations
   should have_and_belong_to_many  :collections
-  should have_many                :events
   should have_many                :product_images
   should belong_to                :shop
 

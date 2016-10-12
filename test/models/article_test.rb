@@ -10,7 +10,6 @@ class ArticleTest < ActiveSupport::TestCase
   # associations
   should belong_to(:blog)
   should have_many(:comments)
-  should have_many(:events)
 
   # validations
   should validate_presence_of(:title)

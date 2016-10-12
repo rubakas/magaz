@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   include Concerns::PasswordAuthenticable
 
-  has_many    :events, as: :subject
   has_many    :reviews
   belongs_to  :shop
   validates :shop_id, :email, :first_name, :last_name, presence: true

@@ -4,7 +4,6 @@ class PageTest < ActiveSupport::TestCase
   include Shared::VisibilityExamples
 
   # associations
-  should have_many  :events
   should belong_to  :shop
 
   # validations

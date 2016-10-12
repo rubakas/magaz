@@ -8,7 +8,6 @@ class CollectionTest < ActiveSupport::TestCase
   end
 
   # associations
-  should have_many(:events)
   should have_and_belong_to_many(:products)
   should belong_to(:shop)
   should have_many(:tax_overrides)
