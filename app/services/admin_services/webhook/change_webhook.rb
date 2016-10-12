@@ -1,33 +1,29 @@
-class AdminServices::Webhook::ChangeWebhook < ActiveInteraction::Base
+class AdminServices::Webhook::ChangeWebhook
 
-  set_callback :validate, :after, -> {webhook}
+  attr_reader :success, :webhook, :errors
+  alias_method :success?, :success
 
-  integer :shop_id, :id
-  string :topic, :address, :format
-  array :metafield_namespaces, :fields, default: nil
+  def initialize(shop_id: nil, webhook_params: {
+                  id: nil,
+                  topic: nil,
+                  format: nil,
+                  fields: nil,
+                  address: nil,
+                  metafield_namespaces: nil })
 
-  validates :topic, inclusion: Webhook::Topics::WEBHOOKS_TOPICS_LIST
-  validates :format, inclusion: Webhook::FORMAT_CHOICE
-  validates :address, presence: true,
-                      format: { with: /https?:\/\/[\S]+/ }
-  def webhook
-    @webhook = Shop.find(shop_id).webhooks.find(id)
-    add_errors if errors.any?
-    @webhook
+    @webhook = ::Shop.find(shop_id).webhooks.find(webhook_params[:id])
+    @webhook_params = webhook_params
   end
 
-  def execute
-    @webhook.update_attributes(inputs.slice!(:id, :shop_id)) ||
-      errors.add(:base, I18n.t('services.change_webhook.wrong_params'))
-    @webhook
-  end
-
-  private
-
-  def add_errors
-    errors.full_messages.each do |msg|
-      @webhook.errors.add(:base, msg)
+  def run
+    @webhook.assign_attributes(@webhook_params)
+    if @webhook.valid?
+      @success = true
+      @webhook.save
+    else
+      @success = false
+      @errors = @webhook.errors
     end
+    self
   end
-
 end

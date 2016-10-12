@@ -6,12 +6,10 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
     @shop = create(:shop)
     @webhook = create(:webhook, shop: @shop)
     @success_params = {id: @webhook.id,
-                       shop_id: @shop.id,
                        topic: "create_product_event",
                        format: "JSON",
                        address: "https://www.examplee.com"}
     @blank_params = {id: @webhook.id,
-                     shop_id: @shop.id,
                      topic: "",
                      format: "",
                      address: ""}
@@ -19,16 +17,20 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
 
   test "should create webhook with valid params" do
     assert_equal 1, Webhook.count
-    service = AdminServices::Webhook::ChangeWebhook.run(@success_params)
-    assert service.valid?
+    service = AdminServices::Webhook::ChangeWebhook.new(shop_id: @shop.id,
+                                                        webhook_params: @success_params)
+                                                    .run
+    assert service.success?
     assert_equal @success_params[:address], Webhook.find_by_id(@webhook.id).address
     assert_equal @success_params[:topic], Webhook.find_by_id(@webhook.id).topic
   end
 
   test "should not create webhook with blank params" do
     assert_equal 1, Webhook.count
-    service = AdminServices::Webhook::ChangeWebhook.run(@blank_params)
-    refute service.valid?
+    service = AdminServices::Webhook::ChangeWebhook.new(shop_id: @shop.id,
+                                                        webhook_params: @blank_params)
+                                                    .run
+    refute service.success?
     assert_equal 4, service.webhook.errors.count
     assert_equal "Topic is not included in the list",
                  service.webhook.errors.full_messages.first
@@ -43,9 +45,17 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
   test "should not create webhook with invalid address" do
     assert_equal 1, Webhook.count
     @success_params[:address] = "invalid_adress"
-    service = AdminServices::Webhook::ChangeWebhook.run(@success_params)
-    refute service.valid?
+    service = AdminServices::Webhook::ChangeWebhook.new(shop_id: @shop.id,
+                                                        webhook_params: @success_params)
+                                                   .run
+    refute service.success?
     assert_equal 1, service.webhook.errors.count
     assert_equal "Address is invalid", service.webhook.errors.full_messages.first
+  end
+
+  test "should rise exeption with no params" do
+    assert_raises ActiveRecord::RecordNotFound do
+      AdminServices::Webhook::ChangeWebhook.new.run
+    end
   end
 end
