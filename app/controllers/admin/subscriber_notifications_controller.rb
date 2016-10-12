@@ -22,9 +22,10 @@ class Admin::SubscriberNotificationsController < Admin::ApplicationController
   end
 
   def destroy
-    AdminServices::SubscriberNotification::DeleteSubscriberNotification
-    .run(id: params[:id],
+    service = AdminServices::SubscriberNotification::DeleteSubscriberNotification
+    .new(id: params[:id],
          shop_id: current_shop.id)
+    .run
     flash.now[:notice] = t('.notice_success')
     redirect_to notifications_settings_admin_settings_path
   end
