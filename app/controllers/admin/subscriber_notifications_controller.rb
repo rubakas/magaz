@@ -7,15 +7,15 @@ class Admin::SubscriberNotificationsController < Admin::ApplicationController
 
   def create
     service = AdminServices::SubscriberNotification::AddSubscriberNotification
-              .run(shop_id: current_shop.id,
+              .new(shop_id: current_shop.id, subscriber_notification_params: {
                    notification_method: params[:subscriber_notification][:notification_method],
-                   subscription_address: params[:subscriber_notification][:subscription_address])
-    if service.valid?
-      @subscriber_notification = service.result
+                   subscription_address: params[:subscriber_notification][:subscription_address]})
+              .run
+    @subscriber_notification = service.subscriber_notification
+    if service.success?
       flash[:notice] = t('.notice_success')
       redirect_to notifications_settings_admin_settings_path
     else
-      @subscriber_notification = service.subscriber_notification
       flash.now[:notice] = t('.notice_fail')
       render 'new'
     end
