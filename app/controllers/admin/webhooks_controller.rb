@@ -55,8 +55,9 @@ class Admin::WebhooksController < Admin::ApplicationController
   end
 
   def destroy
-    AdminServices::Webhook::DeleteWebhook
-    .run(id: params[:id], shop_id: current_shop.id)
+    AdminServices::Webhook::DeleteWebhook.new(id: params[:id],
+                                              shop_id: current_shop.id)
+                                         .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_webhooks_url
   end
