@@ -47,7 +47,8 @@ group :development do
 end
 
 group :test do
-  gem 'capybara-webkit'
+  gem 'capybara'
+  gem 'poltergeist'
   gem 'minitest-ci', git: 'git@github.com:circleci/minitest-ci.git'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'

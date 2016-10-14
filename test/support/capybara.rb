@@ -1,5 +1,7 @@
 require 'capybara/rails'
-require 'capybara/webkit'
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+# require 'capybara/webkit'
 
 # silence 'QNetworkReplyImplPrivate::error'
 # filtered_io = StringIO.new
@@ -26,15 +28,16 @@ require 'capybara/webkit'
 # Capybara.javascript_driver = :webkit_allowed
 # Capybara.default_driver = :webkit_allowed
 
-Capybara.javascript_driver = :webkit
-Capybara.default_driver = :webkit
-# Capybara.javascript_driver = :poltergeist
+# Capybara.javascript_driver = :webkit
+# Capybara.default_driver = :webkit
+Capybara.javascript_driver = :poltergeist
+Capybara.default_driver = :poltergeist
 
 Capybara.run_server = true
 
-Capybara::Webkit.configure do |config|
-  config.allow_url("*")
-end
+# Capybara::Webkit.configure do |config|
+#   config.allow_url("*")
+# end
 
 Capybara.configure do |config|
   config.match = :one
