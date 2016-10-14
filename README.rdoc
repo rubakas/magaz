@@ -16,9 +16,9 @@
 
 * Memcached for sessions
 
-* Rmagick
+* Rmagick (and imagemagick for it)
 
-* QT4 for capybara-webkit
+* Phantomjs for poltergeist
 
 * Environment variables emulated via .env.development and .env.production files:
     cp .env.example .env.development
