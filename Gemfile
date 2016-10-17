@@ -1,7 +1,6 @@
 ruby '2.3.1'
 source 'https://rubygems.org'
 
-gem 'active_interaction', '3.2.0'
 gem 'annotate', github: 'ctran/annotate_models'
 gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails', github: 'anjlab/bootstrap-rails'
 gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
