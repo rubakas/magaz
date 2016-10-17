@@ -10,7 +10,7 @@ if Theme.count == 0
   attributes = {names: ["Pipeline", "Blockshop", "Mobilia", "Palo Alto", "Expression", "Ira",
                          "Envy", "Showcase", "California", "Parallax" ],
                 industries: ["Other", "Food & Drink", "Food & Drink", "Sports & Recreation",
-                             "Sports & Recreation", "Clothing & Fashion", "Health & Beauty", 
+                             "Sports & Recreation", "Clothing & Fashion", "Health & Beauty",
                              "Health & Beauty", "Art & Photography", "Jewelry & Accessories" ],
                 prices: [ 140, 140, 160, 0, 150, 160, 120, 180, 180, 0 ],
                 styles: ["Cool", "Dark", "Warm", "Bold", "Coffee", "Classic", "Travel",
@@ -24,19 +24,19 @@ if Theme.count == 0
   10.times do |n|
     theme = Theme.new
     ThemeServices::ImportFromArchive
-      .call(archive_path: archive_path,
+      .new(archive_path: archive_path,
             theme: theme,
             theme_attributes: {name: attributes[:names][n],
                                price: attributes[:prices][n],
                                partner_id: partner.result.id})
+      .run
     theme.update_attributes(rating: rand(1..50))
     theme.theme_styles.each do |style|
       File.open(Rails.root+"test/fixtures/files/screenshots/#{attributes[:names][n]}-#{attributes[:styles][n]}.jpg") do |file|
         style.image = file
-      end  
+      end
       style.update_attributes(industry: attributes[:industries][n], name: attributes[:styles][n])
     end
     Review.create(body: attributes[:comment], mark: rand(-1..1), theme_id: theme.id, user: User.last)
   end
 end
-

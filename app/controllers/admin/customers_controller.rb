@@ -46,8 +46,9 @@ class Admin::CustomersController < Admin::ApplicationController
   end
 
   def import
-    AdminServices::Customer::ImportCustomersFromCsv
-      .call(shop_id: current_shop.id, csv_file: params[:csv_file])
+    AdminServices::Customer::ImportCustomersFromCsv.new(shop_id: current_shop.id,
+                                                        csv_file: params[:csv_file])
+                                                    .run
 
     redirect_to admin_customers_path, notice: t('.notice_success')
   end

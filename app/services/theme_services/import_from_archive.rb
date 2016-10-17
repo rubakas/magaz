@@ -4,34 +4,43 @@ require 'tempfile'
 
 module ThemeServices
   class ImportFromArchive
-    include Concerns::Service
-    attr_accessor :theme
+    attr_reader :success, :theme, :errors
+    alias_method :success?, :success
 
-    def call(archive_path:, theme:, theme_attributes: {})
+
+    def initialize(archive_path: nil, theme: nil, theme_attributes: {})
       @theme = theme
+      @archive_path = archive_path
+      @theme_attributes = theme_attributes
+    end
 
+    def run
       tmp_path = _create_tmp_path
       Theme.transaction do
         begin
-          _unpack_archive(archive_path: archive_path, unpack_path: tmp_path)
+          _unpack_archive(archive_path: @archive_path, unpack_path: tmp_path)
           root_path = _resolve_root_path(tmp_path)
 
           _build_associated_assets_from_path(theme: theme, path: root_path)
 
-          set_attributes(theme, theme_attributes)
-          
+          set_attributes(@theme, @theme_attributes)
+
           theme.save # run validations
 
           ThemeServices::CreateThemeStyles
-          .new(theme_id: theme.id, archive_path: root_path)
+          .new(theme_id: @theme.id, archive_path: root_path)
           .run
+          @success = true
         rescue ActiveRecord::RecordInvalid
+          @success = false
+          @errors = @theme.errors
           raise ActiveRecord::Rollback
         ensure
           # remove the directory.
           _delete_tmp_path(tmp_path)
         end
       end
+      self
     end
 
     private

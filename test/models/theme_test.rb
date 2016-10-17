@@ -8,9 +8,10 @@ class ThemeTest < ActiveSupport::TestCase
     @archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
 
     ThemeServices::ImportFromArchive
-      .call(archive_path: @archive_path,
+      .new(archive_path: @archive_path,
             theme: @source_theme,
             theme_attributes: { name: 'Default' })
+      .run
 
     service = ThemeServices::InstallTheme
                 .new(shop_id: @shop.id, source_theme_id: @source_theme.id)
