@@ -6,9 +6,10 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     @default_theme = build(:theme)
     archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
     ThemeServices::ImportFromArchive
-      .call(archive_path: archive_path,
+      .new(archive_path: archive_path,
             theme: @default_theme,
             theme_attributes: { name: 'Default' })
+      .run
   end
 
   test "signup success" do

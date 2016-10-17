@@ -4,9 +4,10 @@ Given(/^themes exist$/) do
 
   @existing_source_themes.each do |theme|
     ThemeServices::ImportFromArchive
-      .call(archive_path: archive_path,
+      .new(archive_path: archive_path,
             theme: theme,
             theme_attributes: theme.attributes)
+      .run
   end
 end
 

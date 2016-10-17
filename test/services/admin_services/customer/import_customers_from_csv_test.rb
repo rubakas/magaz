@@ -9,8 +9,13 @@ class AdminServices::ImportCustomersFromCsvTest < ActiveSupport::TestCase
     file = ::File.expand_path("#{Rails.root}/test/fixtures/files/customers.csv", __FILE__)
     assert_difference "Customer.count", 2 do
       AdminServices::Customer::ImportCustomersFromCsv
-      .call(shop_id: @shop.id, csv_file: Rack::Test::UploadedFile.new(file, 'text/csv'))
+      .new(shop_id: @shop.id, csv_file: Rack::Test::UploadedFile.new(file, 'text/csv')).run
     end
   end
 
+  test 'should have an exeption if shop not found' do
+    assert_raise ActiveRecord::RecordNotFound do
+      AdminServices::Customer::ImportCustomersFromCsv.new.run
+    end
+  end
 end

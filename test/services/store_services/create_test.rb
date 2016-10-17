@@ -6,9 +6,10 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
     archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
 
     ThemeServices::ImportFromArchive
-    .call(archive_path:     archive_path,
+    .new(archive_path:     archive_path,
           theme:            @default_theme,
           theme_attributes: { name: 'Default' })
+    .run
 
     @success_params = { name: 'example42', first_name: 'First' ,
                         last_name: 'Last', email: 'email@mail.com',
