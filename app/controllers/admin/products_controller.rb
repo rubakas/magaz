@@ -49,8 +49,9 @@ class Admin::ProductsController < Admin::ApplicationController
   end
 
   def destroy
-    @product = current_shop.products.friendly.find(params[:id])
-    @product.destroy
+    service = AdminServices::Product::DeleteProduct
+              .new(id: params[:id], shop_id: current_shop.id)
+              .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_products_path
   end
