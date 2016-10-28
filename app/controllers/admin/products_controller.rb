@@ -33,18 +33,25 @@ class Admin::ProductsController < Admin::ApplicationController
   end
 
   def update
-    @product = current_shop.products.friendly.find(params[:id])
-    if @product.update_attributes(permitted_params[:product])
+    service = AdminServices::Product::ChangeProduct
+                                      .new(id: params[:id],
+                                           shop_id: current_shop.id,
+                                           params: permitted_params[:product])
+                                      .run
+    if service.success?
+      @product = service.result
       flash[:notice] = t('.notice_success')
       redirect_to admin_product_path(@product)
     else
+      @product = service
       render 'show'
     end
   end
 
   def destroy
-    @product = current_shop.products.friendly.find(params[:id])
-    @product.destroy
+    service = AdminServices::Product::DeleteProduct
+              .new(id: params[:id], shop_id: current_shop.id)
+              .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_products_path
   end
