@@ -56,4 +56,5 @@ group :test do
   gem 'minitest-reporters'
   gem 'shoulda'
   gem 'shoulda-matchers'
+  gem 'simplecov', :require => false
 end
