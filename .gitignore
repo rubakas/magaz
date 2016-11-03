@@ -21,6 +21,8 @@ public/uploads
 pkg/
 uploads/
 
+# Simplecov coverage
+coverage
 
 # Ignore Byebug command history file.
 .byebug_history

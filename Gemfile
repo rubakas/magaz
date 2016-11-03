@@ -53,6 +53,8 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'launchy'
+  gem 'minitest-reporters'
   gem 'shoulda'
   gem 'shoulda-matchers'
+  gem 'simplecov', :require => false
 end

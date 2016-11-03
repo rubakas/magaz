@@ -4,12 +4,12 @@ class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
   setup do
     use_host THEME_STORE_HOSTNAME
     load "#{Rails.root}/db/seeds.rb"
-    @style = ThemeStyle.first
-    @styles = ThemeStyle.all
-    @free_styles = ThemeStyle.themes_price_category("free")
-    @premium_styles = ThemeStyle.themes_price_category("premium")
-    @industry_styles = ThemeStyle.industry_category("Food & Drink")
-    @partner_style = @style.theme.partner.theme_styles.with_exception_of(@style).take(3).first
+    @style            = ThemeStyle.first
+    @styles           = ThemeStyle.all
+    @free_styles      = ThemeStyle.themes_price_category("free")
+    @premium_styles   = ThemeStyle.themes_price_category("premium")
+    @industry_styles  = ThemeStyle.industry_category("Food & Drink")
+    @partner_style    = @style.theme.partner.theme_styles.with_exception_of(@style).take(3).first
   end
 
   test "should get index" do
@@ -58,19 +58,21 @@ class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
       assert page.has_content? style.name
     end
     click_link "All", match: :first
-    (@styles).each do |style|
+    @styles.each do |style|
       assert page.has_content? style.name
     end
     click_link "All Industries"
     click_link "Food & Drink", match: :first
-    (@industry_styles).each do |style|
+    @industry_styles.each do |style|
       assert page.has_content? style.name
     end
     click_link "All Industries"
+
     within(".dropdown-menu") do
       click_link "All Industries"
     end
-    (@styles).each do |style|
+
+    @styles.each do |style|
       assert page.has_content? style.name
     end
   end
