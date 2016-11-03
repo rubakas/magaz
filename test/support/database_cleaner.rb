@@ -1,6 +1,7 @@
 require 'database_cleaner'
 
 DatabaseCleaner.strategy = :deletion
+# DatabaseCleaner.strategy = :transaction
 
 class ActiveSupport::TestCase
   setup do
