@@ -4,7 +4,7 @@ class Store::CheckoutsStoriesTest < ActionDispatch::IntegrationTest
   setup do
     login
     @customer = create(:customer, shop: @shop)
-    @abandoned_checkout = create(:checkout, customer: @customer, email: "Some Uniq Email")
+    @abandoned_checkout = create(:checkout, customer: @customer, email: "someuniqemail@mail.com")
   end
 
   test "checkouts list none" do

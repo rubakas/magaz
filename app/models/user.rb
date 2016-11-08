@@ -10,10 +10,6 @@ class User < ActiveRecord::Base
             on: :invite
   validate :can_destroy?, on: :destroy
 
-  with_options({on: :invite2}) do |for_invite|
-    for_invite.validates :email, uniqueness: { scope: :shop_id }
-  end
-
   def full_name
     [self.first_name, self.last_name].map(&:capitalize).join(" ")
   end

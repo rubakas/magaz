@@ -39,19 +39,5 @@ class StoreServices::ShoppingCart
       @checkout.line_items.create(copied_attrs)
     end
   end
-
-  def update_address(address_attrs)
-    @checkout.update(address_attrs)
-  end
-
-  #TODO:  connect with payment processor, pay method
-  def checkout_to_order(order_attrs)
-    attrs = { :status => I18n.t('shopping_cart.open') }.merge order_attrs
-    @checkout.update(attrs)
-    email_template = @shop.email_templates.find_by(template_type: 'new_order_notification')
-    @shop.subscriber_notifications.each do |s|
-      UserMailer.notification(s, email_template).deliver_now
-    end
-  end
-
+  
 end
