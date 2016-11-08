@@ -40,10 +40,6 @@ class StoreServices::ShoppingCart
     end
   end
 
-  def update_address(address_attrs)
-    @checkout.update(address_attrs)
-  end
-
   #TODO:  connect with payment processor, pay method
   def checkout_to_order(order_attrs)
     attrs = { :status => I18n.t('shopping_cart.open') }.merge order_attrs

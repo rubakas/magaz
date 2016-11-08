@@ -4,8 +4,13 @@ module Store
     # actions :show, :update
 
     def update_address
-      if shopping_cart_service.update_address(permitted_params_update_address[:checkout])
-        redirect_to enter_payment_checkout_path(resource)
+      service = StoreServices::ShoppingCart::UpdateAddress.new(shop_id:       current_shop.id,
+                                                               checkout_id:   session[:checkout_id],
+                                                               customer_id:   session[:customer_id],
+                                                               address_attrs: permitted_params_update_address[:checkout])
+                                                           .run
+      if service.success?
+        redirect_to enter_payment_checkout_path(service.checkout)
       else
         render :show
       end

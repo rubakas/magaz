@@ -34,4 +34,5 @@ class Checkout < ActiveRecord::Base
 
   include Concerns::ShoppingCart
   validates :status, presence: true, if: ->(u) { u.status.in?(STATUSES) || u.status_was.in?(STATUSES) }
+  validates :email, format: { with: Concerns::PasswordAuthenticable::EMAIL_VALID_REGEX }, allow_blank: true
 end
