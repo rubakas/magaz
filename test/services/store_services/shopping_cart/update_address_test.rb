@@ -4,9 +4,9 @@ class StoreServices::ShoppingCart::UpdateAddressTest < ActiveSupport::TestCase
 
   setup do
     @existing_shop      = create(:shop)
-    @existing_customer  = create(:customer, shop: @existing_shop)
+    @existing_customer  = create(:customer, shop:     @existing_shop)
     @existing_checkout 	= create(:checkout, customer: @existing_customer)
-    @existing_product   = create(:product, shop: @existing_shop)
+    @existing_product   = create(:product,  shop:     @existing_shop)
   end
 
   test "should update address with correct params" do
