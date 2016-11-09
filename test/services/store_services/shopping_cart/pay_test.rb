@@ -7,6 +7,11 @@ class StoreServices::ShoppingCart::PayTest < ActiveSupport::TestCase
     @existing_customer  = create(:customer, shop:     @existing_shop)
     @existing_checkout 	= create(:checkout, customer: @existing_customer)
     @existing_product   = create(:product,  shop:     @existing_shop)
+    @subscriber_notification = AdminServices::SubscriberNotification::AddSubscriberNotification
+                               .new({ shop_id: @existing_shop.id, subscriber_notification_params: {
+                                      notification_method: "email",
+                                      subscription_address: "valid@email.com"}})
+                               .run.subscriber_notification
 
     EmailTemplate::EMAIL_TEMPLATES.each do |template_type|
       @existing_shop.email_templates.create(template_type: template_type,

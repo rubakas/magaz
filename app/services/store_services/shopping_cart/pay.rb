@@ -9,11 +9,6 @@ class StoreServices::ShoppingCart::Pay
     @customer.save!(validate: false)
     @checkout = @customer.checkouts.not_orders.find_by_id(checkout_id) || @customer.checkouts.create
     @order_attrs = order_attrs
-    @subscriber_notification = AdminServices::SubscriberNotification::AddSubscriberNotification
-                               .new({ shop_id: @shop.id, subscriber_notification_params: {
-                                      notification_method: "email",
-                                      subscription_address: "valid@email.com"}})
-                               .run.subscriber_notification
   end
 
   def run
