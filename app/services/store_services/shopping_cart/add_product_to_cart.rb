@@ -22,7 +22,7 @@ class StoreServices::ShoppingCart::AddProductToCart
   def _add_product
     if @quantity < 1
       @success = false
-      @checkout.errors.add(:base, "Quantity is invalid")
+      @checkout.errors.add(:base, I18n.t('services.store_services.add_product_to_cart.invalid_quantity'))
       @errors = @checkout.errors
     else
       _existing_line_item

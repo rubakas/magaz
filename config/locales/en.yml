@@ -318,6 +318,10 @@ en:
       user_not_exist: "This user is not exist in database"
       subject_not_exist: "This subject is not exist in database"
 
+    store_services:
+      add_product_to_cart:
+        invalid_quantity: "Quantity is invalid"
+
   layouts:
     application:
       shop: "Magaz"
