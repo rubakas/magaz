@@ -44,26 +44,4 @@ class StoreServices::ShoppingCartTest < ActiveSupport::TestCase
     refute_equal @missing_checkout_and_customer_service.customer, @existing_customer
   end
 
-  test 'add_product and item_count' do
-    @service =  StoreServices::ShoppingCart
-                .new( shop_id: @existing_shop.id,
-                      checkout_id: nil,
-                      customer_id: nil)
-
-    @checkout = @service.checkout
-
-    @product_1 = create(:product, shop: @existing_shop)
-    @product_2 = create(:product, shop: @existing_shop)
-
-    assert_equal 0, @checkout.item_count
-
-    @service.add_product(product: @product_1, quantity: 1)
-    assert_equal 1, @checkout.item_count
-
-    @service.add_product(product: @product_1, quantity: 1)
-    assert_equal 2, @checkout.item_count
-
-    @service.add_product(product: @product_2, quantity: 1)
-    assert_equal 3, @checkout.item_count
-  end
 end

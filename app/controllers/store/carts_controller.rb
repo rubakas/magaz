@@ -6,7 +6,12 @@ module Store
 
     def update
       if params[:update] == 'update'
-        if shopping_cart_service.update_with_hash(params.permit![:cart][:updates])
+        service = StoreServices::ShoppingCart::CartUpdateWithHash.new(shop_id:     current_shop.id,
+                                                                      checkout_id: session[:checkout_id],
+                                                                      customer_id: session[:customer_id],
+                                                                      id_qty_hash: params.permit![:cart][:updates])
+                                                                  .run
+        if service.success?
           redirect_to store_cart_path, notice: "Cart was successfully updated"
         else
           render action: "show"
@@ -30,7 +35,12 @@ module Store
                   else
                     permitted_params_for_add[:quantity].to_i
                   end
-      shopping_cart_service.add_product(product: product_to_add, quantity: quantity)
+      StoreServices::ShoppingCart::AddProductToCart.new(shop_id:     current_shop.id,
+                                                        checkout_id: session[:checkout_id],
+                                                        customer_id: session[:customer_id],
+                                                        product:     product_to_add,
+                                                        quantity:    quantity)
+                                                    .run
       redirect_to store_cart_path
     end
 
