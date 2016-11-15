@@ -8,27 +8,22 @@ module Store
     around_action :run_shopping_cart_service
     helper_method :shopping_cart
 
-    def shopping_cart_service
-      @shopping_cart_service ||=
-        StoreServices::ShoppingCart
-        .new(shop_id: current_shop.id,
-             checkout_id: session[:checkout_id],
-             customer_id: session[:customer_id])
-    end
-
     def shopping_cart
-      shopping_cart_service.checkout
+      @checkout
     end
 
     def run_shopping_cart_service
-      shopping_cart_service
+      @shop     = current_shop
+      @customer = @shop.customers.find_by_id(session[:customer_id]) || @shop.customers.new
+      @customer.save!(validate: false)
+      @checkout = @customer.checkouts.not_orders.find_by_id(session[:checkout_id]) || @customer.checkouts.create
 
-      session[:customer_id] = shopping_cart_service.customer.id
-      session[:checkout_id] = shopping_cart_service.checkout.id
+      session[:customer_id] = @customer.id
+      session[:checkout_id] = @checkout.id
 
       yield
 
-      shopping_cart_service.save_cart
+      @checkout.save
     end
 
   end

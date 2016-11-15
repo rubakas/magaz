@@ -17,7 +17,7 @@ module Store
     end
 
     def enter_payment
-      shopping_cart_service.checkout
+      shopping_cart
     end
 
     def pay
