@@ -3,7 +3,7 @@ module Store
     include Concerns::CurrentShopAccess
     include Concerns::Themed
 
-    layout 'store'
+    layout 'store/store'
 
     around_action :run_shopping_cart_service
     helper_method :shopping_cart
