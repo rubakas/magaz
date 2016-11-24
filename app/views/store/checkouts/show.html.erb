@@ -6,9 +6,9 @@
   Your shopping cart is empty.
 <% else %>
   Your shopping cart is NOT empty.
-  <%= form_for shopping_cart, 
-        as: :checkout, 
-        url: update_address_checkout_path(shopping_cart), 
+  <%= form_for shopping_cart,
+        as: :checkout,
+        url: update_address_store_checkout_path(shopping_cart), 
         method: :put,
         html: {class: 'cart-form'} do |f| %>
     <table class="table">

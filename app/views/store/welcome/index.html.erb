@@ -10,11 +10,11 @@
   <% unless frontpage.blank? %>
     <% frontpage.products.each do |p| %>
     <div class="col-xs-3 text-center">
-      <%= link_to product_path(p) do %>
+      <%= link_to store_product_path(p) do %>
         <img src="//placehold.it/150x150" class="img-thumbnail"/>
       <% end %>
       <br/>
-      <%= link_to p.name, product_path(p) %>
+      <%= link_to p.name, store_product_path(p) %>
     </div>
     <% end %>
   <% end %>

@@ -18,7 +18,7 @@ module Store
         end
       elsif params[:checkout] == 'checkout'
         # redirect_to checkout_store_cart_path
-        redirect_to checkout_path(shopping_cart_service.checkout)
+        redirect_to store_checkout_path(shopping_cart)
       else
         #TODO:  notify
         render action: "show"
@@ -38,7 +38,7 @@ module Store
       StoreServices::ShoppingCart::AddProductToCart.new(shop_id:     current_shop.id,
                                                         checkout_id: session[:checkout_id],
                                                         customer_id: session[:customer_id],
-                                                        product:     product_to_add,
+                                                        product_id:  product_to_add.id,
                                                         quantity:    quantity)
                                                     .run
       redirect_to store_cart_path

@@ -10,14 +10,14 @@ module Store
                                                                address_attrs: permitted_params_update_address[:checkout])
                                                            .run
       if service.success?
-        redirect_to enter_payment_checkout_path(service.checkout)
+        redirect_to enter_payment_store_checkout_path(service.checkout)
       else
         render :show
       end
     end
 
     def enter_payment
-      shopping_cart_service.checkout
+      shopping_cart
     end
 
     def pay
@@ -27,7 +27,7 @@ module Store
                                                      order_attrs: permitted_params_order[:checkout])
                                                 .run
       if service.success?
-        redirect_to order_path(service.checkout)
+        redirect_to store_order_path(service.checkout)
       else
         render :enter_payment
       end

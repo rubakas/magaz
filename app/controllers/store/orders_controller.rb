@@ -1,12 +1,9 @@
 module Store
   class OrdersController < Store::ApplicationController
-    # inherit_resources
-    # actions :show
 
-    protected
-
-    def begin_of_association_chain
-      current_shop.checkouts
+    def show
+      @order = current_shop.checkouts.find(params[:id])
     end
+
   end
 end
