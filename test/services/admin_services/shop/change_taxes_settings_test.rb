@@ -38,8 +38,7 @@ class AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
               .new(shop_id: @shop.id,
                    params: @specific_params)
               .run
-    assert_equal nil,
-                 service.shop.eu_digital_goods_collection_id
+    assert_nil service.shop.eu_digital_goods_collection_id
   end
 
   test "should rise exeption if shop not found" do

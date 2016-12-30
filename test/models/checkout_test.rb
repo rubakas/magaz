@@ -23,7 +23,7 @@ class CheckoutTest < ActiveSupport::TestCase
   end
 
   test 'note' do
-    assert_equal nil, @checkout.note
+    assert_nil @checkout.note
   end
 
   test 'total_price' do

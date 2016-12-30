@@ -55,7 +55,7 @@ class AdminServices::ShippingRate::AddShippingRateTest < ActiveSupport::TestCase
     assert ShippingRate.find(service.result.id)
     assert_equal 1, ShippingRate.count
     assert_equal @succsess_params[:name], ShippingRate.find(service.result.id).name
-    assert_equal nil, ShippingRate.find(service.result.id).price_from
+    assert_nil ShippingRate.find(service.result.id).price_from
   end
 
   test "should not add shipping rate with wrong criteria" do

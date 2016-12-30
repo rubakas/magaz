@@ -55,7 +55,7 @@ class AdminServices::ShippingRate::ChangeShippingRateTest < ActiveSupport::TestC
               .run
     assert service.success?
     assert_equal @succsess_params[:name], ShippingRate.find(service.result.id).name
-    assert_equal nil, ShippingRate.find(service.result.id).price_from
+    assert_nil ShippingRate.find(service.result.id).price_from
     assert_equal "weight", ShippingRate.find(service.result.id).criteria
   end
 

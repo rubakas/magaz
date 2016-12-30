@@ -21,7 +21,7 @@ class AdminServices::Shop::ChangeDefaultCollectionTest < ActiveSupport::TestCase
               .new(id: @shop.id, collection_id: '')
               .run
     assert service.success?
-    assert_equal nil, service.shop.eu_digital_goods_collection_id
+    assert_nil service.shop.eu_digital_goods_collection_id
   end
 
   test 'should raise exeption if shop not found' do

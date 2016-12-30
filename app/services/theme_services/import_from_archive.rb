@@ -11,7 +11,7 @@ module ThemeServices
     def initialize(archive_path: nil, theme: nil, theme_attributes: {})
       @theme = theme
       @archive_path = archive_path
-      @theme_attributes = theme_attributes
+      @theme_attributes = theme_attributes.with_indifferent_access
     end
 
     def run
@@ -25,7 +25,7 @@ module ThemeServices
 
           set_attributes(@theme, @theme_attributes)
 
-          theme.save # run validations
+          theme.save! # run validations
 
           ThemeServices::CreateThemeStyles
           .new(theme_id: @theme.id, archive_path: root_path)

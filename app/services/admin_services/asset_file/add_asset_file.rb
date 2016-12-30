@@ -6,7 +6,7 @@ class AdminServices::AssetFile::AddAssetFile
 
   def initialize(shop_id:, params:)
     @result = Shop.find(shop_id).asset_files.new
-    @params = params
+    @params = params.with_indifferent_access
   end
 
   def run

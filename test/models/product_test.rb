@@ -15,7 +15,7 @@ class ProductTest < ActiveSupport::TestCase
   #validations
   should validate_presence_of :name
   should validate_uniqueness_of(:name).scoped_to(:shop_id)
-  should validate_numericality_of :price #allow_blank: true
+  # should validate_numericality_of :price #allow_blank: true
   should validate_presence_of :shop_id
 
   test 'two products with same handle and different shops' do

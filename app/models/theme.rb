@@ -60,7 +60,8 @@ class Theme < ActiveRecord::Base
             :default_layout_present,
             :default_templates_present,
             # :nested_assets_absent,
-            :default_config_present
+            :default_config_present,
+            :name_present
 
   def activate!
     self.role = Roles::MAIN
@@ -115,6 +116,12 @@ class Theme < ActiveRecord::Base
     result = _required_asset_present?('config/settings.html')
     #TODO: customize error messages
     errors.add :base, :invalid unless result
+    result
+  end
+
+  def name_present
+    result = self.name.present?
+    errors.add :name, :invalid unless result
     result
   end
 end

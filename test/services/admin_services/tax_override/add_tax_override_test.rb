@@ -51,7 +51,7 @@ class AdminServices::TaxOverride::AddTaxOverrideTest < ActiveSupport::TestCase
               .new(shipping_country_id: @shipping_country.id, params: @success_params2)
               .run
     assert service.success?
-    assert_equal nil, service.result.collection_id
+    assert_nil service.result.collection_id
     assert_equal @shipping_country.id, service.result.shipping_country_id
     assert_equal 5.4, service.result.rate
   end

@@ -6,7 +6,7 @@ class AdminServices::Article::AddArticle
 
   def initialize(blog_id:, params:)
     @result = Blog.find(blog_id).articles.new(default_params)
-    @params = params
+    @params = params.with_indifferent_access
   end
 
   def run
