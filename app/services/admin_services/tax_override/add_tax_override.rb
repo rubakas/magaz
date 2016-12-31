@@ -4,7 +4,9 @@ class AdminServices::TaxOverride::AddTaxOverride
   alias_method :success?, :success
 
   def initialize(shipping_country_id:, params:)
-    @result = ::ShippingCountry.find_by_id(shipping_country_id).tax_overrides.new(default_params)
+    @result = ::ShippingCountry
+              .find_by_id(shipping_country_id)
+              .tax_overrides.new(default_params)
     @params = params
   end
 
@@ -19,11 +21,13 @@ class AdminServices::TaxOverride::AddTaxOverride
   private
 
   def shipping_country_params
-    @params.slice(:rate, :collection_id, :is_shipping)
+    @params.slice 'rate',
+                  'collection_id',
+                  'is_shipping'
   end
 
   def default_params
-    { collection_id: nil, is_shipping: false }
+    { 'collection_id' => nil, 'is_shipping' => false }
   end
 
   def check_collection_id!

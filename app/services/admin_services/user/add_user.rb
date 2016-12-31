@@ -22,10 +22,15 @@ class AdminServices::User::AddUser
   private
 
   def user_params
-    @params.slice(:first_name, :last_name, :email, :password, :permissions, :account_owner)
+    @params.slice 'first_name',
+                  'last_name',
+                  'email',
+                  'password',
+                  'permissions',
+                  'account_owner'
   end
 
   def default_params(shop_id)
-    { permissions: nil, account_owner: false , shop_id: shop_id }
+    { 'permissions' => nil, 'account_owner' => false , 'shop_id' => shop_id }
   end
 end

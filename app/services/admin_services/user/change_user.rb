@@ -22,6 +22,11 @@ class AdminServices::User::ChangeUser
   private
 
   def user_params
-    @params.slice(:first_name, :last_name, :email, :password, :permissions, :account_owner)
+    @params.slice 'first_name',
+                  'last_name', 
+                  'email',
+                  'password',
+                  'permissions',
+                  'account_owner'
   end
 end

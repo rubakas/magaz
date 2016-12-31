@@ -5,18 +5,21 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
     @default_theme = build(:theme)
     archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
 
-    ThemeServices::ImportFromArchive
-    .new(archive_path:     archive_path,
-          theme:            @default_theme,
-          theme_attributes: { name: 'Default' })
-    .run
+    theme_service = ThemeServices::ImportFromArchive
+              .new(archive_path:     archive_path,
+                   theme:            @default_theme,
+                   theme_attributes: { 'name' => 'Default' })
+              .run
+    fail unless theme_service.success?
 
-    @success_params = { name: 'example42', first_name: 'First' ,
-                        last_name: 'Last', email: 'email@mail.com',
-                        password: 'password' }
-    @blank_params =   { name: 'example42', first_name: '',
-                        last_name: '', email: '',
-                        password: '' }
+    @success_params = { 'name' => 'example42',
+                        'first_name' => 'First',
+                        'last_name' => 'Last',
+                        'email' => 'success-email@mail.com',
+                        'password' => 'password' }
+    @blank_params =   { 'name' => 'example42', 'first_name' => '',
+                        'last_name' => '', 'email' => '',
+                        'password' => '' }
   end
 
   test 'create shop with valid params' do
@@ -49,7 +52,7 @@ class StoreServices::CreateTest < ActiveSupport::TestCase
   end
 
   test 'fail shop creation when no shop params' do
-    invalid_params = @success_params.merge({name: ''})
+    invalid_params = @success_params.merge({'name' => ''})
     service = StoreServices::Create
               .new(params: invalid_params)
               .run

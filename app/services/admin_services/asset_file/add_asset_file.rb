@@ -18,6 +18,7 @@ class AdminServices::AssetFile::AddAssetFile
   private
 
   def asset_params
-    @params.slice(:file, :name)
+    @params.slice 'file',
+                  'name'
   end
 end

@@ -5,7 +5,9 @@ class AdminServices::Checkout::DeleteCheckoutTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop, name: 'shop_name')
     @customer = create(:customer, shop: @shop)
-    @abandoned_checkout = create(:checkout, customer: @customer, email: "someuniqemail@mail.com")
+    @abandoned_checkout = create(:checkout,
+                                  customer: @customer,
+                                  email: "someuniqemail@mail.com")
   end
 
   test 'should delete checkout with valid id' do

@@ -6,21 +6,24 @@ class AdminServices::Customer::ChangeCustomerTest < ActiveSupport::TestCase
     @shop = create(:shop, name: 'shop_name')
     @customer = create(:customer, shop: @shop)
     @customer2 = create(:customer, shop: @shop)
-    @success_params = { first_name: "Changed first name",
-                        last_name: "CHanged last name",
-                        email: "Changedtest@test.com"
-                      }
-    @not_uniq_params = { first_name: "Changed first name",
-                         last_name: "CHanged last name",
-                         email: @customer2.email
-                       }
+    @success_params = {
+      'first_name'  => "Changed first name",
+      'last_name'   => "CHanged last name",
+      'email'       => "Changedtest@test.com"
+    }
+    @not_uniq_params = {
+      'first_name' => "Changed first name",
+      'last_name'  => "CHanged last name",
+      'email'      => @customer2.email
+     }
   end
 
   test 'should update customer with valid params' do
-    service = AdminServices::Customer::ChangeCustomer.new(id: @customer.id,
-                                                          shop_id: @shop.id,
-                                                          params: @success_params)
-                                                      .run
+    service = AdminServices::Customer::ChangeCustomer
+              .new( id:       @customer.id,
+                    shop_id:  @shop.id,
+                    params:   @success_params)
+              .run
     assert service.success?
     assert_equal "Changedtest@test.com", Customer.find(@customer.id).email
     assert_equal 'Changed first name', Customer.find(@customer.id).first_name
@@ -48,10 +51,11 @@ class AdminServices::Customer::ChangeCustomerTest < ActiveSupport::TestCase
 
   test 'should update customer with some blank params' do
     service = AdminServices::Customer::ChangeCustomer
-              .new( id: @customer.id,
-                    shop_id: @shop.id,
-                    params: { first_name: "Changed first name",
-                    last_name: '', email: @customer.email } )
+              .new( id:       @customer.id,
+                    shop_id:  @shop.id,
+                    params: { 'first_name' => "Changed first name",
+                              'last_name' => '',
+                              'email'     => @customer.email } )
               .run
     assert service.success?
     assert_equal '', service.customer.last_name

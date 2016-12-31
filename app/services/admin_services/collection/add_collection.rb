@@ -16,10 +16,14 @@ class AdminServices::Collection::AddCollection
   private
 
   def default_params
-    { handle: '', description: '', page_title: '', meta_description: '' }
+    { 'handle' => '', 'description' => '', 'page_title' => '', 'meta_description' => '' }
   end
 
   def collection_params
-    @params.slice(:name, :description, :page_title, :meta_description, :handle)
+    @params.slice 'name',
+                  'description',
+                  'page_title',
+                  'meta_description', 
+                  'handle'
   end
 end

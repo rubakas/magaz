@@ -16,6 +16,12 @@ class AdminServices::Page::ChangePage
   private
 
   def page_params
-    @params.slice(:title, :content, :page_title, :meta_description, :handle, :publish_on, :published_at)
+    @params.slice 'title',
+                  'content',
+                  'page_title',
+                  'meta_description',
+                  'handle',
+                  'publish_on',
+                  'published_at'
   end
 end

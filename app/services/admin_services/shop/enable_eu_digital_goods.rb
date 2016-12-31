@@ -3,7 +3,7 @@ class AdminServices::Shop::EnableEuDigitalGoods
   attr_reader :success, :shop, :errors
   alias_method :success?, :success
 
-  def initialize(id: nil, collection_name: nil)
+  def initialize  id: nil, collection_name: nil
     @shop_id = id
     @collection_name = collection_name
     @shop = Shop.find(id)

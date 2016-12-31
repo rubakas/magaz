@@ -17,6 +17,6 @@ class AdminServices::LinkList::ChangeLinkList
   private
 
   def link_lists_params
-    @params.slice(:name, :handle)
+    @params.slice('name', 'handle')
   end
 end

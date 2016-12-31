@@ -5,7 +5,7 @@ class ThemeServices::ResolverTest < ActiveSupport::TestCase
     @theme = build(:theme)
     archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
     ThemeServices::ImportFromArchive
-      .new(archive_path: archive_path,
+      .new( archive_path: archive_path,
             theme: @theme,
             theme_attributes: @theme.attributes)
       .run

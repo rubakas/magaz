@@ -5,7 +5,10 @@ class AdminServices::LinkList::DeleteLinkList
   alias_method :success?, :success
 
   def initialize(id:, shop_id:)
-    @result = Shop.find(shop_id).link_lists.friendly.find(id)
+    @result = Shop.find(shop_id)
+              .link_lists
+              .friendly
+              .find(id)
   end
 
   def run

@@ -11,7 +11,7 @@ module ThemeServices
     def initialize(archive_path: nil, theme: nil, theme_attributes: {})
       @theme = theme
       @archive_path = archive_path
-      @theme_attributes = theme_attributes.with_indifferent_access
+      @theme_attributes = theme_attributes
     end
 
     def run
@@ -46,9 +46,9 @@ module ThemeServices
     private
 
     def set_attributes(theme, attributes)
-      theme.name = attributes[:name]
-      theme.price = attributes[:price]
-      theme.partner_id = attributes[:partner_id]
+      theme.name = attributes['name']
+      theme.price = attributes['price']
+      theme.partner_id = attributes['partner_id']
     end
 
     def _build_associated_assets_from_path(theme:, path:)

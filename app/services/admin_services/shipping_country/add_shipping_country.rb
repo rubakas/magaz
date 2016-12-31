@@ -18,6 +18,6 @@ class AdminServices::ShippingCountry::AddShippingCountry
   private
 
   def shipping_country_params
-    @params.slice(:tax, :name)
+    @params.slice('tax', 'name')
   end
 end

@@ -4,7 +4,10 @@ class AdminServices::ProductImage::DeleteProductImage
   alias_method :success?, :success
 
   def initialize(id:, product_id:)
-    @result = Product.friendly.find(product_id).product_images.find(id)
+    @result = Product.friendly
+              .find(product_id)
+              .product_images
+              .find(id)
   end
 
   def run

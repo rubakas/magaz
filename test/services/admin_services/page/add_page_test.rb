@@ -5,16 +5,29 @@ class AdminServices::Page::AddPageTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop, name: 'shop_name')
     @page = create(:page, shop: @shop)
-    @success_params = { title: "Test title", page_title: "Test page_title",
-                        handle: "Test handle", meta_description: "Test meta_description", content: "Test content" }
-    @blank_params =   { title: '', page_title: '',
-                        handle: '', meta_description: '', content: '' }
+    
+    @success_params = {
+      'title'             => "Test title",
+      'page_title'        => "Test page_title",
+      'handle'            => "Test handle",
+      'meta_description'  => "Test meta_description",
+      'content'           => "Test content"
+    }
+
+    @blank_params =   {
+      'title'             => '',
+      'page_title'        => '',
+      'handle'            => '',
+      'meta_description'  => '',
+      'content'           => ''
+    }
   end
 
   test 'should create page with valid params' do
     assert_equal 1, @shop.pages.count
     service = AdminServices::Page::AddPage
-              .new(shop_id: @shop.id, params: @success_params)
+              .new( shop_id:  @shop.id,
+                    params:   @success_params)
               .run
     assert service.success?
     assert Page.find_by_id(service.result.id)
@@ -25,11 +38,13 @@ class AdminServices::Page::AddPageTest < ActiveSupport::TestCase
   test 'should not create page with same params' do
     assert_equal 1, @shop.pages.count
     service = AdminServices::Page::AddPage
-              .new(shop_id: @shop.id, params: @success_params)
+              .new( shop_id: @shop.id,
+                    params: @success_params)
               .run
     assert service.success?
     service2 = AdminServices::Page::AddPage
-                .new(shop_id: @shop.id, params: @success_params)
+                .new( shop_id:  @shop.id,
+                      params:   @success_params)
                 .run
     refute service2.success?
     assert_equal 2, @shop.pages.count
@@ -38,7 +53,8 @@ class AdminServices::Page::AddPageTest < ActiveSupport::TestCase
   test 'should not create page with blank params' do
     assert_equal 1, @shop.pages.count
     service = AdminServices::Page::AddPage
-              .new(shop_id: @shop.id, params: @blank_params)
+              .new( shop_id:  @shop.id,
+                    params:   @blank_params)
               .run
     refute service.success?
     assert_equal 1, service.result.errors.full_messages.count

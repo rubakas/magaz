@@ -19,6 +19,10 @@ class AdminServices::Article::ChangeArticle
   private
 
   def article_params
-    @params.slice(:title, :content, :page_title, :handle, :meta_description)
+    @params.slice 'title',
+                  'content',
+                  'page_title',
+                  'handle',
+                  'meta_description'
   end
 end

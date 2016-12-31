@@ -19,7 +19,7 @@ class AdminServices::TaxOverride::ChangeTaxOverride
 
   private
   def shipping_country_params
-    @params.slice(:rate, :collection_id, :is_shipping)
+    @params.slice 'rate', 'collection_id', 'is_shipping'
   end
 
   def check_collection_id!

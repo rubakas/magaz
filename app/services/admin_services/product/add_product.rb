@@ -45,15 +45,15 @@ class AdminServices::Product::AddProduct
   end
 
   def default_params
-    { price: nil, product_images_attributes: {}, collection_ids: nil }
+    { 'price' => nil, 'product_images_attributes' => {}, 'collection_ids' => nil }
   end
 
   def product_params
-    @params.slice(:name, :price, :collection_ids, :description, :handle, :page_title, :meta_description)
+    @params.slice('name', 'price', 'collection_ids', 'description', 'handle', 'page_title', 'meta_description')
   end
 
   def product_image_params
-    @params.dig(:product_images_attributes, "0")
+    @params.dig('product_images_attributes', "0")
   end
 
   def collect_errors(object)

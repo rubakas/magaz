@@ -13,7 +13,8 @@ class StoreServices::ShoppingCart::Pay
 
   def run
     #TODO:  connect with payment processor, pay method
-    attrs = { status: I18n.t('default.models.shopping_cart.open') }.merge @order_attrs
+    #TODO: why the fuck status is not from constant
+    attrs = { 'status' => I18n.t('default.models.shopping_cart.open') }.merge @order_attrs
     @checkout.assign_attributes(attrs)
     if @checkout.valid?
       @checkout.save

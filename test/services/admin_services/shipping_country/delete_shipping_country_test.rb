@@ -11,7 +11,8 @@ class AdminServices::ShippingCountry::DeleteShippingCountryTest < ActiveSupport:
   test "should delete shipping country with valid ids" do
     assert_equal 1, ShippingCountry.count
     service = AdminServices::ShippingCountry::DeleteShippingCountry
-              .new(shop_id: @shop.id, id: @shipping_country.id)
+              .new( shop_id: @shop.id, 
+                    id: @shipping_country.id)
               .run
     assert service.success?
     refute ShippingCountry.find_by_id(@shipping_country.id)

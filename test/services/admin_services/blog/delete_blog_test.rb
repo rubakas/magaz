@@ -11,7 +11,8 @@ class AdminServices::Blog::DeleteBlogTest < ActiveSupport::TestCase
   test 'should delete blog with valid id' do
     assert_equal 2, @shop.blogs.count
     service = AdminServices::Blog::DeleteBlog
-              .new(id: @blog.id.to_s, shop_id: @shop.id)
+              .new( id:      @blog.id.to_s,
+                    shop_id: @shop.id)
               .run
     assert service.success?
     refute Blog.find_by_id(@blog.id)
@@ -23,7 +24,8 @@ class AdminServices::Blog::DeleteBlogTest < ActiveSupport::TestCase
     assert_equal 2, @shop.blogs.count
     assert_raises ActiveRecord::RecordNotFound do
       service = AdminServices::Blog::DeleteBlog
-                .new(id: "", shop_id: "")
+                .new( id:      "", 
+                      shop_id: "")
                 .run
     end
   end

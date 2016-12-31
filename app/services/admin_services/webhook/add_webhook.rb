@@ -3,12 +3,14 @@ class AdminServices::Webhook::AddWebhook
   attr_reader :success, :webhook, :errors
   alias_method :success?, :success
 
-  def initialize(shop_id: nil, webhook_params: {
-                 topic: nil,
-                 format: nil,
-                 fields: nil,
-                 address: nil,
-                 metafield_namespaces: nil })
+  def initialize  shop_id: nil,
+                  webhook_params: {
+                    'topic'   => nil,
+                    'format'  => nil,
+                    'fields'  => nil,
+                    'address' => nil,
+                    'metafield_namespaces' => nil
+                  }
 
     @webhook = ::Shop.find(shop_id).webhooks.new
     @webhook_params = webhook_params

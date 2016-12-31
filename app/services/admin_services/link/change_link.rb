@@ -18,6 +18,6 @@ class AdminServices::Link::ChangeLink
   private
 
   def link_params
-    @params.slice(:name, :link_type, :position)
+    @params.slice 'name', 'link_type', 'position'
   end
 end

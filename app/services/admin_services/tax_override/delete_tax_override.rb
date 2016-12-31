@@ -3,7 +3,7 @@ class AdminServices::TaxOverride::DeleteTaxOverride
   attr_reader :success, :result
   alias_method :success?, :success
 
-  def initialize(id:)
+  def initialize id:
     @result = ::TaxOverride.find(id)
   end
 

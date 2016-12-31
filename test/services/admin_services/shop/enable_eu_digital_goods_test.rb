@@ -19,7 +19,8 @@ class AdminServices::Shop::EnableEuDigitalGoodsTest < ActiveSupport::TestCase
 
   test 'should create new default collection for shop' do
     service = AdminServices::Shop::EnableEuDigitalGoods
-              .new(collection_name: 'New name', id: @shop.id)
+              .new( collection_name: 'New name',
+                    id: @shop.id)
               .run
     assert service.success?
     assert_not_equal @collection.id, service.shop.eu_digital_goods_collection_id
@@ -30,7 +31,8 @@ class AdminServices::Shop::EnableEuDigitalGoodsTest < ActiveSupport::TestCase
 
   test 'should not change eu_digital_goods_collection_id with blank collection name' do
     service = AdminServices::Shop::EnableEuDigitalGoods
-              .new(collection_name: '', id: @shop.id)
+              .new( collection_name: '', 
+                    id: @shop.id)
               .run
     refute service.success?
     assert_equal 1, service.errors.count

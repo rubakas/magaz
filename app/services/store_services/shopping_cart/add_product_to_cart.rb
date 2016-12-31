@@ -42,7 +42,7 @@ class StoreServices::ShoppingCart::AddProductToCart
       new_li_attrs = LineItem.attribute_names.map(&:to_sym) - [:id, :shop_id]
       copied_attrs = @product
         .attributes
-        .merge({ product: @product, product_id: @product.id, quantity: @quantity })
+        .merge({ 'product' => @product, 'product_id' => @product.id, 'quantity' => @quantity })
         .select { |k, v| new_li_attrs.include?(k.to_sym) }
       @checkout.line_items.create(copied_attrs)
     end

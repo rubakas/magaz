@@ -6,13 +6,21 @@ class AdminServices::ChangeLinkListTest < ActiveSupport::TestCase
     @shop = create(:shop, name: 'shop_name')
     @link_list = create(:link_list, shop: @shop)
     @link_list2 = create(:link_list, shop: @shop, handle: "existing handle")
-    @success_params = { name: "Test name", handle: "Test handle" }
-    @blank_params = { name: "Changed name", handle: "" }
+    @success_params = {
+      'name'    => "Test name",
+      'handle'  => "Test handle"
+    }
+    @blank_params = {
+      'name'    => "Changed name",
+      'handle'  => ""
+    }
   end
 
   test 'should update link_list with valid params' do
     service = AdminServices::LinkList::ChangeLinkList
-              .new(id: @link_list.id, shop_id: @shop.id, params: @success_params)
+              .new( id:      @link_list.id,
+                    shop_id: @shop.id,
+                    params: @success_params)
               .run
     assert service.success?
     assert_equal 'Test name', LinkList.find(@link_list.id).name
@@ -20,9 +28,11 @@ class AdminServices::ChangeLinkListTest < ActiveSupport::TestCase
   end
 
   test 'should not update link_list with existing name' do
-    invalid_params = @success_params.merge({ name: @link_list2.name })
+    invalid_params = @success_params.merge({ 'name' => @link_list2.name })
     service = AdminServices::LinkList::ChangeLinkList
-              .new(id: @link_list.id, shop_id: @shop.id, params: invalid_params)
+              .new( id:       @link_list.id,
+                    shop_id:  @shop.id,
+                    params:   invalid_params)
               .run
     refute service.success?
     assert_equal 1, service.result.errors.full_messages.count
@@ -31,7 +41,9 @@ class AdminServices::ChangeLinkListTest < ActiveSupport::TestCase
 
   test 'should update link_list with blank handle' do
     service = AdminServices::LinkList::ChangeLinkList
-              .new(id: @link_list.id, shop_id: @shop.id, params: @blank_params)
+              .new( id:       @link_list.id,
+                    shop_id:  @shop.id,
+                    params:   @blank_params)
               .run
     assert service.success?
     assert_equal '', service.result.handle

@@ -9,14 +9,9 @@ class AdminServices::ProductImage::AddProductImage
   end
 
   def run
-    @result.attributes = product_image_params
+    @result.image = @params['image']
     @success = @result.save
     self
   end
 
-  private
-
-  def product_image_params
-    @params.slice(:image)
-  end
 end

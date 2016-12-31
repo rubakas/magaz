@@ -18,10 +18,13 @@ class AdminServices::Blog::AddBlog
   private
 
   def default_params
-    { meta_description: '', handle: '', page_title: '' }
+    { 'meta_description' => '', 'handle' => '', 'page_title' => '' }
   end
 
   def blog_params
-    @params.slice(:meta_description, :handle, :page_title, :title)
+    @params.slice 'meta_description', 
+                  'handle',
+                  'page_title',
+                  'title'
   end
 end

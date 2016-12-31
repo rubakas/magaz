@@ -3,7 +3,7 @@ class AdminServices::Shop::ChangePaymentSettings
   attr_reader :success, :shop, :errors
   alias_method :success?, :success
 
-  def initialize(id:, authorization_settings:)
+  def initialize id:, authorization_settings:
     @authorization_settings = authorization_settings
     @shop = Shop.find(id)
   end

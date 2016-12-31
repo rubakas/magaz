@@ -4,7 +4,9 @@ class AdminServices::Page::AddPage
   alias_method :success?, :success
 
   def initialize(shop_id:, params:)
-    @result = Shop.find(shop_id).pages.new(default_params)
+    @result = Shop.find(shop_id)
+              .pages
+              .new(default_params)
     @params = params
   end
 
@@ -17,16 +19,22 @@ class AdminServices::Page::AddPage
   private
 
   def page_params
-    @params.slice(:title, :content, :page_title, :meta_description, :handle, :publish_on, :published_at)
+    @params.slice 'title',
+                  'content',
+                  'page_title',
+                  'meta_description',
+                  'handle',
+                  'publish_on',
+                  'published_at'
   end
 
   def default_params
     {
-      page_title: '',
-      handle: '',
-      meta_description: '',
-      publish_on: nil,
-      published_at: nil
+      'page_title'        => '',
+      'handle'            => '',
+      'meta_description'  => '',
+      'publish_on'        => nil,
+      'published_at'      => nil
     }
   end
 

@@ -4,8 +4,12 @@ class AdminServices::Blog::DeleteBlog
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, id:)
-    @result = ::Shop.find(shop_id).blogs.friendly.find(id)
+  def initialize shop_id:, id:
+    @result = ::Shop
+              .find(shop_id)
+              .blogs
+              .friendly
+              .find(id)
   end
 
   def run
