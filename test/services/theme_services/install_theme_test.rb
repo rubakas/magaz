@@ -10,7 +10,7 @@ class ThemeServices::InstallThemeTest < ActiveSupport::TestCase
       ThemeServices::ImportFromArchive
       .new( archive_path:     archive_path,
             theme:            @source_theme,
-            theme_attributes: @source_theme.attributes.with_indifferent_access)
+            theme_attributes: @source_theme.attributes)
       .run
 
     fail import_service.theme.errors.inspect unless import_service.success?
@@ -22,7 +22,7 @@ class ThemeServices::InstallThemeTest < ActiveSupport::TestCase
               .new( shop_id:          @shop.id,
                     source_theme_id:  @theme.id)
               .run
-              
+
     assert service.success?
     assert_not_nil service.result.name
     assert_equal @source_theme.name, service.result.name

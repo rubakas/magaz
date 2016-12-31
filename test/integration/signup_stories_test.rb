@@ -8,7 +8,7 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     ThemeServices::ImportFromArchive
     .new(archive_path: archive_path,
           theme: @default_theme,
-          theme_attributes: { name: 'Default' })
+          theme_attributes: { 'name' => 'Default' })
     .run
   end
 

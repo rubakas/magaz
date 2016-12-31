@@ -6,7 +6,7 @@ Given(/^themes exist$/) do
     ThemeServices::ImportFromArchive
       .new(archive_path: archive_path,
             theme: theme,
-            theme_attributes: theme.attributes.with_indifferent_access)
+            theme_attributes: theme.attributes)
       .run
   end
 end

@@ -17,7 +17,7 @@ module ThemeServices
       @source_theme.assets.each do |source_asset|
         @result
           .assets
-          .build(source_asset.attributes.with_indifferent_access.reject { |k| 'id' == k.to_s })
+          .build(source_asset.attributes.reject { |k| 'id' == k.to_s })
       end
       @success = @result.save!
       self
