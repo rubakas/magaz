@@ -4,7 +4,8 @@ class AdminServices::Article::AddArticle
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(blog_id:, params:)
+  def initialize  blog_id:, 
+                  params:
     @result = Blog.find(blog_id).articles.new(default_params)
     @params = params
   end

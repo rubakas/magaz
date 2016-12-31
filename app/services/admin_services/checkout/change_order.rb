@@ -3,7 +3,8 @@ class AdminServices::Checkout::ChangeOrder
   attr_reader :success, :result
   alias_method :success?, :success
 
-  def initialize(id:, params:)
+  def initialize  id:, 
+                  params:
     @result = Checkout.find id
     @params = params
   end

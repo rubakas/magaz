@@ -3,7 +3,11 @@ class StoreServices::ShoppingCart::Pay
   attr_reader :success, :errors, :checkout
   alias_method :success?, :success
 
-  def initialize(shop_id: nil, checkout_id: nil, customer_id: nil, order_attrs: nil)
+  def initialize  shop_id: nil,
+                  checkout_id: nil,
+                  customer_id: nil,
+                  order_attrs: nil
+                  
     @shop     = Shop.find(shop_id)
     @customer = @shop.customers.find_by_id(customer_id) || @shop.customers.new
     @customer.save!(validate: false)

@@ -3,7 +3,7 @@ class AdminServices::Page::AddPage
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, params:)
+  def initialize shop_id:, params:
     @result = Shop.find(shop_id)
               .pages
               .new(default_params)

@@ -10,7 +10,9 @@ class AdminServices::Webhook::DeleteWebhook
         .destroy
   end
 
-  def initialize(id: nil, shop_id: nil)
+  def initialize  id: nil,
+                  shop_id: nil
+
     @webhook =  Shop.find(shop_id)
                     .webhooks
                     .find(id)

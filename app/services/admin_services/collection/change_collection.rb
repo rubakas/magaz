@@ -3,7 +3,9 @@ class AdminServices::Collection::ChangeCollection
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, id:, params:)
+  def initialize  shop_id:,
+                  id:,
+                  params:
     @result = Shop
               .find(shop_id)
               .collections

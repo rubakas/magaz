@@ -2,7 +2,8 @@ class ThemeServices::Activate
   attr_reader :success, :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, installed_theme_id:)
+  def initialize  shop_id:, 
+                  installed_theme_id:
     @shop    = Shop.find(shop_id)
     @result  = Theme.find(installed_theme_id)
     @success = true

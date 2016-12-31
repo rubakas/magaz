@@ -4,7 +4,9 @@ class AdminServices::AssetFile::ChangeAssetFile
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(id:, shop_id:, params:)
+  def initialize  id:,
+                  shop_id:,
+                  params:
     @result = Shop.find(shop_id).asset_files.find(id)
     @params = params
   end

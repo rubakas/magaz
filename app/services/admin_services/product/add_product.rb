@@ -3,7 +3,8 @@ class AdminServices::Product::AddProduct
   attr_reader :success, :result, :errors
   alias_method :success?, :success
 
-  def initialize(shop_id:, params:)
+  def initialize  shop_id:, 
+                  params:
     @result = Shop.find(shop_id).products.new(default_params)
     @params = params
     @success = true

@@ -4,7 +4,8 @@ class AdminServices::Customer::ImportCustomersFromCsv
   attr_reader :success, :shop, :errors
   alias_method :success?, :success
 
-  def initialize(shop_id: nil, csv_file: nil)
+  def initialize shop_id: nil,
+                 csv_file: nil
     @shop = Shop.find(shop_id)
     @csv_file = csv_file
   end

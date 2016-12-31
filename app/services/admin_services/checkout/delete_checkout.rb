@@ -3,7 +3,7 @@ class AdminServices::Checkout::DeleteCheckout
   attr_reader :success, :result
   alias_method :success?, :success
 
-  def initialize(id:)
+  def initialize id:
     @result = ::Checkout.find(id)
   end
 

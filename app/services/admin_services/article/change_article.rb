@@ -4,7 +4,9 @@ class AdminServices::Article::ChangeArticle
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(blog_id:, article_id:, params:)
+  def initialize  blog_id:,
+                  article_id:,
+                  params:
     @result = Article.friendly.find(article_id)
     @result.blog_id = blog_id
     @result.blog = Blog.friendly.find(blog_id)

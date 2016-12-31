@@ -4,7 +4,9 @@ class AdminServices::LinkList::ChangeLinkList
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(id:, shop_id:, params:)
+  def initialize  id:, 
+                  shop_id:,
+                  params:
     @result = Shop.find(shop_id).link_lists.friendly.find(id)
     @params = params
   end

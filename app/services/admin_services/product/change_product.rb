@@ -3,8 +3,16 @@ class AdminServices::Product::ChangeProduct
   attr_reader :success, :result, :errors
   alias_method :success?, :success
 
-  def initialize(id: nil, shop_id: nil, params: nil)
-    @result = Shop.find(shop_id).products.friendly.find(id)
+  def initialize  id: nil,
+                  shop_id: nil,
+                  params: nil
+                  
+    @result = Shop
+              .find(shop_id)
+              .products
+              .friendly
+              .find(id)
+
     @params = params
     @success = true
     @errors = []

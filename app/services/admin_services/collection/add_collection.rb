@@ -3,7 +3,8 @@ class AdminServices::Collection::AddCollection
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, params:)
+  def initialize  shop_id:, 
+                  params:
     @result = ::Shop.find(shop_id).collections.new(default_params)
     @params = params
   end
@@ -23,7 +24,7 @@ class AdminServices::Collection::AddCollection
     @params.slice 'name',
                   'description',
                   'page_title',
-                  'meta_description', 
+                  'meta_description',
                   'handle'
   end
 end

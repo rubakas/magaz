@@ -3,7 +3,8 @@ class AdminServices::ShippingRate::AddShippingRate
   attr_reader :success, :result
   alias_method :success?, :success
 
-  def initialize(shipping_country_id:, params:)
+  def initialize  shipping_country_id:, 
+                  params:
     shipping_country = ShippingCountry.find(shipping_country_id)
     @result = shipping_country.shipping_rates.new
     @params = params

@@ -2,7 +2,7 @@ class AdminServices::User::ChangeUser
   attr_reader :success, :result, :errors
   alias_method :success?, :success
 
-  def initialize(id:, shop_id:, params:)
+  def initialize id:, shop_id:, params:
     @result = Shop.find(shop_id).users.find(id)
     @params = params
   end
@@ -23,7 +23,7 @@ class AdminServices::User::ChangeUser
 
   def user_params
     @params.slice 'first_name',
-                  'last_name', 
+                  'last_name',
                   'email',
                   'password',
                   'permissions',

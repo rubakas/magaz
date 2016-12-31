@@ -3,7 +3,8 @@ class AdminServices::TaxOverride::AddTaxOverride
   attr_reader :success, :result
   alias_method :success?, :success
 
-  def initialize(shipping_country_id:, params:)
+  def initialize  shipping_country_id:, 
+                  params:
     @result = ::ShippingCountry
               .find_by_id(shipping_country_id)
               .tax_overrides.new(default_params)

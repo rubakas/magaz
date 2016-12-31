@@ -3,7 +3,12 @@ class StoreServices::ShoppingCart::AddProductToCart
   attr_reader :success, :errors, :checkout
   alias_method :success?, :success
 
-  def initialize(shop_id: nil, checkout_id: nil, customer_id: nil, product_id: nil, quantity: nil)
+  def initialize  shop_id: nil,
+                  checkout_id: nil,
+                  customer_id: nil,
+                  product_id: nil,
+                  quantity: nil
+                  
     @shop     = Shop.find(shop_id)
     @customer = @shop.customers.find_by_id(customer_id) || @shop.customers.new
     @customer.save!(validate: false)

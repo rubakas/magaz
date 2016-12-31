@@ -3,7 +3,7 @@ class StoreServices::Create
   attr_reader :success, :errors, :result
   alias_method :success?, :success
 
-  def initialize(params:)
+  def initialize params:
     @shop = Shop.new
     @params = params
     @success = true
