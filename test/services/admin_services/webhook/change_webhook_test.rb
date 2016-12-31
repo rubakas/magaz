@@ -23,7 +23,7 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
 
     service = AdminServices::Webhook::ChangeWebhook
               .new( shop_id:        @shop.id,
-                    webhook_id: @webhook.id,
+                    webhook_id:     @webhook.id,
                     webhook_params: @success_params)
               .run
 
@@ -59,7 +59,7 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
 
     service = AdminServices::Webhook::ChangeWebhook
               .new( shop_id:        @shop.id,
-                    webhook_id: @webhook.id,
+                    webhook_id:     @webhook.id,
                     webhook_params: @success_params)
               .run
 
@@ -70,7 +70,11 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
 
   test "should rise exeption with no params" do
     assert_raises ActiveRecord::RecordNotFound do
-      AdminServices::Webhook::ChangeWebhook.new.run
+      AdminServices::Webhook::ChangeWebhook
+      .new( shop_id:        nil,
+            webhook_id:     nil,
+            webhook_params: {})
+      .run
     end
   end
 end
