@@ -4,8 +4,8 @@ class AdminServices::Webhook::ChangeWebhook
   alias_method :success?, :success
 
   def initialize  shop_id: nil,
+                  webhook_id:,
                   webhook_params: {
-                    'id'      => nil,
                     'topic'   => nil,
                     'format'  => nil,
                     'fields'  => nil,
@@ -16,7 +16,7 @@ class AdminServices::Webhook::ChangeWebhook
     @webhook = ::Shop
                 .find(shop_id)
                 .webhooks
-                .find(webhook_params['id'])
+                .find(webhook_id)
 
     @webhook_params = webhook_params
   end

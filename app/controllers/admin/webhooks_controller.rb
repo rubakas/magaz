@@ -17,7 +17,7 @@ class Admin::WebhooksController < Admin::ApplicationController
   def create
     service = AdminServices::Webhook::AddWebhook
               .new( shop_id:        current_shop.id,
-                    webhook_params: params[:webhook])
+                    webhook_params: params[:webhook].permit!)
               .run
     @webhook = service.webhook
     if service.success?
@@ -32,7 +32,8 @@ class Admin::WebhooksController < Admin::ApplicationController
   def update
     service = AdminServices::Webhook::ChangeWebhook
               .new( shop_id:        current_shop.id,
-                    webhook_params: params[:webhook])
+                    webhook_id:     params[:id],
+                    webhook_params: params[:webhook].permit!)
               .run
     @webhook = service.webhook
     if service.success?

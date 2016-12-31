@@ -6,14 +6,12 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
     @shop = create(:shop)
     @webhook = create(:webhook, shop: @shop)
     @success_params = {
-      'id'       => @webhook.id,
       'topic'    => "create_product_event",
       'format'   => "JSON",
       'address'  => "https://www.examplee.com"
     }
 
     @blank_params = {
-      'id'      => @webhook.id,
       'topic'   => "",
       'format'  => "",
       'address' => ""
@@ -25,6 +23,7 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
 
     service = AdminServices::Webhook::ChangeWebhook
               .new( shop_id:        @shop.id,
+                    webhook_id: @webhook.id,
                     webhook_params: @success_params)
               .run
 
@@ -38,6 +37,7 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
 
     service = AdminServices::Webhook::ChangeWebhook
               .new( shop_id:        @shop.id,
+                    webhook_id: @webhook.id,
                     webhook_params: @blank_params)
               .run
 
@@ -59,6 +59,7 @@ class AdminServices::Webhook::ChangeWebhookTest < ActiveSupport::TestCase
 
     service = AdminServices::Webhook::ChangeWebhook
               .new( shop_id:        @shop.id,
+                    webhook_id: @webhook.id,
                     webhook_params: @success_params)
               .run
 
