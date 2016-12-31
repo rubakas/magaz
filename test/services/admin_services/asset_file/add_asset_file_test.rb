@@ -5,7 +5,7 @@ class AdminServices::AssetFile::AddAssetFileTest < ActiveSupport::TestCase
   setup do
     @shop = create(:shop, name: "shop name")
     @file = fixture_file_upload('/files/test.txt')
-    @success_params = { file: @file, name: 'New file' }
+    @success_params = { 'file' => @file, 'name' => 'New file' }
   end
 
   test "should add file with valid params" do
@@ -20,7 +20,7 @@ class AdminServices::AssetFile::AddAssetFileTest < ActiveSupport::TestCase
 
   test "should not add file with blank name" do
     assert_equal 0, AssetFile.count
-    invalid_params = @success_params.merge({ name: '' })
+    invalid_params = @success_params.merge({ 'name' => '' })
     service = AdminServices::AssetFile::AddAssetFile
               .new(shop_id: @shop.id, params: invalid_params)
               .run
@@ -33,7 +33,7 @@ class AdminServices::AssetFile::AddAssetFileTest < ActiveSupport::TestCase
 
   test "should not add file with blank file" do
     assert_equal 0, AssetFile.count
-    invalid_params = @success_params.merge({ file: '' })
+    invalid_params = @success_params.merge({ 'file' => '' })
     service = AdminServices::AssetFile::AddAssetFile
               .new(shop_id: @shop.id, params: invalid_params)
               .run
