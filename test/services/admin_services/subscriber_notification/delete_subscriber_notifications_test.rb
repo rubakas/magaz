@@ -11,7 +11,7 @@ class AdminServices::SubscriberNotification::DeleteSubscriberNotificationTest < 
   test 'should delete subscriber notification with valid ids' do
     assert_equal 2, @shop.subscriber_notifications.count
     service = AdminServices::SubscriberNotification::DeleteSubscriberNotification
-              .new(id: @first_subscriber_notification.id,
+              .new(id:      @first_subscriber_notification.id,
                    shop_id: @shop.id)
               .run
     assert service.success?

@@ -68,6 +68,7 @@ FactoryGirl.define do
   factory :product, class: Product do
     sequence(:name)        { |n| "Example #{n}" }
     sequence(:description) { |n| "Example #{n} description" }
+    price { [0.99, 1.01].sample }
   end
 
   factory :product_image, class: ProductImage do

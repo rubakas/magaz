@@ -17,7 +17,7 @@ if Theme.count == 0
                          "Spring", "Standfort", "Outdoors"],
                 comment: "This is example of review which created by backend team"}
   partner = ThemeServices::CreatePartner
-            .new(params: { name: "Magaz.com", website_url: "https://magaz.com" })
+            .new(params: { 'name' => "Magaz.com", 'website_url' => "https://magaz.com" })
             .run
   archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
 
@@ -26,9 +26,9 @@ if Theme.count == 0
     ThemeServices::ImportFromArchive
       .new(archive_path: archive_path,
             theme: theme,
-            theme_attributes: {name: attributes[:names][n],
-                               price: attributes[:prices][n],
-                               partner_id: partner.result.id})
+            theme_attributes: {'name' => attributes[:names][n],
+                               'price' => attributes[:prices][n],
+                               'partner_id' => partner.result.id})
       .run
     theme.update_attributes(rating: rand(1..50))
     theme.theme_styles.each do |style|

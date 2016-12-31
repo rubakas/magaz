@@ -10,7 +10,7 @@ class ThemeTest < ActiveSupport::TestCase
     ThemeServices::ImportFromArchive
       .new(archive_path: @archive_path,
             theme: @source_theme,
-            theme_attributes: { name: 'Default' })
+            theme_attributes: { 'name' => 'Default' })
       .run
 
     service = ThemeServices::InstallTheme

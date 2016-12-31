@@ -4,7 +4,8 @@ class AdminServices::Blog::AddBlog
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, params:)
+  def initialize  shop_id:, 
+                  params:
     @result = Shop.find(shop_id).blogs.new(default_params)
     @params = params
   end
@@ -18,10 +19,13 @@ class AdminServices::Blog::AddBlog
   private
 
   def default_params
-    { meta_description: '', handle: '', page_title: '' }
+    { 'meta_description' => '', 'handle' => '', 'page_title' => '' }
   end
 
   def blog_params
-    @params.slice(:meta_description, :handle, :page_title, :title)
+    @params.slice 'meta_description',
+                  'handle',
+                  'page_title',
+                  'title'
   end
 end

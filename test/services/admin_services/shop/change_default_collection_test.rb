@@ -18,23 +18,26 @@ class AdminServices::Shop::ChangeDefaultCollectionTest < ActiveSupport::TestCase
 
   test 'should update shop with only shop_id parameter' do
     service = AdminServices::Shop::ChangeDefaultCollection
-              .new(id: @shop.id, collection_id: '')
+              .new( id:             @shop.id,
+                    collection_id:  '')
               .run
     assert service.success?
-    assert_equal nil, service.shop.eu_digital_goods_collection_id
+    assert_nil service.shop.eu_digital_goods_collection_id
   end
 
   test 'should raise exeption if shop not found' do
     assert_raises ActiveRecord::RecordNotFound do
       service = AdminServices::Shop::ChangeDefaultCollection
-                .new(id: '', collection_id: '')
+                .new( id:             '',
+                      collection_id:  '')
                 .run
     end
   end
 
   test "should not update shop with invalid collection" do
     service = AdminServices::Shop::ChangeDefaultCollection
-              .new(id: @shop.id, collection_id: "random")
+              .new( id:             @shop.id,
+                    collection_id:  "random")
               .run
     refute service.success?
     assert_equal 2, service.errors.count

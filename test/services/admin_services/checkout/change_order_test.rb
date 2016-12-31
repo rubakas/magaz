@@ -7,13 +7,14 @@ class AdminServices::Checkout::ChangeOrderTest < ActiveSupport::TestCase
     @customer = create(:customer, shop: @shop)
     @checkout = create(:checkout, customer: @customer)
     @order = create(:checkout, customer: @customer, status: Checkout::STATUSES.first)
-    @success_params = { status: 'open' }
-    @blank_params =   { status: '' }
+    @success_params = { 'status' => 'open' }
+    @blank_params =   { 'status' => '' }
   end
 
   test 'should update order with valid params' do
     service = AdminServices::Checkout::ChangeOrder
-              .new(id: @checkout.id, params: @success_params)
+              .new( id: @checkout.id,
+                    params: @success_params)
               .run
     assert service.success?
     assert service.result
@@ -22,7 +23,8 @@ class AdminServices::Checkout::ChangeOrderTest < ActiveSupport::TestCase
 
   test 'should not update order with valid params' do
     service = AdminServices::Checkout::ChangeOrder
-              .new(id: @order.id, params: @blank_params)
+              .new( id: @order.id, 
+                    params: @blank_params)
               .run
 
     refute service.success?

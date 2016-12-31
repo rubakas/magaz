@@ -4,7 +4,8 @@ class AdminServices::Shop::ChangeDefaultCollection
   attr_reader :success, :shop, :errors
   alias_method :success?, :success
 
-  def initialize(id:, collection_id:)
+  def initialize  id:,
+                  collection_id:
     @id = id
     @collection_id = collection_id
     @shop = Shop.find(@id)

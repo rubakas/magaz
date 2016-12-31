@@ -14,7 +14,7 @@ class StoreServices::ShoppingCart::UpdateAddressTest < ActiveSupport::TestCase
                 .new(shop_id:     @existing_shop.id,
                      checkout_id: @existing_checkout.id,
                      customer_id: @existing_customer.id,
-                     address_attrs: { email: "updatedaddress@mail.com" })
+                     address_attrs: { 'email' => "updatedaddress@mail.com" })
                 .run
     assert service.success?
     assert_equal service.checkout, @existing_checkout
@@ -26,7 +26,7 @@ class StoreServices::ShoppingCart::UpdateAddressTest < ActiveSupport::TestCase
                 .new(shop_id:     @existing_shop.id,
                      checkout_id: @existing_checkout.id,
                      customer_id: @existing_customer.id,
-                     address_attrs: { email: "random" })
+                     address_attrs: { 'email' => "random" })
                 .run
 
     refute service.success?

@@ -4,7 +4,8 @@ class AdminServices::AssetFile::AddAssetFile
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, params:)
+  def initialize  shop_id:, 
+                  params:
     @result = Shop.find(shop_id).asset_files.new
     @params = params
   end
@@ -18,6 +19,7 @@ class AdminServices::AssetFile::AddAssetFile
   private
 
   def asset_params
-    @params.slice(:file, :name)
+    @params.slice 'file',
+                  'name'
   end
 end

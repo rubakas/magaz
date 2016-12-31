@@ -4,7 +4,7 @@ class AdminServices::Article::DeleteArticle
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(id:)
+  def initialize id:
     @result = ::Article.friendly.find(id)
   end
 

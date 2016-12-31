@@ -16,13 +16,8 @@ class Admin::WebhooksController < Admin::ApplicationController
 
   def create
     service = AdminServices::Webhook::AddWebhook
-              .new(shop_id: current_shop.id, webhook_params: {
-                   topic: params[:webhook][:topic],
-                   format: params[:webhook][:format],
-                   fields: params[:webhook][:fields],
-                   address: params[:webhook][:address],
-                   metafield_namespaces: params[:webhook][:metafield_namespaces] }
-                  )
+              .new( shop_id:        current_shop.id,
+                    webhook_params: params[:webhook].permit!)
               .run
     @webhook = service.webhook
     if service.success?
@@ -36,13 +31,9 @@ class Admin::WebhooksController < Admin::ApplicationController
 
   def update
     service = AdminServices::Webhook::ChangeWebhook
-              .new(shop_id: current_shop.id, webhook_params: {
-                    id: params[:id],
-                    topic: params[:webhook][:topic],
-                    format: params[:webhook][:format],
-                    fields: params[:webhook][:fields],
-                    address: params[:webhook][:address],
-                    metafield_namespaces: params[:webhook][:metafield_namespaces]})
+              .new( shop_id:        current_shop.id,
+                    webhook_id:     params[:id],
+                    webhook_params: params[:webhook].permit!)
               .run
     @webhook = service.webhook
     if service.success?
@@ -60,12 +51,6 @@ class Admin::WebhooksController < Admin::ApplicationController
                                          .run
     flash[:notice] = t('.notice_success')
     redirect_to admin_webhooks_url
-  end
-
-  private
-
-  def full_name(user:)
-    [user.first_name, user.last_name].map(&:capitalize).join(" ")
   end
 
 end

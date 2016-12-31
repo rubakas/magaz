@@ -5,6 +5,7 @@ DatabaseCleaner.strategy = :deletion
 
 class ActiveSupport::TestCase
   setup do
+    DatabaseCleaner.clean
     DatabaseCleaner.start
   end
 

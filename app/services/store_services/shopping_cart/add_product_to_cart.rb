@@ -3,7 +3,12 @@ class StoreServices::ShoppingCart::AddProductToCart
   attr_reader :success, :errors, :checkout
   alias_method :success?, :success
 
-  def initialize(shop_id: nil, checkout_id: nil, customer_id: nil, product_id: nil, quantity: nil)
+  def initialize  shop_id:      nil,
+                  checkout_id:  nil,
+                  customer_id:  nil,
+                  product_id:   nil,
+                  quantity:     nil
+
     @shop     = Shop.find(shop_id)
     @customer = @shop.customers.find_by_id(customer_id) || @shop.customers.new
     @customer.save!(validate: false)
@@ -42,7 +47,7 @@ class StoreServices::ShoppingCart::AddProductToCart
       new_li_attrs = LineItem.attribute_names.map(&:to_sym) - [:id, :shop_id]
       copied_attrs = @product
         .attributes
-        .merge({ product: @product, product_id: @product.id, quantity: @quantity })
+        .merge({ 'product' => @product, 'product_id' => @product.id, 'quantity' => @quantity })
         .select { |k, v| new_li_attrs.include?(k.to_sym) }
       @checkout.line_items.create(copied_attrs)
     end

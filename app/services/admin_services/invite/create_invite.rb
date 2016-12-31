@@ -3,7 +3,9 @@ class AdminServices::Invite::CreateInvite
   attr_reader :success, :user, :link, :errors
   alias_method :success?, :success
 
-  def initialize(url_building_proc: nil, email: nil, shop_id: nil)
+  def initialize  url_building_proc: nil,
+                  email: nil,
+                  shop_id: nil
     @user = User.new
     @url_building_proc = url_building_proc
     @email = email

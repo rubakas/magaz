@@ -4,8 +4,9 @@ class AdminServices::LinkList::AddLinkList
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, params:)
-    @result = Shop.find(shop_id).link_lists.new(default_params)
+  def initialize shop_id:, params:
+    @result = Shop.find(shop_id)
+              .link_lists.new(default_params)
     @params = params
   end
 
@@ -18,11 +19,12 @@ class AdminServices::LinkList::AddLinkList
   private
 
   def link_lists_params
-    @params.slice(:name, :handle)
+    @params.slice 'name',
+                  'handle'
   end
 
   def default_params
-    { handle: '' }
+    { 'handle' => '' }
   end
 
 end

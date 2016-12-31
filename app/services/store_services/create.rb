@@ -3,7 +3,7 @@ class StoreServices::Create
   attr_reader :success, :errors, :result
   alias_method :success?, :success
 
-  def initialize(params:)
+  def initialize params:
     @shop = Shop.new
     @params = params
     @success = true
@@ -52,7 +52,7 @@ class StoreServices::Create
 
   def _create_default_blogs_and_posts!(shop_id:)
     default_blog = AdminServices::Blog::AddBlog
-                   .new(shop_id: shop_id, params: { title: I18n.t('default.models.blog.blog_title') })
+                   .new(shop_id: shop_id, params: { 'title' => I18n.t('default.models.blog.blog_title') })
                    .run
                    .result
     collect_errors(default_blog)
@@ -67,39 +67,39 @@ class StoreServices::Create
   def _create_default_link_lists!(shop_id:)
     #Main Menu link list
     default_menu_link_list = AdminServices::LinkList::AddLinkList
-                             .new(shop_id: shop_id, params: { name: I18n.t('default.models.link_list.menu_link_list_name') })
+                             .new(shop_id: shop_id, params: { 'name' => I18n.t('default.models.link_list.menu_link_list_name') })
                              .run
                              .result
     collect_errors(default_menu_link_list)
     #Links for Main Menu
     home_link = AdminServices::Link::AddLink
-                .new(link_list_id: default_menu_link_list.id, params: { name: I18n.t('default.models.link.home_link_name') })
+                .new(link_list_id: default_menu_link_list.id, params: { 'name' => I18n.t('default.models.link.home_link_name') })
                 .run
                 .result
     collect_errors(home_link)
 
     blog_link = AdminServices::Link::AddLink
-                .new(link_list_id: default_menu_link_list.id, params: { name: I18n.t('default.models.link.blog_link_name') })
+                .new(link_list_id: default_menu_link_list.id, params: { 'name' => I18n.t('default.models.link.blog_link_name') })
                 .run
                 .result
     collect_errors(blog_link)
 
     #Footer link list
     default_footer_link_list = AdminServices::LinkList::AddLinkList
-                               .new(shop_id: shop_id, params: { name: I18n.t('default.models.link_list.footer_link_list_name') })
+                               .new(shop_id: shop_id, params: { 'name' => I18n.t('default.models.link_list.footer_link_list_name') })
                                .run
                                .result
     collect_errors(default_footer_link_list)
 
     #Links for Footer
     search_link = AdminServices::Link::AddLink
-                  .new(link_list_id: default_footer_link_list.id, params: { name: I18n.t('default.models.link.search_link_name') })
+                  .new(link_list_id: default_footer_link_list.id, params: { 'name' => I18n.t('default.models.link.search_link_name') })
                   .run
                   .result
     collect_errors(search_link)
 
     about_link = AdminServices::Link::AddLink
-                 .new(link_list_id: default_footer_link_list.id, params: { name: I18n.t('default.models.link.about_link_name') })
+                 .new(link_list_id: default_footer_link_list.id, params: { 'name' => I18n.t('default.models.link.about_link_name') })
                  .run
                  .result
     collect_errors(about_link)
@@ -154,51 +154,51 @@ class StoreServices::Create
 
   def shop_params
     {
-      name: @params[:name], 
-      all_taxes_are_included: true,
-      charge_taxes_on_shipping_rates: false
+      'name' => @params['name'],
+      'all_taxes_are_included' => true,
+      'charge_taxes_on_shipping_rates' => false
     }
   end
 
   def user_params
     {
-      email: @params[:email],
-      password: @params[:password],
-      account_owner: true,
-      first_name: @params[:first_name],
-      last_name: @params[:last_name],
-      permissions: nil
+      'email'       => @params['email'],
+      'password'    => @params['password'],
+      'account_owner' => true,
+      'first_name'  =>   @params['first_name'],
+      'last_name'   =>    @params['last_name'],
+      'permissions' => nil
     }
   end
 
   def about_page_params
     {
-      title: I18n.t('default.models.page.about_title'),
-      content: I18n.t('default.models.page.about_content'),
+      'title' => I18n.t('default.models.page.about_title'),
+      'content' => I18n.t('default.models.page.about_content'),
     }
   end
 
   def welcome_page_params
     {
-      title: I18n.t('default.models.page.welcome_title'),
-      content: I18n.t('default.models.page.welcome_content')
+      'title' => I18n.t('default.models.page.welcome_title'),
+      'content' => I18n.t('default.models.page.welcome_content')
     }
   end
 
   def collection_params
     {
-      handle: '',
-      name: I18n.t('default.models.collection.collection_title'),
-      page_title: '',
-      description: I18n.t('default.models.collection.collection_description'),
-      meta_description: ''
+      'handle'           => '',
+      'name'             => I18n.t('default.models.collection.collection_title'),
+      'page_title'       => '',
+      'description'      => I18n.t('default.models.collection.collection_description'),
+      'meta_description' => ''
     }
   end
 
   def article_params
     {
-      title: I18n.t('default.models.article.article_title'),
-      content: I18n.t('default.models.article.article_content')
+      'title'   => I18n.t('default.models.article.article_title'),
+      'content' => I18n.t('default.models.article.article_content')
     }
   end
 

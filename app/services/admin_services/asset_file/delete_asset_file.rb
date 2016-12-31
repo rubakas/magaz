@@ -4,8 +4,13 @@ class AdminServices::AssetFile::DeleteAssetFile
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(id:, shop_id:)
-    @result = ::Shop.find(shop_id).asset_files.find(id).destroy
+  def initialize  id:, 
+                  shop_id:
+    @result = ::Shop
+              .find(shop_id)
+              .asset_files
+              .find(id)
+              .destroy
   end
 
   def run

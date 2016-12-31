@@ -10,8 +10,10 @@ class AdminServices::LinkList::DeleteLinkListTest < ActiveSupport::TestCase
 
   test 'should delete link list with valid id' do
     service = AdminServices::LinkList::DeleteLinkList
-              .new(id: @link_list.id, shop_id: @shop.id)
+              .new( id:       @link_list.id,
+                    shop_id:  @shop.id)
               .run
+
     assert service.success?
     assert_equal 0, LinkList.count
   end
@@ -19,7 +21,8 @@ class AdminServices::LinkList::DeleteLinkListTest < ActiveSupport::TestCase
   test 'should delete links with link list' do
     assert_difference('Link.count', -1) do
       AdminServices::LinkList::DeleteLinkList
-      .new(id: @link_list.id, shop_id: @shop.id)
+      .new( id:       @link_list.id,
+            shop_id:  @shop.id)
       .run
     end
   end

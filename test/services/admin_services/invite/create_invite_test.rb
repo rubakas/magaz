@@ -14,8 +14,8 @@ class AdminServices::Invite::CreateInviteTest < ActiveSupport::TestCase
     assert_equal 1, User.count
     ActionMailer::Base.deliveries = []
     service = AdminServices::Invite::CreateInvite
-              .new(email: @email,
-                   shop_id: @shop.id,
+              .new(email:             @email,
+                   shop_id:           @shop.id,
                    url_building_proc: @url_building_proc)
               .run
     assert service.success?
@@ -28,8 +28,8 @@ class AdminServices::Invite::CreateInviteTest < ActiveSupport::TestCase
     ActionMailer::Base.deliveries = []
     assert_equal 1, User.count
     service = AdminServices::Invite::CreateInvite
-              .new(email: @user.email,
-                   shop_id: @shop.id,
+              .new(email:             @user.email,
+                   shop_id:           @shop.id,
                    url_building_proc: @url_building_proc)
               .run
     refute service.success?

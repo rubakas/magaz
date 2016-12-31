@@ -6,10 +6,10 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     @default_theme = build(:theme)
     archive_path = ::File.expand_path("#{Rails.root}/test/fixtures/files/valid_theme.zip", __FILE__)
     ThemeServices::ImportFromArchive
-      .new(archive_path: archive_path,
-            theme: @default_theme,
-            theme_attributes: { name: 'Default' })
-      .run
+    .new(archive_path: archive_path,
+          theme: @default_theme,
+          theme_attributes: { 'name' => 'Default' })
+    .run
   end
 
   test "signup success" do
@@ -38,7 +38,7 @@ class SignupStoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?('3 errors')
   end
 
-  test "signup failure: shope name already been taken" do
+  test "signup failure: shop name already been taken" do
     visit '/'
     assert page.has_content?('Welcome')
 

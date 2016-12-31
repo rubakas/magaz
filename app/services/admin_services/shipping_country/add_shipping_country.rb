@@ -4,8 +4,14 @@ class AdminServices::ShippingCountry::AddShippingCountry
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, params:)
-    @result = ::Shop.find(shop_id).shipping_countries.new
+  def initialize  shop_id:,
+                  params:
+
+    @result = ::Shop
+              .find(shop_id)
+              .shipping_countries
+              .new
+
     @params = params
   end
 
@@ -18,6 +24,6 @@ class AdminServices::ShippingCountry::AddShippingCountry
   private
 
   def shipping_country_params
-    @params.slice(:tax, :name)
+    @params.slice('tax', 'name')
   end
 end

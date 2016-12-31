@@ -9,20 +9,22 @@ class AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSupport::TestCas
     @shipping_country = create(:shipping_country, shop: @shop)
     @tax_override = create(:tax_override, shipping_country: @shipping_country, collection: @collection)
     @success_params = {
-                        is_shipping: 'false',
-                        collection_id: @collection.id,
-                        rate: '48'
-                      }
+      'is_shipping'   => 'false',
+      'collection_id' => @collection.id,
+      'rate'          => '48'
+    }
     @blank_params = {
-                      is_shipping: '',
-                      collection_id: '',
-                      rate: ''
-                    }
+      'is_shipping'   => '',
+      'collection_id' => '',
+      'rate'          => ''
+    }
   end
 
   test 'should change override with valid params' do
     service = AdminServices::TaxOverride::ChangeTaxOverride
-              .new(id: @tax_override.id, shipping_country_id: @shipping_country.id, params: @success_params)
+              .new( id: @tax_override.id,
+                    shipping_country_id: @shipping_country.id,
+                    params: @success_params)
               .run
     assert service.success?
     assert_equal false, service.result.is_shipping
@@ -33,8 +35,10 @@ class AdminServices::TaxOverride::ChangeTaxOverrideTest < ActiveSupport::TestCas
 
   test 'should not change override with blank params' do
     service = AdminServices::TaxOverride::ChangeTaxOverride
-              .new(id: @tax_override.id, shipping_country_id: @shipping_country.id, params: @blank_params)
-              .run     
+              .new( id: @tax_override.id,
+                    shipping_country_id: @shipping_country.id,
+                    params: @blank_params)
+              .run
     refute service.success?
     assert_equal 2, service.result.errors.count
     assert_equal "Rate can't be blank",

@@ -9,7 +9,8 @@ class AdminServices::Product::DeleteProductTest < ActiveSupport::TestCase
   test "should delete image with valid params" do
     assert_equal 1, Product.count
     service = AdminServices::Product::DeleteProduct
-              .new(id: @product.id, shop_id: @shop.id)
+              .new( id:       @product.id,
+                    shop_id:  @shop.id)
               .run
     assert service.success?
     assert_equal 0, Product.count

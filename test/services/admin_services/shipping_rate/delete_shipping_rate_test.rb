@@ -12,7 +12,8 @@ class AdminServices::ShippingRate::DeleteShippingRateTest < ActiveSupport::TestC
   test 'should delete shipping rate with valid id' do
     assert_equal 2, @shipping_country.shipping_rates.count
     service = AdminServices::ShippingRate::DeleteShippingRate
-              .new(id: @first_shipping_rate.id, shipping_country_id: @shipping_country.id)
+              .new( id:                   @first_shipping_rate.id,
+                    shipping_country_id:  @shipping_country.id)
               .run
     assert service.success?
     refute ShippingRate.find_by_id(@first_shipping_rate.id)

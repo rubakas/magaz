@@ -4,7 +4,7 @@ class AdminServices::User::DeleteUser
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(id:)
+  def initialize id:
     @result = ::User.find(id)
   end
 
@@ -13,4 +13,3 @@ class AdminServices::User::DeleteUser
     self
   end
 end
-

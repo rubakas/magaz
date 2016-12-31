@@ -9,7 +9,8 @@ class AdminServices::Page::DeletePageTest < ActiveSupport::TestCase
 
   test "should delete page with valid id" do
     service = AdminServices::Page::DeletePage
-              .new(id: @page.id, shop_id: @shop.id)
+              .new( id:       @page.id,
+                    shop_id:  @shop.id)
               .run
     assert service.success?
     assert_equal 0, Page.count

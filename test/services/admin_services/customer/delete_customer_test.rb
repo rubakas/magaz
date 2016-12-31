@@ -11,7 +11,8 @@ class AdminServices::Customer::DeleteCustomerTest < ActiveSupport::TestCase
   test 'should delete customer with valid id' do
     assert_equal 2, @shop.customers.count
     service = AdminServices::Customer::DeleteCustomer
-                .new(id: @customer.id, shop_id: @shop.id)
+                .new( id:       @customer.id,
+                      shop_id:  @shop.id)
                 .run
     assert service.success?
     refute Customer.find_by_id(@customer.id)

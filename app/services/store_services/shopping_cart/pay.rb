@@ -3,7 +3,11 @@ class StoreServices::ShoppingCart::Pay
   attr_reader :success, :errors, :checkout
   alias_method :success?, :success
 
-  def initialize(shop_id: nil, checkout_id: nil, customer_id: nil, order_attrs: nil)
+  def initialize  shop_id: nil,
+                  checkout_id: nil,
+                  customer_id: nil,
+                  order_attrs: nil
+                  
     @shop     = Shop.find(shop_id)
     @customer = @shop.customers.find_by_id(customer_id) || @shop.customers.new
     @customer.save!(validate: false)
@@ -13,7 +17,8 @@ class StoreServices::ShoppingCart::Pay
 
   def run
     #TODO:  connect with payment processor, pay method
-    attrs = { status: I18n.t('default.models.shopping_cart.open') }.merge @order_attrs
+    #TODO: why the fuck status is not from constant
+    attrs = { 'status' => I18n.t('default.models.shopping_cart.open') }.merge @order_attrs
     @checkout.assign_attributes(attrs)
     if @checkout.valid?
       @checkout.save

@@ -9,16 +9,18 @@ class StoreServices::ShoppingCart::PayTest < ActiveSupport::TestCase
     @existing_product   = create(:product,  shop:     @existing_shop)
     @subscriber_notification = AdminServices::SubscriberNotification::AddSubscriberNotification
                                .new({ shop_id: @existing_shop.id, subscriber_notification_params: {
-                                      notification_method: "email",
-                                      subscription_address: "valid@email.com"}})
+                                      'notification_method' => "email",
+                                      'subscription_address' => "valid@email.com"}})
                                .run.subscriber_notification
 
     EmailTemplate::EMAIL_TEMPLATES.each do |template_type|
-      @existing_shop.email_templates.create(template_type: template_type,
-                                   name:          I18n.t("default.models.email_templates.#{template_type}.name"),
-                                   title:         I18n.t("default.models.email_templates.#{template_type}.title"),
-                                   body:          I18n.t("default.models.email_templates.#{template_type}.body"),
-                                   description:   I18n.t("default.models.email_templates.#{template_type}.description"))
+      @existing_shop
+      .email_templates
+      .create  template_type: template_type,
+               name:          I18n.t("default.models.email_templates.#{template_type}.name"),
+               title:         I18n.t("default.models.email_templates.#{template_type}.title"),
+               body:          I18n.t("default.models.email_templates.#{template_type}.body"),
+               description:   I18n.t("default.models.email_templates.#{template_type}.description")
     end
   end
 
@@ -28,7 +30,7 @@ class StoreServices::ShoppingCart::PayTest < ActiveSupport::TestCase
                 .new(shop_id:     @existing_shop.id,
                      checkout_id: @existing_checkout.id,
                      customer_id: @existing_customer.id,
-                     order_attrs: { email: "payed@mail.com" })
+                     order_attrs: { 'email' => "payed@mail.com" })
                 .run
     assert service.success?
     assert_equal service.checkout, @existing_checkout
@@ -43,7 +45,7 @@ class StoreServices::ShoppingCart::PayTest < ActiveSupport::TestCase
                 .new(shop_id:     @existing_shop.id,
                      checkout_id: @existing_checkout.id,
                      customer_id: @existing_customer.id,
-                     order_attrs: { email: "random" })
+                     order_attrs: { 'email' => "random" })
                 .run
     refute service.success?
     assert_equal service.checkout, @existing_checkout

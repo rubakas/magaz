@@ -3,8 +3,13 @@ class AdminServices::Page::DeletePage
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, id:)
-    @result = ::Shop.find(shop_id).pages.friendly.find(id)
+  def initialize  shop_id:,
+                  id:
+    @result = ::Shop
+              .find(shop_id)
+              .pages
+              .friendly
+              .find(id)
   end
 
   def run

@@ -2,7 +2,6 @@
 
 class FileUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
-  include CarrierWave::MimeTypes
 
   process :save_size_in_model
 

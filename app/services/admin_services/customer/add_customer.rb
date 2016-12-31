@@ -3,7 +3,8 @@ class AdminServices::Customer::AddCustomer
   attr_reader :success, :customer, :errors
   alias_method :success?, :success
 
-  def initialize(shop_id: nil, params: {})
+  def initialize  shop_id: nil, 
+                  params: {}
     @shop_id = shop_id
     @customer = Shop.find(shop_id).customers.new
     @params = params

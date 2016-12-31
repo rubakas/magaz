@@ -6,14 +6,22 @@ class AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
     @shop = create(:shop, name: 'shop_name')
     @collection = create(:collection, shop: @shop)
     @shop.update_attributes(eu_digital_goods_collection_id: @collection.id)
-    @success_params = { all_taxes_are_included: false, charge_taxes_on_shipping_rates: true, charge_vat_taxes: 'charge_vat_taxes' }
-    @specific_params = { all_taxes_are_included: true, charge_taxes_on_shipping_rates: false, charge_vat_taxes: '' }
+    @success_params = {
+      'all_taxes_are_included'          => false,
+      'charge_taxes_on_shipping_rates'  => true,
+      'charge_vat_taxes'                => 'charge_vat_taxes'
+    }
+    @specific_params = {
+      'all_taxes_are_included'          => true,
+      'charge_taxes_on_shipping_rates'  => false,
+      'charge_vat_taxes'                => ''
+    }
   end
 
   test 'should update shop with valid params' do
     service = AdminServices::Shop::ChangeTaxesSettings
               .new(shop_id: @shop.id,
-                   params: @success_params)
+                   params:  @success_params)
               .run
     assert service.success?
     assert service.shop
@@ -24,7 +32,9 @@ class AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
   end
 
   test 'should not update shop with blank params' do
-    service = AdminServices::Shop::ChangeTaxesSettings.new(shop_id: @shop.id).run
+    service = AdminServices::Shop::ChangeTaxesSettings
+              .new(shop_id: @shop.id)
+              .run
     refute service.success?
     assert_equal 2, service.errors.count
     assert_includes service.errors.full_messages, "All taxes are included is not included in the list"
@@ -38,8 +48,7 @@ class AdminServices::Shop::ChangeTaxesSettingsTest < ActiveSupport::TestCase
               .new(shop_id: @shop.id,
                    params: @specific_params)
               .run
-    assert_equal nil,
-                 service.shop.eu_digital_goods_collection_id
+    assert_nil service.shop.eu_digital_goods_collection_id
   end
 
   test "should rise exeption if shop not found" do

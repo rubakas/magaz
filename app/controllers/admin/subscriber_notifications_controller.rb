@@ -7,9 +7,8 @@ class Admin::SubscriberNotificationsController < Admin::ApplicationController
 
   def create
     service = AdminServices::SubscriberNotification::AddSubscriberNotification
-              .new(shop_id: current_shop.id, subscriber_notification_params: {
-                   notification_method: params[:subscriber_notification][:notification_method],
-                   subscription_address: params[:subscriber_notification][:subscription_address]})
+              .new( shop_id: current_shop.id,
+                    subscriber_notification_params: params[:subscriber_notification].permit!)
               .run
     @subscriber_notification = service.subscriber_notification
     if service.success?

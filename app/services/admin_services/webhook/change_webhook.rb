@@ -3,15 +3,21 @@ class AdminServices::Webhook::ChangeWebhook
   attr_reader :success, :webhook, :errors
   alias_method :success?, :success
 
-  def initialize(shop_id: nil, webhook_params: {
-                  id: nil,
-                  topic: nil,
-                  format: nil,
-                  fields: nil,
-                  address: nil,
-                  metafield_namespaces: nil })
+  def initialize  shop_id: nil,
+                  webhook_id:,
+                  webhook_params: {
+                    'topic'   => nil,
+                    'format'  => nil,
+                    'fields'  => nil,
+                    'address' => nil,
+                    'metafield_namespaces' => nil
+                  }
 
-    @webhook = ::Shop.find(shop_id).webhooks.find(webhook_params[:id])
+    @webhook = ::Shop
+                .find(shop_id)
+                .webhooks
+                .find(webhook_id)
+
     @webhook_params = webhook_params
   end
 

@@ -8,7 +8,9 @@ module ThemeServices
     alias_method :success?, :success
 
 
-    def initialize(archive_path: nil, theme: nil, theme_attributes: {})
+    def initialize  archive_path:     nil,
+                    theme:            nil,
+                    theme_attributes: {}
       @theme = theme
       @archive_path = archive_path
       @theme_attributes = theme_attributes
@@ -25,7 +27,7 @@ module ThemeServices
 
           set_attributes(@theme, @theme_attributes)
 
-          theme.save # run validations
+          theme.save! # run validations
 
           ThemeServices::CreateThemeStyles
           .new(theme_id: @theme.id, archive_path: root_path)
@@ -46,9 +48,9 @@ module ThemeServices
     private
 
     def set_attributes(theme, attributes)
-      theme.name = attributes[:name]
-      theme.price = attributes[:price]
-      theme.partner_id = attributes[:partner_id]
+      theme.name        = attributes['name']
+      theme.price       = attributes['price']
+      theme.partner_id  = attributes['partner_id']
     end
 
     def _build_associated_assets_from_path(theme:, path:)

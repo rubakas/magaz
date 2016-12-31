@@ -3,7 +3,7 @@ class ThemeServices::CreateThemeStyles
   attr_reader :success, :result, :errors
   alias_method :success?, :success
 
-  def initialize(archive_path:, theme_id:)
+  def initialize archive_path:, theme_id:
     @theme = Theme.find(theme_id)
 
     path_to_settings_data = "#{archive_path}/config/settings_data.json"

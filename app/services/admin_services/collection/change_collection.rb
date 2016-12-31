@@ -3,8 +3,14 @@ class AdminServices::Collection::ChangeCollection
   attr_reader :result
   alias_method :success?, :success
 
-  def initialize(shop_id:, id:, params:)
-    @result = Shop.find(shop_id).collections.friendly.find(id)
+  def initialize  shop_id:,
+                  id:,
+                  params:
+    @result = Shop
+              .find(shop_id)
+              .collections
+              .friendly
+              .find(id)
     @params = params
   end
 
@@ -16,6 +22,10 @@ class AdminServices::Collection::ChangeCollection
   private
 
   def collection_params
-    @params.slice(:name, :description, :page_title, :meta_description, :handle)
+    @params.slice 'name',
+                  'description',
+                  'page_title',
+                  'meta_description',
+                  'handle'
   end
 end

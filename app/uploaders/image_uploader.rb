@@ -1,9 +1,8 @@
 # encoding: utf-8
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
-  include CarrierWave::MimeTypes
 
-  def extension_white_list
+  def extension_whitelist
     %w(jpg jpeg gif png)
   end
 
