@@ -39,20 +39,20 @@ class Shop < ActiveRecord::Base
 
   EMAIL_MARKETING_CHOICE = %w[ customer_agrees customer_does_not_agree disable ]
 
+  has_many :blogs
   has_many :articles, through: :blogs
   has_many :asset_files
-  has_many :blogs
+  has_many :customers
   has_many :checkouts, through: :customers
   has_many :collections
   has_many :comments, through: :articles
   has_many :countries, class_name: 'ShippingCountry'
-  has_many :customers
   has_many :email_templates, :dependent => :destroy
-  has_many :links, through: :link_lists
   has_many :link_lists
+  has_many :links, through: :link_lists
   has_many :pages
-  has_many :product_images, through: :products
   has_many :products
+  has_many :product_images, through: :products
   has_many :shipping_countries
   has_many :shipping_rates, through: :shipping_countries
   has_many :subscriber_notifications

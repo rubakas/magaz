@@ -21,7 +21,7 @@ gem 'memcachier'
 gem 'oj' # Optimized JSON
 gem 'pg' # Use postgresql as the database for Active Record
 gem 'puma' # Use Puma as the app server
-gem 'rails', '>= 5.0.0', '< 5.1'
+gem 'rails', '>= 5.0.0', '< 5.2'
 gem 'redis' # Use Redis adapter to run Action Cable in production
 gem 'responders'
 gem 'rmagick',  require: false
