@@ -13,6 +13,7 @@ gem 'dalli'
 gem 'dotenv-rails'
 gem 'font-awesome-sass-rails'
 gem 'friendly_id'
+gem 'graphql'
 gem 'jb' # experimental replacement of jbuilder
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'kaminari'
