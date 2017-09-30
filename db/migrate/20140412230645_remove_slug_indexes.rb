@@ -1,4 +1,4 @@
-class RemoveSlugIndexes < ActiveRecord::Migration
+class RemoveSlugIndexes < ActiveRecord::Migration[4.2]
   def change
     remove_index :pages,       :slug
     remove_index :blogs,       :slug

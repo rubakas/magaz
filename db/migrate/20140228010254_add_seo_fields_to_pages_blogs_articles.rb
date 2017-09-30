@@ -1,4 +1,4 @@
-class AddSeoFieldsToPagesBlogsArticles < ActiveRecord::Migration
+class AddSeoFieldsToPagesBlogsArticles < ActiveRecord::Migration[4.2]
   def change
     add_column :pages, :handle, :string
     add_column :pages, :page_title, :string

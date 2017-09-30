@@ -1,4 +1,4 @@
-class CreateTableOrderSubscription < ActiveRecord::Migration
+class CreateTableOrderSubscription < ActiveRecord::Migration[4.2]
   def change
     create_table :order_subscriptions do |t|
       t.string :notification_method

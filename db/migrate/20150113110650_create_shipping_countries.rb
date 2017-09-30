@@ -1,4 +1,4 @@
-class CreateShippingCountries < ActiveRecord::Migration
+class CreateShippingCountries < ActiveRecord::Migration[4.2]
   def change
     create_table :shipping_countries do |t|
       t.string :name

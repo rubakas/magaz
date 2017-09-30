@@ -1,4 +1,4 @@
-class CreateWebhooksTable < ActiveRecord::Migration
+class CreateWebhooksTable < ActiveRecord::Migration[4.2]
   def change
     create_table :webhooks do |t|
       t.string :address

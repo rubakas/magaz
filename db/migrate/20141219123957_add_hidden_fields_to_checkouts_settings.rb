@@ -1,4 +1,4 @@
-class AddHiddenFieldsToCheckoutsSettings < ActiveRecord::Migration
+class AddHiddenFieldsToCheckoutsSettings < ActiveRecord::Migration[4.2]
   def change
     add_column :shops, :enable_multipass_login, :boolean
     add_column :shops, :notify_customers_of_their_shipment, :boolean

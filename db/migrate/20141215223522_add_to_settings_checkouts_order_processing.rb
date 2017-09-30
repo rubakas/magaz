@@ -1,4 +1,4 @@
-class AddToSettingsCheckoutsOrderProcessing < ActiveRecord::Migration
+class AddToSettingsCheckoutsOrderProcessing < ActiveRecord::Migration[4.2]
   def change
     add_column :shops, :bulling_adress_is_shipping_too, :boolean
     add_column :shops, :abandoned_checkout_time_delay, :string

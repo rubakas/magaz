@@ -1,4 +1,4 @@
-ruby '2.4.1'
+ruby '2.4.2'
 source 'https://rubygems.org'
 
 gem 'annotate', github: 'ctran/annotate_models'
@@ -25,6 +25,9 @@ gem 'puma' # Use Puma as the app server
 gem 'rails', '>= 5.0.0', '< 5.2'
 gem 'redis' # Use Redis adapter to run Action Cable in production
 gem 'responders'
+
+# to instal this I had to
+# export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick\@6/6.9.9-15/lib/pkgconfig
 gem 'rmagick',  require: false
 gem 'rubocop',  require: false
 gem 'rubyzip'

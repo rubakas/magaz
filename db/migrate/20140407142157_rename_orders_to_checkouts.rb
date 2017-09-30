@@ -1,4 +1,4 @@
-class RenameOrdersToCheckouts < ActiveRecord::Migration
+class RenameOrdersToCheckouts < ActiveRecord::Migration[4.2]
   def change
     rename_table :orders, :checkouts
 

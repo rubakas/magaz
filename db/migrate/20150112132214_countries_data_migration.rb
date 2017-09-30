@@ -1,4 +1,4 @@
-class CountriesDataMigration < ActiveRecord::Migration
+class CountriesDataMigration < ActiveRecord::Migration[4.2]
 
   class Country < ActiveRecord::Base
   end

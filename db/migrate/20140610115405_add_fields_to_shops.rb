@@ -1,4 +1,4 @@
-class AddFieldsToShops < ActiveRecord::Migration
+class AddFieldsToShops < ActiveRecord::Migration[4.2]
   def change
     add_column :shops, :address,        :string
     add_column :shops, :business_name,  :string

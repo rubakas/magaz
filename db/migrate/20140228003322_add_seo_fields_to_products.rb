@@ -1,4 +1,4 @@
-class AddSeoFieldsToProducts < ActiveRecord::Migration
+class AddSeoFieldsToProducts < ActiveRecord::Migration[4.2]
   def change
     add_column :products, :handle, :string
     add_column :products, :page_title, :string
