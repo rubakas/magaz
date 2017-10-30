@@ -53,7 +53,7 @@ group :test do
   gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'launchy'
   gem 'minitest-ci', git: 'git@github.com:circleci/minitest-ci.git'
   gem 'minitest-reporters'

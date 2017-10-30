@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :article, class: Article do
     sequence(:title)   { |n| "Article #{n}" }
     sequence(:content) { |n| "Article #{n} content" }
