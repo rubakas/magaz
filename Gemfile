@@ -20,7 +20,7 @@ gem 'kaminari'
 gem 'liquid'
 gem 'memcachier'
 gem 'oj' # Optimized JSON
-gem 'pg' # Use postgresql as the database for Active Record
+gem 'pg', '~> 0.18' # Use postgresql as the database for Active Record
 gem 'puma' # Use Puma as the app server
 gem 'rails', '>= 5.0.0', '< 5.2'
 gem 'redis' # Use Redis adapter to run Action Cable in production
@@ -55,11 +55,10 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot'
   gem 'launchy'
-  gem 'minitest-ci', git: 'git@github.com:circleci/minitest-ci.git'
+  gem 'minitest-ci' #, git: 'git@github.com:circleci/minitest-ci.git'
   gem 'minitest-reporters'
   gem 'poltergeist'
   gem 'shoulda'
-  gem 'shoulda-matchers'
   gem 'simplecov', :require => false
 end
 
