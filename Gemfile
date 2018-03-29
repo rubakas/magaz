@@ -1,4 +1,4 @@
-ruby '2.5.0'
+ruby '2.5.1'
 source 'https://rubygems.org'
 
 gem 'annotate', github: 'ctran/annotate_models'
