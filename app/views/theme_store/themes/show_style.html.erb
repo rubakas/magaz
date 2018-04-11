@@ -20,7 +20,7 @@
       <%= link_to t('.terms_of_service'), theme_store_terms_of_service_path %>
     </div>
     <div class="col-md-6">
-      <%= link_to (image_tag @style.image.url),
+      <%= link_to (image_tag @style.image.url, alt: @style.full_theme_style_name),
                   theme_store_view_demo_path(@style) %>
     </div>
   </div>
@@ -32,7 +32,7 @@
   <div class="row">
     <% @style.theme.theme_styles.each do |style| %>
       <div class="col-md-3 col-md-offset-1">
-        <%= link_to (image_tag style.image.url, src: style.name),
+        <%= link_to (image_tag style.image.url, alt: style.full_theme_style_name),
                     theme_store_style_path(id: style.theme.id, style_id: style.id)%>
         <p><%= link_to style.name, theme_store_style_path(id: style.theme.id, style_id: style.id)%></p>
       </div>
@@ -88,7 +88,7 @@
   <div class="row">
     <% @style.theme.partner.theme_styles.with_exception_of(@style).take(3).each do |partner_style| %>
       <div class="col-md-3 col-md-offset-1">
-        <%= link_to (image_tag partner_style.image.url, src: partner_style.name),
+        <%= link_to (image_tag partner_style.image.url, alt: partner_style.full_theme_style_name),
                     theme_store_style_path(id: partner_style.theme.id, style_id: partner_style.id) %>
         <span><%= link_to "#{partner_style.theme.name} — #{partner_style.name}", theme_store_style_path(id: partner_style.theme.id, style_id: partner_style.id) %></span>
         <% if partner_style.theme.price != 0 %>
@@ -114,7 +114,7 @@
         <div class="row">
           <% @style.industry_styles.with_exception_of(@style).take(3).each do |industry_style| %>
             <div class="col-md-4">
-              <%= link_to (image_tag industry_style.image, src: industry_style.name), theme_store_style_path(id: industry_style.theme.id, style_id: industry_style.id) %>
+              <%= link_to (image_tag industry_style.image, alt: industry_style.full_theme_style_name), theme_store_style_path(id: industry_style.theme.id, style_id: industry_style.id) %>
               <span><%= link_to "#{industry_style.theme.name} — #{industry_style.name}", theme_store_style_path(id: industry_style.theme.id, style_id: industry_style.id) %></span>
               <% if industry_style.theme.price != 0 %>
                 <span class="pull-right"><%= industry_style.theme.price %>$</span>

@@ -28,9 +28,9 @@ class ThemeStore::WelcomeStoriesTest < ActionDispatch::IntegrationTest
 
   test "images should be clickable" do
     visit theme_store_themes_path
-    find("img[alt='#{@style.theme.name} #{@style.name.downcase}']").click
+    find("img[alt='#{@style.full_theme_style_name}']").click
     assert current_path == "/theme/#{@style.theme.id}/style/#{@style.id}"
-    find("img[alt='#{@partner_style.theme.name} #{@partner_style.name.downcase}']").click
+    find("img[alt='#{@partner_style.full_theme_style_name}']").click
     assert current_path == "/theme/#{@partner_style.theme.id}/style/#{@partner_style.id}"
   end
 

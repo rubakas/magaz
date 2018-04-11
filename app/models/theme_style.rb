@@ -5,7 +5,7 @@ class ThemeStyle < ApplicationRecord
   validates :name, uniqueness: { scope: :theme_id }
 
   mount_uploader :image, ImageUploader
-  
+
   module IndustryCategories
     INDUSTRIES_LIST = ["Art & Photography", "Clothing & Fashion",
                        "Electronics", "Food & Drink",
@@ -17,12 +17,16 @@ class ThemeStyle < ApplicationRecord
   scope :industry_category, -> (industry_name) do
     unless industry_name.blank?
       where(industry: industry_name) if IndustryCategories::INDUSTRIES_LIST.include?(industry_name)
-    end 
+    end
   end
 
   scope :themes_price_category, -> (price_category_name) {joins(:theme).merge(Theme.price_category(price_category_name))}
-    
+
   scope :with_exception_of, -> (style) {self.where.not(id: style.id)}
+
+  def full_theme_style_name
+    "#{self.theme.name} #{self.name.downcase}"
+  end
 
   def industry_styles
     ThemeStyle.where(industry: self.industry)
