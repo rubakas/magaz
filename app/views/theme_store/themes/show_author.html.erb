@@ -10,7 +10,8 @@
   <div class="row">
     <%@author.theme_styles.page(params[:page]).per(6).each do |style| %>
       <div class="col-md-4">
-        <%= link_to (image_tag style.image), theme_store_style_path(id: style.theme.id, style_id: style.id)%>
+        <%= link_to (image_tag style.image.url, src: style.name), 
+                    theme_store_style_path(id: style.theme.id, style_id: style.id)%>
         <span><%= link_to "#{style.theme.name} — #{style.name}", theme_store_style_path(id: style.theme.id, style_id: style.id)%></span>
         <% if style.theme.price == 0 %>
           <span class="pull-right"><%= t('.free_price') %></span>
