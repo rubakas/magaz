@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'annotate', github: 'ctran/annotate_models'
 gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails', github: 'anjlab/bootstrap-rails'
 gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
+gem 'bootsnap'
 gem 'byebug', platform: :mri, groups: [:development, :test]
 gem 'carrierwave'
 gem 'coffee-rails' # Use CoffeeScript for .coffee assets and views
