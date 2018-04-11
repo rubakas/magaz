@@ -20,18 +20,20 @@
       <%= link_to t('.terms_of_service'), theme_store_terms_of_service_path %>
     </div>
     <div class="col-md-6">
-      <%= link_to (image_tag @style.image), theme_store_view_demo_path(@style) %>
+      <%= link_to (image_tag @style.image.url, alt: @style.full_theme_style_name),
+                  theme_store_view_demo_path(@style) %>
     </div>
   </div>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
       <h3><%= t('.includes_styles', number_of_styles: pluralize(@style.theme.theme_styles.count, t('.style'))) %></h3>
-    </div>  
+    </div>
   </div>
   <div class="row">
     <% @style.theme.theme_styles.each do |style| %>
       <div class="col-md-3 col-md-offset-1">
-        <%= link_to (image_tag style.image), theme_store_style_path(id: style.theme.id, style_id: style.id)%>
+        <%= link_to (image_tag style.image.url, alt: style.full_theme_style_name),
+                    theme_store_style_path(id: style.theme.id, style_id: style.id)%>
         <p><%= link_to style.name, theme_store_style_path(id: style.theme.id, style_id: style.id)%></p>
       </div>
     <% end %>
@@ -46,7 +48,7 @@
       <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/225/theme_example/original.png" class="img-thumbnail" alt="Image">
     </div>
     <div class="col-md-2">
-      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/240/theme_example/original.png" class="img-thumbnail" alt="Image"> 
+      <img src="https://s3.amazonaws.com/shopify-theme-store/screenshots/240/theme_example/original.png" class="img-thumbnail" alt="Image">
     </div>
   </div>
   <div class="row">
@@ -57,7 +59,7 @@
       <%= link_to t('.review_button'), theme_store_create_review_path, class: "btn btn-success pull-right" %>
     </div>
   </div>
-  
+
   <div class="row">
     <% @style.theme.reviews.each do |review| %>
       <div class="col-md-1">
@@ -67,8 +69,8 @@
           <% when 0 %>
             <span class="glyphicon glyphicon-hand-right center-block" aria-hidden="true"></span>
           <% when 1 %>
-            <span class="glyphicon glyphicon-thumbs-up center-block" aria-hidden="true"></span>    
-        <% end %>  
+            <span class="glyphicon glyphicon-thumbs-up center-block" aria-hidden="true"></span>
+        <% end %>
       </div>
       <div class="col-md-5">
         <p><%= review.body %></p>
@@ -81,12 +83,13 @@
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
       <h4><%= t('.more_themes_by') %><%= link_to @style.theme.partner.name, theme_store_author_path(@style.theme.partner) %></h4>
-    </div>  
+    </div>
   </div>
   <div class="row">
     <% @style.theme.partner.theme_styles.with_exception_of(@style).take(3).each do |partner_style| %>
       <div class="col-md-3 col-md-offset-1">
-        <%= link_to (image_tag partner_style.image), theme_store_style_path(id: partner_style.theme.id, style_id: partner_style.id) %>
+        <%= link_to (image_tag partner_style.image.url, alt: partner_style.full_theme_style_name),
+                    theme_store_style_path(id: partner_style.theme.id, style_id: partner_style.id) %>
         <span><%= link_to "#{partner_style.theme.name} — #{partner_style.name}", theme_store_style_path(id: partner_style.theme.id, style_id: partner_style.id) %></span>
         <% if partner_style.theme.price != 0 %>
           <span class="pull-right"><%= partner_style.theme.price %>$</span>
@@ -104,14 +107,14 @@
         <h4>
           <%= t('.more_templates_html', industry: link_to(@style.industry, theme_store_industry_path(@style))) %>
         </h4>
-      </div>  
+      </div>
     </div>
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="row">
           <% @style.industry_styles.with_exception_of(@style).take(3).each do |industry_style| %>
             <div class="col-md-4">
-              <%= link_to (image_tag industry_style.image), theme_store_style_path(id: industry_style.theme.id, style_id: industry_style.id) %>
+              <%= link_to (image_tag industry_style.image, alt: industry_style.full_theme_style_name), theme_store_style_path(id: industry_style.theme.id, style_id: industry_style.id) %>
               <span><%= link_to "#{industry_style.theme.name} — #{industry_style.name}", theme_store_style_path(id: industry_style.theme.id, style_id: industry_style.id) %></span>
               <% if industry_style.theme.price != 0 %>
                 <span class="pull-right"><%= industry_style.theme.price %>$</span>
