@@ -41,7 +41,7 @@ Capybara.run_server = true
 
 Capybara.configure do |config|
   config.match = :one
-  config.exact_options = true
+  config.exact = true
   config.ignore_hidden_elements = true
   config.visible_text_only = true
 end
