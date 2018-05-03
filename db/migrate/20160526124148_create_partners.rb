@@ -1,4 +1,4 @@
-class CreatePartners < ActiveRecord::Migration[4.2][5.0]
+class CreatePartners < ActiveRecord::Migration[4.2]
   def change
     create_table :partners do |t|
       t.string :name
