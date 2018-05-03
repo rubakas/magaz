@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: shipping_rates
+#
+#  id                  :integer          not null, primary key
+#  name                :string
+#  criteria            :string
+#  price_from          :float
+#  price_to            :float
+#  weight_from         :float
+#  weight_to           :float
+#  shipping_price      :float
+#  shipping_country_id :integer
+#  created_at          :datetime
+#  updated_at          :datetime
+#
+
 class ShippingRate < ActiveRecord::Base
   belongs_to :shipping_country
   validates :name, :shipping_price, :shipping_country_id, :criteria, presence: true

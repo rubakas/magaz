@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: email_templates
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  title         :string
+#  body          :text
+#  created_at    :datetime
+#  updated_at    :datetime
+#  shop_id       :integer
+#  template_type :string
+#  description   :string
+#
+
 require 'test_helper'
 
 class EmailTemplateTest < ActiveSupport::TestCase

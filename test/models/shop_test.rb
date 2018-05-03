@@ -1,3 +1,46 @@
+# == Schema Information
+#
+# Table name: shops
+#
+#  id                                 :integer          not null, primary key
+#  name                               :string
+#  created_at                         :datetime
+#  updated_at                         :datetime
+#  password_salt                      :string
+#  subdomain                          :string
+#  address                            :string
+#  business_name                      :string
+#  city                               :string
+#  country                            :string
+#  currency                           :string
+#  customer_email                     :string
+#  phone                              :string
+#  province                           :string
+#  timezone                           :string
+#  unit_system                        :string
+#  zip                                :integer
+#  handle                             :string
+#  page_title                         :string
+#  meta_description                   :string
+#  account_type_choice                :string
+#  billing_address_is_shipping_too    :boolean
+#  abandoned_checkout_time_delay      :string
+#  email_marketing_choice             :string
+#  after_order_paid                   :string
+#  after_order_fulfilled_and_paid     :boolean
+#  checkout_language                  :string
+#  checkout_refund_policy             :text
+#  checkout_privacy_policy            :text
+#  checkout_term_of_service           :text
+#  enable_multipass_login             :boolean
+#  notify_customers_of_their_shipment :boolean
+#  automatically_fulfill_all_orders   :boolean
+#  authorization_settings             :string
+#  all_taxes_are_included             :boolean
+#  charge_taxes_on_shipping_rates     :boolean
+#  eu_digital_goods_collection_id     :integer
+#
+
 require 'test_helper'
 
 class ShopTest < ActiveSupport::TestCase

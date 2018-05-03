@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: links
+#
+#  id             :integer          not null, primary key
+#  name           :string
+#  link_type      :string
+#  position       :integer
+#  subject        :string
+#  subject_params :string
+#  subject_id     :integer
+#  link_list_id   :integer
+#
+
 require 'test_helper'
 
 class LinkTest < ActiveSupport::TestCase

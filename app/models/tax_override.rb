@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: tax_overrides
+#
+#  id                  :integer          not null, primary key
+#  rate                :float
+#  is_shipping         :boolean          default(FALSE)
+#  collection_id       :integer
+#  shipping_country_id :integer
+#
+
 class TaxOverride < ActiveRecord::Base
   belongs_to :collection
   belongs_to :shipping_country

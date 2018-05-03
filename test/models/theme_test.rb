@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: themes
+#
+#  id              :integer          not null, primary key
+#  name            :string
+#  created_at      :datetime
+#  updated_at      :datetime
+#  shop_id         :integer
+#  source_theme_id :integer
+#  role            :string
+#  price           :decimal(, )
+#  partner_id      :integer
+#  rating          :float
+#
+
 require 'test_helper'
 
 class ThemeTest < ActiveSupport::TestCase

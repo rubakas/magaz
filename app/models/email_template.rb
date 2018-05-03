@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: email_templates
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  title         :string
+#  body          :text
+#  created_at    :datetime
+#  updated_at    :datetime
+#  shop_id       :integer
+#  template_type :string
+#  description   :string
+#
+
 class EmailTemplate < ActiveRecord::Base
   EMAIL_TEMPLATES = %w[ abandoned_checkout_notification
                         contact_buyer fulfillment_request

@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: shipping_countries
+#
+#  id      :integer          not null, primary key
+#  name    :string
+#  tax     :string
+#  shop_id :integer
+#
+
 class ShippingCountry < ActiveRecord::Base
 
   COUNTRY_LIST = YAML.load_file("#{Rails.root}/config/countries.yml")

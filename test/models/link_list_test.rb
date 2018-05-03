@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: link_lists
+#
+#  id      :integer          not null, primary key
+#  name    :string
+#  shop_id :integer
+#  handle  :string
+#  slug    :string
+#
+
 require 'test_helper'
 
 class LinkListTest < ActiveSupport::TestCase

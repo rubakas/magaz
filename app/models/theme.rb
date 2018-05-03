@@ -9,6 +9,9 @@
 #  shop_id         :integer
 #  source_theme_id :integer
 #  role            :string
+#  price           :decimal(, )
+#  partner_id      :integer
+#  rating          :float
 #
 
 class Theme < ActiveRecord::Base

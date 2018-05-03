@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: webhooks
+#
+#  id                   :integer          not null, primary key
+#  address              :string
+#  fields               :string           default([]), is an Array
+#  format               :string
+#  metafield_namespaces :string           default([]), is an Array
+#  topic                :string
+#  shop_id              :integer
+#  created_at           :datetime
+#  updated_at           :datetime
+#
+
 class Webhook < ActiveRecord::Base
   belongs_to :shop
 

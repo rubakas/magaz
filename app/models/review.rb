@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: reviews
+#
+#  id         :integer          not null, primary key
+#  body       :text
+#  mark       :integer
+#  user_id    :integer
+#  theme_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Review < ApplicationRecord
   # associations
   belongs_to :user
