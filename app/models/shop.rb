@@ -73,7 +73,10 @@ class Shop < ActiveRecord::Base
   has_many :subscriber_notifications
   has_many :themes
   has_many :users, dependent: :destroy
-  belongs_to :eu_digital_goods_collection, class_name: 'Collection' , foreign_key: "eu_digital_goods_collection_id"
+  belongs_to  :eu_digital_goods_collection,
+              class_name: "Collection",
+              foreign_key: "eu_digital_goods_collection_id",
+              optional: true
   has_many :webhooks
 
   validates :name, presence: true
