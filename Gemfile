@@ -42,7 +42,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby] # Windows doe
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
 group :development do
+  gem 'graphiql-rails'
   gem 'listen'
+  gem 'rubocop-rspec'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen'
@@ -59,8 +61,8 @@ group :test do
   gem 'minitest-ci' #, git: 'git@github.com:circleci/minitest-ci.git'
   gem 'minitest-reporters'
   gem 'poltergeist'
+  gem 'rails-controller-testing'
   gem 'shoulda'
+  gem 'shoulda-matchers'
   gem 'simplecov', :require => false
 end
-
-gem 'graphiql-rails', group: :development

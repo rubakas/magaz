@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012140227) do
+ActiveRecord::Schema.define(version: 2016_10_12_140227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,8 +187,8 @@ ActiveRecord::Schema.define(version: 20161012140227) do
   create_table "partners", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "website_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["name"], name: "index_partners_on_name", unique: true
     t.index ["website_url"], name: "index_partners_on_website_url", unique: true
   end
@@ -220,10 +220,8 @@ ActiveRecord::Schema.define(version: 20161012140227) do
     t.integer "mark"
     t.integer "user_id"
     t.integer "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["theme_id"], name: "index_reviews_on_theme_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "shipping_countries", id: :serial, force: :cascade do |t|
@@ -295,11 +293,10 @@ ActiveRecord::Schema.define(version: 20161012140227) do
     t.string "name"
     t.string "image"
     t.integer "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string "industry"
     t.string "example_site_url"
-    t.index ["theme_id"], name: "index_theme_styles_on_theme_id"
   end
 
   create_table "themes", id: :serial, force: :cascade do |t|
@@ -312,7 +309,6 @@ ActiveRecord::Schema.define(version: 20161012140227) do
     t.decimal "price"
     t.integer "partner_id"
     t.float "rating"
-    t.index ["partner_id"], name: "index_themes_on_partner_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
