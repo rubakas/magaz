@@ -40,10 +40,10 @@ class ThemeTest < ActiveSupport::TestCase
   # associations
   should have_many(:assets)
   should have_many(:installed_themes)
-  should belong_to(:partner)
+  should belong_to(:partner).optional
   should have_many(:reviews)
-  should belong_to(:shop)
-  should belong_to(:source_theme)
+  should belong_to(:shop).optional
+  should belong_to(:source_theme).optional
   should have_many(:theme_styles).dependent(:destroy)
 
   test '#activate!' do

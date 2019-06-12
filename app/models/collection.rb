@@ -27,5 +27,5 @@ class Collection < ActiveRecord::Base
   friendly_id :handle, use: [:slugged, :scoped], scope: [:shop]
 
   validates :name, :shop_id, presence: true
-  validates :name, uniqueness: { scope: :shop }
+  validates :name, uniqueness: { scope: :shop_id }
 end

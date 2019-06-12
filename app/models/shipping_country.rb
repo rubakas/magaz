@@ -19,7 +19,7 @@ class ShippingCountry < ActiveRecord::Base
   validates :name,
             presence: true,
             inclusion: ShippingCountry::COUNTRY_LIST['countries'].keys,
-            uniqueness: { scope: :shop }
+            uniqueness: { scope: :shop_id }
   validates :shop_id, presence: true
   validates :tax, numericality: true, presence: true
 

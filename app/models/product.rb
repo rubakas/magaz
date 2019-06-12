@@ -34,6 +34,6 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_images, :allow_destroy => true
 
   validates :name, :shop_id, presence: true
-  validates :name, uniqueness: { scope: :shop }
+  validates :name, uniqueness: { scope: :shop_id }
   validates :price, numericality: true, allow_blank: true
 end
