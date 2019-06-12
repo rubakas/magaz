@@ -57,13 +57,13 @@ group :test do
   gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'launchy'
   gem 'minitest-ci' #, git: 'git@github.com:circleci/minitest-ci.git'
   gem 'minitest-reporters'
   gem 'poltergeist'
   gem 'rails-controller-testing'
-  gem 'shoulda'
+  gem 'shoulda-context'
   gem 'shoulda-matchers'
   gem 'simplecov', :require => false
 end

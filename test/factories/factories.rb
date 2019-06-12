@@ -82,38 +82,38 @@ FactoryBot.define do
   factory :shipping_rate, class: ShippingRate do
     sequence(:name)   { |n| "Shipping Rate #{n}" }
     sequence(:shipping_price) { 123 }
-    criteria "test"
+    criteria {"test"}
   end
 
   factory :shop, class: Shop do
     sequence(:name)                     { |n| "Example#{n}" }
     sequence(:subdomain)                { |n| "example#{n}" }
-    all_taxes_are_included              true
-    charge_taxes_on_shipping_rates      false
-    account_type_choice                 ::Shop::ACCOUNT_TYPE_CHOISE[::Shop::ACCOUNT_TYPE_CHOISE.index('disabled')]
-    enable_multipass_login              false
-    billing_address_is_shipping_too     false
-    abandoned_checkout_time_delay       ::Shop::ABANDONED_CHECKOUT_TIME_DELAY[::Shop::ABANDONED_CHECKOUT_TIME_DELAY.index('never')]
-    email_marketing_choice              ::Shop::EMAIL_MARKETING_CHOICE[::Shop::EMAIL_MARKETING_CHOICE.index('customer_agrees')]
-    after_order_paid                    ::Shop::AFTER_ORDER_PAID[::Shop::AFTER_ORDER_PAID.index('automatically_fulfill')]
-    notify_customers_of_their_shipment  false
-    automatically_fulfill_all_orders    false
-    after_order_fulfilled_and_paid      false
-    checkout_refund_policy              nil
-    checkout_privacy_policy             nil
-    checkout_term_of_service            nil
-    business_name                       'business_name'
-    city                                'city'
-    country                             'US'
-    currency                            'USD'
-    customer_email                      'some@email.com'
-    phone                               'phone'
-    timezone                            'American Samoa'
-    unit_system                         'metric'
-    zip                                 'zip'
-    page_title                          'page_title'
-    meta_description                    'meta_description'
-    address                             'address'
+    all_taxes_are_included              { true }
+    charge_taxes_on_shipping_rates      { false }
+    account_type_choice                 { ::Shop::ACCOUNT_TYPE_CHOISE[::Shop::ACCOUNT_TYPE_CHOISE.index('disabled')] }
+    enable_multipass_login              { false }
+    billing_address_is_shipping_too     { false }
+    abandoned_checkout_time_delay       { ::Shop::ABANDONED_CHECKOUT_TIME_DELAY[::Shop::ABANDONED_CHECKOUT_TIME_DELAY.index('never')] }
+    email_marketing_choice              { ::Shop::EMAIL_MARKETING_CHOICE[::Shop::EMAIL_MARKETING_CHOICE.index('customer_agrees')] }
+    after_order_paid                    { ::Shop::AFTER_ORDER_PAID[::Shop::AFTER_ORDER_PAID.index('automatically_fulfill')] }
+    notify_customers_of_their_shipment  {false}
+    automatically_fulfill_all_orders    {false}
+    after_order_fulfilled_and_paid      {false}
+    checkout_refund_policy              {nil}
+    checkout_privacy_policy             {nil}
+    checkout_term_of_service            {nil}
+    business_name                       {'business_name'}
+    city                                {'city'}
+    country                             {'US'}
+    currency                            {'USD'}
+    customer_email                      {'some@email.com'}
+    phone                               {'phone'}
+    timezone                            {'American Samoa'}
+    unit_system                         {'metric'}
+    zip                                 {'zip'}
+    page_title                          {'page_title'}
+    meta_description                    {'meta_description'}
+    address                             {'address'}
   end
 
   factory :subscriber_notification, class: SubscriberNotification do
@@ -141,8 +141,8 @@ FactoryBot.define do
     sequence(:last_name)  { |n| "Last Name #{n}"}
     #sequence(:password)   {|n| "qwerty#{n}"}
 
-    password              'password'
-    password_salt         BCrypt::Engine.generate_salt
+    password              { 'password' }
+    password_salt         { BCrypt::Engine.generate_salt }
     password_digest       { BCrypt::Engine.hash_secret('password', password_salt) }
   end
 
