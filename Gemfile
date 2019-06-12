@@ -26,6 +26,7 @@ gem 'puma' # Use Puma as the app server
 gem 'rails', '>= 5.2.0', '< 6'
 gem 'redis' # Use Redis adapter to run Action Cable in production
 gem 'responders'
+gem 'test-unit'
 
 # to instal this I had to
 # export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick\@6/6.9.9-15/lib/pkgconfig
