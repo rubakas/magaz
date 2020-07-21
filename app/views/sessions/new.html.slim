@@ -1,3 +1,6 @@
+p id="notice"
+  = notice
+
 div class='container'
   br
   div class='row'
@@ -5,24 +8,18 @@ div class='container'
       div class='panel panel-default'
         div class='panel-heading text-center'
           div class='panel-title'
-            h4 Sign in
+            h4 = t('.sign_in')
+
         div class='panel-body'
           = form_for :session,
-            url: admin_session_url(host: HOSTNAME,
-                                   subdomain: 'REPLACE_ME'),
+            url: admin_session_url,
             method: :post,
-            html: { class: 'script-sign-in-form' } do |f|
-
-            div class='script-field form-group'
-              = f.label :name
-              = f.text_field :subdomain,
-                placeholder: t('.shop_name'),
-                class: 'script-input-subdomain form-input'
+            html: { class: 'script-admin-sign-in-form' } do |f|
 
             div class='script-field form-group'
               = f.label :email
               = f.text_field :email,
-                placeholder: t('.email_address'),
+                placeholder: t('.email'),
                 class: 'script-input-email form-input'
 
             div class='script-field form-group'
